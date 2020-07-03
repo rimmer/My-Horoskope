@@ -1,0 +1,1 @@
+Firebase is not used temporarily, but kept as an example of future implementation
