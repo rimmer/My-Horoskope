@@ -479,7 +479,7 @@ packages:
   prophecies_repository:
     dependency: "direct main"
     description:
-      path: prophecies_repository
+      path: "../prophecies_repository"
       relative: true
     source: path
     version: "0.0.1"
@@ -652,7 +652,7 @@ packages:
   user_repository:
     dependency: "direct main"
     description:
-      path: user_repository
+      path: "../user_repository"
       relative: true
     source: path
     version: "0.0.1"
