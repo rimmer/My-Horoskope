@@ -6,7 +6,8 @@ import 'data/json/prophecies_json_data_provider.dart';
 import 'package:prophecy_model/prophecy_model.dart';
 
 class PropheciesRepository {
-  static const _PROPHECIES_JSON_FILE = "assets/data/prophecies.json";
+  static const _PROPHECIES_JSON_FILE =
+      "packages/local_database/data/prophecies.json";
 
   PropheciesJsonDataProvider _jsonProvider;
 

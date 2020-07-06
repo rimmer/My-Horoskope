@@ -9,7 +9,7 @@ part of 'prophecy.dart';
 abstract class _$ProphecyModel {
   const _$ProphecyModel();
 
-  int get id;
+  String get id;
   String get name;
   double get value;
   bool operator ==(other) {
@@ -45,7 +45,7 @@ abstract class _$ProphecyModel {
 
 ProphecyModel _$ProphecyModelFromJson(Map<String, dynamic> json) {
   return ProphecyModel(
-    id: json['id'] as int,
+    id: json['id'] as String,
     name: json['name'] as String,
     value: (json['value'] as num)?.toDouble(),
   );

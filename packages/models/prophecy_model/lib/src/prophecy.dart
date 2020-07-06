@@ -7,7 +7,7 @@ part 'prophecy.g.dart';
 @JsonSerializable()
 @dataClass
 class ProphecyModel extends _$ProphecyModel {
-  final int id;
+  final String id;
   final String name;
   final double value;
 
