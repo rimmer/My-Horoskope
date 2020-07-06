@@ -1,7 +1,8 @@
-import 'package:app/blocs/prophecy/bloc.dart';
-import 'package:app/widgets/prophecy_record_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../blocs/prophecy.dart';
+import '../widgets/prophecy_record_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -32,5 +33,4 @@ class HomeScreen extends StatelessWidget {
       }
     });
   }
-
 }

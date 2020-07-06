@@ -29,13 +29,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.1"
+  bloc:
+    dependency: "direct main"
+    description:
+      name: bloc
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   build:
     dependency: transitive
     description:
       name: build
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.2"
+    version: "1.3.0"
   build_config:
     dependency: transitive
     description:
@@ -56,21 +63,21 @@ packages:
       name: build_resolvers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.7"
+    version: "1.3.9"
   build_runner:
     dependency: "direct dev"
     description:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.0"
+    version: "1.10.0"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.0"
+    version: "5.2.0"
   built_collection:
     dependency: transitive
     description:
@@ -105,14 +112,14 @@ packages:
       name: code_builder
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.2.1"
+    version: "3.3.0"
   collection:
     dependency: transitive
     description:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.14.13"
+    version: "1.14.12"
   convert:
     dependency: transitive
     description:
@@ -142,19 +149,19 @@ packages:
     source: hosted
     version: "1.3.6"
   dataclass:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: dataclass
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0+1"
-  dataclass_generator:
-    dependency: "direct dev"
+  equatable:
+    dependency: "direct main"
     description:
-      name: dataclass_generator
+      name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0+2"
+    version: "1.2.0"
   fixnum:
     dependency: transitive
     description:
@@ -162,6 +169,11 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.10.11"
+  flutter:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   glob:
     dependency: transitive
     description:
@@ -212,19 +224,19 @@ packages:
     source: hosted
     version: "0.6.2"
   json_annotation:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: json_annotation
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
-  json_serializable:
-    dependency: "direct dev"
+  local_database:
+    dependency: "direct main"
     description:
-      name: json_serializable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.3.0"
+      path: "../../local_database_flutter"
+      relative: true
+    source: path
+    version: "0.0.1"
   logging:
     dependency: transitive
     description:
@@ -295,6 +307,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.4.0"
+  prophecy_model:
+    dependency: "direct main"
+    description:
+      path: "../../models/prophecy_model"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   pub_semver:
     dependency: transitive
     description:
@@ -330,6 +349,11 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.3"
+  sky_engine:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.99"
   source_gen:
     dependency: transitive
     description:
@@ -386,13 +410,41 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1+2"
+  to_string:
+    dependency: "direct main"
+    description:
+      name: to_string
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
+  to_string_generator:
+    dependency: "direct dev"
+    description:
+      name: to_string_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
   typed_data:
     dependency: transitive
     description:
       name: typed_data
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.1.6"
+  user_model:
+    dependency: transitive
+    description:
+      path: "../../models/user_model"
+      relative: true
+    source: path
+    version: "0.0.1+1"
+  vector_math:
+    dependency: transitive
+    description:
+      name: vector_math
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.8"
   watcher:
     dependency: transitive
     description:

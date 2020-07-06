@@ -1,13 +1,17 @@
 name: user_model
-description: Repo for getting/setting users
-version: 0.0.1
-author: Igor Ianishevskyi
-homepage: prophet.ninja
+description: user_model
+author: bgoncharuck
+version: 0.0.1+1
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
-  firebase_auth: ^0.16.1
+  meta: ^1.1.8
+  dataclass: ^0.3.0+1
+  json_annotation: ^3.0.1
+  
+dev_dependencies:
+  build_runner: ^1.0.0
+  dataclass_generator: ^0.3.0+1
+  json_serializable: ^3.2.0

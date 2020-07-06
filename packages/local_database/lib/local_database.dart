@@ -1,3 +1,0 @@
-library local_database;
-
-

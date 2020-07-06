@@ -1,9 +1,10 @@
-import 'package:app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:prophecy_model/prophecy_model.dart';
 
+import '../theme/app_colors.dart';
+
 class ProphecyRecordWidget extends StatelessWidget {
-  final Prophecy prophecy;
+  final ProphecyModel prophecy;
 
   ProphecyRecordWidget({Key key, @required this.prophecy}) : super(key: key);
 

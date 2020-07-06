@@ -1,12 +1,11 @@
-import 'package:app/blocs/authentication/bloc.dart';
-import 'package:app/blocs/prophecy/bloc.dart';
-import 'package:app/blocs/simple_bloc_delegate.dart';
-import 'package:app/theme/app_theme.dart';
-import 'package:app/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prophecy_model/prophecy_model.dart';
-import 'package:user_model/user_model.dart';
+import 'package:local_database/local_database.dart';
+
+import 'blocs/blocs.dart';
+import 'blocs/simple_bloc_delegate.dart';
+import 'theme/app_theme.dart';
+import 'views/home_screen.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
