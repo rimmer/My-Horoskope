@@ -1,0 +1,39 @@
+name: app
+description: Your personal prophet
+author: Igor Ianishevskyi
+homepage: prophet.ninja
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  flutter_bloc: ^4.0.0
+  flutter_bloc_stream: ^3.0.0
+
+  prophecy_model:
+    path: ../models/prophecy_model
+  user_model:
+    path: ../models/user_model 
+  local_database:
+    path: ../local_database_flutter
+
+  authentication:
+    path: ../blocs/authentication_flutter
+  prophecy:
+    path: ../blocs/prophecy_flutter
+  
+dev_dependencies:
+  #flutter_test:
+    #sdk: flutter
+
+
+flutter:
+  uses-material-design: true
+  assets:
+  - packages/local_database/data/prophecies.json

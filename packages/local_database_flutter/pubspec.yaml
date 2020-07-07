@@ -1,0 +1,23 @@
+name: local_database
+description: local database to store local data
+version: 0.0.1
+author: bgoncharuck
+homepage:
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  prophecy_model:
+    path: ../models/prophecy_model
+  user_model:
+    path: ../models/user_model 
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:

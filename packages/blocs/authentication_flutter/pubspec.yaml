@@ -1,0 +1,27 @@
+name: authentication
+description: authentication
+author: bgoncharuck
+version: 0.0.1+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  meta: ^1.1.8
+  bloc: ^4.0.0
+  equatable: ^1.2.0
+  to_string: ^1.2.1
+
+  prophecy_model:
+    path: ../../models/prophecy_model  
+  local_database:
+    path: ../../local_database_flutter
+
+dev_dependencies:
+  build_runner: ^1.0.0
+  to_string_generator: ^1.2.1
+
+flutter:
