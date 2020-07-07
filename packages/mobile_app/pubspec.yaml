@@ -12,21 +12,31 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^0.1.2
+  provider: ^4.2.0
   flutter_bloc: ^4.0.0
   flutter_bloc_stream: ^3.0.0
 
+  #models
   prophecy_model:
     path: ../models/prophecy_model
   user_model:
     path: ../models/user_model 
+  
+  #data
   local_database:
     path: ../local_database_flutter
 
+  #blocs
   authentication:
     path: ../blocs/authentication_flutter
   prophecy:
     path: ../blocs/prophecy_flutter
+
+  #localization
+  language:
+    path: ../language
+  
+  cupertino_icons: ^0.1.2
   
 dev_dependencies:
   #flutter_test:
@@ -36,4 +46,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+  #data
   - packages/local_database/data/prophecies.json
+  #localization
+  - packages/language/locales/ru.json

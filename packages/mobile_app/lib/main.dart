@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+
 import 'package:local_database/local_database.dart';
+import 'package:language/language.dart';
 
 import 'blocs/blocs.dart';
 import 'blocs/simple_bloc_delegate.dart';
-import 'theme/app_theme.dart';
-import 'views/home_screen.dart';
+import 'routes.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -14,8 +16,11 @@ void main() {
 
 class ProphetApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => MultiBlocProvider(
+  Widget build(BuildContext context) => MultiProvider(
         providers: [
+          Provider<Language>(create: (context) => Language()),
+        ],
+        child: MultiBlocProvider(providers: [
           BlocProvider<AuthenticationBloc>(
               create: (context) => AuthenticationBloc(
                     userRepository: UserRepository.createDefault(),
@@ -25,21 +30,6 @@ class ProphetApp extends StatelessWidget {
               repository: PropheciesRepository(context),
             )..add(LoadProphecies()),
           )
-        ],
-        child: MaterialApp(
-          title: 'My Prophet',
-          theme: appTheme,
-          home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-            builder: (context, state) {
-              if (state is Authenticated) return HomeScreen();
-              if (state is Unauthenticated) {
-                return Center(
-                  child: Text('Could not authenticate with Firestore'),
-                );
-              }
-              return Center(child: CircularProgressIndicator());
-            },
-          ),
-        ),
+        ], child: InitRoute()),
       );
 }

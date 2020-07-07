@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:prophecy_model/prophecy_model.dart';
+import 'package:app/theme/app_colors.dart';
 
-import '../theme/app_colors.dart';
-
-class ProphecyRecordWidget extends StatelessWidget {
+class ProphecyRecord extends StatelessWidget {
   final ProphecyModel prophecy;
 
-  ProphecyRecordWidget({Key key, @required this.prophecy}) : super(key: key);
+  ProphecyRecord({Key key, @required this.prophecy}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../blocs/prophecy.dart';
-import '../widgets/prophecy_record_widget.dart';
+import 'package:app/blocs/prophecy.dart';
+import 'prophecy_record.dart';
 
-class HomeScreen extends StatelessWidget {
+class Records extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PropheciesBloc, ProphecyState>(
@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           return Scaffold(
             body: ListView.builder(
               itemBuilder: (BuildContext context, int index) {
-                return ProphecyRecordWidget(prophecy: state.prophecies[index]);
+                return ProphecyRecord(prophecy: state.prophecies[index]);
               },
               itemCount: state.prophecies.length,
             ),
