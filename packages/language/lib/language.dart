@@ -1,16 +1,22 @@
 library language;
 
-import 'package:meta/meta.dart';
 import 'src/interface.dart';
+import 'src/russian.dart';
 
-class Language {
-  String languageCode;
-  Locale _locale;
-  Locale get tr => _locale;
+class lang {
+  static Locale locale = RussianLocale();
 
-  void loadLocale(
-      {@required Map<String, Object> json, @required String languageCode}) {
-    this.languageCode = languageCode;
-    _locale = Locale.fromJson(json);
-  }
+  static String name = locale.name;
+  static String birthdate = locale.birthdate;
+  static String birthcountry = locale.birthcountry;
+  static String birthplace = locale.birthplace;
+  static String sex = locale.sex;
+  static String male = locale.male;
+  static String female = locale.female;
+  static String other = locale.other;
+  static String notSelectedSex = locale.notSelectedSex;
+  static String termsAccept = locale.termsAccept;
+  static String privacyPolicy = locale.privacyPolicy;
+  static String userAgreement = locale.userAgreement;
+  static String start = locale.start;
 }

@@ -48,5 +48,5 @@ flutter:
   assets:
   #data
   - packages/local_database/data/prophecies.json
-  #localization
-  - packages/language/locales/ru.json
+  # #localization
+  # - packages/language/locales/ru.json

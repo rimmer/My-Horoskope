@@ -5,8 +5,8 @@ class DumyUserRepository implements UserRepository {
 
   Future<bool> isAuthenticated() async {
     // @DEBUG
-    return true;
-    // return false;
+    // return true;
+    return false;
   }
 
   Future<void> authenticate() async {}

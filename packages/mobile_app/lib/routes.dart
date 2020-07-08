@@ -10,7 +10,6 @@ import 'theme/app_theme.dart';
 class InitRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // @TODO language load
     AuthenticationBloc authBloc = context.bloc<AuthenticationBloc>();
 
     return MaterialApp(
@@ -22,9 +21,7 @@ class InitRoute extends StatelessWidget {
         builder: (context, state) {
           if (state is Authenticated) return DailyScreen();
           if (state is Unauthenticated) {
-            // return RegistrationScreen();
-            // @DEBUG
-            return MonthlyScreen();
+            return RegistrationScreen();
           }
           return Center(child: CircularProgressIndicator());
         },

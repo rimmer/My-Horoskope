@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import 'package:local_database/local_database.dart';
-import 'package:language/language.dart';
 
 import 'blocs/blocs.dart';
 import 'blocs/simple_bloc_delegate.dart';
@@ -16,20 +15,15 @@ void main() {
 
 class ProphetApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) => MultiProvider(
-        providers: [
-          Provider<Language>(create: (context) => Language()),
-        ],
-        child: MultiBlocProvider(providers: [
-          BlocProvider<AuthenticationBloc>(
-              create: (context) => AuthenticationBloc(
-                    userRepository: UserRepository.createDefault(),
-                  )..add(AppStarted())),
-          BlocProvider<PropheciesBloc>(
-            create: (context) => PropheciesBloc(
-              repository: PropheciesRepository(context),
-            )..add(LoadProphecies()),
-          )
-        ], child: InitRoute()),
-      );
+  Widget build(BuildContext context) => MultiBlocProvider(providers: [
+        BlocProvider<AuthenticationBloc>(
+            create: (context) => AuthenticationBloc(
+                  userRepository: UserRepository.createDefault(),
+                )..add(AppStarted())),
+        BlocProvider<PropheciesBloc>(
+          create: (context) => PropheciesBloc(
+            repository: PropheciesRepository(context),
+          )..add(LoadProphecies()),
+        )
+      ], child: InitRoute());
 }
