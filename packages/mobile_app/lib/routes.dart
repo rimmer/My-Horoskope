@@ -17,21 +17,20 @@ class InitRoute extends StatelessWidget {
       theme: appTheme,
       routes: routes,
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        bloc: authBloc,
-        builder: (context, state) {
-          if (state is Authenticated) return DailyScreen();
-          if (state is Unauthenticated) {
-            return RegistrationScreen();
-          }
-          return Center(child: CircularProgressIndicator());
-        },
-      ),
+          bloc: authBloc,
+          builder: (context, state) {
+            if (state is Authenticated) return DailyScreen();
+            if (state is Unauthenticated) {
+              return RegistrationScreen();
+            }
+            return Center(child: CircularProgressIndicator());
+          }),
     );
   }
-}
 
-final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
-  "/settings": (BuildContext context) => SettingsScreen(),
-  "/daily": (BuildContext context) => DailyScreen(),
-  "/monthly": (BuildContext context) => MonthlyScreen(),
-};
+  final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
+    "/settings": (BuildContext context) => SettingsScreen(),
+    "/daily": (BuildContext context) => DailyScreen(),
+    "/monthly": (BuildContext context) => MonthlyScreen(),
+  };
+}

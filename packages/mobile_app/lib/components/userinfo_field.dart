@@ -52,9 +52,9 @@ class _UserInfoFieldState extends State<UserInfoField> {
             },
             decoration: InputDecoration(
               border: _defaultInputBorder(),
-              focusedBorder: _defaultInputBorder(),
+              focusedBorder: _defaultInputBorder(color: AppColors.accent),
               enabledBorder: _defaultInputBorder(),
-              errorBorder: _defaultInputBorder(),
+              errorBorder: _defaultInputBorder(color: AppColors.accentDark),
               disabledBorder: _defaultInputBorder(),
               hintText: widget.hint,
             ),
