@@ -3,8 +3,8 @@ import 'interface.dart';
 class RussianLocale implements Locale {
   final String name = "Имя";
   final String birthdate = "Дата рождения";
-  final String birthcountry = "Страна; в которой вы родились";
-  final String birthplace = "Населенный пункт; где вы родились";
+  final String birthcountry = "Страна, в которой вы родились";
+  final String birthplace = "Населенный пункт, где вы родились";
   final String sex = "Пол";
   final String male = "Мужчина";
   final String female = "Женщина";
