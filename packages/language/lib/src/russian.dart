@@ -14,4 +14,5 @@ class RussianLocale implements Locale {
   final String privacyPolicy = "пользовательского соглашения";
   final String userAgreement = "политики конфиденциальности";
   final String start = "Начать";
+  final String atLeastXsymbolsNeeded = "минимальное количество символов: ";
 }

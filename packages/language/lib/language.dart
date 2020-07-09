@@ -19,4 +19,5 @@ class lang {
   static String privacyPolicy = locale.privacyPolicy;
   static String userAgreement = locale.userAgreement;
   static String start = locale.start;
+  static String atLeastXsymbolsNeeded = locale.atLeastXsymbolsNeeded;
 }

@@ -12,4 +12,5 @@ abstract class Locale {
   String get privacyPolicy;
   String get userAgreement;
   String get start;
+  String get atLeastXsymbolsNeeded;
 }

@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:app/theme/app_colors.dart';
+import 'package:app/models/mutable_text.dart';
 
 class UserInfoField extends StatefulWidget {
   final String hint;
   final Function(String toValidate) validator;
   final TextInputType keyboardType;
   final bool autofocus;
-  final _mutableText textObject;
-  final EdgeInsetsGeometry padding;
+  final int maxLength;
+  final MutableText textObject;
 
-  UserInfoField({
-    Key key,
-    text = "",
-    @required this.hint,
-    @required this.validator,
-    this.keyboardType = TextInputType.text,
-    this.autofocus = false,
-    this.padding = const EdgeInsets.symmetric(horizontal: 32),
-  })  : textObject = _mutableText(text),
-        super(key: key);
+  UserInfoField(
+      {Key key,
+      @required this.textObject,
+      @required this.hint,
+      @required this.validator,
+      this.keyboardType = TextInputType.text,
+      this.autofocus = false,
+      @required this.maxLength})
+      : super(key: key);
 
   @override
   _UserInfoFieldState createState() => _UserInfoFieldState();
@@ -26,46 +26,41 @@ class UserInfoField extends StatefulWidget {
 
 class _UserInfoFieldState extends State<UserInfoField> {
   TextEditingController _textController;
-  Key _formKey;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     _textController = TextEditingController(text: widget.textObject.text);
-    _formKey = GlobalKey<FormState>();
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: widget.padding,
-        child: Form(
-          key: _formKey,
-          child: TextFormField(
-            controller: _textController,
-            validator: widget.validator,
-            keyboardType: widget.keyboardType,
-            keyboardAppearance: Brightness.dark,
-            autofocus: widget.autofocus,
-            onEditingComplete: () {
+  Widget build(BuildContext context) => Form(
+        key: _formKey,
+        child: TextFormField(
+          controller: _textController,
+          validator: widget.validator,
+          keyboardType: widget.keyboardType,
+          keyboardAppearance: Brightness.dark,
+          autofocus: widget.autofocus,
+          maxLength: widget.maxLength,
+          maxLengthEnforced: true,
+          onEditingComplete: () {
+            if (_formKey.currentState.validate())
               widget.textObject.text = _textController.text;
-              FocusScope.of(context).unfocus();
-            },
-            decoration: InputDecoration(
-              border: _defaultInputBorder(),
-              focusedBorder: _defaultInputBorder(color: AppColors.accent),
-              enabledBorder: _defaultInputBorder(),
-              errorBorder: _defaultInputBorder(color: AppColors.accentDark),
-              disabledBorder: _defaultInputBorder(),
-              hintText: widget.hint,
-            ),
+            FocusScope.of(context).unfocus();
+          },
+          decoration: InputDecoration(
+            counterText: "",
+            border: _defaultInputBorder(),
+            focusedBorder: _defaultInputBorder(color: AppColors.accent),
+            enabledBorder: _defaultInputBorder(),
+            errorBorder: _defaultInputBorder(color: AppColors.accentDark),
+            disabledBorder: _defaultInputBorder(),
+            hintText: widget.hint,
           ),
         ),
       );
-}
-
-class _mutableText {
-  String text;
-  _mutableText(this.text);
 }
 
 InputBorder _defaultInputBorder({Color color = AppColors.textPrimary}) =>
