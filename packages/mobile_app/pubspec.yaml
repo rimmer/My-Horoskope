@@ -14,7 +14,8 @@ dependencies:
 
   provider: ^4.2.0
   flutter_bloc: ^4.0.0
-  flutter_bloc_stream: ^3.0.0
+  url_launcher: ^5.5.0
+  mutable_wrappers: ^1.0.0
 
   #models
   prophecy_model:

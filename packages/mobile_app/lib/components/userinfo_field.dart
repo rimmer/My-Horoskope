@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:app/theme/app_colors.dart';
-import 'package:app/models/mutable_text.dart';
 
 class UserInfoField extends StatefulWidget {
   final String hint;
@@ -8,7 +8,7 @@ class UserInfoField extends StatefulWidget {
   final TextInputType keyboardType;
   final bool autofocus;
   final int maxLength;
-  final MutableText textObject;
+  final MutableString textObject;
 
   UserInfoField(
       {Key key,
@@ -30,7 +30,7 @@ class _UserInfoFieldState extends State<UserInfoField> {
 
   @override
   void initState() {
-    _textController = TextEditingController(text: widget.textObject.text);
+    _textController = TextEditingController(text: widget.textObject.wrapped);
     super.initState();
   }
 
@@ -47,7 +47,7 @@ class _UserInfoFieldState extends State<UserInfoField> {
           maxLengthEnforced: true,
           onChanged: (_) {
             if (_formKey.currentState.validate()) {
-              widget.textObject.text = _textController.text;
+              widget.textObject.wrapped = _textController.text;
             }
           },
           onEditingComplete: () {
@@ -61,6 +61,7 @@ class _UserInfoFieldState extends State<UserInfoField> {
             errorBorder: _defaultInputBorder(color: AppColors.accentDark),
             disabledBorder: _defaultInputBorder(),
             hintText: widget.hint,
+            labelText: widget.hint,
           ),
         ),
       );

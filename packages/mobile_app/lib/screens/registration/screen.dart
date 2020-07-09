@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/components/userinfo_field.dart';
 import 'package:app/components/userinfo.dart';
 import 'package:app/components/gradient_flatbutton.dart';
 import 'package:app/components/userinfo_picker.dart';
-import 'package:app/models/mutable_text.dart';
-import 'package:app/models/mutable_int.dart';
+import 'accept_terms.dart';
 
 class RegistrationScreen extends StatelessWidget {
-  final name = MutableText("");
-  final month = MutableText("");
-  final day = MutableText("");
-  final year = MutableText("");
+  final name = MutableString("");
+  final month = MutableString("");
+  final day = MutableString("");
+  final year = MutableString("");
   final sex = MutableInteger(0);
   final indexToSex = {
     0: lang.notSelectedSex,
@@ -20,8 +20,9 @@ class RegistrationScreen extends StatelessWidget {
     2: lang.female,
     3: lang.other,
   };
-  final country = MutableText("");
-  final place = MutableText("");
+  final country = MutableString("");
+  final place = MutableString("");
+  final termsAccepted = MutableBool(false);
 
   @override
   Widget build(BuildContext context) {
@@ -157,6 +158,7 @@ class RegistrationScreen extends StatelessWidget {
                       return null;
                     }),
               ),
+              AcceptTermsRow(terms: termsAccepted),
             ],
           ),
         ),
@@ -165,13 +167,13 @@ class RegistrationScreen extends StatelessWidget {
         floatingActionButton: GradientFlatButton(
           onPressed: () {
             // @DEBUG
-            print("Name ${name.text}");
-            print("Month: ${month.text}");
-            print("Day: ${day.text}");
-            print("Year: ${year.text}");
-            print("Sex: ${indexToSex[sex.num]}");
-            print("Country: ${country.text}");
-            print("Place: ${place.text}");
+            print("Name ${name.wrapped}");
+            print("Month: ${month.wrapped}");
+            print("Day: ${day.wrapped}");
+            print("Year: ${year.wrapped}");
+            print("Sex: ${indexToSex[sex.wrapped]}");
+            print("Country: ${country.wrapped}");
+            print("Place: ${place.wrapped}");
           },
           child: Text(
             lang.start.toUpperCase(),
