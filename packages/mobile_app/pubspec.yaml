@@ -36,6 +36,7 @@ dependencies:
   language:
     path: ../language
   
+  #widgets
   cupertino_icons: ^0.1.2
   
 dev_dependencies:
@@ -51,6 +52,7 @@ flutter_icons:
 
 
 flutter:
+  uses-material-design: true
   assets:
     - assets/background.jpg
     - assets/launcher/icon.png

@@ -4,6 +4,7 @@ import 'package:app/theme/app_colors.dart';
 import 'package:app/components/userinfo_field.dart';
 import 'package:app/components/userinfo.dart';
 import 'package:app/components/gradient_flatbutton.dart';
+import 'package:app/components/userinfo_picker.dart';
 import 'package:app/models/mutable_text.dart';
 import 'package:app/models/mutable_int.dart';
 
@@ -12,7 +13,13 @@ class RegistrationScreen extends StatelessWidget {
   final month = MutableText("");
   final day = MutableText("");
   final year = MutableText("");
-  final sex = MutableText("");
+  final sex = MutableInteger(0);
+  final indexToSex = {
+    0: lang.notSelectedSex,
+    1: lang.male,
+    2: lang.female,
+    3: lang.other,
+  };
   final country = MutableText("");
   final place = MutableText("");
 
@@ -97,6 +104,8 @@ class RegistrationScreen extends StatelessWidget {
                       int min = 2;
                       if (text.isEmpty || text.length < min)
                         return "${text.length}/$min";
+                      if (int.parse(text) > 12 || int.parse(text) < 1)
+                        return "x";
                       return null;
                     }),
                 day: UserInfoField(
@@ -108,6 +117,8 @@ class RegistrationScreen extends StatelessWidget {
                       int min = 2;
                       if (text.isEmpty || text.length < min)
                         return "${text.length}/$min";
+                      if (int.parse(text) > 31 || int.parse(text) < 1)
+                        return "x";
                       return null;
                     }),
                 year: UserInfoField(
@@ -121,16 +132,10 @@ class RegistrationScreen extends StatelessWidget {
                         return "${text.length}/$min";
                       return null;
                     }),
-                sex: UserInfoField(
-                    textObject: sex,
-                    maxLength: 50,
-                    hint: lang.notSelectedSex,
-                    validator: (String text) {
-                      int min = 2;
-                      if (text.isEmpty || text.length < min)
-                        return "${lang.atLeastXsymbolsNeeded} $min";
-                      return null;
-                    }),
+                sex: UserInfoPicker(
+                  items: indexToSex,
+                  indexObject: sex,
+                ),
                 country: UserInfoField(
                     textObject: country,
                     maxLength: 50,
@@ -159,7 +164,14 @@ class RegistrationScreen extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: GradientFlatButton(
           onPressed: () {
-            print(name.text);
+            // @DEBUG
+            print("Name ${name.text}");
+            print("Month: ${month.text}");
+            print("Day: ${day.text}");
+            print("Year: ${year.text}");
+            print("Sex: ${indexToSex[sex.num]}");
+            print("Country: ${country.text}");
+            print("Place: ${place.text}");
           },
           child: Text(
             lang.start.toUpperCase(),

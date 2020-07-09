@@ -45,9 +45,12 @@ class _UserInfoFieldState extends State<UserInfoField> {
           autofocus: widget.autofocus,
           maxLength: widget.maxLength,
           maxLengthEnforced: true,
-          onEditingComplete: () {
-            if (_formKey.currentState.validate())
+          onChanged: (_) {
+            if (_formKey.currentState.validate()) {
               widget.textObject.text = _textController.text;
+            }
+          },
+          onEditingComplete: () {
             FocusScope.of(context).unfocus();
           },
           decoration: InputDecoration(

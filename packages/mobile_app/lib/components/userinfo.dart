@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/components/userinfo_field.dart';
+import 'package:app/components/userinfo_picker.dart';
 
 class UserInfo extends StatelessWidget {
   final UserInfoField name;
   final UserInfoField month;
   final UserInfoField day;
   final UserInfoField year;
-  final UserInfoField sex;
+  final UserInfoPicker sex;
   final UserInfoField country;
   final UserInfoField place;
 
