@@ -25,7 +25,7 @@ packages:
   auth_flutter:
     dependency: "direct main"
     description:
-      path: "../data/repositories/auth_flutter"
+      path: "../data/platform/auth_flutter"
       relative: true
     source: path
     version: "0.0.1"
@@ -196,7 +196,7 @@ packages:
   prophecies_flutter:
     dependency: "direct main"
     description:
-      path: "../data/repositories/prophecies_flutter"
+      path: "../data/platform/prophecies_flutter"
       relative: true
     source: path
     version: "0.0.1"

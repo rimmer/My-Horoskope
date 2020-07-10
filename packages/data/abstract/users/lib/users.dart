@@ -8,9 +8,13 @@ abstract class Users {
 
   delete(User user);
 
-  update(User user);
-
   List<User> get users;
 
-  User get(String id);
+  User get(int id);
+
+  User get current;
+
+  void logoutIfAny();
+
+  User loginIfAny(int id);
 }
