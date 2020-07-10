@@ -24,14 +24,22 @@ dependencies:
     path: ../models/user_model 
   
   #data
-  local_database:
-    path: ../local_database_flutter
+  users:
+    path: ../data/abstract/users
+  auth:
+    path: ../data/abstract/auth
+  prophecies:
+    path: ../data/abstract/prophecies
+  auth_flutter:
+    path: ../data/repositories/auth_flutter  
+  prophecies_flutter:
+    path: ../data/repositories/prophecies_flutter  
 
   #blocs
   authentication:
-    path: ../blocs/authentication_flutter
+    path: ../blocs/authentication
   prophecy:
-    path: ../blocs/prophecy_flutter
+    path: ../blocs/prophecy
 
   #localization
   language:
@@ -58,6 +66,6 @@ flutter:
     - assets/background.jpg
     - assets/launcher/icon.png
   #data
-    - packages/local_database/data/prophecies.json
+    - packages/prophecies_flutter/data/prophecies.json
   # #localization
     # - packages/language/locales/ru.json

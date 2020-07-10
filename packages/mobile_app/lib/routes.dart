@@ -21,6 +21,7 @@ class InitRoute extends StatelessWidget {
           builder: (context, state) {
             if (state is Authenticated) return DailyScreen();
             if (state is Unauthenticated) {
+              // return MonthlyScreen();
               return RegistrationScreen();
             }
             return Center(child: CircularProgressIndicator());

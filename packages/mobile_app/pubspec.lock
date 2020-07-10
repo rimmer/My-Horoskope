@@ -15,10 +15,24 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.0"
+  auth:
+    dependency: "direct main"
+    description:
+      path: "../data/abstract/auth"
+      relative: true
+    source: path
+    version: "0.0.1"
+  auth_flutter:
+    dependency: "direct main"
+    description:
+      path: "../data/repositories/auth_flutter"
+      relative: true
+    source: path
+    version: "0.0.1"
   authentication:
     dependency: "direct main"
     description:
-      path: "../blocs/authentication_flutter"
+      path: "../blocs/authentication"
       relative: true
     source: path
     version: "0.0.1+1"
@@ -123,13 +137,6 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
-  local_database:
-    dependency: "direct main"
-    description:
-      path: "../local_database_flutter"
-      relative: true
-    source: path
-    version: "0.0.1"
   meta:
     dependency: transitive
     description:
@@ -179,10 +186,24 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  prophecies:
+    dependency: "direct main"
+    description:
+      path: "../data/abstract/prophecies"
+      relative: true
+    source: path
+    version: "0.0.1"
+  prophecies_flutter:
+    dependency: "direct main"
+    description:
+      path: "../data/repositories/prophecies_flutter"
+      relative: true
+    source: path
+    version: "0.0.1"
   prophecy:
     dependency: "direct main"
     description:
-      path: "../blocs/prophecy_flutter"
+      path: "../blocs/prophecy"
       relative: true
     source: path
     version: "0.0.1+1"
@@ -289,6 +310,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
+  users:
+    dependency: "direct main"
+    description:
+      path: "../data/abstract/users"
+      relative: true
+    source: path
+    version: "0.0.1"
   vector_math:
     dependency: transitive
     description:

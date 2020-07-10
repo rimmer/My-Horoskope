@@ -1,0 +1,23 @@
+name: prophecies_flutter
+description: prophecies data repository implementation for flutter
+version: 0.0.1
+author: bgoncharuck
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  meta: ^1.1.8
+  prophecy_model:
+    path: ../../../models/prophecy_model  
+  prophecies:
+    path: ../../abstract/prophecies
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  #flutter_test:
+    #sdk: flutter
+
+flutter:
+

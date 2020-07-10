@@ -1,0 +1,15 @@
+name: auth
+description: auth data abstraction
+version: 0.0.1
+author: bgoncharuck
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  
+dependencies:
+  meta: ^1.1.8
+  
+  user_model:
+    path: ../../../models/user_model 
+  users:
+    path: ../users
