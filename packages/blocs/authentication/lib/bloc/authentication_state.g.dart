@@ -7,5 +7,5 @@ part of 'authentication_state.dart';
 // **************************************************************************
 
 String _$AuthenticatedToString(Authenticated o) {
-  return """Authenticated{userId: ${o.userId}}""";
+  return """Authenticated{user: ${o.user}}""";
 }

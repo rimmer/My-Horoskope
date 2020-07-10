@@ -30,6 +30,8 @@ dependencies:
     path: ../data/abstract/auth
   prophecies:
     path: ../data/abstract/prophecies
+  users_flutter:
+    path: ../data/platform/users_flutter      
   auth_flutter:
     path: ../data/platform/auth_flutter  
   prophecies_flutter:
@@ -47,6 +49,7 @@ dependencies:
   
   #widgets
   cupertino_icons: ^0.1.2
+  flutter_spinkit: ^2.1.0
   
 dev_dependencies:
   #flutter_test:

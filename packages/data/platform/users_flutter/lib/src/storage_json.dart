@@ -10,9 +10,9 @@ String _storageFileName = "local_users.json";
 
 @JsonSerializable()
 class UsersStorageJson implements Users {
-  List<User> users;
+  final List<User> users;
 
-  UsersStorageJson({this.users = const []});
+  UsersStorageJson({List<User> users}) : this.users = users ?? [];
 
   Map<String, Object> toJson() => _$UsersStorageJsonToJson(this);
 
@@ -25,11 +25,19 @@ class UsersStorageJson implements Users {
       );
 
   Future<bool> prepare() async {
-    final readed = await storage.read(fromFile: _storageFileName);
-    if (readed == null) return false;
-
-    this.users = fromJson(json.decode(readed)).users;
-    return true;
+    try {
+      final readed = await storage.read(fromFile: _storageFileName);
+      if (readed != null) {
+        this
+            .users
+            .addAll(_$UsersStorageJsonFromJson(json.decode(readed)).users);
+        return true;
+      } else {
+        return false;
+      }
+    } catch (_) {
+      return false;
+    }
   }
 
   @override
@@ -45,10 +53,14 @@ class UsersStorageJson implements Users {
   }
 
   @override
-  User get(int id) => users.firstWhere((element) => element.id == id);
+  User get(int id) => (users.isNotEmpty)
+      ? users.firstWhere((element) => element.id == id)
+      : null;
 
   @override
-  User get current => users.firstWhere((element) => element.lastLogin == true);
+  User get current => (users.isNotEmpty)
+      ? users.firstWhere((element) => element.lastLogin == true)
+      : null;
 
   @override
   void logoutIfAny() {

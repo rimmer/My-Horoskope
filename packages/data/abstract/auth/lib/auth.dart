@@ -8,5 +8,6 @@ abstract class Auth {
 
   Future<bool> get isAuthenticated;
 
-  Future<User> authenticate({UserModel model});
+  Future<User> get initialize;
+  Future<User> authenticate(UserModel mode);
 }

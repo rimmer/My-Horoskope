@@ -4,6 +4,7 @@ import 'screens/registration/screen.dart';
 import 'screens/daily/screen.dart';
 import 'screens/monthly/screen.dart';
 import 'screens/settings/screen.dart';
+import 'screens/loading.dart';
 import 'blocs/authentication.dart';
 import 'theme/app_theme.dart';
 
@@ -21,10 +22,9 @@ class InitRoute extends StatelessWidget {
           builder: (context, state) {
             if (state is Authenticated) return DailyScreen();
             if (state is Unauthenticated) {
-              // return MonthlyScreen();
               return RegistrationScreen();
             }
-            return Center(child: CircularProgressIndicator());
+            return LoadingScreen();
           }),
     );
   }
