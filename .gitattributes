@@ -1,0 +1,3 @@
+# We'd like `publock.lock` to be always with LF line endings
+# just because Dard does not know how to do otherwise
+publock.lock text eol=LF
