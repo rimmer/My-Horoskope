@@ -12,28 +12,63 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^0.1.2
+  provider: ^4.2.0
   flutter_bloc: ^4.0.0
-  flutter_bloc_stream: ^3.0.0
+  url_launcher: ^5.5.0
+  mutable_wrappers: ^1.0.0
 
+  #models
   prophecy_model:
     path: ../models/prophecy_model
   user_model:
     path: ../models/user_model 
-  local_database:
-    path: ../local_database_flutter
-
+  
+  #data
+  users_repository:
+    path: ../data/abstract/users_repository
+  auth:
+    path: ../data/abstract/auth
+  prophecies_repository:
+    path: ../data/abstract/prophecies_repository
+  users_repository_flutter:
+    path: ../data/platform/users_repository_flutter      
+  auth_flutter:
+    path: ../data/platform/auth_flutter  
+  prophecies_repository_flutter:
+    path: ../data/platform/prophecies_repository_flutter  
+ 
+  #blocs
   authentication:
-    path: ../blocs/authentication_flutter
+    path: ../blocs/authentication
   prophecy:
-    path: ../blocs/prophecy_flutter
+    path: ../blocs/prophecy
+
+  #localization
+  language:
+    path: ../language
+  
+  #widgets
+  cupertino_icons: ^0.1.2
+  flutter_spinkit: ^2.1.0
   
 dev_dependencies:
   #flutter_test:
     #sdk: flutter
+  flutter_launcher_icons: "^0.7.0"
+
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/launcher/icon.png"
+  image_path_android: "assets/launcher/icon.png"
 
 
 flutter:
   uses-material-design: true
   assets:
-  - packages/local_database/data/prophecies.json
+    - assets/background.jpg
+    - assets/launcher/icon.png
+  #data
+    - packages/prophecies_repository_flutter/data/prophecies.json
+  # #localization
+    # - packages/language/locales/ru.json

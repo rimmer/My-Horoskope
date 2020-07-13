@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:local_database/local_database.dart';
+import 'package:prophecies_repository_flutter/prophecies_repository_flutter.dart';
+import 'package:users_repository_flutter/users_repository_flutter.dart';
+import 'package:auth_flutter/auth_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'blocs/blocs.dart';
 import 'blocs/simple_bloc_delegate.dart';
-import 'theme/app_theme.dart';
-import 'views/home_screen.dart';
+import 'routes.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -13,33 +15,39 @@ void main() {
 }
 
 class ProphetApp extends StatelessWidget {
+  final usersRepository = UsersRepositoryFlutter();
+
   @override
-  Widget build(BuildContext context) => MultiBlocProvider(
+  Widget build(BuildContext context) => MultiProvider(
         providers: [
+          Provider<UsersRepositoryFlutter>(
+              create: (context) => usersRepository),
+        ],
+        child: MultiBlocProvider(providers: [
           BlocProvider<AuthenticationBloc>(
-              create: (context) => AuthenticationBloc(
-                    userRepository: UserRepository.createDefault(),
-                  )..add(AppStarted())),
+            create: (context) => AuthenticationBloc(
+                auth: AuthFlutter(repository: usersRepository))
+              ..add(AppStarted()),
+          ),
           BlocProvider<PropheciesBloc>(
             create: (context) => PropheciesBloc(
-              repository: PropheciesRepository(context),
+              repository: PropheciesRepositoryFlutter(context),
             )..add(LoadProphecies()),
           )
-        ],
-        child: MaterialApp(
-          title: 'My Prophet',
-          theme: appTheme,
-          home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-            builder: (context, state) {
-              if (state is Authenticated) return HomeScreen();
-              if (state is Unauthenticated) {
-                return Center(
-                  child: Text('Could not authenticate with Firestore'),
-                );
-              }
-              return Center(child: CircularProgressIndicator());
-            },
-          ),
-        ),
+        ], child: _Background(child: InitRoute())),
       );
+}
+
+class _Background extends StatelessWidget {
+  final Widget child;
+  _Background({@required this.child});
+  @override
+  Widget build(BuildContext context) => Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/background.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: child);
 }

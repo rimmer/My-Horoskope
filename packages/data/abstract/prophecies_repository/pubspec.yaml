@@ -1,0 +1,13 @@
+name: prophecies_repository
+description: prophecy repository data abstraction
+version: 0.0.1
+author: bgoncharuck
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  
+dependencies:
+  meta: ^1.1.8
+
+  prophecy_model:
+    path: ../../../models/prophecy_model  
