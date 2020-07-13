@@ -6,13 +6,13 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return User(
+UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
+  return UserEntity(
     id: json['id'],
     role: _$enumDecodeNullable(_$UserRoleEnumMap, json['role']),
     ambiance: (json['ambiance'] as List)
-        ?.map(
-            (e) => e == null ? null : User.fromJson(e as Map<String, dynamic>))
+        ?.map((e) =>
+            e == null ? null : UserEntity.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     lastLogin: json['lastLogin'] as bool,
     model: json['model'] == null
@@ -21,7 +21,8 @@ User _$UserFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'role': _$UserRoleEnumMap[instance.role],
       'model': instance.model,

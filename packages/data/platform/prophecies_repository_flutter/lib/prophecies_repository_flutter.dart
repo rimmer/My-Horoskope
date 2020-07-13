@@ -1,19 +1,21 @@
-library prophecies_flutter;
+library prophecies_repository_flutter;
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:prophecy_model/prophecy_model.dart';
-import 'package:prophecies/prophecies.dart';
+import 'package:prophecies_repository/prophecies_repository.dart';
+import 'src/json.dart';
 
-class PropheciesFlutter extends Prophecies {
-  PropheciesJson _jsonProvider;
+class PropheciesRepositoryFlutter extends PropheciesRepository {
+  PropheciesRepository _jsonProvider;
 
   static const _PROPHECIES_JSON_FILE =
-      "packages/prophecies_flutter/data/prophecies.json";
+      "packages/prophecies_repository_flutter/data/prophecies.json";
 
-  PropheciesFlutter(BuildContext context) {
+  PropheciesRepositoryFlutter(BuildContext context) {
     AssetBundle bundle = DefaultAssetBundle.of(context);
-    _jsonProvider = PropheciesJson(bundle.loadString(_PROPHECIES_JSON_FILE));
+    _jsonProvider =
+        PropheciesRepositoryJson(bundle.loadString(_PROPHECIES_JSON_FILE));
   }
 
   @override

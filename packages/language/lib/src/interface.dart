@@ -13,4 +13,6 @@ abstract class Locale {
   String get userAgreement;
   String get start;
   String get atLeastXsymbolsNeeded;
+  String get notAllFieldsFilled;
+  String get termsAreNotAccepted;
 }

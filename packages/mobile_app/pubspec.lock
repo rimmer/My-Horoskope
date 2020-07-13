@@ -249,17 +249,17 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.13"
-  prophecies:
+  prophecies_repository:
     dependency: "direct main"
     description:
-      path: "../data/abstract/prophecies"
+      path: "../data/abstract/prophecies_repository"
       relative: true
     source: path
     version: "0.0.1"
-  prophecies_flutter:
+  prophecies_repository_flutter:
     dependency: "direct main"
     description:
-      path: "../data/platform/prophecies_flutter"
+      path: "../data/platform/prophecies_repository_flutter"
       relative: true
     source: path
     version: "0.0.1"
@@ -380,17 +380,17 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
-  users:
+  users_repository:
     dependency: "direct main"
     description:
-      path: "../data/abstract/users"
+      path: "../data/abstract/users_repository"
       relative: true
     source: path
     version: "0.0.1"
-  users_flutter:
+  users_repository_flutter:
     dependency: "direct main"
     description:
-      path: "../data/platform/users_flutter"
+      path: "../data/platform/users_repository_flutter"
       relative: true
     source: path
     version: "0.0.1"

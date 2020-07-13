@@ -4,15 +4,15 @@ import 'dart:async';
 import 'package:auth/auth.dart';
 import 'package:meta/meta.dart';
 import 'package:user_model/user_model.dart';
-import 'package:users/users.dart';
-import 'package:users_flutter/users_flutter.dart';
+import 'package:users_repository/users_repository.dart';
+import 'package:users_repository_flutter/users_repository_flutter.dart';
 
 class AuthFlutter implements Auth {
-  final UsersStorageJson storage;
-  AuthFlutter({@required this.storage});
+  final UsersRepositoryFlutter repository;
+  AuthFlutter({@required this.repository});
 
-  Future<bool> prepare() async => await storage.prepare();
-  User curUser;
+  Future<bool> prepare() async => await repository.prepare();
+  UserEntity curUser;
 
   @override
   Future<bool> get isAuthenticated async {
@@ -21,30 +21,30 @@ class AuthFlutter implements Auth {
   }
 
   @override
-  Future<User> get initialize async {
+  Future<UserEntity> get initialize async {
     bool done = await this.prepare();
     if (done == false) return null;
 
-    final current = storage.current;
+    final current = repository.current;
 
     if (current != null) curUser = current;
     return current;
   }
 
   @override
-  Future<User> authenticate(UserModel model) async {
-    storage.logoutIfAny();
+  Future<UserEntity> authenticate(UserModel model) async {
+    repository.logoutIfAny();
 
-    curUser = storage.loginIfAny(model.hashCode);
+    curUser = repository.loginIfAny(model.hashCode);
     if (curUser == null) {
-      // if user not found in storage, create it
-      curUser = User(
+      // if user not found in repository, create it
+      curUser = UserEntity(
         model: model,
         lastLogin: true,
         role: UserRole.USER,
       );
       // add it
-      storage.add(curUser);
+      repository.add(curUser);
     }
 
     return curUser;

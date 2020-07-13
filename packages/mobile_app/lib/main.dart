@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prophecies_flutter/prophecies_flutter.dart';
+import 'package:prophecies_repository_flutter/prophecies_repository_flutter.dart';
+import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'package:auth_flutter/auth_flutter.dart';
-import 'package:users_flutter/users_flutter.dart';
 import 'package:provider/provider.dart';
 
 import 'blocs/blocs.dart';
@@ -15,22 +15,23 @@ void main() {
 }
 
 class ProphetApp extends StatelessWidget {
-  final usersStorage = UsersStorageJson();
+  final usersRepository = UsersRepositoryFlutter();
 
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [
-          Provider<UsersStorageJson>(create: (context) => usersStorage),
+          Provider<UsersRepositoryFlutter>(
+              create: (context) => usersRepository),
         ],
         child: MultiBlocProvider(providers: [
           BlocProvider<AuthenticationBloc>(
-            create: (context) =>
-                AuthenticationBloc(auth: AuthFlutter(storage: usersStorage))
-                  ..add(AppStarted()),
+            create: (context) => AuthenticationBloc(
+                auth: AuthFlutter(repository: usersRepository))
+              ..add(AppStarted()),
           ),
           BlocProvider<PropheciesBloc>(
             create: (context) => PropheciesBloc(
-              repository: PropheciesFlutter(context),
+              repository: PropheciesRepositoryFlutter(context),
             )..add(LoadProphecies()),
           )
         ], child: _Background(child: InitRoute())),

@@ -2,35 +2,37 @@ import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:storage_access/storage_access.dart' as storage;
-import 'package:users/users.dart';
+import 'package:users_repository/users_repository.dart';
 
 part 'storage_json.g.dart';
 
 String _storageFileName = "local_users.json";
 
 @JsonSerializable()
-class UsersStorageJson implements Users {
-  final List<User> users;
+class UsersRepositoryStorageJson implements UsersRepository {
+  final List<UserEntity> users;
 
-  UsersStorageJson({List<User> users}) : this.users = users ?? [];
+  UsersRepositoryStorageJson({List<UserEntity> users})
+      : this.users = users ?? [];
 
-  Map<String, Object> toJson() => _$UsersStorageJsonToJson(this);
+  Map<String, Object> toJson() => _$UsersRepositoryStorageJsonToJson(this);
 
-  static UsersStorageJson fromJson(Map<String, Object> json) =>
-      _$UsersStorageJsonFromJson(json);
+  static UsersRepositoryStorageJson fromJson(Map<String, Object> json) =>
+      _$UsersRepositoryStorageJsonFromJson(json);
 
+  @override
   Future<bool> write() async => storage.write(
         data: json.encode(this.toJson()),
         asFile: _storageFileName,
       );
 
+  @override
   Future<bool> prepare() async {
     try {
       final readed = await storage.read(fromFile: _storageFileName);
       if (readed != null) {
-        this
-            .users
-            .addAll(_$UsersStorageJsonFromJson(json.decode(readed)).users);
+        this.users.addAll(
+            _$UsersRepositoryStorageJsonFromJson(json.decode(readed)).users);
         return true;
       } else {
         return false;
@@ -41,24 +43,24 @@ class UsersStorageJson implements Users {
   }
 
   @override
-  add(User user) {
+  add(UserEntity user) {
     users.add(user);
     this.write();
   }
 
   @override
-  delete(User user) {
+  delete(UserEntity user) {
     users.remove(user);
     this.write();
   }
 
   @override
-  User get(int id) => (users.isNotEmpty)
+  UserEntity get(int id) => (users.isNotEmpty)
       ? users.firstWhere((element) => element.id == id)
       : null;
 
   @override
-  User get current => (users.isNotEmpty)
+  UserEntity get current => (users.isNotEmpty)
       ? users.firstWhere((element) => element.lastLogin == true)
       : null;
 
@@ -70,7 +72,7 @@ class UsersStorageJson implements Users {
   }
 
   @override
-  User loginIfAny(int id) {
+  UserEntity loginIfAny(int id) {
     final user = this.get(id);
     if (user != null) user.lastLogin = true;
     return user;

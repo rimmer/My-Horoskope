@@ -20,4 +20,6 @@ class lang {
   static String userAgreement = locale.userAgreement;
   static String start = locale.start;
   static String atLeastXsymbolsNeeded = locale.atLeastXsymbolsNeeded;
+  static String notAllFieldsFilled = locale.notAllFieldsFilled;
+  static String termsAreNotAccepted = locale.termsAreNotAccepted;
 }

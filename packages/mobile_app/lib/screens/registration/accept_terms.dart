@@ -3,6 +3,10 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
+import 'package:app/components/accept_terms_text.dart';
+
+const URL_PRIVACY_POLICY = "https://rimmer.github.io/my_prophet/privacy.html";
+const URL_USER_AGREEMENT = "https://rimmer.github.io/my_prophet/privacy.html";
 
 class AcceptTermsRow extends StatefulWidget {
   final MutableBool terms;
@@ -23,47 +27,43 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Flexible(
-                    child: Checkbox(
-                      activeColor: AppColors.accentDark,
-                      value: widget.terms.wrapped,
-                      onChanged: (accepted) => setState(
-                        () => widget.terms.wrapped = accepted,
+              child: GestureDetector(
+                onTap: () => setState(
+                  () => widget.terms.wrapped = !widget.terms.wrapped,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Flexible(
+                      child: Checkbox(
+                        activeColor: AppColors.accentDark,
+                        value: widget.terms.wrapped,
+                        onChanged: (accepted) => setState(
+                          () => widget.terms.wrapped = accepted,
+                        ),
                       ),
                     ),
-                  ),
-                  Flexible(
-                    child: Text(
-                      lang.termsAccept,
-                      style: TextStyle(
-                          fontSize: 12, color: AppColors.textDisabled),
+                    Flexible(
+                      child:
+                          AcceptTermsText(lang.termsAccept, isController: true),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Flexible(
-              child: FlatButton(
-                onPressed: () =>
-                    launch("https://rimmer.github.io/my_prophet/privacy.html"),
-                child: Text(
-                  lang.userAgreement,
-                  style:
-                      TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                  ],
                 ),
               ),
             ),
             Flexible(
               child: FlatButton(
-                onPressed: () =>
-                    launch("https://rimmer.github.io/my_prophet/privacy.html"),
-                child: Text(
+                onPressed: () => launch(URL_USER_AGREEMENT),
+                child: AcceptTermsText(
+                  lang.userAgreement,
+                ),
+              ),
+            ),
+            Flexible(
+              child: FlatButton(
+                onPressed: () => launch(URL_PRIVACY_POLICY),
+                child: AcceptTermsText(
                   lang.privacyPolicy,
-                  style:
-                      TextStyle(fontSize: 12, color: AppColors.textSecondary),
                 ),
               ),
             ),

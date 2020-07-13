@@ -10,8 +10,8 @@ dependencies:
   meta: ^1.1.8
   auth:
     path: ../../abstract/auth  
-  users_flutter:
-    path: ../users_flutter
+  users_repository_flutter:
+    path: ../users_repository_flutter
   flutter:
     sdk: flutter
 

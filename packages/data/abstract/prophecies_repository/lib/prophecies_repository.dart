@@ -1,6 +1,8 @@
+library prophecies_repository;
+
 import 'package:prophecy_model/prophecy_model.dart';
 
-abstract class Prophecies {
+abstract class PropheciesRepository {
   Future<void> add(ProphecyModel prophecy);
 
   Future<void> delete(ProphecyModel prophecy);

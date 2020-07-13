@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:authentication/bloc.dart';
 import 'package:bloc/bloc.dart';
@@ -39,7 +38,7 @@ class AuthenticationBloc
       if (user == null)
         yield Unauthenticated();
       else {
-        print(json.encode(user.toJson()));
+        // must print user data from Transition now
         yield Authenticated(user);
       }
     } else {

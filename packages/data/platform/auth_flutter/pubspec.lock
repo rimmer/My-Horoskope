@@ -137,17 +137,17 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
-  users:
+  users_repository:
     dependency: transitive
     description:
-      path: "../../abstract/users"
+      path: "../../abstract/users_repository"
       relative: true
     source: path
     version: "0.0.1"
-  users_flutter:
+  users_repository_flutter:
     dependency: "direct main"
     description:
-      path: "../users_flutter"
+      path: "../users_repository_flutter"
       relative: true
     source: path
     version: "0.0.1"

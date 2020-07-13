@@ -12,8 +12,8 @@ dependencies:
   equatable: ^1.2.0
   to_string: ^1.2.1
 
-  users:
-    path: ../../data/abstract/users
+  users_repository:
+    path: ../../data/abstract/users_repository
   auth:
     path: ../../data/abstract/auth
   user_model:

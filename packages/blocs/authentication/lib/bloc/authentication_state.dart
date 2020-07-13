@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:to_string/to_string.dart';
-import 'package:users/users.dart';
+import 'package:users_repository/users_repository.dart';
 
 part 'authentication_state.g.dart';
 
@@ -17,7 +17,7 @@ class Uninitialized extends InitialAuthenticationState {}
 
 @ToString()
 class Authenticated extends InitialAuthenticationState {
-  final User user;
+  final UserEntity user;
 
   Authenticated(this.user);
 

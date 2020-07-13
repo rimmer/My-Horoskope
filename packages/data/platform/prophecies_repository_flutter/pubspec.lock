@@ -34,10 +34,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.8"
-  prophecies:
+  prophecies_repository:
     dependency: "direct main"
     description:
-      path: "../../abstract/prophecies"
+      path: "../../abstract/prophecies_repository"
       relative: true
     source: path
     version: "0.0.1"

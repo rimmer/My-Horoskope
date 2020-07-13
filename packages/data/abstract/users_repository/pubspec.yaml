@@ -1,5 +1,5 @@
-name: users
-description: users data abstraction
+name: users_repository
+description: users repository data abstraction
 version: 0.0.1
 author: bgoncharuck
 

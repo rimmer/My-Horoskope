@@ -14,8 +14,8 @@ dependencies:
 
   prophecy_model:
     path: ../../models/prophecy_model  
-  prophecies:
-    path: ../../data/abstract/prophecies
+  prophecies_repository:
+    path: ../../data/abstract/prophecies_repository
 
 dev_dependencies:
   build_runner: ^1.0.0

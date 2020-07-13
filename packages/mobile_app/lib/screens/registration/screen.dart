@@ -136,9 +136,6 @@ class RegistrationScreen extends StatelessWidget {
                   maxLength: 50,
                   hint: lang.birthcountry,
                   validator: (String text) {
-                    int min = 2;
-                    if (text.isEmpty || text.length < min)
-                      return "${lang.atLeastXsymbolsNeeded} $min";
                     return null;
                   }),
               place: UserInfoField(
@@ -146,9 +143,6 @@ class RegistrationScreen extends StatelessWidget {
                   maxLength: 100,
                   hint: lang.birthplace,
                   validator: (String text) {
-                    int min = 2;
-                    if (text.isEmpty || text.length < min)
-                      return "${lang.atLeastXsymbolsNeeded} $min";
                     return null;
                   }),
             ),
@@ -167,13 +161,19 @@ class RegistrationScreen extends StatelessWidget {
                 // print("Country: ${country.wrapped}");
                 // print("Place: ${place.wrapped}");
 
-                if (name.wrapped.isEmpty) return;
-                if (month.wrapped.isEmpty) return;
-                if (day.wrapped.isEmpty) return;
-                if (year.wrapped.isEmpty) return;
-                if (country.wrapped.isEmpty) return;
-                if (place.wrapped.isEmpty) return;
-                if (termsAccepted.wrapped == false) return;
+                if (name.wrapped.isEmpty ||
+                    month.wrapped.isEmpty ||
+                    day.wrapped.isEmpty ||
+                    year.wrapped.isEmpty) {
+                  _alertWrongInformation(context,
+                      title: lang.notAllFieldsFilled);
+                  return;
+                }
+                if (termsAccepted.wrapped == false) {
+                  _alertWrongInformation(context,
+                      title: lang.termsAreNotAccepted);
+                  return;
+                }
 
                 final AuthenticationBloc auth =
                     context.bloc<AuthenticationBloc>();
@@ -223,4 +223,18 @@ class RegistrationScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> _alertWrongInformation(BuildContext context, {String title}) {
+  return showDialog<void>(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: Text(
+        title,
+        style: TextStyle(color: AppColors.textPrimary),
+      ),
+      backgroundColor: Colors.transparent,
+    ),
+    barrierDismissible: true,
+  );
 }

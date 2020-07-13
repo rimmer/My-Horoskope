@@ -1,5 +1,5 @@
-name: prophecies
-description: prophecy data abstraction
+name: prophecies_repository
+description: prophecy repository data abstraction
 version: 0.0.1
 author: bgoncharuck
 

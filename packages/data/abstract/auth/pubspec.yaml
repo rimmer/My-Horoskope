@@ -11,5 +11,5 @@ dependencies:
   
   user_model:
     path: ../../../models/user_model 
-  users:
-    path: ../users
+  users_repository:
+    path: ../users_repository

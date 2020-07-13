@@ -1,4 +1,4 @@
-name: users_flutter
+name: users_repository_flutter
 description: users save/load layer for flutter platform
 version: 0.0.1
 author: bgoncharuck
@@ -10,8 +10,8 @@ dependencies:
   meta: ^1.1.8
   storage_access: ^0.0.2
   json_annotation: ^3.0.1
-  users:
-    path: ../../abstract/users  
+  users_repository:
+    path: ../../abstract/users_repository
   flutter:
     sdk: flutter
 

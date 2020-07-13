@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:prophecies/prophecies.dart';
+import 'package:prophecies_repository/prophecies_repository.dart';
 
 import 'prophecy_event.dart';
 import 'prophecy_state.dart';
@@ -10,7 +10,7 @@ export 'prophecy_event.dart';
 export 'prophecy_state.dart';
 
 class PropheciesBloc extends Bloc<ProphecyEvent, ProphecyState> {
-  final Prophecies _repository;
+  final PropheciesRepository _repository;
   StreamSubscription _prophecySubscription;
 
   PropheciesBloc({@required repository})

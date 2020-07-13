@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:user_model/user_model.dart';
@@ -12,14 +14,14 @@ enum UserRole {
 }
 
 @JsonSerializable()
-class User {
+class UserEntity {
   final int id;
   UserRole role;
   UserModel model;
-  List<User> ambiance;
+  List<UserEntity> ambiance;
   bool lastLogin;
 
-  User({
+  UserEntity({
     id,
     this.role = UserRole.USER,
     this.ambiance = const [],
@@ -27,7 +29,13 @@ class User {
     @required this.model,
   }) : this.id = id ?? model.hashCode;
 
-  Map<String, Object> toJson() => _$UserToJson(this);
+  Map<String, Object> toJson() => _$UserEntityToJson(this);
 
-  static User fromJson(Map<String, Object> json) => _$UserFromJson(json);
+  static UserEntity fromJson(Map<String, Object> json) =>
+      _$UserEntityFromJson(json);
+
+  @override
+  String toString() {
+    return json.encode(this.toJson());
+  }
 }

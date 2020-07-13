@@ -36,10 +36,10 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
-  users:
+  users_repository:
     dependency: "direct main"
     description:
-      path: "../users"
+      path: "../users_repository"
       relative: true
     source: path
     version: "0.0.1"

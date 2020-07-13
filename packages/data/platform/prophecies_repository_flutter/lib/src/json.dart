@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:prophecy_model/prophecy_model.dart';
-import 'prophecies.dart';
+import 'package:prophecies_repository/prophecies_repository.dart';
 
-class PropheciesJson implements Prophecies {
+class PropheciesRepositoryJson implements PropheciesRepository {
   final Future<String> jsonString;
 
-  PropheciesJson(this.jsonString);
+  PropheciesRepositoryJson(this.jsonString);
 
   @override
   Future<void> add(ProphecyModel prophecy) {
