@@ -1,13 +1,14 @@
 library prophecies_repository;
 
-import 'package:prophecy_model/prophecy_model.dart';
+import 'src/prophecy.dart';
+export 'src/prophecy.dart';
 
 abstract class PropheciesRepository {
-  Future<void> add(ProphecyModel prophecy);
+  Future<void> add(ProphecyEntity prophecy);
 
-  Future<void> delete(ProphecyModel prophecy);
+  Future<void> delete(ProphecyEntity prophecy);
 
-  Future<void> update(ProphecyModel prophecy);
+  Future<void> update(ProphecyEntity prophecy);
 
-  Stream<List<ProphecyModel>> get prophecies;
+  Stream<List<ProphecyEntity>> get prophecies;
 }

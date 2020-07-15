@@ -2,7 +2,6 @@ library prophecies_repository_flutter;
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:prophecy_model/prophecy_model.dart';
 import 'package:prophecies_repository/prophecies_repository.dart';
 import 'src/json.dart';
 
@@ -19,20 +18,20 @@ class PropheciesRepositoryFlutter extends PropheciesRepository {
   }
 
   @override
-  Future<void> add(ProphecyModel prophecy) {
+  Future<void> add(ProphecyEntity prophecy) {
     throw UnimplementedError();
   }
 
   @override
-  Future<void> delete(ProphecyModel prophecy) {
+  Future<void> delete(ProphecyEntity prophecy) {
     throw UnimplementedError();
   }
 
   @override
-  Future<void> update(ProphecyModel prophecy) {
+  Future<void> update(ProphecyEntity prophecy) {
     throw UnimplementedError();
   }
 
   @override
-  Stream<List<ProphecyModel>> get prophecies => _jsonProvider.prophecies;
+  Stream<List<ProphecyEntity>> get prophecies => _jsonProvider.prophecies;
 }

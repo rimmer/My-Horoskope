@@ -20,6 +20,8 @@ dependencies:
   #models
   prophecy_model:
     path: ../models/prophecy_model
+  change_model:
+    path: ../models/change_model 
   user_model:
     path: ../models/user_model 
   

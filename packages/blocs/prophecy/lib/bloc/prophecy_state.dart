@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
-import 'package:prophecy_model/prophecy_model.dart';
+import 'package:prophecies_repository/prophecies_repository.dart';
 import 'package:to_string/to_string.dart';
 
 part 'prophecy_state.g.dart';
@@ -19,7 +19,7 @@ class ProphecyLoadInProgressState extends InitialProphecyState {}
 
 @ToString()
 class PropheciesLoadSuccessState extends InitialProphecyState {
-  final List<ProphecyModel> prophecies;
+  final List<ProphecyEntity> prophecies;
 
   PropheciesLoadSuccessState([this.prophecies = const []]);
 
