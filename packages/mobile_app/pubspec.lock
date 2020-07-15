@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  change_model:
+    dependency: "direct main"
+    description:
+      path: "../models/change_model"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   charcode:
     dependency: transitive
     description:

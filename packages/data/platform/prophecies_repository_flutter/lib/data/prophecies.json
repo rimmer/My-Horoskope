@@ -1,12 +1,56 @@
 [
   {
-    "id": "1",
-    "name": "Luck",
-    "value": 8.5
+    "model": {
+          "id": "1",
+          "name": "Удача",
+          "value": 9.6
+    },
+    "changes": [
+      {
+              "changeIconName": "Uranus",
+              "changeText": "Влияние Урана",
+              "value": 0.1
+      }
+    ]
   },
   {
-    "id": "2",
-    "name": "Internal Energy",
-    "value": 0.1
-  }
+    "model": {
+          "id": "2",
+          "name": "Внутренняя энергия",
+          "value": 4.9
+    },
+    "changes": []
+  },
+  {
+    "model": {
+          "id": "3",
+          "name": "Здоровье",
+          "value": 6.5
+    },
+    "changes": []
+  },
+  {
+    "model": {
+      "id": "4",
+      "name": "Амбиции",
+      "value": 10.0
+    },
+    "changes": []
+  },
+  {
+    "model": {
+      "id": "5",
+      "name": "Интелект",
+      "value": 9.3
+    },
+    "changes": []
+  },
+  {
+    "model": {
+      "id": "6",
+      "name": "Внешние факторы",
+      "value": 2.1
+    },
+    "changes": []
+  }  
 ]

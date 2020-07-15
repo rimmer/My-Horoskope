@@ -1,6 +1,6 @@
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
-import 'package:prophecy_model/prophecy_model.dart';
+import 'package:prophecies_repository/prophecies_repository.dart';
 import 'package:to_string/to_string.dart';
 
 part 'prophecy_event.g.dart';
@@ -17,7 +17,7 @@ class LoadProphecies extends ProphecyEvent {}
 
 @ToString()
 class ProphecyUpdated extends ProphecyEvent {
-  final ProphecyModel prophecy;
+  final ProphecyEntity prophecy;
 
   ProphecyUpdated(this.prophecy);
 
@@ -30,7 +30,7 @@ class ProphecyUpdated extends ProphecyEvent {
 
 @ToString()
 class PropheciesLoaded extends ProphecyEvent {
-  final List<ProphecyModel> prophecies;
+  final List<ProphecyEntity> prophecies;
 
   PropheciesLoaded(this.prophecies);
 
