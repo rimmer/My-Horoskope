@@ -48,6 +48,10 @@ dependencies:
   #localization
   language:
     path: ../language
+
+  # calcualtions
+  algorithm:
+    path: ../algorithm
   
   #widgets
   cupertino_icons: ^0.1.2
