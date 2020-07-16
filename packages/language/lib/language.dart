@@ -22,4 +22,16 @@ class lang {
   static String atLeastXsymbolsNeeded = locale.atLeastXsymbolsNeeded;
   static String notAllFieldsFilled = locale.notAllFieldsFilled;
   static String termsAreNotAccepted = locale.termsAreNotAccepted;
+  static String you = locale.you;
+  static String mood = locale.mood;
+  static String simple = locale.simple;
+  static String extended = locale.extended;
+  static String clarifyForecast = locale.clarifyForecast;
+  static String rateYourYesterday = locale.rateYourYesterday;
+}
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1)}";
+  }
 }

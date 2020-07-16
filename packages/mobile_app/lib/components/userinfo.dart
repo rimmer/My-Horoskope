@@ -31,7 +31,7 @@ class UserInfo extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 16.0),
           child: Text(
-            lang.birthdate,
+            lang.birthdate.capitalize(),
             style: TextStyle(color: AppColors.textDisabled),
           ),
         ),
@@ -65,7 +65,7 @@ class UserInfo extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(top: 16.0),
           child: Text(
-            lang.sex,
+            lang.sex.capitalize(),
             style: TextStyle(color: AppColors.textDisabled),
           ),
         ),
