@@ -1,5 +1,5 @@
-name: change_model
-description: change_model
+name: impact_model
+description: impact_model saves impact made by algorithm to prophecy
 author: bgoncharuck
 version: 0.0.1+1
 

@@ -15,4 +15,10 @@ abstract class Locale {
   String get atLeastXsymbolsNeeded;
   String get notAllFieldsFilled;
   String get termsAreNotAccepted;
+  String get you;
+  String get mood;
+  String get simple;
+  String get extended;
+  String get clarifyForecast;
+  String get rateYourYesterday;
 }

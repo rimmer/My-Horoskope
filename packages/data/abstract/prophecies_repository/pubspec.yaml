@@ -11,8 +11,8 @@ dependencies:
 
   prophecy_model:
     path: ../../../models/prophecy_model
-  change_model:
-    path: ../../../models/change_model  
+  impact_model:
+    path: ../../../models/impact_model  
 
   json_annotation: ^3.0.1
 

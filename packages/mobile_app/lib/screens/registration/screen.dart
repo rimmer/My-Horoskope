@@ -18,10 +18,10 @@ class RegistrationScreen extends StatelessWidget {
   final year = MutableString("");
   final sex = MutableInteger(0);
   final indexToSex = {
-    0: lang.notSelectedSex,
-    1: lang.male,
-    2: lang.female,
-    3: lang.other,
+    0: lang.notSelectedSex.capitalize(),
+    1: lang.male.capitalize(),
+    2: lang.female.capitalize(),
+    3: lang.other.capitalize(),
   };
   final country = MutableString("");
   final place = MutableString("");
@@ -85,7 +85,7 @@ class RegistrationScreen extends StatelessWidget {
               name: UserInfoField(
                   textObject: name,
                   maxLength: 100,
-                  hint: lang.name,
+                  hint: lang.name.capitalize(),
                   validator: (String text) {
                     int min = 2;
                     if (text.isEmpty || text.length < min)
@@ -134,14 +134,14 @@ class RegistrationScreen extends StatelessWidget {
               country: UserInfoField(
                   textObject: country,
                   maxLength: 50,
-                  hint: lang.birthcountry,
+                  hint: lang.birthcountry.capitalize(),
                   validator: (String text) {
                     return null;
                   }),
               place: UserInfoField(
                   textObject: place,
                   maxLength: 100,
-                  hint: lang.birthplace,
+                  hint: lang.birthplace.capitalize(),
                   validator: (String text) {
                     return null;
                   }),
