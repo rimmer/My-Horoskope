@@ -16,14 +16,11 @@ class Records extends StatelessWidget {
         if (state.prophecies.isEmpty) {
           return Center(child: Text("Empty"));
         } else
-          return Scaffold(
-            backgroundColor: Colors.transparent,
-            body: ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return ProphecyRecord(prophecy: state.prophecies[index]);
-              },
-              itemCount: state.prophecies.length,
-            ),
+          return ListView.builder(
+            itemBuilder: (BuildContext context, int index) {
+              return ProphecyRecord(prophecy: state.prophecies[index]);
+            },
+            itemCount: state.prophecies.length,
           );
       } else {
         // state is ProphecyLoadFailureState

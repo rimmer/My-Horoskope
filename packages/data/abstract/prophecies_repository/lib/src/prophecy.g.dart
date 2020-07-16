@@ -13,7 +13,7 @@ ProphecyEntity _$ProphecyEntityFromJson(Map<String, dynamic> json) {
         : ProphecyModel.fromJson(json['model'] as Map<String, dynamic>),
     changes: (json['changes'] as List)
         ?.map((e) =>
-            e == null ? null : ChangeModel.fromJson(e as Map<String, dynamic>))
+            e == null ? null : ImpactModel.fromJson(e as Map<String, dynamic>))
         ?.toList(),
   );
 }

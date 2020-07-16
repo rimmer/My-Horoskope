@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:change_model/change_model.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:impact_model/impact_model.dart';
 import 'package:prophecies_repository/prophecies_repository.dart';
 import 'package:app/theme/app_colors.dart';
 
@@ -11,10 +12,10 @@ class ProphecyRecord extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double value = prophecy.model.value ?? 0.0;
-    for (ChangeModel change in prophecy.changes) value += change.value;
+    for (ImpactModel change in prophecy.changes) value += change.value;
     var valuePercent = value / 10;
     return Container(
-      margin: EdgeInsets.all(8.0),
+      margin: EdgeInsets.symmetric(vertical: 8.0),
       padding: EdgeInsets.all(20.0),
       height: 96.0,
       child: Column(
@@ -26,14 +27,14 @@ class ProphecyRecord extends StatelessWidget {
                     child: Text(
                   prophecy.model.name,
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 18.0,
                     color: AppColors.textPrimary,
                   ),
                 )),
                 Text(
                   value.toStringAsFixed(1),
                   style: TextStyle(
-                    fontSize: 26.0,
+                    fontSize: 22.0,
                     color: AppColors.textSecondary,
                     fontWeight: FontWeight.w400,
                   ),
@@ -61,7 +62,7 @@ class ProphecyRecord extends StatelessWidget {
 }
 
 class ChangesList extends StatelessWidget {
-  final List<ChangeModel> changes;
+  final List<ImpactModel> changes;
   ChangesList(this.changes);
   @override
   Widget build(BuildContext context) {
@@ -69,22 +70,22 @@ class ChangesList extends StatelessWidget {
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
       itemCount: changes.length,
-      itemBuilder: (BuildContext context, int index) => Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Text(changes[index].changeIconName,
-              style: TextStyle(
-                fontSize: 16.0,
-                color: AppColors.textPrimary,
-              )),
-          Text(
-              " ${changes[index].changeText}(${(changes[index].value >= 0.0) ? '+' : '-'} ${changes[index].value.toStringAsFixed(1)})",
-              style: TextStyle(
-                fontSize: 16.0,
-                color: AppColors.textPrimary,
-              )),
-        ],
-      ),
+      itemBuilder: (BuildContext context, int index) {
+        final curImp = changes[index];
+        final sign = (curImp.value >= 0.0) ? '+' : '-';
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SvgPicture.asset("assets/icons/${curImp.changeIconName}.svg"),
+            Text(
+                " ${curImp.changeText}($sign ${curImp.value.toStringAsFixed(1)})",
+                style: TextStyle(
+                  fontSize: 14.0,
+                  color: AppColors.textPrimary,
+                )),
+          ],
+        );
+      },
     );
   }
 }

@@ -20,8 +20,8 @@ dependencies:
   #models
   prophecy_model:
     path: ../models/prophecy_model
-  change_model:
-    path: ../models/change_model 
+  impact_model:
+    path: ../models/impact_model 
   user_model:
     path: ../models/user_model 
   
@@ -52,6 +52,7 @@ dependencies:
   #widgets
   cupertino_icons: ^0.1.2
   flutter_spinkit: ^2.1.0
+  flutter_svg: ^0.17.4
   
 dev_dependencies:
   #flutter_test:
@@ -70,6 +71,7 @@ flutter:
   assets:
     - assets/background.jpg
     - assets/launcher/icon.png
+    - assets/icons/
   #data
     - packages/prophecies_repository_flutter/data/prophecies.json
   # #localization

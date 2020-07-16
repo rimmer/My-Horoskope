@@ -1,20 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'change.dart';
+part of 'impact.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChangeModel _$ChangeModelFromJson(Map<String, dynamic> json) {
-  return ChangeModel(
+ImpactModel _$ImpactModelFromJson(Map<String, dynamic> json) {
+  return ImpactModel(
     changeIconName: json['changeIconName'] as String,
     changeText: json['changeText'] as String,
     value: (json['value'] as num)?.toDouble(),
   );
 }
 
-Map<String, dynamic> _$ChangeModelToJson(ChangeModel instance) =>
+Map<String, dynamic> _$ImpactModelToJson(ImpactModel instance) =>
     <String, dynamic>{
       'changeIconName': instance.changeIconName,
       'changeText': instance.changeText,

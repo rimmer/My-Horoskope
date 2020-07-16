@@ -43,13 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
-  change_model:
-    dependency: "direct main"
-    description:
-      path: "../models/change_model"
-      relative: true
-    source: path
-    version: "0.0.1+1"
   charcode:
     dependency: transitive
     description:
@@ -132,6 +125,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  flutter_svg:
+    dependency: "direct main"
+    description:
+      name: flutter_svg
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.4"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -143,7 +143,14 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.14"
+    version: "2.1.13"
+  impact_model:
+    dependency: "direct main"
+    description:
+      path: "../models/impact_model"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   intl:
     dependency: transitive
     description:
@@ -193,6 +200,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   path_provider:
     dependency: transitive
     description:
@@ -421,7 +442,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "3.7.0"
   yaml:
     dependency: transitive
     description:
