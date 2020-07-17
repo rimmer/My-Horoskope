@@ -16,6 +16,9 @@ class DailyScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Feelings(),
+            SizedBox(
+              height: 8,
+            ),
             Flexible(child: Prophecy(user: user)),
           ],
         ),
