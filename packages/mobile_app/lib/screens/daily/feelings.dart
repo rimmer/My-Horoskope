@@ -6,7 +6,7 @@ class Feelings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        // height: 128.0,
-        );
+      height: 128.0,
+    );
   }
 }

@@ -12,16 +12,38 @@ class AppColors {
   static const textSecondary = Color(0xFFD795FF);
   static const textDisabled = Color(0x88FFFFFF);
 
-  static const prophecyGradientStart = Color(0x4837B2);
-  static const prophecyGradientEnd = Color.fromRGBO(89, 55, 178, 0.7);
+  static const prophecyGradientStart = Color(0xff3E218D);
+  static const prophecyGradientEnd = Color(0xff4837B2);
 
-  static const prophecyValueStartStart = Color(0xfff06292);
-  static const prophecyValueStart = Color(0xffe91e63);
-  static const prophecyValueStartEnd = Color(0xfff8bbd0);
-  static const prophecyValueMiddleStart = Color(0xffffe0b2);
-  static const prophecyValueMiddle = Color(0xffeeff41);
-  static const prophecyValueMiddleEnd = Color(0xffb2ff59);
-  static const prophecyValueEndStart = Color(0xff8bc34a);
-  static const prophecyValueEnd = Color(0xff69f0ae);
-  static const prophecyValueEndEnd = Colors.cyan;
+  static const prophecyValueStartStart = Color(0xff5D2DA0);
+  static const prophecyValueStart = Color(0xff5E3AAC);
+  static const prophecyValueStartEnd = Color(0xff5F46B8);
+  static const prophecyValueMiddleStart = Color(0xff5F53C4);
+  static const prophecyValueMiddle = Color(0xff605FCF);
+  static const prophecyValueMiddleEnd = Color(0xff5765CD);
+  static const prophecyValueEndStart = Color(0xff4F6ACA);
+  static const prophecyValueEnd = Color(0xff4770C8);
+  static const prophecyValueEndEnd = Color(0xff3F74C6);
+
+  static const prophecyValueNumberStart = Color(0xffD795FF);
+  static const prophecyValueNumberMiddle = Colors.white;
+  static const prophecyValueNumberEnd = Color(0xff68FFE4);
+}
+
+Color chooseNumberColorFromThreeVariants(double value) {
+  if (value < 5) return AppColors.prophecyValueNumberStart;
+  if (value < 8) return AppColors.prophecyValueNumberMiddle;
+  return AppColors.prophecyValueNumberEnd;
+}
+
+Color chooseNumberColorFromProgressValueBar(double value) {
+  if (value < 2.5) return AppColors.prophecyValueStart;
+  if (value < 3) return AppColors.prophecyValueStartStart;
+  if (value < 4) return AppColors.prophecyValueStartEnd;
+  if (value < 5) return AppColors.prophecyValueMiddleStart;
+  if (value < 6) return AppColors.prophecyValueMiddle;
+  if (value < 7) return AppColors.prophecyValueMiddleEnd;
+  if (value < 8) return AppColors.prophecyValueEndStart;
+  if (value < 9) return AppColors.prophecyValueEnd;
+  return AppColors.prophecyValueEndEnd;
 }

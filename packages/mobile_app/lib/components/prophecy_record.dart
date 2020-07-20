@@ -21,91 +21,92 @@ class ProphecyRecord extends StatelessWidget {
 
     var valuePercent = value / 10;
 
-    return Stack(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 8.0),
-          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-          height: 60.0 + (36.0 * changesCount),
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                        child: Text(
-                      prophecy.model.name,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: AppColors.textPrimary,
-                      ),
-                    )),
-                    Center(
-                      child: Text(
-                        value.toStringAsFixed(1),
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w400,
-                          color: _chooseNumberColor(value),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(child: ChangesList(prophecy.changes)),
-            ],
-          ),
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.prophecyGradientStart.withOpacity(0.7),
-                  AppColors.primary.withOpacity(0.6),
-                  AppColors.prophecyGradientEnd,
-                ],
-                begin: AlignmentDirectional(4, 12),
-                end: AlignmentDirectional(0, 20),
-              ),
-              borderRadius: BorderRadius.circular(8.0)),
-        ),
-        Container(
-          height: 68.0 + (36.0 * changesCount),
-          child: Align(
-            alignment: FractionalOffset.bottomCenter,
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8.0),
+      height: 68.0 + (36.0 * changesCount),
+      child: Column(
+        children: <Widget>[
+          Expanded(
             child: Container(
-              height: 4,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  AppColors.prophecyValueStartStart,
-                  AppColors.prophecyValueStart,
-                  AppColors.prophecyValueStartEnd,
-                  AppColors.prophecyValueMiddleStart,
-                  AppColors.prophecyValueMiddle,
-                  AppColors.prophecyValueMiddleEnd,
-                  AppColors.prophecyValueEndStart,
-                  AppColors.prophecyValueEnd,
-                  AppColors.prophecyValueEndEnd,
-                  AppColors.primaryDark,
-                  AppColors.primary
-                ], stops: [
-                  0.0,
-                  0.1,
-                  (valuePercent > 0.3) ? 0.3 : valuePercent,
-                  (valuePercent > 0.4) ? 0.4 : valuePercent,
-                  (valuePercent > 0.5) ? 0.5 : valuePercent,
-                  (valuePercent > 0.6) ? 0.6 : valuePercent,
-                  (valuePercent > 0.7) ? 0.7 : valuePercent,
-                  (valuePercent > 0.8) ? 0.8 : valuePercent,
-                  (valuePercent > 0.9) ? 0.9 : valuePercent,
-                  valuePercent,
-                  valuePercent + 0.01
-                ]),
+              height: 60.0 + (36.0 * changesCount),
+              padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                            child: Text(
+                          prophecy.model.name,
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: AppColors.textPrimary,
+                          ),
+                        )),
+                        Center(
+                          child: Text(
+                            value.toStringAsFixed(1),
+                            style: TextStyle(
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.w400,
+                              color: chooseNumberColor(value),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(child: ChangesList(prophecy.changes)),
+                ],
               ),
             ),
           ),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
-        ),
-      ],
+          Container(
+            height: 8,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(8),
+                bottomRight: Radius.circular(8),
+              ),
+              gradient: LinearGradient(colors: [
+                AppColors.prophecyValueStartStart,
+                AppColors.prophecyValueStart,
+                AppColors.prophecyValueStartEnd,
+                AppColors.prophecyValueMiddleStart,
+                AppColors.prophecyValueMiddle,
+                AppColors.prophecyValueMiddleEnd,
+                AppColors.prophecyValueEndStart,
+                AppColors.prophecyValueEnd,
+                AppColors.prophecyValueEndEnd,
+                AppColors.prophecyValueEndEnd,
+                Colors.transparent
+              ], stops: [
+                0.0,
+                0.1,
+                (valuePercent > 0.3) ? 0.3 : valuePercent,
+                (valuePercent > 0.4) ? 0.4 : valuePercent,
+                (valuePercent > 0.5) ? 0.5 : valuePercent,
+                (valuePercent > 0.6) ? 0.6 : valuePercent,
+                (valuePercent > 0.7) ? 0.7 : valuePercent,
+                (valuePercent > 0.8) ? 0.8 : valuePercent,
+                (valuePercent > 0.9) ? 0.9 : valuePercent,
+                (valuePercent > 1.0) ? 1.0 : valuePercent,
+                valuePercent,
+              ]),
+            ),
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              AppColors.prophecyGradientStart.withOpacity(0.7),
+              AppColors.prophecyGradientEnd.withOpacity(0.7),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+          ),
+          borderRadius: BorderRadius.circular(8.0)),
     );
   }
 }
@@ -143,14 +144,6 @@ class ChangesList extends StatelessWidget {
   }
 }
 
-Color _chooseNumberColor(double value) {
-  if (value < 2.5) return AppColors.prophecyValueStart;
-  if (value < 3) return AppColors.prophecyValueStartStart;
-  if (value < 4) return AppColors.prophecyValueStartEnd;
-  if (value < 5) return AppColors.prophecyValueMiddleStart;
-  if (value < 6) return AppColors.prophecyValueMiddle;
-  if (value < 7) return AppColors.prophecyValueMiddleEnd;
-  if (value < 8) return AppColors.prophecyValueEndStart;
-  if (value < 9) return AppColors.prophecyValueEnd;
-  return AppColors.prophecyValueEndEnd;
+Color chooseNumberColor(double value) {
+  return chooseNumberColorFromThreeVariants(value);
 }
