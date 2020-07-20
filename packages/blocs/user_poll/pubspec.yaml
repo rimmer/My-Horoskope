@@ -1,0 +1,23 @@
+name: user_poll
+description: user_poll buisness logic
+author: bgoncharuck
+version: 0.0.1+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  meta: ^1.1.8
+  bloc: ^4.0.0
+  equatable: ^1.2.0
+  to_string: ^1.2.1
+
+  poll_model:
+    path: ../../models/poll_model  
+  userpoll:
+    path: ../../data/abstract/userpoll
+
+dev_dependencies:
+  build_runner: ^1.10.0
+  to_string_generator: ^1.2.1
+
