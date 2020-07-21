@@ -277,6 +277,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  poll_model:
+    dependency: transitive
+    description:
+      path: "../models/poll_model"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   process:
     dependency: transitive
     description:
@@ -415,6 +422,20 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
+  user_poll:
+    dependency: "direct main"
+    description:
+      path: "../blocs/user_poll"
+      relative: true
+    source: path
+    version: "0.0.1+1"
+  userpoll:
+    dependency: "direct main"
+    description:
+      path: "../data/abstract/userpoll"
+      relative: true
+    source: path
+    version: "0.0.1"
   users_repository:
     dependency: "direct main"
     description:

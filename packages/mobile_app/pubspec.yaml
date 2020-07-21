@@ -32,6 +32,8 @@ dependencies:
     path: ../data/abstract/auth
   prophecies_repository:
     path: ../data/abstract/prophecies_repository
+  userpoll:
+    path: ../data/abstract/userpoll
   users_repository_flutter:
     path: ../data/platform/users_repository_flutter      
   auth_flutter:
@@ -44,6 +46,8 @@ dependencies:
     path: ../blocs/authentication
   prophecy:
     path: ../blocs/prophecy
+  user_poll:
+    path: ../blocs/user_poll
 
   #localization
   language:
