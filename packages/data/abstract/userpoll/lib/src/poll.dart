@@ -4,6 +4,8 @@ import 'package:poll_model/poll_model.dart';
 
 part 'poll.g.dart';
 
+const int POLL_DEFAULT_INIT_VALUE = 3;
+
 @JsonSerializable()
 class UserPoll {
   PollModel mood;

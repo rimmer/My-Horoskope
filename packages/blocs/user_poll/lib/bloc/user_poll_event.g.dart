@@ -13,3 +13,11 @@ String _$PollNotUsedToString(PollNotUsed o) {
 String _$PollUsedToString(PollUsed o) {
   return """PollUsed{poll: ${o.poll}}""";
 }
+
+String _$PollSimpleToString(PollSimple o) {
+  return """PollSimple{poll: ${o.poll}}""";
+}
+
+String _$PollComplexToString(PollComplex o) {
+  return """PollComplex{poll: ${o.poll}}""";
+}

@@ -13,22 +13,22 @@ class ProphecyRecord extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final changesCount = prophecy.changes.length;
+    final impactsCount = prophecy.changes.length;
 
     double value = prophecy.model.value ?? 0.0;
-
-    for (ImpactModel change in prophecy.changes) value += change.value;
+    // add impacts to prophecy value if any
+    for (ImpactModel impact in prophecy.changes) value += impact.value;
 
     var valuePercent = value / 10;
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
-      height: 68.0 + (36.0 * changesCount),
+      height: 68.0 + (36.0 * impactsCount),
       child: Column(
         children: <Widget>[
           Expanded(
             child: Container(
-              height: 60.0 + (36.0 * changesCount),
+              height: 60.0 + (36.0 * impactsCount),
               padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
               child: Column(
                 children: <Widget>[
@@ -69,16 +69,16 @@ class ProphecyRecord extends StatelessWidget {
                 bottomRight: Radius.circular(8),
               ),
               gradient: LinearGradient(colors: [
-                AppColors.prophecyValueStartStart,
-                AppColors.prophecyValueStart,
-                AppColors.prophecyValueStartEnd,
-                AppColors.prophecyValueMiddleStart,
-                AppColors.prophecyValueMiddle,
-                AppColors.prophecyValueMiddleEnd,
-                AppColors.prophecyValueEndStart,
-                AppColors.prophecyValueEnd,
-                AppColors.prophecyValueEndEnd,
-                AppColors.prophecyValueEndEnd,
+                AppColors.prophecyValueProgressGradient[0],
+                AppColors.prophecyValueProgressGradient[1],
+                AppColors.prophecyValueProgressGradient[2],
+                AppColors.prophecyValueProgressGradient[3],
+                AppColors.prophecyValueProgressGradient[4],
+                AppColors.prophecyValueProgressGradient[5],
+                AppColors.prophecyValueProgressGradient[6],
+                AppColors.prophecyValueProgressGradient[7],
+                AppColors.prophecyValueProgressGradient[8],
+                AppColors.prophecyValueProgressGradient[8],
                 Colors.transparent
               ], stops: [
                 0.0,

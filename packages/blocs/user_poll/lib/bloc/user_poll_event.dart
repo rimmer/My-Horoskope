@@ -29,3 +29,19 @@ class PollUsed extends UserPollEvent {
   @override
   String toString() => _$PollUsedToString(this);
 }
+
+@ToString()
+class PollSimple extends UserPollEvent {
+  final poll;
+  PollSimple({@required this.poll});
+  @override
+  String toString() => _$PollSimpleToString(this);
+}
+
+@ToString()
+class PollComplex extends UserPollEvent {
+  final poll;
+  PollComplex({@required this.poll});
+  @override
+  String toString() => _$PollComplexToString(this);
+}

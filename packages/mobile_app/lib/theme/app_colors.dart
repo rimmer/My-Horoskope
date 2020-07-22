@@ -15,35 +15,43 @@ class AppColors {
   static const prophecyGradientStart = Color(0xff3E218D);
   static const prophecyGradientEnd = Color(0xff4837B2);
 
-  static const prophecyValueStartStart = Color(0xff5D2DA0);
-  static const prophecyValueStart = Color(0xff5E3AAC);
-  static const prophecyValueStartEnd = Color(0xff5F46B8);
-  static const prophecyValueMiddleStart = Color(0xff5F53C4);
-  static const prophecyValueMiddle = Color(0xff605FCF);
-  static const prophecyValueMiddleEnd = Color(0xff5765CD);
-  static const prophecyValueEndStart = Color(0xff4F6ACA);
-  static const prophecyValueEnd = Color(0xff4770C8);
-  static const prophecyValueEndEnd = Color(0xff3F74C6);
+  // must have 9 colors, from index 0 to 8
+  static const prophecyValueProgressGradient = [
+    Color(0xff5D2DA0),
+    Color(0xff5E3AAC),
+    Color(0xff5F46B8),
+    Color(0xff5F53C4),
+    Color(0xff605FCF),
+    Color(0xff5765CD),
+    Color(0xff4F6ACA),
+    Color(0xff4770C8),
+    Color(0xff3F74C6),
+  ];
 
-  static const prophecyValueNumberStart = Color(0xffD795FF);
-  static const prophecyValueNumberMiddle = Colors.white;
-  static const prophecyValueNumberEnd = Color(0xff68FFE4);
+  // must have 3 colors, from index 0 to 2
+  static const prophecyVlueNumber = [
+    Color(0xffD795FF),
+    Colors.white,
+    Color(0xff68FFE4),
+  ];
+
+  static const userPollBackground = Color(0xff1F0A57);
 }
 
 Color chooseNumberColorFromThreeVariants(double value) {
-  if (value < 5) return AppColors.prophecyValueNumberStart;
-  if (value < 8) return AppColors.prophecyValueNumberMiddle;
-  return AppColors.prophecyValueNumberEnd;
+  if (value < 5) return AppColors.prophecyVlueNumber[0];
+  if (value < 8) return AppColors.prophecyVlueNumber[1];
+  return AppColors.prophecyVlueNumber[2];
 }
 
 Color chooseNumberColorFromProgressValueBar(double value) {
-  if (value < 2.5) return AppColors.prophecyValueStart;
-  if (value < 3) return AppColors.prophecyValueStartStart;
-  if (value < 4) return AppColors.prophecyValueStartEnd;
-  if (value < 5) return AppColors.prophecyValueMiddleStart;
-  if (value < 6) return AppColors.prophecyValueMiddle;
-  if (value < 7) return AppColors.prophecyValueMiddleEnd;
-  if (value < 8) return AppColors.prophecyValueEndStart;
-  if (value < 9) return AppColors.prophecyValueEnd;
-  return AppColors.prophecyValueEndEnd;
+  if (value < 2.5) return AppColors.prophecyValueProgressGradient[0];
+  if (value < 3) return AppColors.prophecyValueProgressGradient[1];
+  if (value < 4) return AppColors.prophecyValueProgressGradient[2];
+  if (value < 5) return AppColors.prophecyValueProgressGradient[3];
+  if (value < 6) return AppColors.prophecyValueProgressGradient[4];
+  if (value < 7) return AppColors.prophecyValueProgressGradient[5];
+  if (value < 8) return AppColors.prophecyValueProgressGradient[6];
+  if (value < 9) return AppColors.prophecyValueProgressGradient[7];
+  return AppColors.prophecyValueProgressGradient[8];
 }

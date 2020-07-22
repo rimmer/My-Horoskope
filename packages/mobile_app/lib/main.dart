@@ -17,7 +17,8 @@ void main() {
 
 class ProphetApp extends StatelessWidget {
   final usersRepository = UsersRepositoryFlutter();
-  final userPoll = UserPoll(mood: 3);
+  // will be assigned to all polls, when only mood used in constructor
+  final userPoll = UserPoll(mood: POLL_DEFAULT_INIT_VALUE);
 
   @override
   Widget build(BuildContext context) => MultiProvider(

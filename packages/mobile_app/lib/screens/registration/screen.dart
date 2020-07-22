@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
-import 'package:app/blocs/authentication.dart';
+import 'package:authentication/bloc.dart';
 import 'package:app/components/userinfo_field.dart';
 import 'package:app/components/userinfo.dart';
 import 'package:app/components/gradient_flatbutton.dart';

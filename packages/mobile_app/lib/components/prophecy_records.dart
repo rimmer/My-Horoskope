@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:app/blocs/prophecy.dart';
+import 'package:prophecy/bloc.dart';
 import 'prophecy_record.dart';
 import 'package:app/screens/loading.dart';
 

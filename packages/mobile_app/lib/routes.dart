@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:authentication/bloc.dart';
 import 'screens/registration/screen.dart';
 import 'screens/daily/screen.dart';
 import 'screens/monthly/screen.dart';
 import 'screens/settings/screen.dart';
 import 'screens/loading.dart';
-import 'blocs/authentication.dart';
 import 'theme/app_theme.dart';
 
 class InitRoute extends StatelessWidget {
