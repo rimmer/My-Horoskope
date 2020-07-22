@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prophecies_repository_flutter/prophecies_repository_flutter.dart';
-import 'package:userpoll/userpoll.dart';
 import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'package:auth_flutter/auth_flutter.dart';
 import 'package:provider/provider.dart';
@@ -17,8 +16,6 @@ void main() {
 
 class ProphetApp extends StatelessWidget {
   final usersRepository = UsersRepositoryFlutter();
-  // will be assigned to all polls, when only mood used in constructor
-  final userPoll = UserPoll(mood: POLL_DEFAULT_INIT_VALUE);
 
   @override
   Widget build(BuildContext context) => MultiProvider(
@@ -37,8 +34,6 @@ class ProphetApp extends StatelessWidget {
               repository: PropheciesRepositoryFlutter(context),
             )..add(LoadProphecies()),
           ),
-          BlocProvider<UserPollBloc>(
-              create: (context) => UserPollBloc(currentPoll: userPoll)),
         ], child: _Background(child: InitRoute())),
       );
 }

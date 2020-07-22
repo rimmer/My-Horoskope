@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:algorithm/algorithm.dart';
 import 'package:authentication/bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:user_poll/bloc.dart';
+import 'package:userpoll/userpoll.dart';
 import 'screens/registration/screen.dart';
 import 'screens/daily/screen.dart';
 import 'screens/monthly/screen.dart';
@@ -20,7 +24,17 @@ class InitRoute extends StatelessWidget {
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           bloc: authBloc,
           builder: (context, state) {
-            if (state is Authenticated) return DailyScreen();
+            if (state is Authenticated) {
+              final sessionAlgroithm = Algorithm();
+
+              return Provider<Algorithm>(
+                  create: (context) => sessionAlgroithm,
+                  child: BlocProvider<UserPollBloc>(
+                    create: (context) =>
+                        UserPollBloc(currentPoll: sessionAlgroithm.currentPoll),
+                    child: DailyScreen(),
+                  ));
+            }
             if (state is Unauthenticated) {
               return RegistrationScreen();
             }

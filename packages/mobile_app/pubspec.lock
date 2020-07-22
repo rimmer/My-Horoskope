@@ -277,6 +277,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  poll_availability:
+    dependency: "direct main"
+    description:
+      path: "../models/poll_availability"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   poll_model:
     dependency: transitive
     description:

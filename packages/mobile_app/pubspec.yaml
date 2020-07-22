@@ -24,6 +24,8 @@ dependencies:
     path: ../models/impact_model 
   user_model:
     path: ../models/user_model 
+  poll_availability:
+    path: ../models/poll_availability 
   
   #data
   users_repository:
