@@ -24,6 +24,8 @@ dependencies:
     path: ../models/impact_model 
   user_model:
     path: ../models/user_model 
+  poll_availability:
+    path: ../models/poll_availability 
   
   #data
   users_repository:
@@ -32,6 +34,8 @@ dependencies:
     path: ../data/abstract/auth
   prophecies_repository:
     path: ../data/abstract/prophecies_repository
+  userpoll:
+    path: ../data/abstract/userpoll
   users_repository_flutter:
     path: ../data/platform/users_repository_flutter      
   auth_flutter:
@@ -44,6 +48,8 @@ dependencies:
     path: ../blocs/authentication
   prophecy:
     path: ../blocs/prophecy
+  user_poll:
+    path: ../blocs/user_poll
 
   #localization
   language:

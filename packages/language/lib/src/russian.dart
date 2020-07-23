@@ -23,4 +23,8 @@ class RussianLocale implements Locale {
   final String extended = "расширенный";
   final String clarifyForecast = "уточнить прогноз";
   final String rateYourYesterday = "оцените свое вчерашнее";
+  final String productivity = "продуктивность";
+  final String relationships = "отношения";
+  final String selfdevelopment = "саморазвитие";
+  final String physicalActivity = "физическая активность";
 }

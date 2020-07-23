@@ -21,4 +21,8 @@ abstract class Locale {
   String get extended;
   String get clarifyForecast;
   String get rateYourYesterday;
+  String get productivity;
+  String get relationships;
+  String get selfdevelopment;
+  String get physicalActivity;
 }

@@ -12,11 +12,17 @@ class DailyScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: ListView(
+          shrinkWrap: true,
           children: <Widget>[
             Feelings(),
-            Flexible(child: Prophecy(user: user)),
+            SizedBox(
+              height: 8,
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Prophecy(user: user),
+            ),
           ],
         ),
       ),

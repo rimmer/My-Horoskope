@@ -8,3 +8,7 @@ environment:
 
 dependencies:
   meta: ^1.1.8
+  poll_availability:
+    path: ../models/poll_availability
+  userpoll:
+    path: ../data/abstract/userpoll

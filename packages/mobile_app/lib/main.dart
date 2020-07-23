@@ -33,7 +33,7 @@ class ProphetApp extends StatelessWidget {
             create: (context) => PropheciesBloc(
               repository: PropheciesRepositoryFlutter(context),
             )..add(LoadProphecies()),
-          )
+          ),
         ], child: _Background(child: InitRoute())),
       );
 }

@@ -11,8 +11,7 @@ class Prophecy extends StatelessWidget {
   final labelStr;
   final birthRow = MutableObject(null);
   Prophecy({@required this.user})
-      : labelStr =
-            "${user.model.name.capitalize()} (${lang.you.capitalize()})" {
+      : labelStr = "${user.model.name.capitalize()} (${userRole(user.role)})" {
     final dt = user.model.birth.dtMil;
     final sign = user.model.birth.astroSign;
     final mainPlanet = user.model.birth.astroHousePlanet;
@@ -47,4 +46,8 @@ class Prophecy extends StatelessWidget {
       ),
     );
   }
+}
+
+String userRole(UserRole role) {
+  if (role == UserRole.USER) return lang.you.capitalize();
 }

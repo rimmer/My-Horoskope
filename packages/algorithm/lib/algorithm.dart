@@ -1,3 +1,3 @@
 library algorithm;
 
-export 'astro.dart';
+export 'interface.dart';
