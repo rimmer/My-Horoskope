@@ -17,6 +17,9 @@ dependencies:
   url_launcher: ^5.5.0
   mutable_wrappers: ^1.0.0
 
+  int_datetime:
+    git: https://github.com/bgoncharuck/int_datetime.git
+
   #models
   prophecy_model:
     path: ../models/prophecy_model
@@ -42,7 +45,9 @@ dependencies:
     path: ../data/platform/auth_flutter  
   prophecies_repository_flutter:
     path: ../data/platform/prophecies_repository_flutter  
- 
+  pollbydate_flutter:
+    path: ../data/platform/pollbydate_flutter  
+
   #blocs
   authentication:
     path: ../blocs/authentication

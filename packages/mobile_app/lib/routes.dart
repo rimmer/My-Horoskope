@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:algorithm/algorithm.dart';
 import 'package:authentication/bloc.dart';
+import 'package:poll_availability/poll_availability.dart';
 import 'package:provider/provider.dart';
 import 'package:user_poll/bloc.dart';
-import 'package:userpoll/userpoll.dart';
+import 'package:pollbydate_flutter/pollbydate_flutter.dart';
 import 'screens/registration/screen.dart';
 import 'screens/daily/screen.dart';
 import 'screens/monthly/screen.dart';
@@ -25,13 +26,20 @@ class InitRoute extends StatelessWidget {
           bloc: authBloc,
           builder: (context, state) {
             if (state is Authenticated) {
-              final sessionAlgroithm = Algorithm();
+              final sessionAlgroithm = Algorithm(
+                  dat: AlgoData(
+                      // if user want use AI
+                      pollAvailability: PollAvailability(value: true),
+                      // user previous polls
+                      pollByDateRepo: PollByDateRepositoryFlutter(),
+                      // user that logged in
+                      user: state.user));
 
               return Provider<Algorithm>(
                   create: (context) => sessionAlgroithm,
                   child: BlocProvider<UserPollBloc>(
-                    create: (context) =>
-                        UserPollBloc(currentPoll: sessionAlgroithm.currentPoll),
+                    create: (context) => UserPollBloc(
+                        currentPoll: sessionAlgroithm.dat.currentPoll),
                     child: DailyScreen(),
                   ));
             }

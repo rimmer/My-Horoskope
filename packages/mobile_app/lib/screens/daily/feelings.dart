@@ -14,7 +14,7 @@ class Feelings extends StatelessWidget {
     final sessionAlgorithm = context.watch<Algorithm>();
     UserPollBloc userPollBloc = context.bloc<UserPollBloc>();
 
-    return (sessionAlgorithm.pollAvailability.value == true)
+    return (sessionAlgorithm.dat.pollAvailability.value == true)
         ? BlocBuilder<UserPollBloc, UserPollState>(
             bloc: userPollBloc,
             builder: (context, state) {
