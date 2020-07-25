@@ -1,8 +1,7 @@
 [
   {
     "model": {
-          "id": "1",
-          "name": "Удача",
+          "id": "LUCK",
           "value": 9.6
     },
     "changes": [
@@ -15,32 +14,28 @@
   },
   {
     "model": {
-      "id": "2",
-      "name": "Внутренняя сила",
+      "id": "INTERNAL_STRENGTH",
       "value": 4.9
     },
     "changes": []
   },
   {
     "model": {
-      "id": "3",
-      "name": "Самочуствие",
+      "id": "MOODLET",
       "value": 6.5
     },
     "changes": []
   },
   {
     "model": {
-      "id": "4",
-      "name": "Амбиции",
+      "id": "AMBITION",
       "value": 10.0
     },
     "changes": []
   },
   {
     "model": {
-        "id": "5",
-        "name": "Интеллект",
+        "id": "INTELLIGENCE",
         "value": 9.3
     },
     "changes": []

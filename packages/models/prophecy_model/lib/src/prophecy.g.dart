@@ -1,4 +1,6 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
+// GENERATED CODE - DO MODIFY BY HAND
+// MODIFED: id: id.prophecyId ?? this.id.prophecyId,
+// extension on String
 
 part of 'prophecy.dart';
 
@@ -10,30 +12,25 @@ abstract class _$ProphecyModel {
   const _$ProphecyModel();
 
   String get id;
-  String get name;
   double get value;
   bool operator ==(other) {
     if (identical(this, other)) return true;
     if (other is! ProphecyModel) return false;
 
-    return true &&
-        this.id == other.id &&
-        this.name == other.name &&
-        this.value == other.value;
+    return true && this.id == other.id && this.value == other.value;
   }
 
   int get hashCode {
-    return mapPropsToHashCode([id, name, value]);
+    return mapPropsToHashCode([id, value]);
   }
 
   String toString() {
-    return 'ProphecyModel <\'id\': ${this.id},\'name\': ${this.name},\'value\': ${this.value},>';
+    return 'ProphecyModel <\'id\': ${this.id},\'value\': ${this.value},>';
   }
 
-  ProphecyModel copyWith({int id, String name, double value}) {
+  ProphecyModel copyWith({String id, double value}) {
     return ProphecyModel(
-      id: id ?? this.id,
-      name: name ?? this.name,
+      id: id.prophecyId ?? this.id.prophecyId,
       value: value ?? this.value,
     );
   }
@@ -45,8 +42,7 @@ abstract class _$ProphecyModel {
 
 ProphecyModel _$ProphecyModelFromJson(Map<String, dynamic> json) {
   return ProphecyModel(
-    id: json['id'] as String,
-    name: json['name'] as String,
+    id: _$enumDecodeNullable(_$ProphecyIdEnumMap, json['id']),
     value: (json['value'] as num)?.toDouble(),
   );
 }
@@ -54,6 +50,45 @@ ProphecyModel _$ProphecyModelFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$ProphecyModelToJson(ProphecyModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
       'value': instance.value,
     };
+
+T _$enumDecode<T>(
+  Map<T, dynamic> enumValues,
+  dynamic source, {
+  T unknownValue,
+}) {
+  if (source == null) {
+    throw ArgumentError('A value must be provided. Supported values: '
+        '${enumValues.values.join(', ')}');
+  }
+
+  final value = enumValues.entries
+      .singleWhere((e) => e.value == source, orElse: () => null)
+      ?.key;
+
+  if (value == null && unknownValue == null) {
+    throw ArgumentError('`$source` is not one of the supported values: '
+        '${enumValues.values.join(', ')}');
+  }
+  return value ?? unknownValue;
+}
+
+T _$enumDecodeNullable<T>(
+  Map<T, dynamic> enumValues,
+  dynamic source, {
+  T unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$ProphecyIdEnumMap = {
+  ProphecyId.LUCK: 'LUCK',
+  ProphecyId.INTERNAL_STRENGTH: 'INTERNAL_STRENGTH',
+  ProphecyId.MOODLET: 'MOODLET',
+  ProphecyId.AMBITION: 'AMBITION',
+  ProphecyId.INTELLIGENCE: 'INTELLIGENCE',
+};

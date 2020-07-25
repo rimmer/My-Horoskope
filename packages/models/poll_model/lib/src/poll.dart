@@ -12,6 +12,7 @@ enum PollModelType {
 }
 
 @JsonSerializable()
+@immutable
 class PollModel {
   final PollModelType type;
   final int value;

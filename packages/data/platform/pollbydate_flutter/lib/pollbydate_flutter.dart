@@ -15,7 +15,7 @@ String _fileLocation(int userid) =>
     "$userPollsFileNamePrefix$userid$userPollsFileNameSuffix";
 
 class PollByDateRepositoryFlutter implements PollByDateRepository {
-  PollByDate currentUserPolls;
+  PollByDate currentUserPolls = PollByDate(map: null);
 
   @override
   Future<bool> save(int userid) async => (currentUserPolls.date.isNotEmpty)

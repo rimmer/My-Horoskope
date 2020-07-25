@@ -7,7 +7,7 @@ part 'pollbydate.g.dart';
 @JsonSerializable()
 class PollByDate {
   Map<int, UserPoll> date;
-  PollByDate({@required map}) : date = map ?? {};
+  PollByDate({Map<int, UserPoll> map}) : date = map ?? {};
 
   Map<String, Object> toJson() => _$PollByDateToJson(this);
 

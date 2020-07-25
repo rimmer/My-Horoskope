@@ -18,7 +18,7 @@ dependencies:
   mutable_wrappers: ^1.0.0
 
   int_datetime:
-    git: https://github.com/bgoncharuck/int_datetime.git
+    path: ../int_datetime
 
   #models
   prophecy_model:

@@ -8,15 +8,15 @@ part of 'impact.dart';
 
 ImpactModel _$ImpactModelFromJson(Map<String, dynamic> json) {
   return ImpactModel(
-    changeIconName: json['changeIconName'] as String,
-    changeText: json['changeText'] as String,
+    iconName: json['iconName'] as String,
+    text: json['text'] as String,
     value: (json['value'] as num)?.toDouble(),
   );
 }
 
 Map<String, dynamic> _$ImpactModelToJson(ImpactModel instance) =>
     <String, dynamic>{
-      'changeIconName': instance.changeIconName,
-      'changeText': instance.changeText,
+      'iconName': instance.iconName,
+      'text': instance.text,
       'value': instance.value,
     };

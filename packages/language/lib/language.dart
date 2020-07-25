@@ -28,6 +28,7 @@ class lang {
   static String extended = locale.extended;
   static String clarifyForecast = locale.clarifyForecast;
   static String rateYourYesterday = locale.rateYourYesterday;
+  static Map<String, String> get prophecyId => locale.prophecyId;
 }
 
 extension StringExtension on String {

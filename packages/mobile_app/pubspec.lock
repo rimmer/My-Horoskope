@@ -161,11 +161,9 @@ packages:
   int_datetime:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: d3ed92df7d41a08b3f5105b4437456ea318a4b5d
-      url: "https://github.com/bgoncharuck/int_datetime.git"
-    source: git
+      path: "../int_datetime"
+      relative: true
+    source: path
     version: "0.0.1"
   intl:
     dependency: transitive

@@ -14,7 +14,7 @@ dependencies:
 
   # I don't want to publish this package, it is too small and uncompleted.
   int_datetime:
-    git: https://github.com/bgoncharuck/int_datetime.git
+    path: ../../../int_datetime
 
   poll_model:
     path: ../../../models/poll_model  
