@@ -9,10 +9,7 @@ const int POLL_DEFAULT_INIT_VALUE = 3;
 @JsonSerializable()
 class UserPoll {
   PollModel mood;
-  PollModel productivity;
-  PollModel relationships;
-  PollModel selfdevelopment;
-  PollModel physicalActivity;
+  List<PollModel> details = [];
 
   UserPoll({
     @required int mood,
@@ -25,22 +22,22 @@ class UserPoll {
       type: PollModelType.MOOD,
       value: mood,
     );
-    this.productivity = PollModel(
-      type: PollModelType.PRODUCTIVITY,
-      value: productivity ?? mood,
-    );
-    this.relationships = PollModel(
-      type: PollModelType.RELATIONSHIPS,
-      value: relationships ?? mood,
-    );
-    this.selfdevelopment = PollModel(
-      type: PollModelType.SELFDEVELOPMENT,
-      value: selfdevelopment ?? mood,
-    );
-    this.physicalActivity = PollModel(
-      type: PollModelType.PHYSICAL_ACTIVITY,
-      value: physicalActivity ?? mood,
-    );
+    this.details.add(PollModel(
+          type: PollModelType.PRODUCTIVITY,
+          value: productivity ?? mood,
+        ));
+    this.details.add(PollModel(
+          type: PollModelType.RELATIONSHIPS,
+          value: relationships ?? mood,
+        ));
+    this.details.add(PollModel(
+          type: PollModelType.SELFDEVELOPMENT,
+          value: selfdevelopment ?? mood,
+        ));
+    this.details.add(PollModel(
+          type: PollModelType.PHYSICAL_ACTIVITY,
+          value: physicalActivity ?? mood,
+        ));
   }
 
   Map<String, Object> toJson() => _$UserPollToJson(this);

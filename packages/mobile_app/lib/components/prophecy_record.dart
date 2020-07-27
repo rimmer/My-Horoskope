@@ -127,6 +127,7 @@ class ChangesList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         final curImp = changes[index];
         final sign = (curImp.value >= 0.0) ? '+' : '-';
+        print(curImp.text);
         return Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[

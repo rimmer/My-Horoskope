@@ -27,7 +27,7 @@ class RussianLocale implements Locale {
   final String relationships = "отношения";
   final String selfdevelopment = "саморазвитие";
   final String physicalActivity = "физическая активность";
-  Map<String, String> get prophecyId => {
+  Map<String, String> get prophecyId => const {
         "LUCK": "Удача",
         "INTERNAL_STRENGTH": "Внутренняя Сила",
         "MOODLET": "Самочувствие",

@@ -6,9 +6,9 @@
     },
     "changes": [
       {
-              "changeIconName": "Uranus",
-              "changeText": "Влияние Урана",
-              "value": 0.1
+        "iconName": "Uranus",
+        "text": "Влияние Урана",
+        "value": 0.1
       }
     ]
   },

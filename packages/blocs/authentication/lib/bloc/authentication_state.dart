@@ -6,17 +6,14 @@ part 'authentication_state.g.dart';
 
 abstract class AuthenticationState extends Equatable {
   const AuthenticationState();
-}
-
-class InitialAuthenticationState extends AuthenticationState {
   @override
   List<Object> get props => [];
 }
 
-class Uninitialized extends InitialAuthenticationState {}
+class Uninitialized extends AuthenticationState {}
 
 @ToString()
-class Authenticated extends InitialAuthenticationState {
+class Authenticated extends AuthenticationState {
   final UserEntity user;
 
   Authenticated(this.user);
@@ -28,4 +25,4 @@ class Authenticated extends InitialAuthenticationState {
   String toString() => _$AuthenticatedToString(this);
 }
 
-class Unauthenticated extends InitialAuthenticationState {}
+class Unauthenticated extends AuthenticationState {}
