@@ -1,14 +1,3 @@
-# pollbydate_flutter
+# Poll By Date Flutter 
 
-A new Flutter package project.
-
-## Getting Started
-
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+Implementation [`PollByDate`](https://github.com/rimmer/my_prophet/tree/master/packages/data/abstract/pollbydate/README.md) Data controller on Flutter platform, using [storage_access](https://pub.dev/packages/storage_access)

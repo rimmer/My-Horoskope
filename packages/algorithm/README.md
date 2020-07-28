@@ -22,10 +22,10 @@ extension BasicAstrology on int {
 
 ## final `AgoData` dat:
 
-- final `PollAvailability` pollAvailability
-- final `PollByDateRepository` pollByDateRepo
-- var `UserEntity` user
-- var `UserPoll` currentPoll
+- final [`PollAvailability`](https://github.com/rimmer/my_prophet/tree/master/packages/models/poll_availability) pollAvailability
+- final [`PollByDateRepository`](https://github.com/rimmer/my_prophet/tree/master/packages/data/abstract/pollbydate) pollByDateRepo
+- var [`UserEntity`](https://github.com/rimmer/my_prophet/tree/master/packages/data/abstract/users_repository/README.md#user-entity) user
+- var [`UserPoll`](https://github.com/rimmer/my_prophet/tree/master/packages/data/abstract/userpoll) currentPoll
 
 ## var `MainCalculation` magic:
 - **@TODO_ObjectName** calculate(AlgoData dat)
