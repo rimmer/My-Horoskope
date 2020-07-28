@@ -2,13 +2,16 @@
 
 This module done for localization purpose.
 
+### Library name: `language`
+
 # Structure:
 
 ## Interface 
 
 - abstract class `Locale` in src/interface.dart
 
-Which has getters of `String` or `Map<Strng,String>` is interface which must be implemented by language file
+It is an interface and must be implemented by language files.
+It has getters of `String` or `Map<Strng,String>`. 
 
 ```
 abstract class Locale {
@@ -21,9 +24,7 @@ abstract class Locale {
 }
 ```
 
-## Implementation example
-
-- implementation example: 
+## Implementation:
 
 class `RussianLocale` implements it by final `Strings` and `Map` getter which
 
@@ -42,7 +43,7 @@ class RussianLocale implements Locale {
 
 ## Library:
 
-library has a class called `lang` with has `static` fields and variable **"locale"** that can be used to switch language.
+library has a class called `lang` which has `static` fields and variable **"locale"** that can be used to switch language.
 
 ```
 class lang {

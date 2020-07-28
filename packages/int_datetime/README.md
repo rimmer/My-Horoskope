@@ -1,8 +1,9 @@
 ## INT_DATE Temp Module 
 
-Operate with dt through int (miliseconds / seconds) since UNIX approach is a standart.
+Allow to operate with dt through int (miliseconds / seconds) since UNIX approach.
+It is a crosslangual standart to deal with date/time and its seriazliation.
 
-In this project it is neeeded to save correct dates inside data and use dt as a map key.
+In this project it is also neeeded to save correct dates inside data and use dt as a map key.
 
 For example, fucntion (getter) `dtDay`:
 ```

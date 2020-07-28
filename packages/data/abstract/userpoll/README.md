@@ -2,6 +2,8 @@
 
 `UserPoll` is a class which correctly stores multiple [`PollModel`](https://github.com/rimmer/my_prophet/tree/master/packages/models/poll_model/README.md)s
 
+### Library name: `userpoll`
+
 # Structure:
 
 #### [`PollModel`](https://github.com/rimmer/my_prophet/tree/master/packages/models/poll_model/README.md) mood

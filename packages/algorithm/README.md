@@ -1,6 +1,11 @@
 # Algorithm module
 
-Consists of main app calculation module, calculations and extensions on some classes, like astro.dart:
+Consists of main app calculation module, calculations and extensions on some classes.
+
+### Library name: `algorithm`
+
+Extension example on astro.dart:
+
 ```
 extension BasicAstrology on int {
   String get astroSign {

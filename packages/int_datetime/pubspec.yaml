@@ -1,5 +1,5 @@
 name: int_datetime
-description: a use of DateTime classs as an integer and other usefull and needed features that I must cut from my project to seperate library.
+description: a use of DateTime classs as an integer and other usefull and needed features that I must cut from my_prophet to seperate library.
 version: 0.0.1
 license: LGPL v2
 homepage: https://github.com/bgoncharuck/int_datetime

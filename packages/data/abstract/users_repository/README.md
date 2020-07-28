@@ -4,6 +4,8 @@ Interface for user entity and data controller based on this entity.
 
 Data controller use a repository pattern.
 
+### Library name: `users_repository`
+
 # User Entity
 - final `int` id;
 - var `UserRole` role;

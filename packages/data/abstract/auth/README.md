@@ -4,6 +4,8 @@ Is interface that used by BLoC to control user authentication.
 
 It based on [users_repository module](https://github.com/rimmer/my_prophet/tree/master/packages/data/abstract/users_repository/README.md)
 
+### Library name: `auth`
+
 # Auth interface
 
 `abstract class Auth` 
