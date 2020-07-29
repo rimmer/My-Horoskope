@@ -1,3 +1,3 @@
 part of '../interface.dart';
 
-// class _ImplHashes implements _Algorithm {}
+// class _HashesStrategy implements MainCalculation {}

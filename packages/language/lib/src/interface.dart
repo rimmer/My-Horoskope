@@ -25,4 +25,5 @@ abstract class Locale {
   String get relationships;
   String get selfdevelopment;
   String get physicalActivity;
+  Map<String, String> get prophecyId;
 }

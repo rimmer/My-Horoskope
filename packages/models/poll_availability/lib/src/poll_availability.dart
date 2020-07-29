@@ -10,7 +10,7 @@ class PollAvailability {
 
   void swtch({Function actions}) {
     _switcher = !_switcher;
-    actions();
+    if (actions != null) actions();
   }
 
   bool get value => _switcher;

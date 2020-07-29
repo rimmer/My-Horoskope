@@ -158,6 +158,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
+  int_datetime:
+    dependency: "direct main"
+    description:
+      path: "../int_datetime"
+      relative: true
+    source: path
+    version: "0.0.1"
   intl:
     dependency: transitive
     description:
@@ -291,6 +298,20 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
+  pollbydate:
+    dependency: transitive
+    description:
+      path: "../data/abstract/pollbydate"
+      relative: true
+    source: path
+    version: "0.0.1"
+  pollbydate_flutter:
+    dependency: "direct main"
+    description:
+      path: "../data/platform/pollbydate_flutter"
+      relative: true
+    source: path
+    version: "0.0.1"
   process:
     dependency: transitive
     description:

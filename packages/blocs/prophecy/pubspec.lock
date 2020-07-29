@@ -92,13 +92,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "7.1.0"
-  change_model:
-    dependency: transitive
-    description:
-      path: "../../models/change_model"
-      relative: true
-    source: path
-    version: "0.0.1+1"
   charcode:
     dependency: transitive
     description:
@@ -211,6 +204,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
+  impact_model:
+    dependency: transitive
+    description:
+      path: "../../models/impact_model"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   io:
     dependency: transitive
     description:

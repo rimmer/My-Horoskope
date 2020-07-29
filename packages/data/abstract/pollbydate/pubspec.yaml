@@ -1,0 +1,21 @@
+name: pollbydate
+description: pollbydate abstract for correctly saving-loading map of user polls by date
+version: 0.0.1
+author: bgoncharuck
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+  
+dependencies:
+  meta: ^1.1.8
+
+  poll_model:
+    path: ../../../models/poll_model  
+  userpoll:
+    path: ../userpoll
+
+  json_annotation: ^3.0.1
+
+dev_dependencies:
+  build_runner: ^1.10.0
+  json_serializable: ^3.2.0

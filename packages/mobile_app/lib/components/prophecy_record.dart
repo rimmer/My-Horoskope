@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:impact_model/impact_model.dart';
 import 'package:prophecies_repository/prophecies_repository.dart';
+import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
 
 class ProphecyRecord extends StatelessWidget {
@@ -37,7 +38,7 @@ class ProphecyRecord extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                             child: Text(
-                          prophecy.model.name,
+                          lang.prophecyId[prophecy.model.id],
                           style: TextStyle(
                             fontSize: 18.0,
                             color: AppColors.textPrimary,
@@ -126,13 +127,13 @@ class ChangesList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         final curImp = changes[index];
         final sign = (curImp.value >= 0.0) ? '+' : '-';
+        print(curImp.text);
         return Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SvgPicture.asset("assets/icons/${curImp.changeIconName}.svg"),
+            SvgPicture.asset("assets/icons/${curImp.iconName}.svg"),
             SizedBox(width: 8),
-            Text(
-                " ${curImp.changeText} ($sign ${curImp.value.toStringAsFixed(1)})",
+            Text(" ${curImp.text} ($sign ${curImp.value.toStringAsFixed(1)})",
                 style: TextStyle(
                   fontSize: 14.0,
                   color: AppColors.textPrimary,

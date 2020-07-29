@@ -4,14 +4,15 @@ import 'package:meta/meta.dart';
 part 'impact.g.dart';
 
 @JsonSerializable()
+@immutable
 class ImpactModel {
-  final String changeIconName;
-  final String changeText;
+  final String iconName;
+  final String text;
   final double value;
 
   ImpactModel({
-    @required this.changeIconName,
-    @required this.changeText,
+    @required this.iconName,
+    @required this.text,
     @required this.value,
   });
 

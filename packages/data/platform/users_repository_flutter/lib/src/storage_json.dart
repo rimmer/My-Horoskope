@@ -21,7 +21,7 @@ class UsersRepositoryStorageJson implements UsersRepository {
       _$UsersRepositoryStorageJsonFromJson(json);
 
   @override
-  Future<bool> write() async => storage.write(
+  Future<bool> write() async => await storage.write(
         data: json.encode(this.toJson()),
         asFile: _storageFileName,
       );
@@ -29,10 +29,10 @@ class UsersRepositoryStorageJson implements UsersRepository {
   @override
   Future<bool> prepare() async {
     try {
-      final readed = await storage.read(fromFile: _storageFileName);
-      if (readed != null) {
-        this.users.addAll(
-            _$UsersRepositoryStorageJsonFromJson(json.decode(readed)).users);
+      final red = await storage.read(fromFile: _storageFileName);
+      if (red != null) {
+        final usersFromFile = fromJson(json.decode(red)).users;
+        this.users.addAll(usersFromFile);
         return true;
       } else {
         return false;

@@ -1,6 +1,6 @@
-extension Astrology on int {
-  DateTime get dtMil => DateTime.fromMillisecondsSinceEpoch(this);
+import 'package:int_datetime/int_datetime.dart';
 
+extension BasicAstrology on int {
   // 21.01 .. 20.02 Aquarius
   // 21.02 .. 20.03 Pisces
   // 21.03 .. 20.04 Aries
@@ -14,42 +14,42 @@ extension Astrology on int {
   // 23.11 .. 21.12 Sagittarius
   // 22.12 .. 20.01 Capricorn
   String get astroSign {
-    switch (this.dtMil.month) {
+    switch (this.toDateTime.month) {
       case 1:
-        if (this.dtMil.day > 20) return "Aquarius";
+        if (this.toDateTime.day > 20) return "Aquarius";
         return "Capricorn";
       case 2:
-        if (this.dtMil.day > 20) return "Pisces";
+        if (this.toDateTime.day > 20) return "Pisces";
         return "Aquarius";
       case 3:
-        if (this.dtMil.day > 20) return "Aries";
+        if (this.toDateTime.day > 20) return "Aries";
         return "Pisces";
       case 4:
-        if (this.dtMil.day > 20) return "Taurus";
+        if (this.toDateTime.day > 20) return "Taurus";
         return "Aries";
       case 5:
-        if (this.dtMil.day > 20) return "Gemini";
+        if (this.toDateTime.day > 20) return "Gemini";
         return "Taurus";
       case 6:
-        if (this.dtMil.day > 21) return "Cancer";
+        if (this.toDateTime.day > 21) return "Cancer";
         return "Gemini";
       case 7:
-        if (this.dtMil.day > 22) return "Leo";
+        if (this.toDateTime.day > 22) return "Leo";
         return "Cancer";
       case 8:
-        if (this.dtMil.day > 23) return "Virgo";
+        if (this.toDateTime.day > 23) return "Virgo";
         return "Leo";
       case 9:
-        if (this.dtMil.day > 23) return "Libra";
+        if (this.toDateTime.day > 23) return "Libra";
         return "Virgo";
       case 10:
-        if (this.dtMil.day > 23) return "Scorpio";
+        if (this.toDateTime.day > 23) return "Scorpio";
         return "Libra";
       case 11:
-        if (this.dtMil.day > 22) return "Sagittarius";
+        if (this.toDateTime.day > 22) return "Sagittarius";
         return "Scorpio";
       case 12:
-        if (this.dtMil.day > 21) return "Capricorn";
+        if (this.toDateTime.day > 21) return "Capricorn";
         return "Sagittarius";
     }
     // "must return something" warning solution
