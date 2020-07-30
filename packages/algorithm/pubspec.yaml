@@ -13,8 +13,6 @@ dependencies:
   int_datetime:
     path: ../int_datetime
 
-  poll_availability:
-    path: ../models/poll_availability
   users_repository:
     path: ../data/abstract/users_repository
   userpoll:

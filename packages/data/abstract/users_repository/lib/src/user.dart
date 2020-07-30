@@ -20,6 +20,8 @@ class UserEntity {
   UserModel model;
   List<UserEntity> ambiance;
   bool lastLogin;
+  bool pollAvailability;
+  bool pollStudying;
 
   UserEntity({
     id,
@@ -27,6 +29,8 @@ class UserEntity {
     this.ambiance = const [],
     this.lastLogin = false,
     @required this.model,
+    this.pollAvailability = true,
+    this.pollStudying = false,
   }) : this.id = id ?? model.hashCode;
 
   Map<String, Object> toJson() => _$UserEntityToJson(this);

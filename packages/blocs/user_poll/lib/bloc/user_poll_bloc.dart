@@ -14,11 +14,12 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   bool _isSimple = true;
   bool get isSimple => _isSimple;
   UserPoll currentPoll;
-  UserPollBloc({@required this.currentPoll});
+  bool enabled;
+  UserPollBloc({@required this.enabled, @required this.currentPoll});
 
   @override
-  UserPollState get initialState =>
-      UserPollInitial(poll: this.currentPoll, isSimple: isSimple);
+  UserPollState get initialState => UserPollInitial(
+      poll: this.currentPoll, isSimple: isSimple, enabled: this.enabled);
 
   @override
   Stream<UserPollState> mapEventToState(
@@ -27,19 +28,24 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
     switch (event.runtimeType) {
       case PollSimple:
         _isSimple = true;
-        yield UserPollChanged(poll: event.poll, isSimple: _isSimple);
+        yield UserPollChanged(
+            poll: event.poll, isSimple: _isSimple, enabled: this.enabled);
         break;
       case PollComplex:
         _isSimple = false;
-        yield UserPollChanged(poll: event.poll, isSimple: _isSimple);
+        yield UserPollChanged(
+            poll: event.poll, isSimple: _isSimple, enabled: this.enabled);
         break;
       case PollUsed:
         this.currentPoll = event.poll;
-        yield UserPollChanged(poll: event.poll, isSimple: _isSimple);
+        this.enabled = event.enabled;
+        yield UserPollChanged(
+            poll: event.poll, isSimple: _isSimple, enabled: event.enabled);
         break;
       case PollNotUsed:
       default:
-        yield UserPollInitial(poll: this.currentPoll, isSimple: _isSimple);
+        yield UserPollInitial(
+            poll: this.currentPoll, isSimple: _isSimple, enabled: this.enabled);
         break;
     }
   }

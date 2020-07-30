@@ -12,6 +12,7 @@ abstract class Locale {
   String get privacyPolicy;
   String get userAgreement;
   String get start;
+  String get apply;
   String get atLeastXsymbolsNeeded;
   String get notAllFieldsFilled;
   String get termsAreNotAccepted;
@@ -26,4 +27,9 @@ abstract class Locale {
   String get selfdevelopment;
   String get physicalActivity;
   Map<String, String> get prophecyId;
+  String get pollSettingsTitle;
+  String get pollSettingPollOption;
+  String get pollSettingsStudyOption1;
+  String get pollSettingsStudyOption2;
+  String get pollSettingText;
 }

@@ -10,10 +10,11 @@ class RussianLocale implements Locale {
   final String female = "женский";
   final String other = "другой";
   final String notSelectedSex = "выбрать";
-  final String termsAccept = "Я принимаю условия";
+  final String termsAccept = "я принимаю условия";
   final String privacyPolicy = "пользовательского соглашения";
   final String userAgreement = "политики конфиденциальности";
-  final String start = "Начать";
+  final String start = "начать";
+  final String apply = "применить";
   final String atLeastXsymbolsNeeded = "минимальное количество символов: ";
   final String notAllFieldsFilled = "Не все поля заполнены";
   final String termsAreNotAccepted = "Вы не приняли соглашения";
@@ -34,4 +35,10 @@ class RussianLocale implements Locale {
         "AMBITION": "Амбиции",
         "INTELLIGENCE": "Интеллект",
       };
+  final String pollSettingsTitle = "обучение AI";
+  final String pollSettingPollOption = "проводить опрос";
+  final String pollSettingsStudyOption1 = "использовать результаты";
+  final String pollSettingsStudyOption2 = "опроса для обучения AI";
+  final String pollSettingText =
+      "отвечая на вопросы о своем вчерашнем настроении Вы помогате обучить наш искусственный интеллект лучше прогнозировать ваше будущее.";
 }

@@ -1,82 +1,59 @@
-import 'package:algorithm/algorithm.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:language/language.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:app/theme/app_colors.dart';
+import 'package:algorithm/algorithm.dart';
 import 'package:app/components/poll_settings.dart';
 
-class Feelings extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final sessionAlgorithm = context.watch<Algorithm>();
-    UserPollBloc userPollBloc = context.bloc<UserPollBloc>();
+const double BASE_POLL_HEIGHT = 192.0;
 
-    return (sessionAlgorithm.dat.pollAvailability.value == true)
-        ? BlocBuilder<UserPollBloc, UserPollState>(
-            bloc: userPollBloc,
-            builder: (context, state) {
-              if (state is UserPollChanged) {
-                return (userPollBloc.isSimple)
-                    ? _PollSimple(bloc: userPollBloc)
-                    : _PollExtended(bloc: userPollBloc);
-              }
-              return _PollSimple(bloc: userPollBloc);
-            },
-          )
-        : PollSettings(
-            algorithm: sessionAlgorithm,
-          );
-  }
-}
-
-class _PollSimple extends StatelessWidget {
+class PollSimpleWidget extends StatelessWidget {
   final UserPollBloc bloc;
-  _PollSimple({@required this.bloc});
+  PollSimpleWidget({@required this.bloc});
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(8.0),
       margin: EdgeInsets.all(16.0),
-      height: 192.0,
+      height: BASE_POLL_HEIGHT,
       decoration: BoxDecoration(
           color: AppColors.userPollBackground,
           borderRadius: BorderRadius.circular(8.0)),
       child: Column(
-        children: <Widget>[_userPollTopPart(bloc: bloc)],
+        children: <Widget>[_UserPollTopPart(bloc: bloc)],
       ),
     );
   }
 }
 
-class _PollExtended extends StatelessWidget {
+class PollExtendedWidget extends StatelessWidget {
   final UserPollBloc bloc;
-  _PollExtended({@required this.bloc});
+  PollExtendedWidget({@required this.bloc});
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(8.0),
       margin: EdgeInsets.all(16.0),
-      height: 192.0,
+      height: BASE_POLL_HEIGHT,
       decoration: BoxDecoration(
           color: AppColors.userPollBackground,
           borderRadius: BorderRadius.circular(8.0)),
       child: Column(
-        children: <Widget>[_userPollTopPart(bloc: bloc)],
+        children: <Widget>[_UserPollTopPart(bloc: bloc)],
       ),
     );
   }
 }
 
-class _userPollTopPart extends StatelessWidget {
+class _UserPollTopPart extends StatelessWidget {
   final UserPollBloc bloc;
-  _userPollTopPart({@required this.bloc});
+  _UserPollTopPart({@required this.bloc});
   @override
   Widget build(BuildContext context) {
-    final sessionAlgorithm = context.watch<Algorithm>();
-
     return Container(
       margin: EdgeInsets.all(8),
       child: Column(
@@ -157,9 +134,7 @@ class _userPollTopPart extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    PollSettings(
-                      algorithm: sessionAlgorithm,
-                    ),
+                    PollSettings(),
                   ],
                 ),
               ),

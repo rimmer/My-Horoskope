@@ -19,6 +19,7 @@ class lang {
   static String privacyPolicy = locale.privacyPolicy;
   static String userAgreement = locale.userAgreement;
   static String start = locale.start;
+  static String apply = locale.apply;
   static String atLeastXsymbolsNeeded = locale.atLeastXsymbolsNeeded;
   static String notAllFieldsFilled = locale.notAllFieldsFilled;
   static String termsAreNotAccepted = locale.termsAreNotAccepted;
@@ -29,6 +30,11 @@ class lang {
   static String clarifyForecast = locale.clarifyForecast;
   static String rateYourYesterday = locale.rateYourYesterday;
   static Map<String, String> get prophecyId => locale.prophecyId;
+  static String pollSettingsTitle = locale.pollSettingsTitle;
+  static String pollSettingPollOption = locale.pollSettingPollOption;
+  static String pollSettingsStudyOption1 = locale.pollSettingsStudyOption1;
+  static String pollSettingsStudyOption2 = locale.pollSettingsStudyOption2;
+  static String pollSettingText = locale.pollSettingText;
 }
 
 extension StringExtension on String {

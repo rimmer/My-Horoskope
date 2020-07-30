@@ -27,8 +27,6 @@ dependencies:
     path: ../models/impact_model 
   user_model:
     path: ../models/user_model 
-  poll_availability:
-    path: ../models/poll_availability 
   
   #data
   users_repository:
@@ -87,6 +85,7 @@ flutter:
     - assets/background.jpg
     - assets/launcher/icon.png
     - assets/icons/
+    - assets/widget/
   #data
     - packages/prophecies_repository_flutter/data/prophecies.json
   # #localization

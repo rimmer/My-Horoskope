@@ -1,5 +1,7 @@
 library users_repository;
 
+import 'package:meta/meta.dart';
+
 import 'src/user.dart';
 export 'src/user.dart';
 
@@ -21,4 +23,11 @@ abstract class UsersRepository {
   Future<bool> write();
 
   Future<bool> prepare();
+
+  void pollAvailabilitySwitcher({bool value});
+
+  void pollStudyingSwitcher({bool value});
+
+  void pollSettingsSetter(
+      {@required bool availability, @required bool studying});
 }

@@ -1,5 +1,4 @@
 import 'package:meta/meta.dart';
-import 'package:poll_availability/poll_availability.dart';
 import 'package:userpoll/userpoll.dart';
 import 'package:pollbydate/pollbydate.dart';
 import 'package:users_repository/users_repository.dart';
@@ -18,20 +17,26 @@ class Algorithm {
 
   // constructor
   Algorithm({@required this.dat}) {
+    //
+    dat.pollByDateRepo.load(dat.user.id);
+    dat.currentPoll =
+        dat.pollByDateRepo.todayPoll ?? UserPoll(mood: POLL_DEFAULT_INIT_VALUE);
     // @Pattern Strategy
     // what variant of algorithm to use
     magic = _RitesStrategy();
   }
 
   // result
-  Object result() {
+  Object result({UserEntity user}) {
     // 1. calculate prophecies by implemented algorithm strategy and given data
     // 2. add user choises if enabled
     // 3. return prophecies
-    if (dat.pollAvailability.value == true)
-      return magic.calculate(dat).addUserChoises(dat.pollByDateRepo);
+    if (dat.user.pollAvailability == true)
+      return magic
+          .calculate(user ?? dat.user)
+          .addUserChoises(dat.pollByDateRepo);
     else
-      return magic.calculate(dat);
+      return magic.calculate(user ?? dat.user);
   }
 }
 
@@ -42,22 +47,14 @@ extension _UserChoises on Object {
 }
 
 abstract class MainCalculation {
-  Object calculate(AlgoData dat);
+  Object calculate(UserEntity user);
 }
 
 class AlgoData {
-  final PollAvailability pollAvailability;
   final PollByDateRepository pollByDateRepo;
-  UserEntity user;
+  final UsersRepository usersRepository;
+  UserEntity get user => usersRepository.current;
   UserPoll currentPoll;
 
-  AlgoData(
-      {@required this.pollAvailability,
-      @required this.pollByDateRepo,
-      @required this.user}) {
-    //
-    pollByDateRepo.load(user.id);
-    currentPoll =
-        pollByDateRepo.todayPoll ?? UserPoll(mood: POLL_DEFAULT_INIT_VALUE);
-  }
+  AlgoData({@required this.pollByDateRepo, @required this.usersRepository});
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:meta/meta.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:storage_access/storage_access.dart' as storage;
 import 'package:users_repository/users_repository.dart';
@@ -76,5 +77,30 @@ class UsersRepositoryStorageJson implements UsersRepository {
     final user = this.get(id);
     if (user != null) user.lastLogin = true;
     return user;
+  }
+
+  @override
+  void pollAvailabilitySwitcher({bool value}) {
+    if (current == null) return;
+    if (value != null)
+      current.pollAvailability = value;
+    else
+      current.pollAvailability = !current.pollAvailability;
+  }
+
+  @override
+  void pollStudyingSwitcher({bool value}) {
+    if (current == null) return;
+    if (value != null)
+      current.pollStudying = value;
+    else
+      current.pollStudying = !current.pollStudying;
+  }
+
+  @override
+  void pollSettingsSetter(
+      {@required bool availability, @required bool studying}) {
+    pollAvailabilitySwitcher(value: availability);
+    pollStudyingSwitcher(value: studying);
   }
 }

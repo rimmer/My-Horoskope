@@ -44,8 +44,8 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
                       ),
                     ),
                     Flexible(
-                      child:
-                          AcceptTermsText(lang.termsAccept, isController: true),
+                      child: AcceptTermsText(lang.termsAccept.capitalize(),
+                          isController: true),
                     ),
                   ],
                 ),

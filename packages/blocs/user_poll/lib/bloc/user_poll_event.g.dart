@@ -7,11 +7,11 @@ part of 'user_poll_event.dart';
 // **************************************************************************
 
 String _$PollNotUsedToString(PollNotUsed o) {
-  return """PollNotUsed{poll: ${o.poll}}""";
+  return """PollNotUsed{enabled: ${o.enabled}, poll: ${o.poll}}""";
 }
 
 String _$PollUsedToString(PollUsed o) {
-  return """PollUsed{poll: ${o.poll}}""";
+  return """PollUsed{enabled: ${o.enabled}, poll: ${o.poll}}""";
 }
 
 String _$PollSimpleToString(PollSimple o) {
