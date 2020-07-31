@@ -29,7 +29,7 @@ class AppColors {
   ];
 
   // must have 3 colors, from index 0 to 2
-  static const prophecyVlueNumber = [
+  static const prophecyValueNumber = [
     Color(0xffD795FF),
     Colors.white,
     Color(0xff68FFE4),
@@ -39,9 +39,9 @@ class AppColors {
 }
 
 Color chooseNumberColorFromThreeVariants(double value) {
-  if (value < 5) return AppColors.prophecyVlueNumber[0];
-  if (value < 8) return AppColors.prophecyVlueNumber[1];
-  return AppColors.prophecyVlueNumber[2];
+  if (value < 5) return AppColors.prophecyValueNumber[0];
+  if (value < 8) return AppColors.prophecyValueNumber[1];
+  return AppColors.prophecyValueNumber[2];
 }
 
 Color chooseNumberColorFromProgressValueBar(double value) {

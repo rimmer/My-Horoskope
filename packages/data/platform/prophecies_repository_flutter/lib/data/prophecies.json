@@ -4,13 +4,7 @@
           "id": "LUCK",
           "value": 9.6
     },
-    "changes": [
-      {
-        "iconName": "Uranus",
-        "text": "Влияние Урана",
-        "value": 0.1
-      }
-    ]
+    "changes": []
   },
   {
     "model": {
@@ -31,7 +25,13 @@
       "id": "AMBITION",
       "value": 10.0
     },
-    "changes": []
+    "changes": [
+            {
+              "iconName": "Mars",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget purus rhoncus, ultricies libero at, maximus risus. Etiam auctor laoreet turpis. Nam tristique ligula vel massa suscipit, quis tempus lorem convallis. Phasellus at ipsum eget metus rhoncus sodales. Maecenas justo purus, tempor eget risus id, placerat molestie mi. Etiam at magna at purus interdum pharetra. Praesent auctor ornare quam, non condimentum turpis euismod vitae. Nam sollicitudin, risus ut consectetur finibus, metus ligula elementum augue, non tristique lectus risus nec purus. Maecenas gravida odio et faucibus luctus. Phasellus sodales dolor in metus hendrerit tincidunt. Nullam vel leo aliquet, fringilla libero laoreet, interdum ipsum. Ut congue pretium tortor, ac varius leo ultrices ac. Suspendisse leo arcu, varius quis mi sit amet, vehicula tristique elit. Aliquam in mi in justo lacinia congue. Nulla porttitor, ex non vehicula accumsan, orci mauris vestibulum ipsum, vel tincidunt eros erat in diam.Quisque eu nibh quis est vehicula commodo sed sit amet dui. Etiam commodo tempor consequat. Nulla massa lorem, fringilla sit amet arcu eget, ultrices suscipit nibh. Sed vel risus ac nisi placerat lacinia. Aenean volutpat, elit ac cursus commodo, sapien dui varius ex, ac dictum erat felis suscipit augue. Curabitur ut purus eu ante aliquet imperdiet. Mauris quis leo eget dolor sagittis sodales id nec justo. Sed ac tellus id lectus convallis facilisis. Quisque vehicula massa vitae odio rhoncus fringilla. Integer gravida tristique sem, in facilisis metus elementum eget. Vestibulum at luctus magna. Donec convallis lectus at ligula aliquam, eu aliquam ligula mollis. Sed feugiat mi nibh, et lobortis turpis rhoncus at. Pellentesque lorem turpis, bibendum et risus vel, dictum ullamcorper nulla. Proin interdum, lorem non lacinia efficitur, urna risus placerat justo, eleifend dignissim nulla mauris vitae ex. Morbi elit nisl, luctus sit amet nisi id, efficitur sagittis eros. Nulla a augue id metus dapibus imperdiet. Fusce sagittis iaculis leo, vitae vulputate dui semper sit amet. Pellentesque gravida dapibus lacus, eu lacinia lectus ullamcorper quis. Nam suscipit ipsum sed magna facilisis, eget interdum metus egestas. Integer urna metus, mattis ac neque vehicula, aliquam ornare nisl. Nam vel interdum erat. Praesent at porttitor eros. Aliquam vitae neque sit amet metus tempor viverra ut non odio. Proin pharetra a dolor quis ultrices. Donec tincidunt, lectus eget finibus tincidunt, elit risus fringilla justo, ac pellentesque libero quam vitae est.",
+              "value": -0.6
+            }
+    ]
   },
   {
     "model": {

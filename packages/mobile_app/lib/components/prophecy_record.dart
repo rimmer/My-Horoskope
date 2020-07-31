@@ -24,42 +24,38 @@ class ProphecyRecord extends StatelessWidget {
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
-      height: 68.0 + (36.0 * impactsCount),
+      height: 68.0 + (128 * impactsCount),
       child: Column(
         children: <Widget>[
-          Expanded(
-            child: Container(
-              height: 60.0 + (36.0 * impactsCount),
-              padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                            child: Text(
-                          lang.prophecyId[prophecy.model.id],
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: AppColors.textPrimary,
-                          ),
-                        )),
-                        Center(
-                          child: Text(
-                            value.toStringAsFixed(1),
-                            style: TextStyle(
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.w400,
-                              color: chooseNumberColor(value),
-                            ),
-                          ),
+          Container(
+            height: 60.0 + (128 * impactsCount),
+            padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: Text(
+                      lang.prophecyId[prophecy.model.id],
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: AppColors.textPrimary,
+                      ),
+                    )),
+                    Center(
+                      child: Text(
+                        value.toStringAsFixed(1),
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.w400,
+                          color: chooseNumberColor(value),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                  Expanded(child: ChangesList(prophecy.changes)),
-                ],
-              ),
+                  ],
+                ),
+                Expanded(child: ChangesList(prophecy.changes)),
+              ],
             ),
           ),
           Container(
@@ -117,30 +113,47 @@ class ChangesList extends StatelessWidget {
   ChangesList(this.changes);
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: (changes.length > 0)
-          ? EdgeInsets.only(top: 8)
-          : EdgeInsets.only(top: 0),
-      shrinkWrap: true,
-      scrollDirection: Axis.vertical,
-      itemCount: changes.length,
-      itemBuilder: (BuildContext context, int index) {
-        final curImp = changes[index];
-        final sign = (curImp.value >= 0.0) ? '+' : '-';
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+    if (changes.isNotEmpty) {
+      final curImp = changes[0];
+      final sign = (curImp.value >= 0.0) ? '+' : '';
+      return Container(
+        padding: EdgeInsets.only(top: 8),
+        child: Wrap(
           children: <Widget>[
-            SvgPicture.asset("assets/icons/${curImp.iconName}.svg"),
-            SizedBox(width: 8),
-            Text(" ${curImp.text} ($sign ${curImp.value.toStringAsFixed(1)})",
-                style: TextStyle(
+            SvgPicture.asset(
+              "assets/icons/${curImp.iconName}.svg",
+              width: 14,
+              height: 14,
+              color: (curImp.value < 0.0)
+                  ? AppColors.accentDark
+                  : AppColors.prophecyValueNumber[2],
+            ),
+            Text(
+              " ( $sign${curImp.value.toStringAsFixed(1)} )",
+              style: TextStyle(
                   fontSize: 14.0,
-                  color: AppColors.textPrimary,
-                )),
+                  color: (curImp.value < 0.0)
+                      ? AppColors.accentDark
+                      : AppColors.prophecyValueNumber[2]),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 8),
+              height: 116,
+              child: ListView(
+                children: <Widget>[
+                  Text("${curImp.text}",
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: AppColors.textPrimary,
+                      )),
+                ],
+              ),
+            ),
           ],
-        );
-      },
-    );
+        ),
+      );
+    } else
+      return Container();
   }
 }
 
