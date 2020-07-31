@@ -24,7 +24,7 @@ class SimplePopup extends StatelessWidget {
     Key key,
     this.title,
     @required this.body,
-    this.height = 324,
+    this.height = 316,
     this.width = 320,
     this.actions = const [],
   }) : super(key: key);

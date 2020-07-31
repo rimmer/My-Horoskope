@@ -53,12 +53,14 @@ class PollSettingsState extends State<PollSettings> {
                   child: Text(
                     lang.apply.toUpperCase(),
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 16,
                     ),
                   ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 24.0,
-                    vertical: 4.0,
+                  padding: EdgeInsets.only(
+                    top: 11,
+                    bottom: 11,
+                    left: 20,
+                    right: 15,
                   ),
                   gradient: LinearGradient(
                     colors: <Color>[
@@ -66,7 +68,7 @@ class PollSettingsState extends State<PollSettings> {
                       AppColors.accent,
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(32.0),
+                  borderRadius: BorderRadius.circular(30.0),
                   boxShadow: [
                     BoxShadow(
                       color: AppColors.accentDark,

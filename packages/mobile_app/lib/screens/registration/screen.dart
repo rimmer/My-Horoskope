@@ -200,8 +200,8 @@ class RegistrationScreen extends StatelessWidget {
                 ),
               ),
               padding: EdgeInsets.symmetric(
-                horizontal: 96.0,
                 vertical: 16.0,
+                horizontal: 109.0,
               ),
               gradient: LinearGradient(
                 colors: <Color>[
