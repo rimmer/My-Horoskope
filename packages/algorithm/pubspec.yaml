@@ -9,7 +9,6 @@ environment:
 dependencies:
   meta: ^1.1.8
   
-  # I don't want to publish this package, it is too small and uncompleted.
   int_datetime:
     path: ../int_datetime
 
@@ -19,3 +18,10 @@ dependencies:
     path: ../data/abstract/userpoll
   pollbydate:
     path: ../data/abstract/pollbydate
+
+  prophecy_model:
+    path: ../models/prophecy_model
+  impact_model:
+    path: ../models/impact_model 
+  prophecies:
+    path: ../data/abstract/prophecies

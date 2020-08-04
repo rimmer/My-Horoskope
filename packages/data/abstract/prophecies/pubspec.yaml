@@ -1,10 +1,10 @@
-name: prophecies_repository
-description: prophecy repository data abstraction
+name: prophecies
+description: prophecies object
 version: 0.0.1
 author: bgoncharuck
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
   
 dependencies:
   meta: ^1.1.8

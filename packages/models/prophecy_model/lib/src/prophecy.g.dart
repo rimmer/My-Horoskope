@@ -1,6 +1,4 @@
-// GENERATED CODE - DO MODIFY BY HAND
-// MODIFED: id: id.prophecyId ?? this.id.prophecyId,
-// extension on String
+// GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'prophecy.dart';
 
@@ -11,7 +9,7 @@ part of 'prophecy.dart';
 abstract class _$ProphecyModel {
   const _$ProphecyModel();
 
-  String get id;
+  ProphecyId get id;
   double get value;
   bool operator ==(other) {
     if (identical(this, other)) return true;
@@ -28,9 +26,9 @@ abstract class _$ProphecyModel {
     return 'ProphecyModel <\'id\': ${this.id},\'value\': ${this.value},>';
   }
 
-  ProphecyModel copyWith({String id, double value}) {
+  ProphecyModel copyWith({ProphecyId id, double value}) {
     return ProphecyModel(
-      id: id.prophecyId ?? this.id.prophecyId,
+      id: id ?? this.id,
       value: value ?? this.value,
     );
   }
@@ -49,7 +47,7 @@ ProphecyModel _$ProphecyModelFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ProphecyModelToJson(ProphecyModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'id': _$ProphecyIdEnumMap[instance.id],
       'value': instance.value,
     };
 
