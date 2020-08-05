@@ -1,6 +1,6 @@
-part of '../interface.dart';
+part of 'algorithm.dart';
 
-class _HardcodedStrategy implements CalculateTheBase {
+class _HardcodedStrategy implements _CalculateTheBase {
   Map<ProphecyId, ProphecyEntity> calculate(UserEntity user) => {
         ProphecyId.INTERNAL_STRENGTH:
             ProphecyEntity(id: ProphecyId.INTERNAL_STRENGTH, value: 49),

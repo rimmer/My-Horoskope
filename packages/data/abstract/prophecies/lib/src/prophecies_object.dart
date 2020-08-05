@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:prophecy_model/prophecy_model.dart';
-import 'package:impact_model/impact_model.dart';
 
 part 'prophecies_object.g.dart';
 
@@ -18,10 +17,10 @@ Map<ProphecyId, ProphecyEntity> Prophecies() => {
 class ProphecyEntity {
   ProphecyModel _prophecy;
   bool haveText;
-  ImpactModel impact;
+  String text;
 
-  ProphecyEntity({@required ProphecyId id, double value = 0.0, this.impact}) {
-    if (this.impact != null) haveText = true;
+  ProphecyEntity({@required ProphecyId id, double value = 0.0, this.text}) {
+    if (this.text != null) haveText = true;
     _prophecy = ProphecyModel(id: id, value: value);
   }
 

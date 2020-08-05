@@ -9,15 +9,13 @@ part of 'prophecies_object.dart';
 ProphecyEntity _$ProphecyEntityFromJson(Map<String, dynamic> json) {
   return ProphecyEntity(
     value: (json['value'] as num)?.toDouble(),
-    impact: json['impact'] == null
-        ? null
-        : ImpactModel.fromJson(json['impact'] as Map<String, dynamic>),
+    text: json['text'] as String,
   )..haveText = json['haveText'] as bool;
 }
 
 Map<String, dynamic> _$ProphecyEntityToJson(ProphecyEntity instance) =>
     <String, dynamic>{
       'haveText': instance.haveText,
-      'impact': instance.impact,
+      'text': instance.text,
       'value': instance.value,
     };
