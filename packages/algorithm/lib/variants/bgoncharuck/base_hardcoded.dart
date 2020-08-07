@@ -1,7 +1,7 @@
 part of 'algorithm.dart';
 
-class _HardcodedStrategy implements _CalculateTheBase {
-  Map<ProphecyId, ProphecyEntity> calculate(UserEntity user) => {
+class _Hardcoded implements _OldWisdom {
+  Map<ProphecyId, ProphecyEntity> says(UserEntity aboutUser, int inTimeOf) => {
         ProphecyId.INTERNAL_STRENGTH:
             ProphecyEntity(id: ProphecyId.INTERNAL_STRENGTH, value: 49),
         ProphecyId.MOODLET: ProphecyEntity(id: ProphecyId.MOODLET, value: 65),

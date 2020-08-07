@@ -1,3 +1,4 @@
+import 'package:int_datetime/int_datetime.dart';
 import 'package:meta/meta.dart';
 import 'package:userpoll/userpoll.dart';
 import 'package:pollbydate/pollbydate.dart';
@@ -8,55 +9,60 @@ import 'package:prophecies/prophecies.dart';
 import 'variants/bgoncharuck/algorithm.dart';
 
 class AlgoData {
-  /// repository of {date:poll} relations which is laoded by user id
+  /// repository of {date:poll} relations which must be loaded by user id
   final PollByDateRepository pollByDateRepo;
+
+  /// repository of users which have a getter of current logged user
   final UsersRepository usersRepository;
+
+  /// current logged user
   UserEntity get user => usersRepository.current;
 
   AlgoData({@required this.pollByDateRepo, @required this.usersRepository});
 }
 
-/// Interface for calculation part of algorithm
-/// which can be implemented in multiple ways
-abstract class Calculate {
-  /// calculates the final variant of Map
-  Map<ProphecyId, ProphecyEntity> calculate(AlgoData dat);
+/// Interface for a school of magic that can reveal future
+abstract class MagicSpecialization {
+  /// gives a prophecy
+  Map<ProphecyId, ProphecyEntity> ask(AlgoData withDat, int aboutDay);
 
-  /// calculates a new Map after todays poll is added
-  Map<ProphecyId, ProphecyEntity> caclulateWithPoll(
+  /// clarifies a prophecy with a today user poll
+  Map<ProphecyId, ProphecyEntity> clarify(
       {@required Map<ProphecyId, ProphecyEntity> prophecies,
-      @required UserPoll poll});
+      @required UserPoll withPoll});
 }
 
 class Algorithm {
-  /// implementation of Calculate interface can be changed here
-  Calculate calcImpl = RitesStrategy();
+  /// here you can change a specialization of your prophet
+  MagicSpecialization prophet = OfOldWayMagic();
 
-  /// stores lastCalculation result
-  Map<ProphecyId, ProphecyEntity> lastCalculation;
+  /// the last insight that was written by the prophet
+  Map<ProphecyId, ProphecyEntity> lastInsight;
 
   final AlgoData dat;
   Algorithm({@required this.dat}) {
+    /// loads {date:poll} for currenct user
     dat.pollByDateRepo.load(dat.user.id);
   }
   //
 
-  /// calculates Map by current data and Calculate implementation
-  Map<ProphecyId, ProphecyEntity> calculate() {
-    lastCalculation = calcImpl.calculate(dat);
-    return lastCalculation;
+  /// ask for prophecy about given day
+  Map<ProphecyId, ProphecyEntity> ask({@required int aboutDay}) {
+    lastInsight = prophet.ask(dat, aboutDay);
+    return lastInsight;
   }
 
-  /// calculates a new Map after todays poll is added
-  Map<ProphecyId, ProphecyEntity> caclulateWithPoll({@required UserPoll poll}) {
-    return calcImpl.caclulateWithPoll(
-        prophecies: lastCalculation ?? this.calculate(), poll: poll);
-  }
+  /// clarifies a prophecy
+  Map<ProphecyId, ProphecyEntity> clarify({
+    @required UserPoll withPoll,
+  }) {
+    return prophet.clarify(
+      withPoll: withPoll,
+      prophecies: lastInsight ??
 
-  //
-  //
-  void addText(
-      {@required Map<ProphecyId, ProphecyEntity> prophecies,
-      @required ProphecyId id,
-      @required String text}) {}
+          /// if no insight were recorded by a prophet
+          /// wake him up and force to get another one
+          prophet.ask(dat, dtDay),
+    );
+  }
 }

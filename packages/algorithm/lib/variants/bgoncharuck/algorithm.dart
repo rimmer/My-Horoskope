@@ -8,66 +8,69 @@ import '../../interface.dart';
 
 part 'base_hardcoded.dart';
 
-/// Calculates basic prophecies object for a given user
-/// it can't be used in app
-/// and have values from 1 to 100
-abstract class _CalculateTheBase {
-  Map<ProphecyId, ProphecyEntity> calculate(UserEntity user);
+abstract class _OldWisdom {
+  /// returned map must have values from 1 to 100
+  Map<ProphecyId, ProphecyEntity> says(UserEntity aboutUser, int inTimeOf);
 }
 
-class RitesStrategy implements Calculate {
+class OfOldWayMagic implements MagicSpecialization {
   //
-  final _CalculateTheBase _baseCalcImpl = _HardcodedStrategy();
+  final _OldWisdom _mage = _Hardcoded();
 
-  /// calculates a basic object by given implementation
-  Map<ProphecyId, ProphecyEntity> _calculateUser(UserEntity user) =>
-      _baseCalcImpl.calculate(user);
+  /// asks information from the Old Way adept mage
+  Map<ProphecyId, ProphecyEntity> _askInformation(
+          UserEntity aboutUser, int inTimeOf) =>
+      _mage.says(aboutUser, inTimeOf);
 
-  /// calculates user polls arithmetic mean
-  /// it can't be used in app
-  /// and have values from 1 to 6
-  Map<ProphecyId, ProphecyEntity> _userPollsMean(PollByDateRepository repo) =>
+  /// everyone makes choices in their lives
+  /// these choices lead to the aftermath
+  /// (calculates user polls arithmetic mean
+  /// and have values from 1 to 6)
+  Map<ProphecyId, ProphecyEntity> _freeWillConsequence(
+          PollByDateRepository repo) =>
       {};
 
   //
-  //
-  /// Final calculations goes here
-  Map<ProphecyId, ProphecyEntity> calculate(AlgoData dat) {
+  /// Old Way Magic will use an information given by a mage and user choice
+  /// to return a correct prophecy for a prophet, that asked for it
+  Map<ProphecyId, ProphecyEntity> ask(AlgoData withDat, int aboutDay) {
     //
     /// will store a user polls arithmetic mean or object with zero values
-    final userPolls = (dat.user.pollAvailability == true)
-        ? _userPollsMean(dat.pollByDateRepo)
+    final aftermath = (withDat.user.pollAvailability == true)
+        ? _freeWillConsequence(withDat.pollByDateRepo)
+        // object with 0 values
         : Prophecies();
 
     //
     //
     /// how much polls were voted
-    final userPollsPower = (dat.user.pollAvailability == true)
-        ? dat.pollByDateRepo.currentUserPolls.date.length
+    final userChoicePower = (withDat.user.pollAvailability == true)
+        ? withDat.pollByDateRepo.currentUserPolls.date.length
         : 0;
 
     //
-    //
-    final base = _calculateUser(dat.user);
+    /// get information from the mage adept of Old Way Magic
+    final mysticInfo = _askInformation(withDat.user, aboutDay);
 
     //
     //
-    if (userPollsPower == 0) {
-      base[ProphecyId.INTERNAL_STRENGTH].value /= 10;
-      base[ProphecyId.MOODLET].value /= 10;
-      base[ProphecyId.AMBITION].value /= 10;
-      base[ProphecyId.INTELLIGENCE].value /= 10;
-      base[ProphecyId.LUCK].value /= 10;
-      return base;
+    /// if user were weak-willed
+    /// return events without any changes
+    if (userChoicePower == 0) {
+      mysticInfo[ProphecyId.INTERNAL_STRENGTH].value /= 10;
+      mysticInfo[ProphecyId.MOODLET].value /= 10;
+      mysticInfo[ProphecyId.AMBITION].value /= 10;
+      mysticInfo[ProphecyId.INTELLIGENCE].value /= 10;
+      mysticInfo[ProphecyId.LUCK].value /= 10;
+      return mysticInfo;
     }
   }
 
   //
   //
   //
-  //
-  Map<ProphecyId, ProphecyEntity> caclulateWithPoll(
+  Map<ProphecyId, ProphecyEntity> clarify(
           {@required Map<ProphecyId, ProphecyEntity> prophecies,
-          @required AlgoData dat}) =>
+          @required UserPoll withPoll}) =>
       {};
 }

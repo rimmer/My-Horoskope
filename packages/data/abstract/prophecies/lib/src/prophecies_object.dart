@@ -4,6 +4,12 @@ import 'package:prophecy_model/prophecy_model.dart';
 
 part 'prophecies_object.g.dart';
 
+extension PropheciesObject on Map<ProphecyId, ProphecyEntity> {
+  void addText({@required ProphecyId id, @required String text}) {
+    this[id].text = text;
+  }
+}
+
 Map<ProphecyId, ProphecyEntity> Prophecies() => {
       ProphecyId.INTERNAL_STRENGTH:
           ProphecyEntity(id: ProphecyId.INTERNAL_STRENGTH),
@@ -16,11 +22,9 @@ Map<ProphecyId, ProphecyEntity> Prophecies() => {
 @JsonSerializable()
 class ProphecyEntity {
   ProphecyModel _prophecy;
-  bool haveText;
   String text;
 
   ProphecyEntity({@required ProphecyId id, double value = 0.0, this.text}) {
-    if (this.text != null) haveText = true;
     _prophecy = ProphecyModel(id: id, value: value);
   }
 
