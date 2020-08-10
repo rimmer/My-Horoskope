@@ -16,12 +16,10 @@ dependencies:
     path: ../data/abstract/users_repository
   userpoll:
     path: ../data/abstract/userpoll
-  pollbydate:
-    path: ../data/abstract/pollbydate
+  polls_repository:
+    path: ../data/abstract/polls_repository
 
   prophecy_model:
     path: ../models/prophecy_model
-  impact_model:
-    path: ../models/impact_model 
   prophecies:
     path: ../data/abstract/prophecies

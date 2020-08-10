@@ -8,10 +8,12 @@ const int POLL_DEFAULT_INIT_VALUE = 3;
 
 @JsonSerializable()
 class UserPoll {
+  int dt;
   PollModel mood;
   List<PollModel> details = [];
 
   UserPoll({
+    @required this.dt,
     @required int mood,
     int productivity,
     int relationships,
@@ -38,6 +40,15 @@ class UserPoll {
           type: PollModelType.PHYSICAL_ACTIVITY,
           value: physicalActivity ?? mood,
         ));
+  }
+
+  int val(int index) => this.details[index].value;
+
+  void accamulateDetails(List<int> detailsAccamulator) {
+    if (detailsAccamulator == null ||
+        detailsAccamulator.length != details.length) return;
+    //
+    //
   }
 
   Map<String, Object> toJson() => _$UserPollToJson(this);

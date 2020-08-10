@@ -23,8 +23,6 @@ dependencies:
   #models
   prophecy_model:
     path: ../models/prophecy_model
-  impact_model:
-    path: ../models/impact_model 
   user_model:
     path: ../models/user_model 
   
@@ -33,18 +31,14 @@ dependencies:
     path: ../data/abstract/users_repository
   auth:
     path: ../data/abstract/auth
-  prophecies_repository:
-    path: ../data/abstract/prophecies_repository
   userpoll:
     path: ../data/abstract/userpoll
   users_repository_flutter:
     path: ../data/platform/users_repository_flutter      
   auth_flutter:
     path: ../data/platform/auth_flutter  
-  prophecies_repository_flutter:
-    path: ../data/platform/prophecies_repository_flutter  
-  pollbydate_flutter:
-    path: ../data/platform/pollbydate_flutter  
+  polls_repository_flutter:
+    path: ../data/platform/polls_repository_flutter  
 
   #blocs
   authentication:

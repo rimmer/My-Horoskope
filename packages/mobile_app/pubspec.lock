@@ -151,13 +151,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.13"
-  impact_model:
-    dependency: "direct main"
-    description:
-      path: "../models/impact_model"
-      relative: true
-    source: path
-    version: "0.0.1+1"
   int_datetime:
     dependency: "direct main"
     description:
@@ -291,17 +284,17 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
-  pollbydate:
+  polls_repository:
     dependency: transitive
     description:
-      path: "../data/abstract/pollbydate"
+      path: "../data/abstract/polls_repository"
       relative: true
     source: path
     version: "0.0.1"
-  pollbydate_flutter:
+  polls_repository_flutter:
     dependency: "direct main"
     description:
-      path: "../data/platform/pollbydate_flutter"
+      path: "../data/platform/polls_repository_flutter"
       relative: true
     source: path
     version: "0.0.1"
@@ -312,17 +305,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.13"
-  prophecies_repository:
-    dependency: "direct main"
+  prophecies:
+    dependency: transitive
     description:
-      path: "../data/abstract/prophecies_repository"
-      relative: true
-    source: path
-    version: "0.0.1"
-  prophecies_repository_flutter:
-    dependency: "direct main"
-    description:
-      path: "../data/platform/prophecies_repository_flutter"
+      path: "../data/abstract/prophecies"
       relative: true
     source: path
     version: "0.0.1"
