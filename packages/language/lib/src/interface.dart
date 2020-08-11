@@ -1,3 +1,6 @@
+/// It is an interface and must be implemented by language files
+/// It has getters of `String` or `Map<Strng,String>`.
+
 abstract class Locale {
   String get name;
   String get birthdate;

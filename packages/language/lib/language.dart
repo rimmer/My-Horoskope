@@ -3,7 +3,10 @@ library language;
 import 'src/interface.dart';
 import 'src/russian.dart';
 
+/// The module done for localization purpose
+
 class lang {
+  /// `static` fields and variable **"locale"** that can be used to switch language.
   static Locale locale = RussianLocale();
 
   static String name = locale.name;
@@ -37,6 +40,7 @@ class lang {
   static String pollSettingText = locale.pollSettingText;
 }
 
+/// capitalize first letter of string
 extension StringExtension on String {
   String capitalize() {
     return "${this[0].toUpperCase()}${this.substring(1)}";

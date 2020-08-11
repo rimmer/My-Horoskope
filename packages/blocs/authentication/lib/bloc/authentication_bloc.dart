@@ -32,13 +32,24 @@ class AuthenticationBloc
     }
   }
 
+  /// tries to use initializing methods
+  /// from auth data controller
+  /// on the app start
+  /// if authenticated user was found
+  /// return state Authenticated
+  /// return Unauthenticated otherwise
   Stream<AuthenticationState> _mapAppStartedToState() async* {
+    /// if some user isn't already authenticated
     if (!await _auth.isAuthenticated) {
+      //
+      /// auth initilization methods are used here
       final user = await _auth.initialize;
+
+      /// if authd user is found/not found
       if (user == null)
         yield Unauthenticated();
       else {
-        // must print user data from Transition now
+        /// must print user data from Transition
         yield Authenticated(user);
       }
     } else {
@@ -47,8 +58,13 @@ class AuthenticationBloc
   }
 
   Stream<AuthenticationState> _mapAuthEventToState(UserModel model) async* {
+    /// use auth authentication methods
+    /// to login with given user model
+    /// or create new Entity from it
     final user = await _auth.authenticate(model);
     if (user == null)
+
+      /// on any error user will be equal null
       yield Unauthenticated();
     else {
       yield Authenticated(user);

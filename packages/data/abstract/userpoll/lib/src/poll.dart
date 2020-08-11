@@ -6,10 +6,20 @@ part 'poll.g.dart';
 
 const int POLL_DEFAULT_INIT_VALUE = 3;
 
+/// a collection of poll models that can be:
+/// - changed in future
+/// - be correctly saved and loaded
+/// - even with changes
+
 @JsonSerializable()
 class UserPoll {
+  /// milliseconds since UNIX epoch of the start of the day, when poll were created
   int dt;
+
+  /// main poll model type, that must exist independent from future changes
   PollModel mood;
+
+  /// all other poll types, that defaults to mood poll
   List<PollModel> details = [];
 
   UserPoll({

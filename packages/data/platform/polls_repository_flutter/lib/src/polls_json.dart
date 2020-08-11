@@ -8,13 +8,23 @@ import 'package:int_datetime/int_datetime.dart';
 
 part 'polls_json.g.dart';
 
+/// implements polls repository
+/// using json and storage_access flutter package
+///
+/// prophecies saved independent for every user
+/// by user id
+
+/// prefix and suffix for file name, which will save
+/// prophecies by user id
 const userPollsFileNamePrefix = "userpolls_";
 const userPollsFileNameSuffix = ".json";
 
+/// returns file name by given user id
 String _fileLocation(int userid) =>
     "$userPollsFileNamePrefix$userid$userPollsFileNameSuffix";
 
 class PollsRepositoryFlutter implements PollsRepository {
+  /// polls for currently loaded user
   List<UserPoll> curUserPolls = [];
 
   @override
@@ -39,10 +49,14 @@ class PollsRepositoryFlutter implements PollsRepository {
     }
   }
 
+  /// gets milliseconds since UNIX epoch
+  /// for the start of current day
+  ///
+  /// and tries to find it in the list of user polls
   @override
   UserPoll get todayPoll {
     final today = dtDay;
-    return curUserPolls.firstWhere((el) => el.dt == today);
+    return curUserPolls.firstWhere((el) => el.dt == today) ?? null;
   }
 }
 
