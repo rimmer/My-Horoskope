@@ -9,6 +9,8 @@ import '../../interface.dart';
 
 part 'base_hardcoded.dart';
 
+const int DAYS_TO_COUNT_IN_POLLS = 7;
+
 abstract class _OldWisdom {
   /// returned map must have values from 1 to 100
   Map<ProphecyId, ProphecyEntity> says(UserEntity aboutUser, int inTimeOf);
@@ -28,22 +30,56 @@ class OfOldWayMagic implements MagicSpecialization {
   /// (calculates user polls arithmetic mean
   /// and have values from 1 to 6)
   Map<ProphecyId, ProphecyEntity> _freeWillConsequence(PollsRepository repo) {
-    //  @TODO
-    if (repo.curUserPolls.length == 0)
-      return Prophecies(); // object with zeroes
-    final detailsCount = repo.curUserPolls[0].details.length;
     //
-    //
-    int mood = 0;
-    List<int> details = List(detailsCount);
-    final length = repo.curUserPolls.length;
+    /// must be changed if more polls or prophecies will be added
+    return {
+      ProphecyId.MOODLET: ProphecyEntity(
+        //
+        id: ProphecyId.MOODLET,
+        value: mood / DAYS_TO_COUNT_IN_POLLS,
+        //
+      ),
+      ProphecyId.INTERNAL_STRENGTH: ProphecyEntity(
+        //
+        id: ProphecyId.INTERNAL_STRENGTH,
+        value: details[
 
-    if (length <= 7)
-      for (UserPoll poll in repo.curUserPolls) {
-        mood += poll.mood.value;
-        for (int index = 0; index < poll.details.length; index++)
-          details[index] += poll.val(index);
-      }
+                /// index of needed detali must be the same
+                repo.curUserPolls[0].details.indexWhere((poll) =>
+
+                        /// as index of poll with this type
+                        poll.type == PollModelType.MOOD
+
+                    /// repo.curUserPolls[0] is used,
+                    /// because index of needed poll type will be
+                    /// the same for every element of the list
+                    )
+                //
+                ] /
+            DAYS_TO_COUNT_IN_POLLS,
+        //
+      ),
+      ProphecyId.AMBITION: ProphecyEntity(
+        //
+        id: ProphecyId.INTERNAL_STRENGTH,
+        value: details[
+
+                /// index of needed detali must be the same
+                repo.curUserPolls[0].details.indexWhere((poll) =>
+
+                        /// as index of poll with this type
+                        poll.type == PollModelType.MOOD
+
+                    /// repo.curUserPolls[0] is used,
+                    /// because index of needed poll type will be
+                    /// the same for every element of the list
+                    )
+                //
+                ] /
+            DAYS_TO_COUNT_IN_POLLS,
+        //
+      ),
+    };
   }
 
   //

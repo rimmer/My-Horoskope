@@ -23,7 +23,7 @@ const userPollsFileNameSuffix = ".json";
 String _fileLocation(int userid) =>
     "$userPollsFileNamePrefix$userid$userPollsFileNameSuffix";
 
-class PollsRepositoryFlutter implements PollsRepository {
+class PollsRepositoryJson extends PollsRepository {
   /// polls for currently loaded user
   List<UserPoll> curUserPolls = [];
 

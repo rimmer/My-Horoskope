@@ -54,11 +54,25 @@ class UserPoll {
 
   int val(int index) => this.details[index].value;
 
+  /// accamulates details values to given list of integers
   void accamulateDetails(List<int> detailsAccamulator) {
     if (detailsAccamulator == null ||
         detailsAccamulator.length != details.length) return;
     //
     //
+    /// For every new poll new accamulation must be added
+    detailsAccamulator[0] += details[0].value;
+    detailsAccamulator[1] += details[1].value;
+    detailsAccamulator[2] += details[2].value;
+    detailsAccamulator[3] += details[3].value;
+  }
+
+  int pollIndx(PollModelType type) {
+    return details.indexWhere(
+        //
+        (poll) => poll.type == type
+        //
+        );
   }
 
   Map<String, Object> toJson() => _$UserPollToJson(this);
