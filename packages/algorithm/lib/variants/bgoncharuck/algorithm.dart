@@ -107,15 +107,15 @@ class OfOldWayMagic implements MagicSpecialization {
     /// mysticInfo - part, change(part) by user choises
     /// mysticInfo + part
     else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 4) {
-      userWillPower = 8;
+      userWillPower = 5;
     } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 3) {
-      userWillPower = 13;
+      userWillPower = 8;
     } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 2) {
-      userWillPower = 21;
+      userWillPower = 13;
     }
     // else if userWillPower >= days_to_count
     //
-    userWillPower = 34;
+    userWillPower = 21;
 
     //
   }
