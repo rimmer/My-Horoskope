@@ -109,13 +109,17 @@ extension Karmic on String {
           ProphecyId.INTERNAL_STRENGTH: [11, 5, 6, 4, 5, 10],
           ProphecyId.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
           ProphecyId.MOODLET: [2, 3, 4, 7, 9, 10],
-          ProphecyId.AMBITION: [13, 8, 7, 13, 6, 5],
+
+          /// unique for aries, rage of mars
+          ProphecyId.AMBITION: [13, 12, 11, 10, 9, 8],
           ProphecyId.LUCK: [6, 7, 8, 9, 10, 6],
         };
       case "Taurus":
         return {
           ProphecyId.INTERNAL_STRENGTH: [10, 4, 7, 5, 6, 11],
-          ProphecyId.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
+
+          /// unique for taurus, venus catch up
+          ProphecyId.INTELLIGENCE: [6, 6, 9, 12, 12, 13],
           ProphecyId.MOODLET: [5, 6, 6, 8, 8, 11],
           ProphecyId.AMBITION: [8, 6, 7, 6, 5, 7],
           ProphecyId.LUCK: [7, 6, 9, 6, 8, 7],
@@ -123,7 +127,9 @@ extension Karmic on String {
       case "Gemini":
         return {
           ProphecyId.INTERNAL_STRENGTH: [9, 3, 8, 6, 7, 12],
-          ProphecyId.INTELLIGENCE: [4, 5, 6, 8, 7, 13],
+
+          /// unique for gemini. unstable genius
+          ProphecyId.INTELLIGENCE: [13, 1, 13, 13, 1, 13],
           ProphecyId.MOODLET: [11, 9, 7, 7, 8, 5],
           ProphecyId.AMBITION: [11, 3, 8, 1, 13, 8],
           ProphecyId.LUCK: [9, 6, 8, 9, 10, 6],
@@ -132,7 +138,9 @@ extension Karmic on String {
         return {
           ProphecyId.INTERNAL_STRENGTH: [11, 5, 6, 4, 5, 10],
           ProphecyId.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
-          ProphecyId.MOODLET: [2, 3, 4, 7, 9, 10],
+
+          /// unique for cancer, the moon protection
+          ProphecyId.MOODLET: [9, 9, 9, 9, 9, 9],
           ProphecyId.AMBITION: [13, 8, 7, 13, 6, 5],
           ProphecyId.LUCK: [6, 7, 8, 9, 10, 6],
         };
@@ -141,7 +149,9 @@ extension Karmic on String {
           ProphecyId.INTERNAL_STRENGTH: [10, 4, 7, 5, 6, 11],
           ProphecyId.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
           ProphecyId.MOODLET: [5, 6, 6, 8, 8, 11],
-          ProphecyId.AMBITION: [8, 6, 7, 6, 5, 7],
+
+          /// unique for lion, sunking of the wild
+          ProphecyId.AMBITION: [11, 8, 11, 8, 11, 8],
           ProphecyId.LUCK: [7, 6, 9, 6, 8, 7],
         };
       case "Virgo":
@@ -150,11 +160,14 @@ extension Karmic on String {
           ProphecyId.INTELLIGENCE: [4, 5, 6, 8, 7, 13],
           ProphecyId.MOODLET: [11, 9, 7, 7, 8, 5],
           ProphecyId.AMBITION: [11, 3, 8, 1, 13, 8],
-          ProphecyId.LUCK: [9, 6, 8, 9, 10, 6],
+
+          /// unique for virgo, gold of mercury
+          ProphecyId.LUCK: [9, 6, 9, 9, 9, 13],
         };
       case "Libra":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [11, 5, 6, 4, 5, 10],
+          /// unique for libra, the venus charm
+          ProphecyId.INTERNAL_STRENGTH: [7, 11, 7, 11, 7, 11],
           ProphecyId.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
           ProphecyId.MOODLET: [2, 3, 4, 7, 9, 10],
           ProphecyId.AMBITION: [13, 8, 7, 13, 6, 5],
@@ -165,7 +178,9 @@ extension Karmic on String {
           ProphecyId.INTERNAL_STRENGTH: [10, 4, 7, 5, 6, 11],
           ProphecyId.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
           ProphecyId.MOODLET: [5, 6, 6, 8, 8, 11],
-          ProphecyId.AMBITION: [8, 6, 7, 6, 5, 7],
+
+          /// unique for scorpio, power of underworld
+          ProphecyId.AMBITION: [9, 9, 9, 9, 9, 9],
           ProphecyId.LUCK: [7, 6, 9, 6, 8, 7],
         };
       case "Sagittarius":
@@ -173,20 +188,25 @@ extension Karmic on String {
           ProphecyId.INTERNAL_STRENGTH: [9, 3, 8, 6, 7, 12],
           ProphecyId.INTELLIGENCE: [4, 5, 6, 8, 7, 13],
           ProphecyId.MOODLET: [11, 9, 7, 7, 8, 5],
-          ProphecyId.AMBITION: [11, 3, 8, 1, 13, 8],
+
+          /// unique for sagittarius, the jupiter bard
+          ProphecyId.AMBITION: [11, 8, 8, 11, 11, 8],
           ProphecyId.LUCK: [9, 6, 8, 9, 10, 6],
         };
       case "Capricorn":
         return {
           ProphecyId.INTERNAL_STRENGTH: [11, 5, 6, 4, 5, 10],
-          ProphecyId.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
+
+          /// unique for capricorn, father saturn
+          ProphecyId.INTELLIGENCE: [9, 9, 9, 9, 9, 9],
           ProphecyId.MOODLET: [2, 3, 4, 7, 9, 10],
           ProphecyId.AMBITION: [13, 8, 7, 13, 6, 5],
           ProphecyId.LUCK: [6, 7, 8, 9, 10, 6],
         };
       case "Aquarius":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [10, 4, 7, 5, 6, 11],
+          /// unique for aquarius, between sky and ocean
+          ProphecyId.INTERNAL_STRENGTH: [11, 7, 7, 11, 11, 7],
           ProphecyId.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
           ProphecyId.MOODLET: [5, 6, 6, 8, 8, 11],
           ProphecyId.AMBITION: [8, 6, 7, 6, 5, 7],
@@ -198,7 +218,9 @@ extension Karmic on String {
           ProphecyId.INTELLIGENCE: [4, 5, 6, 8, 7, 13],
           ProphecyId.MOODLET: [11, 9, 7, 7, 8, 5],
           ProphecyId.AMBITION: [11, 3, 8, 1, 13, 8],
-          ProphecyId.LUCK: [9, 6, 8, 9, 10, 6],
+
+          /// unique for pisces, unstable warrior
+          ProphecyId.LUCK: [13, 1, 13, 1, 13, 13],
         };
     }
     return null;
