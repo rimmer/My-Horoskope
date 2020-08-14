@@ -5,6 +5,7 @@ import 'package:prophecy_model/prophecy_model.dart';
 import 'package:users_repository/users_repository.dart';
 import 'package:userpoll/userpoll.dart';
 import 'package:polls_repository/polls_repository.dart';
+import 'package:algorithm/astro.dart';
 import '../../interface.dart';
 
 part 'base_hardcoded.dart';
@@ -93,29 +94,29 @@ class OfOldWayMagic implements MagicSpecialization {
     /// if user were weak-willed
     /// return events without any changes
     if (userWillPower == 0) {
-      mysticInfo[ProphecyId.INTERNAL_STRENGTH].value /= 10;
-      mysticInfo[ProphecyId.MOODLET].value /= 10;
-      mysticInfo[ProphecyId.AMBITION].value /= 10;
-      mysticInfo[ProphecyId.INTELLIGENCE].value /= 10;
-      mysticInfo[ProphecyId.LUCK].value /= 10;
-      return mysticInfo;
-      //
-      //
+      return _dividedByTen(mysticInfo);
+    }
+
+    final userSign = withDat.user.model.birth.astroSign;
+    final changedByUserWill = userSign.choiseConsequenceBySign;
+    if (changedByUserWill == null) {
+      print("Error: Astro Methods gived incorrect List");
+      return _dividedByTen(mysticInfo);
     }
 
     /// else change userWill to part that will be changed
     /// mysticInfo - part, change(part) by user choises
     /// mysticInfo + part
-    else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 4) {
+    if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 4) {
       userWillPower = 5;
     } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 3) {
       userWillPower = 8;
     } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 2) {
       userWillPower = 13;
+    } else {
+      userWillPower = 21;
     }
-    // else if userWillPower >= days_to_count
     //
-    userWillPower = 21;
 
     //
   }
@@ -128,3 +129,16 @@ class OfOldWayMagic implements MagicSpecialization {
           @required UserPoll withPoll}) =>
       {};
 }
+
+Map<ProphecyId, ProphecyEntity> _dividedByTen(
+    Map<ProphecyId, ProphecyEntity> res) {
+  res[ProphecyId.INTERNAL_STRENGTH].value /= 10;
+  res[ProphecyId.MOODLET].value /= 10;
+  res[ProphecyId.AMBITION].value /= 10;
+  res[ProphecyId.INTELLIGENCE].value /= 10;
+  res[ProphecyId.LUCK].value /= 10;
+  return res;
+}
+
+Map<ProphecyId, ProphecyEntity> changePartOfRes(
+    Map<ProphecyId, ProphecyEntity> res) {}
