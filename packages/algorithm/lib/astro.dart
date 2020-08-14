@@ -167,7 +167,7 @@ extension Karmic on String {
       case "Libra":
         return {
           /// unique for libra, the venus charm
-          ProphecyId.INTERNAL_STRENGTH: [7, 11, 7, 11, 7, 11],
+          ProphecyId.INTERNAL_STRENGTH: [8, 11, 8, 11, 8, 11],
           ProphecyId.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
           ProphecyId.MOODLET: [2, 3, 4, 7, 9, 10],
           ProphecyId.AMBITION: [13, 8, 7, 13, 6, 5],
@@ -206,7 +206,7 @@ extension Karmic on String {
       case "Aquarius":
         return {
           /// unique for aquarius, between sky and ocean
-          ProphecyId.INTERNAL_STRENGTH: [11, 7, 7, 11, 11, 7],
+          ProphecyId.INTERNAL_STRENGTH: [11, 8, 8, 11, 11, 8],
           ProphecyId.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
           ProphecyId.MOODLET: [5, 6, 6, 8, 8, 11],
           ProphecyId.AMBITION: [8, 6, 7, 6, 5, 7],
