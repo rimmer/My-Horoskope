@@ -30,55 +30,40 @@ class OfOldWayMagic implements MagicSpecialization {
   /// (calculates user polls arithmetic mean
   /// and have values from 1 to 6)
   Map<ProphecyId, ProphecyEntity> _freeWillConsequence(PollsRepository repo) {
+    final meanOf = repo.arithmeticMean(DAYS_TO_COUNT_IN_POLLS);
+    if (meanOf == null) return /*map with zero values*/ Prophecies();
     //
-    /// must be changed if more polls or prophecies will be added
     return {
-      ProphecyId.MOODLET: ProphecyEntity(
-        //
-        id: ProphecyId.MOODLET,
-        value: mood / DAYS_TO_COUNT_IN_POLLS,
-        //
-      ),
+      //
+      ProphecyId.LUCK: ProphecyEntity(
+          id: ProphecyId.LUCK,
+          //
+          value: meanOf[PollModelType.MOOD]),
+      //
+      //
       ProphecyId.INTERNAL_STRENGTH: ProphecyEntity(
-        //
-        id: ProphecyId.INTERNAL_STRENGTH,
-        value: details[
-
-                /// index of needed detali must be the same
-                repo.curUserPolls[0].details.indexWhere((poll) =>
-
-                        /// as index of poll with this type
-                        poll.type == PollModelType.MOOD
-
-                    /// repo.curUserPolls[0] is used,
-                    /// because index of needed poll type will be
-                    /// the same for every element of the list
-                    )
-                //
-                ] /
-            DAYS_TO_COUNT_IN_POLLS,
-        //
-      ),
+          id: ProphecyId.INTERNAL_STRENGTH,
+          //
+          value: meanOf[PollModelType.RELATIONSHIPS]),
+      //
+      //
+      ProphecyId.MOODLET: ProphecyEntity(
+          id: ProphecyId.MOODLET,
+          //
+          value: meanOf[PollModelType.PHYSICAL_ACTIVITY]),
+      //
+      //
       ProphecyId.AMBITION: ProphecyEntity(
-        //
-        id: ProphecyId.INTERNAL_STRENGTH,
-        value: details[
-
-                /// index of needed detali must be the same
-                repo.curUserPolls[0].details.indexWhere((poll) =>
-
-                        /// as index of poll with this type
-                        poll.type == PollModelType.MOOD
-
-                    /// repo.curUserPolls[0] is used,
-                    /// because index of needed poll type will be
-                    /// the same for every element of the list
-                    )
-                //
-                ] /
-            DAYS_TO_COUNT_IN_POLLS,
-        //
-      ),
+          id: ProphecyId.AMBITION,
+          //
+          value: meanOf[PollModelType.PRODUCTIVITY]),
+      //
+      //
+      ProphecyId.INTELLIGENCE: ProphecyEntity(
+          id: ProphecyId.INTELLIGENCE,
+          //
+          value: meanOf[PollModelType.SELFDEVELOPMENT]),
+      //
     };
   }
 
@@ -94,8 +79,8 @@ class OfOldWayMagic implements MagicSpecialization {
 
     //
     //
-    /// how much polls were voted
-    final userWillPower = (withDat.user.pollAvailability == true)
+    /// how much polls were voted, and the part that be changed in the future
+    var userWillPower = (withDat.user.pollAvailability == true)
         ? withDat.pollByDateRepo.curUserPolls.length
         : 0;
 
@@ -114,7 +99,25 @@ class OfOldWayMagic implements MagicSpecialization {
       mysticInfo[ProphecyId.INTELLIGENCE].value /= 10;
       mysticInfo[ProphecyId.LUCK].value /= 10;
       return mysticInfo;
+      //
+      //
     }
+
+    /// else change userWill to part that will be changed
+    /// mysticInfo - part, change(part) by user choises
+    /// mysticInfo + part
+    else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 4) {
+      userWillPower = 8;
+    } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 3) {
+      userWillPower = 13;
+    } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 2) {
+      userWillPower = 21;
+    }
+    // else if userWillPower >= days_to_count
+    //
+    userWillPower = 34;
+
+    //
   }
 
   //
