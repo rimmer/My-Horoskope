@@ -29,6 +29,7 @@ abstract class MagicSpecialization {
   /// clarifies a prophecy with a today user poll
   Map<ProphecyId, ProphecyEntity> clarify(
       {@required Map<ProphecyId, ProphecyEntity> prophecies,
+      @required UserEntity user,
       @required UserPoll withPoll});
 }
 
@@ -54,10 +55,12 @@ class Algorithm {
 
   /// clarifies a prophecy
   Map<ProphecyId, ProphecyEntity> clarify({
+    @required UserEntity user,
     @required UserPoll withPoll,
   }) {
     return prophet.clarify(
       withPoll: withPoll,
+      user: user,
       prophecies: lastInsight ??
 
           /// if no insight were recorded by a prophet

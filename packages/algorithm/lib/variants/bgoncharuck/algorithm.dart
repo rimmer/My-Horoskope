@@ -4,7 +4,6 @@ import 'package:prophecies/prophecies.dart';
 import 'package:prophecy_model/prophecy_model.dart';
 import 'package:users_repository/users_repository.dart';
 import 'package:userpoll/userpoll.dart';
-import 'package:polls_repository/polls_repository.dart';
 import 'package:algorithm/astro.dart';
 import 'methods_userpollcalc.dart';
 import '../../interface.dart';
@@ -12,6 +11,7 @@ import '../../interface.dart';
 part 'base_hardcoded.dart';
 
 const int DAYS_TO_COUNT_IN_POLLS = 7;
+const TODAY_POLL_PERCENT = 10;
 
 abstract class _OldWisdom {
   /// returned map must have values from 1 to 100
@@ -94,7 +94,33 @@ class OfOldWayMagic implements MagicSpecialization {
   //
   //
   Map<ProphecyId, ProphecyEntity> clarify(
-          {@required Map<ProphecyId, ProphecyEntity> prophecies,
-          @required UserPoll withPoll}) =>
-      {};
+      {@required Map<ProphecyId, ProphecyEntity> prophecies,
+      @required UserEntity user,
+      @required UserPoll withPoll}) {
+    //
+    /// can be replaced in future
+    final userSign = user.model.birth.astroSign;
+    final percentChangeBySign = userSign.choiseConsequenceBySign;
+
+    if (percentChangeBySign == null) {
+      print("Error: Astro Methods gave incorrect List");
+      return prophecies;
+    }
+
+    final result = changePartsOfBase(
+      base: prophecies,
+      percent: TODAY_POLL_PERCENT,
+      userPoll: {
+        // @TODO
+        // 1. This
+        // 2. bloc
+        // 3. prophecies list widget
+      },
+      changeBySign: percentChangeBySign,
+    );
+
+    if (result != null) return result;
+    //
+    return prophecies;
+  }
 }

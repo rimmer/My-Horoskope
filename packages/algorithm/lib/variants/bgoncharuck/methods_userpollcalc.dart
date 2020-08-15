@@ -8,7 +8,14 @@ ProphecyEntity changePartOfBase(
     @required int percent,
     @required double pollValue,
     @required List<int> bySign}) {
-  base.value -= percent;
+  //
+  //
+  /// float value cant be assign to int, bluh, bluh, bluh
+  final double _percent = (base.value * percent) / 100;
+
+  //
+
+  base.value -= _percent;
 
   /// possible values:
   /// -6, -5, -4, -3, -2, -1. 0, +1, +2, +3, +4, +5, +6
@@ -50,9 +57,9 @@ ProphecyEntity changePartOfBase(
   /// here we find our initial position
   /// percent = 7/13
   /// 1/13 = percent/7 / 13
-  final initPositionValue = (percent / 7);
+  final initPositionValue = (_percent / 7);
 
-  /// here we find our needed value
+  /// here we will find our needed value
   base.value += initPositionValue * position;
 
   //
