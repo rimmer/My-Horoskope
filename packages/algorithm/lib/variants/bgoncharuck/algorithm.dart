@@ -6,6 +6,7 @@ import 'package:users_repository/users_repository.dart';
 import 'package:userpoll/userpoll.dart';
 import 'package:polls_repository/polls_repository.dart';
 import 'package:algorithm/astro.dart';
+import 'methods_userpollcalc.dart';
 import '../../interface.dart';
 
 part 'base_hardcoded.dart';
@@ -26,82 +27,41 @@ class OfOldWayMagic implements MagicSpecialization {
           UserEntity aboutUser, int inTimeOf) =>
       _mage.says(aboutUser, inTimeOf);
 
-  /// everyone makes choices in their lives
-  /// these choices lead to the aftermath
-  /// (calculates user polls arithmetic mean
-  /// and have values from 1 to 6)
-  Map<ProphecyId, ProphecyEntity> _freeWillConsequence(PollsRepository repo) {
-    final meanOf = repo.arithmeticMean(DAYS_TO_COUNT_IN_POLLS);
-    if (meanOf == null) return /*map with zero values*/ Prophecies();
-    //
-    return {
-      //
-      ProphecyId.LUCK: ProphecyEntity(
-          id: ProphecyId.LUCK,
-          //
-          value: meanOf[PollModelType.MOOD]),
-      //
-      //
-      ProphecyId.INTERNAL_STRENGTH: ProphecyEntity(
-          id: ProphecyId.INTERNAL_STRENGTH,
-          //
-          value: meanOf[PollModelType.RELATIONSHIPS]),
-      //
-      //
-      ProphecyId.MOODLET: ProphecyEntity(
-          id: ProphecyId.MOODLET,
-          //
-          value: meanOf[PollModelType.PHYSICAL_ACTIVITY]),
-      //
-      //
-      ProphecyId.AMBITION: ProphecyEntity(
-          id: ProphecyId.AMBITION,
-          //
-          value: meanOf[PollModelType.PRODUCTIVITY]),
-      //
-      //
-      ProphecyId.INTELLIGENCE: ProphecyEntity(
-          id: ProphecyId.INTELLIGENCE,
-          //
-          value: meanOf[PollModelType.SELFDEVELOPMENT]),
-      //
-    };
-  }
-
   //
   /// Old Way Magic will use an information given by a mage and user choices
   /// to return a correct prophecy for a prophet, that asked for it
   Map<ProphecyId, ProphecyEntity> ask(AlgoData withDat, int aboutDay) {
     //
-    /// will store a user polls arithmetic mean or object with zero values
-    final aftermath = (withDat.user.pollAvailability == true)
-        ? _freeWillConsequence(withDat.pollByDateRepo)
-        : Prophecies(); // object with 0 values
-
-    //
-    //
     /// how much polls were voted, and the part that be changed in the future
-    var userWillPower = (withDat.user.pollAvailability == true)
-        ? withDat.pollByDateRepo.curUserPolls.length
-        : 0;
+    int userWillPower;
+
+    /// will store a user polls arithmetic mean
+    Map<PollModelType, double> userPollsMean;
+
+    if (withDat.user.pollAvailability == true) {
+      userWillPower = withDat.pollByDateRepo.curUserPolls.length;
+      userPollsMean =
+          withDat.pollByDateRepo.arithmeticMean(DAYS_TO_COUNT_IN_POLLS);
+    }
 
     //
     /// get information from the mage
     final mysticInfo = _askInformation(withDat.user, aboutDay);
 
     //
-    //
     /// if user were weak-willed
     /// return events without any changes
-    if (userWillPower == 0) {
-      return _dividedByTen(mysticInfo);
+    if (userWillPower == 0 || userPollsMean == null) {
+      return dividedByTen(mysticInfo);
     }
 
+    /// can be replaced in future
     final userSign = withDat.user.model.birth.astroSign;
-    final changedByUserWill = userSign.choiseConsequenceBySign;
-    if (changedByUserWill == null) {
-      print("Error: Astro Methods gived incorrect List");
-      return _dividedByTen(mysticInfo);
+    final percentChangeBySign = userSign.choiseConsequenceBySign;
+
+    if (percentChangeBySign == null) {
+      print("Error: Astro Methods gave incorrect List");
+      return dividedByTen(mysticInfo);
     }
 
     /// else change userWill to part that will be changed
@@ -116,9 +76,18 @@ class OfOldWayMagic implements MagicSpecialization {
     } else {
       userWillPower = 21;
     }
-    //
 
+    /// when part chosen, let us change our mysticInfo
+    final result = changePartsOfBase(
+      base: mysticInfo,
+      percent: userWillPower,
+      userPoll: userPollsMean,
+      changeBySign: percentChangeBySign,
+    );
+
+    if (result != null) return dividedByTen(result);
     //
+    return dividedByTen(mysticInfo);
   }
 
   //
@@ -129,16 +98,3 @@ class OfOldWayMagic implements MagicSpecialization {
           @required UserPoll withPoll}) =>
       {};
 }
-
-Map<ProphecyId, ProphecyEntity> _dividedByTen(
-    Map<ProphecyId, ProphecyEntity> res) {
-  res[ProphecyId.INTERNAL_STRENGTH].value /= 10;
-  res[ProphecyId.MOODLET].value /= 10;
-  res[ProphecyId.AMBITION].value /= 10;
-  res[ProphecyId.INTELLIGENCE].value /= 10;
-  res[ProphecyId.LUCK].value /= 10;
-  return res;
-}
-
-Map<ProphecyId, ProphecyEntity> changePartOfRes(
-    Map<ProphecyId, ProphecyEntity> res) {}
