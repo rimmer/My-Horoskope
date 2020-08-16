@@ -110,13 +110,19 @@ class OfOldWayMagic implements MagicSpecialization {
     final result = changePartsOfBase(
       base: prophecies,
       percent: TODAY_POLL_PERCENT,
-      userPoll: {
-        // @TODO
-        // 1. This
-        // 2. bloc
-        // 3. prophecies list widget
-      },
       changeBySign: percentChangeBySign,
+      userPoll: {
+        PollModelType.MOOD:
+            (withPoll.poll(PollModelType.MOOD)).value.toDouble(),
+        PollModelType.PHYSICAL_ACTIVITY:
+            (withPoll.poll(PollModelType.PHYSICAL_ACTIVITY)).value.toDouble(),
+        PollModelType.PRODUCTIVITY:
+            (withPoll.poll(PollModelType.PRODUCTIVITY)).value.toDouble(),
+        PollModelType.RELATIONSHIPS:
+            (withPoll.poll(PollModelType.RELATIONSHIPS)).value.toDouble(),
+        PollModelType.SELFDEVELOPMENT:
+            (withPoll.poll(PollModelType.SELFDEVELOPMENT)).value.toDouble(),
+      },
     );
 
     if (result != null) return result;

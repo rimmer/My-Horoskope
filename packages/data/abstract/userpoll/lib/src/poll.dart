@@ -75,6 +75,11 @@ class UserPoll {
         );
   }
 
+  PollModel poll(PollModelType type) {
+    if (type == PollModelType.MOOD) return this.mood;
+    return details[pollIndx(type)];
+  }
+
   Map<String, Object> toJson() => _$UserPollToJson(this);
 
   static UserPoll fromJson(Map<String, Object> json) =>
