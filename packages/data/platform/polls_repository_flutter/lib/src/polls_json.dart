@@ -58,6 +58,17 @@ class PollsRepositoryJson extends PollsRepository {
     final today = dtDay;
     return curUserPolls.firstWhere((el) => el.dt == today) ?? null;
   }
+
+  @override
+  set todayPoll(UserPoll newPoll) {
+    final today = dtDay;
+    final index = curUserPolls.indexWhere((el) => el.dt == today) ?? -1;
+    if (index != -1) {
+      curUserPolls[index] = newPoll;
+    } else {
+      curUserPolls.add(newPoll);
+    }
+  }
 }
 
 extension Json on List<UserPoll> {

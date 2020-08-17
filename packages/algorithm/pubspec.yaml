@@ -18,8 +18,8 @@ dependencies:
     path: ../data/abstract/userpoll
   polls_repository:
     path: ../data/abstract/polls_repository
+  prophecies:
+    path: ../data/abstract/prophecies
 
   prophecy_model:
     path: ../models/prophecy_model
-  prophecies:
-    path: ../data/abstract/prophecies

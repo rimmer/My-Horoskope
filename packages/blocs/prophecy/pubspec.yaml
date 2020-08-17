@@ -1,0 +1,35 @@
+name: prophecy
+description: prophecy business logic
+author: rimmer
+version: 0.0.1+1
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  meta: ^1.1.8
+  bloc: ^4.0.0
+  equatable: ^1.2.0
+  to_string: ^1.2.1
+  
+  int_datetime:
+    path: ../../int_datetime
+
+  prophecy_model:
+    path: ../../models/prophecy_model
+
+  users_repository:
+    path: ../../data/abstract/users_repository
+  userpoll:
+    path: ../../data/abstract/userpoll
+  polls_repository:
+    path: ../../data/abstract/polls_repository
+  prophecies:
+    path: ../../data/abstract/prophecies
+
+  algorithm:
+    path: ../../algorithm
+
+dev_dependencies:
+  build_runner: ^1.0.0
+  to_string_generator: ^1.2.1

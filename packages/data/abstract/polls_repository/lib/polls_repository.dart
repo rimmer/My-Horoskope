@@ -15,6 +15,7 @@ abstract class PollsRepository {
 
   /// is a current day poll
   UserPoll get todayPoll;
+  void set todayPoll(UserPoll newPoll);
 
 //--------------------------------------------------------------------------
   /// returns arithmetic mean of values of polls

@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:userpoll/userpoll.dart';
+import 'package:polls_repository/polls_repository.dart';
 
 import 'user_poll_event.dart';
 import 'user_poll_state.dart';
@@ -13,9 +14,13 @@ export 'user_poll_state.dart';
 class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   bool _isSimple = true;
   bool get isSimple => _isSimple;
-  UserPoll currentPoll;
   bool enabled;
-  UserPollBloc({@required this.enabled, @required this.currentPoll});
+
+  PollsRepository pollsRepo;
+  UserPoll get currentPoll => pollsRepo.todayPoll;
+  set currentPoll(UserPoll newVal) => pollsRepo.todayPoll = newVal;
+
+  UserPollBloc({@required this.enabled, @required this.pollsRepo});
 
   @override
   UserPollState get initialState => UserPollInitial(

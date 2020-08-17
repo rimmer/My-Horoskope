@@ -37,8 +37,8 @@ class Algorithm {
   /// here you can change a specialization of your prophet
   MagicSpecialization prophet = OfOldWayMagic();
 
-  /// the last insight that was written by the prophet
-  Map<ProphecyId, ProphecyEntity> lastInsight;
+  /// the last insights that were written by the prophet
+  Map<int, Map<ProphecyId, ProphecyEntity>> curSessionInsights;
 
   final AlgoData dat;
   Algorithm({@required this.dat}) {
@@ -49,23 +49,25 @@ class Algorithm {
 
   /// ask for prophecy about given day
   Map<ProphecyId, ProphecyEntity> ask({@required int aboutDay}) {
-    lastInsight = prophet.ask(dat, aboutDay);
-    return lastInsight;
+    if (curSessionInsights[aboutDay] != null) curSessionInsights[aboutDay];
+    curSessionInsights[aboutDay] = prophet.ask(dat, aboutDay);
+    return curSessionInsights[aboutDay];
   }
 
   /// clarifies a prophecy
   Map<ProphecyId, ProphecyEntity> clarify({
-    @required UserEntity user,
     @required UserPoll withPoll,
+    UserEntity user,
+    int dt,
   }) {
     return prophet.clarify(
-      withPoll: withPoll,
-      user: user,
-      prophecies: lastInsight ??
+      withPoll: withPoll ?? dat.pollByDateRepo.todayPoll,
+      user: user ?? dat.user,
+      prophecies: curSessionInsights[dt ?? dtDay] ??
 
           /// if no insight were recorded by a prophet
           /// wake him up and force to get another one
-          prophet.ask(dat, dtDay),
+          prophet.ask(dat, dt ?? dtDay),
     );
   }
 }

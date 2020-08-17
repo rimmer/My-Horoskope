@@ -15,4 +15,5 @@ class PollsRepositoryFlutter extends PollsRepository {
   Future<bool> save(int userid) => _impl.save(userid);
   Future<bool> load(int userid) => _impl.load(userid);
   UserPoll get todayPoll => _impl.todayPoll;
+  set todayPoll(UserPoll newPoll) => _impl.todayPoll = newPoll;
 }

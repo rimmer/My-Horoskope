@@ -81,6 +81,6 @@ flutter:
     - assets/icons/
     - assets/widget/
   #data
-    - packages/prophecies_repository_flutter/data/prophecies.json
+    # - packages/prophecies_repository_flutter/data/prophecies.json
   # #localization
     # - packages/language/locales/ru.json
