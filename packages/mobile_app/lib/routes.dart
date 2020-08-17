@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:algorithm/algorithm.dart';
 import 'package:authentication/bloc.dart';
+import 'package:prophecy/bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:polls_repository_flutter/polls_repository_flutter.dart';
 import 'package:users_repository_flutter/users_repository_flutter.dart';
+import 'package:int_datetime/int_datetime.dart';
 import 'screens/registration/screen.dart';
 import 'screens/daily/screen.dart';
 import 'screens/monthly/screen.dart';
@@ -45,14 +47,24 @@ class InitRoute extends StatelessWidget {
               //
 
               return Provider<Algorithm>(
-                  create: (context) => sessionAlgroithm,
-                  child: BlocProvider<UserPollBloc>(
-                    create: (context) => UserPollBloc(
-                      enabled: usersRepo.current.pollAvailability,
-                      pollsRepo: pollsRepo,
+                create: (context) => sessionAlgroithm,
+                child: MultiBlocProvider(
+                  providers: [
+                    BlocProvider<UserPollBloc>(
+                      create: (context) => UserPollBloc(
+                        enabled: usersRepo.current.pollAvailability,
+                        pollsRepo: pollsRepo,
+                      ),
                     ),
-                    child: DailyScreen(),
-                  ));
+                    BlocProvider<ProphecyBloc>(
+                      create: (context) => ProphecyBloc(
+                        algo: sessionAlgroithm,
+                      ),
+                    ),
+                  ],
+                  child: DailyScreen(dt: dtNow),
+                ),
+              );
 
               //
 

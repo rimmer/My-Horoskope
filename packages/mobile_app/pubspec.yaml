@@ -39,6 +39,8 @@ dependencies:
     path: ../data/platform/auth_flutter  
   polls_repository_flutter:
     path: ../data/platform/polls_repository_flutter  
+  prophecies:
+    path: ../data/abstract/prophecies
 
   #blocs
   authentication:

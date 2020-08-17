@@ -306,7 +306,7 @@ packages:
     source: hosted
     version: "3.0.13"
   prophecies:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../data/abstract/prophecies"
       relative: true

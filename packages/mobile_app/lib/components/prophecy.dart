@@ -33,46 +33,42 @@ class Prophecy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PropheciesBloc propheciesBloc = context.bloc<PropheciesBloc>();
+    ProphecyBloc prophecyBloc = context.bloc<ProphecyBloc>();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: BlocBuilder<PropheciesBloc, ProphecyState>(
-          // Prophecies Bloc must be redone
-          //
-          //
-          bloc: propheciesBloc,
+      child: BlocBuilder<ProphecyBloc, ProphecyState>(
+          bloc: prophecyBloc,
           builder: (context, state) {
-            if (state is ProphecyLoadInProgressState) {
+            if (state is ProphecyInitial) {
+              // @TODO redone to new widgets
               return LoadingScreen();
-            } else if (state is PropheciesLoadSuccessState) {
-              if (state.prophecies.isEmpty) {
-                return Center(child: Text("Empty"));
-              } else
-                return ListView.builder(
-                  shrinkWrap: false,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index == 0)
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            labelStr,
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.w400),
-                          ),
-                          birthRow.wrapped,
-                        ],
-                      );
-                    return ProphecyRecord(
-                        prophecy: state.prophecies[index - 1]);
-                  },
-                  itemCount: state.prophecies.length + 1,
-                );
+            } else if (state is ProphecyWasAsked ||
+                state is ProphecyWasClarified) {
+              // @TODO redone to const list (no list builder)
+              return ListView.builder(
+                shrinkWrap: false,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index == 0)
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          labelStr,
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.w400),
+                        ),
+                        birthRow.wrapped,
+                      ],
+                    );
+                  return ProphecyRecord(
+                      prophecy: (state.prophecy.values).elementAt(index - 1));
+                },
+                itemCount: state.prophecy.length + 1,
+              );
             } else {
-              // state is ProphecyLoadFailureState
               return Center(
-                child: Text("Failure loading"),
+                child: Text("Error"),
               );
             }
           }),

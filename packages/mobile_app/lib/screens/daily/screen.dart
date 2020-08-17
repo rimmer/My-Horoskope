@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prophecy/bloc/prophecy_bloc.dart';
 
 import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'package:provider/provider.dart';
@@ -11,10 +12,15 @@ import 'package:app/components/poll_settings.dart';
 import 'poll_widgets.dart';
 
 class DailyScreen extends StatelessWidget {
+  int dt;
+  DailyScreen({@required this.dt});
   @override
   Widget build(BuildContext context) {
     UserPollBloc userPollBloc = context.bloc<UserPollBloc>();
     final usersRepo = context.watch<UsersRepositoryFlutter>();
+
+    ProphecyBloc prophet = context.bloc<ProphecyBloc>();
+    prophet.add(CalculateProphecy(dt));
 
     return Scaffold(
       backgroundColor: Colors.transparent,

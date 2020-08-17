@@ -24,19 +24,26 @@ String _fileLocation(int userid) =>
     "$userPollsFileNamePrefix$userid$userPollsFileNameSuffix";
 
 class PollsRepositoryJson extends PollsRepository {
+  int _lastUserId;
+
   /// polls for currently loaded user
   List<UserPoll> curUserPolls = [];
 
   @override
-  Future<bool> save(int userid) async => (curUserPolls.isNotEmpty)
-      ? await storage.write(
-          data: json.encode(curUserPolls.toJson()),
-          asFile: _fileLocation(userid),
-        )
-      : false;
+  Future<bool> save(int userid) async {
+    _lastUserId = userid;
+
+    return (curUserPolls.isNotEmpty)
+        ? await storage.write(
+            data: json.encode(curUserPolls.toJson()),
+            asFile: _fileLocation(userid),
+          )
+        : false;
+  }
 
   @override
   Future<bool> load(int userid) async {
+    _lastUserId = userid;
     try {
       final red = await storage.read(fromFile: _fileLocation(userid));
       if (red != null) {
@@ -56,7 +63,7 @@ class PollsRepositoryJson extends PollsRepository {
   @override
   UserPoll get todayPoll {
     final today = dtDay;
-    return curUserPolls.firstWhere((el) => el.dt == today) ?? null;
+    return curUserPolls.firstWhere((el) => el.dt == today, orElse: () => null);
   }
 
   @override
@@ -68,6 +75,7 @@ class PollsRepositoryJson extends PollsRepository {
     } else {
       curUserPolls.add(newPoll);
     }
+    this.save(_lastUserId);
   }
 }
 

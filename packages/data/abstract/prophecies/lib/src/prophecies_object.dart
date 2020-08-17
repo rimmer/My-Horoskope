@@ -46,6 +46,10 @@ class ProphecyEntity {
   void set value(double newVal) =>
       _prophecy = ProphecyModel(id: _prophecy.id, value: newVal);
 
+  ProphecyId get id => _prophecy.id;
+  void set id(ProphecyId newId) =>
+      _prophecy = ProphecyModel(id: newId, value: _prophecy.value);
+
   Map<String, Object> toJson() => _$ProphecyEntityToJson(this);
 
   static ProphecyEntity fromJson(Map<String, Object> json) =>

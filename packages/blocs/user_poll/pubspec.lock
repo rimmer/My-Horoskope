@@ -197,6 +197,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.4"
+  int_datetime:
+    dependency: "direct main"
+    description:
+      path: "../../int_datetime"
+      relative: true
+    source: path
+    version: "0.0.1"
   io:
     dependency: transitive
     description:
