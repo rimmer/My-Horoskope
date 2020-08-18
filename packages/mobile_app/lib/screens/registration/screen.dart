@@ -166,13 +166,13 @@ class RegistrationScreen extends StatelessWidget {
                     month.wrapped.isEmpty ||
                     day.wrapped.isEmpty ||
                     year.wrapped.isEmpty) {
-                  showAlert(
+                  showOverCurrentScreen(
                       context: context,
                       child: _wrongInformation(lang.notAllFieldsFilled));
                   return;
                 }
                 if (termsAccepted.wrapped == false) {
-                  showAlert(
+                  showOverCurrentScreen(
                       context: context,
                       child: _wrongInformation(lang.termsAreNotAccepted));
                   return;

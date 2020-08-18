@@ -36,9 +36,9 @@ class PollSettingsState extends State<PollSettings> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showAlert(
+        showOverCurrentScreen(
             context: context,
-            child: SimplePopup(
+            child: SimpleTransperentScreen(
               title: lang.pollSettingsTitle.capitalize(),
               body: PollSettingInfo(poll: poll, studying: studying),
               actions: <Widget>[

@@ -71,55 +71,55 @@ ProphecyEntity changePartOfBase(
 
 //
 
-Map<ProphecyId, ProphecyEntity> changePartsOfBase({
-  @required Map<ProphecyId, ProphecyEntity> base,
+Map<ProphecyType, ProphecyEntity> changePartsOfBase({
+  @required Map<ProphecyType, ProphecyEntity> base,
   @required int percent,
   @required Map<PollModelType, double> userPoll,
-  @required Map<ProphecyId, List<int>> changeBySign,
+  @required Map<ProphecyType, List<int>> changeBySign,
 }) {
   /// Future tip: PLEASE, sort prophecies ids in alphabetic order
   ///
-  base[ProphecyId.AMBITION] = changePartOfBase(
-      base: base[ProphecyId.AMBITION],
+  base[ProphecyType.AMBITION] = changePartOfBase(
+      base: base[ProphecyType.AMBITION],
       percent: percent,
       pollValue: userPoll[PollModelType.PRODUCTIVITY],
-      bySign: changeBySign[ProphecyId.AMBITION]);
+      bySign: changeBySign[ProphecyType.AMBITION]);
 
-  base[ProphecyId.INTELLIGENCE] = changePartOfBase(
-      base: base[ProphecyId.INTELLIGENCE],
+  base[ProphecyType.INTELLIGENCE] = changePartOfBase(
+      base: base[ProphecyType.INTELLIGENCE],
       percent: percent,
       pollValue: userPoll[PollModelType.SELFDEVELOPMENT],
-      bySign: changeBySign[ProphecyId.INTELLIGENCE]);
+      bySign: changeBySign[ProphecyType.INTELLIGENCE]);
 
-  base[ProphecyId.INTERNAL_STRENGTH] = changePartOfBase(
-      base: base[ProphecyId.INTERNAL_STRENGTH],
+  base[ProphecyType.INTERNAL_STRENGTH] = changePartOfBase(
+      base: base[ProphecyType.INTERNAL_STRENGTH],
       percent: percent,
       pollValue: userPoll[PollModelType.RELATIONSHIPS],
-      bySign: changeBySign[ProphecyId.INTERNAL_STRENGTH]);
+      bySign: changeBySign[ProphecyType.INTERNAL_STRENGTH]);
 
-  base[ProphecyId.LUCK] = changePartOfBase(
-      base: base[ProphecyId.LUCK],
+  base[ProphecyType.LUCK] = changePartOfBase(
+      base: base[ProphecyType.LUCK],
       percent: percent,
       pollValue: userPoll[PollModelType.MOOD],
-      bySign: changeBySign[ProphecyId.LUCK]);
+      bySign: changeBySign[ProphecyType.LUCK]);
 
-  base[ProphecyId.MOODLET] = changePartOfBase(
-      base: base[ProphecyId.MOODLET],
+  base[ProphecyType.MOODLET] = changePartOfBase(
+      base: base[ProphecyType.MOODLET],
       percent: percent,
       pollValue: userPoll[PollModelType.PHYSICAL_ACTIVITY],
-      bySign: changeBySign[ProphecyId.MOODLET]);
+      bySign: changeBySign[ProphecyType.MOODLET]);
 
   //
 
   return base;
 }
 
-Map<ProphecyId, ProphecyEntity> dividedByTen(
-    Map<ProphecyId, ProphecyEntity> res) {
-  res[ProphecyId.INTERNAL_STRENGTH].value /= 10;
-  res[ProphecyId.MOODLET].value /= 10;
-  res[ProphecyId.AMBITION].value /= 10;
-  res[ProphecyId.INTELLIGENCE].value /= 10;
-  res[ProphecyId.LUCK].value /= 10;
+Map<ProphecyType, ProphecyEntity> dividedByTen(
+    Map<ProphecyType, ProphecyEntity> res) {
+  res[ProphecyType.INTERNAL_STRENGTH].value /= 10;
+  res[ProphecyType.MOODLET].value /= 10;
+  res[ProphecyType.AMBITION].value /= 10;
+  res[ProphecyType.INTELLIGENCE].value /= 10;
+  res[ProphecyType.LUCK].value /= 10;
   return res;
 }

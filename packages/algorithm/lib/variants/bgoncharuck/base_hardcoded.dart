@@ -1,13 +1,16 @@
 part of 'algorithm.dart';
 
 class _Hardcoded implements _OldWisdom {
-  Map<ProphecyId, ProphecyEntity> says(UserEntity aboutUser, int inTimeOf) => {
-        ProphecyId.INTERNAL_STRENGTH:
-            ProphecyEntity(id: ProphecyId.INTERNAL_STRENGTH, value: 49),
-        ProphecyId.MOODLET: ProphecyEntity(id: ProphecyId.MOODLET, value: 65),
-        ProphecyId.AMBITION: ProphecyEntity(id: ProphecyId.AMBITION, value: 90),
-        ProphecyId.INTELLIGENCE:
-            ProphecyEntity(id: ProphecyId.INTELLIGENCE, value: 53),
-        ProphecyId.LUCK: ProphecyEntity(id: ProphecyId.LUCK, value: 70),
+  Map<ProphecyType, ProphecyEntity> says(UserEntity aboutUser, int inTimeOf) =>
+      {
+        ProphecyType.INTERNAL_STRENGTH:
+            ProphecyEntity(id: ProphecyType.INTERNAL_STRENGTH, value: 49),
+        ProphecyType.MOODLET:
+            ProphecyEntity(id: ProphecyType.MOODLET, value: 65),
+        ProphecyType.AMBITION:
+            ProphecyEntity(id: ProphecyType.AMBITION, value: 90),
+        ProphecyType.INTELLIGENCE:
+            ProphecyEntity(id: ProphecyType.INTELLIGENCE, value: 53),
+        ProphecyType.LUCK: ProphecyEntity(id: ProphecyType.LUCK, value: 70),
       };
 }

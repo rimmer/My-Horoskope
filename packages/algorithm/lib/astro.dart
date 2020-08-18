@@ -100,127 +100,127 @@ extension Karmic on String {
   ///
   /// 7/13 middle
   /// x/13
-  Map<ProphecyId, List<int>> get choiseConsequenceBySign {
+  Map<ProphecyType, List<int>> get choiseConsequenceBySign {
     switch (this) {
       //
       //
       case "Aries":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [11, 5, 6, 4, 5, 10],
-          ProphecyId.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
-          ProphecyId.MOODLET: [2, 3, 4, 7, 9, 10],
+          ProphecyType.INTERNAL_STRENGTH: [11, 5, 6, 4, 5, 10],
+          ProphecyType.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
+          ProphecyType.MOODLET: [2, 3, 4, 7, 9, 10],
 
           /// unique for aries, rage of mars
-          ProphecyId.AMBITION: [13, 12, 11, 10, 9, 8],
-          ProphecyId.LUCK: [6, 7, 8, 9, 10, 6],
+          ProphecyType.AMBITION: [13, 12, 11, 10, 9, 8],
+          ProphecyType.LUCK: [6, 7, 8, 9, 10, 6],
         };
       case "Taurus":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [10, 4, 7, 5, 6, 11],
+          ProphecyType.INTERNAL_STRENGTH: [10, 4, 7, 5, 6, 11],
 
           /// unique for taurus, venus catch up
-          ProphecyId.INTELLIGENCE: [6, 6, 9, 12, 12, 13],
-          ProphecyId.MOODLET: [5, 6, 6, 8, 8, 11],
-          ProphecyId.AMBITION: [8, 6, 7, 6, 5, 7],
-          ProphecyId.LUCK: [7, 6, 9, 6, 8, 7],
+          ProphecyType.INTELLIGENCE: [6, 6, 9, 12, 12, 13],
+          ProphecyType.MOODLET: [5, 6, 6, 8, 8, 11],
+          ProphecyType.AMBITION: [8, 6, 7, 6, 5, 7],
+          ProphecyType.LUCK: [7, 6, 9, 6, 8, 7],
         };
       case "Gemini":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [9, 3, 8, 6, 7, 12],
+          ProphecyType.INTERNAL_STRENGTH: [9, 3, 8, 6, 7, 12],
 
           /// unique for gemini. unstable genius
-          ProphecyId.INTELLIGENCE: [13, 1, 13, 13, 1, 13],
-          ProphecyId.MOODLET: [11, 9, 7, 7, 8, 5],
-          ProphecyId.AMBITION: [11, 3, 8, 1, 13, 8],
-          ProphecyId.LUCK: [9, 6, 8, 9, 10, 6],
+          ProphecyType.INTELLIGENCE: [13, 1, 13, 13, 1, 13],
+          ProphecyType.MOODLET: [11, 9, 7, 7, 8, 5],
+          ProphecyType.AMBITION: [11, 3, 8, 1, 13, 8],
+          ProphecyType.LUCK: [9, 6, 8, 9, 10, 6],
         };
       case "Cancer":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [11, 5, 6, 4, 5, 10],
-          ProphecyId.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
+          ProphecyType.INTERNAL_STRENGTH: [11, 5, 6, 4, 5, 10],
+          ProphecyType.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
 
           /// unique for cancer, the moon protection
-          ProphecyId.MOODLET: [9, 9, 9, 9, 9, 9],
-          ProphecyId.AMBITION: [13, 8, 7, 13, 6, 5],
-          ProphecyId.LUCK: [6, 7, 8, 9, 10, 6],
+          ProphecyType.MOODLET: [9, 9, 9, 9, 9, 9],
+          ProphecyType.AMBITION: [13, 8, 7, 13, 6, 5],
+          ProphecyType.LUCK: [6, 7, 8, 9, 10, 6],
         };
       case "Leo":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [10, 4, 7, 5, 6, 11],
-          ProphecyId.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
-          ProphecyId.MOODLET: [5, 6, 6, 8, 8, 11],
+          ProphecyType.INTERNAL_STRENGTH: [10, 4, 7, 5, 6, 11],
+          ProphecyType.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
+          ProphecyType.MOODLET: [5, 6, 6, 8, 8, 11],
 
           /// unique for lion, sunking of the wild
-          ProphecyId.AMBITION: [11, 8, 11, 8, 11, 8],
-          ProphecyId.LUCK: [7, 6, 9, 6, 8, 7],
+          ProphecyType.AMBITION: [11, 8, 11, 8, 11, 8],
+          ProphecyType.LUCK: [7, 6, 9, 6, 8, 7],
         };
       case "Virgo":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [9, 3, 8, 6, 7, 12],
-          ProphecyId.INTELLIGENCE: [4, 5, 6, 8, 7, 13],
-          ProphecyId.MOODLET: [11, 9, 7, 7, 8, 5],
-          ProphecyId.AMBITION: [11, 3, 8, 1, 13, 8],
+          ProphecyType.INTERNAL_STRENGTH: [9, 3, 8, 6, 7, 12],
+          ProphecyType.INTELLIGENCE: [4, 5, 6, 8, 7, 13],
+          ProphecyType.MOODLET: [11, 9, 7, 7, 8, 5],
+          ProphecyType.AMBITION: [11, 3, 8, 1, 13, 8],
 
           /// unique for virgo, gold of mercury
-          ProphecyId.LUCK: [9, 6, 9, 9, 9, 13],
+          ProphecyType.LUCK: [9, 6, 9, 9, 9, 13],
         };
       case "Libra":
         return {
           /// unique for libra, the venus charm
-          ProphecyId.INTERNAL_STRENGTH: [8, 11, 8, 11, 8, 11],
-          ProphecyId.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
-          ProphecyId.MOODLET: [2, 3, 4, 7, 9, 10],
-          ProphecyId.AMBITION: [13, 8, 7, 13, 6, 5],
-          ProphecyId.LUCK: [6, 7, 8, 9, 10, 6],
+          ProphecyType.INTERNAL_STRENGTH: [8, 11, 8, 11, 8, 11],
+          ProphecyType.INTELLIGENCE: [9, 8, 6, 5, 4, 7],
+          ProphecyType.MOODLET: [2, 3, 4, 7, 9, 10],
+          ProphecyType.AMBITION: [13, 8, 7, 13, 6, 5],
+          ProphecyType.LUCK: [6, 7, 8, 9, 10, 6],
         };
       case "Scorpio":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [10, 4, 7, 5, 6, 11],
-          ProphecyId.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
-          ProphecyId.MOODLET: [5, 6, 6, 8, 8, 11],
+          ProphecyType.INTERNAL_STRENGTH: [10, 4, 7, 5, 6, 11],
+          ProphecyType.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
+          ProphecyType.MOODLET: [5, 6, 6, 8, 8, 11],
 
           /// unique for scorpio, power of underworld
-          ProphecyId.AMBITION: [9, 9, 9, 9, 9, 9],
-          ProphecyId.LUCK: [7, 6, 9, 6, 8, 7],
+          ProphecyType.AMBITION: [9, 9, 9, 9, 9, 9],
+          ProphecyType.LUCK: [7, 6, 9, 6, 8, 7],
         };
       case "Sagittarius":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [9, 3, 8, 6, 7, 12],
-          ProphecyId.INTELLIGENCE: [4, 5, 6, 8, 7, 13],
-          ProphecyId.MOODLET: [11, 9, 7, 7, 8, 5],
+          ProphecyType.INTERNAL_STRENGTH: [9, 3, 8, 6, 7, 12],
+          ProphecyType.INTELLIGENCE: [4, 5, 6, 8, 7, 13],
+          ProphecyType.MOODLET: [11, 9, 7, 7, 8, 5],
 
           /// unique for sagittarius, the jupiter bard
-          ProphecyId.AMBITION: [11, 8, 8, 11, 11, 8],
-          ProphecyId.LUCK: [9, 6, 8, 9, 10, 6],
+          ProphecyType.AMBITION: [11, 8, 8, 11, 11, 8],
+          ProphecyType.LUCK: [9, 6, 8, 9, 10, 6],
         };
       case "Capricorn":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [11, 5, 6, 4, 5, 10],
+          ProphecyType.INTERNAL_STRENGTH: [11, 5, 6, 4, 5, 10],
 
           /// unique for capricorn, father saturn
-          ProphecyId.INTELLIGENCE: [9, 9, 9, 9, 9, 9],
-          ProphecyId.MOODLET: [2, 3, 4, 7, 9, 10],
-          ProphecyId.AMBITION: [13, 8, 7, 13, 6, 5],
-          ProphecyId.LUCK: [6, 7, 8, 9, 10, 6],
+          ProphecyType.INTELLIGENCE: [9, 9, 9, 9, 9, 9],
+          ProphecyType.MOODLET: [2, 3, 4, 7, 9, 10],
+          ProphecyType.AMBITION: [13, 8, 7, 13, 6, 5],
+          ProphecyType.LUCK: [6, 7, 8, 9, 10, 6],
         };
       case "Aquarius":
         return {
           /// unique for aquarius, between sky and ocean
-          ProphecyId.INTERNAL_STRENGTH: [11, 8, 8, 11, 11, 8],
-          ProphecyId.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
-          ProphecyId.MOODLET: [5, 6, 6, 8, 8, 11],
-          ProphecyId.AMBITION: [8, 6, 7, 6, 5, 7],
-          ProphecyId.LUCK: [7, 6, 9, 6, 8, 7],
+          ProphecyType.INTERNAL_STRENGTH: [11, 8, 8, 11, 11, 8],
+          ProphecyType.INTELLIGENCE: [6, 6, 7, 9, 11, 6],
+          ProphecyType.MOODLET: [5, 6, 6, 8, 8, 11],
+          ProphecyType.AMBITION: [8, 6, 7, 6, 5, 7],
+          ProphecyType.LUCK: [7, 6, 9, 6, 8, 7],
         };
       case "Pisces":
         return {
-          ProphecyId.INTERNAL_STRENGTH: [9, 3, 8, 6, 7, 12],
-          ProphecyId.INTELLIGENCE: [4, 5, 6, 8, 7, 13],
-          ProphecyId.MOODLET: [11, 9, 7, 7, 8, 5],
-          ProphecyId.AMBITION: [11, 3, 8, 1, 13, 8],
+          ProphecyType.INTERNAL_STRENGTH: [9, 3, 8, 6, 7, 12],
+          ProphecyType.INTELLIGENCE: [4, 5, 6, 8, 7, 13],
+          ProphecyType.MOODLET: [11, 9, 7, 7, 8, 5],
+          ProphecyType.AMBITION: [11, 3, 8, 1, 13, 8],
 
           /// unique for pisces, unstable warrior
-          ProphecyId.LUCK: [13, 1, 13, 1, 13, 13],
+          ProphecyType.LUCK: [13, 1, 13, 1, 13, 13],
         };
     }
     return null;

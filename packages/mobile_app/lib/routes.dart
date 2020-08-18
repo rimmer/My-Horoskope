@@ -80,7 +80,7 @@ class InitRoute extends StatelessWidget {
 
   final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
     "/settings": (BuildContext context) => SettingsScreen(),
-    "/daily": (BuildContext context) => DailyScreen(),
+    "/daily": (BuildContext context) => DailyScreen(dt: dtDay),
     "/monthly": (BuildContext context) => MonthlyScreen(),
   };
 }

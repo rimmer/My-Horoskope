@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app/theme/app_colors.dart';
 
-Future<void> showAlert({
+Future<void> showOverCurrentScreen({
   @required BuildContext context,
   @required Widget child,
 }) =>
@@ -14,13 +14,13 @@ Future<void> showAlert({
       ),
     );
 
-class SimplePopup extends StatelessWidget {
+class SimpleTransperentScreen extends StatelessWidget {
   final String title;
   final Widget body;
   final double height;
   final double width;
   final List<Widget> actions;
-  const SimplePopup({
+  const SimpleTransperentScreen({
     Key key,
     this.title,
     @required this.body,

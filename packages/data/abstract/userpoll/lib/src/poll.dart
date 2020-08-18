@@ -61,10 +61,17 @@ class UserPoll {
     //
     //
     /// For every new poll new accamulation must be added
-    detailsAccamulator[0] += details[0].value;
-    detailsAccamulator[1] += details[1].value;
-    detailsAccamulator[2] += details[2].value;
-    detailsAccamulator[3] += details[3].value;
+    if (detailsAccamulator[0] != null) {
+      detailsAccamulator[0] += details[0].value;
+      detailsAccamulator[1] += details[1].value;
+      detailsAccamulator[2] += details[2].value;
+      detailsAccamulator[3] += details[3].value;
+    } else {
+      detailsAccamulator[0] = details[0].value;
+      detailsAccamulator[1] = details[1].value;
+      detailsAccamulator[2] = details[2].value;
+      detailsAccamulator[3] = details[3].value;
+    }
   }
 
   int pollIndx(PollModelType type) {

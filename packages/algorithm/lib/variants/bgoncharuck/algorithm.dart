@@ -15,7 +15,7 @@ const TODAY_POLL_PERCENT = 10;
 
 abstract class _OldWisdom {
   /// returned map must have values from 1 to 100
-  Map<ProphecyId, ProphecyEntity> says(UserEntity aboutUser, int inTimeOf);
+  Map<ProphecyType, ProphecyEntity> says(UserEntity aboutUser, int inTimeOf);
 }
 
 class OfOldWayMagic implements MagicSpecialization {
@@ -23,14 +23,14 @@ class OfOldWayMagic implements MagicSpecialization {
   final _OldWisdom _mage = _Hardcoded();
 
   /// asks information from the Old Way adept mage
-  Map<ProphecyId, ProphecyEntity> _askInformation(
+  Map<ProphecyType, ProphecyEntity> _askInformation(
           UserEntity aboutUser, int inTimeOf) =>
       _mage.says(aboutUser, inTimeOf);
 
   //
   /// Old Way Magic will use an information given by a mage and user choices
   /// to return a correct prophecy for a prophet, that asked for it
-  Map<ProphecyId, ProphecyEntity> ask(AlgoData withDat, int aboutDay) {
+  Map<ProphecyType, ProphecyEntity> ask(AlgoData withDat, int aboutDay) {
     //
     /// how much polls were voted, and the part that be changed in the future
     int userWillPower;
@@ -40,8 +40,12 @@ class OfOldWayMagic implements MagicSpecialization {
 
     if (withDat.user.pollAvailability == true) {
       userWillPower = withDat.pollByDateRepo.curUserPolls.length;
-      userPollsMean =
-          withDat.pollByDateRepo.arithmeticMean(DAYS_TO_COUNT_IN_POLLS);
+
+      if (userWillPower > DAYS_TO_COUNT_IN_POLLS)
+        userPollsMean =
+            withDat.pollByDateRepo.arithmeticMean(DAYS_TO_COUNT_IN_POLLS);
+      else
+        userPollsMean = withDat.pollByDateRepo.arithmeticMean(userWillPower);
     }
 
     //
@@ -93,8 +97,8 @@ class OfOldWayMagic implements MagicSpecialization {
   //
   //
   //
-  Map<ProphecyId, ProphecyEntity> clarify(
-      {@required Map<ProphecyId, ProphecyEntity> prophecies,
+  Map<ProphecyType, ProphecyEntity> clarify(
+      {@required Map<ProphecyType, ProphecyEntity> prophecies,
       @required UserEntity user,
       @required UserPoll withPoll}) {
     //

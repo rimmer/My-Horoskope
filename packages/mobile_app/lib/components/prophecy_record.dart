@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:prophecy_model/prophecy_model.dart';
 import 'package:prophecies/prophecies.dart';
 import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
@@ -33,7 +34,7 @@ class ProphecyRecord extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                         child: Text(
-                      lang.prophecyId[prophecy.id],
+                      lang.prophecyId[prophecy.id.toStr],
                       style: TextStyle(
                         fontSize: 18.0,
                         color: AppColors.textPrimary,

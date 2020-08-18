@@ -8,7 +8,7 @@ part 'prophecy_state.g.dart';
 
 @immutable
 abstract class ProphecyState extends Equatable {
-  final Map<ProphecyId, ProphecyEntity> prophecy;
+  final Map<ProphecyType, ProphecyEntity> prophecy;
   const ProphecyState() : prophecy = null;
   @override
   List<Object> get props => [prophecy];
@@ -22,7 +22,7 @@ class ProphecyInitial extends ProphecyState {
 
 @ToString()
 class ProphecyWasAsked extends ProphecyState {
-  final Map<ProphecyId, ProphecyEntity> prophecy;
+  final Map<ProphecyType, ProphecyEntity> prophecy;
   ProphecyWasAsked(this.prophecy);
 
   @override
@@ -33,7 +33,7 @@ class ProphecyWasAsked extends ProphecyState {
 
 @ToString()
 class ProphecyWasClarified extends ProphecyState {
-  final Map<ProphecyId, ProphecyEntity> prophecy;
+  final Map<ProphecyType, ProphecyEntity> prophecy;
   ProphecyWasClarified(this.prophecy);
 
   @override

@@ -24,11 +24,11 @@ class AlgoData {
 /// Interface for a school of magic that can reveal future
 abstract class MagicSpecialization {
   /// gives a prophecy
-  Map<ProphecyId, ProphecyEntity> ask(AlgoData withDat, int aboutDay);
+  Map<ProphecyType, ProphecyEntity> ask(AlgoData withDat, int aboutDay);
 
   /// clarifies a prophecy with a today user poll
-  Map<ProphecyId, ProphecyEntity> clarify(
-      {@required Map<ProphecyId, ProphecyEntity> prophecies,
+  Map<ProphecyType, ProphecyEntity> clarify(
+      {@required Map<ProphecyType, ProphecyEntity> prophecies,
       @required UserEntity user,
       @required UserPoll withPoll});
 }
@@ -38,7 +38,7 @@ class Algorithm {
   MagicSpecialization prophet = OfOldWayMagic();
 
   /// the last insights that were written by the prophet
-  Map<int, Map<ProphecyId, ProphecyEntity>> curSessionInsights;
+  Map<int, Map<ProphecyType, ProphecyEntity>> curSessionInsights = {};
 
   final AlgoData dat;
   Algorithm({@required this.dat}) {
@@ -48,14 +48,14 @@ class Algorithm {
   //
 
   /// ask for prophecy about given day
-  Map<ProphecyId, ProphecyEntity> ask({@required int aboutDay}) {
+  Map<ProphecyType, ProphecyEntity> ask({@required int aboutDay}) {
     if (curSessionInsights[aboutDay] != null) curSessionInsights[aboutDay];
     curSessionInsights[aboutDay] = prophet.ask(dat, aboutDay);
     return curSessionInsights[aboutDay];
   }
 
   /// clarifies a prophecy
-  Map<ProphecyId, ProphecyEntity> clarify({
+  Map<ProphecyType, ProphecyEntity> clarify({
     @required UserPoll withPoll,
     UserEntity user,
     int dt,
