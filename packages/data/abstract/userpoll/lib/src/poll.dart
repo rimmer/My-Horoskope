@@ -62,15 +62,11 @@ class UserPoll {
     //
     /// For every new poll new accamulation must be added
     if (detailsAccamulator[0] != null) {
-      detailsAccamulator[0] += details[0].value;
-      detailsAccamulator[1] += details[1].value;
-      detailsAccamulator[2] += details[2].value;
-      detailsAccamulator[3] += details[3].value;
+      for (int indx = 0; indx < detailsAccamulator.length; indx++)
+        detailsAccamulator[indx] += details[indx].value;
     } else {
-      detailsAccamulator[0] = details[0].value;
-      detailsAccamulator[1] = details[1].value;
-      detailsAccamulator[2] = details[2].value;
-      detailsAccamulator[3] = details[3].value;
+      for (int indx = 0; indx < detailsAccamulator.length; indx++)
+        detailsAccamulator[indx] = details[indx].value;
     }
   }
 
