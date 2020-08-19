@@ -32,8 +32,8 @@ class ProphecyIsLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
+      scrollDirection: Axis.vertical,
       children: <Widget>[
         Text(
           labelStr,

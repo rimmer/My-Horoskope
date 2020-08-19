@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:prophecy/bloc.dart';
@@ -46,8 +47,8 @@ class Prophecy extends StatelessWidget {
               return ProphecyIsLoading(user: this.user);
             } else if (state is ProphecyWasAsked ||
                 state is ProphecyWasClarified) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              return ListView(
+                scrollDirection: Axis.vertical,
                 children: <Widget>[
                   Text(
                     labelStr,
