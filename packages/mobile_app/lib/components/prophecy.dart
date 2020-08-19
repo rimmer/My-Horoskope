@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:prophecy/bloc.dart';
+import 'package:prophecy_model/prophecy_model.dart';
 import 'prophecy_record.dart';
+import 'prophecy_is_loading.dart';
 import 'package:app/screens/loading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
@@ -41,30 +43,27 @@ class Prophecy extends StatelessWidget {
           bloc: prophecyBloc,
           builder: (context, state) {
             if (state is ProphecyInitial) {
-              // @TODO redone to new widgets
-              return LoadingScreen();
+              return ProphecyIsLoading(user: this.user);
             } else if (state is ProphecyWasAsked ||
                 state is ProphecyWasClarified) {
-              // @TODO redone to const list (no list builder)
-              return ListView.builder(
-                shrinkWrap: false,
-                itemBuilder: (BuildContext context, int index) {
-                  if (index == 0)
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          labelStr,
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.w400),
-                        ),
-                        birthRow.wrapped,
-                      ],
-                    );
-                  return ProphecyRecord(
-                      prophecy: (state.prophecy.values).elementAt(index - 1));
-                },
-                itemCount: state.prophecy.length + 1,
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    labelStr,
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+                  ),
+                  birthRow.wrapped,
+                  ProphecyRecord(
+                      prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH]),
+                  ProphecyRecord(
+                      prophecy: state.prophecy[ProphecyType.MOODLET]),
+                  ProphecyRecord(
+                      prophecy: state.prophecy[ProphecyType.AMBITION]),
+                  ProphecyRecord(
+                      prophecy: state.prophecy[ProphecyType.INTELLIGENCE]),
+                  ProphecyRecord(prophecy: state.prophecy[ProphecyType.LUCK]),
+                ],
               );
             } else {
               return Center(
@@ -74,8 +73,4 @@ class Prophecy extends StatelessWidget {
           }),
     );
   }
-}
-
-String userRole(UserRole role) {
-  if (role == UserRole.USER) return lang.you.capitalize();
 }

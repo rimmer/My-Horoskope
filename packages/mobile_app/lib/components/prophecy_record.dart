@@ -6,6 +6,7 @@ import 'package:prophecy_model/prophecy_model.dart';
 import 'package:prophecies/prophecies.dart';
 import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
+import 'package:users_repository/users_repository.dart';
 
 class ProphecyRecord extends StatelessWidget {
   final ProphecyEntity prophecy;
@@ -145,4 +146,8 @@ class ProphecyTextWidget extends StatelessWidget {
 
 Color chooseNumberColor(double value) {
   return chooseNumberColorFromThreeVariants(value);
+}
+
+String userRole(UserRole role) {
+  if (role == UserRole.USER) return lang.you.capitalize();
 }

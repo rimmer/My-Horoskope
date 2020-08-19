@@ -39,8 +39,8 @@ class AppColors {
 }
 
 Color chooseNumberColorFromThreeVariants(double value) {
-  if (value < 5) return AppColors.prophecyValueNumber[0];
-  if (value < 8) return AppColors.prophecyValueNumber[1];
+  if (value < 4) return AppColors.prophecyValueNumber[0];
+  if (value < 7) return AppColors.prophecyValueNumber[1];
   return AppColors.prophecyValueNumber[2];
 }
 

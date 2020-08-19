@@ -18,7 +18,7 @@ ProphecyEntity changePartOfBase(
   base.value -= _percent;
 
   /// possible values:
-  /// -6, -5, -4, -3, -2, -1. 0, +1, +2, +3, +4, +5, +6
+  /// -6, -5, -4, -3, -2, -1, 0, +1, +2, +3, +4, +5, +6
   /// number of values equal to 13
   /// 0 is seven position out of 13 positions
   /// or 7/13

@@ -24,8 +24,10 @@ class SimpleTransperentScreen extends StatelessWidget {
     Key key,
     this.title,
     @required this.body,
-    this.height = 316,
-    this.width = 320,
+
+    /// @TODO
+    this.height = 360,
+    this.width = 340,
     this.actions = const [],
   }) : super(key: key);
 
