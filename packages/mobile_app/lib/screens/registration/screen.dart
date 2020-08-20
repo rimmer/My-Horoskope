@@ -200,6 +200,8 @@ class RegistrationScreen extends StatelessWidget {
                 ),
               ),
               padding: EdgeInsets.symmetric(
+                /// padding for a gradient button
+                /// in registration screen
                 vertical: 16.0,
                 horizontal: 109.0,
               ),

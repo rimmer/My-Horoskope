@@ -61,7 +61,7 @@ dependencies:
   #widgets
   cupertino_icons: ^0.1.2
   flutter_spinkit: ^2.1.0
-  flutter_svg: ^0.17.4
+  flutter_svg: ^0.18.0
   
 dev_dependencies:
   #flutter_test:

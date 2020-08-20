@@ -37,10 +37,10 @@ class PollSettingsState extends State<PollSettings> {
     return GestureDetector(
       onTap: () {
         showOverCurrentScreen(
-
-            /// @TODO
             context: context,
             child: SimpleTransperentScreen(
+              heightFactor: 0.5,
+              widthFactor: 0.9,
               title: lang.pollSettingsTitle.capitalize(),
               body: PollSettingInfo(poll: poll, studying: studying),
               actions: <Widget>[

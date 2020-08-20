@@ -17,29 +17,35 @@ Future<void> showOverCurrentScreen({
 class SimpleTransperentScreen extends StatelessWidget {
   final String title;
   final Widget body;
-  final double height;
-  final double width;
+  final double heightFactor;
+  final double widthFactor;
   final List<Widget> actions;
   const SimpleTransperentScreen({
     Key key,
     this.title,
     @required this.body,
-
-    /// @TODO
-    this.height = 360,
-    this.width = 340,
+    this.heightFactor = 0.4,
+    this.widthFactor = 0.8,
     this.actions = const [],
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Container(
       decoration: BoxDecoration(
         color: AppColors.primary,
         borderRadius: BorderRadius.circular(8.0),
       ),
-      height: height,
-      width: width,
+
+      /// ПРАЦЮЄ
+      height: screenHeight * heightFactor,
+
+      /// НЕ ПРАЦЮЄ
+      width: screenWidth * widthFactor,
+
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +60,7 @@ class SimpleTransperentScreen extends StatelessWidget {
                     ),
                   ),
                   height: 44,
-                  width: this.width,
+                  width: screenWidth * widthFactor,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,13 +76,15 @@ class SimpleTransperentScreen extends StatelessWidget {
                 )
               : SizedBox(),
           Container(
-            width: width,
+            width: screenWidth * widthFactor,
             child: body,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: actions,
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: actions,
+            ),
           ),
         ],
       ),
