@@ -7,6 +7,7 @@ class AppColors {
   static const accent = Color(0xFFFAA835);
   static const accentDark = Color(0xFFF94D49);
   static const secondary = Color(0xFFAAAAAA);
+  static const splashBackground = Color(0xFF18004C);
 
   static const textPrimary = Color(0xFFFFFFFF);
   static const textSecondary = Color(0xFFD795FF);

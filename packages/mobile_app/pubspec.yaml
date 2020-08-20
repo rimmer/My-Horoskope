@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  provider: ^4.2.0
+  provider: ^4.3.2+1
   flutter_bloc: ^4.0.0
   url_launcher: ^5.5.0
   mutable_wrappers: ^1.0.0
@@ -60,13 +60,12 @@ dependencies:
   
   #widgets
   cupertino_icons: ^0.1.2
-  flutter_spinkit: ^2.1.0
   flutter_svg: ^0.18.0
-  
+
 dev_dependencies:
   #flutter_test:
     #sdk: flutter
-  flutter_launcher_icons: "^0.7.0"
+  flutter_launcher_icons: ^0.7.0
 
 flutter_icons:
   ios: true
@@ -79,7 +78,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/background.jpg
-    - assets/launcher/icon.png
+    - assets/launcher/
     - assets/icons/
     - assets/widget/
   #data
