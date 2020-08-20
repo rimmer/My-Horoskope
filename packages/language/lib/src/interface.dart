@@ -32,7 +32,6 @@ abstract class Locale {
   Map<String, String> get prophecyId;
   String get pollSettingsTitle;
   String get pollSettingPollOption;
-  String get pollSettingsStudyOption1;
-  String get pollSettingsStudyOption2;
+  String get pollSettingsStudyOption;
   String get pollSettingText;
 }

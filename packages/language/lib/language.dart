@@ -35,8 +35,7 @@ class lang {
   static Map<String, String> get prophecyId => locale.prophecyId;
   static String pollSettingsTitle = locale.pollSettingsTitle;
   static String pollSettingPollOption = locale.pollSettingPollOption;
-  static String pollSettingsStudyOption1 = locale.pollSettingsStudyOption1;
-  static String pollSettingsStudyOption2 = locale.pollSettingsStudyOption2;
+  static String pollSettingsStudyOption = locale.pollSettingsStudyOption;
   static String pollSettingText = locale.pollSettingText;
 }
 

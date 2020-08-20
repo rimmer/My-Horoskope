@@ -39,7 +39,7 @@ class PollSettingsState extends State<PollSettings> {
         showOverCurrentScreen(
             context: context,
             child: SimpleTransperentScreen(
-              heightFactor: 0.5,
+              heightFactor: 0.49,
               widthFactor: 0.9,
               title: lang.pollSettingsTitle.capitalize(),
               body: PollSettingInfo(poll: poll, studying: studying),
@@ -158,22 +158,11 @@ class _PollSettingInfoState extends State<PollSettingInfo> {
                 MagicCheckbox(value: widget.studying, onChanged: (_) {}),
                 SizedBox(width: 20),
                 Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        lang.pollSettingsStudyOption1.capitalize(),
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
-                      Text(
-                        lang.pollSettingsStudyOption2,
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
+                  child: Text(
+                    lang.pollSettingsStudyOption.capitalize(),
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
                   ),
                 ),
               ],

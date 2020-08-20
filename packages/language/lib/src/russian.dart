@@ -37,8 +37,7 @@ class RussianLocale implements Locale {
       };
   final String pollSettingsTitle = "обучение AI";
   final String pollSettingPollOption = "проводить опрос";
-  final String pollSettingsStudyOption1 = "использовать результаты";
-  final String pollSettingsStudyOption2 = "опроса для обучения AI";
+  final String pollSettingsStudyOption = "включить обучение AI";
   final String pollSettingText =
       "отвечая на вопросы о своем вчерашнем настроении Вы помогате обучить наш искусственный интеллект лучше прогнозировать ваше будущее.";
 }
