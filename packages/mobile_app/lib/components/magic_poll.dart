@@ -27,12 +27,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
         return Row(
           children: <Widget>[
             /// 1 circle
-            GestureDetector(
-              onDoubleTap: () => setState(() {
-                widget.value.wrapped = 1;
-              }),
-              child: SvgPicture.asset("assets/icons/1.svg"),
-            ),
+            SvgPicture.asset("assets/icons/1.svg"),
 
             /// 2 circle
             GestureDetector(
@@ -89,12 +84,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             ),
 
             /// 2 circle
-            GestureDetector(
-              onDoubleTap: () => setState(() {
-                widget.value.wrapped = 2;
-              }),
-              child: SvgPicture.asset("assets/icons/2.svg"),
-            ),
+            SvgPicture.asset("assets/icons/2.svg"),
 
             /// 3 circle
             GestureDetector(
@@ -151,12 +141,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             ),
 
             /// 3 circle
-            GestureDetector(
-              onDoubleTap: () => setState(() {
-                widget.value.wrapped = 3;
-              }),
-              child: SvgPicture.asset("assets/icons/3.svg"),
-            ),
+            SvgPicture.asset("assets/icons/3.svg"),
 
             /// 4 circle
             GestureDetector(
@@ -213,12 +198,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             ),
 
             /// 4 circle
-            GestureDetector(
-              onDoubleTap: () => setState(() {
-                widget.value.wrapped = 4;
-              }),
-              child: SvgPicture.asset("assets/icons/4.svg"),
-            ),
+            SvgPicture.asset("assets/icons/4.svg"),
 
             /// 5 circle
             GestureDetector(
@@ -275,12 +255,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             ),
 
             /// 5 circle
-            GestureDetector(
-              onDoubleTap: () => setState(() {
-                widget.value.wrapped = 5;
-              }),
-              child: SvgPicture.asset("assets/icons/5.svg"),
-            ),
+            SvgPicture.asset("assets/icons/5.svg"),
 
             /// 6 circle
             GestureDetector(
@@ -337,12 +312,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             ),
 
             /// 6 circle
-            GestureDetector(
-              onDoubleTap: () => setState(() {
-                widget.value.wrapped = 6;
-              }),
-              child: SvgPicture.asset("assets/icons/6.svg"),
-            ),
+            SvgPicture.asset("assets/icons/6.svg"),
           ],
         );
     }
