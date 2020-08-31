@@ -62,7 +62,7 @@ class InitRoute extends StatelessWidget {
                       ),
                     ),
                   ],
-                  child: DailyScreen(dt: dtNow),
+                  child: DailyScreen(dt: dtDay),
                 ),
               );
 

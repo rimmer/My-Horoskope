@@ -21,6 +21,8 @@ class DailyScreen extends StatelessWidget {
 
     UserPollBloc userPollBloc;
     if (dt == currentDay) userPollBloc = context.bloc<UserPollBloc>();
+    print(dt);
+    print(currentDay);
 
     ProphecyBloc prophet = context.bloc<ProphecyBloc>();
     prophet.add(CalculateProphecy(dt));
