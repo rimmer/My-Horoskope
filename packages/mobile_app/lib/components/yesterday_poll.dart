@@ -36,6 +36,7 @@ class _YesterdayPollSimpleState extends State<YesterdayPollSimple> {
             lang.mood.capitalize(),
             style: TextStyle(fontSize: 18),
           ),
+          SizedBox(height: 16),
           MagicPollPicker(value: widget.mood),
         ],
       ),
