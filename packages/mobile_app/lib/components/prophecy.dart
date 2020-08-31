@@ -47,8 +47,8 @@ class Prophecy extends StatelessWidget {
               return ProphecyIsLoading(user: this.user);
             } else if (state is ProphecyWasAsked ||
                 state is ProphecyWasClarified) {
-              return ListView(
-                scrollDirection: Axis.vertical,
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     labelStr,

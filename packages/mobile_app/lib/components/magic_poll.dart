@@ -27,14 +27,14 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
         return Row(
           children: <Widget>[
             /// 1 circle
-            SvgPicture.asset("assets/icons/1.svg"),
+            SvgPicture.asset("assets/widget/magic_poll/oneCircle.svg"),
 
             /// 2 circle
             GestureDetector(
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 2;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
 
             /// 3 circle
@@ -42,7 +42,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 3;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
 
             /// 4 circle
@@ -50,7 +50,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 4;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
 
             /// 5 circle
@@ -58,7 +58,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 5;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
 
             /// 6 circle
@@ -66,7 +66,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 6;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
           ],
         );
@@ -80,18 +80,19 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 1;
               }),
-              child: SvgPicture.asset("assets/icons/2.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/twoCircles.svg"),
             ),
 
             /// 2 circle
-            SvgPicture.asset("assets/icons/2.svg"),
+            SvgPicture.asset("assets/widget/magic_poll/twoCircles.svg"),
 
             /// 3 circle
             GestureDetector(
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 3;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
 
             /// 4 circle
@@ -99,7 +100,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 4;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
 
             /// 5 circle
@@ -107,7 +108,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 5;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
 
             /// 6 circle
@@ -115,7 +116,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 6;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
           ],
         );
@@ -129,7 +130,8 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 1;
               }),
-              child: SvgPicture.asset("assets/icons/3.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/threeCircles.svg"),
             ),
 
             /// 2 circle
@@ -137,18 +139,19 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 2;
               }),
-              child: SvgPicture.asset("assets/icons/3.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/threeCircles.svg"),
             ),
 
             /// 3 circle
-            SvgPicture.asset("assets/icons/3.svg"),
+            SvgPicture.asset("assets/widget/magic_poll/threeCircles.svg"),
 
             /// 4 circle
             GestureDetector(
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 4;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
 
             /// 5 circle
@@ -156,7 +159,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 5;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
 
             /// 6 circle
@@ -164,7 +167,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 6;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
           ],
         );
@@ -178,7 +181,8 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 1;
               }),
-              child: SvgPicture.asset("assets/icons/4.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/fourCircles.svg"),
             ),
 
             /// 2 circle
@@ -186,7 +190,8 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 2;
               }),
-              child: SvgPicture.asset("assets/icons/4.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/fourCircles.svg"),
             ),
 
             /// 3 circle
@@ -194,18 +199,19 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 3;
               }),
-              child: SvgPicture.asset("assets/icons/4.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/fourCircles.svg"),
             ),
 
             /// 4 circle
-            SvgPicture.asset("assets/icons/4.svg"),
+            SvgPicture.asset("assets/widget/magic_poll/fourCircles.svg"),
 
             /// 5 circle
             GestureDetector(
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 5;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
 
             /// 6 circle
@@ -213,7 +219,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 6;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
           ],
         );
@@ -227,7 +233,8 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 1;
               }),
-              child: SvgPicture.asset("assets/icons/5.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/fiveCircles.svg"),
             ),
 
             /// 2 circle
@@ -235,7 +242,8 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 2;
               }),
-              child: SvgPicture.asset("assets/icons/5.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/fiveCircles.svg"),
             ),
 
             /// 3 circle
@@ -243,7 +251,8 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 3;
               }),
-              child: SvgPicture.asset("assets/icons/5.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/fiveCircles.svg"),
             ),
 
             /// 4 circle
@@ -251,18 +260,19 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 4;
               }),
-              child: SvgPicture.asset("assets/icons/5.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/fiveCircles.svg"),
             ),
 
             /// 5 circle
-            SvgPicture.asset("assets/icons/5.svg"),
+            SvgPicture.asset("assets/widget/magic_poll/fiveCircles.svg"),
 
             /// 6 circle
             GestureDetector(
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 6;
               }),
-              child: SvgPicture.asset("assets/icons/none.svg"),
+              child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
           ],
         );
@@ -276,7 +286,8 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 1;
               }),
-              child: SvgPicture.asset("assets/icons/6.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),
             ),
 
             /// 2 circle
@@ -284,7 +295,8 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 2;
               }),
-              child: SvgPicture.asset("assets/icons/6.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),
             ),
 
             /// 3 circle
@@ -292,7 +304,8 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 3;
               }),
-              child: SvgPicture.asset("assets/icons/6.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),
             ),
 
             /// 4 circle
@@ -300,7 +313,8 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 4;
               }),
-              child: SvgPicture.asset("assets/icons/6.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),
             ),
 
             /// 5 circle
@@ -308,11 +322,12 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
               onDoubleTap: () => setState(() {
                 widget.value.wrapped = 5;
               }),
-              child: SvgPicture.asset("assets/icons/6.svg"),
+              child:
+                  SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),
             ),
 
             /// 6 circle
-            SvgPicture.asset("assets/icons/6.svg"),
+            SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),
           ],
         );
     }

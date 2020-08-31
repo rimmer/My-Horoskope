@@ -30,7 +30,8 @@ class DailyScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SafeArea(
-        child: Column(
+        child: ListView(
+          scrollDirection: Axis.vertical,
           children: <Widget>[
             // @poll
             (dt == currentDay)
@@ -47,11 +48,9 @@ class DailyScreen extends StatelessWidget {
                     })
                 : SizedBox(),
             // @prophecies
-            Expanded(
-              child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: Prophecy(user: usersRepo.current)),
-            ),
+            SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Prophecy(user: usersRepo.current)),
           ],
         ),
       ),

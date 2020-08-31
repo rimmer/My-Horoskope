@@ -2,20 +2,33 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:provider/provider.dart';
 import 'package:language/language.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:algorithm/algorithm.dart';
 import 'package:app/components/poll_settings.dart';
+import 'package:app/components/yesterday_poll.dart';
 
 const double BASE_POLL_HEIGHT = 192.0;
 
 class PollSimpleWidget extends StatelessWidget {
+  //
   final UserPollBloc bloc;
   PollSimpleWidget({@required this.bloc});
+
+  //
   @override
   Widget build(BuildContext context) {
+    //
+    /// mutable wrappers
+    final yestFeelings = bloc.pollsRepo.todayPoll;
+
+    MutableInteger mood = MutableInteger(yestFeelings.mood.value);
+
+    //
+
     return Container(
       padding: EdgeInsets.all(8.0),
       margin: EdgeInsets.all(16.0),
@@ -24,17 +37,34 @@ class PollSimpleWidget extends StatelessWidget {
           color: AppColors.userPollBackground,
           borderRadius: BorderRadius.circular(8.0)),
       child: Column(
-        children: <Widget>[_UserPollTopPart(bloc: bloc)],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          _UserPollTopPart(bloc: bloc),
+
+          //
+
+          YesterdayPollSimple(
+            mood: mood,
+          ),
+
+          //
+        ],
       ),
     );
   }
 }
 
 class PollExtendedWidget extends StatelessWidget {
+  //
+
   final UserPollBloc bloc;
   PollExtendedWidget({@required this.bloc});
+
+  //
   @override
   Widget build(BuildContext context) {
+    //
+
     return Container(
       padding: EdgeInsets.all(8.0),
       margin: EdgeInsets.all(16.0),
@@ -43,7 +73,11 @@ class PollExtendedWidget extends StatelessWidget {
           color: AppColors.userPollBackground,
           borderRadius: BorderRadius.circular(8.0)),
       child: Column(
-        children: <Widget>[_UserPollTopPart(bloc: bloc)],
+        children: <Widget>[
+          _UserPollTopPart(bloc: bloc),
+
+          //
+        ],
       ),
     );
   }
