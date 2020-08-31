@@ -32,6 +32,10 @@ class lang {
   static String extended = locale.extended;
   static String clarifyForecast = locale.clarifyForecast;
   static String rateYourYesterday = locale.rateYourYesterday;
+  static String productivity = locale.productivity;
+  static String relationships = locale.relationships;
+  static String selfdevelopment = locale.selfdevelopment;
+  static String physicalActivity = locale.physicalActivity;
   static Map<String, String> get prophecyId => locale.prophecyId;
   static String pollSettingsTitle = locale.pollSettingsTitle;
   static String pollSettingPollOption = locale.pollSettingPollOption;
