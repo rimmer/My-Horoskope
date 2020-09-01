@@ -23,8 +23,9 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   set currentPoll(UserPoll newVal) => pollsRepo.todayPoll = newVal;
 
   UserPollBloc({@required this.enabled, @required this.pollsRepo}) {
-    if (pollsRepo.todayPoll == null)
-      pollsRepo.todayPoll = UserPoll(dt: dtDay, mood: 3);
+    print(pollsRepo.todayPoll.toString());
+    // if (pollsRepo.todayPoll == null)
+    //   pollsRepo.todayPoll = UserPoll(dt: dtDay, mood: 3);
   }
 
   @override

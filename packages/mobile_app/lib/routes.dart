@@ -35,6 +35,7 @@ class InitRoute extends StatelessWidget {
 
               final usersRepo = context.watch<UsersRepositoryFlutter>();
               final pollsRepo = PollsRepositoryFlutter();
+              final loaded = pollsRepo.load(state.user.id);
 
               //
 
@@ -46,24 +47,21 @@ class InitRoute extends StatelessWidget {
 
               //
 
-              return Provider<Algorithm>(
-                create: (context) => sessionAlgroithm,
-                child: MultiBlocProvider(
-                  providers: [
-                    BlocProvider<UserPollBloc>(
-                      create: (context) => UserPollBloc(
-                        enabled: usersRepo.current.pollAvailability,
-                        pollsRepo: pollsRepo,
-                      ),
+              return MultiBlocProvider(
+                providers: [
+                  BlocProvider<UserPollBloc>(
+                    create: (context) => UserPollBloc(
+                      enabled: usersRepo.current.pollAvailability,
+                      pollsRepo: pollsRepo,
                     ),
-                    BlocProvider<ProphecyBloc>(
-                      create: (context) => ProphecyBloc(
-                        algo: sessionAlgroithm,
-                      ),
+                  ),
+                  BlocProvider<ProphecyBloc>(
+                    create: (context) => ProphecyBloc(
+                      algo: sessionAlgroithm,
                     ),
-                  ],
-                  child: DailyScreen(dt: dtDay),
-                ),
+                  ),
+                ],
+                child: DailyScreen(dt: dtDay),
               );
 
               //

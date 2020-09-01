@@ -16,15 +16,21 @@ class DailyScreen extends StatelessWidget {
   DailyScreen({@required this.dt});
   @override
   Widget build(BuildContext context) {
-    final usersRepo = context.watch<UsersRepositoryFlutter>();
+    //
+
+    final prophet = context.bloc<ProphecyBloc>();
+    final algo = prophet.algo;
+
+    final usersRepo = algo.dat.usersRepository;
     int currentDay = dtDay;
 
     UserPollBloc userPollBloc;
     if (dt == currentDay) userPollBloc = context.bloc<UserPollBloc>();
-    print(dt);
-    print(currentDay);
 
-    ProphecyBloc prophet = context.bloc<ProphecyBloc>();
+    // @DEBUG
+    print("day showed is: $dt");
+    print("current day is: $currentDay");
+
     prophet.add(CalculateProphecy(dt));
 
     return Scaffold(
@@ -41,10 +47,12 @@ class DailyScreen extends StatelessWidget {
                       if (state.enabled == false) return PollSettings();
                       if (state is UserPollChanged) {
                         return (userPollBloc.isSimple)
-                            ? PollSimpleWidget(bloc: userPollBloc)
+                            ? PollSimpleWidget(
+                                userPoll: userPollBloc, prophet: prophet)
                             : PollExtendedWidget(bloc: userPollBloc);
                       }
-                      return PollSimpleWidget(bloc: userPollBloc);
+                      return PollSimpleWidget(
+                          userPoll: userPollBloc, prophet: prophet);
                     })
                 : SizedBox(),
             // @prophecies

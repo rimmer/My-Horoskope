@@ -3,9 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 
+/// it is faster to call empty function
+/// then check if function == null
+/// for onTap method
+void _dummyFunc() {}
+
 class MagicPollPicker extends StatefulWidget {
+  final Function onTap;
   final MutableInteger value;
-  MagicPollPicker({@required this.value});
+  MagicPollPicker({@required this.value, this.onTap = _dummyFunc});
   @override
   _MagicPollPickerState createState() => _MagicPollPickerState();
 }
@@ -34,6 +40,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 2;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -42,6 +49,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 3;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -50,6 +58,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 4;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -58,6 +67,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 5;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -66,6 +76,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 6;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -81,6 +92,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 1;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/twoCircles.svg"),
@@ -93,6 +105,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 3;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -101,6 +114,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 4;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -109,6 +123,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 5;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -117,6 +132,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 6;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -132,6 +148,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 1;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/threeCircles.svg"),
@@ -141,6 +158,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 2;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/threeCircles.svg"),
@@ -153,6 +171,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 4;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -161,6 +180,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 5;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -169,6 +189,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 6;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -184,6 +205,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 1;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/fourCircles.svg"),
@@ -193,6 +215,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 2;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/fourCircles.svg"),
@@ -202,6 +225,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 3;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/fourCircles.svg"),
@@ -214,6 +238,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 5;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -222,6 +247,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 6;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -237,6 +263,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 1;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/fiveCircles.svg"),
@@ -246,6 +273,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 2;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/fiveCircles.svg"),
@@ -255,6 +283,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 3;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/fiveCircles.svg"),
@@ -264,6 +293,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 4;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/fiveCircles.svg"),
@@ -276,6 +306,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 6;
+                widget.onTap();
               }),
               child: SvgPicture.asset("assets/widget/magic_poll/none.svg"),
             ),
@@ -291,6 +322,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 1;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),
@@ -300,6 +332,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 2;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),
@@ -309,6 +342,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 3;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),
@@ -318,6 +352,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 4;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),
@@ -327,6 +362,7 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             GestureDetector(
               onTap: () => setState(() {
                 widget.value.wrapped = 5;
+                widget.onTap();
               }),
               child:
                   SvgPicture.asset("assets/widget/magic_poll/sixCircles.svg"),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:poll_model/poll_model.dart';
@@ -83,8 +85,33 @@ class UserPoll {
     return details[pollIndx(type)];
   }
 
+  void pollSet(PollModelType type, int value) {
+    //
+
+    if (type == PollModelType.MOOD) {
+      this.mood = PollModel(
+        type: type,
+        value: value,
+      );
+      return;
+    }
+
+    //
+
+    if (details[pollIndx(type)] != null)
+      details[pollIndx(type)] = PollModel(
+        type: type,
+        value: value,
+      );
+  }
+
   Map<String, Object> toJson() => _$UserPollToJson(this);
 
   static UserPoll fromJson(Map<String, Object> json) =>
       _$UserPollFromJson(json);
+
+  @override
+  String toString() {
+    return json.encode(this.toJson());
+  }
 }

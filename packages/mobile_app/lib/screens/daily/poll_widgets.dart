@@ -1,8 +1,10 @@
 import 'package:app/components/gradient_flatbutton.dart';
+import 'package:app/components/prophecy.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
+import 'package:prophecy/bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:language/language.dart';
 import 'package:user_poll/bloc.dart';
@@ -17,15 +19,16 @@ const double EXTENDED_POLL_HEIGHT = 548.0;
 
 class PollSimpleWidget extends StatelessWidget {
   //
-  final UserPollBloc bloc;
-  PollSimpleWidget({@required this.bloc});
+  final UserPollBloc userPoll;
+  final ProphecyBloc prophet;
+  PollSimpleWidget({@required this.userPoll, @required this.prophet});
 
   //
   @override
   Widget build(BuildContext context) {
     //
     /// mutable wrappers
-    final yestFeelings = bloc.pollsRepo.todayPoll;
+    final yestFeelings = userPoll.pollsRepo.todayPoll;
 
     final MutableInteger mood = MutableInteger(yestFeelings.mood.value);
 
@@ -42,12 +45,13 @@ class PollSimpleWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _UserPollTopPart(bloc: bloc),
+          _UserPollTopPart(bloc: userPoll),
 
           //
 
           YesterdayPollSimple(
             mood: mood,
+            pollsState: userPoll,
           ),
 
           //
