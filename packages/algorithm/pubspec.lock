@@ -36,13 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.8"
-  poll_availability:
-    dependency: "direct main"
-    description:
-      path: "../models/poll_availability"
-      relative: true
-    source: path
-    version: "0.0.1+1"
   poll_model:
     dependency: transitive
     description:
@@ -50,13 +43,27 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
-  pollbydate:
+  polls_repository:
     dependency: "direct main"
     description:
-      path: "../data/abstract/pollbydate"
+      path: "../data/abstract/polls_repository"
       relative: true
     source: path
     version: "0.0.1"
+  prophecies:
+    dependency: "direct main"
+    description:
+      path: "../data/abstract/prophecies"
+      relative: true
+    source: path
+    version: "0.0.1"
+  prophecy_model:
+    dependency: "direct main"
+    description:
+      path: "../models/prophecy_model"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   user_model:
     dependency: transitive
     description:

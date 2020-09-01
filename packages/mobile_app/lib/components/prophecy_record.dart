@@ -2,10 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:impact_model/impact_model.dart';
-import 'package:prophecies_repository/prophecies_repository.dart';
+import 'package:prophecy_model/prophecy_model.dart';
+import 'package:prophecies/prophecies.dart';
 import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
+import 'package:users_repository/users_repository.dart';
 
 class ProphecyRecord extends StatelessWidget {
   final ProphecyEntity prophecy;
@@ -14,52 +15,50 @@ class ProphecyRecord extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final impactsCount = prophecy.changes.length;
+    final textExists = prophecy.text != null && prophecy.text.isNotEmpty;
 
-    double value = prophecy.model.value ?? 0.0;
-    // add impacts to prophecy value if any
-    for (ImpactModel impact in prophecy.changes) value += impact.value;
+    double value = prophecy.value ?? 0.0;
 
     var valuePercent = value / 10;
 
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
-      height: 68.0 + (36.0 * impactsCount),
+      height: 68.0 + ((textExists) ? 128 : 0),
       child: Column(
         children: <Widget>[
-          Expanded(
-            child: Container(
-              height: 60.0 + (36.0 * impactsCount),
-              padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                            child: Text(
-                          lang.prophecyId[prophecy.model.id],
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: AppColors.textPrimary,
-                          ),
-                        )),
-                        Center(
-                          child: Text(
-                            value.toStringAsFixed(1),
-                            style: TextStyle(
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.w400,
-                              color: chooseNumberColor(value),
-                            ),
-                          ),
+          Container(
+            height: 60.0 + ((textExists) ? 128 : 0),
+            padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: Text(
+                      lang.prophecyId[prophecy.id.toStr],
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: AppColors.textPrimary,
+                      ),
+                    )),
+                    Center(
+                      child: Text(
+                        value.toStringAsFixed(1),
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.w400,
+                          color: chooseNumberColor(value),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                  Expanded(child: ChangesList(prophecy.changes)),
-                ],
-              ),
+                  ],
+                ),
+                Expanded(
+                    child: ProphecyTextWidget(
+                  textExists: textExists,
+                  text: prophecy.text,
+                )),
+              ],
             ),
           ),
           Container(
@@ -112,39 +111,43 @@ class ProphecyRecord extends StatelessWidget {
   }
 }
 
-class ChangesList extends StatelessWidget {
-  final List<ImpactModel> changes;
-  ChangesList(this.changes);
+class ProphecyTextWidget extends StatelessWidget {
+  final bool textExists;
+  final String text;
+  ProphecyTextWidget({@required this.textExists, this.text = ""});
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: (changes.length > 0)
-          ? EdgeInsets.only(top: 8)
-          : EdgeInsets.only(top: 0),
-      shrinkWrap: true,
-      scrollDirection: Axis.vertical,
-      itemCount: changes.length,
-      itemBuilder: (BuildContext context, int index) {
-        final curImp = changes[index];
-        final sign = (curImp.value >= 0.0) ? '+' : '-';
-        print(curImp.text);
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+    if (textExists) {
+      return Container(
+        padding: EdgeInsets.only(top: 8),
+        child: Wrap(
           children: <Widget>[
-            SvgPicture.asset("assets/icons/${curImp.iconName}.svg"),
-            SizedBox(width: 8),
-            Text(" ${curImp.text} ($sign ${curImp.value.toStringAsFixed(1)})",
-                style: TextStyle(
-                  fontSize: 14.0,
-                  color: AppColors.textPrimary,
-                )),
+            Container(
+              margin: EdgeInsets.only(top: 8),
+              height: 116,
+              child: ListView(
+                children: <Widget>[
+                  Text("$text",
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: AppColors.textPrimary,
+                      )),
+                ],
+              ),
+            ),
           ],
-        );
-      },
-    );
+        ),
+      );
+    } else
+      return Container();
   }
 }
 
 Color chooseNumberColor(double value) {
   return chooseNumberColorFromThreeVariants(value);
+}
+
+String userRole(UserRole role) {
+  if (role == UserRole.USER) return lang.you.capitalize();
 }

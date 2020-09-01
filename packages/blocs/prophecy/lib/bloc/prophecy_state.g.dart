@@ -6,6 +6,14 @@ part of 'prophecy_state.dart';
 // ToStringGenerator
 // **************************************************************************
 
-String _$PropheciesLoadSuccessStateToString(PropheciesLoadSuccessState o) {
-  return """PropheciesLoadSuccessState{prophecies: ${o.prophecies}}""";
+String _$ProphecyInitialToString(ProphecyInitial o) {
+  return """ProphecyInitial{}""";
+}
+
+String _$ProphecyWasAskedToString(ProphecyWasAsked o) {
+  return """ProphecyWasAsked{prophecy: ${o.prophecy}}""";
+}
+
+String _$ProphecyWasClarifiedToString(ProphecyWasClarified o) {
+  return """ProphecyWasClarified{prophecy: ${o.prophecy}}""";
 }

@@ -1,6 +1,4 @@
-// GENERATED CODE - DO MODIFY BY HAND
-// MODIFED: id: id.prophecyId ?? this.id.prophecyId,
-// extension on String
+// GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'prophecy.dart';
 
@@ -11,7 +9,7 @@ part of 'prophecy.dart';
 abstract class _$ProphecyModel {
   const _$ProphecyModel();
 
-  String get id;
+  ProphecyType get id;
   double get value;
   bool operator ==(other) {
     if (identical(this, other)) return true;
@@ -28,9 +26,9 @@ abstract class _$ProphecyModel {
     return 'ProphecyModel <\'id\': ${this.id},\'value\': ${this.value},>';
   }
 
-  ProphecyModel copyWith({String id, double value}) {
+  ProphecyModel copyWith({ProphecyType id, double value}) {
     return ProphecyModel(
-      id: id.prophecyId ?? this.id.prophecyId,
+      id: id ?? this.id,
       value: value ?? this.value,
     );
   }
@@ -42,14 +40,14 @@ abstract class _$ProphecyModel {
 
 ProphecyModel _$ProphecyModelFromJson(Map<String, dynamic> json) {
   return ProphecyModel(
-    id: _$enumDecodeNullable(_$ProphecyIdEnumMap, json['id']),
+    id: _$enumDecodeNullable(_$ProphecyTypeEnumMap, json['id']),
     value: (json['value'] as num)?.toDouble(),
   );
 }
 
 Map<String, dynamic> _$ProphecyModelToJson(ProphecyModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'id': _$ProphecyTypeEnumMap[instance.id],
       'value': instance.value,
     };
 
@@ -85,10 +83,10 @@ T _$enumDecodeNullable<T>(
   return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$ProphecyIdEnumMap = {
-  ProphecyId.LUCK: 'LUCK',
-  ProphecyId.INTERNAL_STRENGTH: 'INTERNAL_STRENGTH',
-  ProphecyId.MOODLET: 'MOODLET',
-  ProphecyId.AMBITION: 'AMBITION',
-  ProphecyId.INTELLIGENCE: 'INTELLIGENCE',
+const _$ProphecyTypeEnumMap = {
+  ProphecyType.LUCK: 'LUCK',
+  ProphecyType.INTERNAL_STRENGTH: 'INTERNAL_STRENGTH',
+  ProphecyType.MOODLET: 'MOODLET',
+  ProphecyType.AMBITION: 'AMBITION',
+  ProphecyType.INTELLIGENCE: 'INTELLIGENCE',
 };

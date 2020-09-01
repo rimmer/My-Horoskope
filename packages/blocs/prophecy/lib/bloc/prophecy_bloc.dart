@@ -2,45 +2,49 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:prophecies_repository/prophecies_repository.dart';
+import 'package:prophecy/bloc.dart';
+
+import 'package:algorithm/interface.dart';
+import 'package:userpoll/userpoll.dart';
 
 import 'prophecy_event.dart';
 import 'prophecy_state.dart';
 export 'prophecy_event.dart';
 export 'prophecy_state.dart';
 
-class PropheciesBloc extends Bloc<ProphecyEvent, ProphecyState> {
-  final PropheciesRepository _repository;
-  StreamSubscription _prophecySubscription;
+class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
+  /// algorithm that will calculate prophecies
+  /// and already has needed, loaded data
+  final Algorithm algo;
+  ProphecyBloc({@required this.algo});
 
-  PropheciesBloc({@required repository})
-      : assert(repository != null),
-        _repository = repository;
+  ProphecyState get initialState => ProphecyInitial();
 
-  @override
-  ProphecyState get initialState => ProphecyLoadInProgressState();
+  Stream<ProphecyState> _calculateProphecy({@required int dt}) async* {
+    final prophecy = await algo.ask(aboutDay: dt);
+    if (prophecy != null) yield ProphecyWasAsked(prophecy);
+  }
+
+  Stream<ProphecyState> _clarifyProphecy(
+      {@required int dt, @required UserPoll withPoll}) async* {
+    if (withPoll != null) {
+      final prophecy = algo.clarify(withPoll: withPoll, dt: dt);
+      if (prophecy != null) yield ProphecyWasClarified(prophecy);
+    }
+  }
 
   @override
   Stream<ProphecyState> mapEventToState(
     ProphecyEvent event,
   ) async* {
     switch (event.runtimeType) {
-      case LoadProphecies:
-        _mapLoadPropheciesToState();
+      case CalculateProphecy:
+        yield* _calculateProphecy(dt: event.dt);
         break;
-      case PropheciesLoaded:
-        yield* _mapPropheciesLoadedToState(event);
+
+      case ClarifyProphecy:
+        yield* _clarifyProphecy(dt: event.dt, withPoll: event.poll);
+        break;
     }
-  }
-
-  void _mapLoadPropheciesToState() {
-    _prophecySubscription?.cancel();
-    _prophecySubscription = _repository.prophecies
-        .listen((prophecies) => add(PropheciesLoaded(prophecies)));
-  }
-
-  Stream<ProphecyState> _mapPropheciesLoadedToState(
-      PropheciesLoaded event) async* {
-    yield PropheciesLoadSuccessState(event.prophecies);
   }
 }

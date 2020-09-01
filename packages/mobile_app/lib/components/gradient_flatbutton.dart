@@ -20,17 +20,24 @@ class GradientFlatButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          gradient: gradient,
-          borderRadius: borderRadius,
-          boxShadow: boxShadow ?? []),
-      child: FlatButton(
-        color: Colors.transparent,
-        padding: padding,
-        onPressed: onPressed,
-        child: child,
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        GestureDetector(
+          onTap: () {
+            onPressed();
+          },
+          child: Container(
+            padding: padding,
+            decoration: BoxDecoration(
+                gradient: gradient,
+                borderRadius: borderRadius,
+                boxShadow: boxShadow ?? []),
+            child: Center(child: child),
+          ),
+        ),
+      ],
     );
   }
 }

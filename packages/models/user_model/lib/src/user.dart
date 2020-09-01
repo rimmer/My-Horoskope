@@ -4,14 +4,24 @@ import 'package:meta/meta.dart';
 
 part 'user.g.dart';
 
+/// user model stores basic user information like a name and birthdate
+
 @JsonSerializable()
 @dataClass
 class UserModel extends _$UserModel {
   final String name;
-  final int birth;
-  final int sex;
   final String country;
   final String place;
+
+  /// birth date in milliseconds since epoch
+  final int birth;
+
+  /// sex:
+  /// 0 - not selected
+  /// 1 - male
+  /// 2 - female
+  /// 3 - other
+  final int sex;
 
   UserModel(
       {@required this.name,

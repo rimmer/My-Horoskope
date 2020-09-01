@@ -1,3 +1,4 @@
+import 'package:app/components/popup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
@@ -165,13 +166,15 @@ class RegistrationScreen extends StatelessWidget {
                     month.wrapped.isEmpty ||
                     day.wrapped.isEmpty ||
                     year.wrapped.isEmpty) {
-                  _alertWrongInformation(context,
-                      title: lang.notAllFieldsFilled);
+                  showOverCurrentScreen(
+                      context: context,
+                      child: _wrongInformation(lang.notAllFieldsFilled));
                   return;
                 }
                 if (termsAccepted.wrapped == false) {
-                  _alertWrongInformation(context,
-                      title: lang.termsAreNotAccepted);
+                  showOverCurrentScreen(
+                      context: context,
+                      child: _wrongInformation(lang.termsAreNotAccepted));
                   return;
                 }
 
@@ -197,8 +200,10 @@ class RegistrationScreen extends StatelessWidget {
                 ),
               ),
               padding: EdgeInsets.symmetric(
-                horizontal: 96.0,
+                /// padding for a gradient button
+                /// in registration screen
                 vertical: 16.0,
+                horizontal: 109.0,
               ),
               gradient: LinearGradient(
                 colors: <Color>[
@@ -225,16 +230,17 @@ class RegistrationScreen extends StatelessWidget {
   }
 }
 
-Future<void> _alertWrongInformation(BuildContext context, {String title}) {
-  return showDialog<void>(
-    context: context,
-    builder: (BuildContext context) => AlertDialog(
-      title: Text(
+class _wrongInformation extends StatelessWidget {
+  final String title;
+  _wrongInformation(this.title);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.transparent,
+      child: Text(
         title,
         style: TextStyle(color: AppColors.textPrimary),
       ),
-      backgroundColor: Colors.transparent,
-    ),
-    barrierDismissible: true,
-  );
+    );
+  }
 }

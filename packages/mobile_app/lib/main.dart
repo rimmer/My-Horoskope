@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prophecies_repository_flutter/prophecies_repository_flutter.dart';
 import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'package:auth_flutter/auth_flutter.dart';
 import 'package:provider/provider.dart';
@@ -28,11 +27,6 @@ class ProphetApp extends StatelessWidget {
             create: (context) => AuthenticationBloc(
                 auth: AuthFlutter(repository: usersRepository))
               ..add(AppStarted()),
-          ),
-          BlocProvider<PropheciesBloc>(
-            create: (context) => PropheciesBloc(
-              repository: PropheciesRepositoryFlutter(context),
-            )..add(LoadProphecies()),
           ),
         ], child: _Background(child: InitRoute())),
       );

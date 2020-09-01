@@ -17,6 +17,12 @@ dependencies:
   userpoll:
     path: ../../data/abstract/userpoll
 
+  int_datetime:
+    path: ../../int_datetime
+
+  polls_repository:
+    path: ../../data/abstract/polls_repository  
+
 dev_dependencies:
   build_runner: ^1.10.0
   to_string_generator: ^1.2.1

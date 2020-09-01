@@ -7,9 +7,9 @@ part of 'user_poll_state.dart';
 // **************************************************************************
 
 String _$UserPollInitialToString(UserPollInitial o) {
-  return """UserPollInitial{isSimple: ${o.isSimple}, poll: ${o.poll}}""";
+  return """UserPollInitial{enabled: ${o.enabled}, isSimple: ${o.isSimple}, poll: ${o.poll}}""";
 }
 
 String _$UserPollChangedToString(UserPollChanged o) {
-  return """UserPollChanged{isSimple: ${o.isSimple}, poll: ${o.poll}}""";
+  return """UserPollChanged{enabled: ${o.enabled}, isSimple: ${o.isSimple}, poll: ${o.poll}}""";
 }

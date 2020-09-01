@@ -6,10 +6,10 @@ part of 'prophecy_event.dart';
 // ToStringGenerator
 // **************************************************************************
 
-String _$ProphecyUpdatedToString(ProphecyUpdated o) {
-  return """ProphecyUpdated{prophecy: ${o.prophecy}}""";
+String _$CalculateProphecyToString(CalculateProphecy o) {
+  return """CalculateProphecy{dt: ${o.dt}}""";
 }
 
-String _$PropheciesLoadedToString(PropheciesLoaded o) {
-  return """PropheciesLoaded{prophecies: ${o.prophecies}}""";
+String _$ClarifyProphecyToString(ClarifyProphecy o) {
+  return """ClarifyProphecy{dt: ${o.dt}, poll: ${o.poll}}""";
 }

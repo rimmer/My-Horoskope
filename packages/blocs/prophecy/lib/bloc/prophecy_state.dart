@@ -1,33 +1,43 @@
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
-import 'package:prophecies_repository/prophecies_repository.dart';
+import 'package:prophecies/prophecies.dart';
+import 'package:prophecy_model/prophecy_model.dart';
 import 'package:to_string/to_string.dart';
 
 part 'prophecy_state.g.dart';
 
 @immutable
 abstract class ProphecyState extends Equatable {
-  const ProphecyState();
-}
-
-class InitialProphecyState extends ProphecyState {
+  final Map<ProphecyType, ProphecyEntity> prophecy;
+  const ProphecyState() : prophecy = null;
   @override
-  List<Object> get props => [];
+  List<Object> get props => [prophecy];
 }
-
-class ProphecyLoadInProgressState extends InitialProphecyState {}
 
 @ToString()
-class PropheciesLoadSuccessState extends InitialProphecyState {
-  final List<ProphecyEntity> prophecies;
-
-  PropheciesLoadSuccessState([this.prophecies = const []]);
-
+class ProphecyInitial extends ProphecyState {
   @override
-  List<Object> get props => [prophecies];
-
-  @override
-  String toString() => _$PropheciesLoadSuccessStateToString(this);
+  String toString() => _$ProphecyInitialToString(this);
 }
 
-class ProphecyLoadFailureState extends InitialProphecyState {}
+@ToString()
+class ProphecyWasAsked extends ProphecyState {
+  final Map<ProphecyType, ProphecyEntity> prophecy;
+  ProphecyWasAsked(this.prophecy);
+
+  @override
+  List<Object> get props => [prophecy];
+  @override
+  String toString() => _$ProphecyWasAskedToString(this);
+}
+
+@ToString()
+class ProphecyWasClarified extends ProphecyState {
+  final Map<ProphecyType, ProphecyEntity> prophecy;
+  ProphecyWasClarified(this.prophecy);
+
+  @override
+  List<Object> get props => [prophecy];
+  @override
+  String toString() => _$ProphecyWasClarifiedToString(this);
+}

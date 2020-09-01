@@ -1,63 +1,73 @@
+import 'package:int_datetime/int_datetime.dart';
 import 'package:meta/meta.dart';
-import 'package:poll_availability/poll_availability.dart';
 import 'package:userpoll/userpoll.dart';
-import 'package:pollbydate/pollbydate.dart';
+import 'package:polls_repository/polls_repository.dart';
 import 'package:users_repository/users_repository.dart';
+import 'package:prophecy_model/prophecy_model.dart';
+import 'package:prophecies/prophecies.dart';
 
-part 'variants/algorithm_bgoncharuck.dart';
-part 'variants/algorithm_bbks.dart';
-
-// @TODO
-// ProphecyObject
-
-class Algorithm {
-  // data used by algorithm
-  final AlgoData dat;
-  // algorithm calculations
-  MainCalculation magic;
-
-  // constructor
-  Algorithm({@required this.dat}) {
-    // @Pattern Strategy
-    // what variant of algorithm to use
-    magic = _RitesStrategy();
-  }
-
-  // result
-  Object result() {
-    // 1. calculate prophecies by implemented algorithm strategy and given data
-    // 2. add user choises if enabled
-    // 3. return prophecies
-    if (dat.pollAvailability.value == true)
-      return magic.calculate(dat).addUserChoises(dat.pollByDateRepo);
-    else
-      return magic.calculate(dat);
-  }
-}
-
-extension _UserChoises on Object {
-  Object addUserChoises(PollByDateRepository repo) {
-    return null;
-  }
-}
-
-abstract class MainCalculation {
-  Object calculate(AlgoData dat);
-}
+import 'variants/bgoncharuck/algorithm.dart';
 
 class AlgoData {
-  final PollAvailability pollAvailability;
-  final PollByDateRepository pollByDateRepo;
-  UserEntity user;
-  UserPoll currentPoll;
+  /// repository of {date:poll} relations which must be loaded by user id
+  final PollsRepository pollByDateRepo;
 
-  AlgoData(
-      {@required this.pollAvailability,
-      @required this.pollByDateRepo,
-      @required this.user}) {
-    //
-    pollByDateRepo.load(user.id);
-    currentPoll =
-        pollByDateRepo.todayPoll ?? UserPoll(mood: POLL_DEFAULT_INIT_VALUE);
+  /// repository of users which have a getter of current logged user
+  final UsersRepository usersRepository;
+
+  /// current logged user
+  UserEntity get user => usersRepository.current;
+
+  AlgoData({@required this.pollByDateRepo, @required this.usersRepository});
+}
+
+/// Interface for a school of magic that can reveal future
+abstract class MagicSpecialization {
+  /// gives a prophecy
+  Map<ProphecyType, ProphecyEntity> ask(AlgoData withDat, int aboutDay);
+
+  /// clarifies a prophecy with a today user poll
+  Map<ProphecyType, ProphecyEntity> clarify(
+      {@required Map<ProphecyType, ProphecyEntity> prophecies,
+      @required UserEntity user,
+      @required UserPoll withPoll});
+}
+
+class Algorithm {
+  /// here you can change a specialization of your prophet
+  MagicSpecialization prophet = OfOldWayMagic();
+
+  /// the last insights that were written by the prophet
+  Map<int, Map<ProphecyType, ProphecyEntity>> curSessionInsights = {};
+
+  final AlgoData dat;
+  Algorithm({@required this.dat}) {
+    /// loads {date:poll} for currenct user
+    dat.pollByDateRepo.load(dat.user.id);
+  }
+  //
+
+  /// ask for prophecy about given day
+  Map<ProphecyType, ProphecyEntity> ask({@required int aboutDay}) {
+    if (curSessionInsights[aboutDay] != null) curSessionInsights[aboutDay];
+    curSessionInsights[aboutDay] = prophet.ask(dat, aboutDay);
+    return curSessionInsights[aboutDay];
+  }
+
+  /// clarifies a prophecy
+  Map<ProphecyType, ProphecyEntity> clarify({
+    @required UserPoll withPoll,
+    UserEntity user,
+    int dt,
+  }) {
+    return prophet.clarify(
+      withPoll: withPoll ?? dat.pollByDateRepo.todayPoll,
+      user: user ?? dat.user,
+      prophecies: curSessionInsights[dt ?? dtDay] ??
+
+          /// if no insight were recorded by a prophet
+          /// wake him up and force to get another one
+          prophet.ask(dat, dt ?? dtDay),
+    );
   }
 }

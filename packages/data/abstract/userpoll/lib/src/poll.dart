@@ -6,12 +6,24 @@ part 'poll.g.dart';
 
 const int POLL_DEFAULT_INIT_VALUE = 3;
 
+/// a collection of poll models that can be:
+/// - changed in future
+/// - be correctly saved and loaded
+/// - even with changes
+
 @JsonSerializable()
 class UserPoll {
+  /// milliseconds since UNIX epoch of the start of the day, when poll were created
+  int dt;
+
+  /// main poll model type, that must exist independent from future changes
   PollModel mood;
+
+  /// all other poll types, that defaults to mood poll
   List<PollModel> details = [];
 
   UserPoll({
+    @required this.dt,
     @required int mood,
     int productivity,
     int relationships,
@@ -38,6 +50,37 @@ class UserPoll {
           type: PollModelType.PHYSICAL_ACTIVITY,
           value: physicalActivity ?? mood,
         ));
+  }
+
+  int val(int index) => this.details[index].value;
+
+  /// accamulates details values to given list of integers
+  void accamulateDetails(List<int> detailsAccamulator) {
+    if (detailsAccamulator == null ||
+        detailsAccamulator.length != details.length) return;
+    //
+    //
+    /// For every new poll new accamulation must be added
+    if (detailsAccamulator[0] != null) {
+      for (int indx = 0; indx < detailsAccamulator.length; indx++)
+        detailsAccamulator[indx] += details[indx].value;
+    } else {
+      for (int indx = 0; indx < detailsAccamulator.length; indx++)
+        detailsAccamulator[indx] = details[indx].value;
+    }
+  }
+
+  int pollIndx(PollModelType type) {
+    return details.indexWhere(
+        //
+        (poll) => poll.type == type
+        //
+        );
+  }
+
+  PollModel poll(PollModelType type) {
+    if (type == PollModelType.MOOD) return this.mood;
+    return details[pollIndx(type)];
   }
 
   Map<String, Object> toJson() => _$UserPollToJson(this);

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:algorithm/algorithm.dart';
 import 'package:authentication/bloc.dart';
-import 'package:poll_availability/poll_availability.dart';
+import 'package:prophecy/bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:user_poll/bloc.dart';
-import 'package:pollbydate_flutter/pollbydate_flutter.dart';
+import 'package:polls_repository_flutter/polls_repository_flutter.dart';
+import 'package:users_repository_flutter/users_repository_flutter.dart';
+import 'package:int_datetime/int_datetime.dart';
 import 'screens/registration/screen.dart';
 import 'screens/daily/screen.dart';
 import 'screens/monthly/screen.dart';
@@ -25,23 +27,48 @@ class InitRoute extends StatelessWidget {
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           bloc: authBloc,
           builder: (context, state) {
+            //
             if (state is Authenticated) {
+              //
+
+              //
+
+              final usersRepo = context.watch<UsersRepositoryFlutter>();
+              final pollsRepo = PollsRepositoryFlutter();
+
+              //
+
               final sessionAlgroithm = Algorithm(
                   dat: AlgoData(
-                      // if user want use AI
-                      pollAvailability: PollAvailability(value: true),
-                      // user previous polls
-                      pollByDateRepo: PollByDateRepositoryFlutter(),
-                      // user that logged in
-                      user: state.user));
+                      pollByDateRepo: pollsRepo,
+                      //
+                      usersRepository: usersRepo));
+
+              //
 
               return Provider<Algorithm>(
-                  create: (context) => sessionAlgroithm,
-                  child: BlocProvider<UserPollBloc>(
-                    create: (context) => UserPollBloc(
-                        currentPoll: sessionAlgroithm.dat.currentPoll),
-                    child: DailyScreen(),
-                  ));
+                create: (context) => sessionAlgroithm,
+                child: MultiBlocProvider(
+                  providers: [
+                    BlocProvider<UserPollBloc>(
+                      create: (context) => UserPollBloc(
+                        enabled: usersRepo.current.pollAvailability,
+                        pollsRepo: pollsRepo,
+                      ),
+                    ),
+                    BlocProvider<ProphecyBloc>(
+                      create: (context) => ProphecyBloc(
+                        algo: sessionAlgroithm,
+                      ),
+                    ),
+                  ],
+                  child: DailyScreen(dt: dtDay),
+                ),
+              );
+
+              //
+
+              //
             }
             if (state is Unauthenticated) {
               return RegistrationScreen();
@@ -53,7 +80,7 @@ class InitRoute extends StatelessWidget {
 
   final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
     "/settings": (BuildContext context) => SettingsScreen(),
-    "/daily": (BuildContext context) => DailyScreen(),
+    "/daily": (BuildContext context) => DailyScreen(dt: dtDay),
     "/monthly": (BuildContext context) => MonthlyScreen(),
   };
 }

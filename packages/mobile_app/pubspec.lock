@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  characters:
+    dependency: transitive
+    description:
+      name: characters
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   charcode:
     dependency: transitive
     description:
@@ -63,7 +70,7 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.14.12"
+    version: "1.14.13"
   convert:
     dependency: transitive
     description:
@@ -125,20 +132,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.5"
-  flutter_spinkit:
-    dependency: "direct main"
-    description:
-      name: flutter_spinkit
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0"
   flutter_svg:
     dependency: "direct main"
     description:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.17.4"
+    version: "0.18.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -150,14 +150,7 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.13"
-  impact_model:
-    dependency: "direct main"
-    description:
-      path: "../models/impact_model"
-      relative: true
-    source: path
-    version: "0.0.1+1"
+    version: "2.1.14"
   int_datetime:
     dependency: "direct main"
     description:
@@ -284,13 +277,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
-  poll_availability:
-    dependency: "direct main"
-    description:
-      path: "../models/poll_availability"
-      relative: true
-    source: path
-    version: "0.0.1+1"
   poll_model:
     dependency: transitive
     description:
@@ -298,17 +284,17 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
-  pollbydate:
+  polls_repository:
     dependency: transitive
     description:
-      path: "../data/abstract/pollbydate"
+      path: "../data/abstract/polls_repository"
       relative: true
     source: path
     version: "0.0.1"
-  pollbydate_flutter:
+  polls_repository_flutter:
     dependency: "direct main"
     description:
-      path: "../data/platform/pollbydate_flutter"
+      path: "../data/platform/polls_repository_flutter"
       relative: true
     source: path
     version: "0.0.1"
@@ -319,17 +305,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.13"
-  prophecies_repository:
+  prophecies:
     dependency: "direct main"
     description:
-      path: "../data/abstract/prophecies_repository"
-      relative: true
-    source: path
-    version: "0.0.1"
-  prophecies_repository_flutter:
-    dependency: "direct main"
-    description:
-      path: "../data/platform/prophecies_repository_flutter"
+      path: "../data/abstract/prophecies"
       relative: true
     source: path
     version: "0.0.1"
@@ -353,7 +332,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.0"
+    version: "4.3.2+1"
   pub_semver:
     dependency: transitive
     description:
@@ -379,7 +358,7 @@ packages:
       name: storage_access
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.4"
+    version: "0.0.6"
   string_scanner:
     dependency: transitive
     description:
@@ -407,7 +386,7 @@ packages:
       name: typed_data
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.6"
+    version: "1.2.0"
   url_launcher:
     dependency: "direct main"
     description:
@@ -498,7 +477,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.7.0"
+    version: "4.2.0"
   yaml:
     dependency: transitive
     description:
@@ -507,5 +486,5 @@ packages:
     source: hosted
     version: "2.2.1"
 sdks:
-  dart: ">=2.7.0 <3.0.0"
-  flutter: ">=1.16.0 <2.0.0"
+  dart: ">=2.9.0-14.0.dev <3.0.0"
+  flutter: ">=1.18.0-6.0.pre <2.0.0"
