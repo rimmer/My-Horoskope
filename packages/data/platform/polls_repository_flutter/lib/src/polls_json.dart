@@ -33,13 +33,9 @@ class PollsRepositoryJson extends PollsRepository {
   Future<bool> save(int userid) async {
     _lastUserId = userid;
 
-    String data = json.encode(curUserPolls.toJson());
-    // @DEBUG
-    // print("For user $userid saved: $data");
-
     return (curUserPolls.isNotEmpty)
         ? await storage.write(
-            data: data,
+            data: json.encode(curUserPolls.toJson()),
             asFile: _fileLocation(userid),
           )
         : false;

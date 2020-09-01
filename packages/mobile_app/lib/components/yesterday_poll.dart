@@ -1,23 +1,15 @@
-import 'package:app/blocs/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:language/language.dart';
 import 'magic_poll.dart';
-import 'package:user_poll/bloc.dart';
-import 'package:algorithm/interface.dart';
-import 'package:userpoll/userpoll.dart';
 
 class YesterdayPollSimple extends StatelessWidget {
   final MutableInteger mood;
-  final UserPollBloc pollsState;
-  YesterdayPollSimple({@required this.mood, @required this.pollsState});
+  YesterdayPollSimple({@required this.mood});
 
   @override
   Widget build(BuildContext context) {
-    //
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
@@ -37,19 +29,7 @@ class YesterdayPollSimple extends StatelessWidget {
             style: TextStyle(fontSize: 18),
           ),
           SizedBox(height: 16),
-          MagicPollPicker(
-            value: mood,
-            onTap: () {
-              pollsState.add(
-                PollUsed(
-                    poll: UserPoll(
-                        dt: pollsState.currentPoll.dt,
-                        //
-                        mood: mood.wrapped),
-                    enabled: pollsState.enabled),
-              );
-            },
-          ),
+          MagicPollPicker(value: mood),
         ],
       ),
     );
