@@ -9,9 +9,9 @@ void main(List<String> args) {
     if (fileName == 'pubspec.yaml') {
       final path = entity.path.replaceFirst(fileName, '');
 
-      // It seems suffiecient to run `pub get` for either flutter
+      // It seems suffiecient to run `flutter pub get` for either flutter
       // or non-flutter package
-      final result = Process.runSync('pub', ['get'],
+      final result = Process.runSync('flutter', ['pub', 'get'],
           workingDirectory: path, runInShell: true);
 
       stdout.writeln("Navigating into ${path}");
