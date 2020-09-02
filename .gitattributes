@@ -1,3 +1,6 @@
 # We'd like `publock.lock` to be always with LF line endings
 # just because Dard does not know how to do otherwise
 publock.lock text eol=LF
+
+# This is a bash script, should be always LF
+packages/multi_pub_get.sh text eol=LF
