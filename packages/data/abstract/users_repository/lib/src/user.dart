@@ -39,6 +39,7 @@ class UserEntity {
   /// checks if user wants to use poll system
   bool pollAvailability;
   bool pollStudying;
+  bool pollsAreComplex;
 
   UserEntity({
     id,
@@ -48,6 +49,7 @@ class UserEntity {
     @required this.model,
     this.pollAvailability = true,
     this.pollStudying = false,
+    this.pollsAreComplex = false,
   }) : this.id = id ?? model.hashCode;
 
   Map<String, Object> toJson() => _$UserEntityToJson(this);

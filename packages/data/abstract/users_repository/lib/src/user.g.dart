@@ -19,7 +19,9 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
         ? null
         : UserModel.fromJson(json['model'] as Map<String, dynamic>),
     pollAvailability: json['pollAvailability'] as bool,
-  )..pollStudying = json['pollStudying'] as bool;
+    pollStudying: json['pollStudying'] as bool,
+    pollsAreComplex: json['pollsAreComplex'] as bool,
+  );
 }
 
 Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
@@ -31,6 +33,7 @@ Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
       'lastLogin': instance.lastLogin,
       'pollAvailability': instance.pollAvailability,
       'pollStudying': instance.pollStudying,
+      'pollsAreComplex': instance.pollsAreComplex,
     };
 
 T _$enumDecode<T>(

@@ -16,6 +16,8 @@ dependencies:
     path: ../../models/poll_model  
   userpoll:
     path: ../../data/abstract/userpoll
+  users_repository:
+    path: ../../data/abstract/users_repository
 
   int_datetime:
     path: ../../int_datetime

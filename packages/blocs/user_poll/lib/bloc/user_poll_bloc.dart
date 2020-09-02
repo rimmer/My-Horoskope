@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:userpoll/userpoll.dart';
+import 'package:users_repository/users_repository.dart';
 import 'package:polls_repository/polls_repository.dart';
 import 'package:int_datetime/int_datetime.dart';
 
@@ -13,50 +14,81 @@ export 'user_poll_event.dart';
 export 'user_poll_state.dart';
 
 class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
-  bool _isSimple = true;
-  bool get isSimple => _isSimple;
-  bool enabled;
+  //
+  final PollsRepository repo;
+  UserEntity user;
+  UserPoll current;
+  bool loaded = false;
 
-  PollsRepository pollsRepo;
-
-  UserPoll get currentPoll => pollsRepo.todayPoll;
-  set currentPoll(UserPoll newVal) => pollsRepo.todayPoll = newVal;
-
-  UserPollBloc({@required this.enabled, @required this.pollsRepo}) {
-    if (pollsRepo.todayPoll == null)
-      pollsRepo.todayPoll = UserPoll(dt: dtDay, mood: 3);
-  }
-
-  @override
-  UserPollState get initialState => UserPollInitial(
-      poll: this.currentPoll, isSimple: isSimple, enabled: this.enabled);
+  UserPollBloc({@required this.repo, @required this.user, this.current}) {}
 
   @override
   Stream<UserPollState> mapEventToState(
     UserPollEvent event,
   ) async* {
-    switch (event.runtimeType) {
-      case PollSimple:
-        _isSimple = true;
-        yield UserPollChanged(
-            poll: event.poll, isSimple: _isSimple, enabled: this.enabled);
-        break;
-      case PollComplex:
-        _isSimple = false;
-        yield UserPollChanged(
-            poll: event.poll, isSimple: _isSimple, enabled: this.enabled);
-        break;
-      case PollUsed:
-        this.currentPoll = event.poll;
-        this.enabled = event.enabled;
-        yield UserPollChanged(
-            poll: event.poll, isSimple: _isSimple, enabled: event.enabled);
-        break;
-      case PollNotUsed:
-      default:
-        yield UserPollInitial(
-            poll: this.currentPoll, isSimple: _isSimple, enabled: this.enabled);
-        break;
+    /// if already loaded
+    if (loaded) {
+
+
+    } else {
+      /// if not loaded, but enabled
+      if (user.pollAvailability) {
+
+        yield* _load();
+
+      /// if polls are disabled for this user
+      } else {
+
+        switch (event.runtimeType) {
+
+          case UserPollEnableEvent:
+            user.pollAvailability= true;
+
+            yield UserPollInitState();
+            break;
+          
+          case UserPollChangeUserEvent:
+            user= event.user;
+            loaded= false;
+
+            yield UserPollInitState();
+            break;
+        }
+
+      }
     }
   }
+
+  Stream<UserPollState> _load() async* {
+    /// show loading state
+    yield UserPollLoadingState();
+
+    //
+
+    /// async loading
+    final wasLoaded= await repo.load(user.id);
+
+    /// if was not loaded correctly, show loading error state
+    if (wasLoaded) {
+
+      current = await repo.todayPoll;
+      if (current == null) {
+        /// if no todays poll saved, create one
+        current= UserPoll(dt: dtDay, mood: 3);
+        /// and add it to repo
+        repo.todayPoll= current;
+        /// and save it
+        await repo.save(user.id);
+      }
+      loaded= true;
+
+      yield UserPollInitState();
+
+    } else {
+      yield UserPollLoadingErrorState();
+    }
+  }
+
+  @override
+  UserPollState get initialState => ;
 }

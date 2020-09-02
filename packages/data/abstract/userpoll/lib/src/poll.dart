@@ -16,6 +16,9 @@ class UserPoll {
   /// milliseconds since UNIX epoch of the start of the day, when poll were created
   int dt;
 
+  /// if poll was voted
+  bool voted;
+
   /// main poll model type, that must exist independent from future changes
   PollModel mood;
 
@@ -24,6 +27,7 @@ class UserPoll {
 
   UserPoll({
     @required this.dt,
+    this.voted = false,
     @required int mood,
     int productivity,
     int relationships,
