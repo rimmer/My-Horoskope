@@ -23,72 +23,158 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   UserPollBloc({@required this.repo, @required this.user, this.current}) {}
 
   @override
-  Stream<UserPollState> mapEventToState(
+  UserPollState get initialState =>
+      (user.pollAvailability) ? UserPollLoadingState() : UserPollIsDisabled();
+
+  //
+
+  Stream<UserPollState> _businessLogicStart(
     UserPollEvent event,
   ) async* {
-    /// if already loaded
+    //
+
     if (loaded) {
+      //
 
+      /// if polls are already loaded and start evenet was sent
+      if (event.runtimeType == UserPollRestartEvent)
+        yield* _showThePoll();
 
+      //
+
+      else {
+        if (current. /*poll is already*/ voted)
+          yield* _processActionsThatNeedReload(event);
+        else
+          yield* _processUserActions(event);
+      }
+
+      //
     } else {
-      /// if not loaded, but enabled
-      if (user.pollAvailability) {
+      //
 
-        yield* _load();
+      if (user.pollAvailability /*is true*/) {
+        /// if not loaded, but enabled for cur user
 
-      /// if polls are disabled for this user
-      } else {
+        yield* _loadPollsForCurrentUser(event);
+      }
 
-        switch (event.runtimeType) {
+      //
 
-          case UserPollEnableEvent:
-            user.pollAvailability= true;
+      else {
+        /// if polls are disabled for cur user
 
-            yield UserPollInitState();
-            break;
-          
-          case UserPollChangeUserEvent:
-            user= event.user;
-            loaded= false;
-
-            yield UserPollInitState();
-            break;
-        }
-
+        yield* _processActionsThatNeedReload(event);
       }
     }
   }
 
-  Stream<UserPollState> _load() async* {
-    /// show loading state
+  Stream<UserPollState> _processActionsThatNeedReload(
+    UserPollEvent event,
+  ) async* {
+    switch (event.runtimeType) {
+      //
+
+      /// If poll need to restart business logic
+      /// then it will break the switch
+      /// and will start _businessLogic with UserPollRestartEvent
+      ///
+      /// If not, will yield needed State
+      /// and end current stack of function calls with "return"
+
+      //
+      case UserPollEnableEvent:
+        user.pollAvailability = true;
+        break;
+
+      case UserPollDisableEvent:
+        user.pollAvailability = false;
+        loaded = false;
+        yield UserPollIsDisabled();
+        return;
+
+      case UserPollChangeUserEvent:
+        user = event.user;
+        loaded = false;
+        break;
+
+      default:
+        yield initialState;
+        return;
+    }
+    yield* _businessLogicStart(UserPollRestartEvent());
+  }
+
+  Stream<UserPollState> _loadPollsForCurrentUser(
+    UserPollEvent event,
+  ) async* {
+    //
+    /// first, we will show a loading state
     yield UserPollLoadingState();
+
+    /// then we will load our polls repository
+    final wasLoaded = await repo.load(user.id);
+
+    if (wasLoaded == false) {
+      /// if repository was not loaded correctly, show loading error state
+      yield UserPollLoadingErrorState();
+    }
 
     //
 
-    /// async loading
-    final wasLoaded= await repo.load(user.id);
-
-    /// if was not loaded correctly, show loading error state
-    if (wasLoaded) {
-
+    else {
+      /// if our repository was loaded correctly,
+      /// then set the current poll by a todays poll
       current = await repo.todayPoll;
+
       if (current == null) {
-        /// if no todays poll saved, create one
-        current= UserPoll(dt: dtDay, mood: 3);
+        /// if no todays poll exists, create one
+        current = UserPoll(dt: dtDay, mood: 3);
+
         /// and add it to repo
-        repo.todayPoll= current;
-        /// and save it
+        repo.todayPoll = current;
+
+        /// then save it save it
         await repo.save(user.id);
       }
-      loaded= true;
+      loaded = true;
 
-      yield UserPollInitState();
-
-    } else {
-      yield UserPollLoadingErrorState();
+      /// and finally, show our poll
+      _showThePoll(event);
     }
   }
 
+  Stream<UserPollState> _showThePoll() async* {
+    /// "show" simple, complex or voted poll
+    if (current. /*poll is*/ voted)
+      yield UserPollIsVotedState();
+    //
+    else {
+      //
+      yield* _showThePollUnvoted();
+    }
+  }
+
+  Stream<UserPollState> _showThePollUnvoted() async* {
+    if (user.pollsAreComplex)
+      yield UserPollIsComplexState();
+    else
+      yield UserPollIsSimpleState();
+  }
+
+  Stream<UserPollState> _processUserActions(
+    UserPollEvent event,
+  ) async* {
+    // @TODO
+  }
+
+  //
+
+  //-----------------------------------------------------------------------
   @override
-  UserPollState get initialState => ;
+  Stream<UserPollState> mapEventToState(
+    UserPollEvent event,
+  ) async* {
+    yield* _businessLogicStart(event);
+  }
 }
