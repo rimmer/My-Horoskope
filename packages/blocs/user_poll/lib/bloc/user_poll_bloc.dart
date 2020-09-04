@@ -16,11 +16,14 @@ export 'user_poll_state.dart';
 class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   //
   final PollsRepository repo;
+  final UsersRepository users;
   UserEntity user;
   UserPoll current;
   bool loaded = false;
 
-  UserPollBloc({@required this.repo, @required this.user, this.current}) {}
+  UserPollBloc({@required this.repo, @required this.users, this.current}) {
+    user = users.current;
+  }
 
   @override
   UserPollState get initialState =>
@@ -81,15 +84,20 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
       /// and end current stack of function calls with "return"
 
       //
-      case UserPollEnableEvent:
-        user.pollAvailability = true;
-        break;
+      case UserPollOnOffEvent:
+        //
 
-      case UserPollDisableEvent:
-        user.pollAvailability = false;
-        loaded = false;
-        yield UserPollIsDisabled();
-        return;
+        users.pollSettingsSetter(
+            availability: event.availability, studying: event.studying);
+
+        //
+
+        if (event.availability == false) {
+          loaded = false;
+          yield UserPollIsDisabled();
+          return;
+        }
+        break;
 
       case UserPollChangeUserEvent:
         user = event.user;

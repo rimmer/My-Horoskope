@@ -10,12 +10,8 @@ String _$UserPollRestartEventToString(UserPollRestartEvent o) {
   return """UserPollRestartEvent{}""";
 }
 
-String _$UserPollEnableEventToString(UserPollEnableEvent o) {
-  return """UserPollEnableEvent{}""";
-}
-
-String _$UserPollDisableEventToString(UserPollDisableEvent o) {
-  return """UserPollDisableEvent{}""";
+String _$UserPollOnOffEventToString(UserPollOnOffEvent o) {
+  return """UserPollOnOffEvent{availability: ${o.availability}, studying: ${o.studying}}""";
 }
 
 String _$UserPollChangeUserEventToString(UserPollChangeUserEvent o) {

@@ -52,7 +52,7 @@ class InitRoute extends StatelessWidget {
                   providers: [
                     BlocProvider<UserPollBloc>(
                       create: (context) => UserPollBloc(
-                        user: usersRepo.current,
+                        users: usersRepo,
                         repo: pollsRepo,
                       ),
                     ),
