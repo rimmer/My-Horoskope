@@ -1,3 +1,4 @@
+import 'package:app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:prophecy/bloc/prophecy_bloc.dart';
 
@@ -5,6 +6,7 @@ import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:app/components/prophecy.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:app/components/poll_settings.dart';
 import 'package:int_datetime/int_datetime.dart';
@@ -19,10 +21,7 @@ class DailyScreen extends StatelessWidget {
     final usersRepo = context.watch<UsersRepositoryFlutter>();
     int currentDay = dtDay;
 
-    UserPollBloc userPollBloc;
-    if (dt == currentDay) userPollBloc = context.bloc<UserPollBloc>();
-    print(dt);
-    print(currentDay);
+    UserPollBloc userPollBloc = context.bloc<UserPollBloc>();
 
     ProphecyBloc prophet = context.bloc<ProphecyBloc>();
     prophet.add(CalculateProphecy(dt));
@@ -34,25 +33,48 @@ class DailyScreen extends StatelessWidget {
           scrollDirection: Axis.vertical,
           children: <Widget>[
             // @poll
-            (dt == currentDay)
-                ? BlocBuilder<UserPollBloc, UserPollState>(
-                    bloc: userPollBloc,
-                    builder: (context, state) {
-                      // @TODO
-                      /*
-                      old
-                      
-                      if (state.enabled == false) return PollSettings();
-                      if (state is UserPollChanged) {
-                        return (userPollBloc.isSimple)
-                            ? PollSimpleWidget(bloc: userPollBloc)
-                            : PollExtendedWidget(bloc: userPollBloc);
-                      }
-                      return PollSimpleWidget(bloc: userPollBloc); 
+            BlocBuilder<UserPollBloc, UserPollState>(
+                bloc: userPollBloc,
+                builder: (context, state) {
+                  switch (state.runtimeType) {
 
-                      */
-                    })
-                : SizedBox(),
+                    /// I am adding debug prints, jsut in case
+
+                    case UserPollLoadingState:
+                      print("User polls are loading.");
+                      return SpinKitPulse(
+                        color: AppColors.accentDark,
+                        size: 32,
+                      );
+
+                    case UserPollLoadingErrorState:
+                      print("User polls was not loaded because of error");
+                      return Icon(
+                        Icons.error_outline,
+                        size: 32,
+                        color: AppColors.accentDark,
+                      );
+
+                    case UserPollIsDisabled:
+                      print("User polls are disabled for current user");
+                      return PollSettings();
+
+                    case UserPollIsVotedState:
+                      print("User poll is voted");
+                      prophet.add(ClarifyProphecy(
+                          dt: dt, poll: userPollBloc.repo.todayPoll));
+                      return SizedBox();
+
+                    case UserPollIsSimpleState:
+                      print("User poll is switched to simple state");
+                      return PollSimpleWidget(bloc: userPollBloc);
+
+                    case UserPollIsComplexState:
+                      print("User poll is switched to complex state");
+                      return PollExtendedWidget(bloc: userPollBloc);
+                  }
+                }),
+
             // @prophecies
             SizedBox(
                 height: MediaQuery.of(context).size.height,
