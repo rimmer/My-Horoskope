@@ -55,7 +55,6 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
 
       if (user.pollAvailability /*is true*/) {
         /// if not loaded, but enabled for cur user
-
         yield* _loadPollsForCurrentUser(event);
       }
 
@@ -63,7 +62,6 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
 
       else {
         /// if polls are disabled for cur user
-
         yield* _processActionsThatNeedReload(event);
       }
     }
@@ -75,7 +73,7 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
     switch (event.runtimeType) {
       //
 
-      /// If poll need to restart business logic
+      /// If poll needs to restart business logic
       /// then it will break the switch
       /// and will start _businessLogic with UserPollRestartEvent
       ///
@@ -134,13 +132,13 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
         /// and add it to repo
         repo.todayPoll = current;
 
-        /// then save it save it
+        /// then save it
         await repo.save(user.id);
       }
       loaded = true;
 
       /// and finally, show our poll
-      _showThePoll(event);
+      _showThePoll();
     }
   }
 
@@ -165,7 +163,26 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   Stream<UserPollState> _processUserActions(
     UserPollEvent event,
   ) async* {
-    // @TODO
+    switch (event.runtimeType) {
+      //
+
+      /// if type of poll is changed
+      case UserPollSwitchSimpleEvent:
+      case UserPollSwitchComplexEvent:
+        user.pollsAreComplex = !user.pollsAreComplex;
+        yield* _showThePollUnvoted();
+        break;
+
+      /// if poll was voted
+      case UserPollVoteEvent:
+        yield UserPollIsVotedState();
+        break;
+
+      /// on changeUser or disablePoll
+      default:
+        yield* _processActionsThatNeedReload(event);
+        break;
+    }
   }
 
   //

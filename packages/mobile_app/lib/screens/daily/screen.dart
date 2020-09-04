@@ -38,13 +38,7 @@ class DailyScreen extends StatelessWidget {
                 ? BlocBuilder<UserPollBloc, UserPollState>(
                     bloc: userPollBloc,
                     builder: (context, state) {
-                      if (state.enabled == false) return PollSettings();
-                      if (state is UserPollChanged) {
-                        return (userPollBloc.isSimple)
-                            ? PollSimpleWidget(bloc: userPollBloc)
-                            : PollExtendedWidget(bloc: userPollBloc);
-                      }
-                      return PollSimpleWidget(bloc: userPollBloc);
+                      // @TODO
                     })
                 : SizedBox(),
             // @prophecies
