@@ -33,7 +33,7 @@ class InitRoute extends StatelessWidget {
 
               //
 
-              final usersRepo = context.watch<UsersRepositoryFlutter>();
+              final usersRepo = authBloc.auth.repository;
               final pollsRepo = PollsRepositoryFlutter();
 
               //

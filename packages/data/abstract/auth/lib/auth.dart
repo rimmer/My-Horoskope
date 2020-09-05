@@ -9,6 +9,9 @@ abstract class Auth {
   /// current authenticated UserEntity
   UserEntity curUser;
 
+  /// repository of users
+  UsersRepository get repository;
+
   /// used to check if registration or login completed by BLoC
   Future<bool> get isAuthenticated;
 

@@ -30,16 +30,10 @@ class PollsRepositoryJson extends PollsRepository {
   List<UserPoll> curUserPolls = [];
 
   @override
-  Future<bool> save(int userid) async {
-    _lastUserId = userid;
-
-    return (curUserPolls.isNotEmpty)
-        ? await storage.write(
-            data: json.encode(curUserPolls.toJson()),
-            asFile: _fileLocation(userid),
-          )
-        : false;
-  }
+  Future<bool> save(int userid) async => await storage.write(
+        data: json.encode(curUserPolls.toJson()),
+        asFile: _fileLocation(userid),
+      );
 
   @override
   Future<bool> load(int userid) async {
@@ -49,10 +43,12 @@ class PollsRepositoryJson extends PollsRepository {
       if (red != null) {
         curUserPolls.fromJson(json.decode(red));
         return true;
-      } else
+      } else {
         return false;
+      }
     } catch (_) {
-      return false;
+      print(_);
+      return await this.save(userid);
     }
   }
 

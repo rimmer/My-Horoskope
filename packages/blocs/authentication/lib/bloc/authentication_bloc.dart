@@ -15,11 +15,9 @@ class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   @override
   AuthenticationState get initialState => Uninitialized();
-  final Auth _auth;
+  final Auth auth;
 
-  AuthenticationBloc({@required Auth auth})
-      : assert(auth != null),
-        _auth = auth;
+  AuthenticationBloc({@required Auth this.auth});
 
   @override
   Stream<AuthenticationState> mapEventToState(
@@ -40,10 +38,10 @@ class AuthenticationBloc
   /// return Unauthenticated otherwise
   Stream<AuthenticationState> _mapAppStartedToState() async* {
     /// if some user isn't already authenticated
-    if (!await _auth.isAuthenticated) {
+    if (!await auth.isAuthenticated) {
       //
       /// auth initilization methods are used here
-      final user = await _auth.initialize;
+      final user = await auth.initialize;
 
       /// if authd user is found/not found
       if (user == null)
@@ -53,7 +51,7 @@ class AuthenticationBloc
         yield Authenticated(user);
       }
     } else {
-      yield Authenticated(_auth.curUser);
+      yield Authenticated(auth.curUser);
     }
   }
 
@@ -61,7 +59,7 @@ class AuthenticationBloc
     /// use auth authentication methods
     /// to login with given user model
     /// or create new Entity from it
-    final user = await _auth.authenticate(model);
+    final user = await auth.authenticate(model);
     if (user == null)
 
       /// on any error user will be equal null

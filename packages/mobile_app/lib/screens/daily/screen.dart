@@ -18,13 +18,25 @@ class DailyScreen extends StatelessWidget {
   DailyScreen({@required this.dt});
   @override
   Widget build(BuildContext context) {
+    if (dt == dtDay)
+      return TodayScreen(dt: dt);
+    else
+      return _DailyScreen(dt: dt);
+  }
+}
+
+class TodayScreen extends StatelessWidget {
+  int dt;
+  TodayScreen({@required this.dt});
+  @override
+  Widget build(BuildContext context) {
     final usersRepo = context.watch<UsersRepositoryFlutter>();
-    int currentDay = dtDay;
 
     UserPollBloc userPollBloc = context.bloc<UserPollBloc>();
-
     ProphecyBloc prophet = context.bloc<ProphecyBloc>();
+
     prophet.add(CalculateProphecy(dt));
+    userPollBloc.add(UserPollRestartEvent());
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -76,6 +88,32 @@ class DailyScreen extends StatelessWidget {
                 }),
 
             // @prophecies
+            SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Prophecy(user: usersRepo.current)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// all other days
+class _DailyScreen extends StatelessWidget {
+  int dt;
+  _DailyScreen({@required this.dt});
+  @override
+  Widget build(BuildContext context) {
+    final usersRepo = context.watch<UsersRepositoryFlutter>();
+    ProphecyBloc prophet = context.bloc<ProphecyBloc>();
+    prophet.add(CalculateProphecy(dt));
+
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: SafeArea(
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
             SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Prophecy(user: usersRepo.current)),

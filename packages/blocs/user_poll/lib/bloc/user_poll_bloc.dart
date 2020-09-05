@@ -26,12 +26,14 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   }
 
   @override
-  UserPollState get initialState =>
-      (user.pollAvailability) ? UserPollLoadingState() : UserPollIsDisabled();
+  UserPollState get initialState => (users.current.pollAvailability)
+      ? UserPollLoadingState()
+      : UserPollIsDisabled();
 
   //
 
-  Stream<UserPollState> _businessLogicStart(
+  @override
+  Stream<UserPollState> mapEventToState(
     UserPollEvent event,
   ) async* {
     //
@@ -57,6 +59,9 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
       //
 
       if (user.pollAvailability /*is true*/) {
+        /// first, we will show a loading state
+        yield UserPollLoadingState();
+
         /// if not loaded, but enabled for cur user
         yield* _loadPollsForCurrentUser(event);
       }
@@ -108,15 +113,13 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
         yield initialState;
         return;
     }
-    yield* _businessLogicStart(UserPollRestartEvent());
+    yield* mapEventToState(UserPollRestartEvent());
   }
 
   Stream<UserPollState> _loadPollsForCurrentUser(
     UserPollEvent event,
   ) async* {
     //
-    /// first, we will show a loading state
-    yield UserPollLoadingState();
 
     /// then we will load our polls repository
     final wasLoaded = await repo.load(user.id);
@@ -191,15 +194,5 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
         yield* _processActionsThatNeedReload(event);
         break;
     }
-  }
-
-  //
-
-  //-----------------------------------------------------------------------
-  @override
-  Stream<UserPollState> mapEventToState(
-    UserPollEvent event,
-  ) async* {
-    yield* _businessLogicStart(event);
   }
 }
