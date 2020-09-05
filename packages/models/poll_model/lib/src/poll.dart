@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:poll_model/poll_model.dart';
 
 part 'poll.g.dart';
 
@@ -12,6 +13,23 @@ enum PollModelType {
   RELATIONSHIPS,
   SELFDEVELOPMENT,
   PHYSICAL_ACTIVITY,
+}
+
+extension ToPollModel on String {
+  PollModelType toPollModel() {
+    switch (this) {
+      case 'MOOD':
+        return PollModelType.MOOD;
+      case 'PRODUCTIVITY':
+        return PollModelType.PRODUCTIVITY;
+      case 'RELATIONSHIPS':
+        return PollModelType.RELATIONSHIPS;
+      case 'SELFDEVELOPMENT':
+        return PollModelType.SELFDEVELOPMENT;
+      case 'PHYSICAL_ACTIVITY':
+        return PollModelType.PHYSICAL_ACTIVITY;
+    }
+  }
 }
 
 @JsonSerializable()

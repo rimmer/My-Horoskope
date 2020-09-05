@@ -59,14 +59,6 @@ class TodayScreen extends StatelessWidget {
                         size: 32,
                       );
 
-                    case UserPollLoadingErrorState:
-                      print("User polls was not loaded because of error");
-                      return Icon(
-                        Icons.error_outline,
-                        size: 32,
-                        color: AppColors.accentDark,
-                      );
-
                     case UserPollIsDisabled:
                       print("User polls are disabled for current user");
                       return PollSettings();

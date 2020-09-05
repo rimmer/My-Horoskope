@@ -25,12 +25,13 @@ class UserPoll {
   PollModel mood;
 
   /// all other poll types, that defaults to mood poll
-  List<PollModel> details = [];
+  List<PollModel> details;
 
   UserPoll({
     @required this.dt,
     this.voted = false,
     @required int mood,
+    this.details,
     int productivity,
     int relationships,
     int selfdevelopment,
@@ -40,22 +41,25 @@ class UserPoll {
       type: PollModelType.MOOD,
       value: mood,
     );
-    this.details.add(PollModel(
-          type: PollModelType.PRODUCTIVITY,
-          value: productivity ?? mood,
-        ));
-    this.details.add(PollModel(
-          type: PollModelType.RELATIONSHIPS,
-          value: relationships ?? mood,
-        ));
-    this.details.add(PollModel(
-          type: PollModelType.SELFDEVELOPMENT,
-          value: selfdevelopment ?? mood,
-        ));
-    this.details.add(PollModel(
-          type: PollModelType.PHYSICAL_ACTIVITY,
-          value: physicalActivity ?? mood,
-        ));
+    if (details == null) {
+      details = [];
+      this.details.add(PollModel(
+            type: PollModelType.PRODUCTIVITY,
+            value: productivity ?? mood,
+          ));
+      this.details.add(PollModel(
+            type: PollModelType.RELATIONSHIPS,
+            value: relationships ?? mood,
+          ));
+      this.details.add(PollModel(
+            type: PollModelType.SELFDEVELOPMENT,
+            value: selfdevelopment ?? mood,
+          ));
+      this.details.add(PollModel(
+            type: PollModelType.PHYSICAL_ACTIVITY,
+            value: physicalActivity ?? mood,
+          ));
+    }
   }
 
   int val(int index) => this.details[index].value;

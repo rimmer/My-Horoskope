@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:poll_model/poll_model.dart';
 import 'package:polls_repository/polls_repository.dart';
 import 'package:userpoll/userpoll.dart';
 import 'package:storage_access/storage_access.dart' as storage;
@@ -23,6 +24,7 @@ const userPollsFileNameSuffix = ".json";
 String _fileLocation(int userid) =>
     "$userPollsFileNamePrefix$userid$userPollsFileNameSuffix";
 
+@JsonSerializable()
 class PollsRepositoryJson extends PollsRepository {
   int _lastUserId;
 
@@ -31,7 +33,7 @@ class PollsRepositoryJson extends PollsRepository {
 
   @override
   Future<bool> save(int userid) async => await storage.write(
-        data: json.encode(curUserPolls.toJson()),
+        data: json.encode(this.toJson()),
         asFile: _fileLocation(userid),
       );
 
@@ -40,15 +42,42 @@ class PollsRepositoryJson extends PollsRepository {
     _lastUserId = userid;
     try {
       final red = await storage.read(fromFile: _fileLocation(userid));
+      print(red);
+
       if (red != null) {
-        curUserPolls.fromJson(json.decode(red));
+        final decoded = json.decode(red);
+
+        final neededTag = decoded["curUserPolls"] as List<dynamic>;
+
+        //
+
+        for (dynamic item in neededTag) {
+          final details = item['details'] as List;
+
+          final toAdd = UserPoll(
+              dt: item['dt'] as int,
+              voted: item['voted'] as bool,
+              mood: item['mood'] as int,
+              details: []);
+
+          for (item in details) {
+            toAdd.details.add(PollModel(
+              type: (item['type'] as String).toPollModel(),
+              value: item['value'] as int,
+            ));
+          }
+
+          curUserPolls.add(toAdd);
+        }
+
         return true;
+        //
       } else {
         return false;
       }
     } catch (_) {
       print(_);
-      return await this.save(userid);
+      return false;
     }
   }
 
@@ -56,6 +85,7 @@ class PollsRepositoryJson extends PollsRepository {
   /// for the start of current day
   ///
   /// and tries to find it in the list of user polls
+  /// @IMPORTANT: delete todayPoll set/load from generated file
   @override
   UserPoll get todayPoll {
     final today = dtDay;
@@ -73,24 +103,10 @@ class PollsRepositoryJson extends PollsRepository {
     }
     this.save(_lastUserId);
   }
-}
 
-extension Json on List<UserPoll> {
-  Map<String, Object> toJson() => _UserPollListWrapper(this).toJson();
-  fromJson(Map<String, Object> json) {
-    final wrapper = _UserPollListWrapper.fromJson(json);
-    this.clear();
-    this.addAll(wrapper.wrapped);
-  }
-}
+  Map<String, Object> toJson() => _$PollsRepositoryJsonToJson(this);
 
-@JsonSerializable()
-class _UserPollListWrapper {
-  List<UserPoll> wrapped;
-  _UserPollListWrapper(this.wrapped);
-
-  Map<String, Object> toJson() => _$_UserPollListWrapperToJson(this);
-
-  static _UserPollListWrapper fromJson(Map<String, Object> json) =>
-      _$_UserPollListWrapperFromJson(json);
+  /// does not work correctly
+  static PollsRepositoryJson fromJson(Map<String, Object> json) =>
+      _$PollsRepositoryJsonFromJson(json);
 }

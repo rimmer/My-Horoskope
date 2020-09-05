@@ -122,35 +122,25 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
     //
 
     /// then we will load our polls repository
-    final wasLoaded = await repo.load(user.id);
+    await repo.load(user.id);
 
-    if (wasLoaded == false) {
-      /// if repository was not loaded correctly, show loading error state
-      yield UserPollLoadingErrorState();
+    /// then set the current poll by a todays poll
+    current = await repo.todayPoll;
+
+    if (current == null) {
+      /// if no todays poll exists, create one
+      current = UserPoll(dt: dtDay, mood: 3);
+
+      /// and add it to repo
+      repo.todayPoll = current;
+
+      /// then save it
+      repo.save(user.id);
     }
+    loaded = true;
 
-    //
-
-    else {
-      /// if our repository was loaded correctly,
-      /// then set the current poll by a todays poll
-      current = await repo.todayPoll;
-
-      if (current == null) {
-        /// if no todays poll exists, create one
-        current = UserPoll(dt: dtDay, mood: 3);
-
-        /// and add it to repo
-        repo.todayPoll = current;
-
-        /// then save it
-        await repo.save(user.id);
-      }
-      loaded = true;
-
-      /// and finally, show our poll
-      _showThePoll();
-    }
+    /// and finally, show our poll
+    yield* _showThePoll();
   }
 
   Stream<UserPollState> _showThePoll() async* {
@@ -181,6 +171,7 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
       case UserPollSwitchSimpleEvent:
       case UserPollSwitchComplexEvent:
         user.pollsAreComplex = !user.pollsAreComplex;
+        users.write();
         yield* _showThePollUnvoted();
         break;
 

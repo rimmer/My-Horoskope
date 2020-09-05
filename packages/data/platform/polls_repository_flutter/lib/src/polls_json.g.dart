@@ -1,4 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+/// @IMPORTANT: delete todayPoll set/load from here
 
 part of 'polls_json.dart';
 
@@ -6,17 +7,16 @@ part of 'polls_json.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UserPollListWrapper _$_UserPollListWrapperFromJson(Map<String, dynamic> json) {
-  return _UserPollListWrapper(
-    (json['wrapped'] as List)
+PollsRepositoryJson _$PollsRepositoryJsonFromJson(Map<String, dynamic> json) {
+  return PollsRepositoryJson()
+    ..curUserPolls = (json['curUserPolls'] as List)
         ?.map((e) =>
             e == null ? null : UserPoll.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-  );
+        ?.toList();
 }
 
-Map<String, dynamic> _$_UserPollListWrapperToJson(
-        _UserPollListWrapper instance) =>
+Map<String, dynamic> _$PollsRepositoryJsonToJson(
+        PollsRepositoryJson instance) =>
     <String, dynamic>{
-      'wrapped': instance.wrapped,
+      'curUserPolls': instance.curUserPolls,
     };

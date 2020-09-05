@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:int_datetime/int_datetime.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 
 import 'package:user_poll/bloc.dart';
 import 'package:language/language.dart';
 import 'package:poll_model/poll_model.dart';
-import 'package:userpoll/userpoll.dart';
 import 'magic_poll.dart';
 
 class YesterdayPollSimple extends StatelessWidget {
