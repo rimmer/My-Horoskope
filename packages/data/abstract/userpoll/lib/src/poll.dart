@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:poll_model/poll_model.dart';
 
-part 'poll.g.dart';
+part 'poll.g.changed.dart';
 
 const int POLL_DEFAULT_INIT_VALUE = 3;
 
