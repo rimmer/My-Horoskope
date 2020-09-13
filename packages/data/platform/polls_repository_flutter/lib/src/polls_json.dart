@@ -32,6 +32,7 @@ class PollsRepositoryJson extends PollsRepository {
 
   @override
   Future<bool> save(int userid) async => await storage.write(
+        // @TODO dart-json-stream-parser
         data: json.encode(this.toJson()),
         asFile: _fileLocation(userid),
       );
@@ -41,13 +42,15 @@ class PollsRepositoryJson extends PollsRepository {
     _lastUserId = userid;
     try {
       final red = await storage.read(fromFile: _fileLocation(userid));
-      if (red != null) {
-        final pollsFromFile = fromJson(json.decode(red)).curUserPolls;
-        this.curUserPolls.addAll(pollsFromFile);
-        return true;
-      } else {
-        return false;
-      }
+
+      if (red == null) return false;
+      //
+
+      final pollsFromFile = fromJson(json.decode(red)).curUserPolls;
+      this.curUserPolls.addAll(pollsFromFile);
+      return true;
+
+      //
     } catch (_) {
       return false;
     }
