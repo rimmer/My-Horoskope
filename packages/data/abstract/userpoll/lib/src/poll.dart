@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:poll_model/poll_model.dart';
 
-part 'poll.g.dart';
+part 'poll.g.changed.dart';
 
 const int POLL_DEFAULT_INIT_VALUE = 3;
 
@@ -16,6 +18,9 @@ class UserPoll {
   /// milliseconds since UNIX epoch of the start of the day, when poll were created
   int dt;
 
+  /// if poll was voted
+  bool voted;
+
   /// main poll model type, that must exist independent from future changes
   PollModel mood;
 
@@ -24,6 +29,7 @@ class UserPoll {
 
   UserPoll({
     @required this.dt,
+    this.voted = false,
     @required int mood,
     int productivity,
     int relationships,
@@ -83,8 +89,47 @@ class UserPoll {
     return details[pollIndx(type)];
   }
 
+  void pollSet(PollModelType type, int value) {
+    //
+
+    if (type == PollModelType.MOOD) {
+      this.mood = PollModel(
+        type: type,
+        value: value,
+      );
+      return;
+    }
+
+    //
+
+    if (details[pollIndx(type)] != null)
+      details[pollIndx(type)] = PollModel(
+        type: type,
+        value: value,
+      );
+  }
+
+  void pollSetAll(int value) {
+    this.mood = PollModel(
+      type: PollModelType.MOOD,
+      value: value,
+    );
+
+    for (int indx = 0; indx < details.length; indx++) {
+      details[indx] = PollModel(
+        value: value,
+        type: details[indx].type,
+      );
+    }
+  }
+
   Map<String, Object> toJson() => _$UserPollToJson(this);
 
   static UserPoll fromJson(Map<String, Object> json) =>
       _$UserPollFromJson(json);
+
+  @override
+  String toString() {
+    return json.encode(this.toJson());
+  }
 }

@@ -46,10 +46,9 @@ class PollSettingsState extends State<PollSettings> {
               actions: <Widget>[
                 GradientFlatButton(
                   onPressed: () {
-                    usersRepo.pollSettingsSetter(
-                        availability: poll.wrapped, studying: studying.wrapped);
-                    pollBloc.add(PollUsed(
-                        poll: pollBloc.currentPoll, enabled: poll.wrapped));
+                    pollBloc.add(UserPollOnOffEvent(
+                        availability: poll.wrapped,
+                        studying: studying.wrapped));
                     Navigator.of(context).pop();
                   },
                   child: Text(

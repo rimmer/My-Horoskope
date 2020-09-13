@@ -6,10 +6,26 @@ part of 'user_poll_state.dart';
 // ToStringGenerator
 // **************************************************************************
 
-String _$UserPollInitialToString(UserPollInitial o) {
-  return """UserPollInitial{enabled: ${o.enabled}, isSimple: ${o.isSimple}, poll: ${o.poll}}""";
+String _$UserPollLoadingStateToString(UserPollLoadingState o) {
+  return """UserPollLoadingState{}""";
 }
 
-String _$UserPollChangedToString(UserPollChanged o) {
-  return """UserPollChanged{enabled: ${o.enabled}, isSimple: ${o.isSimple}, poll: ${o.poll}}""";
+String _$UserPollIsDisabledToString(UserPollIsDisabled o) {
+  return """UserPollIsDisabled{}""";
+}
+
+String _$UserPollLoadingErrorStateToString(UserPollLoadingErrorState o) {
+  return """UserPollLoadingErrorState{}""";
+}
+
+String _$UserPollIsVotedStateToString(UserPollIsVotedState o) {
+  return """UserPollIsVotedState{}""";
+}
+
+String _$UserPollIsComplexStateToString(UserPollIsComplexState o) {
+  return """UserPollIsComplexState{}""";
+}
+
+String _$UserPollIsSimpleStateToString(UserPollIsSimpleState o) {
+  return """UserPollIsSimpleState{}""";
 }

@@ -33,7 +33,7 @@ class InitRoute extends StatelessWidget {
 
               //
 
-              final usersRepo = context.watch<UsersRepositoryFlutter>();
+              final usersRepo = authBloc.auth.repository;
               final pollsRepo = PollsRepositoryFlutter();
 
               //
@@ -52,8 +52,8 @@ class InitRoute extends StatelessWidget {
                   providers: [
                     BlocProvider<UserPollBloc>(
                       create: (context) => UserPollBloc(
-                        enabled: usersRepo.current.pollAvailability,
-                        pollsRepo: pollsRepo,
+                        users: usersRepo,
+                        repo: pollsRepo,
                       ),
                     ),
                     BlocProvider<ProphecyBloc>(

@@ -6,7 +6,7 @@ import 'package:userpoll/userpoll.dart';
 import 'package:storage_access/storage_access.dart' as storage;
 import 'package:int_datetime/int_datetime.dart';
 
-part 'polls_json.g.dart';
+part 'polls_json.g.changed.dart';
 
 /// implements polls repository
 /// using json and storage_access flutter package
@@ -23,6 +23,7 @@ const userPollsFileNameSuffix = ".json";
 String _fileLocation(int userid) =>
     "$userPollsFileNamePrefix$userid$userPollsFileNameSuffix";
 
+@JsonSerializable()
 class PollsRepositoryJson extends PollsRepository {
   int _lastUserId;
 
@@ -30,27 +31,26 @@ class PollsRepositoryJson extends PollsRepository {
   List<UserPoll> curUserPolls = [];
 
   @override
-  Future<bool> save(int userid) async {
-    _lastUserId = userid;
-
-    return (curUserPolls.isNotEmpty)
-        ? await storage.write(
-            data: json.encode(curUserPolls.toJson()),
-            asFile: _fileLocation(userid),
-          )
-        : false;
-  }
+  Future<bool> save(int userid) async => await storage.write(
+        // @TODO dart-json-stream-parser
+        data: json.encode(this.toJson()),
+        asFile: _fileLocation(userid),
+      );
 
   @override
   Future<bool> load(int userid) async {
     _lastUserId = userid;
     try {
       final red = await storage.read(fromFile: _fileLocation(userid));
-      if (red != null) {
-        curUserPolls.fromJson(json.decode(red));
-        return true;
-      } else
-        return false;
+
+      if (red == null) return false;
+      //
+
+      final pollsFromFile = fromJson(json.decode(red)).curUserPolls;
+      this.curUserPolls.addAll(pollsFromFile);
+      return true;
+
+      //
     } catch (_) {
       return false;
     }
@@ -77,24 +77,9 @@ class PollsRepositoryJson extends PollsRepository {
     }
     this.save(_lastUserId);
   }
-}
 
-extension Json on List<UserPoll> {
-  Map<String, Object> toJson() => _UserPollListWrapper(this).toJson();
-  fromJson(Map<String, Object> json) {
-    final wrapper = _UserPollListWrapper.fromJson(json);
-    this.clear();
-    this.addAll(wrapper.wrapped);
-  }
-}
+  Map<String, Object> toJson() => _$PollsRepositoryJsonToJson(this);
 
-@JsonSerializable()
-class _UserPollListWrapper {
-  List<UserPoll> wrapped;
-  _UserPollListWrapper(this.wrapped);
-
-  Map<String, Object> toJson() => _$_UserPollListWrapperToJson(this);
-
-  static _UserPollListWrapper fromJson(Map<String, Object> json) =>
-      _$_UserPollListWrapperFromJson(json);
+  static PollsRepositoryJson fromJson(Map<String, Object> json) =>
+      _$PollsRepositoryJsonFromJson(json);
 }

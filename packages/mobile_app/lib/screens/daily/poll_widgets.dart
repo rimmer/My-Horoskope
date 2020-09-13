@@ -1,16 +1,14 @@
 import 'package:app/components/gradient_flatbutton.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:provider/provider.dart';
 import 'package:language/language.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:app/theme/app_colors.dart';
-import 'package:algorithm/algorithm.dart';
 import 'package:app/components/poll_settings.dart';
 import 'package:app/components/yesterday_poll.dart';
 import 'package:poll_model/poll_model.dart';
+import 'package:user_poll/bloc/user_poll_bloc.dart';
 
 const double BASE_POLL_HEIGHT = 256.0;
 const double EXTENDED_POLL_HEIGHT = 548.0;
@@ -25,7 +23,7 @@ class PollSimpleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //
     /// mutable wrappers
-    final yestFeelings = bloc.pollsRepo.todayPoll;
+    final yestFeelings = bloc.repo.todayPoll;
 
     final MutableInteger mood = MutableInteger(yestFeelings.mood.value);
 
@@ -47,6 +45,7 @@ class PollSimpleWidget extends StatelessWidget {
           //
 
           YesterdayPollSimple(
+            userPollBloc: bloc,
             mood: mood,
           ),
 
@@ -55,7 +54,11 @@ class PollSimpleWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(vertical: 32),
             child: GradientFlatButton(
-              onPressed: () {},
+              onPressed: () {
+                bloc.current.voted = true;
+                bloc.repo.save(bloc.user.id);
+                bloc.add(UserPollRestartEvent());
+              },
               child: Text(
                 lang.clarifyForecast.toUpperCase(),
                 style: TextStyle(
@@ -103,7 +106,7 @@ class PollExtendedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     //
     /// mutable wrappers
-    final yestFeelings = bloc.pollsRepo.todayPoll;
+    final yestFeelings = bloc.repo.todayPoll;
 
     final MutableInteger mood = MutableInteger(yestFeelings.mood.value);
     final MutableInteger productivity =
@@ -131,6 +134,7 @@ class PollExtendedWidget extends StatelessWidget {
           //
 
           YesterdayPollExtended(
+            userPollBloc: bloc,
             mood: mood,
             productivity: productivity,
             relationship: relationship,
@@ -143,7 +147,11 @@ class PollExtendedWidget extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(vertical: 32),
             child: GradientFlatButton(
-              onPressed: () {},
+              onPressed: () {
+                bloc.current.voted = true;
+                bloc.repo.save(bloc.user.id);
+                bloc.add(UserPollRestartEvent());
+              },
               child: Text(
                 lang.clarifyForecast.toUpperCase(),
                 style: TextStyle(
@@ -193,8 +201,8 @@ class _UserPollTopPart extends StatelessWidget {
               // Simple
               GestureDetector(
                 onTap: () {
-                  if (bloc.isSimple == false)
-                    bloc.add(PollSimple(poll: bloc.currentPoll));
+                  if (bloc.user.pollsAreComplex == true)
+                    bloc.add(UserPollSwitchSimpleEvent());
                 },
                 child: Container(
                   width: 96.0,
@@ -205,9 +213,9 @@ class _UserPollTopPart extends StatelessWidget {
                         lang.simple.toUpperCase(),
                         style: TextStyle(
                           fontSize: 14,
-                          color: (bloc.isSimple)
-                              ? AppColors.textPrimary
-                              : AppColors.textDisabled,
+                          color: (bloc.user.pollsAreComplex)
+                              ? AppColors.textDisabled
+                              : AppColors.textPrimary,
                         ),
                       ),
                       Container(
@@ -215,9 +223,9 @@ class _UserPollTopPart extends StatelessWidget {
                         child: Divider(
                           height: 16.0,
                           thickness: 2,
-                          color: (bloc.isSimple)
-                              ? AppColors.accentDark
-                              : AppColors.textDisabled,
+                          color: (bloc.user.pollsAreComplex)
+                              ? AppColors.textDisabled
+                              : AppColors.accentDark,
                         ),
                       ),
                     ],
@@ -227,8 +235,8 @@ class _UserPollTopPart extends StatelessWidget {
               // Complex
               GestureDetector(
                 onTap: () {
-                  if (bloc.isSimple == true)
-                    bloc.add(PollComplex(poll: bloc.currentPoll));
+                  if (bloc.user.pollsAreComplex == false)
+                    bloc.add(UserPollSwitchComplexEvent());
                 },
                 child: Container(
                   width: 128.0,
@@ -239,9 +247,9 @@ class _UserPollTopPart extends StatelessWidget {
                         lang.extended.toUpperCase(),
                         style: TextStyle(
                           fontSize: 14,
-                          color: (bloc.isSimple)
-                              ? AppColors.textDisabled
-                              : AppColors.textPrimary,
+                          color: (bloc.user.pollsAreComplex)
+                              ? AppColors.textPrimary
+                              : AppColors.textDisabled,
                         ),
                       ),
                       Container(
@@ -249,9 +257,9 @@ class _UserPollTopPart extends StatelessWidget {
                         child: Divider(
                           height: 16.0,
                           thickness: 2,
-                          color: (bloc.isSimple)
-                              ? AppColors.textDisabled
-                              : AppColors.accentDark,
+                          color: (bloc.user.pollsAreComplex)
+                              ? AppColors.accentDark
+                              : AppColors.textDisabled,
                         ),
                       ),
                     ],

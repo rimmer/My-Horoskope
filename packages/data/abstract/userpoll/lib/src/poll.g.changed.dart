@@ -9,7 +9,8 @@ part of 'poll.dart';
 UserPoll _$UserPollFromJson(Map<String, dynamic> json) {
   return UserPoll(
     dt: json['dt'] as int,
-    mood: json['mood'] as int,
+    voted: json['voted'] as bool,
+    mood: PollModel.fromJson(json['mood'] as Map<String, dynamic>).value,
   )..details = (json['details'] as List)
       ?.map((e) =>
           e == null ? null : PollModel.fromJson(e as Map<String, dynamic>))
@@ -18,6 +19,7 @@ UserPoll _$UserPollFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$UserPollToJson(UserPoll instance) => <String, dynamic>{
       'dt': instance.dt,
+      'voted': instance.voted,
       'mood': instance.mood,
       'details': instance.details,
     };

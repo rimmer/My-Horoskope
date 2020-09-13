@@ -6,18 +6,26 @@ part of 'user_poll_event.dart';
 // ToStringGenerator
 // **************************************************************************
 
-String _$PollNotUsedToString(PollNotUsed o) {
-  return """PollNotUsed{enabled: ${o.enabled}, poll: ${o.poll}}""";
+String _$UserPollRestartEventToString(UserPollRestartEvent o) {
+  return """UserPollRestartEvent{}""";
 }
 
-String _$PollUsedToString(PollUsed o) {
-  return """PollUsed{enabled: ${o.enabled}, poll: ${o.poll}}""";
+String _$UserPollOnOffEventToString(UserPollOnOffEvent o) {
+  return """UserPollOnOffEvent{availability: ${o.availability}, studying: ${o.studying}}""";
 }
 
-String _$PollSimpleToString(PollSimple o) {
-  return """PollSimple{poll: ${o.poll}}""";
+String _$UserPollChangeUserEventToString(UserPollChangeUserEvent o) {
+  return """UserPollChangeUserEvent{user: ${o.user}}""";
 }
 
-String _$PollComplexToString(PollComplex o) {
-  return """PollComplex{poll: ${o.poll}}""";
+String _$UserPollSwitchSimpleEventToString(UserPollSwitchSimpleEvent o) {
+  return """UserPollSwitchSimpleEvent{}""";
+}
+
+String _$UserPollSwitchComplexEventToString(UserPollSwitchComplexEvent o) {
+  return """UserPollSwitchComplexEvent{}""";
+}
+
+String _$UserPollVoteEventToString(UserPollVoteEvent o) {
+  return """UserPollVoteEvent{}""";
 }
