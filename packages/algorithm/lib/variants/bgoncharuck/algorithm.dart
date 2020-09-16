@@ -7,8 +7,10 @@ import 'package:userpoll/userpoll.dart';
 import 'package:algorithm/astro.dart';
 import 'methods_userpollcalc.dart';
 import '../../interface.dart';
+import '../../astro.dart';
 
 part 'base_hardcoded.dart';
+part 'base_astrology.dart';
 
 const int DAYS_TO_COUNT_IN_POLLS = 7;
 const TODAY_POLL_PERCENT = 10;
