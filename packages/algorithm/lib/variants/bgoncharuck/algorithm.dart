@@ -5,6 +5,7 @@ import 'package:prophecy_model/prophecy_model.dart';
 import 'package:users_repository/users_repository.dart';
 import 'package:userpoll/userpoll.dart';
 import 'package:algorithm/astro.dart';
+import 'methods_base.dart';
 import 'methods_userpollcalc.dart';
 import '../../interface.dart';
 import '../../astro.dart';
