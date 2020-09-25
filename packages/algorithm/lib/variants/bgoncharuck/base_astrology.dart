@@ -6,7 +6,57 @@ class _Astrology implements _OldWisdom {
   }
 }
 
-int dayOfWeekCalc(DateTime birthDate, DateTime cur, ProphecyType prophecy) {}
+int dayOfWeekCalc(DateTime birthDate, DateTime cur, ProphecyType prophecy) {
+  int addition;
+
+  switch (prophecy) {
+    case ProphecyType.INTERNAL_STRENGTH:
+      addition = 1;
+      break;
+
+    case ProphecyType.MOODLET:
+      addition = 6;
+      break;
+
+    case ProphecyType.AMBITION:
+      addition = 5;
+      break;
+
+    case ProphecyType.INTELLIGENCE:
+      addition = 2;
+      break;
+
+    case ProphecyType.LUCK:
+      addition = 3;
+      break;
+  }
+
+  final base = dayOfWeekDiff(birthDate, cur, addition: addition) * 4;
+
+  /// bonus 4 points
+  if (_astroSignToDayOfWeek[birthDate.millisecondsSinceEpoch.astroSign] ==
+      cur.weekday) return base + 4;
+
+  return base;
+}
+
+const Map<String, int> _astroSignToDayOfWeek = {
+  "Aries": 2,
+  "Taurus": 5,
+  "Gemini": 3,
+  "Cancer": 1,
+  "Leo": 7,
+  "Virgo": 3,
+  "Libra": 5,
+  "Scorpio": 2,
+  "Sagittarius": 4,
+  "Capricorn": 6,
+  // Aquarius is under Uranus and Saturn, but I place Jupiter here,
+  // Jupiter is Thursday
+  "Aquarius": 4,
+  // "Aquarius": 6,
+  "Pisces": 1,
+};
 
 /// in: day of a month (from 1 to 31), birthdaay and current days
 /// out: multiple of 4, 9 numbers: 36, 32, 28, 24.. 8, 4
