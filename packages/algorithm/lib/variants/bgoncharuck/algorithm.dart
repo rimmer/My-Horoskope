@@ -11,8 +11,14 @@ import 'methods_userpollcalc.dart';
 import '../../interface.dart';
 import '../../astro.dart';
 
+// - - -
+// hardcoded
 part 'base_hardcoded.dart';
+// - - -
+// astrology
 part 'base_astrology.dart';
+part 'base_astrology_numerologic.dart';
+part 'base_astrology_tarot.dart';
 
 const int DAYS_TO_COUNT_IN_POLLS = 7;
 const TODAY_POLL_PERCENT = 10;
