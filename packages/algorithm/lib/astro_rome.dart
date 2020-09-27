@@ -12,9 +12,11 @@
 //   October,
 //   November,
 //   December,
+// None,
 // }
 
 enum RomGod {
+  None,
   Mars,
   Venus,
   Mercury,
@@ -27,7 +29,7 @@ enum RomGod {
   Neptune,
 }
 
-// this one better, but we can't use it
+// this relation is best, but we can't use it
 // const AncientRomMonthToGod = {
 //   RomMonAncient.Martius: RomGod.Mars,
 //   RomMonAncient.Aprilis: RomGod.Venus,
@@ -60,6 +62,10 @@ enum RomGod {
 // RomMon.Februarius: RomGod.Neptune,
 // };
 
+/// Month names have incorrect relationship
+/// to the God's name and Greek/Rome astrology
+/// but, this is what we use, because of
+/// 2 calendar changes
 const RomMonthToGod = {
   RomMon.Martius: RomGod.Neptune,
   RomMon.Aprilis: RomGod.Mars,
@@ -91,12 +97,62 @@ enum RomMon {
   December,
 }
 
-extension RomanPatron on DateTime {
-  RomMon get romanPatron {
-    RomMon patron;
+extension RomePatron on DateTime {
+  RomGod get patron {
+    //
+
+    RomMon patron = RomMon.December;
+
     switch (this.month) {
-      // @TODO
+      case 1:
+        patron = RomMon.Ianuarius;
+        break;
+
+      case 2:
+        patron = RomMon.Februarius;
+        break;
+
+      case 3:
+        patron = RomMon.Martius;
+        break;
+
+      case 4:
+        patron = RomMon.Aprilis;
+        break;
+
+      case 5:
+        patron = RomMon.Maius;
+        break;
+
+      case 6:
+        patron = RomMon.Iunius;
+        break;
+
+      case 7:
+        patron = RomMon.Quintilis;
+        break;
+
+      case 8:
+        patron = RomMon.Sextilis;
+        break;
+
+      case 9:
+        patron = RomMon.September;
+        break;
+
+      case 10:
+        patron = RomMon.October;
+        break;
+
+      case 11:
+        patron = RomMon.November;
+        break;
+
+      case 12:
+      default:
+        break;
     }
-    ;
+
+    return RomMonthToGod[patron];
   }
 }
