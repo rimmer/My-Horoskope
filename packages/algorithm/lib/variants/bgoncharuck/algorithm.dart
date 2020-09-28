@@ -12,6 +12,7 @@ import 'methods_userpollcalc.dart';
 import '../../interface.dart';
 import '../../astro.dart';
 import '../../astro_rome.dart';
+import '../../astro_jewish.dart';
 
 // - - -
 // hardcoded

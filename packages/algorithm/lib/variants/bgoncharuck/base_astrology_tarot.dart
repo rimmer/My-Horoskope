@@ -18,8 +18,8 @@ part of 'algorithm.dart';
 /// if any patron matched the sign, then
 /// all prophecy values get:
 /// if minor: +42
-/// if full: +35
-/// if major: +21
+/// if full: +40
+/// if major: +38
 ///
 /// if no patron matched,
 /// ordinaryImpact must be used
@@ -242,9 +242,408 @@ class _Kabbalah {
 
   //
 
-  static const ordinaryImpactMinor = {};
+  static const impactMinor = {
+    /// Wands 0-13
+    // Ace of Wands
+    0: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    // 2 Wands
+    1: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    // ...
+    2: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    3: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    4: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    5: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    6: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    7: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    8: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    9: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    10: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    11: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    12: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    // Aries
+    13: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    /// Pentactles 14-27
+    // Ace Of Pentacles
+    14: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    15: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    16: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    17: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    18: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    19: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    20: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    21: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    22: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    23: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    24: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    25: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    26: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    // Capricorn
+    27: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    /// Swords 28-41
+    // Ace Of Swords
+    28: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    // two of swords
+    29: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    30: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    31: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    32: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    33: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    34: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    35: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    36: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    37: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    38: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    39: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    40: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    // Libra
+    41: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    /// Cups 42-55
+    // Ace Of Cups
+    42: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    43: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    44: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    45: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    46: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    47: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    48: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    49: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    50: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    51: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    52: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    53: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+    54: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    // Cancer
+    55: {
+      TarotSuit.Wands: 0,
+      TarotSuit.Pentacles: 0,
+      TarotSuit.Swords: 0,
+      TarotSuit.Cups: 0,
+    },
+    //
+  };
 
-  static const ordinaryImpactFull = {};
-
-  static const ordinaryImpactMajor = {};
+  static const impactMajor = {};
 }
