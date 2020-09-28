@@ -9,6 +9,14 @@ part 'prophecy_state.g.dart';
 @immutable
 abstract class ProphecyState extends Equatable {
   final Map<ProphecyType, ProphecyEntity> prophecy;
+  double get propheciesSum {
+    double sum = 0.0;
+    prophecy.forEach((key, value) {
+      sum += value.value;
+    });
+    return sum;
+  }
+
   const ProphecyState() : prophecy = null;
   @override
   List<Object> get props => [prophecy];

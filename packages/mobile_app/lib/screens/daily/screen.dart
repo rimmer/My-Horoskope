@@ -50,7 +50,7 @@ class DailyScreen extends StatelessWidget {
             // @prophecies
             SizedBox(
                 height: MediaQuery.of(context).size.height,
-                child: Prophecy(user: usersRepo.current)),
+                child: Prophecy(user: usersRepo.current, dt: dt)),
           ],
         ),
       ),

@@ -118,7 +118,102 @@ class _Kabbalah {
     55: RomGod.Luna
   };
 
-  static const patronFull = {};
+  static const patronFull = {
+    0: RomGod.Mercury,
+    1: RomGod.Luna,
+    2: RomGod.Venus,
+    3: RomGod.Mars,
+    4: RomGod.Venus,
+    5: RomGod.Mercury,
+    6: RomGod.Luna,
+    7: RomGod.Helios,
+    8: RomGod.Mercury,
+    9: RomGod.Jupiter,
+    10: RomGod.Venus,
+    11: RomGod.Neptune,
+    12: RomGod.Pluto,
+    13: RomGod.Jupiter,
+    14: RomGod.Saturn,
+    15: RomGod.Mars,
+    16: RomGod.Uranus,
+    17: RomGod.Neptune,
+    18: RomGod.Helios,
+    19: RomGod.Pluto,
+    20: RomGod.Uranus,
+    21: RomGod.Saturn,
+    //
+
+    22: RomGod.None,
+    23: RomGod.None,
+    24: RomGod.None,
+    25: RomGod.None,
+    26: RomGod.None,
+    27: RomGod.None,
+    28: RomGod.None,
+    29: RomGod.None,
+    30: RomGod.None,
+    31: RomGod.None,
+    32: RomGod.None,
+
+    //
+    33: RomGod.Jupiter,
+    34: RomGod.Helios,
+    35: RomGod.Mars,
+    //
+
+    36: RomGod.None,
+    37: RomGod.None,
+    38: RomGod.None,
+    39: RomGod.None,
+    40: RomGod.None,
+    41: RomGod.None,
+    42: RomGod.None,
+    43: RomGod.None,
+    44: RomGod.None,
+    45: RomGod.None,
+    46: RomGod.None,
+
+    //
+    47: RomGod.Mercury,
+    48: RomGod.Venus,
+    49: RomGod.Saturn,
+    //
+
+    50: RomGod.None,
+    51: RomGod.None,
+    52: RomGod.None,
+    53: RomGod.None,
+    54: RomGod.None,
+    55: RomGod.None,
+    56: RomGod.None,
+    57: RomGod.None,
+    58: RomGod.None,
+    59: RomGod.None,
+    60: RomGod.None,
+
+    //
+    61: RomGod.Mercury,
+    62: RomGod.Uranus,
+    63: RomGod.Venus,
+    //
+
+    64: RomGod.None,
+    65: RomGod.None,
+    66: RomGod.None,
+    67: RomGod.None,
+    68: RomGod.None,
+    69: RomGod.None,
+    70: RomGod.None,
+    71: RomGod.None,
+    72: RomGod.None,
+    73: RomGod.None,
+    74: RomGod.None,
+
+    //
+    75: RomGod.Neptune,
+    76: RomGod.Pluto,
+    77: RomGod.Luna,
+  };
 
   static const patronMajor = {
     0: RomGod.Mercury,

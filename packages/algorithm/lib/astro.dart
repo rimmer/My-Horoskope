@@ -89,6 +89,36 @@ extension BasicAstrology on int {
     /// "must return something" warning solution
     return "Mars";
   }
+
+  String get dayPatron {
+    String patron = "Uranus";
+
+    switch (this.toDateTime.weekday) {
+      case 1:
+        patron = "Sun";
+        break;
+      case 2:
+        patron = "Moon";
+        break;
+      case 3:
+        patron = "Mars";
+        break;
+      case 4:
+        patron = "Mercury";
+        break;
+      case 5:
+        patron = "Jupiter";
+        break;
+      case 6:
+        patron = "Venus";
+        break;
+      case 7:
+        patron = "Saturn";
+        break;
+    }
+
+    return patron;
+  }
 }
 
 extension Karmic on String {
