@@ -2,7 +2,7 @@ part of 'algorithm.dart';
 
 /// use Kabbalah and Calestial Tarot
 /// connects it with rome (greek) astrology
-/// will give from 21 to 42 points (2.1 - 4.2) to every prophecy
+/// will give from 48 to 52 points (2.1 - 4.2) to every prophecy
 ///
 /// minor - 56
 /// probability: 1/56
@@ -645,5 +645,28 @@ class _Kabbalah {
     //
   };
 
-  static const impactMajor = {};
+  static const impactMajor = {
+    0: ProphecyType.LUCK,
+    1: ProphecyType.MOODLET,
+    2: ProphecyType.INTERNAL_STRENGTH,
+    3: ProphecyType.AMBITION,
+    4: ProphecyType.INTELLIGENCE,
+    5: ProphecyType.INTERNAL_STRENGTH,
+    6: ProphecyType.LUCK,
+    7: ProphecyType.AMBITION,
+    8: ProphecyType.INTELLIGENCE,
+    9: ProphecyType.LUCK,
+    10: ProphecyType.MOODLET,
+    11: ProphecyType.INTELLIGENCE,
+    12: ProphecyType.MOODLET,
+    13: ProphecyType.AMBITION,
+    14: ProphecyType.LUCK,
+    15: ProphecyType.AMBITION,
+    16: ProphecyType.LUCK,
+    17: ProphecyType.MOODLET,
+    18: ProphecyType.AMBITION,
+    19: ProphecyType.INTELLIGENCE,
+    20: ProphecyType.LUCK,
+    21: ProphecyType.INTERNAL_STRENGTH
+  };
 }

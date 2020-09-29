@@ -26,13 +26,13 @@ class Prophecy extends StatelessWidget {
     //
     final dt = user.model.birth.toDateTime;
     final sign = user.model.birth.astroSign;
-    //
-
+    final mainPlanet = user.model.birth.astroHousePlanet;
     birthRow.wrapped = Row(
       children: <Widget>[
         SvgPicture.asset("assets/icons/$sign.svg"),
         Text(" ${dt.day}.${dt.month}.${dt.year} ",
             style: TextStyle(fontSize: 14)),
+        SvgPicture.asset("assets/icons/$mainPlanet.svg"),
       ],
     );
   }
@@ -71,10 +71,10 @@ class Prophecy extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         birthRow.wrapped,
-                        SvgPicture.asset(
-                          "assets/icons/$patronPlanet.svg",
-                          color: patronColor,
-                        ),
+                        // SvgPicture.asset(
+                        //   "assets/icons/$patronPlanet.svg",
+                        //   color: patronColor,
+                        // ),
                       ],
                     ),
                   ),
