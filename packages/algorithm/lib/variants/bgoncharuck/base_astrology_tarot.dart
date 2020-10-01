@@ -1,7 +1,7 @@
 part of 'algorithm.dart';
 
 /// use Kabbalah and Calestial Tarot
-/// connects it with rome (greek) astrology
+/// connects it with roman (greek) astrology
 /// will give from 48 to 52 points (2.1 - 4.2) to every prophecy
 ///
 /// minor - 56

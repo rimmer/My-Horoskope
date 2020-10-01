@@ -101,7 +101,7 @@ class _Astrology implements _OldWisdom {
     /// and the day when user was born
     /// for example,
     /// if user were born in 23 of June in 1991
-    /// and todays 20 May of 2020
+    /// and todays 30 September of 2020
     /// it will be: (10692 days lived) % 7
     /// but I decided a god for every prophecy as an addition to days lived
     /// and it will be:
@@ -109,7 +109,65 @@ class _Astrology implements _OldWisdom {
     ///
     /// And then I multiple it on 3
     ///
-    /// Both week name and astrologic sign are decided to some god
-    /// if this Gods has the same name, prophecy get additional 4 points
+    /// Both week name and astrologic sign are decided to some gods
+    /// if these Gods have the same name, prophecy will get additional 4 points
+    ///
+    internalStr += dayOfWeekCalc(
+        birthDate, calculationDate, ProphecyType.INTERNAL_STRENGTH);
+    moodlet += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.MOODLET);
+    ambition +=
+        dayOfWeekCalc(birthDate, calculationDate, ProphecyType.AMBITION);
+    intelligence +=
+        dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTELLIGENCE);
+    luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.LUCK);
+
+    /// @MYSTIC
+    /// this is the most interesting part of an alforithm
+    ///
+    /// Pre-story:
+    /// I spoke with some people that created trending websites about horoskopes
+    /// And mostly, they just figure out something "on their own"
+    /// that had no any connection with astrology.
+    /// That was very disappointing.
+    ///
+    /// But I heard from two peoples that they used "Calesial Tarot"
+    /// Tarot is a cards deck, that came from jewish Kabbalah
+    /// And later on was redone in many formats, from an popular
+    /// card game "Joker"/"Fool" till the use in many ezoterics practices
+    /// "Calesial" tarot was done for astrologic purpose.
+    /// Exactly what we needed. And you will understand why.
+    /// I actually buyed one deck of "Calesial Tarot", nice art work.
+    ///
+    /// About this part of algorithm:
+    /// I used days modulus from previous "Chaotic" idea
+    /// But with modulus 56, 78 and 22.
+    ///
+    /// Calesial tarot has 78 cards
+    /// First 22 cards called major arcana
+    /// Every card represents astrologic sign
+    /// Or planet is Solar system
+    ///
+    /// Next 56 cards divided in groups by 14 cards
+    /// Wands (Fire), Pentactles (Earth), Swords(Air) and Cups(Water)
+    /// Arts on them represents stories from Roman/Greek mythology
+    /// But last 3 arts in every group also represent astrologic signs.
+    /// More of it, every group has an element that represents group of
+    /// astrologic signs. And even last 3 cards has names of its element.
+    /// For example, "King of Wands" is called "Cardinal Fire"
+    /// which is "Aries" in astrology
+    ///
+    ///
+    /// How can we use it in our algorithm?
+    /// We have 78 cards, half of these cards are connected
+    /// to the astrologic signs
+    /// And all 78 cards connected to the elements of the astrologic signs.
+    ///
+    /// We will do modulus %56, %78, %22
+    /// On days that person lived
+    ///
+    /// In modulus %56
+    /// In one day from 56s (probability )
+    /// User will get the card that represents its astrologic sign
+    ///
   }
 }
