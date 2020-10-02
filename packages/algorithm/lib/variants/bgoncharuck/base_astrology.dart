@@ -110,7 +110,7 @@ class _Astrology implements _OldWisdom {
     /// and it will be:
     /// (10692 days lived + prophecy additon) % 7
     ///
-    /// And then I multiple it on 3
+    /// And then I multiple it on 5
     ///
     /// Both week name and astrologic sign are decided to some gods
     /// if these Gods have the same name, prophecy will get additional 4 points

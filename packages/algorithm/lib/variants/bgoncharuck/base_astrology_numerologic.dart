@@ -1,6 +1,6 @@
 part of 'algorithm.dart';
 
-/// 3, 6, 9..18, with bonus 22
+/// 5, 10, 15..30, with bonus 34
 int dayOfWeekCalc(DateTime birthDate, DateTime cur, ProphecyType prophecy) {
   int addition;
 
@@ -26,7 +26,7 @@ int dayOfWeekCalc(DateTime birthDate, DateTime cur, ProphecyType prophecy) {
       break;
   }
 
-  final base = dayOfWeekDiff(birthDate, cur, addition: addition) * 3;
+  final base = dayOfWeekDiff(birthDate, cur, addition: addition) * 5;
 
   /// bonus 4 points
   if (_astroSignToDayOfWeek[birthDate.millisecondsSinceEpoch.astroSign] ==
