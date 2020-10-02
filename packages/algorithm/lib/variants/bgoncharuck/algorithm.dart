@@ -33,7 +33,9 @@ abstract class _OldWisdom {
 
 class OfOldWayMagic implements MagicSpecialization {
   //
-  final _OldWisdom _mage = _Hardcoded();
+  /// Cut the red line here! Here we go
+  // final _OldWisdom _mage = _Hardcoded();
+  final _OldWisdom _mage = _Astrology();
 
   /// asks information from the Old Way adept mage
   Map<ProphecyType, ProphecyEntity> _askInformation(

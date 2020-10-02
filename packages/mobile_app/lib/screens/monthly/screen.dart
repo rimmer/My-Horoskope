@@ -10,7 +10,9 @@ class MonthlyScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SafeArea(
-        child: Prophecy(user: user),
+        child: Prophecy(
+          user: user,
+        ),
       ),
     );
   }
