@@ -23,6 +23,9 @@ class _Astrology implements _OldWisdom {
     String astroSign = birthDateInteger.astroSign;
     DateTime calculationDate = DateTime.fromMillisecondsSinceEpoch(inTimeOf);
     DateTime birthDate = DateTime.fromMillisecondsSinceEpoch(birthDateInteger);
+    int daysLived = (calculationDate.difference(birthDate)).inDays;
+    RomGod userPatron = birthDate.patron;
+    TarotSuit userSuit = elementToTarotSuit(birthDateInteger.astroElement);
     //
 
     /// @BASE base of value placeholders
@@ -166,8 +169,166 @@ class _Astrology implements _OldWisdom {
     /// On days that person lived
     ///
     /// In modulus %56
-    /// In one day from 56s (probability )
-    /// User will get the card that represents its astrologic sign
+    int mod56 = daysLived % 56;
+
+    /// In one day from 56
+    /// User can get the card that represents its astrologic sign
+    bool probabilityMinor = userPatron == _Kabbalah.patronMinor[mod56];
+
     ///
+    /// Probability is 1/56, but 4 signs have probability 2/56
+    /// If with such low probability user gets a card with its sign
+    /// All prophecies get +52 points
+    /// With ideal situation user will have 110 total points in every prophecy
+    /// and will be cutted down to 100.
+    /// But this ideal situation can happen once per 10 years or so.
+
+    /// In modulus %78
+    int mod78 = daysLived % 78;
+
+    /// In 3 days from 78
+    /// User can get the card that represents its astrologic sign
+    bool probabilityFull = userPatron == _Kabbalah.patronFull[mod78];
+
+    ///
+    /// Probability is 3/78 or 1/26
+    /// If with such probability user gets a card with its sign
+    /// All prophecies get +46 points
+    /// With ideal situation user will have 104 total points
+    /// and will be cutted to 100
+    /// But this ideal situation can happen once per 7 years or so
+
+    /// In modulus %22
+    int mod22 = daysLived % 22;
+
+    /// In 2 days from 22
+    /// User can get card that represents its astrologic sign
+    bool probabilityMajor = userPatron == _Kabbalah.patronMajor[mod22];
+
+    ///
+    /// Probability is 2/22 or 1/11
+    /// All prophecies wil get +42 points
+    /// With ideal situation user will have a total, maximum 100 points
+    /// But it can happen once per 3 years or so
+
+    if (probabilityMinor) {
+      //
+      internalStr += 52;
+      moodlet += 52;
+      ambition += 52;
+      intelligence += 52;
+      luck += 52;
+      //
+    } else if (probabilityFull) {
+      //
+      internalStr += 46;
+      moodlet += 46;
+      ambition += 46;
+      intelligence += 46;
+      luck += 46;
+      //
+    } else if (probabilityMajor) {
+      //
+      internalStr += 42;
+      moodlet += 42;
+      ambition += 42;
+      intelligence += 42;
+      luck += 42;
+      //
+    } else {
+      /// in most days user will not get so huge bonuses
+      /// but we must add some big numbers, because minimal base value is
+      /// 3 or 4 + 3 + whatever we do here
+      ///
+      /// And minimal value from this part, for every prophecy will be +14
+      /// It will give total 4+3+14= 21 minimal value to any prophecy
+      /// in the worst situation, and will be added up to 32 in the BLoC,
+      /// 32 will be the minimal value possible by a BLoC check.
+      ///
+      /// Now, let us return to this part of algorithm
+      /// Even if user did not get a card with his sign
+      /// He still get some other card
+      /// In minor probability mod we have 14*4 cards for every element
+      /// From Kabbalah sense, the elements change in such order:
+      /// Wands (Fire) -> Pentacles (Earth) -> Swords (Air) -> Cups (Water)
+      ///
+      /// Very interesting, it is similar to the cast system in India
+      /// And buddism. And also it represents Europe in the dark age.
+      /// Wands - artisans, Pentacles - merchants,
+      /// Swords - military, Cups - clergy (priests)
+      /// That is why "King of wands look up to pentacles",
+      /// It means transformation from one element to another
+      ///
+      /// So, I made a table divided by 14 days for every element,
+      /// Which is called suit
+      /// Every day has new values for every suit
+      /// From 14 to 38 depending on user's astrosign element
+      /// This value changes dynamically every day by only 1 point
+      /// see _Kabbalah.impactMinor for more details
+
+      int impactValue = _Kabbalah.impactMinor[mod56][userSuit];
+
+      internalStr += impactValue;
+      moodlet += impactValue;
+      ambition += impactValue;
+      intelligence += impactValue;
+      luck += impactValue;
+
+      /// And then we have bonus 13 points to one prophecy
+      /// By mod22
+      int bonusPointsMagnitude = 13;
+      ProphecyType bonusPoints = _Kabbalah.impactMajor[mod22];
+
+      switch (bonusPoints) {
+        case ProphecyType.INTERNAL_STRENGTH:
+          internalStr += bonusPointsMagnitude;
+          break;
+        case ProphecyType.MOODLET:
+          moodlet += bonusPointsMagnitude;
+          break;
+        case ProphecyType.AMBITION:
+          ambition += bonusPointsMagnitude;
+          break;
+        case ProphecyType.INTELLIGENCE:
+          intelligence += bonusPointsMagnitude;
+          break;
+        case ProphecyType.LUCK:
+          luck += bonusPointsMagnitude;
+          break;
+      }
+    }
+
+    /// @END
+    /// Result,
+    ///
+    /// First we print,
+    print(calculationDate.toIso8601String());
+    print("Prophecy: Internal Strength, points: $internalStr");
+    print("Prophecy: Moodlet, points: $moodlet");
+    print("Prophecy: Ambition, points: $ambition");
+    print("Prophecy: Intelligence, points: $intelligence");
+    print("Prophecy: Luck, points: $luck");
+
+    /// Now, we finally send out values to our algorithm module call:
+
+    return {
+      ProphecyType.INTERNAL_STRENGTH: ProphecyEntity(
+          id: ProphecyType.INTERNAL_STRENGTH, value: internalStr),
+      //
+
+      ProphecyType.MOODLET:
+          ProphecyEntity(id: ProphecyType.MOODLET, value: moodlet),
+      //
+
+      ProphecyType.AMBITION:
+          ProphecyEntity(id: ProphecyType.AMBITION, value: ambition),
+      //
+
+      ProphecyType.INTELLIGENCE:
+          ProphecyEntity(id: ProphecyType.INTELLIGENCE, value: intelligence),
+      //
+
+      ProphecyType.LUCK: ProphecyEntity(id: ProphecyType.LUCK, value: luck),
+    };
   }
 }

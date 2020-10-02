@@ -18,8 +18,8 @@ part of 'algorithm.dart';
 /// if any patron matched the sign, then
 /// all prophecy values get:
 /// if minor: +52
-/// if full: +50
-/// if major: +48
+/// if full: +46
+/// if major: +42
 ///
 /// if no patron matched,
 /// ordinaryImpact must be used

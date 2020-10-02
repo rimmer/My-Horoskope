@@ -14,7 +14,7 @@ import 'prophecy_state.dart';
 export 'prophecy_event.dart';
 export 'prophecy_state.dart';
 
-const double PROPHECY_VALUE_LIMIT_MIN = 3.0;
+const double PROPHECY_VALUE_LIMIT_MIN = 3.2;
 const double PROPHECY_VALUE_LIMIT_MAX = 10.0;
 
 class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {

@@ -90,6 +90,70 @@ extension BasicAstrology on int {
     return "Mars";
   }
 
+  String get astroElement {
+    switch (this.astroSign) {
+      case "Aries":
+        return "Fire";
+      case "Taurus":
+        return "Earth";
+      case "Gemini":
+        return "Air";
+      case "Cancer":
+        return "Water";
+      case "Leo":
+        return "Fire";
+      case "Virgo":
+        return "Earth";
+      case "Libra":
+        return "Air";
+      case "Scorpio":
+        return "Water";
+      case "Sagittarius":
+        return "Fire";
+      case "Capricorn":
+        return "Earth";
+      case "Aquarius":
+        return "Air";
+      case "Pisces":
+        return "Water";
+    }
+
+    /// "must return something" warning solution
+    return "Fire";
+  }
+
+  String get astroForm {
+    switch (this.astroSign) {
+      case "Aries":
+        return "Cardinal";
+      case "Taurus":
+        return "Fixed";
+      case "Gemini":
+        return "Mutable";
+      case "Cancer":
+        return "Cardinal";
+      case "Leo":
+        return "Fixed";
+      case "Virgo":
+        return "Mutable";
+      case "Libra":
+        return "Cardinal";
+      case "Scorpio":
+        return "Fixed";
+      case "Sagittarius":
+        return "Mutable";
+      case "Capricorn":
+        return "Cardinal";
+      case "Aquarius":
+        return "Fixed";
+      case "Pisces":
+        return "Mutable";
+    }
+
+    /// "must return something" warning solution
+    return "Fire";
+  }
+
   String get dayPatron {
     String patron = "Uranus";
 

@@ -32,8 +32,3 @@ int dayOfWeekDiff(DateTime birthDate, DateTime cur, {int addition = 0}) {
 
   return dif % 7;
 }
-
-int difMod(DateTime birthDate, DateTime cur, int mod) {
-  int dif = (cur.difference(birthDate)).inDays;
-  return dif % mod;
-}
