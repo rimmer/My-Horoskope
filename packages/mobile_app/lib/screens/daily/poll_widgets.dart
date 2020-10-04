@@ -44,7 +44,7 @@ class PollSimpleWidget extends StatelessWidget {
 
           //
 
-          YesterdayPollSimple(
+          yesterdayPollSimple(
             userPollBloc: bloc,
             mood: mood,
           ),
@@ -53,7 +53,7 @@ class PollSimpleWidget extends StatelessWidget {
 
           Container(
             margin: EdgeInsets.symmetric(vertical: 32),
-            child: GradientFlatButton(
+            child: gradientFlatButton(
               onPressed: () {
                 bloc.current.voted = true;
                 bloc.repo.save(bloc.user.id);
@@ -133,7 +133,7 @@ class PollExtendedWidget extends StatelessWidget {
 
           //
 
-          YesterdayPollExtended(
+          yesterdayPollExtended(
             userPollBloc: bloc,
             mood: mood,
             productivity: productivity,
@@ -146,7 +146,7 @@ class PollExtendedWidget extends StatelessWidget {
 
           Container(
             margin: EdgeInsets.symmetric(vertical: 32),
-            child: GradientFlatButton(
+            child: gradientFlatButton(
               onPressed: () {
                 bloc.current.voted = true;
                 bloc.repo.save(bloc.user.id);

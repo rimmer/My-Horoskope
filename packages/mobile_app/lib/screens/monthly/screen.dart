@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:int_datetime/int_datetime.dart';
 import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:app/components/prophecy.dart';
@@ -10,7 +11,10 @@ class MonthlyScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SafeArea(
-        child: Prophecy(user: user),
+        child: Prophecy(
+          user: user,
+          dt: dtMonth,
+        ),
       ),
     );
   }

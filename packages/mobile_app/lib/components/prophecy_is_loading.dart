@@ -10,54 +10,30 @@ import 'prophecy_record.dart';
 import 'package:int_datetime/int_datetime.dart';
 import 'package:algorithm/astro.dart' show BasicAstrology;
 
-class ProphecyIsLoading extends StatelessWidget {
-  final UserEntity user;
-  final labelStr;
-  final birthRow = MutableObject(null);
+ListView prophecyIsLoading(
+    {@required UserEntity user, @required Row birthRow}) {
+  final labelStr = "${user.model.name.capitalize()} (${userRole(user.role)})";
+  final dt = user.model.birth.toDateTime;
+  final sign = user.model.birth.astroSign;
 
-  ProphecyIsLoading({@required this.user})
-      : labelStr = "${user.model.name.capitalize()} (${userRole(user.role)})" {
-    final dt = user.model.birth.toDateTime;
-    final sign = user.model.birth.astroSign;
-    final mainPlanet = user.model.birth.astroHousePlanet;
-    birthRow.wrapped = Row(
-      children: <Widget>[
-        SvgPicture.asset("assets/icons/$sign.svg"),
-        Text(" ${dt.day}.${dt.month}.${dt.year} ",
-            style: TextStyle(fontSize: 14)),
-        SvgPicture.asset("assets/icons/$mainPlanet.svg"),
-      ],
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: <Widget>[
-        Text(
-          labelStr,
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
-        ),
-        birthRow.wrapped,
-        ProphecyRecordLoading(
-            prophecyName: ProphecyType.INTERNAL_STRENGTH.toStr),
-        ProphecyRecordLoading(prophecyName: ProphecyType.MOODLET.toStr),
-        ProphecyRecordLoading(prophecyName: ProphecyType.AMBITION.toStr),
-        ProphecyRecordLoading(prophecyName: ProphecyType.INTELLIGENCE.toStr),
-        ProphecyRecordLoading(prophecyName: ProphecyType.LUCK.toStr),
-      ],
-    );
-  }
+  return ListView(
+    scrollDirection: Axis.vertical,
+    children: <Widget>[
+      Text(
+        labelStr,
+        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+      ),
+      birthRow,
+      prophecyRecordLoading(prophecyName: ProphecyType.INTERNAL_STRENGTH.toStr),
+      prophecyRecordLoading(prophecyName: ProphecyType.MOODLET.toStr),
+      prophecyRecordLoading(prophecyName: ProphecyType.AMBITION.toStr),
+      prophecyRecordLoading(prophecyName: ProphecyType.INTELLIGENCE.toStr),
+      prophecyRecordLoading(prophecyName: ProphecyType.LUCK.toStr),
+    ],
+  );
 }
 
-class ProphecyRecordLoading extends StatelessWidget {
-  final String prophecyName;
-  ProphecyRecordLoading({@required this.prophecyName});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+Container prophecyRecordLoading({@required String prophecyName}) => Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
       height: 68.0,
       decoration: BoxDecoration(
@@ -116,5 +92,3 @@ class ProphecyRecordLoading extends StatelessWidget {
         ],
       ),
     );
-  }
-}

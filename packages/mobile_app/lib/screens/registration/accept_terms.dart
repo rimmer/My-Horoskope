@@ -44,7 +44,7 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
                       ),
                     ),
                     Flexible(
-                      child: AcceptTermsText(lang.termsAccept.capitalize(),
+                      child: acceptTermsText(lang.termsAccept.capitalize(),
                           isController: true),
                     ),
                   ],
@@ -54,7 +54,7 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
             Flexible(
               child: FlatButton(
                 onPressed: () => launch(URL_USER_AGREEMENT),
-                child: AcceptTermsText(
+                child: acceptTermsText(
                   lang.userAgreement,
                 ),
               ),
@@ -62,7 +62,7 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
             Flexible(
               child: FlatButton(
                 onPressed: () => launch(URL_PRIVACY_POLICY),
-                child: AcceptTermsText(
+                child: acceptTermsText(
                   lang.privacyPolicy,
                 ),
               ),

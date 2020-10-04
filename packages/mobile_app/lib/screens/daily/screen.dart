@@ -1,7 +1,7 @@
 import 'package:app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:prophecy/bloc/prophecy_bloc.dart';
-
+import 'package:authentication/bloc.dart';
 import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:app/components/prophecy.dart';
@@ -30,7 +30,8 @@ class TodayScreen extends StatelessWidget {
   TodayScreen({@required this.dt});
   @override
   Widget build(BuildContext context) {
-    final usersRepo = context.watch<UsersRepositoryFlutter>();
+    final authBloc = context.bloc<AuthenticationBloc>();
+    final usersRepo = authBloc.auth.repository;
 
     UserPollBloc userPollBloc = context.bloc<UserPollBloc>();
     ProphecyBloc prophet = context.bloc<ProphecyBloc>();
@@ -82,7 +83,7 @@ class TodayScreen extends StatelessWidget {
             // @prophecies
             SizedBox(
                 height: MediaQuery.of(context).size.height,
-                child: Prophecy(user: usersRepo.current)),
+                child: Prophecy(user: usersRepo.current, dt: dt)),
           ],
         ),
       ),
@@ -96,7 +97,9 @@ class _DailyScreen extends StatelessWidget {
   _DailyScreen({@required this.dt});
   @override
   Widget build(BuildContext context) {
-    final usersRepo = context.watch<UsersRepositoryFlutter>();
+    final authBloc = context.bloc<AuthenticationBloc>();
+    final usersRepo = authBloc.auth.repository;
+
     ProphecyBloc prophet = context.bloc<ProphecyBloc>();
     prophet.add(CalculateProphecy(dt));
 
@@ -108,7 +111,7 @@ class _DailyScreen extends StatelessWidget {
           children: <Widget>[
             SizedBox(
                 height: MediaQuery.of(context).size.height,
-                child: Prophecy(user: usersRepo.current)),
+                child: Prophecy(user: usersRepo.current, dt: dt)),
           ],
         ),
       ),
