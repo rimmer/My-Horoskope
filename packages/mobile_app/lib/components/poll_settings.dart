@@ -1,3 +1,4 @@
+import 'package:authentication/bloc/authentication_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,10 +23,12 @@ class PollSettingsState extends State<PollSettings> {
   MutableBool studying;
   UsersRepository usersRepo;
   UserPollBloc pollBloc;
+  AuthenticationBloc authBloc;
 
   @override
   void initState() {
-    usersRepo = context.read<UsersRepositoryFlutter>();
+    authBloc = context.bloc<AuthenticationBloc>();
+    usersRepo = authBloc.auth.repository;
     pollBloc = context.bloc<UserPollBloc>();
     poll = MutableBool(usersRepo.current.pollAvailability);
     studying = MutableBool(usersRepo.current.pollStudying);
@@ -44,7 +47,7 @@ class PollSettingsState extends State<PollSettings> {
               title: lang.pollSettingsTitle.capitalize(),
               body: PollSettingInfo(poll: poll, studying: studying),
               actions: <Widget>[
-                GradientFlatButton(
+                gradientFlatButton(
                   onPressed: () {
                     usersRepo.pollSettingsSetter(
                         availability: poll.wrapped, studying: studying.wrapped);

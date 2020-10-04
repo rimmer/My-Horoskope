@@ -1,13 +1,10 @@
 import 'package:app/components/gradient_flatbutton.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:provider/provider.dart';
 import 'package:language/language.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:app/theme/app_colors.dart';
-import 'package:algorithm/algorithm.dart';
 import 'package:app/components/poll_settings.dart';
 import 'package:app/components/yesterday_poll.dart';
 import 'package:poll_model/poll_model.dart';
@@ -54,7 +51,7 @@ class PollSimpleWidget extends StatelessWidget {
 
           Container(
             margin: EdgeInsets.symmetric(vertical: 32),
-            child: GradientFlatButton(
+            child: gradientFlatButton(
               onPressed: () {},
               child: Text(
                 lang.clarifyForecast.toUpperCase(),
@@ -142,7 +139,7 @@ class PollExtendedWidget extends StatelessWidget {
 
           Container(
             margin: EdgeInsets.symmetric(vertical: 32),
-            child: GradientFlatButton(
+            child: gradientFlatButton(
               onPressed: () {},
               child: Text(
                 lang.clarifyForecast.toUpperCase(),

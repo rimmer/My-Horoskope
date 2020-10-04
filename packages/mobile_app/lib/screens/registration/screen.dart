@@ -82,7 +82,7 @@ class RegistrationScreen extends StatelessWidget {
                 style: TextStyle(color: AppColors.textDisabled),
               ),
             ),
-            UserInfo(
+            userInfo(
               name: UserInfoField(
                   textObject: name,
                   maxLength: 100,
@@ -151,7 +151,7 @@ class RegistrationScreen extends StatelessWidget {
             SizedBox(
               height: 32,
             ),
-            GradientFlatButton(
+            gradientFlatButton(
               onPressed: () {
                 // @DEBUG
                 // print("Name ${name.wrapped}");

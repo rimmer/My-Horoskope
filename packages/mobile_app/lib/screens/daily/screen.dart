@@ -1,5 +1,7 @@
+import 'package:authentication/bloc/authentication_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:prophecy/bloc/prophecy_bloc.dart';
+import 'package:users_repository/users_repository.dart';
 
 import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +18,8 @@ class DailyScreen extends StatelessWidget {
   DailyScreen({@required this.dt});
   @override
   Widget build(BuildContext context) {
-    final usersRepo = context.watch<UsersRepositoryFlutter>();
+    final authBloc = context.bloc<AuthenticationBloc>();
+    final UsersRepository usersRepo = authBloc.auth.repository;
     int currentDay = dtDay;
 
     UserPollBloc userPollBloc;

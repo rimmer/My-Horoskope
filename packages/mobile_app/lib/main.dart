@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'package:auth_flutter/auth_flutter.dart';
-import 'package:provider/provider.dart';
 
 import 'blocs/blocs.dart';
 import 'blocs/simple_bloc_delegate.dart';
@@ -14,34 +13,23 @@ void main() {
 }
 
 class ProphetApp extends StatelessWidget {
-  final usersRepository = UsersRepositoryFlutter();
+  final authBloc = AuthenticationBloc(
+      auth: AuthFlutter(repository: UsersRepositoryFlutter()))
+    ..add(AppStarted());
 
   @override
-  Widget build(BuildContext context) => MultiProvider(
-        providers: [
-          Provider<UsersRepositoryFlutter>(
-              create: (context) => usersRepository),
-        ],
-        child: MultiBlocProvider(providers: [
-          BlocProvider<AuthenticationBloc>(
-            create: (context) => AuthenticationBloc(
-                auth: AuthFlutter(repository: usersRepository))
-              ..add(AppStarted()),
-          ),
-        ], child: _Background(child: InitRoute())),
+  Widget build(BuildContext context) => BlocProvider<AuthenticationBloc>(
+        create: (context) => authBloc,
+        child: _background(
+            child: appBuilder(authBloc: authBloc, routes: initialRoutes)),
       );
 }
 
-class _Background extends StatelessWidget {
-  final Widget child;
-  _Background({@required this.child});
-  @override
-  Widget build(BuildContext context) => Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/background.jpg"),
-          fit: BoxFit.cover,
-        ),
+Container _background({@required Widget child}) => Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage("assets/background.jpg"),
+        fit: BoxFit.cover,
       ),
-      child: child);
-}
+    ),
+    child: child);

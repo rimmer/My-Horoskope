@@ -6,11 +6,9 @@ import 'package:prophecy/bloc.dart';
 import 'package:prophecy_model/prophecy_model.dart';
 import 'prophecy_record.dart';
 import 'prophecy_is_loading.dart';
-import 'package:app/screens/loading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:users_repository/users_repository.dart';
-import 'package:app/theme/app_colors.dart';
 import 'package:language/language.dart';
 
 import 'package:int_datetime/int_datetime.dart';
@@ -24,15 +22,13 @@ class Prophecy extends StatelessWidget {
   Prophecy({@required this.user, @required this.dt})
       : labelStr = "${user.model.name.capitalize()} (${userRole(user.role)})" {
     //
-    final dt = user.model.birth.toDateTime;
+    final dtConverted = user.model.birth.toDateTime;
     final sign = user.model.birth.astroSign;
-    final mainPlanet = user.model.birth.astroHousePlanet;
     birthRow.wrapped = Row(
       children: <Widget>[
         SvgPicture.asset("assets/icons/$sign.svg"),
-        Text(" ${dt.day}.${dt.month}.${dt.year} ",
+        Text(" ${dtConverted.day}.${dtConverted.month}.${dtConverted.year} ",
             style: TextStyle(fontSize: 14)),
-        SvgPicture.asset("assets/icons/$mainPlanet.svg"),
       ],
     );
   }
@@ -46,19 +42,15 @@ class Prophecy extends StatelessWidget {
       child: BlocBuilder<ProphecyBloc, ProphecyState>(
           bloc: prophecyBloc,
           builder: (context, state) {
+            //
             if (state is ProphecyInitial) {
-              return ProphecyIsLoading(user: this.user);
+              return prophecyIsLoading(
+                  user: this.user, birthRow: birthRow.wrapped);
+              //
+
             } else if (state is ProphecyWasAsked ||
                 state is ProphecyWasClarified) {
-              /// the patron of current day icon
-              final sum = state.propheciesSum;
-              final patronColor = (sum > 35.0)
-                  ? AppColors.prophecyValueNumber[2]
-                  : (sum <= 25.0)
-                      ? AppColors.prophecyValueNumber[0]
-                      : AppColors.prophecyValueNumber[1];
-              final patronPlanet = dt.dayPatron;
-
+              //
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -68,26 +60,22 @@ class Prophecy extends StatelessWidget {
                   ),
                   SizedBox(
                     height: 32,
-                    child: Row(
-                      children: <Widget>[
-                        birthRow.wrapped,
-                        // SvgPicture.asset(
-                        //   "assets/icons/$patronPlanet.svg",
-                        //   color: patronColor,
-                        // ),
-                      ],
-                    ),
+                    child: birthRow.wrapped,
                   ),
-                  ProphecyRecord(
+                  //
+
+                  prophecyRecord(
                       prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH]),
-                  ProphecyRecord(
+                  prophecyRecord(
                       prophecy: state.prophecy[ProphecyType.MOODLET]),
-                  ProphecyRecord(
+                  prophecyRecord(
                       prophecy: state.prophecy[ProphecyType.AMBITION]),
-                  ProphecyRecord(
+                  prophecyRecord(
                       prophecy: state.prophecy[ProphecyType.INTELLIGENCE]),
-                  ProphecyRecord(prophecy: state.prophecy[ProphecyType.LUCK]),
+                  //
+                  prophecyRecord(prophecy: state.prophecy[ProphecyType.LUCK]),
                 ],
+                //
               );
             } else {
               return Center(

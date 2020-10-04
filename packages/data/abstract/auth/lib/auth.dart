@@ -6,6 +6,8 @@ import 'package:users_repository/users_repository.dart';
 /// interface that used by BLoC to control user authentication.
 
 abstract class Auth {
+  UsersRepository get repository;
+
   /// current authenticated UserEntity
   UserEntity curUser;
 

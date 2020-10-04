@@ -11,7 +11,7 @@ class AuthFlutter implements Auth {
   /// implements Auth data controller
   /// using already implemented  users_repository
   //
-  final UsersRepositoryFlutter repository;
+  final UsersRepository repository;
 
   AuthFlutter({@required this.repository});
 
