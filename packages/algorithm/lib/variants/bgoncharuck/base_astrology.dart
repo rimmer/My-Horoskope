@@ -125,13 +125,13 @@ class _Astrology implements _OldWisdom {
     luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.LUCK);
 
     /// @MYSTIC
-    /// this is the most interesting part of an alforithm
+    /// this is the most interesting part of an algorithm
     ///
     /// Pre-story:
     /// I spoke with some people that created trending websites about horoskopes
     /// And mostly, they just figure out something "on their own"
     /// that had no any connection with astrology.
-    /// That was very disappointing.
+    /// It was very disappointing.
     ///
     /// But I heard from two peoples that they used "Calesial Tarot"
     /// Tarot is a cards deck, that came from jewish Kabbalah
@@ -179,7 +179,7 @@ class _Astrology implements _OldWisdom {
     /// Probability is 1/56, but 4 signs have probability 2/56
     /// If with such low probability user gets a card with its sign
     /// All prophecies get +52 points
-    /// With ideal situation user will have 110 total points in every prophecy
+    /// With ideal situation user will have 122 total points in every prophecy
     /// and will be cutted down to 100.
     /// But this ideal situation can happen once per 10 years or so.
 
@@ -194,7 +194,7 @@ class _Astrology implements _OldWisdom {
     /// Probability is 3/78 or 1/26
     /// If with such probability user gets a card with its sign
     /// All prophecies get +46 points
-    /// With ideal situation user will have 104 total points
+    /// With ideal situation user will have 116 total points
     /// and will be cutted to 100
     /// But this ideal situation can happen once per 7 years or so
 
@@ -208,7 +208,8 @@ class _Astrology implements _OldWisdom {
     ///
     /// Probability is 2/22 or 1/11
     /// All prophecies wil get +42 points
-    /// With ideal situation user will have a total, maximum 100 points
+    /// With ideal situation user will have 112 total points
+    /// and will be cutted to 100
     /// But it can happen once per 3 years or so
 
     if (probabilityMinor) {
@@ -238,7 +239,7 @@ class _Astrology implements _OldWisdom {
     } else {
       /// in most days user will not get so huge bonuses
       /// but we must add some big numbers, because minimal base value is
-      /// 3 or 4 + 3 + whatever we do here
+      /// 3 or 4 + 5 + whatever we do here
       ///
       /// And minimal value from this part, for every prophecy will be +14
       /// It will give total 4+3+14= 21 minimal value to any prophecy
