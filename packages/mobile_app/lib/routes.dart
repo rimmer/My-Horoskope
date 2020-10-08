@@ -36,6 +36,8 @@ MaterialApp appBuilder(
             final usersRepo = authBloc.auth.repository;
             final pollsRepo = PollsRepositoryFlutter();
 
+            final dtToShow = DateTime.utc(2020, 25, 10).millisecondsSinceEpoch;
+
             //
 
             final sessionAlgroithm = Algorithm(
@@ -60,7 +62,8 @@ MaterialApp appBuilder(
                   ),
                 ),
               ],
-              child: DailyScreen(dt: dtDay),
+              // child: DailyScreen(dt: dtDay),
+              child: DailyScreen(dt: dtToShow),
             );
 
             //

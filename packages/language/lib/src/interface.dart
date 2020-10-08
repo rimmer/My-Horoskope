@@ -34,4 +34,6 @@ abstract class Locale {
   String get pollSettingPollOption;
   String get pollSettingsStudyOption;
   String get pollSettingText;
+  String get impact;
+  Map<String, String> get planetImpact;
 }

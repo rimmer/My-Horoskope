@@ -40,4 +40,19 @@ class RussianLocale implements Locale {
   final String pollSettingsStudyOption = "включить обучение AI";
   final String pollSettingText =
       "отвечая на вопросы о своем вчерашнем настроении Вы помогате обучить наш искусственный интеллект лучше прогнозировать ваше будущее.";
+  final String impact = "влияние";
+  Map<String, String> get planetImpact => {
+        "Sun": "Солнца",
+        "Moon": "Луны",
+        "Mercury": "Меркурия",
+        "Mars": "Марса",
+        "Venus": "Венеры",
+        "Jupiter": "Юпитера",
+        "Saturn": "Сатурна",
+        "Pluto": "Плутона",
+        "Uranus": "Урана",
+        "Neptune": "Нептуна",
+        "Selene": "Селены",
+        "Lilith": "Лилит",
+      };
 }

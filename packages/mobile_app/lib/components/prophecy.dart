@@ -12,7 +12,7 @@ import 'package:users_repository/users_repository.dart';
 import 'package:language/language.dart';
 
 import 'package:int_datetime/int_datetime.dart';
-import 'package:algorithm/astro.dart' show BasicAstrology;
+import 'package:algorithm/algorithm.dart';
 
 class Prophecy extends StatelessWidget {
   final int dt;
@@ -24,6 +24,7 @@ class Prophecy extends StatelessWidget {
     //
     final dtConverted = user.model.birth.toDateTime;
     final sign = user.model.birth.astroSign;
+    //
     birthRow.wrapped = Row(
       children: <Widget>[
         SvgPicture.asset("assets/icons/$sign.svg"),
@@ -35,6 +36,10 @@ class Prophecy extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sign = user.model.birth.astroSign;
+    final userPatron = user.model.birth.astroHousePlanet;
+    final currentPlanets = planetFor[dt.astroSign][sign];
+
     ProphecyBloc prophecyBloc = context.bloc<ProphecyBloc>();
 
     return Padding(
@@ -51,6 +56,11 @@ class Prophecy extends StatelessWidget {
             } else if (state is ProphecyWasAsked ||
                 state is ProphecyWasClarified) {
               //
+              /// if big numbers in all prophecies show "impact"
+              /// of user's Patron planet
+              final sum = state.propheciesSum;
+              if (sum > 40.0) currentPlanets[true] = userPatron;
+              //
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -64,16 +74,22 @@ class Prophecy extends StatelessWidget {
                   ),
                   //
 
-                  prophecyRecord(
-                      prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH]),
-                  prophecyRecord(
-                      prophecy: state.prophecy[ProphecyType.MOODLET]),
-                  prophecyRecord(
-                      prophecy: state.prophecy[ProphecyType.AMBITION]),
-                  prophecyRecord(
-                      prophecy: state.prophecy[ProphecyType.INTELLIGENCE]),
+                  ProphecyRecord(
+                      prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
+                      planetVariants: currentPlanets),
+                  ProphecyRecord(
+                      prophecy: state.prophecy[ProphecyType.MOODLET],
+                      planetVariants: currentPlanets),
+                  ProphecyRecord(
+                      prophecy: state.prophecy[ProphecyType.AMBITION],
+                      planetVariants: currentPlanets),
+                  ProphecyRecord(
+                      prophecy: state.prophecy[ProphecyType.INTELLIGENCE],
+                      planetVariants: currentPlanets),
                   //
-                  prophecyRecord(prophecy: state.prophecy[ProphecyType.LUCK]),
+                  ProphecyRecord(
+                      prophecy: state.prophecy[ProphecyType.LUCK],
+                      planetVariants: currentPlanets),
                 ],
                 //
               );
