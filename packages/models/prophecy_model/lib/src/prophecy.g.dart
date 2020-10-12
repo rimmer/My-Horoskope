@@ -3,38 +3,6 @@
 part of 'prophecy.dart';
 
 // **************************************************************************
-// DataClassGenerator
-// **************************************************************************
-
-abstract class _$ProphecyModel {
-  const _$ProphecyModel();
-
-  ProphecyType get id;
-  double get value;
-  bool operator ==(other) {
-    if (identical(this, other)) return true;
-    if (other is! ProphecyModel) return false;
-
-    return true && this.id == other.id && this.value == other.value;
-  }
-
-  int get hashCode {
-    return mapPropsToHashCode([id, value]);
-  }
-
-  String toString() {
-    return 'ProphecyModel <\'id\': ${this.id},\'value\': ${this.value},>';
-  }
-
-  ProphecyModel copyWith({ProphecyType id, double value}) {
-    return ProphecyModel(
-      id: id ?? this.id,
-      value: value ?? this.value,
-    );
-  }
-}
-
-// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 

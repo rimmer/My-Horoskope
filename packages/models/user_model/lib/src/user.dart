@@ -1,4 +1,3 @@
-import 'package:dataclass/dataclass.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -7,8 +6,7 @@ part 'user.g.dart';
 /// user model stores basic user information like a name and birthdate
 
 @JsonSerializable()
-@dataClass
-class UserModel extends _$UserModel {
+class UserModel {
   final String name;
   final String country;
   final String place;

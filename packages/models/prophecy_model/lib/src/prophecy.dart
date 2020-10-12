@@ -1,4 +1,3 @@
-import 'package:dataclass/dataclass.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -20,9 +19,8 @@ extension ProphecyTypeToString on ProphecyType {
 }
 
 @JsonSerializable()
-@dataClass
 @immutable
-class ProphecyModel extends _$ProphecyModel {
+class ProphecyModel {
   final ProphecyType id;
 
   /// can be any positive value because will be recreated by algorithm
