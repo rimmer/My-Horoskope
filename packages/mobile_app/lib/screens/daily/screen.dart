@@ -1,8 +1,7 @@
+import 'package:app/single_provider.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:prophecy/bloc/prophecy_bloc.dart';
-import 'package:authentication/bloc.dart';
-import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:app/components/prophecy.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,22 +13,17 @@ import 'package:int_datetime/int_datetime.dart';
 import 'poll_widgets.dart';
 
 class DailyScreen extends StatelessWidget {
-  int dt;
-  DailyScreen({@required this.dt});
+  final dt = dtDay;
 
   @override
   Widget build(BuildContext context) {
     //
+    final sp = context.watch<SingleProvider>();
+
     final bool isToday = dt == dtDay;
 
-    final authBloc = context.bloc<AuthenticationBloc>();
-    final usersRepo = authBloc.auth.repository;
-
-    final UserPollBloc userPollBloc = context.bloc<UserPollBloc>();
-    final ProphecyBloc prophet = context.bloc<ProphecyBloc>();
-
-    prophet.add(CalculateProphecy(dt));
-    if (isToday) userPollBloc.add(UserPollRestartEvent());
+    sp.prophecyBloc.add(CalculateProphecy(dt));
+    if (isToday) sp.userPollBloc.add(UserPollRestartEvent());
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -40,7 +34,7 @@ class DailyScreen extends StatelessWidget {
             // @poll
             (isToday)
                 ? BlocBuilder<UserPollBloc, UserPollState>(
-                    bloc: userPollBloc,
+                    bloc: sp.userPollBloc,
                     builder: (context, state) {
                       switch (state.runtimeType) {
 
@@ -59,17 +53,17 @@ class DailyScreen extends StatelessWidget {
 
                         case UserPollIsVotedState:
                           print("User poll is voted");
-                          prophet.add(ClarifyProphecy(
-                              dt: dt, poll: userPollBloc.repo.todayPoll));
+                          sp.prophecyBloc.add(ClarifyProphecy(
+                              dt: dt, poll: sp.userPollBloc.repo.todayPoll));
                           return SizedBox();
 
                         case UserPollIsSimpleState:
                           print("User poll is switched to simple state");
-                          return PollSimpleWidget(bloc: userPollBloc);
+                          return PollSimpleWidget(bloc: sp.userPollBloc);
 
                         case UserPollIsComplexState:
                           print("User poll is switched to complex state");
-                          return PollExtendedWidget(bloc: userPollBloc);
+                          return PollExtendedWidget(bloc: sp.userPollBloc);
                       }
                     })
                 : SizedBox(),
@@ -77,7 +71,7 @@ class DailyScreen extends StatelessWidget {
             // @prophecies
             SizedBox(
                 height: MediaQuery.of(context).size.height,
-                child: Prophecy(user: usersRepo.current, dt: dt)),
+                child: Prophecy(user: sp.usersRepo.current, dt: dt)),
           ],
         ),
       ),

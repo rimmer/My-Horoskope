@@ -1,9 +1,11 @@
+import 'package:app/single_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:prophecy/bloc.dart';
 import 'package:prophecy_model/prophecy_model.dart';
+import 'package:provider/provider.dart';
 import 'prophecy_record.dart';
 import 'prophecy_is_loading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -50,12 +52,12 @@ class Prophecy extends StatelessWidget {
     final Map<bool, String> currentPlanets = {}
       ..addAll(planetFor[dt.astroSign][sign]);
 
-    ProphecyBloc prophecyBloc = context.bloc<ProphecyBloc>();
+    final sp = context.watch<SingleProvider>();
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: BlocBuilder<ProphecyBloc, ProphecyState>(
-          bloc: prophecyBloc,
+          bloc: sp.prophecyBloc,
           builder: (context, state) {
             //
             if (state is ProphecyInitial) {

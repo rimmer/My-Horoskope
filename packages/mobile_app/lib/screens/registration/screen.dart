@@ -1,10 +1,10 @@
 import 'package:app/components/popup.dart';
+import 'package:app/single_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
-import 'package:authentication/bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:app/components/userinfo_field.dart';
 import 'package:app/components/userinfo.dart';
 import 'package:app/components/gradient_flatbutton.dart';
@@ -178,10 +178,10 @@ class RegistrationScreen extends StatelessWidget {
                   return;
                 }
 
-                final AuthenticationBloc auth =
-                    context.bloc<AuthenticationBloc>();
+                /// registration
+                final sp = context.watch<SingleProvider>();
 
-                auth.add(AuthEvent(UserModel(
+                sp.authBloc.add(AuthEvent(UserModel(
                   name: name.wrapped,
                   birth: DateTime.utc(
                     int.parse(year.wrapped),
