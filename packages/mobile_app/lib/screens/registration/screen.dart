@@ -179,7 +179,7 @@ class RegistrationScreen extends StatelessWidget {
                 }
 
                 /// registration
-                final sp = context.watch<SingleProvider>();
+                final sp = context.read<SingleProvider>();
 
                 sp.authBloc.add(AuthEvent(UserModel(
                   name: name.wrapped,

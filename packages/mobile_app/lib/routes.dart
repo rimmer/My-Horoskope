@@ -9,6 +9,7 @@ export 'theme/app_theme.dart';
 
 /// Well, for now we are using SPA architecture, would been better if we foreseen it
 final Map<String, WidgetBuilder> initialRoutes = <String, WidgetBuilder>{
-  "/": (BuildContext context) => DailyScreen(),
   "/daily": (BuildContext context) => DailyScreen(),
 };
+
+final Map<String, WidgetBuilder> emptyRoute = <String, WidgetBuilder>{};

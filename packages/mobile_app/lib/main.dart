@@ -20,47 +20,47 @@ Widget appBuilder() {
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());
 
-  return _imageBackground(
-    asset: "assets/background.jpg",
-    child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-        //
-        bloc: singleProvider.authBloc,
-        builder: (context, state) {
-          //
-          if (state is Unauthenticated)
-            return myProphet(home: RegistrationScreen());
-
-          //
-
-          if (state is Authenticated) {
+  return Provider<SingleProvider>(
+      create: (_) => singleProvider,
+      child: _imageBackground(
+        asset: "assets/background.jpg",
+        child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
             //
+            bloc: singleProvider.authBloc,
+            builder: (context, state) {
+              //
+              if (state is Unauthenticated)
+                return myProphet(home: RegistrationScreen());
 
-            singleProvider.usersRepo = singleProvider.authBloc.auth.repository;
-            singleProvider.pollsRepo = PollsRepositoryFlutter();
+              //
 
-            singleProvider.prophecyBloc = ProphecyBloc(
-              algo: Algorithm(
-                  dat: AlgoData(
-                      pollByDateRepo: singleProvider.pollsRepo,
-                      //
-                      usersRepository: singleProvider.usersRepo)),
-            );
+              if (state is Authenticated) {
+                //
 
-            singleProvider.userPollBloc = UserPollBloc(
-              users: singleProvider.usersRepo,
-              repo: singleProvider.pollsRepo,
-            );
+                singleProvider.usersRepo =
+                    singleProvider.authBloc.auth.repository;
+                singleProvider.pollsRepo = PollsRepositoryFlutter();
 
-            return Provider<SingleProvider>(
-              create: (_) => singleProvider,
-              child: myProphet(routes: initialRoutes),
-            );
-          }
+                singleProvider.prophecyBloc = ProphecyBloc(
+                  algo: Algorithm(
+                      dat: AlgoData(
+                          pollByDateRepo: singleProvider.pollsRepo,
+                          //
+                          usersRepository: singleProvider.usersRepo)),
+                );
 
-          // else
-          return myProphet(home: LoadingScreen());
-        }),
-  );
+                singleProvider.userPollBloc = UserPollBloc(
+                  users: singleProvider.usersRepo,
+                  repo: singleProvider.pollsRepo,
+                );
+
+                return myProphet(routes: initialRoutes, home: DailyScreen());
+              }
+
+              // else
+              return myProphet(home: LoadingScreen());
+            }),
+      ));
 }
 
 Container _imageBackground({@required Widget child, @required String asset}) =>
@@ -73,7 +73,18 @@ Container _imageBackground({@required Widget child, @required String asset}) =>
         ),
         child: child);
 
-MaterialApp myProphet({Widget home, Map<String, WidgetBuilder> routes}) =>
-    (home == null)
-        ? MaterialApp(title: 'My Prophet', theme: appTheme, routes: routes)
-        : MaterialApp(title: 'My Prophet', theme: appTheme, home: home);
+MaterialApp myProphet(
+        {@required Widget home, Map<String, WidgetBuilder> routes}) =>
+    (routes == null)
+        ? MaterialApp(
+            title: 'My Prophet',
+            theme: appTheme,
+            home: home,
+            routes: emptyRoute,
+          )
+        : MaterialApp(
+            title: 'My Prophet',
+            theme: appTheme,
+            routes: routes,
+            home: home,
+          );
