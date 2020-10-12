@@ -36,7 +36,7 @@ MaterialApp appBuilder(
             final usersRepo = authBloc.auth.repository;
             final pollsRepo = PollsRepositoryFlutter();
 
-            final dtToShow = DateTime.utc(2020, 25, 10).millisecondsSinceEpoch;
+            // final dtToShow = DateTime.utc(2020, 10, 25).millisecondsSinceEpoch;
 
             //
 
@@ -62,8 +62,14 @@ MaterialApp appBuilder(
                   ),
                 ),
               ],
-              // child: DailyScreen(dt: dtDay),
-              child: DailyScreen(dt: dtToShow),
+
+              /// dt translates to "Date and time in milliseconds since UNIX epoch"
+              /// it is used in most APIs by this short name
+              /// sometimes it uses seconds, but mostly milliseconds
+              /// it is "currently perfect" way to compactly store
+              /// date-time in one integer value
+              child: DailyScreen(dt: dtDay),
+              // child: DailyScreen(dt: dtToShow),
             );
 
             //

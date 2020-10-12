@@ -17,8 +17,8 @@ int get dtDay {
 
   return DateTime.utc(
     now.year,
-    now.day,
     now.month,
+    now.day,
   ).millisecondsSinceEpoch;
 }
 
@@ -28,7 +28,6 @@ int get dtMonth {
 
   return DateTime.utc(
     now.year,
-    1,
     now.month,
   ).millisecondsSinceEpoch;
 }

@@ -16,28 +16,20 @@ import 'poll_widgets.dart';
 class DailyScreen extends StatelessWidget {
   int dt;
   DailyScreen({@required this.dt});
-  @override
-  Widget build(BuildContext context) {
-    if (dt == dtDay)
-      return TodayScreen(dt: dt);
-    else
-      return _DailyScreen(dt: dt);
-  }
-}
 
-class TodayScreen extends StatelessWidget {
-  int dt;
-  TodayScreen({@required this.dt});
   @override
   Widget build(BuildContext context) {
+    //
+    final bool isToday = dt == dtDay;
+
     final authBloc = context.bloc<AuthenticationBloc>();
     final usersRepo = authBloc.auth.repository;
 
-    UserPollBloc userPollBloc = context.bloc<UserPollBloc>();
-    ProphecyBloc prophet = context.bloc<ProphecyBloc>();
+    final UserPollBloc userPollBloc = context.bloc<UserPollBloc>();
+    final ProphecyBloc prophet = context.bloc<ProphecyBloc>();
 
     prophet.add(CalculateProphecy(dt));
-    userPollBloc.add(UserPollRestartEvent());
+    if (isToday) userPollBloc.add(UserPollRestartEvent());
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -46,69 +38,43 @@ class TodayScreen extends StatelessWidget {
           scrollDirection: Axis.vertical,
           children: <Widget>[
             // @poll
-            BlocBuilder<UserPollBloc, UserPollState>(
-                bloc: userPollBloc,
-                builder: (context, state) {
-                  switch (state.runtimeType) {
+            (isToday)
+                ? BlocBuilder<UserPollBloc, UserPollState>(
+                    bloc: userPollBloc,
+                    builder: (context, state) {
+                      switch (state.runtimeType) {
 
-                    /// I am adding debug prints, jsut in case
+                        /// I am adding debug prints, jsut in case
 
-                    case UserPollLoadingState:
-                      print("User polls are loading.");
-                      return SpinKitPulse(
-                        color: AppColors.accentDark,
-                        size: 32,
-                      );
+                        case UserPollLoadingState:
+                          print("User polls are loading.");
+                          return SpinKitPulse(
+                            color: AppColors.accentDark,
+                            size: 32,
+                          );
 
-                    case UserPollIsDisabled:
-                      print("User polls are disabled for current user");
-                      return PollSettings();
+                        case UserPollIsDisabled:
+                          print("User polls are disabled for current user");
+                          return PollSettings();
 
-                    case UserPollIsVotedState:
-                      print("User poll is voted");
-                      prophet.add(ClarifyProphecy(
-                          dt: dt, poll: userPollBloc.repo.todayPoll));
-                      return SizedBox();
+                        case UserPollIsVotedState:
+                          print("User poll is voted");
+                          prophet.add(ClarifyProphecy(
+                              dt: dt, poll: userPollBloc.repo.todayPoll));
+                          return SizedBox();
 
-                    case UserPollIsSimpleState:
-                      print("User poll is switched to simple state");
-                      return PollSimpleWidget(bloc: userPollBloc);
+                        case UserPollIsSimpleState:
+                          print("User poll is switched to simple state");
+                          return PollSimpleWidget(bloc: userPollBloc);
 
-                    case UserPollIsComplexState:
-                      print("User poll is switched to complex state");
-                      return PollExtendedWidget(bloc: userPollBloc);
-                  }
-                }),
+                        case UserPollIsComplexState:
+                          print("User poll is switched to complex state");
+                          return PollExtendedWidget(bloc: userPollBloc);
+                      }
+                    })
+                : SizedBox(),
 
             // @prophecies
-            SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: Prophecy(user: usersRepo.current, dt: dt)),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-/// all other days
-class _DailyScreen extends StatelessWidget {
-  int dt;
-  _DailyScreen({@required this.dt});
-  @override
-  Widget build(BuildContext context) {
-    final authBloc = context.bloc<AuthenticationBloc>();
-    final usersRepo = authBloc.auth.repository;
-
-    ProphecyBloc prophet = context.bloc<ProphecyBloc>();
-    prophet.add(CalculateProphecy(dt));
-
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: SafeArea(
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          children: <Widget>[
             SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Prophecy(user: usersRepo.current, dt: dt)),

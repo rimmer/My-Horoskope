@@ -1,5 +1,10 @@
 part of 'algorithm.dart';
 
+const _biggestBonus = 52;
+const _bigBonus = 46;
+const _middleBonus = 42;
+const _bonusPointsMagnitude = 13;
+
 /// Complex algorithm that implements _OldWisdom by six ezoterics practices,
 /// mostly with rome (greek) astrology, kabbalah, tarot, astro(nomy/logy) XVII-XVIIIs, numerology and hermetism
 /// Researched, calculated and created with love by @bgoncharuck
@@ -28,6 +33,53 @@ class _Astrology implements _OldWisdom {
     TarotSuit userSuit = elementToTarotSuit(birthDateInteger.astroElement);
     //
 
+    print(calculationDate.toIso8601String());
+
+    /// @CHAOTIC value of placeholders
+
+    /// The most unstable value of the algorithm
+    /// Days of week were named after Roman Gods
+    /// For example: Moon day, Saturn day, Sun day,
+    /// Wednesday was called mercredi, or day of Mercury
+    /// Great Britan as well as other german tribes were conqured by Rome Empire
+    /// and some names of week take different names from traditional week names,
+    /// For example: Wednes came from "day of the Woden" for Anglo-Saxons
+    /// In italian and francian Wednesday is still mercredi/mercoledì
+    ///
+    /// I calculate mod between difference of current day
+    /// and the day when user was born
+    ///
+    /// Example:
+    /// if user were born in 23 of June in 1991
+    /// and todays 30 September of 2020
+    /// it will be: (10692 days lived) % 7
+    /// but I decided a god for every prophecy as an addition to days lived
+    /// and it will be:
+    /// (10692 days lived + prophecy additon) % 7
+    ///
+    /// And then I multiple it on 5
+    ///
+    /// Both week name and astrologic sign are decided to some gods
+    /// if these Gods have the same name, prophecy will get additional 4 points
+    ///
+    internalStr += dayOfWeekCalc(
+        birthDate, calculationDate, ProphecyType.INTERNAL_STRENGTH);
+    moodlet += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.MOODLET);
+    ambition +=
+        dayOfWeekCalc(birthDate, calculationDate, ProphecyType.AMBITION);
+    intelligence +=
+        dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTELLIGENCE);
+    luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.LUCK);
+
+    print("- - -\nChaotic:");
+    print("Prophecy: Internal Strength, chaotic points: $internalStr");
+    print("Prophecy: Moodlet, chaotic points: $moodlet");
+    print("Prophecy: Ambition, chaotic points: $ambition");
+    print("Prophecy: Intelligence, chaotic points: $intelligence");
+    print("Prophecy: Luck, chaotic points: $luck");
+
+    // - - -
+
     /// @BASE base of value placeholders
     //
 
@@ -50,6 +102,10 @@ class _Astrology implements _OldWisdom {
     /// it is the most constant value in the algorithm which changes once per month
     final internalStrAmbitionBase = _InternalStrAmbitionBase
         .mapSignAndMonthToValue[astroSign][calculationDate.month];
+
+    print("- - -\nBase:");
+    print("Prophecy: Internal Strength, base points: $internalStrAmbitionBase");
+    print("Prophecy: Ambition, base points: $internalStrAmbitionBase");
 
     ambition += internalStrAmbitionBase;
     internalStr += internalStrAmbitionBase;
@@ -83,46 +139,15 @@ class _Astrology implements _OldWisdom {
     final moodIntelLuckBase =
         _moodIntelLuckBase(birthDate.day, calculationDate.day);
 
+    print("Prophecy: Moodlet, base points: $moodIntelLuckBase");
+    print("Prophecy: Intelligence, base points: $moodIntelLuckBase");
+    print("Prophecy: Luck, base points: $moodIntelLuckBase");
+
     moodlet += moodIntelLuckBase;
     intelligence += moodIntelLuckBase;
     luck += moodIntelLuckBase;
 
-    // - - -
-
-    /// @CHAOTIC value of placeholders
-
-    /// the most unstable value of the algorithm
-    /// days of week was named after Rome Gods
-    /// for example, Moon day, Saturn day, Sun day,
-    /// Wednesday was called mercredi, or day of Mercury
-    /// Great Britan as well as other german tribes were conqured by Rome Empire
-    /// and some names of week take different names from traditional week names
-    /// wednes came from "day of the Woden" for Anglo-Saxons
-    /// for example, in italian and francian Wednesday is still mercredi/mercoledì
-    ///
-    /// I calculate mod between difference of current day
-    /// and the day when user was born
-    /// for example,
-    /// if user were born in 23 of June in 1991
-    /// and todays 30 September of 2020
-    /// it will be: (10692 days lived) % 7
-    /// but I decided a god for every prophecy as an addition to days lived
-    /// and it will be:
-    /// (10692 days lived + prophecy additon) % 7
-    ///
-    /// And then I multiple it on 5
-    ///
-    /// Both week name and astrologic sign are decided to some gods
-    /// if these Gods have the same name, prophecy will get additional 4 points
-    ///
-    internalStr += dayOfWeekCalc(
-        birthDate, calculationDate, ProphecyType.INTERNAL_STRENGTH);
-    moodlet += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.MOODLET);
-    ambition +=
-        dayOfWeekCalc(birthDate, calculationDate, ProphecyType.AMBITION);
-    intelligence +=
-        dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTELLIGENCE);
-    luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.LUCK);
+    print("- - -\nCalesial tarot calcualtion:");
 
     /// @MYSTIC
     /// this is the most interesting part of an algorithm
@@ -170,10 +195,13 @@ class _Astrology implements _OldWisdom {
     ///
     /// In modulus %56
     int mod56 = daysLived % 56;
+    print("CTarot: Minor is $mod56,");
 
     /// In one day from 56
     /// User can get the card that represents its astrologic sign
     bool probabilityMinor = userPatron == _Kabbalah.patronMinor[mod56];
+    print(
+        "CTarot: Minor Card is ${(probabilityMinor) ? "" : "NOT "}user patron,");
 
     ///
     /// Probability is 1/56, but 4 signs have probability 2/56
@@ -185,10 +213,13 @@ class _Astrology implements _OldWisdom {
 
     /// In modulus %78
     int mod78 = daysLived % 78;
+    print("CTarot: Full is $mod78,");
 
     /// In 3 days from 78
     /// User can get the card that represents its astrologic sign
     bool probabilityFull = userPatron == _Kabbalah.patronFull[mod78];
+    print(
+        "CTarot: Minor+Major Card is ${(probabilityFull) ? "" : "NOT "}user patron,");
 
     ///
     /// Probability is 3/78 or 1/26
@@ -200,10 +231,13 @@ class _Astrology implements _OldWisdom {
 
     /// In modulus %22
     int mod22 = daysLived % 22;
+    print("CTarot: Major is $mod22,");
 
     /// In 2 days from 22
     /// User can get card that represents its astrologic sign
     bool probabilityMajor = userPatron == _Kabbalah.patronMajor[mod22];
+    print(
+        "CTarot: Major Card is ${(probabilityMajor) ? "" : "NOT "}user patron,");
 
     ///
     /// Probability is 2/22 or 1/11
@@ -214,27 +248,33 @@ class _Astrology implements _OldWisdom {
 
     if (probabilityMinor) {
       //
-      internalStr += 52;
-      moodlet += 52;
-      ambition += 52;
-      intelligence += 52;
-      luck += 52;
+      internalStr += _biggestBonus;
+      moodlet += _biggestBonus;
+      ambition += _biggestBonus;
+      intelligence += _biggestBonus;
+      luck += _biggestBonus;
+      print(
+          "CTarot: user won the biggest bonus, which is $_biggestBonus points for every prophecy,");
       //
     } else if (probabilityFull) {
       //
-      internalStr += 46;
-      moodlet += 46;
-      ambition += 46;
-      intelligence += 46;
-      luck += 46;
+      internalStr += _bigBonus;
+      moodlet += _bigBonus;
+      ambition += _bigBonus;
+      intelligence += _bigBonus;
+      luck += _bigBonus;
+      print(
+          "CTarot: user won a big bonus, which is $_bigBonus points for every prophecy,");
       //
     } else if (probabilityMajor) {
       //
-      internalStr += 42;
-      moodlet += 42;
-      ambition += 42;
-      intelligence += 42;
-      luck += 42;
+      internalStr += _middleBonus;
+      moodlet += _middleBonus;
+      ambition += _middleBonus;
+      intelligence += _middleBonus;
+      luck += _middleBonus;
+      print(
+          "CTarot: user won a middle bonus, which is $_middleBonus points for every prophecy,");
       //
     } else {
       /// in most days user will not get so huge bonuses
@@ -268,6 +308,7 @@ class _Astrology implements _OldWisdom {
       /// see _Kabbalah.impactMinor for more details
 
       int impactValue = _Kabbalah.impactMinor[mod56][userSuit];
+      print("CTarot: user won $impactValue points for every prophecy,");
 
       internalStr += impactValue;
       moodlet += impactValue;
@@ -275,26 +316,32 @@ class _Astrology implements _OldWisdom {
       intelligence += impactValue;
       luck += impactValue;
 
-      /// And then we have bonus 13 points to one prophecy
+      /// And then we have bonus points to one prophecy
       /// By mod22
-      int bonusPointsMagnitude = 13;
       ProphecyType bonusPoints = _Kabbalah.impactMajor[mod22];
 
       switch (bonusPoints) {
         case ProphecyType.INTERNAL_STRENGTH:
-          internalStr += bonusPointsMagnitude;
+          internalStr += _bonusPointsMagnitude;
+          print(
+              "CTarot: user won $_bonusPointsMagnitude points to internal strength,");
           break;
         case ProphecyType.MOODLET:
-          moodlet += bonusPointsMagnitude;
+          moodlet += _bonusPointsMagnitude;
+          print("CTarot: user won $_bonusPointsMagnitude points to moodlet,");
           break;
         case ProphecyType.AMBITION:
-          ambition += bonusPointsMagnitude;
+          ambition += _bonusPointsMagnitude;
+          print("CTarot: user won $_bonusPointsMagnitude points to ambition,");
           break;
         case ProphecyType.INTELLIGENCE:
-          intelligence += bonusPointsMagnitude;
+          intelligence += _bonusPointsMagnitude;
+          print(
+              "CTarot: user won $_bonusPointsMagnitude points to intelligence,");
           break;
         case ProphecyType.LUCK:
-          luck += bonusPointsMagnitude;
+          luck += _bonusPointsMagnitude;
+          print("CTarot: user won $_bonusPointsMagnitude points to luck,");
           break;
       }
     }
@@ -303,12 +350,12 @@ class _Astrology implements _OldWisdom {
     /// Result,
     ///
     /// First we print,
-    print(calculationDate.toIso8601String());
-    print("Prophecy: Internal Strength, points: $internalStr");
-    print("Prophecy: Moodlet, points: $moodlet");
-    print("Prophecy: Ambition, points: $ambition");
-    print("Prophecy: Intelligence, points: $intelligence");
-    print("Prophecy: Luck, points: $luck");
+    print("- - -\nResult:");
+    print("Prophecy: Internal Strength, total points: $internalStr");
+    print("Prophecy: Moodlet, total points: $moodlet");
+    print("Prophecy: Ambition, total points: $ambition");
+    print("Prophecy: Intelligence, total points: $intelligence");
+    print("Prophecy: Luck, total points: $luck");
 
     /// Now, we finally send out values to our algorithm module call:
 

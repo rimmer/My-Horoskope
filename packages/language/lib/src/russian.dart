@@ -52,7 +52,7 @@ class RussianLocale implements Locale {
         "Pluto": "Плутона",
         "Uranus": "Урана",
         "Neptune": "Нептуна",
-        "Selene": "Селены",
-        "Lilith": "Лилит",
+        "Lilith": "Темной Луны",
+        "Selene": "Светлой Луны",
       };
 }
