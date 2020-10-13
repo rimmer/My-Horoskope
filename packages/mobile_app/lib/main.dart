@@ -54,7 +54,9 @@ Widget appBuilder() {
                   repo: singleProvider.pollsRepo,
                 );
 
-                return myProphet(routes: initialRoutes, home: DailyScreen());
+                /// @TODO
+                /// dont forget to remove "Old" when ready
+                return myProphet(routes: initialRoutes, home: DailyScreenOld());
               }
 
               // else
