@@ -55,4 +55,8 @@ class RussianLocale implements Locale {
         "Lilith": "Темной Луны",
         "Selene": "Светлой Луны",
       };
+  final String today = "сегодня";
+  final String tomorrow = "завтра";
+  final String datomorrow = "послезавтра";
+  final String horoscopeFor = "гороскоп на";
 }

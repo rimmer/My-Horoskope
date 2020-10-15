@@ -43,6 +43,10 @@ class lang {
   static String pollSettingText = locale.pollSettingText;
   static String impact = locale.impact;
   static Map<String, String> get planetImpact => locale.planetImpact;
+  static String today = locale.today;
+  static String tomorrow = locale.tomorrow;
+  static String datomorrow = locale.datomorrow;
+  static String horoscopeFor = locale.horoscopeFor;
 }
 
 /// capitalize first letter of string

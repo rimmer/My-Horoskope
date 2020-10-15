@@ -16,6 +16,13 @@ class AppColors {
   static const prophecyGradientStart = Color(0xff3E218D);
   static const prophecyGradientEnd = Color(0xff4837B2);
 
+  static const appBarBackground = Color(0xff3F1D9D);
+  static const calendarBackground = Color(0xff301774);
+  static const calendarSelection = [
+    Color(0xffFB9E65),
+    Color(0xffE8438E),
+  ];
+
   // must have 9 colors, from index 0 to 8
   static const prophecyValueProgressGradient = [
     Color(0xff5D2DA0),
