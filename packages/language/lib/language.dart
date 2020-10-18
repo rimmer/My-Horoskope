@@ -47,6 +47,7 @@ class lang {
   static String tomorrow = locale.tomorrow;
   static String datomorrow = locale.datomorrow;
   static String horoscopeFor = locale.horoscopeFor;
+  static Map<int, String> get month => locale.month;
 }
 
 /// capitalize first letter of string

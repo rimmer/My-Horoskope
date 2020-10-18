@@ -14,6 +14,7 @@ import 'package:mutable_wrappers/mutable_wrappers.dart';
 
 import 'poll_widgets.dart';
 import 'calendar_widgets.dart';
+import 'constants.dart';
 
 const _NUMBER_OF_DAYS_TO_SHOW = 1098;
 //
@@ -37,14 +38,9 @@ class DailyScreen extends StatefulWidget {
 
   DailyScreen() {
     //
-    final now = DateTime.now();
 
-    final today = DateTime.utc(
-      now.year,
-      now.month,
-      now.day,
-    );
-
+    final today = DateTime.fromMillisecondsSinceEpoch(dtDay);
+    // final today = DateTime.utc(2021, 1, 1);
     day.add(today);
 
     /// fills the list with all other days
@@ -62,9 +58,8 @@ class _DailyScreenState extends State<DailyScreen> {
   @override
   void initState() {
     sp = context.read<SingleProvider>();
+    calculateProphecy();
 
-    /// @TODO check if clarified, if needed
-    // sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));
     super.initState();
   }
 
@@ -72,6 +67,16 @@ class _DailyScreenState extends State<DailyScreen> {
   int get selected => widget.currentIndex.wrapped;
 
   //
+
+  /// @PROPHECY
+
+  void calculateProphecy() {
+    sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));
+  }
+
+  void startUserPollBloc() {
+    sp.userPollBloc.add(UserPollRestartEvent());
+  }
 
   /// @APPBAR
 
@@ -113,47 +118,55 @@ class _DailyScreenState extends State<DailyScreen> {
 
     } else if (d[index - 1].year != d[index].year) {
       /// happy new year
-      return Row(
-        children: [
-          Flexible(child: yearSeparator()),
-          //
+      return Container(
+        width: calendarNewYearWidth,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Flexible(child: yearSeparator(d[index])),
+            //
 
-          Flexible(
-            child: (index == selected)
-                ? newYearDateSelected(d[index])
-                : GestureDetector(
-                    onTap: () {
-                      setState(() {
+            Flexible(
+              child: (index == selected)
+                  ? newYearDateSelected(d[index])
+                  : GestureDetector(
+                      onTap: () {
                         widget.currentIndex.wrapped = index;
-                      });
-                    },
-                    child: newYearDate(d[index]),
-                  ),
-          ),
-        ],
+                        setState(() {});
+                      },
+                      child: newYearDate(d[index]),
+                    ),
+            ),
+          ],
+        ),
       );
 
       //
     } else if (d[index - 1].month != d[index].month) {
       /// new month
-      return Row(
-        children: [
-          Flexible(child: monthSeparator()),
-          //
+      return Container(
+        width: calendarNewMonthWidth,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Flexible(child: monthSeparator()),
+            //
 
-          Flexible(
-            child: (index == selected)
-                ? newMonthDateSelected(d[index])
-                : GestureDetector(
-                    onTap: () {
-                      setState(() {
+            Flexible(
+              child: (index == selected)
+                  ? newMonthDateSelected(d[index])
+                  : GestureDetector(
+                      onTap: () {
                         widget.currentIndex.wrapped = index;
-                      });
-                    },
-                    child: newMonthDate(d[index]),
-                  ),
-          ),
-        ],
+                        setState(() {});
+                      },
+                      child: newMonthDate(d[index]),
+                    ),
+            ),
+          ],
+        ),
       );
 
       //
@@ -176,11 +189,18 @@ class _DailyScreenState extends State<DailyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //
+    bool isToday = selected == dtDay;
+    if (isToday) startUserPollBloc();
+    calculateProphecy();
+
+    final screen = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: ListView(
+          scrollDirection: Axis.vertical,
           children: <Widget>[
             //
 
@@ -190,29 +210,34 @@ class _DailyScreenState extends State<DailyScreen> {
             /// @APPBAR
             Container(
               color: AppColors.appBarBackground,
-              height: 64,
+              height: appbarHeight,
+              width: screen.width,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.view_headline,
-                      color: AppColors.textDisabled,
-                      size: 16,
+                  Flexible(
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.view_headline,
+                        color: AppColors.textDisabled,
+                        size: appBarIconSize,
+                      ),
+                      onPressed: () {
+                        /// @TODO
+                        print("Hello there!");
+                      },
+                      padding: EdgeInsets.all(32),
                     ),
-                    onPressed: () {
-                      /// @TODO
-                      print("Hello there!");
-                    },
-                    padding: EdgeInsets.all(32),
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(32),
-                    child: Text(
-                      appBarLabel(),
-                      style:
-                          TextStyle(fontSize: 20, color: AppColors.textPrimary),
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.all(32),
+                      child: Text(
+                        appBarLabel(),
+                        style: TextStyle(
+                          fontSize: appBarFontSize,
+                          color: AppColors.textPrimary,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -221,8 +246,9 @@ class _DailyScreenState extends State<DailyScreen> {
 
             /// @CALENDAR
             Container(
-              color: AppColors.calendarBackground,
-              height: 192,
+              color: AppColors.calendarBackground.withOpacity(0.6),
+              height: calendarHeight,
+              width: screen.width,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: _NUMBER_OF_DAYS_TO_SHOW,
@@ -232,34 +258,12 @@ class _DailyScreenState extends State<DailyScreen> {
 
             //
 
-            /// @PROPHECY
-          ],
-        ),
-      ),
-    );
-  }
-}
+            SizedBox(
+              height: 16,
+              width: screen.width,
+            ),
 
-class DailyScreenOld extends StatelessWidget {
-  final dt = dtDay;
-
-  @override
-  Widget build(BuildContext context) {
-    //
-    final sp = context.watch<SingleProvider>();
-
-    final bool isToday = dt == dtDay;
-
-    sp.prophecyBloc.add(CalculateProphecy(dt));
-    if (isToday) sp.userPollBloc.add(UserPollRestartEvent());
-
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: SafeArea(
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          children: <Widget>[
-            // @poll
+            /// @USERPOLL
             (isToday)
                 ? BlocBuilder<UserPollBloc, UserPollState>(
                     bloc: sp.userPollBloc,
@@ -282,7 +286,8 @@ class DailyScreenOld extends StatelessWidget {
                         case UserPollIsVotedState:
                           print("User poll is voted");
                           sp.prophecyBloc.add(ClarifyProphecy(
-                              dt: dt, poll: sp.userPollBloc.repo.todayPoll));
+                              dt: selected,
+                              poll: sp.userPollBloc.repo.todayPoll));
                           return SizedBox();
 
                         case UserPollIsSimpleState:
@@ -296,10 +301,14 @@ class DailyScreenOld extends StatelessWidget {
                     })
                 : SizedBox(),
 
-            // @prophecies
+            /// @PROPHECY
             SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: Prophecy(user: sp.usersRepo.current, dt: dt)),
+                height: screen.height,
+                width: screen.width,
+                child: Prophecy(
+                  user: sp.usersRepo.current,
+                  dt: selected,
+                )),
           ],
         ),
       ),

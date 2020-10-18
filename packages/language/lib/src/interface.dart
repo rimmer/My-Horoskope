@@ -40,4 +40,5 @@ abstract class Locale {
   String get tomorrow;
   String get datomorrow;
   String get horoscopeFor;
+  Map<int, String> get month;
 }

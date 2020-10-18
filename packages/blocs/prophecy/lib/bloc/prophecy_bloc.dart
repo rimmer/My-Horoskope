@@ -60,6 +60,7 @@ class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
   Stream<ProphecyState> mapEventToState(
     ProphecyEvent event,
   ) async* {
+    yield ProphecyInitial();
     switch (event.runtimeType) {
       case CalculateProphecy:
         yield* _calculateProphecy(dt: event.dt);

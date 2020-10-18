@@ -56,7 +56,7 @@ Widget appBuilder() {
 
                 /// @TODO
                 /// dont forget to remove "Old" when ready
-                return myProphet(routes: initialRoutes, home: DailyScreenOld());
+                return myProphet(routes: initialRoutes, home: DailyScreen());
               }
 
               // else
