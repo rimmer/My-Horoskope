@@ -4,7 +4,7 @@ import 'package:language/language.dart';
 import 'constants.dart';
 
 Container _date(DateTime date) => Container(
-      height: calendarDateHeight,
+      height: CALENDAR_DATE_HEIGHT,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -23,13 +23,13 @@ Container _date(DateTime date) => Container(
     );
 
 Widget ordinaryDate(DateTime date) => Padding(
-      padding: const EdgeInsets.all(calendarOrdinaryDatePadding),
+      padding: const EdgeInsets.all(CALENDAR_ORDINARY_DATE_PADDING),
       child: _date(date),
     );
 
 Widget selectedDate(DateTime date) => Container(
-      margin: EdgeInsets.all(calendarSelectedDateMargin),
-      padding: EdgeInsets.all(calendarSelectedDatePadding),
+      margin: EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
+      padding: EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: <Color>[
@@ -43,7 +43,7 @@ Widget selectedDate(DateTime date) => Container(
     );
 
 Widget monthSeparator() => Padding(
-      padding: EdgeInsets.all(calendarSeparatorPadding),
+      padding: EdgeInsets.all(CALENDAR_SEPARATOR_RADIUS),
       child: Text(
         "|",
         style: TextStyle(
@@ -58,7 +58,7 @@ Widget newMonthDate(DateTime date) => ordinaryDate(date);
 Widget newMonthDateSelected(DateTime date) => selectedDate(date);
 
 Widget yearSeparator(DateTime date) => Padding(
-      padding: EdgeInsets.all(calendarSeparatorPadding),
+      padding: EdgeInsets.all(CALENDAR_SEPARATOR_RADIUS),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

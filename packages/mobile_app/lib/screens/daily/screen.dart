@@ -16,24 +16,11 @@ import 'poll_widgets.dart';
 import 'calendar_widgets.dart';
 import 'constants.dart';
 
-const _NUMBER_OF_DAYS_TO_SHOW = 1098;
-//
-const _indexToDay = {
-  0: "TODAY",
-  1: "TOMORROW",
-  2: "DAY AFTER TOMORROW",
-};
-const _dayToIndex = {
-  "TODAY": 0,
-  "TOMORROW": 1,
-  "DAY AFTER TOMORROW": 2,
-};
-
 class DailyScreen extends StatefulWidget {
   /// current day to show
   final currentIndex = MutableInteger(0);
 
-  /// current and next _NUMBER_OF_DAYS_TO_SHOW days DateTime
+  /// current and next NUMBER_OF_DAYS_TO_SHOW days DateTime
   final List<DateTime> day = [];
 
   DailyScreen() {
@@ -44,7 +31,7 @@ class DailyScreen extends StatefulWidget {
     day.add(today);
 
     /// fills the list with all other days
-    for (int d = 1; d <= _NUMBER_OF_DAYS_TO_SHOW; d++)
+    for (int d = 1; d <= NUMBER_OF_DAYS_TO_SHOW; d++)
       day.add(today.add(new Duration(days: d)));
   }
 
@@ -63,31 +50,125 @@ class _DailyScreenState extends State<DailyScreen> {
     super.initState();
   }
 
-  List<DateTime> get d => widget.day;
-  int get selected => widget.currentIndex.wrapped;
+  @override
+  Widget build(BuildContext context) {
+    //
+    final screen = MediaQuery.of(context).size;
+    bool isToday = d[selected].millisecondsSinceEpoch == dtDay;
+
+    if (isToday) startUserPollBloc();
+    calculateProphecy();
+
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: SafeArea(
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: <Widget>[
+            //
+
+            /// All the fun goes here
+
+            //
+            /// @APPBAR
+            Container(
+              color: AppColors.appBarBackground,
+              height: APPBAR_HEIGHT,
+              width: screen.width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Flexible(child: SizedBox(width: 8)),
+                  Flexible(
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.view_headline,
+                        color: AppColors.textDisabled,
+                        size: APPBAR_ICON_SIZE,
+                      ),
+                      onPressed: () {
+                        /// @TODO
+                        print("Hello there!");
+                      },
+                    ),
+                  ),
+                  Flexible(child: SizedBox(width: 32)),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Text(
+                      appBarLabel(),
+                      style: TextStyle(
+                        fontSize: APPBAR_FONT_SIZE,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            /// @CALENDAR
+            Container(
+              color: AppColors.calendarBackground.withOpacity(0.6),
+              height: CALENDAR_HEIGHT,
+              width: screen.width,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: NUMBER_OF_DAYS_TO_SHOW,
+                itemBuilder: dayToWidget,
+              ),
+            ),
+
+            //
+
+            SizedBox(
+              height: SPACE_BETWEEN_CALENDAR_POLLS,
+              width: screen.width,
+            ),
+
+            /// @USERPOLL
+            (isToday)
+                ? BlocBuilder<UserPollBloc, UserPollState>(
+                    bloc: sp.userPollBloc,
+                    builder: userPollStateToWidget,
+                  )
+                : SizedBox(),
+
+            SizedBox(
+              height: SPACE_BETWEEN_POLLS_PROPHECY,
+              width: screen.width,
+            ),
+
+            /// @PROPHECY
+            SizedBox(
+                height: screen.height,
+                width: screen.width,
+                child: Prophecy(
+                  user: sp.usersRepo.current,
+                  dt: selected,
+                )),
+          ],
+        ),
+      ),
+    );
+  }
 
   //
 
-  /// @PROPHECY
-
-  void calculateProphecy() {
-    sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));
-  }
-
-  void startUserPollBloc() {
-    sp.userPollBloc.add(UserPollRestartEvent());
-  }
+  List<DateTime> get d => widget.day;
+  int get selected => widget.currentIndex.wrapped;
 
   /// @APPBAR
 
   String appBarLabel() {
     String label = "";
 
-    if (_dayToIndex["TODAY"] == selected)
+    if (dayToIndex["TODAY"] == selected)
       label = lang.today;
-    else if (_dayToIndex["TOMORROW"] == selected)
+    else if (dayToIndex["TOMORROW"] == selected)
       label = lang.tomorrow;
-    else if (_dayToIndex["DAY AFTER TOMORROW"] == selected)
+    else if (dayToIndex["DAY AFTER TOMORROW"] == selected)
       label = lang.datomorrow;
     else {
       label = "${d[selected].day}.${d[selected].month}.${d[selected].year}";
@@ -99,11 +180,11 @@ class _DailyScreenState extends State<DailyScreen> {
   /// @CALENDAR
   Widget dayToWidget(BuildContext context, int index) {
     ///
-    if (index == _dayToIndex["TODAY"]) {
+    if (index == dayToIndex["TODAY"]) {
       /// first element in the list
 
       //
-      if (_dayToIndex["TODAY"] == selected)
+      if (dayToIndex["TODAY"] == selected)
         return selectedDate(d[index]);
       else
         return GestureDetector(
@@ -119,7 +200,7 @@ class _DailyScreenState extends State<DailyScreen> {
     } else if (d[index - 1].year != d[index].year) {
       /// happy new year
       return Container(
-        width: calendarNewYearWidth,
+        width: CALENDAR_NEW_YEAR_WIDTH,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -146,7 +227,7 @@ class _DailyScreenState extends State<DailyScreen> {
     } else if (d[index - 1].month != d[index].month) {
       /// new month
       return Container(
-        width: calendarNewMonthWidth,
+        width: CALENDAR_NEW_MONTH_WIDTH,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -187,131 +268,47 @@ class _DailyScreenState extends State<DailyScreen> {
   }
   // dayToWidget end
 
-  @override
-  Widget build(BuildContext context) {
-    //
-    bool isToday = selected == dtDay;
-    if (isToday) startUserPollBloc();
-    calculateProphecy();
+  /// @USERPOLL
 
-    final screen = MediaQuery.of(context).size;
+  Widget userPollStateToWidget(BuildContext context, UserPollState state) {
+    switch (state.runtimeType) {
 
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: SafeArea(
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          children: <Widget>[
-            //
+      /// I am adding debug prints, jsut in case
 
-            /// All the fun goes here
+      case UserPollLoadingState:
+        print("User polls are loading.");
+        return SpinKitPulse(
+          color: AppColors.accentDark,
+          size: 32,
+        );
 
-            //
-            /// @APPBAR
-            Container(
-              color: AppColors.appBarBackground,
-              height: appbarHeight,
-              width: screen.width,
-              child: Row(
-                children: [
-                  Flexible(
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.view_headline,
-                        color: AppColors.textDisabled,
-                        size: appBarIconSize,
-                      ),
-                      onPressed: () {
-                        /// @TODO
-                        print("Hello there!");
-                      },
-                      padding: EdgeInsets.all(32),
-                    ),
-                  ),
-                  Flexible(
-                    child: Padding(
-                      padding: EdgeInsets.all(32),
-                      child: Text(
-                        appBarLabel(),
-                        style: TextStyle(
-                          fontSize: appBarFontSize,
-                          color: AppColors.textPrimary,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+      case UserPollIsDisabled:
+        print("User polls are disabled for current user");
+        return PollSettings();
 
-            /// @CALENDAR
-            Container(
-              color: AppColors.calendarBackground.withOpacity(0.6),
-              height: calendarHeight,
-              width: screen.width,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: _NUMBER_OF_DAYS_TO_SHOW,
-                itemBuilder: dayToWidget,
-              ),
-            ),
+      case UserPollIsVotedState:
+        print("User poll is voted");
+        sp.prophecyBloc.add(ClarifyProphecy(
+            dt: selected, poll: sp.userPollBloc.repo.todayPoll));
+        return SizedBox();
 
-            //
+      case UserPollIsSimpleState:
+        print("User poll is switched to simple state");
+        return PollSimpleWidget(bloc: sp.userPollBloc);
 
-            SizedBox(
-              height: 16,
-              width: screen.width,
-            ),
+      case UserPollIsComplexState:
+        print("User poll is switched to complex state");
+        return PollExtendedWidget(bloc: sp.userPollBloc);
+    }
+  }
 
-            /// @USERPOLL
-            (isToday)
-                ? BlocBuilder<UserPollBloc, UserPollState>(
-                    bloc: sp.userPollBloc,
-                    builder: (context, state) {
-                      switch (state.runtimeType) {
+  /// @PROPHECY
 
-                        /// I am adding debug prints, jsut in case
+  void calculateProphecy() {
+    sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));
+  }
 
-                        case UserPollLoadingState:
-                          print("User polls are loading.");
-                          return SpinKitPulse(
-                            color: AppColors.accentDark,
-                            size: 32,
-                          );
-
-                        case UserPollIsDisabled:
-                          print("User polls are disabled for current user");
-                          return PollSettings();
-
-                        case UserPollIsVotedState:
-                          print("User poll is voted");
-                          sp.prophecyBloc.add(ClarifyProphecy(
-                              dt: selected,
-                              poll: sp.userPollBloc.repo.todayPoll));
-                          return SizedBox();
-
-                        case UserPollIsSimpleState:
-                          print("User poll is switched to simple state");
-                          return PollSimpleWidget(bloc: sp.userPollBloc);
-
-                        case UserPollIsComplexState:
-                          print("User poll is switched to complex state");
-                          return PollExtendedWidget(bloc: sp.userPollBloc);
-                      }
-                    })
-                : SizedBox(),
-
-            /// @PROPHECY
-            SizedBox(
-                height: screen.height,
-                width: screen.width,
-                child: Prophecy(
-                  user: sp.usersRepo.current,
-                  dt: selected,
-                )),
-          ],
-        ),
-      ),
-    );
+  void startUserPollBloc() {
+    sp.userPollBloc.add(UserPollRestartEvent());
   }
 }
