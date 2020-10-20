@@ -569,8 +569,8 @@ const planetFor = {
       true: "Uranus",
     },
     "Taurus": {
-      false: "Sun",
-      true: "Pluto",
+      false: "Lilith",
+      true: "Uranus",
     },
     "Gemini": {
       false: "Uranus",

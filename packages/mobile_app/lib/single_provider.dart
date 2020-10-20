@@ -5,7 +5,6 @@ import 'package:user_poll/bloc.dart';
 import 'package:users_repository/users_repository.dart';
 
 export 'package:prophecy/bloc.dart';
-export 'package:prophecy/bloc.dart';
 export 'package:authentication/bloc.dart';
 export 'package:user_poll/bloc.dart';
 export 'package:algorithm/algorithm.dart';

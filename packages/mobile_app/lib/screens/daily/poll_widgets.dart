@@ -253,7 +253,7 @@ class _UserPollTopPart extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: 96,
+                        width: 108,
                         child: Divider(
                           height: 16.0,
                           thickness: 2,

@@ -33,8 +33,8 @@ Widget selectedDate(DateTime date) => Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: <Color>[
-            AppColors.calendarSelection[0],
-            AppColors.calendarSelection[1],
+            AppColors.accentDark,
+            AppColors.accent,
           ],
         ),
         shape: BoxShape.circle,

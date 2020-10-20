@@ -1,20 +1,5 @@
-import 'package:app/single_provider.dart';
-import 'package:app/theme/app_colors.dart';
-import 'package:flutter/material.dart';
-import 'package:prophecy/bloc/prophecy_bloc.dart';
-import 'package:provider/provider.dart';
-import 'package:app/components/prophecy.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:user_poll/bloc.dart';
-import 'package:app/components/poll_settings.dart';
-import 'package:language/language.dart';
-import 'package:int_datetime/int_datetime.dart';
-import 'package:mutable_wrappers/mutable_wrappers.dart';
-
-import 'poll_widgets.dart';
-import 'calendar_widgets.dart';
-import 'constants.dart';
+/// all imports are here
+import 'screen_index.dart';
 
 class DailyScreen extends StatefulWidget {
   /// current day to show
@@ -27,7 +12,6 @@ class DailyScreen extends StatefulWidget {
     //
 
     final today = DateTime.fromMillisecondsSinceEpoch(dtDay);
-    // final today = DateTime.utc(2021, 1, 1);
     day.add(today);
 
     /// fills the list with all other days
@@ -41,10 +25,34 @@ class DailyScreen extends StatefulWidget {
 
 class _DailyScreenState extends State<DailyScreen> {
   SingleProvider sp;
+  //
+  UserEntity user;
+  String labelStr;
+  Row birthRow;
+  String sign;
+  String userPatron;
+  final Map<bool, String> currentPlanets = {};
 
   @override
   void initState() {
     sp = context.read<SingleProvider>();
+    //
+
+    user = sp.usersRepo.current;
+    labelStr = "${user.model.name.capitalize()} (${userRole(user.role)})";
+    sign = user.model.birth.astroSign;
+    userPatron = user.model.birth.astroHousePlanet;
+
+    final dtConverted = user.model.birth.toDateTime;
+
+    birthRow = Row(
+      children: <Widget>[
+        SvgPicture.asset("assets/icons/$sign.svg"),
+        Text(" ${dtConverted.day}.${dtConverted.month}.${dtConverted.year} ",
+            style: TextStyle(fontSize: 14)),
+      ],
+    );
+
     calculateProphecy();
 
     super.initState();
@@ -52,6 +60,11 @@ class _DailyScreenState extends State<DailyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //
+    /// gets planets for current period
+    currentPlanets
+      ..clear()
+      ..addAll(planetFor[d[selected].millisecondsSinceEpoch.astroSign][sign]);
     //
     final screen = MediaQuery.of(context).size;
     bool isToday = d[selected].millisecondsSinceEpoch == dtDay;
@@ -66,10 +79,6 @@ class _DailyScreenState extends State<DailyScreen> {
           scrollDirection: Axis.vertical,
           children: <Widget>[
             //
-
-            /// All the fun goes here
-
-            //
             /// @APPBAR
             Container(
               color: AppColors.appBarBackground,
@@ -79,11 +88,11 @@ class _DailyScreenState extends State<DailyScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Flexible(child: SizedBox(width: 8)),
+                  Flexible(child: SizedBox(width: APPBAR_ICON_SIZE / 3)),
                   Flexible(
                     child: IconButton(
                       icon: Icon(
-                        Icons.view_headline,
+                        Icons.menu,
                         color: AppColors.textDisabled,
                         size: APPBAR_ICON_SIZE,
                       ),
@@ -93,7 +102,7 @@ class _DailyScreenState extends State<DailyScreen> {
                       },
                     ),
                   ),
-                  Flexible(child: SizedBox(width: 32)),
+                  Flexible(child: SizedBox(width: APPBAR_BETWEEN_ICON_TEXT)),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Text(
@@ -110,7 +119,7 @@ class _DailyScreenState extends State<DailyScreen> {
 
             /// @CALENDAR
             Container(
-              color: AppColors.calendarBackground.withOpacity(0.6),
+              color: AppColors.calendarBackground.withOpacity(0.4),
               height: CALENDAR_HEIGHT,
               width: screen.width,
               child: ListView.builder(
@@ -142,12 +151,73 @@ class _DailyScreenState extends State<DailyScreen> {
 
             /// @PROPHECY
             SizedBox(
-                height: screen.height,
-                width: screen.width,
-                child: Prophecy(
-                  user: sp.usersRepo.current,
-                  dt: selected,
-                )),
+              height: screen.height,
+              width: screen.width,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: PROPHECY_PADDING_HORIZONTAL),
+                child: BlocBuilder<ProphecyBloc, ProphecyState>(
+                    bloc: sp.prophecyBloc,
+                    builder: (context, state) {
+                      //
+                      if (state is ProphecyInitial) {
+                        return prophecyIsLoading(
+                            user: this.user, birthRow: birthRow);
+                        //
+
+                      } else if (state is ProphecyWasAsked ||
+                          state is ProphecyWasClarified) {
+                        //
+                        /// if sum points of all prophecies equal or more then SWITCH_POSITIVE_PLANET_AT_SUM
+                        /// change positive planet to a user patron planet,
+                        if (state.propheciesSum >=
+                            SWITCH_POSITIVE_PLANET_AT_SUM)
+                          currentPlanets[true] = userPatron;
+
+                        //
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              labelStr,
+                              style: TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.w400),
+                            ),
+                            SizedBox(
+                              height: 32,
+                              child: birthRow,
+                            ),
+                            //
+
+                            prophecyRecord(
+                                prophecy: state
+                                    .prophecy[ProphecyType.INTERNAL_STRENGTH],
+                                planetVariants: currentPlanets),
+                            prophecyRecord(
+                                prophecy: state.prophecy[ProphecyType.MOODLET],
+                                planetVariants: currentPlanets),
+                            prophecyRecord(
+                                prophecy: state.prophecy[ProphecyType.AMBITION],
+                                planetVariants: currentPlanets),
+                            prophecyRecord(
+                                prophecy:
+                                    state.prophecy[ProphecyType.INTELLIGENCE],
+                                planetVariants: currentPlanets),
+                            //
+                            prophecyRecord(
+                                prophecy: state.prophecy[ProphecyType.LUCK],
+                                planetVariants: currentPlanets),
+                          ],
+                          //
+                        );
+                      } else {
+                        return Center(
+                          child: Text("Error"),
+                        );
+                      }
+                    }),
+              ),
+            ),
           ],
         ),
       ),
@@ -184,17 +254,19 @@ class _DailyScreenState extends State<DailyScreen> {
       /// first element in the list
 
       //
-      if (dayToIndex["TODAY"] == selected)
-        return selectedDate(d[index]);
-      else
-        return GestureDetector(
-          onTap: () {
-            setState(() {
-              widget.currentIndex.wrapped = index;
-            });
-          },
-          child: ordinaryDate(d[index]),
-        );
+      return Row(children: [
+        SizedBox(width: 16),
+        (dayToIndex["TODAY"] == selected)
+            ? selectedDate(d[index])
+            : GestureDetector(
+                onTap: () {
+                  setState(() {
+                    widget.currentIndex.wrapped = index;
+                  });
+                },
+                child: ordinaryDate(d[index]),
+              )
+      ]);
       //
 
     } else if (d[index - 1].year != d[index].year) {
