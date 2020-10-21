@@ -140,8 +140,9 @@ extension DailyScreenBuilders on _DailyScreenState {
 
   Widget prophecyBuilder(BuildContext context, ProphecyState state) {
     //
+    print(dat.labelStr);
     if (state is ProphecyInitial) {
-      return prophecyIsLoading(user: dat.user, birthRow: dat.birthRow);
+      return prophecyIsLoading();
       //
 
     } else if (state is ProphecyWasAsked || state is ProphecyWasClarified) {

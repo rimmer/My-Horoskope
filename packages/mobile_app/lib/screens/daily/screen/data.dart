@@ -6,5 +6,5 @@ class DailyStateData {
   Row birthRow;
   String sign;
   String userPatron;
-  final Map<bool, String> currentPlanets = {};
+  Map<bool, String> currentPlanets = {};
 }

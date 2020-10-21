@@ -1,5 +1,3 @@
-import 'package:app/routes.dart';
-
 /// all imports are here
 import 'index.dart';
 
@@ -8,16 +6,13 @@ part 'builders.dart';
 part 'data.dart';
 
 class DailyScreen extends StatefulWidget {
-  /// current widget state data
-  final dat = DailyStateData();
-
   /// current and next NUMBER_OF_DAYS_TO_SHOW days DateTime
   final List<DateTime> day = [];
 
   /// current day to show index
   final currentIndex = MutableInteger(0);
 
-  DailyScreen() {
+  DailyScreen({Key key}) : super(key: key) {
     //
 
     final today = DateTime.fromMillisecondsSinceEpoch(dtDay);
@@ -35,6 +30,7 @@ class DailyScreen extends StatefulWidget {
 class _DailyScreenState extends State<DailyScreen> {
   //
   SingleProvider sp;
+  final dat = DailyStateData();
 
   @override
   void initState() {
@@ -64,7 +60,6 @@ class _DailyScreenState extends State<DailyScreen> {
 
   List<DateTime> get d => widget.day;
   int get selected => widget.currentIndex.wrapped;
-  DailyStateData get dat => widget.dat;
 
   void calculateProphecy() {
     sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));
@@ -78,10 +73,8 @@ class _DailyScreenState extends State<DailyScreen> {
   Widget build(BuildContext context) {
     //
     /// gets planets for current period
-    dat.currentPlanets
-      ..clear()
-      ..addAll(
-          planetFor[d[selected].millisecondsSinceEpoch.astroSign][dat.sign]);
+    dat.currentPlanets =
+        planetFor[d[selected].millisecondsSinceEpoch.astroSign][dat.sign];
     //
     final screen = MediaQuery.of(context).size;
     bool isToday = d[selected].millisecondsSinceEpoch == dtDay;

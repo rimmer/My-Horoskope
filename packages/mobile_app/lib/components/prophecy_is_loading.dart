@@ -10,20 +10,10 @@ import 'prophecy_record.dart';
 import 'package:int_datetime/int_datetime.dart';
 import 'package:algorithm/astro.dart' show BasicAstrology;
 
-ListView prophecyIsLoading(
-    {@required UserEntity user, @required Row birthRow}) {
-  final labelStr = "${user.model.name.capitalize()} (${userRole(user.role)})";
-  final dt = user.model.birth.toDateTime;
-  final sign = user.model.birth.astroSign;
-
+ListView prophecyIsLoading() {
   return ListView(
     scrollDirection: Axis.vertical,
     children: <Widget>[
-      Text(
-        labelStr,
-        style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
-      ),
-      birthRow,
       prophecyRecordLoading(prophecyName: ProphecyType.INTERNAL_STRENGTH.toStr),
       prophecyRecordLoading(prophecyName: ProphecyType.MOODLET.toStr),
       prophecyRecordLoading(prophecyName: ProphecyType.AMBITION.toStr),
