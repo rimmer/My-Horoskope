@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'screens/daily/screen.dart';
+import 'screens/daily/screen/screen.dart';
 
-export 'screens/daily/screen.dart';
+export 'screens/daily/screen/screen.dart';
 export 'screens/registration/screen.dart';
 export 'screens/loading.dart';
 export 'theme/app_theme.dart';

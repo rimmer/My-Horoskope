@@ -16,6 +16,7 @@ export 'package:app/components/prophecy_record.dart';
 export 'package:app/components/prophecy_is_loading.dart';
 export 'package:app/theme/app_colors.dart';
 export 'package:users_repository/users_repository.dart';
-export 'poll_widgets.dart';
-export 'calendar_widgets.dart';
-export 'constants.dart';
+
+export '../poll_widgets.dart';
+export '../calendar_widgets.dart';
+export '../constants.dart';
