@@ -1,14 +1,12 @@
+import 'package:app/single_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:app/components/popup.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:language/language.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:users_repository/users_repository.dart';
-import 'package:users_repository_flutter/users_repository_flutter.dart';
 import 'magic_checkbox.dart';
 import 'gradient_flatbutton.dart';
 
@@ -20,15 +18,13 @@ class PollSettings extends StatefulWidget {
 class PollSettingsState extends State<PollSettings> {
   MutableBool poll;
   MutableBool studying;
-  UsersRepository usersRepo;
-  UserPollBloc pollBloc;
+  SingleProvider sp;
 
   @override
   void initState() {
-    usersRepo = context.read<UsersRepositoryFlutter>();
-    pollBloc = context.bloc<UserPollBloc>();
-    poll = MutableBool(usersRepo.current.pollAvailability);
-    studying = MutableBool(usersRepo.current.pollStudying);
+    sp = context.read<SingleProvider>();
+    poll = MutableBool(sp.usersRepo.current.pollAvailability);
+    studying = MutableBool(sp.usersRepo.current.pollStudying);
     super.initState();
   }
 
@@ -44,9 +40,9 @@ class PollSettingsState extends State<PollSettings> {
               title: lang.pollSettingsTitle.capitalize(),
               body: PollSettingInfo(poll: poll, studying: studying),
               actions: <Widget>[
-                GradientFlatButton(
+                gradientFlatButton(
                   onPressed: () {
-                    pollBloc.add(UserPollOnOffEvent(
+                    sp.userPollBloc.add(UserPollOnOffEvent(
                         availability: poll.wrapped,
                         studying: studying.wrapped));
                     Navigator.of(context).pop();

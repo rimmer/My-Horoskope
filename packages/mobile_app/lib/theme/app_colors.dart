@@ -16,6 +16,9 @@ class AppColors {
   static const prophecyGradientStart = Color(0xff3E218D);
   static const prophecyGradientEnd = Color(0xff4837B2);
 
+  static const appBarBackground = Color(0xff3F1D9D);
+  static const calendarBackground = Color(0xff301774);
+
   // must have 9 colors, from index 0 to 8
   static const prophecyValueProgressGradient = [
     Color(0xff5D2DA0),
@@ -40,8 +43,8 @@ class AppColors {
 }
 
 Color chooseNumberColorFromThreeVariants(double value) {
-  if (value < 4) return AppColors.prophecyValueNumber[0];
-  if (value < 7) return AppColors.prophecyValueNumber[1];
+  if (value < 4.0) return AppColors.prophecyValueNumber[0];
+  if (value < 7.0) return AppColors.prophecyValueNumber[1];
   return AppColors.prophecyValueNumber[2];
 }
 

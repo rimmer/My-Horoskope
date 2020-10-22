@@ -41,6 +41,13 @@ class lang {
   static String pollSettingPollOption = locale.pollSettingPollOption;
   static String pollSettingsStudyOption = locale.pollSettingsStudyOption;
   static String pollSettingText = locale.pollSettingText;
+  static String impact = locale.impact;
+  static Map<String, String> get planetImpact => locale.planetImpact;
+  static String today = locale.today;
+  static String tomorrow = locale.tomorrow;
+  static String datomorrow = locale.datomorrow;
+  static String horoscopeFor = locale.horoscopeFor;
+  static Map<int, String> get month => locale.month;
 }
 
 /// capitalize first letter of string

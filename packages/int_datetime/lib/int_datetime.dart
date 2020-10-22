@@ -15,14 +15,21 @@ int get dtNow => DateTime.now().millisecondsSinceEpoch;
 int get dtDay {
   final now = DateTime.now();
 
-  return DateTime.utc(now.year, now.month, now.day).millisecondsSinceEpoch;
+  return DateTime.utc(
+    now.year,
+    now.month,
+    now.day,
+  ).millisecondsSinceEpoch;
 }
 
 /// Will return time of the start of current month in milliseconds since epoch.
 int get dtMonth {
   final now = DateTime.now();
 
-  return DateTime.utc(now.year, now.month).millisecondsSinceEpoch;
+  return DateTime.utc(
+    now.year,
+    now.month,
+  ).millisecondsSinceEpoch;
 }
 
 /// Will return time of the start of current year in milliseconds since epoch.

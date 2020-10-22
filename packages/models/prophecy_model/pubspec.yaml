@@ -8,10 +8,8 @@ environment:
 
 dependencies:
   meta: ^1.1.8
-  dataclass: ^0.3.0+1
   json_annotation: ^3.0.1
   
 dev_dependencies:
   build_runner: ^1.0.0
-  dataclass_generator: ^0.3.0+1
   json_serializable: ^3.2.0

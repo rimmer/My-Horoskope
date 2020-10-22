@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:int_datetime/int_datetime.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 
 import 'package:user_poll/bloc.dart';
 import 'package:language/language.dart';
 import 'package:poll_model/poll_model.dart';
-import 'package:userpoll/userpoll.dart';
 import 'magic_poll.dart';
 
-class YesterdayPollSimple extends StatelessWidget {
-  final UserPollBloc userPollBloc;
-  final MutableInteger mood;
-  YesterdayPollSimple({@required this.mood, @required this.userPollBloc});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
+Padding yesterdayPollSimple(
+        {@required MutableInteger mood, @required UserPollBloc userPollBloc})
+    //
+    =>
+    Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,29 +39,16 @@ class YesterdayPollSimple extends StatelessWidget {
         ],
       ),
     );
-  }
-}
 
-class YesterdayPollExtended extends StatelessWidget {
-  final UserPollBloc userPollBloc;
-  final MutableInteger mood;
-  final MutableInteger productivity;
-  final MutableInteger relationship;
-  final MutableInteger selfdevelopment;
-  final MutableInteger activity;
-
-  YesterdayPollExtended({
-    @required this.mood,
-    @required this.productivity,
-    @required this.relationship,
-    @required this.selfdevelopment,
-    @required this.activity,
-    @required this.userPollBloc,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
+Padding yesterdayPollExtended({
+  @required MutableInteger mood,
+  @required MutableInteger productivity,
+  @required MutableInteger relationship,
+  @required MutableInteger selfdevelopment,
+  @required MutableInteger activity,
+  @required UserPollBloc userPollBloc,
+}) =>
+    Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,5 +142,3 @@ class YesterdayPollExtended extends StatelessWidget {
         ],
       ),
     );
-  }
-}

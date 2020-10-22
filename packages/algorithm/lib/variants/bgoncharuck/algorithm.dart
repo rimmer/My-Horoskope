@@ -5,10 +5,22 @@ import 'package:prophecy_model/prophecy_model.dart';
 import 'package:users_repository/users_repository.dart';
 import 'package:userpoll/userpoll.dart';
 import 'package:algorithm/astro.dart';
+import 'methods_base.dart';
 import 'methods_userpollcalc.dart';
+// - - -
 import '../../interface.dart';
+import '../../astro.dart';
+import '../../astro_rome.dart';
+import '../../astro_jewish.dart';
 
+// - - -
+// hardcoded
 part 'base_hardcoded.dart';
+// - - -
+// astrology
+part 'base_astrology.dart';
+part 'base_astrology_numerologic.dart';
+part 'base_astrology_tarot.dart';
 
 const int DAYS_TO_COUNT_IN_POLLS = 7;
 const TODAY_POLL_PERCENT = 10;
@@ -20,7 +32,9 @@ abstract class _OldWisdom {
 
 class OfOldWayMagic implements MagicSpecialization {
   //
-  final _OldWisdom _mage = _Hardcoded();
+  /// Cut the red line here! Here we go
+  // final _OldWisdom _mage = _Hardcoded();
+  final _OldWisdom _mage = _Astrology();
 
   /// asks information from the Old Way adept mage
   Map<ProphecyType, ProphecyEntity> _askInformation(

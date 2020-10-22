@@ -40,4 +40,37 @@ class RussianLocale implements Locale {
   final String pollSettingsStudyOption = "включить обучение AI";
   final String pollSettingText =
       "отвечая на вопросы о своем вчерашнем настроении Вы помогате обучить наш искусственный интеллект лучше прогнозировать ваше будущее.";
+  final String impact = "влияние";
+  Map<String, String> get planetImpact => {
+        "Sun": "Солнца",
+        "Moon": "Луны",
+        "Mercury": "Меркурия",
+        "Mars": "Марса",
+        "Venus": "Венеры",
+        "Jupiter": "Юпитера",
+        "Saturn": "Сатурна",
+        "Pluto": "Плутона",
+        "Uranus": "Урана",
+        "Neptune": "Нептуна",
+        "Lilith": "Темной Луны",
+        "Selene": "Светлой Луны",
+      };
+  final String today = "сегодня";
+  final String tomorrow = "завтра";
+  final String datomorrow = "послезавтра";
+  final String horoscopeFor = "гороскоп на";
+  Map<int, String> get month => {
+        1: "январь",
+        2: "февраль",
+        3: "март",
+        4: "апрель",
+        5: "май",
+        6: "июнь",
+        7: "июль",
+        8: "август",
+        9: "сентябрь",
+        10: "октябрь",
+        11: "ноябрь",
+        12: "декабрь",
+      };
 }

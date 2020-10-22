@@ -34,4 +34,11 @@ abstract class Locale {
   String get pollSettingPollOption;
   String get pollSettingsStudyOption;
   String get pollSettingText;
+  String get impact;
+  Map<String, String> get planetImpact;
+  String get today;
+  String get tomorrow;
+  String get datomorrow;
+  String get horoscopeFor;
+  Map<int, String> get month;
 }
