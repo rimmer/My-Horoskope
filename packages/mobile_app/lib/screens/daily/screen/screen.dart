@@ -107,8 +107,7 @@ class _DailyScreenState extends State<DailyScreen> {
                         size: APPBAR_ICON_SIZE,
                       ),
                       onPressed: () {
-                        /// @TODO
-                        print("Hello there!");
+                        Navigator.pushNamed(context, '/menu');
                       },
                     ),
                   ),
@@ -161,7 +160,7 @@ class _DailyScreenState extends State<DailyScreen> {
 
             /// @PROPHECY
             SizedBox(
-              height: screen.height,
+              height: screen.height - 24.0,
               width: screen.width,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -171,6 +170,38 @@ class _DailyScreenState extends State<DailyScreen> {
                   builder: prophecyBuilder,
                 ),
               ),
+            ),
+
+            gradientBorderButton(
+                child: Text(
+                  lang.addAmbiance.toUpperCase(),
+                  style: TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 14.0,
+                  ),
+                ),
+                gradient: LinearGradient(
+                  colors: [
+                    AppColors.accentDark,
+                    AppColors.accent,
+                    AppColors.primary,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+                borderAsPadding: EdgeInsets.all(1.0),
+                background: AppColors.primaryDark,
+                internalPadding:
+                    EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
+                borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                onPressed: () {
+                  /// @TODO
+                  print("Hello there!");
+                }),
+
+            SizedBox(
+              height: SPACE_AFTER_AMBIANCE,
+              width: screen.width,
             ),
           ],
         ),

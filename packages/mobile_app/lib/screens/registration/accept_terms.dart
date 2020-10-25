@@ -55,7 +55,7 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
               child: FlatButton(
                 onPressed: () => launch(URL_USER_AGREEMENT),
                 child: acceptTermsText(
-                  lang.userAgreement,
+                  lang.termsUserAgreement,
                 ),
               ),
             ),
@@ -63,7 +63,7 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
               child: FlatButton(
                 onPressed: () => launch(URL_PRIVACY_POLICY),
                 child: acceptTermsText(
-                  lang.privacyPolicy,
+                  lang.termsPrivacyPolicy,
                 ),
               ),
             ),
