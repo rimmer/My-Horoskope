@@ -10,11 +10,7 @@ const dayToIndex = {
   "TOMORROW": 1,
   "DAY AFTER TOMORROW": 2,
 };
-//
-const APPBAR_HEIGHT = 56.0;
-const APPBAR_ICON_SIZE = 24.0;
-const APPBAR_FONT_SIZE = 20.0;
-const APPBAR_BETWEEN_ICON_TEXT = 16.0;
+
 //
 const CALENDAR_HEIGHT = 80.0;
 const CALENDAR_DATE_HEIGHT = 56.0;

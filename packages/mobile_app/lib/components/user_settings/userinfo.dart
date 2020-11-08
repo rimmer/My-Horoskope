@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
-import 'package:app/components/userinfo_field.dart';
-import 'package:app/components/userinfo_picker.dart';
+import './userinfo_field.dart';
+import './userinfo_picker.dart';
 
 Column userInfo(
     {@required UserInfoField name,

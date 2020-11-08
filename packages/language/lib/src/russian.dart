@@ -48,6 +48,9 @@ class RussianLocale implements Locale {
   final String rateApp = "оценить приложение";
   final String privacyPolicy = "политика конфеденциальности";
   final String userAgreement = "пользовательское соглашение";
+  final String personalInformation = "личная информация";
+  final String propheciesToDisplay = "отображаемые показатели";
+  final String save = "сохранить";
   Map<int, String> get month => {
         1: "январь",
         2: "февраль",

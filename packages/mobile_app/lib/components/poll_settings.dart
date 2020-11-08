@@ -11,6 +11,8 @@ import 'magic_checkbox.dart';
 import 'gradient_flatbutton.dart';
 
 class PollSettings extends StatefulWidget {
+  final Widget child;
+  PollSettings({this.child});
   @override
   PollSettingsState createState() => PollSettingsState();
 }
@@ -35,7 +37,7 @@ class PollSettingsState extends State<PollSettings> {
         showOverCurrentScreen(
             context: context,
             child: SimpleTransperentScreen(
-              heightFactor: 0.49,
+              heightFactor: 0.42,
               widthFactor: 0.9,
               title: lang.pollSettingsTitle.capitalize(),
               body: PollSettingInfo(poll: poll, studying: studying),
@@ -78,20 +80,22 @@ class PollSettingsState extends State<PollSettings> {
               ],
             ));
       },
-      child: Container(
-        padding: EdgeInsets.only(
-          left: 32,
-          right: 16,
-          top: 16,
-          bottom: 16,
-        ),
-        child: SvgPicture.asset(
-          "assets/icons/gear.svg",
-          width: 14,
-          height: 14,
-          color: AppColors.textSecondary,
-        ),
-      ),
+      child: (widget.child == null)
+          ? Container(
+              padding: EdgeInsets.only(
+                left: 32,
+                right: 16,
+                top: 16,
+                bottom: 16,
+              ),
+              child: SvgPicture.asset(
+                "assets/icons/gear.svg",
+                width: 14,
+                height: 14,
+                color: AppColors.textSecondary,
+              ),
+            )
+          : widget.child,
     );
   }
 }

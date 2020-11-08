@@ -15,7 +15,8 @@ export 'screens/daily/screen/screen.dart';
 export 'screens/registration/screen.dart';
 export 'screens/loading.dart';
 import 'screens/daily/screen/screen.dart';
-import 'screens/menu/screen.dart';
+import 'screens/menu/screen/screen.dart';
+import 'screens/settings/screen.dart';
 
 Container imageBackground({@required Widget child, @required String asset}) =>
     Container(
@@ -33,6 +34,7 @@ MaterialApp myProphet({@required Widget authResolver}) => MaterialApp(
       routes: {
         "/daily": (BuildContext context) => DailyScreen(),
         "/menu": (BuildContext context) => MenuScreen(),
+        "/settings": (BuildContext context) => ProfileSettingsScreen(),
       },
       home: authResolver,
     );

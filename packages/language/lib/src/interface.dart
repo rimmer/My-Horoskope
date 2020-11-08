@@ -25,6 +25,7 @@ abstract class Locale {
   String get notificationAt;
   String get notSelectedSex;
   String get other;
+  String get personalInformation;
   String get physicalActivity;
   Map<String, String> get planetImpact;
   String get pollSettingPollOption;
@@ -34,10 +35,12 @@ abstract class Locale {
   String get privacyPolicy;
   String get productivity;
   String get profileSettings;
+  String get propheciesToDisplay;
   Map<String, String> get prophecyId;
   String get rateApp;
   String get rateYourYesterday;
   String get relationships;
+  String get save;
   String get selfdevelopment;
   String get sex;
   String get simple;

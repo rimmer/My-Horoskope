@@ -55,6 +55,9 @@ class lang {
   static String rateApp = locale.rateApp;
   static String privacyPolicy = locale.privacyPolicy;
   static String userAgreement = locale.userAgreement;
+  static String personalInformation = locale.personalInformation;
+  static String propheciesToDisplay = locale.propheciesToDisplay;
+  static String save = locale.save;
   static Map<int, String> get month => locale.month;
   static Map<String, String> get planetImpact => locale.planetImpact;
   static Map<String, String> get prophecyId => locale.prophecyId;

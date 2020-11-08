@@ -90,41 +90,12 @@ class _DailyScreenState extends State<DailyScreen> {
           children: <Widget>[
             //
             /// @APPBAR
-            Container(
-              color: AppColors.appBarBackground,
-              height: APPBAR_HEIGHT,
-              width: screen.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Flexible(child: SizedBox(width: APPBAR_ICON_SIZE / 3)),
-                  Flexible(
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.menu,
-                        color: AppColors.textDisabled,
-                        size: APPBAR_ICON_SIZE,
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/menu');
-                      },
-                    ),
-                  ),
-                  Flexible(child: SizedBox(width: APPBAR_BETWEEN_ICON_TEXT)),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Text(
-                      appBarLabel(selected: selected, dateTime: d[selected]),
-                      style: TextStyle(
-                        fontSize: APPBAR_FONT_SIZE,
-                        color: AppColors.textPrimary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            myProphetAppBar(
+                width: screen.width,
+                label: appBarLabel(selected: selected, dateTime: d[selected]),
+                onTap: () {
+                  Navigator.pushNamed(context, '/menu');
+                }),
 
             /// @CALENDAR
             Container(
