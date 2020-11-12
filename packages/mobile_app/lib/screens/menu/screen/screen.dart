@@ -1,3 +1,5 @@
+import 'package:app/components/notavaible_button.dart';
+
 import '../index.dart';
 
 const BOTTOM_ROW_HEIGHT = 80.0;
@@ -49,14 +51,18 @@ class _MenuScreenState extends State<MenuScreen> {
                           Navigator.pushNamed(context, '/daily');
                         });
                       }),
-                  menuItemLeadingIcon(
+                  NotAvaibleInfo(
+                    height: 242,
+                    width: 250,
+                    child: menuItemLeadingIcon(
                       icon: Icons.group_add,
                       text: "${lang.addAmbiance.capitalize()}",
-                      onTap: () {
-                        setState(() {
-                          Navigator.pushNamed(context, '/daily');
-                        });
-                      }),
+                      onTap: null,
+                    ),
+                    title: lang.noAmbianceTitle,
+                    desc: lang.noAmbianceDescription,
+                    button: lang.noAmbianceButton,
+                  ),
                   menuItemLeadingIcon(
                       icon: Icons.perm_identity,
                       text: "${lang.profileSettings.capitalize()}",

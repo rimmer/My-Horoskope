@@ -143,7 +143,10 @@ class _DailyScreenState extends State<DailyScreen> {
               ),
             ),
 
-            gradientBorderButton(
+            NotAvaibleInfo(
+              height: 242,
+              width: 250,
+              child: gradientBorderButton(
                 child: Text(
                   lang.addAmbiance.toUpperCase(),
                   style: TextStyle(
@@ -165,10 +168,12 @@ class _DailyScreenState extends State<DailyScreen> {
                 internalPadding:
                     EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
                 borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                onPressed: () {
-                  /// @TODO
-                  print("Hello there!");
-                }),
+                onPressed: null,
+              ),
+              title: lang.noAmbianceTitle,
+              desc: lang.noAmbianceDescription,
+              button: lang.noAmbianceButton,
+            ),
 
             SizedBox(
               height: SPACE_AFTER_AMBIANCE,

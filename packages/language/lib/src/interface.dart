@@ -20,6 +20,9 @@ abstract class Locale {
   String get mood;
   String get my;
   String get name;
+  String get noAmbianceButton;
+  String get noAmbianceDescription;
+  String get noAmbianceTitle;
   String get notAllFieldsFilled;
   String get notification;
   String get notificationAt;

@@ -18,35 +18,32 @@ Future<void> showOverCurrentScreen({
 class SimpleTransperentScreen extends StatelessWidget {
   final String title;
   final Widget body;
-  final double heightFactor;
-  final double widthFactor;
+  final double height;
+  final double width;
   final List<Widget> actions;
   const SimpleTransperentScreen({
     Key key,
     this.title,
     @required this.body,
-    this.heightFactor = 0.4,
-    this.widthFactor = 0.8,
+    @required this.height,
+    @required this.width,
     this.actions = const [],
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Container(
       color: Colors.transparent,
-      height: screenHeight * heightFactor,
-      width: screenWidth * widthFactor,
+      height: height,
+      width: width,
       child: Center(
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.primary,
             borderRadius: BorderRadius.circular(8.0),
           ),
-          height: screenHeight * heightFactor,
-          width: screenWidth * widthFactor,
+          height: height,
+          width: width,
           child: ListView(
             scrollDirection: Axis.vertical,
             children: <Widget>[
@@ -60,7 +57,7 @@ class SimpleTransperentScreen extends StatelessWidget {
                         ),
                       ),
                       height: 44,
-                      width: screenWidth * widthFactor,
+                      width: width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -76,7 +73,7 @@ class SimpleTransperentScreen extends StatelessWidget {
                     )
                   : SizedBox(),
               Container(
-                width: screenWidth * widthFactor,
+                width: width,
                 child: body,
               ),
               Center(

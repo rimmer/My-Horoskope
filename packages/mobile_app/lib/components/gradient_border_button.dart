@@ -14,9 +14,7 @@ Row gradientBorderButton({
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       GestureDetector(
-        onTap: () {
-          onPressed();
-        },
+        onTap: onPressed,
         child: Container(
           padding: borderAsPadding,
           decoration: BoxDecoration(

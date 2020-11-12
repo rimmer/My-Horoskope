@@ -51,6 +51,10 @@ class RussianLocale implements Locale {
   final String personalInformation = "личная информация";
   final String propheciesToDisplay = "отображаемые показатели";
   final String save = "сохранить";
+  final String noAmbianceTitle = "мы над этим работаем";
+  final String noAmbianceDescription =
+      "Это будет нечто! Вы сможете добавить жену, мужа, детей, родителей, сотрудников и смотреть прогноз по взаимоотношениям с ними на каждый день!";
+  final String noAmbianceButton = "работайте";
   Map<int, String> get month => {
         1: "январь",
         2: "февраль",
