@@ -17,7 +17,7 @@ Column userInfo(
     children: <Widget>[
       name,
       Padding(
-        padding: const EdgeInsets.only(top: 16.0),
+        padding: const EdgeInsets.only(top: 16.0, left: 4.0),
         child: Text(
           lang.birthdate.capitalize(),
           style: TextStyle(color: AppColors.textDisabled),
@@ -51,7 +51,7 @@ Column userInfo(
         ],
       ),
       Padding(
-        padding: const EdgeInsets.only(top: 16.0),
+        padding: const EdgeInsets.only(top: 16.0, left: 4.0),
         child: Text(
           lang.sex.capitalize(),
           style: TextStyle(color: AppColors.textDisabled),
@@ -62,7 +62,10 @@ Column userInfo(
           Expanded(
               flex: 4,
               child: Padding(
-                padding: const EdgeInsets.only(right: 16),
+                padding: const EdgeInsets.only(
+                  right: 16,
+                  left: 4.0,
+                ),
                 child: sex,
               )),
           Expanded(flex: 6, child: SizedBox()),

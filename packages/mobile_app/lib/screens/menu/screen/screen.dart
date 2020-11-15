@@ -1,9 +1,9 @@
-import 'package:app/components/notavaible_button.dart';
-
 import '../index.dart';
 
-const BOTTOM_ROW_HEIGHT = 80.0;
-const MENU_WIDTH_MULTIPLIER = 8 / 10;
+const _BOTTOM_ROW_HEIGHT = 80.0;
+const _MENU_WIDTH_MULTIPLIER = 8 / 10;
+
+const _writeToDevUrl = "http://example.com/";
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -29,12 +29,12 @@ class _MenuScreenState extends State<MenuScreen> {
           child: Container(
         color: AppColors.primaryDark,
         height: screen.height,
-        width: screen.width * MENU_WIDTH_MULTIPLIER,
+        width: screen.width * _MENU_WIDTH_MULTIPLIER,
         child: Column(
           children: [
             Container(
-              height: screen.height - BOTTOM_ROW_HEIGHT,
-              width: screen.width * MENU_WIDTH_MULTIPLIER,
+              height: screen.height - _BOTTOM_ROW_HEIGHT,
+              width: screen.width * _MENU_WIDTH_MULTIPLIER,
               padding: EdgeInsets.only(
                 top: 32.0,
                 left: 32.0,
@@ -59,9 +59,9 @@ class _MenuScreenState extends State<MenuScreen> {
                       text: "${lang.addAmbiance.capitalize()}",
                       onTap: null,
                     ),
-                    title: lang.noAmbianceTitle,
+                    title: lang.noAmbianceTitle.capitalize(),
                     desc: lang.noAmbianceDescription,
-                    button: lang.noAmbianceButton,
+                    button: lang.noAmbianceButton.toUpperCase(),
                   ),
                   menuItemLeadingIcon(
                       icon: Icons.perm_identity,
@@ -81,22 +81,18 @@ class _MenuScreenState extends State<MenuScreen> {
                   menuItemFootingIcon(
                       text: "${lang.writeToDev.capitalize()}",
                       onTap: () {
-                        setState(() {
-                          Navigator.pushNamed(context, '/daily');
-                        });
+                        launch(_writeToDevUrl);
                       }),
                   menuItemRateApp(
                       text: "${lang.rateApp.capitalize()}",
                       onTap: () {
-                        setState(() {
-                          Navigator.pushNamed(context, '/daily');
-                        });
+                        LaunchReview.launch();
                       }),
                 ],
               ),
             ),
             Container(
-              width: screen.width * MENU_WIDTH_MULTIPLIER,
+              width: screen.width * _MENU_WIDTH_MULTIPLIER,
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

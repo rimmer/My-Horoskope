@@ -56,7 +56,7 @@ class _NotAvaibleInfoState extends State<NotAvaibleInfo> {
                     Navigator.of(context).pop();
                   },
                   child: Text(
-                    widget.button.toUpperCase(),
+                    widget.button,
                     style: TextStyle(
                       fontSize: 16,
                     ),

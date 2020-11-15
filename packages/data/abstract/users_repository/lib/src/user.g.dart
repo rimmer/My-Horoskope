@@ -21,6 +21,11 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
     pollAvailability: json['pollAvailability'] as bool,
     pollStudying: json['pollStudying'] as bool,
     pollsAreComplex: json['pollsAreComplex'] as bool,
+    internalStrIsEnabled: json['internalStrIsEnabled'] as bool,
+    moodletIsEnabled: json['moodletIsEnabled'] as bool,
+    ambitionIsEnabled: json['ambitionIsEnabled'] as bool,
+    intelligenceIsEnabled: json['intelligenceIsEnabled'] as bool,
+    luckIsEnabled: json['luckIsEnabled'] as bool,
   );
 }
 
@@ -34,6 +39,11 @@ Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
       'pollAvailability': instance.pollAvailability,
       'pollStudying': instance.pollStudying,
       'pollsAreComplex': instance.pollsAreComplex,
+      'internalStrIsEnabled': instance.internalStrIsEnabled,
+      'moodletIsEnabled': instance.moodletIsEnabled,
+      'ambitionIsEnabled': instance.ambitionIsEnabled,
+      'intelligenceIsEnabled': instance.intelligenceIsEnabled,
+      'luckIsEnabled': instance.luckIsEnabled,
     };
 
 T _$enumDecode<T>(

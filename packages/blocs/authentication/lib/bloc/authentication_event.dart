@@ -12,7 +12,19 @@ class AppStarted extends AuthenticationEvent {
 
 class AuthEvent extends AuthenticationEvent {
   final UserModel model;
-  AuthEvent(this.model);
+  final bool internalStrIsEnabled;
+  final bool moodletIsEnabled;
+  final bool ambitionIsEnabled;
+  final bool intelligenceIsEnabled;
+  final bool luckIsEnabled;
+  AuthEvent(
+    this.model, {
+    this.internalStrIsEnabled = true,
+    this.moodletIsEnabled = true,
+    this.ambitionIsEnabled = true,
+    this.intelligenceIsEnabled = true,
+    this.luckIsEnabled = true,
+  });
   @override
   List<Object> get props => [model];
 }

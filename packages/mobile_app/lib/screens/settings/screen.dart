@@ -26,7 +26,8 @@ class ProfileSettingsScreen extends StatelessWidget {
     final user = sp.usersRepo.current.model;
     name.wrapped = user.name;
     final birthDate = DateTime.fromMillisecondsSinceEpoch(user.birth);
-    month.wrapped = birthDate.month.toString();
+    month.wrapped = (birthDate.month).toString();
+    if (month.wrapped.length == 1) month.wrapped = "0${month.wrapped}";
     day.wrapped = birthDate.day.toString();
     year.wrapped = birthDate.year.toString();
     sex.wrapped = user.sex;
@@ -34,7 +35,7 @@ class ProfileSettingsScreen extends StatelessWidget {
     place.wrapped = user.place;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.primaryDark,
       body: SafeArea(
         child: ListView(
           scrollDirection: Axis.vertical,

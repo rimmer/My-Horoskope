@@ -52,10 +52,17 @@ class AuthFlutter implements Auth {
   ///
   /// can be null if `this`.curUser is null
   @override
-  Future<UserEntity> authenticate(UserModel model) async {
+  Future<UserEntity> authenticate(
+    UserModel model, {
+    bool internalStrIsEnabled = true,
+    bool moodletIsEnabled = true,
+    bool ambitionIsEnabled = true,
+    bool intelligenceIsEnabled = true,
+    bool luckIsEnabled = true,
+  }) async {
     repository.logoutIfAny();
 
-    curUser = repository.loginIfAny(model.hashCode);
+    curUser = repository.loginIfAny(model.birth);
     if (curUser == null) {
       /// if user not found in repository, create it
       curUser = UserEntity(
@@ -67,6 +74,13 @@ class AuthFlutter implements Auth {
       /// add it
       repository.add(curUser);
     }
+
+    curUser.internalStrIsEnabled = intelligenceIsEnabled;
+    curUser.moodletIsEnabled = moodletIsEnabled;
+    curUser.ambitionIsEnabled = ambitionIsEnabled;
+    curUser.intelligenceIsEnabled = intelligenceIsEnabled;
+    curUser.luckIsEnabled = luckIsEnabled;
+    repository.write();
 
     return curUser;
   }

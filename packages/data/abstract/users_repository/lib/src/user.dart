@@ -41,6 +41,13 @@ class UserEntity {
   bool pollStudying;
   bool pollsAreComplex;
 
+  /// user prophecies
+  bool internalStrIsEnabled;
+  bool moodletIsEnabled;
+  bool ambitionIsEnabled;
+  bool intelligenceIsEnabled;
+  bool luckIsEnabled;
+
   UserEntity({
     id,
     this.role = UserRole.USER,
@@ -50,7 +57,12 @@ class UserEntity {
     this.pollAvailability = true,
     this.pollStudying = false,
     this.pollsAreComplex = false,
-  }) : this.id = id ?? model.hashCode;
+    this.internalStrIsEnabled,
+    this.moodletIsEnabled,
+    this.ambitionIsEnabled,
+    this.intelligenceIsEnabled,
+    this.luckIsEnabled,
+  }) : this.id = id ?? model.birth;
 
   Map<String, Object> toJson() => _$UserEntityToJson(this);
 

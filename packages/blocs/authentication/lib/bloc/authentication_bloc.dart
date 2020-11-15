@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:auth/auth.dart';
 import 'package:user_model/user_model.dart';
+import 'package:users_repository/users_repository.dart';
 
 import 'authentication_event.dart';
 import 'authentication_state.dart';
@@ -26,7 +27,14 @@ class AuthenticationBloc
     if (event is AppStarted) {
       yield* _mapAppStartedToState();
     } else if (event is AuthEvent) {
-      yield* _mapAuthEventToState(event.model);
+      yield* _mapAuthEventToState(
+        event.model,
+        event.internalStrIsEnabled,
+        event.moodletIsEnabled,
+        event.ambitionIsEnabled,
+        event.intelligenceIsEnabled,
+        event.luckIsEnabled,
+      );
     }
   }
 
@@ -55,11 +63,31 @@ class AuthenticationBloc
     }
   }
 
-  Stream<AuthenticationState> _mapAuthEventToState(UserModel model) async* {
+  Stream<AuthenticationState> _mapAuthEventToState(
+    UserModel model,
+    bool internalStrIsEnabled,
+    bool moodletIsEnabled,
+    bool ambitionIsEnabled,
+    bool intelligenceIsEnabled,
+    bool luckIsEnabled,
+  ) async* {
     /// use auth authentication methods
     /// to login with given user model
     /// or create new Entity from it
-    final user = await auth.authenticate(model);
+    UserEntity user;
+    try {
+      user = await auth.authenticate(
+        model,
+        intelligenceIsEnabled: intelligenceIsEnabled,
+        moodletIsEnabled: moodletIsEnabled,
+        ambitionIsEnabled: ambitionIsEnabled,
+        internalStrIsEnabled: intelligenceIsEnabled,
+        luckIsEnabled: luckIsEnabled,
+      );
+    } catch (_) {
+      print("Error was catched: $_");
+    }
+
     if (user == null)
 
       /// on any error user will be equal null

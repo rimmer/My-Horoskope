@@ -23,5 +23,12 @@ abstract class Auth {
   /// must be used when user registered/changed
   /// input model is a user information
   /// that will be used to calcualte the id
-  Future<UserEntity> authenticate(UserModel mode);
+  Future<UserEntity> authenticate(
+    UserModel model, {
+    bool internalStrIsEnabled = true,
+    bool moodletIsEnabled = true,
+    bool ambitionIsEnabled = true,
+    bool intelligenceIsEnabled = true,
+    bool luckIsEnabled = true,
+  });
 }

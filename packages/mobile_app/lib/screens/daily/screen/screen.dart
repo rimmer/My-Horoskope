@@ -170,9 +170,9 @@ class _DailyScreenState extends State<DailyScreen> {
                 borderRadius: BorderRadius.all(Radius.circular(32.0)),
                 onPressed: null,
               ),
-              title: lang.noAmbianceTitle,
+              title: lang.noAmbianceTitle.capitalize(),
               desc: lang.noAmbianceDescription,
-              button: lang.noAmbianceButton,
+              button: lang.noAmbianceButton.toUpperCase(),
             ),
 
             SizedBox(
