@@ -88,7 +88,10 @@ class UsersRepositoryStorageJson implements UsersRepository {
     /// make lastLogin equal true
     /// and return him
     final user = this.get(id);
-    if (user != null) user.lastLogin = true;
+    if (user != null) {
+      print("OK");
+      user.lastLogin = true;
+    }
     return user;
   }
 

@@ -75,7 +75,7 @@ class AuthFlutter implements Auth {
       repository.add(curUser);
     }
 
-    curUser.internalStrIsEnabled = intelligenceIsEnabled;
+    curUser.internalStrIsEnabled = internalStrIsEnabled;
     curUser.moodletIsEnabled = moodletIsEnabled;
     curUser.ambitionIsEnabled = ambitionIsEnabled;
     curUser.intelligenceIsEnabled = intelligenceIsEnabled;

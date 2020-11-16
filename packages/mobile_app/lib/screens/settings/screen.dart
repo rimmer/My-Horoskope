@@ -38,7 +38,6 @@ class ProfileSettingsScreen extends StatelessWidget {
       backgroundColor: AppColors.primaryDark,
       body: SafeArea(
         child: ListView(
-          scrollDirection: Axis.vertical,
           children: [
             myProphetAppBar(
                 width: screen.width,
@@ -74,17 +73,7 @@ class ProfileSettingsScreen extends StatelessWidget {
                       child: wrongInformation(lang.notAllFieldsFilled));
                 },
                 onValidInformation: () {
-                  sp.authBloc.add(AuthEvent(UserModel(
-                    name: name.wrapped,
-                    birth: DateTime.utc(
-                      int.parse(year.wrapped),
-                      int.parse(month.wrapped),
-                      int.parse(day.wrapped),
-                    ).millisecondsSinceEpoch,
-                    sex: sex.wrapped,
-                    country: country.wrapped,
-                    place: place.wrapped,
-                  )));
+                  /// TODO change without authBloc
                 },
                 buttonText: lang.save.toUpperCase(),
               ),

@@ -10,6 +10,11 @@ class AppStarted extends AuthenticationEvent {
   List<Object> get props => [];
 }
 
+class ReloadEvent extends AuthenticationEvent {
+  @override
+  List<Object> get props => [];
+}
+
 class AuthEvent extends AuthenticationEvent {
   final UserModel model;
   final bool internalStrIsEnabled;

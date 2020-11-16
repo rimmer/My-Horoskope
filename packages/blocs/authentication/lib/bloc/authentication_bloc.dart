@@ -35,6 +35,8 @@ class AuthenticationBloc
         event.intelligenceIsEnabled,
         event.luckIsEnabled,
       );
+    } else if (event is ReloadEvent) {
+      yield initialState;
     }
   }
 
@@ -74,26 +76,35 @@ class AuthenticationBloc
     /// use auth authentication methods
     /// to login with given user model
     /// or create new Entity from it
-    UserEntity user;
     try {
-      user = await auth.authenticate(
-        model,
-        intelligenceIsEnabled: intelligenceIsEnabled,
-        moodletIsEnabled: moodletIsEnabled,
-        ambitionIsEnabled: ambitionIsEnabled,
-        internalStrIsEnabled: intelligenceIsEnabled,
-        luckIsEnabled: luckIsEnabled,
-      );
+      if (auth.curUser == null || auth.curUser.id != model.birth) {
+        auth.curUser = await auth.authenticate(
+          model,
+          internalStrIsEnabled: internalStrIsEnabled,
+          moodletIsEnabled: moodletIsEnabled,
+          ambitionIsEnabled: ambitionIsEnabled,
+          intelligenceIsEnabled: intelligenceIsEnabled,
+          luckIsEnabled: luckIsEnabled,
+        );
+      } else {
+        auth.curUser.model = model;
+        auth.curUser.internalStrIsEnabled = internalStrIsEnabled;
+        auth.curUser.moodletIsEnabled = moodletIsEnabled;
+        auth.curUser.ambitionIsEnabled = ambitionIsEnabled;
+        auth.curUser.intelligenceIsEnabled = intelligenceIsEnabled;
+        auth.curUser.luckIsEnabled = luckIsEnabled;
+        auth.repository.write();
+      }
     } catch (_) {
       print("Error was catched: $_");
     }
 
-    if (user == null)
+    if (auth.curUser == null)
 
-      /// on any error user will be equal null
+      /// on some errors user will be equal null
       yield Unauthenticated();
     else {
-      yield Authenticated(user);
+      yield Authenticated(auth.curUser);
     }
   }
 }
