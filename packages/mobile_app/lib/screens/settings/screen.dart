@@ -1,6 +1,6 @@
 import 'index.dart';
 
-class ProfileSettingsScreen extends StatelessWidget {
+class ProfileSettingsScreen extends StatefulWidget {
   final name = MutableString("");
   final month = MutableString("");
   final day = MutableString("");
@@ -16,23 +16,36 @@ class ProfileSettingsScreen extends StatelessWidget {
   final place = MutableString("");
 
   @override
-  Widget build(BuildContext context) {
-    final screen = MediaQuery.of(context).size;
+  _ProfileSettingsScreenState createState() => _ProfileSettingsScreenState();
+}
 
+class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
+  SingleProvider sp;
+  UserModel user;
+
+  @override
+  void initState() {
     /// getting single provider
-    final sp = context.watch<SingleProvider>();
+    sp = context.read<SingleProvider>();
 
     /// setting current values
-    final user = sp.usersRepo.current.model;
-    name.wrapped = user.name;
+    user = sp.usersRepo.current.model;
+    widget.name.wrapped = user.name;
     final birthDate = DateTime.fromMillisecondsSinceEpoch(user.birth);
-    month.wrapped = (birthDate.month).toString();
-    if (month.wrapped.length == 1) month.wrapped = "0${month.wrapped}";
-    day.wrapped = birthDate.day.toString();
-    year.wrapped = birthDate.year.toString();
-    sex.wrapped = user.sex;
-    country.wrapped = user.country;
-    place.wrapped = user.place;
+    widget.month.wrapped = (birthDate.month).toString();
+    if (widget.month.wrapped.length == 1)
+      widget.month.wrapped = "0${widget.month.wrapped}";
+    widget.day.wrapped = birthDate.day.toString();
+    widget.year.wrapped = birthDate.year.toString();
+    widget.sex.wrapped = user.sex;
+    widget.country.wrapped = user.country;
+    widget.place.wrapped = user.place;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final screen = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: AppColors.primaryDark,
@@ -59,21 +72,38 @@ class ProfileSettingsScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.0),
               child: userSettingsList(
-                name: name,
-                month: month,
-                day: day,
-                year: year,
-                sex: sex,
-                indexToSex: indexToSex,
-                country: country,
-                place: place,
+                name: widget.name,
+                month: widget.month,
+                day: widget.day,
+                year: widget.year,
+                sex: widget.sex,
+                indexToSex: widget.indexToSex,
+                country: widget.country,
+                place: widget.place,
                 onUnvalidInformation: () {
                   showOverCurrentScreen(
                       context: context,
                       child: wrongInformation(lang.notAllFieldsFilled));
                 },
                 onValidInformation: () {
-                  /// TODO change without authBloc
+                  final birthDateEntered = DateTime.utc(
+                    int.parse(widget.year.wrapped),
+                    int.parse(widget.month.wrapped),
+                    int.parse(widget.day.wrapped),
+                  ).millisecondsSinceEpoch;
+
+                  if (user.birth == birthDateEntered) {
+                    sp.usersRepo.current.model = UserModel(
+                      name: widget.name.wrapped,
+                      birth: birthDateEntered,
+                      sex: widget.sex.wrapped,
+                      country: widget.country.wrapped,
+                      place: widget.place.wrapped,
+                    );
+                    sp.usersRepo.write();
+                  }
+
+                  Navigator.pushNamed(context, '/daily');
                 },
                 buttonText: lang.save.toUpperCase(),
               ),

@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:auth/auth.dart';
 import 'package:user_model/user_model.dart';
-import 'package:users_repository/users_repository.dart';
 
 import 'authentication_event.dart';
 import 'authentication_state.dart';
@@ -27,16 +26,7 @@ class AuthenticationBloc
     if (event is AppStarted) {
       yield* _mapAppStartedToState();
     } else if (event is AuthEvent) {
-      yield* _mapAuthEventToState(
-        event.model,
-        event.internalStrIsEnabled,
-        event.moodletIsEnabled,
-        event.ambitionIsEnabled,
-        event.intelligenceIsEnabled,
-        event.luckIsEnabled,
-      );
-    } else if (event is ReloadEvent) {
-      yield initialState;
+      yield* _mapAuthEventToState(event.model);
     }
   }
 
@@ -65,46 +55,17 @@ class AuthenticationBloc
     }
   }
 
-  Stream<AuthenticationState> _mapAuthEventToState(
-    UserModel model,
-    bool internalStrIsEnabled,
-    bool moodletIsEnabled,
-    bool ambitionIsEnabled,
-    bool intelligenceIsEnabled,
-    bool luckIsEnabled,
-  ) async* {
+  Stream<AuthenticationState> _mapAuthEventToState(UserModel model) async* {
     /// use auth authentication methods
     /// to login with given user model
     /// or create new Entity from it
-    try {
-      if (auth.curUser == null || auth.curUser.id != model.birth) {
-        auth.curUser = await auth.authenticate(
-          model,
-          internalStrIsEnabled: internalStrIsEnabled,
-          moodletIsEnabled: moodletIsEnabled,
-          ambitionIsEnabled: ambitionIsEnabled,
-          intelligenceIsEnabled: intelligenceIsEnabled,
-          luckIsEnabled: luckIsEnabled,
-        );
-      } else {
-        auth.curUser.model = model;
-        auth.curUser.internalStrIsEnabled = internalStrIsEnabled;
-        auth.curUser.moodletIsEnabled = moodletIsEnabled;
-        auth.curUser.ambitionIsEnabled = ambitionIsEnabled;
-        auth.curUser.intelligenceIsEnabled = intelligenceIsEnabled;
-        auth.curUser.luckIsEnabled = luckIsEnabled;
-        auth.repository.write();
-      }
-    } catch (_) {
-      print("Error was catched: $_");
-    }
+    final user = await auth.authenticate(model);
+    if (user == null)
 
-    if (auth.curUser == null)
-
-      /// on some errors user will be equal null
+      /// on any error user will be equal null
       yield Unauthenticated();
     else {
-      yield Authenticated(auth.curUser);
+      yield Authenticated(user);
     }
   }
 }
