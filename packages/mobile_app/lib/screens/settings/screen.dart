@@ -92,18 +92,20 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                     int.parse(widget.day.wrapped),
                   ).millisecondsSinceEpoch;
 
-                  if (user.birth == birthDateEntered) {
-                    sp.usersRepo.current.model = UserModel(
-                      name: widget.name.wrapped,
-                      birth: birthDateEntered,
-                      sex: widget.sex.wrapped,
-                      country: widget.country.wrapped,
-                      place: widget.place.wrapped,
-                    );
-                    sp.usersRepo.write();
-                  }
+                  final enteredUserModel = UserModel(
+                    name: widget.name.wrapped,
+                    birth: birthDateEntered,
+                    sex: widget.sex.wrapped,
+                    country: widget.country.wrapped,
+                    place: widget.place.wrapped,
+                  );
 
-                  Navigator.pushNamed(context, '/daily');
+                  if (user.birth == birthDateEntered)
+                    userInformationChangeMisc(
+                        sp: sp, model: enteredUserModel, context: context);
+                  else
+                    userInformationChangeMajor(
+                        sp: sp, model: enteredUserModel, context: context);
                 },
                 buttonText: lang.save.toUpperCase(),
               ),

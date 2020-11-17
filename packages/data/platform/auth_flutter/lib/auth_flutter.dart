@@ -66,6 +66,9 @@ class AuthFlutter implements Auth {
 
       /// add it
       repository.add(curUser);
+    } else {
+      curUser.model = model;
+      repository.write();
     }
 
     return curUser;

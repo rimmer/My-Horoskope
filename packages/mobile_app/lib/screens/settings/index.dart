@@ -7,4 +7,5 @@ export 'package:provider/provider.dart';
 export 'package:app/components/appbar.dart';
 export 'package:user_model/user_model.dart';
 export 'package:app/theme/app_colors.dart';
+export 'package:app/services/direct_auth.dart';
 export 'package:app/components/user_settings/user_settings.dart';
