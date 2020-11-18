@@ -1,4 +1,5 @@
 export 'package:app/components/popup.dart';
+export 'package:app/components/magic_checkbox.dart';
 export 'package:app/single_provider.dart';
 export 'package:flutter/material.dart';
 export 'package:mutable_wrappers/mutable_wrappers.dart';

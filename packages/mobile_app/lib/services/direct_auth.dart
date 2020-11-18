@@ -1,8 +1,8 @@
-import 'package:app/components/user_settings/index.dart';
+import 'package:flutter/material.dart';
+import 'package:user_model/user_model.dart';
+import 'package:app/single_provider.dart';
 
 /// solves https://github.com/rimmer/my_prophet/issues/30
-
-import 'package:app/single_provider.dart';
 
 void userInformationChangeMisc(
     {@required SingleProvider sp,

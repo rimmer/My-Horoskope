@@ -1,5 +1,7 @@
 import 'index.dart';
 
+part 'prophecies_enabling.dart';
+
 class ProfileSettingsScreen extends StatefulWidget {
   final name = MutableString("");
   final month = MutableString("");
@@ -59,6 +61,29 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                   Navigator.pushNamed(context, '/menu');
                 }),
             SizedBox(height: 8.0),
+            //
+
+            /// prophecies enabling/disabling
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32.0),
+              child: Text(
+                lang.propheciesToDisplay.capitalize(),
+                style: TextStyle(
+                  color: AppColors.textPrimary,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Container(
+              color: AppColors.primary.withOpacity(0.3),
+              padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+              margin: EdgeInsets.symmetric(
+                vertical: 16.0,
+              ),
+              child: propheciesEnabling(),
+            ),
+
+            /// profile-settings
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 32.0),
               child: Text(
@@ -86,12 +111,21 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                       child: wrongInformation(lang.notAllFieldsFilled));
                 },
                 onValidInformation: () {
+                  /// it is better to calculate it once
                   final birthDateEntered = DateTime.utc(
                     int.parse(widget.year.wrapped),
                     int.parse(widget.month.wrapped),
                     int.parse(widget.day.wrapped),
                   ).millisecondsSinceEpoch;
 
+                  /// do nothing if fields are not changed
+                  if (widget.name.wrapped == user.name &&
+                      birthDateEntered == user.birth &&
+                      widget.sex.wrapped == user.sex &&
+                      widget.country.wrapped == user.country &&
+                      widget.place.wrapped == user.place) return;
+
+                  /// it is better to calculate it once
                   final enteredUserModel = UserModel(
                     name: widget.name.wrapped,
                     birth: birthDateEntered,
@@ -100,6 +134,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                     place: widget.place.wrapped,
                   );
 
+                  /// services/direct_auth.dart
                   if (user.birth == birthDateEntered)
                     userInformationChangeMisc(
                         sp: sp, model: enteredUserModel, context: context);
