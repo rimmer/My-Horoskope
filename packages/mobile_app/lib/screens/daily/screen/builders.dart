@@ -166,9 +166,11 @@ extension DailyScreenBuilders on _DailyScreenState {
           ),
           //
 
-          prophecyRecord(
-              prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
-              planetVariants: dat.currentPlanets),
+          (toShow.internalStrength)
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
+                  planetVariants: dat.currentPlanets)
+              : SizedBox(),
           (toShow.moodlet)
               ? prophecyRecord(
                   prophecy: state.prophecy[ProphecyType.MOODLET],
@@ -187,6 +189,18 @@ extension DailyScreenBuilders on _DailyScreenState {
           (toShow.luck)
               ? prophecyRecord(
                   prophecy: state.prophecy[ProphecyType.LUCK],
+                  planetVariants: dat.currentPlanets)
+              : SizedBox(),
+          //
+          //
+          /// if all prophecies are disabled show internal strength
+          (toShow.internalStrength == false &&
+                  toShow.moodlet == false &&
+                  toShow.ambition == false &&
+                  toShow.intelligence == false &&
+                  toShow.luck == false)
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
                   planetVariants: dat.currentPlanets)
               : SizedBox(),
         ],

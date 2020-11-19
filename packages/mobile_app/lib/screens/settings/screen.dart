@@ -1,3 +1,5 @@
+import 'package:prophecy_to_show/prophecy_to_show.dart';
+
 import 'index.dart';
 
 part 'prophecies_enabling.dart';
@@ -25,6 +27,12 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   SingleProvider sp;
   UserModel user;
 
+  final MutableBool luck = MutableBool(true);
+  final MutableBool internalStrength = MutableBool(true);
+  final MutableBool moodlet = MutableBool(true);
+  final MutableBool ambition = MutableBool(true);
+  final MutableBool intelligence = MutableBool(true);
+
   @override
   void initState() {
     /// getting single provider
@@ -42,6 +50,13 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     widget.sex.wrapped = user.sex;
     widget.country.wrapped = user.country;
     widget.place.wrapped = user.place;
+
+    luck.wrapped = sp.show.enabledProphecies.luck;
+    internalStrength.wrapped = sp.show.enabledProphecies.internalStrength;
+    moodlet.wrapped = sp.show.enabledProphecies.moodlet;
+    ambition.wrapped = sp.show.enabledProphecies.ambition;
+    intelligence.wrapped = sp.show.enabledProphecies.intelligence;
+
     super.initState();
   }
 
@@ -80,7 +95,13 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               margin: EdgeInsets.symmetric(
                 vertical: 16.0,
               ),
-              child: propheciesEnabling(),
+              child: propheciesEnabling(
+                luck: luck,
+                internalStrength: internalStrength,
+                moodlet: moodlet,
+                ambition: ambition,
+                intelligence: intelligence,
+              ),
             ),
 
             /// profile-settings
@@ -111,6 +132,14 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                       child: wrongInformation(lang.notAllFieldsFilled));
                 },
                 onValidInformation: () {
+                  final propheciesToShow = EnabledProphecies(
+                    luck: luck.wrapped,
+                    intelligence: intelligence.wrapped,
+                    internalStrength: internalStrength.wrapped,
+                    ambition: ambition.wrapped,
+                    moodlet: moodlet.wrapped,
+                  );
+
                   /// it is better to calculate it once
                   final birthDateEntered = DateTime.utc(
                     int.parse(widget.year.wrapped),
@@ -118,12 +147,36 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                     int.parse(widget.day.wrapped),
                   ).millisecondsSinceEpoch;
 
-                  /// do nothing if fields are not changed
-                  if (widget.name.wrapped == user.name &&
-                      birthDateEntered == user.birth &&
-                      widget.sex.wrapped == user.sex &&
-                      widget.country.wrapped == user.country &&
-                      widget.place.wrapped == user.place) return;
+                  final userSettingsNotChanged =
+                      widget.name.wrapped == user.name &&
+                          birthDateEntered == user.birth &&
+                          widget.sex.wrapped == user.sex &&
+                          widget.country.wrapped == user.country &&
+                          widget.place.wrapped == user.place;
+
+                  final propheciesToShowNotChanged =
+                      sp.show.enabledProphecies.luck == luck.wrapped &&
+                          sp.show.enabledProphecies.intelligence ==
+                              intelligence.wrapped &&
+                          sp.show.enabledProphecies.internalStrength ==
+                              internalStrength.wrapped &&
+                          sp.show.enabledProphecies.ambition ==
+                              ambition.wrapped &&
+                          sp.show.enabledProphecies.moodlet == moodlet.wrapped;
+
+                  /// do nothing if nothing changed
+                  if (userSettingsNotChanged && propheciesToShowNotChanged)
+                    return;
+
+                  sp.show.enabledProphecies = propheciesToShow;
+
+                  /// if only prophecies to show changed,
+                  /// return to daily screen
+                  if (userSettingsNotChanged) {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/daily', (Route<dynamic> route) => false);
+                    return;
+                  }
 
                   /// it is better to calculate it once
                   final enteredUserModel = UserModel(
