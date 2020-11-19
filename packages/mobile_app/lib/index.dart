@@ -6,6 +6,8 @@ export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:provider/provider.dart';
 export 'package:users_repository_flutter/users_repository_flutter.dart';
+export 'package:polls_repository_flutter/polls_repository_flutter.dart';
+export 'package:prophecy_to_show_storage_flutter/prophecy_to_show_storage_flutter.dart';
 export 'package:auth_flutter/auth_flutter.dart';
 
 export 'blocs/simple_bloc_delegate.dart';

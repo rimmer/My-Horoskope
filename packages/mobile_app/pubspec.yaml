@@ -26,6 +26,8 @@ dependencies:
     path: ../models/prophecy_model
   user_model:
     path: ../models/user_model 
+  prophecy_to_show:
+    path: ../models/prophecy_to_show 
   
   #data
   users_repository:
@@ -42,6 +44,10 @@ dependencies:
     path: ../data/platform/polls_repository_flutter  
   prophecies:
     path: ../data/abstract/prophecies
+  prophecy_to_show_storage:
+    path: ../data/abstract/prophecy_to_show_storage
+  prophecy_to_show_storage_flutter:
+    path: ../data/platform/prophecy_to_show_storage_flutter   
 
   #blocs
   authentication:

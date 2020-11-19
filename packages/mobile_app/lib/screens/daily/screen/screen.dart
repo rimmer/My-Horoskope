@@ -60,6 +60,7 @@ class _DailyScreenState extends State<DailyScreen> {
 
   List<DateTime> get d => widget.day;
   int get selected => widget.currentIndex.wrapped;
+  EnabledProphecies get toShow => sp.show.enabledProphecies;
 
   void calculateProphecy() {
     sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));

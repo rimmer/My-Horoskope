@@ -340,6 +340,27 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
+  prophecy_to_show:
+    dependency: "direct main"
+    description:
+      path: "../models/prophecy_to_show"
+      relative: true
+    source: path
+    version: "0.0.1+1"
+  prophecy_to_show_storage:
+    dependency: "direct main"
+    description:
+      path: "../data/abstract/prophecy_to_show_storage"
+      relative: true
+    source: path
+    version: "0.0.1"
+  prophecy_to_show_storage_flutter:
+    dependency: "direct main"
+    description:
+      path: "../data/platform/prophecy_to_show_storage_flutter"
+      relative: true
+    source: path
+    version: "0.0.1"
   provider:
     dependency: "direct main"
     description:

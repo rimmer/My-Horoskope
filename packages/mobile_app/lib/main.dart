@@ -29,6 +29,7 @@ Widget appBuilder() {
               singleProvider.usersRepo =
                   singleProvider.authBloc.auth.repository;
               singleProvider.pollsRepo = PollsRepositoryFlutter();
+              singleProvider.show = ProphecyToShowStorageFlutter();
 
               singleProvider.prophecyBloc = ProphecyBloc(
                 algo: Algorithm(

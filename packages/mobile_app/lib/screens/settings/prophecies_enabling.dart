@@ -9,11 +9,6 @@ Column propheciesEnabling() {
         onChanged: (_) {},
       ),
       _prophecyEnablingItem(
-        text: lang.prophecyId['INTERNAL_STRENGTH'],
-        value: MutableBool(true),
-        onChanged: (_) {},
-      ),
-      _prophecyEnablingItem(
         text: lang.prophecyId['MOODLET'],
         value: MutableBool(true),
         onChanged: (_) {},
