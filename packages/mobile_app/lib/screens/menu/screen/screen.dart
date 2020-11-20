@@ -3,7 +3,7 @@ import '../index.dart';
 const _BOTTOM_ROW_HEIGHT = 80.0;
 const _MENU_WIDTH_MULTIPLIER = 8 / 10;
 
-const _writeToDevUrl = "http://example.com/";
+const _writeToDevUrl = "https://forms.gle/R67F71wPMYEbEWrs7";
 
 class MenuScreen extends StatefulWidget {
   @override

@@ -4,8 +4,11 @@ import 'package:app/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 
-const URL_PRIVACY_POLICY = "https://rimmer.github.io/my_prophet/privacy.html";
-const URL_USER_AGREEMENT = "https://rimmer.github.io/my_prophet/privacy.html";
+const _temp = "ru";
+const URL_PRIVACY_POLICY =
+    "https://rimmer.github.io/my_prophet/privacy_policy/$_temp.html";
+const URL_USER_AGREEMENT =
+    "https://rimmer.github.io/my_prophet/user_agreement/$_temp.html";
 
 Text acceptTermsText(String text, {bool isController = false}) => Text(
       text,
