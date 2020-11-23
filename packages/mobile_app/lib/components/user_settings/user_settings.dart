@@ -37,7 +37,7 @@ Column userSettingsList({
               keyboardType: TextInputType.datetime,
               hint: "mm",
               validator: (String text) {
-                int min = 2;
+                int min = 1;
                 if (text.isEmpty || text.length < min)
                   return "${text.length}/$min";
                 if (int.parse(text) > 12 || int.parse(text) < 1) return "x";
@@ -49,7 +49,7 @@ Column userSettingsList({
               keyboardType: TextInputType.datetime,
               hint: "dd",
               validator: (String text) {
-                int min = 2;
+                int min = 1;
                 if (text.isEmpty || text.length < min)
                   return "${text.length}/$min";
                 if (int.parse(text) > 31 || int.parse(text) < 1) return "x";
@@ -79,7 +79,7 @@ Column userSettingsList({
               }),
           place: UserInfoField(
               textObject: place,
-              maxLength: 100,
+              maxLength: 160,
               hint: lang.birthplace.capitalize(),
               validator: (String text) {
                 return null;

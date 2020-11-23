@@ -3,8 +3,15 @@ import 'package:app/theme/app_colors.dart';
 import 'package:flutter_svg/svg.dart';
 
 GestureDetector menuItemLeadingIcon(
-        {IconData icon,
+        {
+
+        /// icon to use
+        IconData icon,
+
+        /// path to svg asset to use
         String asset,
+
+        //
         @required String text,
         @required Function onTap}) =>
     GestureDetector(
@@ -39,8 +46,15 @@ GestureDetector menuItemLeadingIcon(
     );
 
 GestureDetector menuItemFootingIcon(
-        {IconData icon,
+        {
+
+        /// icon to use
+        IconData icon,
+
+        /// path to svg asset to use
         String asset,
+
+        //
         @required String text,
         @required Function onTap}) =>
     GestureDetector(

@@ -2,8 +2,7 @@ import '../index.dart';
 
 const _BOTTOM_ROW_HEIGHT = 80.0;
 const _MENU_WIDTH_MULTIPLIER = 8 / 10;
-
-const _writeToDevUrl = "https://forms.gle/R67F71wPMYEbEWrs7";
+const _WRITE_TO_DEV_URL = "https://forms.gle/R67F71wPMYEbEWrs7";
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -81,7 +80,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   menuItemFootingIcon(
                       text: "${lang.writeToDev.capitalize()}",
                       onTap: () {
-                        launch(_writeToDevUrl);
+                        launch(_WRITE_TO_DEV_URL);
                       }),
                   menuItemRateApp(
                       text: "${lang.rateApp.capitalize()}",

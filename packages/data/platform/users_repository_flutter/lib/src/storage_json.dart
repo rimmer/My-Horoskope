@@ -95,7 +95,6 @@ class UsersRepositoryStorageJson implements UsersRepository {
     /// and return him
     final user = this.get(id);
     if (user != null) {
-      print("OK");
       user.lastLogin = true;
     }
     return user;

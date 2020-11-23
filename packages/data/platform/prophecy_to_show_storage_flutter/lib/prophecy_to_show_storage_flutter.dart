@@ -12,6 +12,7 @@ class ProphecyToShowStorageFlutter implements ProphecyToShowStorage {
 
   @override
   Future write() async => await _storage.write();
+
   @override
   Future load() async => await _storage.load();
 
