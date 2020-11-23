@@ -60,6 +60,7 @@ class _DailyScreenState extends State<DailyScreen> {
 
   List<DateTime> get d => widget.day;
   int get selected => widget.currentIndex.wrapped;
+  EnabledProphecies get toShow => sp.show.enabledProphecies;
 
   void calculateProphecy() {
     sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));
@@ -90,42 +91,12 @@ class _DailyScreenState extends State<DailyScreen> {
           children: <Widget>[
             //
             /// @APPBAR
-            Container(
-              color: AppColors.appBarBackground,
-              height: APPBAR_HEIGHT,
-              width: screen.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Flexible(child: SizedBox(width: APPBAR_ICON_SIZE / 3)),
-                  Flexible(
-                    child: IconButton(
-                      icon: Icon(
-                        Icons.menu,
-                        color: AppColors.textDisabled,
-                        size: APPBAR_ICON_SIZE,
-                      ),
-                      onPressed: () {
-                        /// @TODO
-                        print("Hello there!");
-                      },
-                    ),
-                  ),
-                  Flexible(child: SizedBox(width: APPBAR_BETWEEN_ICON_TEXT)),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Text(
-                      appBarLabel(selected: selected, dateTime: d[selected]),
-                      style: TextStyle(
-                        fontSize: APPBAR_FONT_SIZE,
-                        color: AppColors.textPrimary,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            myProphetAppBar(
+                width: screen.width,
+                label: appBarLabel(selected: selected, dateTime: d[selected]),
+                onTap: () {
+                  Navigator.pushNamed(context, '/menu');
+                }),
 
             /// @CALENDAR
             Container(
@@ -161,7 +132,7 @@ class _DailyScreenState extends State<DailyScreen> {
 
             /// @PROPHECY
             SizedBox(
-              height: screen.height,
+              height: screen.height - 24.0,
               width: screen.width,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -171,6 +142,43 @@ class _DailyScreenState extends State<DailyScreen> {
                   builder: prophecyBuilder,
                 ),
               ),
+            ),
+
+            NotAvaibleInfo(
+              height: 242,
+              width: 250,
+              child: gradientBorderButton(
+                child: Text(
+                  lang.addAmbiance.toUpperCase(),
+                  style: TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 14.0,
+                  ),
+                ),
+                gradient: LinearGradient(
+                  colors: [
+                    AppColors.accentDark,
+                    AppColors.accent,
+                    AppColors.primary,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+                borderAsPadding: EdgeInsets.all(1.0),
+                background: AppColors.primaryDark,
+                internalPadding:
+                    EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
+                borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                onPressed: null,
+              ),
+              title: lang.noAmbianceTitle.capitalize(),
+              desc: lang.noAmbianceDescription,
+              button: lang.noAmbianceButton.toUpperCase(),
+            ),
+
+            SizedBox(
+              height: SPACE_AFTER_AMBIANCE,
+              width: screen.width,
             ),
           ],
         ),

@@ -55,7 +55,7 @@ class AuthFlutter implements Auth {
   Future<UserEntity> authenticate(UserModel model) async {
     repository.logoutIfAny();
 
-    curUser = repository.loginIfAny(model.hashCode);
+    curUser = repository.loginIfAny(model.birth);
     if (curUser == null) {
       /// if user not found in repository, create it
       curUser = UserEntity(
@@ -66,6 +66,9 @@ class AuthFlutter implements Auth {
 
       /// add it
       repository.add(curUser);
+    } else {
+      curUser.model = model;
+      repository.write();
     }
 
     return curUser;

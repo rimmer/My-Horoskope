@@ -15,6 +15,7 @@ dependencies:
   provider: ^4.3.2+1
   flutter_bloc: ^4.0.0
   url_launcher: ^5.5.0
+  launch_review: ^2.0.0
   mutable_wrappers: ^1.0.0
 
   int_datetime:
@@ -25,6 +26,8 @@ dependencies:
     path: ../models/prophecy_model
   user_model:
     path: ../models/user_model 
+  prophecy_to_show:
+    path: ../models/prophecy_to_show 
   
   #data
   users_repository:
@@ -41,6 +44,10 @@ dependencies:
     path: ../data/platform/polls_repository_flutter  
   prophecies:
     path: ../data/abstract/prophecies
+  prophecy_to_show_storage:
+    path: ../data/abstract/prophecy_to_show_storage
+  prophecy_to_show_storage_flutter:
+    path: ../data/platform/prophecy_to_show_storage_flutter   
 
   #blocs
   authentication:

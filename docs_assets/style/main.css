@@ -1,0 +1,37 @@
+body {
+  font-family: Georgia, sans-serif;
+  padding-bottom: 5%;
+  background-color: #3F1D9D;
+;
+}
+
+.logo {
+    color: white;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.content {
+  margin-left: 1%;
+  width: 96%;
+  text-align: center;
+  background-color: white;
+  padding: 1%;
+  border-radius: 16px;
+  border: 2px solid white;
+}
+ul {
+  list-style-type: none;
+}
+
+.shadow {
+  -webkit-box-shadow: 10px 13px 79px -14px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 13px 79px -14px rgba(0,0,0,0.75);
+  box-shadow: 10px 13px 79px -14px rgba(0,0,0,0.75);
+}
+
+.content_text {
+  text-align: left;
+}

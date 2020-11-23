@@ -64,12 +64,18 @@ class UsersRepositoryStorageJson implements UsersRepository {
 
   @override
   UserEntity get(int id) => (users.isNotEmpty)
-      ? users.firstWhere((element) => element.id == id)
+      ? users.firstWhere(
+          (element) => element.id == id,
+          orElse: () => null,
+        )
       : null;
 
   @override
   UserEntity get current => (users.isNotEmpty)
-      ? users.firstWhere((element) => element.lastLogin == true)
+      ? users.firstWhere(
+          (element) => element.lastLogin == true,
+          orElse: () => null,
+        )
       : null;
 
   @override
@@ -88,7 +94,9 @@ class UsersRepositoryStorageJson implements UsersRepository {
     /// make lastLogin equal true
     /// and return him
     final user = this.get(id);
-    if (user != null) user.lastLogin = true;
+    if (user != null) {
+      user.lastLogin = true;
+    }
     return user;
   }
 

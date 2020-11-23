@@ -7,6 +7,7 @@ import 'package:poll_model/poll_model.dart';
 part 'poll.g.changed.dart';
 
 const int POLL_DEFAULT_INIT_VALUE = 3;
+// const int DEFAULT_COMPATIBILITY_VALUE = 42;
 
 /// a collection of poll models that can be:
 /// - changed in future
@@ -20,6 +21,12 @@ class UserPoll {
 
   /// if poll was voted
   bool voted;
+
+  // /// if poll is a local poll or synced from anything else
+  // bool isLocal;
+
+  // /// compatibility value that can be used in future
+  // int compatibilityValue;
 
   /// main poll model type, that must exist independent from future changes
   PollModel mood;
@@ -35,6 +42,8 @@ class UserPoll {
     int relationships,
     int selfdevelopment,
     int physicalActivity,
+    // this.isLocal = true,
+    // this.compatibilityValue = DEFAULT_COMPATIBILITY_VALUE,
   }) {
     this.mood = PollModel(
       type: PollModelType.MOOD,

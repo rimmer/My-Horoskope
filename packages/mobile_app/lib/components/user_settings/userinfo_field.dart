@@ -54,6 +54,11 @@ class _UserInfoFieldState extends State<UserInfoField> {
             FocusScope.of(context).unfocus();
           },
           decoration: InputDecoration(
+            contentPadding: EdgeInsets.only(
+              left: 4.0,
+              top: 12.0,
+              bottom: 8.0,
+            ),
             counterText: "",
             border: _defaultInputBorder(),
             focusedBorder: _defaultInputBorder(color: AppColors.accent),

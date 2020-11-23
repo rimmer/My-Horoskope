@@ -166,22 +166,43 @@ extension DailyScreenBuilders on _DailyScreenState {
           ),
           //
 
-          prophecyRecord(
-              prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
-              planetVariants: dat.currentPlanets),
-          prophecyRecord(
-              prophecy: state.prophecy[ProphecyType.MOODLET],
-              planetVariants: dat.currentPlanets),
-          prophecyRecord(
-              prophecy: state.prophecy[ProphecyType.AMBITION],
-              planetVariants: dat.currentPlanets),
-          prophecyRecord(
-              prophecy: state.prophecy[ProphecyType.INTELLIGENCE],
-              planetVariants: dat.currentPlanets),
+          (toShow.internalStrength)
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
+                  planetVariants: dat.currentPlanets)
+              : SizedBox(),
+          (toShow.moodlet)
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.MOODLET],
+                  planetVariants: dat.currentPlanets)
+              : SizedBox(),
+          (toShow.ambition)
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.AMBITION],
+                  planetVariants: dat.currentPlanets)
+              : SizedBox(),
+          (toShow.intelligence)
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.INTELLIGENCE],
+                  planetVariants: dat.currentPlanets)
+              : SizedBox(),
+          (toShow.luck)
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.LUCK],
+                  planetVariants: dat.currentPlanets)
+              : SizedBox(),
           //
-          prophecyRecord(
-              prophecy: state.prophecy[ProphecyType.LUCK],
-              planetVariants: dat.currentPlanets),
+          //
+          /// if all prophecies are disabled show internal strength
+          (toShow.internalStrength == false &&
+                  toShow.moodlet == false &&
+                  toShow.ambition == false &&
+                  toShow.intelligence == false &&
+                  toShow.luck == false)
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
+                  planetVariants: dat.currentPlanets)
+              : SizedBox(),
         ],
         //
       );

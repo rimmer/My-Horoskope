@@ -50,7 +50,7 @@ class UserEntity {
     this.pollAvailability = true,
     this.pollStudying = false,
     this.pollsAreComplex = false,
-  }) : this.id = id ?? model.hashCode;
+  }) : this.id = id ?? model.birth;
 
   Map<String, Object> toJson() => _$UserEntityToJson(this);
 

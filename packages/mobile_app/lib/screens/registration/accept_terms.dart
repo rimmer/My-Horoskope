@@ -5,9 +5,6 @@ import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:app/components/accept_terms_text.dart';
 
-const URL_PRIVACY_POLICY = "https://rimmer.github.io/my_prophet/privacy.html";
-const URL_USER_AGREEMENT = "https://rimmer.github.io/my_prophet/privacy.html";
-
 class AcceptTermsRow extends StatefulWidget {
   final MutableBool terms;
   AcceptTermsRow({Key key, @required this.terms}) : super(key: key);
@@ -55,7 +52,7 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
               child: FlatButton(
                 onPressed: () => launch(URL_USER_AGREEMENT),
                 child: acceptTermsText(
-                  lang.userAgreement,
+                  lang.termsUserAgreement,
                 ),
               ),
             ),
@@ -63,7 +60,7 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
               child: FlatButton(
                 onPressed: () => launch(URL_PRIVACY_POLICY),
                 child: acceptTermsText(
-                  lang.privacyPolicy,
+                  lang.termsPrivacyPolicy,
                 ),
               ),
             ),

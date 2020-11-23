@@ -28,7 +28,7 @@ class _UserInfoPickerState extends State<UserInfoPicker> {
           child: Text(
             text,
             style: TextStyle(
-              color: AppColors.textDisabled,
+              color: AppColors.textPrimary,
               fontSize: 14,
             ),
           ),
