@@ -312,6 +312,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  predictions:
+    dependency: "direct main"
+    description:
+      path: "../data/abstract/predictions"
+      relative: true
+    source: path
+    version: "0.0.1"
   process:
     dependency: transitive
     description:
