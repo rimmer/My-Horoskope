@@ -24,7 +24,7 @@ abstract class IPredictions {
   Set<String> get negativeAmbition;
   Set<String> get negativeIntelligence;
 
-  GetPredictionAlgorithm getPredictionAlgorithm;
+  GetPredictionAlgorithm get getPredictionAlgorithm;
   //
 
   /// Argument is a data needed for the algorithm
@@ -94,9 +94,10 @@ abstract class IPredictions {
   /// make it very extensive and modification-ready
   /// just add anyting you need with a String label
   /// and then use this label in the job method
-  Map<String, DataStrategy> dataManipulation;
+  Map<String, DataStrategy> get dataManipulation;
 
   void job(String dataStrategyLabel, dynamic rawData) async {
-    await dataManipulation[dataStrategyLabel].job(this, rawData);
+    if (dataManipulation[dataStrategyLabel] != null)
+      await dataManipulation[dataStrategyLabel].job(this, rawData);
   }
 }
