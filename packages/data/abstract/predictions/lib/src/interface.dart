@@ -1,5 +1,14 @@
 import 'get_element_algo/interface.dart';
+import 'data_strategy/interface.dart';
 
+/// interface for loading and getting prediction Strings
+/// it has 5 positive and 5 negative Sets of preditictions
+/// for 5 prophecies respectively
+/// it is highly extensible
+/// method for getting index of needed prediction and
+/// data manipulation methods are seperated objects
+/// also, you can add as many data manipulation objects as you like
+/// by providing a String label for every
 abstract class IPredictions {
   //
 
@@ -15,41 +24,79 @@ abstract class IPredictions {
   Set<String> get negativeAmbition;
   Set<String> get negativeIntelligence;
 
-  IGetPredictionAlgorithm getPredictAlgo;
+  GetPredictionAlgorithm getPredictionAlgorithm;
   //
 
-  String predictionPositiveLuck(DateTime date) =>
-      getPredictAlgo.prediction(positiveLuck.toList(), date);
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionPositiveLuck(dynamic data) =>
+      getPredictionAlgorithm.prediction(positiveLuck.toList(), data);
 
-  String predictionPositiveInternalStr(DateTime date) =>
-      getPredictAlgo.prediction(positiveInternalStr.toList(), date);
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionPositiveInternalStr(dynamic data) =>
+      getPredictionAlgorithm.prediction(positiveInternalStr.toList(), data);
 
-  String predictionPositiveMoodlet(DateTime date) =>
-      getPredictAlgo.prediction(positiveMoodlet.toList(), date);
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionPositiveMoodlet(dynamic data) =>
+      getPredictionAlgorithm.prediction(positiveMoodlet.toList(), data);
 
-  String predictionPositiveAmbition(DateTime date) =>
-      getPredictAlgo.prediction(positiveAmbition.toList(), date);
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionPositiveAmbition(dynamic data) =>
+      getPredictionAlgorithm.prediction(positiveAmbition.toList(), data);
 
-  String predictionPositiveIntelligence(DateTime date) =>
-      getPredictAlgo.prediction(positiveIntelligence.toList(), date);
-
-  //
-
-  String predictionNegativeLuck(DateTime date) =>
-      getPredictAlgo.prediction(negativeLuck.toList(), date);
-
-  String predictionNegativeInternalStr(DateTime date) =>
-      getPredictAlgo.prediction(negativeInternalStr.toList(), date);
-
-  String predictionNegativeMoodlet(DateTime date) =>
-      getPredictAlgo.prediction(negativeMoodlet.toList(), date);
-
-  String predictionNegativeAmbition(DateTime date) =>
-      getPredictAlgo.prediction(negativeAmbition.toList(), date);
-
-  String predictionNegativeIntelligence(DateTime date) =>
-      getPredictAlgo.prediction(negativeIntelligence.toList(), date);
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionPositiveIntelligence(dynamic data) =>
+      getPredictionAlgorithm.prediction(positiveIntelligence.toList(), data);
 
   //
 
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionNegativeLuck(dynamic data) =>
+      getPredictionAlgorithm.prediction(negativeLuck.toList(), data);
+
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionNegativeInternalStr(dynamic data) =>
+      getPredictionAlgorithm.prediction(negativeInternalStr.toList(), data);
+
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionNegativeMoodlet(dynamic data) =>
+      getPredictionAlgorithm.prediction(negativeMoodlet.toList(), data);
+
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionNegativeAmbition(dynamic data) =>
+      getPredictionAlgorithm.prediction(negativeAmbition.toList(), data);
+
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionNegativeIntelligence(dynamic data) =>
+      getPredictionAlgorithm.prediction(negativeIntelligence.toList(), data);
+
+  //
+  /// allows change this object in multiple ways
+  /// make it very extensive and modification-ready
+  /// just add anyting you need with a String label
+  /// and then use this label in the job method
+  Map<String, DataStrategy> dataManipulation;
+
+  void job(String dataStrategyLabel, dynamic rawData) async {
+    await dataManipulation[dataStrategyLabel].job(this, rawData);
+  }
 }

@@ -1,6 +1,6 @@
-abstract class IGetPredictionAlgorithm {
+abstract class GetPredictionAlgorithm {
   String prediction(
-    List<String> data,
-    DateTime date,
+    List<String> predictions,
+    dynamic data,
   );
 }
