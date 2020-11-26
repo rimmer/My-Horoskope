@@ -8,6 +8,14 @@ void main() {
 Widget appBuilder() {
   final singleProvider = SingleProvider();
 
+  /// we throw an async preparation running
+  /// when we show a prediction for current day, we check
+  /// the boolean "isPrepared" and then show our prediction if its prepared
+  singleProvider.predictions = PredictionsFlutterMobile("ru") //
+    ..prepare();
+
+  //
+
   singleProvider.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());
