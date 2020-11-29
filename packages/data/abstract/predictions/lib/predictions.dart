@@ -10,3 +10,4 @@ export 'src/get_element_algo/date_time.dart';
 
 //
 export 'src/data_strategy/csv_add.dart';
+export 'src/data_strategy/clear.dart';

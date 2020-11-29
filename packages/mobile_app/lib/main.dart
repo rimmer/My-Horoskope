@@ -2,68 +2,69 @@ import 'index.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
-  runApp(appBuilder());
+  runApp(App());
 }
 
-Widget appBuilder() {
-  final singleProvider = SingleProvider();
+class App extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final singleProvider = SingleProvider();
 
-  /// we throw an async preparation running
-  /// when we show a prediction for current day, we check
-  /// the boolean "isPrepared" and then show our prediction if its prepared
-  singleProvider.predictions = PredictionsFlutterMobile("ru") //
-    ..prepare();
+    /// @TODO, we need BLoC
+    singleProvider.predictions = PredictionsFlutterMobile("ru") //
+      ..prepare(context);
 
-  //
+    //
 
-  singleProvider.authBloc = AuthenticationBloc(
-      auth: AuthFlutter(repository: UsersRepositoryFlutter()))
-    ..add(AppStarted());
+    singleProvider.authBloc = AuthenticationBloc(
+        auth: AuthFlutter(repository: UsersRepositoryFlutter()))
+      ..add(AppStarted());
 
-  return Provider<SingleProvider>(
-    create: (_) => singleProvider,
-    child: imageBackground(
-      asset: "assets/background.jpg",
-      //
+    return Provider<SingleProvider>(
+      create: (_) => singleProvider,
+      child: imageBackground(
+        asset: "assets/background.jpg",
+        //
 
-      child: myProphet(
-        authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-          //
-          bloc: singleProvider.authBloc,
-          builder: (context, state) {
+        child: myProphet(
+          authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
             //
-
-            if (state is Authenticated) {
-              singleProvider.usersRepo =
-                  singleProvider.authBloc.auth.repository;
-              singleProvider.pollsRepo = PollsRepositoryFlutter();
-              singleProvider.show = ProphecyToShowStorageFlutter();
-
-              singleProvider.prophecyBloc = ProphecyBloc(
-                algo: Algorithm(
-                  dat: AlgoData(
-                    pollByDateRepo: singleProvider.pollsRepo,
-                    usersRepository: singleProvider.usersRepo,
-                  ),
-                ),
-              );
-
-              singleProvider.userPollBloc = UserPollBloc(
-                users: singleProvider.usersRepo,
-                repo: singleProvider.pollsRepo,
-              );
-
-              return DailyScreen();
-
+            bloc: singleProvider.authBloc,
+            builder: (context, state) {
               //
-            } else if (state is Unauthenticated)
-              return RegistrationScreen();
-            else {
-              return LoadingScreen();
-            }
-          },
+
+              if (state is Authenticated) {
+                singleProvider.usersRepo =
+                    singleProvider.authBloc.auth.repository;
+                singleProvider.pollsRepo = PollsRepositoryFlutter();
+                singleProvider.show = ProphecyToShowStorageFlutter();
+
+                singleProvider.prophecyBloc = ProphecyBloc(
+                  algo: Algorithm(
+                    dat: AlgoData(
+                      pollByDateRepo: singleProvider.pollsRepo,
+                      usersRepository: singleProvider.usersRepo,
+                    ),
+                  ),
+                );
+
+                singleProvider.userPollBloc = UserPollBloc(
+                  users: singleProvider.usersRepo,
+                  repo: singleProvider.pollsRepo,
+                );
+
+                return DailyScreen();
+
+                //
+              } else if (state is Unauthenticated)
+                return RegistrationScreen();
+              else {
+                return LoadingScreen();
+              }
+            },
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }

@@ -96,7 +96,7 @@ abstract class IPredictions {
   /// and then use this label in the job method
   Map<String, DataStrategy> get dataManipulation;
 
-  void job(String dataStrategyLabel, dynamic rawData) async {
+  Future job(String dataStrategyLabel, dynamic rawData) async {
     if (dataManipulation[dataStrategyLabel] != null)
       await dataManipulation[dataStrategyLabel].job(this, rawData);
   }
