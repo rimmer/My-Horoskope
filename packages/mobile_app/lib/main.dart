@@ -2,69 +2,60 @@ import 'index.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
-  runApp(App());
+  runApp(appBuilder());
 }
 
-class App extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final singleProvider = SingleProvider();
+Widget appBuilder() {
+  final singleProvider = SingleProvider();
 
-    /// @TODO, we need BLoC
-    singleProvider.predictions = PredictionsFlutterMobile("ru") //
-      ..prepare(context);
+  singleProvider.authBloc = AuthenticationBloc(
+      auth: AuthFlutter(repository: UsersRepositoryFlutter()))
+    ..add(AppStarted());
 
-    //
+  return Provider<SingleProvider>(
+    create: (_) => singleProvider,
+    child: imageBackground(
+      asset: "assets/background.jpg",
+      //
 
-    singleProvider.authBloc = AuthenticationBloc(
-        auth: AuthFlutter(repository: UsersRepositoryFlutter()))
-      ..add(AppStarted());
-
-    return Provider<SingleProvider>(
-      create: (_) => singleProvider,
-      child: imageBackground(
-        asset: "assets/background.jpg",
-        //
-
-        child: myProphet(
-          authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+      child: myProphet(
+        authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+          //
+          bloc: singleProvider.authBloc,
+          builder: (context, state) {
             //
-            bloc: singleProvider.authBloc,
-            builder: (context, state) {
-              //
 
-              if (state is Authenticated) {
-                singleProvider.usersRepo =
-                    singleProvider.authBloc.auth.repository;
-                singleProvider.pollsRepo = PollsRepositoryFlutter();
-                singleProvider.show = ProphecyToShowStorageFlutter();
+            if (state is Authenticated) {
+              singleProvider.usersRepo =
+                  singleProvider.authBloc.auth.repository;
+              singleProvider.pollsRepo = PollsRepositoryFlutter();
+              singleProvider.show = ProphecyToShowStorageFlutter();
 
-                singleProvider.prophecyBloc = ProphecyBloc(
-                  algo: Algorithm(
-                    dat: AlgoData(
-                      pollByDateRepo: singleProvider.pollsRepo,
-                      usersRepository: singleProvider.usersRepo,
-                    ),
+              singleProvider.prophecyBloc = ProphecyBloc(
+                algo: Algorithm(
+                  dat: AlgoData(
+                    pollByDateRepo: singleProvider.pollsRepo,
+                    usersRepository: singleProvider.usersRepo,
                   ),
-                );
+                ),
+              );
 
-                singleProvider.userPollBloc = UserPollBloc(
-                  users: singleProvider.usersRepo,
-                  repo: singleProvider.pollsRepo,
-                );
+              singleProvider.userPollBloc = UserPollBloc(
+                users: singleProvider.usersRepo,
+                repo: singleProvider.pollsRepo,
+              );
 
-                return DailyScreen();
+              return DailyScreen();
 
-                //
-              } else if (state is Unauthenticated)
-                return RegistrationScreen();
-              else {
-                return LoadingScreen();
-              }
-            },
-          ),
+              //
+            } else if (state is Unauthenticated)
+              return RegistrationScreen();
+            else {
+              return LoadingScreen();
+            }
+          },
         ),
       ),
-    );
-  }
+    ),
+  );
 }

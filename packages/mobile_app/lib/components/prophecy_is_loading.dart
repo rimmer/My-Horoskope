@@ -25,7 +25,7 @@ ListView prophecyIsLoading() {
 
 Container prophecyRecordLoading({@required String prophecyName}) => Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
-      height: 68.0,
+      height: 128.0,
       decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [

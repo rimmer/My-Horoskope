@@ -134,7 +134,7 @@ Column userSettingsList({
           padding: EdgeInsets.symmetric(
             /// padding for a gradient button
             vertical: 16.0,
-            horizontal: 109.0,
+            horizontal: 64.0,
           ),
           gradient: LinearGradient(
             colors: <Color>[

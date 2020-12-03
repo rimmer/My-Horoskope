@@ -30,6 +30,7 @@ class ProphecyToShowStorageJson implements ProphecyToShowStorage {
       //
     } catch (_) {
       print("Error was catched when reading $_fileName file: $_");
+      this.write();
     }
   }
 

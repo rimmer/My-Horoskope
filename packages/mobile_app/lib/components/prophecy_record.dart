@@ -37,81 +37,7 @@ Container prophecyRecord(
 
   return Container(
     margin: EdgeInsets.symmetric(vertical: 8.0),
-    height: 100.0,
-    child: Column(
-      children: <Widget>[
-        Container(
-          height: 92.0,
-          padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                      child: Text(
-                    lang.prophecyId[prophecy.id.toStr],
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: AppColors.textPrimary,
-                    ),
-                  )),
-                  Center(
-                    child: Text(
-                      value.toStringAsFixed(1),
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        fontWeight: FontWeight.w400,
-                        color: chooseNumberColor(value),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: prophecyPlanet(
-                    planetName: planetName,
-                    color: AppColors.textPrimary,
-                    impactNumber: planetImpact),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          height: 8,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(8),
-              bottomRight: Radius.circular(8),
-            ),
-            gradient: LinearGradient(colors: [
-              AppColors.prophecyValueProgressGradient[0],
-              AppColors.prophecyValueProgressGradient[1],
-              AppColors.prophecyValueProgressGradient[2],
-              AppColors.prophecyValueProgressGradient[3],
-              AppColors.prophecyValueProgressGradient[4],
-              AppColors.prophecyValueProgressGradient[5],
-              AppColors.prophecyValueProgressGradient[6],
-              AppColors.prophecyValueProgressGradient[7],
-              AppColors.prophecyValueProgressGradient[8],
-              AppColors.prophecyValueProgressGradient[8],
-              Colors.transparent
-            ], stops: [
-              0.0,
-              0.1,
-              (valuePercent > 0.3) ? 0.3 : valuePercent,
-              (valuePercent > 0.4) ? 0.4 : valuePercent,
-              (valuePercent > 0.5) ? 0.5 : valuePercent,
-              (valuePercent > 0.6) ? 0.6 : valuePercent,
-              (valuePercent > 0.7) ? 0.7 : valuePercent,
-              (valuePercent > 0.8) ? 0.8 : valuePercent,
-              (valuePercent > 0.9) ? 0.9 : valuePercent,
-              (valuePercent > 1.0) ? 1.0 : valuePercent,
-              valuePercent,
-            ]),
-          ),
-        ),
-      ],
-    ),
+    height: 128.0,
     decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -122,6 +48,101 @@ Container prophecyRecord(
           end: Alignment.topRight,
         ),
         borderRadius: BorderRadius.circular(8.0)),
+    child: Stack(
+      children: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            height: 8.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(8),
+                bottomRight: Radius.circular(8),
+              ),
+              gradient: LinearGradient(colors: [
+                AppColors.prophecyValueProgressGradient[0],
+                AppColors.prophecyValueProgressGradient[1],
+                AppColors.prophecyValueProgressGradient[2],
+                AppColors.prophecyValueProgressGradient[3],
+                AppColors.prophecyValueProgressGradient[4],
+                AppColors.prophecyValueProgressGradient[5],
+                AppColors.prophecyValueProgressGradient[6],
+                AppColors.prophecyValueProgressGradient[7],
+                AppColors.prophecyValueProgressGradient[8],
+                AppColors.prophecyValueProgressGradient[8],
+                Colors.transparent
+              ], stops: [
+                0.0,
+                0.1,
+                (valuePercent > 0.3) ? 0.3 : valuePercent,
+                (valuePercent > 0.4) ? 0.4 : valuePercent,
+                (valuePercent > 0.5) ? 0.5 : valuePercent,
+                (valuePercent > 0.6) ? 0.6 : valuePercent,
+                (valuePercent > 0.7) ? 0.7 : valuePercent,
+                (valuePercent > 0.8) ? 0.8 : valuePercent,
+                (valuePercent > 0.9) ? 0.9 : valuePercent,
+                (valuePercent > 1.0) ? 1.0 : valuePercent,
+                valuePercent,
+              ]),
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            height: 32,
+            margin: EdgeInsets.only(
+              top: 8.0,
+              left: 16.0,
+              right: 16.0,
+            ),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                    child: Text(
+                  lang.prophecyId[prophecy.id.toStr],
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: AppColors.textPrimary,
+                  ),
+                )),
+                Center(
+                  child: Text(
+                    value.toStringAsFixed(1),
+                    style: TextStyle(
+                      fontSize: 21.0,
+                      fontWeight: FontWeight.w400,
+                      color: chooseNumberColor(value),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            top: 16.0,
+            left: 16.0,
+            right: 16.0,
+            bottom: 32.0,
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                child: SizedBox(),
+              ),
+              Flexible(
+                child: prophecyPlanet(
+                    planetName: planetName,
+                    color: AppColors.textPrimary,
+                    impactNumber: planetImpact),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
   );
 }
 
@@ -148,7 +169,7 @@ Container prophecyPlanet(
               Text(
                   "${lang.impact.capitalize()} ${lang.planetImpact[planetName]} (${impactNumber.toStringAsFixed(1)})",
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 14.0,
                     color: color,
                   )),
             ],

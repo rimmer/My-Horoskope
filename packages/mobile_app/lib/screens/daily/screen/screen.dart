@@ -74,8 +74,9 @@ class _DailyScreenState extends State<DailyScreen> {
   Widget build(BuildContext context) {
     //
     /// gets planets for current period
-    dat.currentPlanets =
-        planetFor[d[selected].millisecondsSinceEpoch.astroSign][dat.sign];
+    dat.currentPlanets.clear();
+    dat.currentPlanets.addAll(
+        planetFor[d[selected].millisecondsSinceEpoch.astroSign][dat.sign]);
     //
     final screen = MediaQuery.of(context).size;
     bool isToday = d[selected].millisecondsSinceEpoch == dtDay;
@@ -132,7 +133,7 @@ class _DailyScreenState extends State<DailyScreen> {
 
             /// @PROPHECY
             SizedBox(
-              height: screen.height - 24.0,
+              height: screen.height,
               width: screen.width,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
@@ -142,6 +143,11 @@ class _DailyScreenState extends State<DailyScreen> {
                   builder: prophecyBuilder,
                 ),
               ),
+            ),
+
+            SizedBox(
+              height: SPACE_BEFORE_AMBIANCE,
+              width: screen.width,
             ),
 
             NotAvaibleInfo(
