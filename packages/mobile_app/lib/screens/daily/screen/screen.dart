@@ -133,7 +133,7 @@ class _DailyScreenState extends State<DailyScreen> {
 
             /// @PROPHECY
             SizedBox(
-              height: screen.height,
+              height: 4 * screen.height,
               width: screen.width,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
