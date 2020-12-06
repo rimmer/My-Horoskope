@@ -1,21 +1,14 @@
 import 'dart:ui';
 
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marquee/marquee.dart';
 import 'package:prophecy_model/prophecy_model.dart';
 import 'package:prophecies/prophecies.dart';
 import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
 import 'package:users_repository/users_repository.dart';
 
-const PROPHECY_HEIGHT_NO_TEXT = 72.0;
-const PROPHECY_HEIGHT_WITH_TEXT = 176.0;
-const _TEXT_HEIGHT = 67.0;
-const _TEXT_LENGTH_BEFORE_MARQUEE = 294;
-
-Card prophecyRecord(
+Container prophecyRecord(
     {@required ProphecyEntity prophecy,
     @required Map<bool, String> planetVariants}) {
   //
@@ -45,145 +38,103 @@ Card prophecyRecord(
       /// if negative change sign
       ((isPositive) ? 1 : -1);
 
-  return Card(
-    color: Colors.transparent,
-    child: Container(
-      height: PROPHECY_HEIGHT_WITH_TEXT,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              AppColors.prophecyGradientStart.withOpacity(0.7),
-              AppColors.prophecyGradientEnd.withOpacity(0.7),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.topRight,
-          ),
-          borderRadius: BorderRadius.circular(8.0)),
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 8.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(8),
-                  bottomRight: Radius.circular(8),
+  return Container(
+    margin: EdgeInsets.symmetric(vertical: 8.0),
+    decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            AppColors.prophecyGradientStart.withOpacity(0.7),
+            AppColors.prophecyGradientEnd.withOpacity(0.7),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.topRight,
+        ),
+        borderRadius: BorderRadius.circular(8.0)),
+    child: ListView(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      physics: const NeverScrollableScrollPhysics(),
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                  child: Text(
+                lang.prophecyId[prophecy.id.toStr],
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: AppColors.textPrimary,
                 ),
-                gradient: LinearGradient(colors: [
-                  AppColors.prophecyValueProgressGradient[0],
-                  AppColors.prophecyValueProgressGradient[1],
-                  AppColors.prophecyValueProgressGradient[2],
-                  AppColors.prophecyValueProgressGradient[3],
-                  AppColors.prophecyValueProgressGradient[4],
-                  AppColors.prophecyValueProgressGradient[5],
-                  AppColors.prophecyValueProgressGradient[6],
-                  AppColors.prophecyValueProgressGradient[7],
-                  AppColors.prophecyValueProgressGradient[8],
-                  AppColors.prophecyValueProgressGradient[8],
-                  Colors.transparent
-                ], stops: [
-                  0.0,
-                  0.1,
-                  (valuePercent > 0.3) ? 0.3 : valuePercent,
-                  (valuePercent > 0.4) ? 0.4 : valuePercent,
-                  (valuePercent > 0.5) ? 0.5 : valuePercent,
-                  (valuePercent > 0.6) ? 0.6 : valuePercent,
-                  (valuePercent > 0.7) ? 0.7 : valuePercent,
-                  (valuePercent > 0.8) ? 0.8 : valuePercent,
-                  (valuePercent > 0.9) ? 0.9 : valuePercent,
-                  (valuePercent > 1.0) ? 1.0 : valuePercent,
-                  valuePercent,
-                ]),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-              height: 32,
-              margin: EdgeInsets.only(
-                top: 8.0,
-                left: 16.0,
-                right: 16.0,
-              ),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                      child: Text(
-                    lang.prophecyId[prophecy.id.toStr],
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: AppColors.textPrimary,
-                    ),
-                  )),
-                  Center(
-                    child: Text(
-                      value.toStringAsFixed(1),
-                      style: TextStyle(
-                        fontSize: 21.0,
-                        fontWeight: FontWeight.w400,
-                        color: chooseNumberColor(value),
-                      ),
-                    ),
+              )),
+              Center(
+                child: Text(
+                  value.toStringAsFixed(1),
+                  style: TextStyle(
+                    fontSize: 21.0,
+                    fontWeight: FontWeight.w400,
+                    color: chooseNumberColor(value),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(
-                top: 48.0,
-                left: 16.0,
-                right: 16.0,
-                bottom: 48.0,
-              ),
-              child: Column(
-                children: [
-                  (true)
-                      ? Container(
-                          height: 67,
-                          child: (someText.length <=
-                                  _TEXT_LENGTH_BEFORE_MARQUEE)
-
-                              /// auto size text, if it less
-                              /// then acceptable length
-                              ? AutoSizeText(
-                                  someText,
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: AppColors.textPrimary,
-                                  ),
-                                )
-
-                              /// or scrolls text infinitely
-                              : Marquee(
-                                  text: someText,
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    color: AppColors.textPrimary,
-                                  ),
-                                  scrollAxis: Axis.vertical,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                ),
-                        )
-
-                      /// empty space (or nothing)
-                      : Expanded(child: SizedBox()),
-                  Flexible(
-                    child: prophecyPlanet(
-                        planetName: planetName,
-                        color: AppColors.textPrimary,
-                        impactNumber: planetImpact),
+        ),
+        (true)
+            ? Padding(
+                padding:
+                    const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+                child: Text(
+                  someText,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: AppColors.textPrimary,
                   ),
-                ],
-              ),
+                ),
+              )
+            : SizedBox(),
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+          child: prophecyPlanet(
+              planetName: planetName,
+              color: AppColors.textPrimary,
+              impactNumber: planetImpact),
+        ),
+        Container(
+          height: 8.0,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(8),
+              bottomRight: Radius.circular(8),
             ),
+            gradient: LinearGradient(colors: [
+              AppColors.prophecyValueProgressGradient[0],
+              AppColors.prophecyValueProgressGradient[1],
+              AppColors.prophecyValueProgressGradient[2],
+              AppColors.prophecyValueProgressGradient[3],
+              AppColors.prophecyValueProgressGradient[4],
+              AppColors.prophecyValueProgressGradient[5],
+              AppColors.prophecyValueProgressGradient[6],
+              AppColors.prophecyValueProgressGradient[7],
+              AppColors.prophecyValueProgressGradient[8],
+              AppColors.prophecyValueProgressGradient[8],
+              Colors.transparent
+            ], stops: [
+              0.0,
+              0.1,
+              (valuePercent > 0.3) ? 0.3 : valuePercent,
+              (valuePercent > 0.4) ? 0.4 : valuePercent,
+              (valuePercent > 0.5) ? 0.5 : valuePercent,
+              (valuePercent > 0.6) ? 0.6 : valuePercent,
+              (valuePercent > 0.7) ? 0.7 : valuePercent,
+              (valuePercent > 0.8) ? 0.8 : valuePercent,
+              (valuePercent > 0.9) ? 0.9 : valuePercent,
+              (valuePercent > 1.0) ? 1.0 : valuePercent,
+              valuePercent,
+            ]),
           ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }
