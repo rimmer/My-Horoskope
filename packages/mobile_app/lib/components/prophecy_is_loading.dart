@@ -1,14 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:prophecy_model/prophecy_model.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:users_repository/users_repository.dart';
-import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
-import 'prophecy_record.dart';
-
-import 'package:int_datetime/int_datetime.dart';
-import 'package:algorithm/astro.dart' show BasicAstrology;
+import 'package:flutter/material.dart';
+import 'package:language/language.dart';
+import 'package:prophecy_model/prophecy_model.dart';
 
 ListView prophecyIsLoading() {
   return ListView(

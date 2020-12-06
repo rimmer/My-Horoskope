@@ -153,8 +153,11 @@ extension DailyScreenBuilders on _DailyScreenState {
         dat.currentPlanets[true] = dat.userPatron;
 
       //
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      return ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: PROPHECY_PADDING_HORIZONTAL),
+        physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
           Text(
             dat.labelStr,
@@ -167,39 +170,29 @@ extension DailyScreenBuilders on _DailyScreenState {
           //
 
           (toShow.internalStrength)
-              ? Flexible(
-                  child: prophecyRecord(
-                      prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
-                      planetVariants: dat.currentPlanets),
-                )
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
+                  planetVariants: dat.currentPlanets)
               : SizedBox(),
           (toShow.moodlet)
-              ? Flexible(
-                  child: prophecyRecord(
-                      prophecy: state.prophecy[ProphecyType.MOODLET],
-                      planetVariants: dat.currentPlanets),
-                )
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.MOODLET],
+                  planetVariants: dat.currentPlanets)
               : SizedBox(),
           (toShow.ambition)
-              ? Flexible(
-                  child: prophecyRecord(
-                      prophecy: state.prophecy[ProphecyType.AMBITION],
-                      planetVariants: dat.currentPlanets),
-                )
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.AMBITION],
+                  planetVariants: dat.currentPlanets)
               : SizedBox(),
           (toShow.intelligence)
-              ? Flexible(
-                  child: prophecyRecord(
-                      prophecy: state.prophecy[ProphecyType.INTELLIGENCE],
-                      planetVariants: dat.currentPlanets),
-                )
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.INTELLIGENCE],
+                  planetVariants: dat.currentPlanets)
               : SizedBox(),
           (toShow.luck)
-              ? Flexible(
-                  child: prophecyRecord(
-                      prophecy: state.prophecy[ProphecyType.LUCK],
-                      planetVariants: dat.currentPlanets),
-                )
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.LUCK],
+                  planetVariants: dat.currentPlanets)
               : SizedBox(),
           //
           //
@@ -209,11 +202,9 @@ extension DailyScreenBuilders on _DailyScreenState {
                   toShow.ambition == false &&
                   toShow.intelligence == false &&
                   toShow.luck == false)
-              ? Flexible(
-                  child: prophecyRecord(
-                      prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
-                      planetVariants: dat.currentPlanets),
-                )
+              ? prophecyRecord(
+                  prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
+                  planetVariants: dat.currentPlanets)
               : SizedBox(),
         ],
         //

@@ -132,17 +132,9 @@ class _DailyScreenState extends State<DailyScreen> {
             ),
 
             /// @PROPHECY
-            SizedBox(
-              height: 4 * screen.height,
-              width: screen.width,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: PROPHECY_PADDING_HORIZONTAL),
-                child: BlocBuilder<ProphecyBloc, ProphecyState>(
-                  bloc: sp.prophecyBloc,
-                  builder: prophecyBuilder,
-                ),
-              ),
+            BlocBuilder<ProphecyBloc, ProphecyState>(
+              bloc: sp.prophecyBloc,
+              builder: prophecyBuilder,
             ),
 
             SizedBox(
