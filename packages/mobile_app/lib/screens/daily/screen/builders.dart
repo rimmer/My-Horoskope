@@ -152,6 +152,15 @@ extension DailyScreenBuilders on _DailyScreenState {
       if (state.propheciesSum >= SWITCH_POSITIVE_PLANET_AT_SUM)
         dat.currentPlanets[true] = dat.userPatron;
 
+      final least = state.prophecy.least;
+      final biggest = state.prophecy.biggest;
+
+      if (state.prophecy[least].value <= SHOW_NEGATIVE_PREDICTION)
+        state.prophecy.addText(id: least, text: "Negative Prediction");
+
+      if (state.prophecy[biggest].value >= SHOW_POSITIVE_PREDICTION)
+        state.prophecy.addText(id: biggest, text: "Positive Prediction");
+
       //
       return ListView(
         shrinkWrap: true,
@@ -159,6 +168,8 @@ extension DailyScreenBuilders on _DailyScreenState {
         padding: EdgeInsets.symmetric(horizontal: PROPHECY_PADDING_HORIZONTAL),
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
+          //
+
           Text(
             dat.labelStr,
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),

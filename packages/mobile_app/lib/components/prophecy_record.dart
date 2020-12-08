@@ -17,9 +17,6 @@ Container prophecyRecord(
   final value = prophecy.value ?? 0.0;
   final valuePercent = value / 10;
 
-  final someText =
-      "Если у вас есть домашний питомец, пусть даже такой, о котором вы не догадываетесь, не важно, все равно проблем он вам не доставит......................................................................................................................................................................";
-
   final isPositive = value > 4.9;
   final planetName =
       (isPositive) ? planetVariants[true] : planetVariants[false];
@@ -80,12 +77,12 @@ Container prophecyRecord(
             ],
           ),
         ),
-        (true)
+        (textExists)
             ? Padding(
                 padding:
                     const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
                 child: Text(
-                  someText,
+                  prophecy.text,
                   style: TextStyle(
                     fontSize: 16.0,
                     color: AppColors.textPrimary,
