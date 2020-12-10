@@ -9,6 +9,9 @@ class lang {
   /// `static` fields and variable **"locale"** that can be used to switch language.
   static Locale locale = RussianLocale();
 
+  /// Bark annalogy from the tree bark
+  static List<String> predicitonBark() => locale.predicitonBark();
+
   static String name = locale.name;
   static String birthdate = locale.birthdate;
   static String birthcountry = locale.birthcountry;

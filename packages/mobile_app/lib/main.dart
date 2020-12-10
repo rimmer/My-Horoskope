@@ -8,6 +8,8 @@ void main() {
 Widget appBuilder() {
   final singleProvider = SingleProvider();
 
+  singleProvider.predictions = PredictionsFlutterMobile();
+
   singleProvider.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());

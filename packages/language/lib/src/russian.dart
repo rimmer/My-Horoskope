@@ -1,6 +1,9 @@
 import 'interface.dart';
+part 'prediction/russian.dart';
 
 class RussianLocale implements Locale {
+  List<String> predicitonBark() => _predictionsRussian();
+
   final String name = "имя";
   final String birthdate = "дата рождения";
   final String birthcountry = "страна, в которой вы родились";

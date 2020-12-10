@@ -2,6 +2,10 @@
 /// It has getters of `String` or `Map<Strng,String>`.
 
 abstract class Locale {
+  /// Bark annalogy from the tree bark
+  List<String> predicitonBark();
+
+  //
   String get addAmbiance;
   String get apply;
   String get atLeastXsymbolsNeeded;

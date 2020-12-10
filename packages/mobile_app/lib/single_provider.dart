@@ -23,5 +23,5 @@ class SingleProvider {
   UserPollBloc userPollBloc;
   ProphecyBloc prophecyBloc;
   ProphecyToShowStorage show;
-  PredictionsFlutterMobile predictions;
+  DefaultPredictions predictions;
 }

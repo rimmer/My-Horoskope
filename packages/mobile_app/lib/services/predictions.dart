@@ -1,49 +1,43 @@
-import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:predictions/predictions.dart';
+import 'package:language/language.dart';
 
-/// @TODO BLoC
+export 'package:predictions/predictions.dart';
+
 class PredictionsFlutterMobile extends DefaultPredictions {
-  String _locale;
-  String get locale => _locale;
-  bool isPrepared;
-
   /// constructor
-  PredictionsFlutterMobile(String locale) {
-    isPrepared = false;
+  PredictionsFlutterMobile() {
     getPredictionAlgorithm = GetPredictionByDate();
     dataManipulation["add_csv"] = SingleCsvAdd();
-    dataManipulation["clear"] = Clear();
-    _locale = locale;
-  }
+    // dataManipulation["clear"] = Clear();
 
-  Future changeLocale(String locale) async {
-    isPrepared = false;
-    _locale = locale;
-    await this.job("clear", null);
-  }
+    /// Bark annalogy from the tree bark
+    final predictionBark = lang.predicitonBark();
 
-  Future prepare(BuildContext context) async {
-    //
-
-    /// read all file names in needed assets folder
-    final String manifestJson =
-        await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
-    List<String> files = json.decode(manifestJson).keys.where((String key) {
-      return key.startsWith('assets/data/predictions/$_locale/');
-    }).toList();
-
-    /// read every file by correct asset file name
-    String rawData;
-    for (String file in files) {
-      rawData = await rootBundle.loadString(file);
-
-      /// use add_csv job for every readed file
-      await this.job("add_csv", rawData);
+    for (var layer in predictionBark) {
+      if (layer.isEmpty) continue;
+      this.jobSync("add_csv", layer);
     }
-
-    //
-    isPrepared = true;
   }
+
+  GetPredictionAlgorithm getPredictionAlgorithm;
+  final _positiveLuck = Set<String>();
+  final _positiveInternalStr = Set<String>();
+  final _positiveMoodlet = Set<String>();
+  final _positiveAmbition = Set<String>();
+  final _positiveIntelligence = Set<String>();
+  final _negativeLuck = Set<String>();
+  final _negativeInternalStr = Set<String>();
+  final _negativeMoodlet = Set<String>();
+  final _negativeAmbition = Set<String>();
+  final _negativeIntelligence = Set<String>();
+  Set<String> get positiveLuck => _positiveLuck;
+  Set<String> get positiveInternalStr => _positiveInternalStr;
+  Set<String> get positiveMoodlet => _positiveMoodlet;
+  Set<String> get positiveAmbition => _positiveAmbition;
+  Set<String> get positiveIntelligence => _positiveIntelligence;
+  Set<String> get negativeLuck => _negativeLuck;
+  Set<String> get negativeInternalStr => _negativeInternalStr;
+  Set<String> get negativeMoodlet => _negativeMoodlet;
+  Set<String> get negativeAmbition => _negativeAmbition;
+  Set<String> get negativeIntelligence => _negativeIntelligence;
 }

@@ -155,11 +155,99 @@ extension DailyScreenBuilders on _DailyScreenState {
       final least = state.prophecy.least;
       final biggest = state.prophecy.biggest;
 
-      if (state.prophecy[least].value <= SHOW_NEGATIVE_PREDICTION)
-        state.prophecy.addText(id: least, text: "Negative Prediction");
+      if (state.prophecy[least].value <= SHOW_NEGATIVE_PREDICTION) {
+        //
+        final birthDate = DateTime.fromMillisecondsSinceEpoch(
+            sp.usersRepo.current.model.birth);
 
-      if (state.prophecy[biggest].value >= SHOW_POSITIVE_PREDICTION)
-        state.prophecy.addText(id: biggest, text: "Positive Prediction");
+        String negativePredictionText;
+
+        switch (least) {
+          case ProphecyType.AMBITION:
+            negativePredictionText = //
+                sp.predictions.predictionNegativeAmbition(
+              birthDate,
+            );
+            break;
+          case ProphecyType.INTELLIGENCE:
+            negativePredictionText =
+                //
+                sp.predictions.predictionNegativeIntelligence(
+              birthDate,
+            );
+            break;
+          case ProphecyType.LUCK:
+            negativePredictionText = //
+                sp.predictions.predictionNegativeLuck(
+              birthDate,
+            );
+            break;
+          case ProphecyType.MOODLET:
+            negativePredictionText = //
+                sp.predictions.predictionNegativeMoodlet(
+              birthDate,
+            );
+            break;
+
+          case ProphecyType.INTERNAL_STRENGTH:
+          default:
+            negativePredictionText =
+                //
+                sp.predictions.predictionNegativeInternalStr(
+              birthDate,
+            );
+            break;
+        }
+
+        state.prophecy.addText(id: least, text: negativePredictionText);
+      }
+
+      if (state.prophecy[biggest].value >= SHOW_POSITIVE_PREDICTION) {
+        //
+        final birthDate = DateTime.fromMillisecondsSinceEpoch(
+            sp.usersRepo.current.model.birth);
+
+        String positivePredictionText;
+
+        switch (biggest) {
+          case ProphecyType.AMBITION:
+            positivePredictionText = //
+                sp.predictions.predictionPositiveAmbition(
+              birthDate,
+            );
+            break;
+          case ProphecyType.INTELLIGENCE:
+            positivePredictionText =
+                //
+                sp.predictions.predictionPositiveIntelligence(
+              birthDate,
+            );
+            break;
+          case ProphecyType.LUCK:
+            positivePredictionText = //
+                sp.predictions.predictionPositiveLuck(
+              birthDate,
+            );
+            break;
+          case ProphecyType.MOODLET:
+            positivePredictionText = //
+                sp.predictions.predictionPositiveMoodlet(
+              birthDate,
+            );
+            break;
+
+          case ProphecyType.INTERNAL_STRENGTH:
+          default:
+            positivePredictionText =
+                //
+                sp.predictions.predictionPositiveInternalStr(
+              birthDate,
+            );
+            break;
+        }
+
+        state.prophecy.addText(id: biggest, text: positivePredictionText);
+      }
 
       //
       return ListView(

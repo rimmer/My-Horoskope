@@ -30,32 +30,32 @@ abstract class IPredictions {
   /// Argument is a data needed for the algorithm
   /// to search a correct index
   /// returns correct prediction in the String format
-  String predictionPositiveLuck(dynamic data) =>
-      getPredictionAlgorithm.prediction(positiveLuck.toList(), data);
+  String predictionPositiveLuck(dynamic data) => getPredictionAlgorithm
+      .prediction(positiveLuck.toList(growable: false), data);
 
   /// Argument is a data needed for the algorithm
   /// to search a correct index
   /// returns correct prediction in the String format
-  String predictionPositiveInternalStr(dynamic data) =>
-      getPredictionAlgorithm.prediction(positiveInternalStr.toList(), data);
+  String predictionPositiveInternalStr(dynamic data) => getPredictionAlgorithm
+      .prediction(positiveInternalStr.toList(growable: false), data);
 
   /// Argument is a data needed for the algorithm
   /// to search a correct index
   /// returns correct prediction in the String format
-  String predictionPositiveMoodlet(dynamic data) =>
-      getPredictionAlgorithm.prediction(positiveMoodlet.toList(), data);
+  String predictionPositiveMoodlet(dynamic data) => getPredictionAlgorithm
+      .prediction(positiveMoodlet.toList(growable: false), data);
 
   /// Argument is a data needed for the algorithm
   /// to search a correct index
   /// returns correct prediction in the String format
-  String predictionPositiveAmbition(dynamic data) =>
-      getPredictionAlgorithm.prediction(positiveAmbition.toList(), data);
+  String predictionPositiveAmbition(dynamic data) => getPredictionAlgorithm
+      .prediction(positiveAmbition.toList(growable: false), data);
 
   /// Argument is a data needed for the algorithm
   /// to search a correct index
   /// returns correct prediction in the String format
-  String predictionPositiveIntelligence(dynamic data) =>
-      getPredictionAlgorithm.prediction(positiveIntelligence.toList(), data);
+  String predictionPositiveIntelligence(dynamic data) => getPredictionAlgorithm
+      .prediction(positiveIntelligence.toList(growable: false), data);
 
   //
 
@@ -96,8 +96,13 @@ abstract class IPredictions {
   /// and then use this label in the job method
   Map<String, DataStrategy> get dataManipulation;
 
-  Future job(String dataStrategyLabel, dynamic rawData) async {
+  Future jobAsync(String dataStrategyLabel, dynamic rawData) async {
     if (dataManipulation[dataStrategyLabel] != null)
-      await dataManipulation[dataStrategyLabel].job(this, rawData);
+      await dataManipulation[dataStrategyLabel].jobAsync(this, rawData);
+  }
+
+  void jobSync(String dataStrategyLabel, dynamic rawData) {
+    if (dataManipulation[dataStrategyLabel] != null)
+      dataManipulation[dataStrategyLabel].jobSync(this, rawData);
   }
 }

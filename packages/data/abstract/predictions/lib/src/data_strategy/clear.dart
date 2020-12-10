@@ -1,8 +1,8 @@
 import '../interface.dart';
 import 'interface.dart';
 
-class Clear implements DataStrategy {
-  Future job(IPredictions predictions, dynamic data) async {
+class Clear extends DataStrategy {
+  Future jobSync(IPredictions predictions, dynamic data) async {
     //
 
     predictions.positiveLuck.clear();

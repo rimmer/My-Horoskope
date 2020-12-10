@@ -92,7 +92,6 @@ flutter:
     - assets/icons/
     - assets/widget/
     - assets/widget/magic_poll/
-    - assets/data/
   #data
     # - packages/prophecies_repository_flutter/data/prophecies.json
   # #localization

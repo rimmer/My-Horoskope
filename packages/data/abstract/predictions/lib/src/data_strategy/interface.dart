@@ -1,5 +1,6 @@
 import '../interface.dart';
 
 abstract class DataStrategy {
-  Future job(IPredictions predictions, dynamic rawData);
+  Future jobAsync(IPredictions predictions, dynamic rawData) async {}
+  void jobSync(IPredictions predictions, dynamic rawData) {}
 }

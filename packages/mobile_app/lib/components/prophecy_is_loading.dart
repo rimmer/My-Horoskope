@@ -5,7 +5,9 @@ import 'package:prophecy_model/prophecy_model.dart';
 
 ListView prophecyIsLoading() {
   return ListView(
+    shrinkWrap: true,
     scrollDirection: Axis.vertical,
+    physics: const NeverScrollableScrollPhysics(),
     children: <Widget>[
       prophecyRecordLoading(prophecyName: ProphecyType.INTERNAL_STRENGTH.toStr),
       prophecyRecordLoading(prophecyName: ProphecyType.MOODLET.toStr),
