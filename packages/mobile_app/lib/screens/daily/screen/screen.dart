@@ -124,9 +124,7 @@ class _DailyScreenState extends State<DailyScreen> {
                     bloc: sp.userPollBloc,
                     builder: userPollBuilder,
                   )
-                : Container(
-                    child: Text(lang.futureDays, style: TextStyle()),
-                  ),
+                : notation(text: lang.futureDays),
 
             SizedBox(
               height: SPACE_BETWEEN_POLLS_PROPHECY,
