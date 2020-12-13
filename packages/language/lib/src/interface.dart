@@ -61,4 +61,5 @@ abstract class Locale {
   String get userAgreement;
   String get writeToDev;
   String get you;
+  String get futureDays;
 }

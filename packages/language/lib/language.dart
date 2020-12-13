@@ -64,6 +64,7 @@ class lang {
   static String noAmbianceTitle = locale.noAmbianceTitle;
   static String noAmbianceDescription = locale.noAmbianceDescription;
   static String noAmbianceButton = locale.noAmbianceButton;
+  static String futureDays = locale.futureDays;
   static Map<int, String> get month => locale.month;
   static Map<String, String> get planetImpact => locale.planetImpact;
   static Map<String, String> get prophecyId => locale.prophecyId;

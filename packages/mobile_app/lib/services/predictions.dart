@@ -17,6 +17,7 @@ class PredictionsFlutterMobile extends DefaultPredictions {
       if (layer.isEmpty) continue;
       this.jobSync("add_csv", layer);
     }
+    
   }
 
   GetPredictionAlgorithm getPredictionAlgorithm;

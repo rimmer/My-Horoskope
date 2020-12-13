@@ -155,7 +155,7 @@ extension DailyScreenBuilders on _DailyScreenState {
       final least = state.prophecy.least;
       final biggest = state.prophecy.biggest;
 
-      if (state.prophecy[least].value <= SHOW_NEGATIVE_PREDICTION) {
+      if (isToday) {
         //
         final birthDate = DateTime.fromMillisecondsSinceEpoch(
             sp.usersRepo.current.model.birth);
@@ -202,7 +202,7 @@ extension DailyScreenBuilders on _DailyScreenState {
         state.prophecy.addText(id: least, text: negativePredictionText);
       }
 
-      if (state.prophecy[biggest].value >= SHOW_POSITIVE_PREDICTION) {
+      if (isToday) {
         //
         final birthDate = DateTime.fromMillisecondsSinceEpoch(
             sp.usersRepo.current.model.birth);

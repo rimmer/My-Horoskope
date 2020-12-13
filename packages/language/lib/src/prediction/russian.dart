@@ -22307,7 +22307,6 @@ List<String> _predictionsRussian() => [
         0x0022,
         0x002c,
         0x0022,
-        0x002e,
         0x041e,
         0x0441,
         0x0442,
@@ -22732,9 +22731,9 @@ List<String> _predictionsRussian() => [
         0x043d,
         0x0438,
         0x0439,
-        0x002e,
-        0x000d,
-        0x000a
+        0x002e
       ]),
+      String.fromCharCodes([]),
+      String.fromCharCodes([]),
       String.fromCharCodes([]),
     ];

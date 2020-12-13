@@ -61,6 +61,7 @@ class _DailyScreenState extends State<DailyScreen> {
   List<DateTime> get d => widget.day;
   int get selected => widget.currentIndex.wrapped;
   EnabledProphecies get toShow => sp.show.enabledProphecies;
+  bool get isToday => d[selected].millisecondsSinceEpoch == dtDay;
 
   void calculateProphecy() {
     sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));
@@ -79,7 +80,6 @@ class _DailyScreenState extends State<DailyScreen> {
         planetFor[d[selected].millisecondsSinceEpoch.astroSign][dat.sign]);
     //
     final screen = MediaQuery.of(context).size;
-    bool isToday = d[selected].millisecondsSinceEpoch == dtDay;
 
     if (isToday) startUserPollBloc();
     calculateProphecy();
@@ -124,7 +124,9 @@ class _DailyScreenState extends State<DailyScreen> {
                     bloc: sp.userPollBloc,
                     builder: userPollBuilder,
                   )
-                : SizedBox(),
+                : Container(
+                    child: Text(lang.futureDays, style: TextStyle()),
+                  ),
 
             SizedBox(
               height: SPACE_BETWEEN_POLLS_PROPHECY,
