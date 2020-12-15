@@ -1,63 +1,61 @@
 import 'index.dart';
 
 void main() {
-  BlocSupervisor.delegate = SimpleBlocDelegate();
-  runApp(appBuilder());
-}
+  WidgetsFlutterBinding.ensureInitialized();
 
-Widget appBuilder() {
   final singleProvider = SingleProvider();
-
+  singleProvider.show = ProphecyToShowStorageFlutter();
   singleProvider.predictions = PredictionsFlutterMobile();
-
   singleProvider.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());
+  BlocSupervisor.delegate = SimpleBlocDelegate();
 
-  return Provider<SingleProvider>(
-    create: (_) => singleProvider,
-    child: imageBackground(
-      asset: "assets/background.jpg",
-      //
+  runApp(appBuilder(singleProvider));
+}
 
-      child: myProphet(
-        authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-          //
-          bloc: singleProvider.authBloc,
-          builder: (context, state) {
+Widget appBuilder(SingleProvider singleProvider) => Provider<SingleProvider>(
+      create: (_) => singleProvider,
+      child: imageBackground(
+        asset: "assets/background.jpg",
+        //
+
+        child: myProphet(
+          authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
             //
-
-            if (state is Authenticated) {
-              singleProvider.usersRepo =
-                  singleProvider.authBloc.auth.repository;
-              singleProvider.pollsRepo = PollsRepositoryFlutter();
-              singleProvider.show = ProphecyToShowStorageFlutter();
-
-              singleProvider.prophecyBloc = ProphecyBloc(
-                algo: Algorithm(
-                  dat: AlgoData(
-                    pollByDateRepo: singleProvider.pollsRepo,
-                    usersRepository: singleProvider.usersRepo,
-                  ),
-                ),
-              );
-
-              singleProvider.userPollBloc = UserPollBloc(
-                users: singleProvider.usersRepo,
-                repo: singleProvider.pollsRepo,
-              );
-
-              return DailyScreen();
-
+            bloc: singleProvider.authBloc,
+            builder: (context, state) {
               //
-            } else if (state is Unauthenticated)
-              return RegistrationScreen();
-            else {
-              return LoadingScreen();
-            }
-          },
+
+              if (state is Authenticated) {
+                singleProvider.usersRepo =
+                    singleProvider.authBloc.auth.repository;
+                singleProvider.pollsRepo = PollsRepositoryFlutter();
+
+                singleProvider.prophecyBloc = ProphecyBloc(
+                  algo: Algorithm(
+                    dat: AlgoData(
+                      pollByDateRepo: singleProvider.pollsRepo,
+                      usersRepository: singleProvider.usersRepo,
+                    ),
+                  ),
+                );
+
+                singleProvider.userPollBloc = UserPollBloc(
+                  users: singleProvider.usersRepo,
+                  repo: singleProvider.pollsRepo,
+                );
+
+                return DailyScreen();
+
+                //
+              } else if (state is Unauthenticated)
+                return RegistrationScreen();
+              else {
+                return LoadingScreen();
+              }
+            },
+          ),
         ),
       ),
-    ),
-  );
-}
+    );
