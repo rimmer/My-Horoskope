@@ -1,18 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:prophecy_model/prophecy_model.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:users_repository/users_repository.dart';
-import 'package:language/language.dart';
 import 'package:app/theme/app_colors.dart';
-import 'prophecy_record.dart';
-
-import 'package:int_datetime/int_datetime.dart';
-import 'package:algorithm/astro.dart' show BasicAstrology;
+import 'package:flutter/material.dart';
+import 'package:language/language.dart';
+import 'package:prophecy_model/prophecy_model.dart';
 
 ListView prophecyIsLoading() {
   return ListView(
+    shrinkWrap: true,
     scrollDirection: Axis.vertical,
+    physics: const NeverScrollableScrollPhysics(),
     children: <Widget>[
       prophecyRecordLoading(prophecyName: ProphecyType.INTERNAL_STRENGTH.toStr),
       prophecyRecordLoading(prophecyName: ProphecyType.MOODLET.toStr),
@@ -25,7 +20,7 @@ ListView prophecyIsLoading() {
 
 Container prophecyRecordLoading({@required String prophecyName}) => Container(
       margin: EdgeInsets.symmetric(vertical: 8.0),
-      height: 68.0,
+      height: 128.0,
       decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [

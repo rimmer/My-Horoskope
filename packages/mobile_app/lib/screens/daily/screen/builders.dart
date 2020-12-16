@@ -152,10 +152,70 @@ extension DailyScreenBuilders on _DailyScreenState {
       if (state.propheciesSum >= SWITCH_POSITIVE_PLANET_AT_SUM)
         dat.currentPlanets[true] = dat.userPatron;
 
+      if (isToday) {
+        /// if is today, can add the text
+
+        final birthDate = DateTime.fromMillisecondsSinceEpoch(
+            sp.usersRepo.current.model.birth);
+
+        if (toShow.internalStrength == true &&
+            toShow.moodlet == true &&
+            toShow.ambition == true &&
+            toShow.intelligence == true &&
+            toShow.luck == true) {
+          /// if all prophecies are enabled
+          /// we show text for biggest and least prophecies,
+          /// if they are not neutral valued
+
+          final least = state.prophecy.least;
+          final biggest = state.prophecy.biggest;
+
+          String negativePredictionText =
+              negativePrediction(type: least, birthDate: birthDate);
+
+          if (state.prophecy[least].value <= DEFAULT_NEGATIVE_PROPHECY_BOUND)
+            state.prophecy.addText(id: least, text: negativePredictionText);
+
+          String positivePredictionText =
+              positivePrediction(type: biggest, birthDate: birthDate);
+
+          if (state.prophecy[biggest].value >= DEFAULT_POSITIVE_PROPHECY_BOUND)
+            state.prophecy.addText(id: biggest, text: positivePredictionText);
+        } else {
+          /// if some prophecies are disabled,
+          /// we show text to any prophecy that
+          /// bigger or lesser then some value bound
+          for (var prophecy in state.prophecy.values) {
+            if (prophecy.value >= TWEAKED_POSITIVE_PROPHECY_BOUND) {
+              //
+
+              String text =
+                  positivePrediction(type: prophecy.id, birthDate: birthDate);
+
+              state.prophecy.addText(id: prophecy.id, text: text);
+              //
+            } else if (prophecy.value <= TWEAKED_NEGATIVE_PROPHECY_BOUND) {
+              //
+
+              String text =
+                  negativePrediction(type: prophecy.id, birthDate: birthDate);
+
+              state.prophecy.addText(id: prophecy.id, text: text);
+              //
+            }
+          }
+        }
+      }
+
       //
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      return ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        padding: EdgeInsets.symmetric(horizontal: PROPHECY_PADDING_HORIZONTAL),
+        physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
+          //
+
           Text(
             dat.labelStr,
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
@@ -211,5 +271,93 @@ extension DailyScreenBuilders on _DailyScreenState {
         child: Text("Error"),
       );
     }
+  }
+
+  String positivePrediction(
+      {@required ProphecyType type, @required DateTime birthDate}) {
+    String positivePredictionText;
+
+    switch (type) {
+      case ProphecyType.AMBITION:
+        positivePredictionText = //
+            sp.predictions.predictionPositiveAmbition(
+          birthDate,
+        );
+        break;
+      case ProphecyType.INTELLIGENCE:
+        positivePredictionText =
+            //
+            sp.predictions.predictionPositiveIntelligence(
+          birthDate,
+        );
+        break;
+      case ProphecyType.LUCK:
+        positivePredictionText = //
+            sp.predictions.predictionPositiveLuck(
+          birthDate,
+        );
+        break;
+      case ProphecyType.MOODLET:
+        positivePredictionText = //
+            sp.predictions.predictionPositiveMoodlet(
+          birthDate,
+        );
+        break;
+
+      case ProphecyType.INTERNAL_STRENGTH:
+      default:
+        positivePredictionText =
+            //
+            sp.predictions.predictionPositiveInternalStr(
+          birthDate,
+        );
+        break;
+    }
+
+    return positivePredictionText;
+  }
+
+  String negativePrediction(
+      {@required ProphecyType type, @required DateTime birthDate}) {
+    String negativePredictionText;
+
+    switch (type) {
+      case ProphecyType.AMBITION:
+        negativePredictionText = //
+            sp.predictions.predictionNegativeAmbition(
+          birthDate,
+        );
+        break;
+      case ProphecyType.INTELLIGENCE:
+        negativePredictionText =
+            //
+            sp.predictions.predictionNegativeIntelligence(
+          birthDate,
+        );
+        break;
+      case ProphecyType.LUCK:
+        negativePredictionText = //
+            sp.predictions.predictionNegativeLuck(
+          birthDate,
+        );
+        break;
+      case ProphecyType.MOODLET:
+        negativePredictionText = //
+            sp.predictions.predictionNegativeMoodlet(
+          birthDate,
+        );
+        break;
+
+      case ProphecyType.INTERNAL_STRENGTH:
+      default:
+        negativePredictionText =
+            //
+            sp.predictions.predictionNegativeInternalStr(
+          birthDate,
+        );
+        break;
+    }
+
+    return negativePredictionText;
   }
 }

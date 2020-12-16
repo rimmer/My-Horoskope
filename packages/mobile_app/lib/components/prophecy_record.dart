@@ -37,47 +37,68 @@ Container prophecyRecord(
 
   return Container(
     margin: EdgeInsets.symmetric(vertical: 8.0),
-    height: 100.0,
-    child: Column(
+    decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            AppColors.prophecyGradientStart.withOpacity(0.7),
+            AppColors.prophecyGradientEnd.withOpacity(0.7),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.topRight,
+        ),
+        borderRadius: BorderRadius.circular(8.0)),
+    child: ListView(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      physics: const NeverScrollableScrollPhysics(),
       children: <Widget>[
-        Container(
-          height: 92.0,
-          padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
-          child: Column(
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+          child: Row(
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Expanded(
-                      child: Text(
-                    lang.prophecyId[prophecy.id.toStr],
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: AppColors.textPrimary,
-                    ),
-                  )),
-                  Center(
-                    child: Text(
-                      value.toStringAsFixed(1),
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        fontWeight: FontWeight.w400,
-                        color: chooseNumberColor(value),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               Expanded(
-                child: prophecyPlanet(
-                    planetName: planetName,
-                    color: AppColors.textPrimary,
-                    impactNumber: planetImpact),
+                  child: Text(
+                lang.prophecyId[prophecy.id.toStr],
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: AppColors.textPrimary,
+                ),
+              )),
+              Center(
+                child: Text(
+                  value.toStringAsFixed(1),
+                  style: TextStyle(
+                    fontSize: 21.0,
+                    fontWeight: FontWeight.w400,
+                    color: chooseNumberColor(value),
+                  ),
+                ),
               ),
             ],
           ),
         ),
+        (textExists)
+            ? Padding(
+                padding:
+                    const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+                child: Text(
+                  prophecy.text,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+              )
+            : SizedBox(),
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+          child: prophecyPlanet(
+              planetName: planetName,
+              color: AppColors.textPrimary,
+              impactNumber: planetImpact),
+        ),
         Container(
-          height: 8,
+          height: 8.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(8),
@@ -112,16 +133,6 @@ Container prophecyRecord(
         ),
       ],
     ),
-    decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            AppColors.prophecyGradientStart.withOpacity(0.7),
-            AppColors.prophecyGradientEnd.withOpacity(0.7),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.topRight,
-        ),
-        borderRadius: BorderRadius.circular(8.0)),
   );
 }
 
@@ -148,7 +159,7 @@ Container prophecyPlanet(
               Text(
                   "${lang.impact.capitalize()} ${lang.planetImpact[planetName]} (${impactNumber.toStringAsFixed(1)})",
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 14.0,
                     color: color,
                   )),
             ],
@@ -157,33 +168,6 @@ Container prophecyPlanet(
       ],
     ),
   );
-}
-
-/// @TODO
-Container prophecyTextWidget({@required bool textExists, String text = ""}) {
-  if (textExists) {
-    return Container(
-      padding: EdgeInsets.only(top: 8),
-      child: Wrap(
-        children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(top: 8),
-            height: 116,
-            child: ListView(
-              children: <Widget>[
-                Text("$text",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: AppColors.textPrimary,
-                    )),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  } else
-    return Container();
 }
 
 Color chooseNumberColor(double value) {

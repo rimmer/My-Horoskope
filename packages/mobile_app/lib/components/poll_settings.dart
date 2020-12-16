@@ -37,7 +37,7 @@ class PollSettingsState extends State<PollSettings> {
         showOverCurrentScreen(
             context: context,
             child: SimpleTransperentScreen(
-              height: 278,
+              height: 285,
               width: 300,
               title: lang.pollSettingsTitle.capitalize(),
               body: PollSettingInfo(poll: poll, studying: studying),

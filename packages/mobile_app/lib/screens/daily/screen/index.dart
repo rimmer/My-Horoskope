@@ -17,9 +17,11 @@ export 'package:app/components/prophecy_is_loading.dart';
 export 'package:app/components/gradient_border_button.dart';
 export 'package:app/components/appbar.dart';
 export 'package:app/components/notavaible_button.dart';
+export 'package:app/components/notation.dart';
 export 'package:app/theme/app_colors.dart';
 export 'package:users_repository/users_repository.dart';
 export 'package:prophecy_to_show/prophecy_to_show.dart';
+export 'package:prophecies/prophecies.dart';
 
 export '../poll_widgets.dart';
 export '../calendar_widgets.dart';

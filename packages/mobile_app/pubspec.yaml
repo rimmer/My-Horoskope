@@ -48,7 +48,9 @@ dependencies:
     path: ../data/abstract/prophecy_to_show_storage
   prophecy_to_show_storage_flutter:
     path: ../data/platform/prophecy_to_show_storage_flutter   
-
+  predictions:
+    path: ../data/abstract/predictions
+    
   #blocs
   authentication:
     path: ../blocs/authentication

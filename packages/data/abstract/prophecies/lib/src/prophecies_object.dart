@@ -11,6 +11,34 @@ extension PropheciesObject on Map<ProphecyType, ProphecyEntity> {
   void addText({@required ProphecyType id, @required String text}) {
     this[id].text = text;
   }
+
+  ProphecyType get least {
+    ProphecyEntity res;
+    double min = double.maxFinite;
+
+    for (var prophecy in this.values) {
+      if (prophecy.value < min) {
+        min = prophecy.value;
+        res = prophecy;
+      }
+    }
+
+    return res.id;
+  }
+
+  ProphecyType get biggest {
+    ProphecyEntity res;
+    double max = double.minPositive;
+
+    for (var prophecy in this.values) {
+      if (prophecy.value > max) {
+        max = prophecy.value;
+        res = prophecy;
+      }
+    }
+
+    return res.id;
+  }
 }
 
 Map<ProphecyType, ProphecyEntity> Prophecies() => {

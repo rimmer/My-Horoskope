@@ -6,7 +6,7 @@ import 'package:storage_access/storage_access.dart' as storage;
 const String _fileName = "propheciesToShow.json";
 
 class ProphecyToShowStorageJson implements ProphecyToShowStorage {
-  EnabledProphecies _ep = EnabledProphecies();
+  EnabledProphecies _ep;
 
   @override
   Future write() async => await storage.write(
@@ -30,6 +30,7 @@ class ProphecyToShowStorageJson implements ProphecyToShowStorage {
       //
     } catch (_) {
       print("Error was catched when reading $_fileName file: $_");
+      this.write();
     }
   }
 

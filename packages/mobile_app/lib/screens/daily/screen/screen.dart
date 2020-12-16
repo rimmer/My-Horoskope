@@ -61,6 +61,7 @@ class _DailyScreenState extends State<DailyScreen> {
   List<DateTime> get d => widget.day;
   int get selected => widget.currentIndex.wrapped;
   EnabledProphecies get toShow => sp.show.enabledProphecies;
+  bool get isToday => d[selected].millisecondsSinceEpoch == dtDay;
 
   void calculateProphecy() {
     sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));
@@ -74,11 +75,11 @@ class _DailyScreenState extends State<DailyScreen> {
   Widget build(BuildContext context) {
     //
     /// gets planets for current period
-    dat.currentPlanets =
-        planetFor[d[selected].millisecondsSinceEpoch.astroSign][dat.sign];
+    dat.currentPlanets.clear();
+    dat.currentPlanets.addAll(
+        planetFor[d[selected].millisecondsSinceEpoch.astroSign][dat.sign]);
     //
     final screen = MediaQuery.of(context).size;
-    bool isToday = d[selected].millisecondsSinceEpoch == dtDay;
 
     if (isToday) startUserPollBloc();
     calculateProphecy();
@@ -123,7 +124,7 @@ class _DailyScreenState extends State<DailyScreen> {
                     bloc: sp.userPollBloc,
                     builder: userPollBuilder,
                   )
-                : SizedBox(),
+                : notation(text: lang.futureDays),
 
             SizedBox(
               height: SPACE_BETWEEN_POLLS_PROPHECY,
@@ -131,17 +132,14 @@ class _DailyScreenState extends State<DailyScreen> {
             ),
 
             /// @PROPHECY
+            BlocBuilder<ProphecyBloc, ProphecyState>(
+              bloc: sp.prophecyBloc,
+              builder: prophecyBuilder,
+            ),
+
             SizedBox(
-              height: screen.height - 24.0,
+              height: SPACE_BEFORE_AMBIANCE,
               width: screen.width,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: PROPHECY_PADDING_HORIZONTAL),
-                child: BlocBuilder<ProphecyBloc, ProphecyState>(
-                  bloc: sp.prophecyBloc,
-                  builder: prophecyBuilder,
-                ),
-              ),
             ),
 
             NotAvaibleInfo(
