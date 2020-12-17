@@ -19,8 +19,10 @@ class RussianLocale implements Locale {
   final String start = "начать";
   final String apply = "применить";
   final String atLeastXsymbolsNeeded = "минимальное количество символов: ";
-  final String notAllFieldsFilled = "Не все поля заполнены";
-  final String termsAreNotAccepted = "Вы не приняли соглашения";
+  final String nameNotFilled = 'Заполните поле "Имя"';
+  final String dateNotFilled = 'Заполните дату рождения';
+  final String termsAreNotAccepted =
+      "Ознакомьтесь с пользовательским соглашением и политикой конфиденциальности";
   final String my = "мой";
   final String you = "вы";
   final String mood = "настроение";

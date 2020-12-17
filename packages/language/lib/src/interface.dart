@@ -27,7 +27,8 @@ abstract class Locale {
   String get noAmbianceButton;
   String get noAmbianceDescription;
   String get noAmbianceTitle;
-  String get notAllFieldsFilled;
+  String get nameNotFilled;
+  String get dateNotFilled;
   String get notification;
   String get notificationAt;
   String get notSelectedSex;

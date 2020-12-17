@@ -87,10 +87,30 @@ class RegistrationScreen extends StatelessWidget {
               country: country,
               place: place,
               termsAccepted: termsAccepted,
-              onUnvalidInformation: () {
-                showOverCurrentScreen(
+              validInformationCheck: () {
+                if (name.wrapped.isEmpty) {
+                  showOverCurrentScreen(
                     context: context,
-                    child: wrongInformation(lang.notAllFieldsFilled));
+                    child: wrongInformation(lang.nameNotFilled),
+                  );
+                  return false;
+                }
+                if (day.wrapped.isEmpty ||
+                    month.wrapped.isEmpty ||
+                    year.wrapped.isEmpty ||
+                    int.parse(year.wrapped) > upperYearBound(12) ||
+                    int.parse(year.wrapped) < 1921 ||
+                    int.parse(month.wrapped) > 12 ||
+                    int.parse(month.wrapped) < 1 ||
+                    int.parse(day.wrapped) > 31 ||
+                    int.parse(day.wrapped) < 1) {
+                  showOverCurrentScreen(
+                    context: context,
+                    child: wrongInformation(lang.dateNotFilled),
+                  );
+                  return false;
+                }
+                return true;
               },
               onUnvalidTerms: () {
                 showOverCurrentScreen(
