@@ -126,10 +126,30 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 indexToSex: widget.indexToSex,
                 country: widget.country,
                 place: widget.place,
-                onUnvalidInformation: () {
-                  showOverCurrentScreen(
+                validInformationCheck: () {
+                  if (widget.name.wrapped.isEmpty) {
+                    showOverCurrentScreen(
                       context: context,
-                      child: wrongInformation(lang.notAllFieldsFilled));
+                      child: wrongInformation(lang.nameNotFilled),
+                    );
+                    return false;
+                  }
+                  if (widget.day.wrapped.isEmpty ||
+                      widget.month.wrapped.isEmpty ||
+                      widget.year.wrapped.isEmpty ||
+                      int.parse(widget.year.wrapped) > upperYearBound(12) ||
+                      int.parse(widget.year.wrapped) < 1921 ||
+                      int.parse(widget.month.wrapped) > 12 ||
+                      int.parse(widget.month.wrapped) < 1 ||
+                      int.parse(widget.day.wrapped) > 31 ||
+                      int.parse(widget.day.wrapped) < 1) {
+                    showOverCurrentScreen(
+                      context: context,
+                      child: wrongInformation(lang.dateNotFilled),
+                    );
+                    return false;
+                  }
+                  return true;
                 },
                 onValidInformation: () {
                   final propheciesToShow = EnabledProphecies(
