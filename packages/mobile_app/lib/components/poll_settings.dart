@@ -1,10 +1,10 @@
-import 'package:app/single_provider.dart';
+import 'package:my_prophet/single_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:user_poll/bloc.dart';
-import 'package:app/components/popup.dart';
-import 'package:app/theme/app_colors.dart';
+import 'package:my_prophet/components/popup.dart';
+import 'package:my_prophet/theme/app_colors.dart';
 import 'package:language/language.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'magic_checkbox.dart';

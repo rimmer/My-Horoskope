@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:language/language.dart';
-import 'package:app/theme/app_colors.dart';
+import 'package:my_prophet/theme/app_colors.dart';
 import './userinfo_field.dart';
 import './userinfo_picker.dart';
 
@@ -30,14 +30,14 @@ Column userInfo(
             flex: 2,
             child: Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: month,
+              child: day,
             ),
           ),
           Expanded(
             flex: 2,
             child: Padding(
               padding: const EdgeInsets.only(right: 16),
-              child: day,
+              child: month,
             ),
           ),
           Expanded(

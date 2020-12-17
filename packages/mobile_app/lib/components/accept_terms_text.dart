@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:app/theme/app_colors.dart';
+import 'package:my_prophet/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 

@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:prophecy_model/prophecy_model.dart';
 import 'package:prophecies/prophecies.dart';
 import 'package:language/language.dart';
-import 'package:app/theme/app_colors.dart';
+import 'package:my_prophet/theme/app_colors.dart';
 import 'package:users_repository/users_repository.dart';
 
 Container prophecyRecord(
