@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:app/components/popup.dart';
-import 'package:app/theme/app_colors.dart';
+import 'package:my_prophet/components/popup.dart';
+import 'package:my_prophet/theme/app_colors.dart';
 import 'gradient_flatbutton.dart';
 
 class NotAvaibleInfo extends StatefulWidget {

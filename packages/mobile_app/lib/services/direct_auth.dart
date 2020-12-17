@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_model/user_model.dart';
-import 'package:app/single_provider.dart';
+import 'package:my_prophet/single_provider.dart';
 
 /// solves https://github.com/rimmer/my_prophet/issues/30
 
