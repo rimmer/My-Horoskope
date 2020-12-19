@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/theme/app_colors.dart';
+import 'package:my_prophet/theme/app_colors.dart';
 
 Container notation({@required String text}) => Container(
       margin: EdgeInsets.symmetric(

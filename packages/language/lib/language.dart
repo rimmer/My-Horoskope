@@ -27,7 +27,8 @@ class lang {
   static String start = locale.start;
   static String apply = locale.apply;
   static String atLeastXsymbolsNeeded = locale.atLeastXsymbolsNeeded;
-  static String notAllFieldsFilled = locale.notAllFieldsFilled;
+  static String nameNotFilled = locale.nameNotFilled;
+  static String dateNotFilled = locale.dateNotFilled;
   static String termsAreNotAccepted = locale.termsAreNotAccepted;
   static String you = locale.you;
   static String my = locale.my;

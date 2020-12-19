@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/theme/app_colors.dart';
+import 'package:my_prophet/theme/app_colors.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoadingScreen extends StatelessWidget {

@@ -14,13 +14,15 @@ class RussianLocale implements Locale {
   final String other = "другой";
   final String notSelectedSex = "выбрать";
   final String termsAccept = "я принимаю условия";
-  final String termsPrivacyPolicy = "пользовательского соглашения";
-  final String termsUserAgreement = "политики конфиденциальности";
+  final String termsUserAgreement = "пользовательского соглашения";
+  final String termsPrivacyPolicy = "политики конфиденциальности";
   final String start = "начать";
   final String apply = "применить";
   final String atLeastXsymbolsNeeded = "минимальное количество символов: ";
-  final String notAllFieldsFilled = "Не все поля заполнены";
-  final String termsAreNotAccepted = "Вы не приняли соглашения";
+  final String nameNotFilled = 'Заполните поле "Имя"';
+  final String dateNotFilled = 'Заполните дату рождения';
+  final String termsAreNotAccepted =
+      "Ознакомьтесь с пользовательским соглашением и политикой конфиденциальности";
   final String my = "мой";
   final String you = "вы";
   final String mood = "настроение";
@@ -36,7 +38,7 @@ class RussianLocale implements Locale {
   final String pollSettingPollOption = "проводить опрос";
   final String pollSettingsStudyOption = "включить обучение AI";
   final String pollSettingText =
-      "отвечая на вопросы о своем вчерашнем настроении Вы помогате обучить наш искусственный интеллект лучше прогнозировать ваше будущее.";
+      "отвечая на вопросы о своем вчерашнем настроении Вы помогаете обучить наш искусственный интеллект лучше прогнозировать ваше будущее.";
   final String impact = "влияние";
   final String today = "сегодня";
   final String tomorrow = "завтра";

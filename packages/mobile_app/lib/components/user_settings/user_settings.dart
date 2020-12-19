@@ -1,5 +1,9 @@
 import 'index.dart';
 
+typedef bool returnsTrueOnCorrect();
+
+int upperYearBound(int bound) => DateTime.now().year - bound;
+
 Column userSettingsList({
   @required MutableString name,
   @required MutableString month,
@@ -14,7 +18,7 @@ Column userSettingsList({
   MutableBool termsAccepted,
   Function onUnvalidTerms,
   //
-  @required Function onUnvalidInformation,
+  @required returnsTrueOnCorrect validInformationCheck,
   @required Function onValidInformation,
   @required String buttonText,
 }) =>
@@ -31,18 +35,6 @@ Column userSettingsList({
                   return "${lang.atLeastXsymbolsNeeded} $min";
                 return null;
               }),
-          month: UserInfoField(
-              textObject: month,
-              maxLength: 2,
-              keyboardType: TextInputType.datetime,
-              hint: "mm",
-              validator: (String text) {
-                int min = 1;
-                if (text.isEmpty || text.length < min)
-                  return "${text.length}/$min";
-                if (int.parse(text) > 12 || int.parse(text) < 1) return "x";
-                return null;
-              }),
           day: UserInfoField(
               textObject: day,
               maxLength: 2,
@@ -55,6 +47,18 @@ Column userSettingsList({
                 if (int.parse(text) > 31 || int.parse(text) < 1) return "x";
                 return null;
               }),
+          month: UserInfoField(
+              textObject: month,
+              maxLength: 2,
+              keyboardType: TextInputType.datetime,
+              hint: "mm",
+              validator: (String text) {
+                int min = 1;
+                if (text.isEmpty || text.length < min)
+                  return "${text.length}/$min";
+                if (int.parse(text) > 12 || int.parse(text) < 1) return "x";
+                return null;
+              }),
           year: UserInfoField(
               textObject: year,
               maxLength: 4,
@@ -64,6 +68,8 @@ Column userSettingsList({
                 int min = 4;
                 if (text.isEmpty || text.length < min)
                   return "${text.length}/$min";
+                if (int.parse(text) > upperYearBound(12) ||
+                    int.parse(text) < 1921) return "x";
                 return null;
               }),
           sex: UserInfoPicker(
@@ -104,15 +110,7 @@ Column userSettingsList({
             // print("Country: ${country.wrapped}");
             // print("Place: ${place.wrapped}");
 
-            if (name.wrapped.isEmpty ||
-                month.wrapped.isEmpty ||
-                day.wrapped.isEmpty ||
-                year.wrapped.isEmpty) {
-              //
-              onUnvalidInformation();
-              return;
-              //
-            }
+            if (validInformationCheck() == false) return;
 
             if (termsAccepted != null && termsAccepted.wrapped == false) {
               if (onUnvalidTerms == null) {
