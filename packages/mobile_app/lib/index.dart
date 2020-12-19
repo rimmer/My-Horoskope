@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language/language.dart';
 import 'theme/app_theme.dart';
 
 //
@@ -31,7 +32,7 @@ Container imageBackground({@required Widget child, @required String asset}) =>
         child: child);
 
 MaterialApp myProphet({@required Widget authResolver}) => MaterialApp(
-      title: 'My Prophet',
+      title: lang.appName,
       theme: appTheme,
       routes: {
         "/daily": (BuildContext context) => DailyScreen(),

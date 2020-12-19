@@ -12,6 +12,7 @@ class lang {
   /// Bark annalogy from the tree bark
   static List<String> predicitonBark() => locale.predicitonBark();
 
+  static String appName = locale.appName;
   static String name = locale.name;
   static String birthdate = locale.birthdate;
   static String birthcountry = locale.birthcountry;

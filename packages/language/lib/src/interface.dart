@@ -8,6 +8,7 @@ abstract class Locale {
   //
   String get addAmbiance;
   String get apply;
+  String get appName;
   String get atLeastXsymbolsNeeded;
   String get birthcountry;
   String get birthdate;
