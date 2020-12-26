@@ -3,7 +3,7 @@ description: Your personal prophet
 author: Igor Ianishevskyi
 homepage: prophet.ninja
 
-version: 1.0.0+1
+version: 0.1.0
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
