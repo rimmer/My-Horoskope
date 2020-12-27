@@ -157,8 +157,9 @@ Column userSettingsList({
 
 Container wrongInformation(String title) => Container(
       color: Colors.transparent,
+      margin: EdgeInsets.symmetric(horizontal: 32.0),
       child: Text(
         title,
-        style: TextStyle(color: AppColors.textPrimary),
+        style: TextStyle(color: AppColors.textPrimary, fontSize: 22),
       ),
     );
