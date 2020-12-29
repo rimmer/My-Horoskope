@@ -184,14 +184,14 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                               ambition.wrapped &&
                           sp.show.enabledProphecies.moodlet == moodlet.wrapped;
 
-                  /// do nothing if nothing changed
-                  if (userSettingsNotChanged && propheciesToShowNotChanged)
+                  if (userSettingsNotChanged && propheciesToShowNotChanged) {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        '/daily', (Route<dynamic> route) => false);
                     return;
+                  }
 
                   sp.show.enabledProphecies = propheciesToShow;
 
-                  /// if only prophecies to show changed,
-                  /// return to daily screen
                   if (userSettingsNotChanged) {
                     Navigator.of(context).pushNamedAndRemoveUntil(
                         '/daily', (Route<dynamic> route) => false);
