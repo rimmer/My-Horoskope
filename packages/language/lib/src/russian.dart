@@ -96,6 +96,6 @@ class RussianLocale implements Locale {
         "INTERNAL_STRENGTH": "Внутренняя Сила",
         "MOODLET": "Самочувствие",
         "AMBITION": "Амбиции",
-        "INTELLIGENCE": "Интеллект",
+        "INTUITION": "Интуиция",
       };
 }

@@ -161,7 +161,7 @@ extension DailyScreenBuilders on _DailyScreenState {
         if (toShow.internalStrength == true &&
             toShow.moodlet == true &&
             toShow.ambition == true &&
-            toShow.intelligence == true &&
+            toShow.intuition == true &&
             toShow.luck == true) {
           /// if all prophecies are enabled
           /// we show text for biggest and least prophecies,
@@ -241,9 +241,9 @@ extension DailyScreenBuilders on _DailyScreenState {
                   prophecy: state.prophecy[ProphecyType.AMBITION],
                   planetVariants: dat.currentPlanets)
               : SizedBox(),
-          (toShow.intelligence)
+          (toShow.intuition)
               ? prophecyRecord(
-                  prophecy: state.prophecy[ProphecyType.INTELLIGENCE],
+                  prophecy: state.prophecy[ProphecyType.INTUITION],
                   planetVariants: dat.currentPlanets)
               : SizedBox(),
           (toShow.luck)
@@ -257,7 +257,7 @@ extension DailyScreenBuilders on _DailyScreenState {
           (toShow.internalStrength == false &&
                   toShow.moodlet == false &&
                   toShow.ambition == false &&
-                  toShow.intelligence == false &&
+                  toShow.intuition == false &&
                   toShow.luck == false)
               ? prophecyRecord(
                   prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
@@ -284,7 +284,7 @@ extension DailyScreenBuilders on _DailyScreenState {
           birthDate,
         );
         break;
-      case ProphecyType.INTELLIGENCE:
+      case ProphecyType.INTUITION:
         positivePredictionText =
             //
             sp.predictions.predictionPositiveIntelligence(
@@ -328,7 +328,7 @@ extension DailyScreenBuilders on _DailyScreenState {
           birthDate,
         );
         break;
-      case ProphecyType.INTELLIGENCE:
+      case ProphecyType.INTUITION:
         negativePredictionText =
             //
             sp.predictions.predictionNegativeIntelligence(

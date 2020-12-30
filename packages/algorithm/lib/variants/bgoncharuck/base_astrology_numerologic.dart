@@ -17,7 +17,7 @@ int dayOfWeekCalc(DateTime birthDate, DateTime cur, ProphecyType prophecy) {
       addition = 5;
       break;
 
-    case ProphecyType.INTELLIGENCE:
+    case ProphecyType.INTUITION:
       addition = 2;
       break;
 
@@ -56,7 +56,7 @@ const Map<String, int> _astroSignToDayOfWeek = {
 /// in: day of a month (from 1 to 31), birthdaay and current days
 /// out: multiple of 4, 9 numbers: 36, 32, 28, 24.. 8, 4
 /// if numerologic union of birthday and curDay is equal, then 36
-int _moodIntelLuckBase(int birthDay, int currentDay) {
+int _moodIntuitLuckBase(int birthDay, int currentDay) {
   int birthUnion = numerologicUnion(birthDay);
   int curUnion = numerologicUnion(currentDay);
 

@@ -16,7 +16,7 @@ class _Astrology implements _OldWisdom {
     double internalStr = 0.0;
     double moodlet = 0.0;
     double ambition = 0.0;
-    double intelligence = 0.0;
+    double intuition = 0.0;
     double luck = 0.0;
 
     /// if values reach more then 100, they will be cutted down to 100 in the bloc
@@ -67,15 +67,15 @@ class _Astrology implements _OldWisdom {
     moodlet += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.MOODLET);
     ambition +=
         dayOfWeekCalc(birthDate, calculationDate, ProphecyType.AMBITION);
-    intelligence +=
-        dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTELLIGENCE);
+    intuition +=
+        dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTUITION);
     luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.LUCK);
 
     print("- - -\nChaotic:");
     print("Prophecy: Internal Strength, chaotic points: $internalStr");
     print("Prophecy: Moodlet, chaotic points: $moodlet");
     print("Prophecy: Ambition, chaotic points: $ambition");
-    print("Prophecy: Intelligence, chaotic points: $intelligence");
+    print("Prophecy: Intuition, chaotic points: $intuition");
     print("Prophecy: Luck, chaotic points: $luck");
 
     // - - -
@@ -136,16 +136,16 @@ class _Astrology implements _OldWisdom {
     ///
     /// points avaible are from 4 to 36
     /// this value is slowly changing every day
-    final moodIntelLuckBase =
-        _moodIntelLuckBase(birthDate.day, calculationDate.day);
+    final moodIntuitLuckBase =
+        _moodIntuitLuckBase(birthDate.day, calculationDate.day);
 
-    print("Prophecy: Moodlet, base points: $moodIntelLuckBase");
-    print("Prophecy: Intelligence, base points: $moodIntelLuckBase");
-    print("Prophecy: Luck, base points: $moodIntelLuckBase");
+    print("Prophecy: Moodlet, base points: $moodIntuitLuckBase");
+    print("Prophecy: Intuition, base points: $moodIntuitLuckBase");
+    print("Prophecy: Luck, base points: $moodIntuitLuckBase");
 
-    moodlet += moodIntelLuckBase;
-    intelligence += moodIntelLuckBase;
-    luck += moodIntelLuckBase;
+    moodlet += moodIntuitLuckBase;
+    intuition += moodIntuitLuckBase;
+    luck += moodIntuitLuckBase;
 
     print("- - -\nCalesial tarot calcualtion:");
 
@@ -251,7 +251,7 @@ class _Astrology implements _OldWisdom {
       internalStr += _biggestBonus;
       moodlet += _biggestBonus;
       ambition += _biggestBonus;
-      intelligence += _biggestBonus;
+      intuition += _biggestBonus;
       luck += _biggestBonus;
       print(
           "CTarot: user won the biggest bonus, which is $_biggestBonus points for every prophecy,");
@@ -261,7 +261,7 @@ class _Astrology implements _OldWisdom {
       internalStr += _bigBonus;
       moodlet += _bigBonus;
       ambition += _bigBonus;
-      intelligence += _bigBonus;
+      intuition += _bigBonus;
       luck += _bigBonus;
       print(
           "CTarot: user won a big bonus, which is $_bigBonus points for every prophecy,");
@@ -271,7 +271,7 @@ class _Astrology implements _OldWisdom {
       internalStr += _middleBonus;
       moodlet += _middleBonus;
       ambition += _middleBonus;
-      intelligence += _middleBonus;
+      intuition += _middleBonus;
       luck += _middleBonus;
       print(
           "CTarot: user won a middle bonus, which is $_middleBonus points for every prophecy,");
@@ -313,7 +313,7 @@ class _Astrology implements _OldWisdom {
       internalStr += impactValue;
       moodlet += impactValue;
       ambition += impactValue;
-      intelligence += impactValue;
+      intuition += impactValue;
       luck += impactValue;
 
       /// And then we have bonus points to one prophecy
@@ -334,8 +334,8 @@ class _Astrology implements _OldWisdom {
           ambition += _bonusPointsMagnitude;
           print("CTarot: user won $_bonusPointsMagnitude points to ambition,");
           break;
-        case ProphecyType.INTELLIGENCE:
-          intelligence += _bonusPointsMagnitude;
+        case ProphecyType.INTUITION:
+          intuition += _bonusPointsMagnitude;
           print(
               "CTarot: user won $_bonusPointsMagnitude points to intelligence,");
           break;
@@ -354,7 +354,7 @@ class _Astrology implements _OldWisdom {
     print("Prophecy: Internal Strength, total points: $internalStr");
     print("Prophecy: Moodlet, total points: $moodlet");
     print("Prophecy: Ambition, total points: $ambition");
-    print("Prophecy: Intelligence, total points: $intelligence");
+    print("Prophecy: Intelligence, total points: $intuition");
     print("Prophecy: Luck, total points: $luck");
 
     /// Now, we finally send out values to our algorithm module call:
@@ -372,8 +372,8 @@ class _Astrology implements _OldWisdom {
           ProphecyEntity(id: ProphecyType.AMBITION, value: ambition),
       //
 
-      ProphecyType.INTELLIGENCE:
-          ProphecyEntity(id: ProphecyType.INTELLIGENCE, value: intelligence),
+      ProphecyType.INTUITION:
+          ProphecyEntity(id: ProphecyType.INTUITION, value: intuition),
       //
 
       ProphecyType.LUCK: ProphecyEntity(id: ProphecyType.LUCK, value: luck),

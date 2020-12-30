@@ -46,7 +46,7 @@ Map<ProphecyType, ProphecyEntity> Prophecies() => {
           ProphecyEntity(id: ProphecyType.INTERNAL_STRENGTH),
       ProphecyType.MOODLET: ProphecyEntity(id: ProphecyType.MOODLET),
       ProphecyType.AMBITION: ProphecyEntity(id: ProphecyType.AMBITION),
-      ProphecyType.INTELLIGENCE: ProphecyEntity(id: ProphecyType.INTELLIGENCE),
+      ProphecyType.INTUITION: ProphecyEntity(id: ProphecyType.INTUITION),
       ProphecyType.LUCK: ProphecyEntity(id: ProphecyType.LUCK),
     };
 

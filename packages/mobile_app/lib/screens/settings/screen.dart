@@ -55,7 +55,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     internalStrength.wrapped = sp.show.enabledProphecies.internalStrength;
     moodlet.wrapped = sp.show.enabledProphecies.moodlet;
     ambition.wrapped = sp.show.enabledProphecies.ambition;
-    intelligence.wrapped = sp.show.enabledProphecies.intelligence;
+    intelligence.wrapped = sp.show.enabledProphecies.intuition;
 
     super.initState();
   }
@@ -154,7 +154,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 onValidInformation: () {
                   final propheciesToShow = EnabledProphecies(
                     luck: luck.wrapped,
-                    intelligence: intelligence.wrapped,
+                    intuition: intelligence.wrapped,
                     internalStrength: internalStrength.wrapped,
                     ambition: ambition.wrapped,
                     moodlet: moodlet.wrapped,
@@ -176,7 +176,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
 
                   final propheciesToShowNotChanged =
                       sp.show.enabledProphecies.luck == luck.wrapped &&
-                          sp.show.enabledProphecies.intelligence ==
+                          sp.show.enabledProphecies.intuition ==
                               intelligence.wrapped &&
                           sp.show.enabledProphecies.internalStrength ==
                               internalStrength.wrapped &&

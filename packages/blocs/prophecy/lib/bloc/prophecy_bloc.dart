@@ -85,7 +85,7 @@ Map<ProphecyType, ProphecyEntity> limitProphecies(
   PropheciesMapLimit(prophecies)
       .limit(type: ProphecyType.AMBITION, min: min, max: max);
   PropheciesMapLimit(prophecies)
-      .limit(type: ProphecyType.INTELLIGENCE, min: min, max: max);
+      .limit(type: ProphecyType.INTUITION, min: min, max: max);
   PropheciesMapLimit(prophecies)
       .limit(type: ProphecyType.LUCK, min: min, max: max);
 

@@ -56,5 +56,5 @@ const _$ProphecyTypeEnumMap = {
   ProphecyType.INTERNAL_STRENGTH: 'INTERNAL_STRENGTH',
   ProphecyType.MOODLET: 'MOODLET',
   ProphecyType.AMBITION: 'AMBITION',
-  ProphecyType.INTELLIGENCE: 'INTELLIGENCE',
+  ProphecyType.INTUITION: 'INTUITION',
 };
