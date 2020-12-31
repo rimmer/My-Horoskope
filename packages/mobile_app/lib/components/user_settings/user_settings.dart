@@ -28,6 +28,8 @@ Column userSettingsList({
           name: UserInfoField(
               textObject: name,
               maxLength: 100,
+              keyboardType: TextInputType.name,
+              capitalizationType: TextCapitalization.words,
               hint: lang.name.capitalize(),
               validator: (String text) {
                 int min = 2;
@@ -79,6 +81,8 @@ Column userSettingsList({
           country: UserInfoField(
               textObject: country,
               maxLength: 50,
+              keyboardType: TextInputType.streetAddress,
+              capitalizationType: TextCapitalization.words,
               hint: lang.birthcountry.capitalize(),
               validator: (String text) {
                 return null;
@@ -86,6 +90,8 @@ Column userSettingsList({
           place: UserInfoField(
               textObject: place,
               maxLength: 160,
+              keyboardType: TextInputType.streetAddress,
+              capitalizationType: TextCapitalization.words,
               hint: lang.birthplace.capitalize(),
               validator: (String text) {
                 return null;

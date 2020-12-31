@@ -6,6 +6,7 @@ class UserInfoField extends StatefulWidget {
   final String hint;
   final Function(String toValidate) validator;
   final TextInputType keyboardType;
+  final TextCapitalization capitalizationType;
   final bool autofocus;
   final int maxLength;
   final MutableString textObject;
@@ -16,6 +17,7 @@ class UserInfoField extends StatefulWidget {
       @required this.hint,
       @required this.validator,
       this.keyboardType = TextInputType.text,
+      this.capitalizationType = TextCapitalization.none,
       this.autofocus = false,
       @required this.maxLength})
       : super(key: key);
@@ -42,6 +44,7 @@ class _UserInfoFieldState extends State<UserInfoField> {
           validator: widget.validator,
           keyboardType: widget.keyboardType,
           keyboardAppearance: Brightness.dark,
+          textCapitalization: widget.capitalizationType,
           autofocus: widget.autofocus,
           maxLength: widget.maxLength,
           maxLengthEnforced: true,
