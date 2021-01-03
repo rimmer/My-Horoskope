@@ -16,8 +16,6 @@ class ProfileSettingsScreen extends StatefulWidget {
     2: lang.female.capitalize(),
     3: lang.other.capitalize(),
   };
-  final country = MutableString("");
-  final place = MutableString("");
 
   @override
   _ProfileSettingsScreenState createState() => _ProfileSettingsScreenState();

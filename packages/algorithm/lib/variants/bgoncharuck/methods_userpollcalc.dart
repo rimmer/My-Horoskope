@@ -114,6 +114,7 @@ Map<ProphecyType, ProphecyEntity> changePartsOfBase({
   return base;
 }
 
+/// @deprecated
 Map<ProphecyType, ProphecyEntity> dividedByTen(
     Map<ProphecyType, ProphecyEntity> res) {
   res[ProphecyType.INTERNAL_STRENGTH].value /= 10;

@@ -30,7 +30,7 @@ Column propheciesEnabling({
         onChanged: (_) {},
       ),
       _prophecyEnablingItem(
-        text: lang.prophecyId['INTELLIGENCE'],
+        text: lang.prophecyId['INTUITION'],
         value: intelligence,
         onChanged: (_) {},
       ),

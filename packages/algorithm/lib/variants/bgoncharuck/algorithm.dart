@@ -23,7 +23,7 @@ part 'base_astrology_numerologic.dart';
 part 'base_astrology_tarot.dart';
 
 const int DAYS_TO_COUNT_IN_POLLS = 7;
-const TODAY_POLL_PERCENT = 10;
+const TODAY_POLL_PERCENT = 5;
 
 abstract class _OldWisdom {
   /// returned map must have values from 1 to 100
@@ -70,7 +70,7 @@ class OfOldWayMagic implements MagicSpecialization {
     /// if user were weak-willed
     /// return events without any changes
     if (userWillPower == 0 || userPollsMean == null) {
-      return dividedByTen(mysticInfo);
+      return mysticInfo;
     }
 
     /// can be replaced in future
@@ -79,20 +79,20 @@ class OfOldWayMagic implements MagicSpecialization {
 
     if (percentChangeBySign == null) {
       print("Error: Astro Methods gave incorrect List");
-      return dividedByTen(mysticInfo);
+      return mysticInfo;
     }
 
     /// else change userWill to part that will be changed
     /// mysticInfo - part, change(part) by user choises
     /// mysticInfo + part
     if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 4) {
-      userWillPower = 5;
+      userWillPower = 3;
     } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 3) {
-      userWillPower = 8;
+      userWillPower = 5;
     } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 2) {
-      userWillPower = 13;
+      userWillPower = 8;
     } else {
-      userWillPower = 21;
+      userWillPower = 13;
     }
 
     /// when part chosen, let us change our mysticInfo
@@ -103,9 +103,9 @@ class OfOldWayMagic implements MagicSpecialization {
       changeBySign: percentChangeBySign,
     );
 
-    if (result != null) return dividedByTen(result);
+    if (result != null) return result;
     //
-    return dividedByTen(mysticInfo);
+    return mysticInfo;
   }
 
   //
