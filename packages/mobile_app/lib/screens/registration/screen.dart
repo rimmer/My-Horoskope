@@ -12,8 +12,6 @@ class RegistrationScreen extends StatelessWidget {
     2: lang.female.capitalize(),
     3: lang.other.capitalize(),
   };
-  final country = MutableString("");
-  final place = MutableString("");
   final termsAccepted = MutableBool(false);
 
   @override
@@ -84,8 +82,6 @@ class RegistrationScreen extends StatelessWidget {
               year: year,
               sex: sex,
               indexToSex: indexToSex,
-              country: country,
-              place: place,
               termsAccepted: termsAccepted,
               validInformationCheck: () {
                 if (name.wrapped.isEmpty) {
@@ -126,8 +122,6 @@ class RegistrationScreen extends StatelessWidget {
                     int.parse(day.wrapped),
                   ).millisecondsSinceEpoch,
                   sex: sex.wrapped,
-                  country: country.wrapped,
-                  place: place.wrapped,
                 )));
               },
               buttonText: lang.start.toUpperCase(),

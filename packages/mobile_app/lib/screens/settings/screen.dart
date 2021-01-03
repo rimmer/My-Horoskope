@@ -48,8 +48,6 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     widget.day.wrapped = birthDate.day.toString();
     widget.year.wrapped = birthDate.year.toString();
     widget.sex.wrapped = user.sex;
-    widget.country.wrapped = user.country;
-    widget.place.wrapped = user.place;
 
     luck.wrapped = sp.show.enabledProphecies.luck;
     internalStrength.wrapped = sp.show.enabledProphecies.internalStrength;
@@ -124,8 +122,6 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 year: widget.year,
                 sex: widget.sex,
                 indexToSex: widget.indexToSex,
-                country: widget.country,
-                place: widget.place,
                 validInformationCheck: () {
                   if (widget.name.wrapped.isEmpty) {
                     showOverCurrentScreen(
@@ -170,9 +166,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                   final userSettingsNotChanged =
                       widget.name.wrapped == user.name &&
                           birthDateEntered == user.birth &&
-                          widget.sex.wrapped == user.sex &&
-                          widget.country.wrapped == user.country &&
-                          widget.place.wrapped == user.place;
+                          widget.sex.wrapped == user.sex;
 
                   final propheciesToShowNotChanged =
                       sp.show.enabledProphecies.luck == luck.wrapped &&
@@ -203,8 +197,6 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                     name: widget.name.wrapped,
                     birth: birthDateEntered,
                     sex: widget.sex.wrapped,
-                    country: widget.country.wrapped,
-                    place: widget.place.wrapped,
                   );
 
                   /// services/direct_auth.dart
