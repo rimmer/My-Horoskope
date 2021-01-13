@@ -27,32 +27,34 @@ class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
 
   Stream<ProphecyState> _calculateProphecy({@required int dt}) async* {
     //
-    final prophecy = limitProphecies(
-      //
-      prophecies: await algo.ask(aboutDay: dt),
-      //
-      min: PROPHECY_VALUE_LIMIT_MIN,
-      max: PROPHECY_VALUE_LIMIT_MAX,
-    );
+    // final prophecy = limitProphecies(
+    //   //
+    //   prophecies: await algo.ask(aboutDay: dt),
+    //   //
+    //   min: PROPHECY_VALUE_LIMIT_MIN,
+    //   max: PROPHECY_VALUE_LIMIT_MAX,
+    // );
 
-    //
-    if (prophecy != null) yield ProphecyWasAsked(prophecy);
+    // //
+    // if (prophecy != null) yield ProphecyWasAsked(prophecy);
+    yield ProphecyWasAsked(await algo.ask(aboutDay: dt));
   }
 
   Stream<ProphecyState> _clarifyProphecy(
       {@required int dt, @required UserPoll withPoll}) async* {
     if (withPoll != null) {
-      //
-      final prophecy = limitProphecies(
-        //
-        prophecies: await algo.clarify(withPoll: withPoll, dt: dt),
-        //
-        min: PROPHECY_VALUE_LIMIT_MIN,
-        max: PROPHECY_VALUE_LIMIT_MAX,
-      );
+      // //
+      // final prophecy = limitProphecies(
+      //   //
+      //   prophecies: await algo.clarify(withPoll: withPoll, dt: dt),
+      //   //
+      //   min: PROPHECY_VALUE_LIMIT_MIN,
+      //   max: PROPHECY_VALUE_LIMIT_MAX,
+      // );
 
-      //
-      if (prophecy != null) yield ProphecyWasClarified(prophecy);
+      // //
+      // if (prophecy != null) yield ProphecyWasClarified(prophecy);
+      yield ProphecyWasAsked(await algo.clarify(withPoll: withPoll, dt: dt));
     }
   }
 

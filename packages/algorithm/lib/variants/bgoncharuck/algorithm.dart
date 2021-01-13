@@ -82,28 +82,28 @@ class OfOldWayMagic implements MagicSpecialization {
       return mysticInfo;
     }
 
-    /// else change userWill to part that will be changed
-    /// mysticInfo - part, change(part) by user choises
-    /// mysticInfo + part
-    if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 4) {
-      userWillPower = 3;
-    } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 3) {
-      userWillPower = 5;
-    } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 2) {
-      userWillPower = 8;
-    } else {
-      userWillPower = 13;
-    }
+    // /// else change userWill to part that will be changed
+    // /// mysticInfo - part, change(part) by user choises
+    // /// mysticInfo + part
+    // if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 4) {
+    //   userWillPower = 3;
+    // } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 3) {
+    //   userWillPower = 5;
+    // } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 2) {
+    //   userWillPower = 8;
+    // } else {
+    //   userWillPower = 13;
+    // }
 
-    /// when part chosen, let us change our mysticInfo
-    final result = changePartsOfBase(
-      base: mysticInfo,
-      percent: userWillPower,
-      userPoll: userPollsMean,
-      changeBySign: percentChangeBySign,
-    );
+    // /// when part chosen, let us change our mysticInfo
+    // final result = changePartsOfBase(
+    //   base: mysticInfo,
+    //   percent: userWillPower,
+    //   userPoll: userPollsMean,
+    //   changeBySign: percentChangeBySign,
+    // );
 
-    if (result != null) return result;
+    // if (result != null) return result;
     //
     return mysticInfo;
   }
@@ -125,26 +125,26 @@ class OfOldWayMagic implements MagicSpecialization {
       return prophecies;
     }
 
-    final result = changePartsOfBase(
-      base: prophecies,
-      percent: TODAY_POLL_PERCENT,
-      changeBySign: percentChangeBySign,
-      userPoll: {
-        PollModelType.MOOD:
-            (withPoll.poll(PollModelType.MOOD)).value.toDouble(),
-        PollModelType.PHYSICAL_ACTIVITY:
-            (withPoll.poll(PollModelType.PHYSICAL_ACTIVITY)).value.toDouble(),
-        PollModelType.PRODUCTIVITY:
-            (withPoll.poll(PollModelType.PRODUCTIVITY)).value.toDouble(),
-        PollModelType.RELATIONSHIPS:
-            (withPoll.poll(PollModelType.RELATIONSHIPS)).value.toDouble(),
-        PollModelType.SELFDEVELOPMENT:
-            (withPoll.poll(PollModelType.SELFDEVELOPMENT)).value.toDouble(),
-      },
-    );
+    // final result = changePartsOfBase(
+    //   base: prophecies,
+    //   percent: TODAY_POLL_PERCENT,
+    //   changeBySign: percentChangeBySign,
+    //   userPoll: {
+    //     PollModelType.MOOD:
+    //         (withPoll.poll(PollModelType.MOOD)).value.toDouble(),
+    //     PollModelType.PHYSICAL_ACTIVITY:
+    //         (withPoll.poll(PollModelType.PHYSICAL_ACTIVITY)).value.toDouble(),
+    //     PollModelType.PRODUCTIVITY:
+    //         (withPoll.poll(PollModelType.PRODUCTIVITY)).value.toDouble(),
+    //     PollModelType.RELATIONSHIPS:
+    //         (withPoll.poll(PollModelType.RELATIONSHIPS)).value.toDouble(),
+    //     PollModelType.SELFDEVELOPMENT:
+    //         (withPoll.poll(PollModelType.SELFDEVELOPMENT)).value.toDouble(),
+    //   },
+    // );
 
-    if (result != null) return result;
-    //
+    // if (result != null) return result;
+    // //
     return prophecies;
   }
 }

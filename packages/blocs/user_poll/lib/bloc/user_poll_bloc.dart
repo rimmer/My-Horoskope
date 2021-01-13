@@ -41,14 +41,14 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
     if (loaded) {
       //
 
-      /// if polls are already loaded and start evenet was sent
-      if (event.runtimeType == UserPollRestartEvent)
-        yield* _showThePoll();
+      if (current. /*poll is already*/ voted)
+        yield UserPollIsVotedState();
 
       //
 
       else {
-        if (current. /*poll is already*/ voted)
+        /// if polls are already loaded and start evenet was sent
+        if (event.runtimeType == UserPollRestartEvent)
           yield* _processActionsThatNeedReload(event);
         else
           yield* _processUserActions(event);
@@ -143,17 +143,6 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   }
 
   Stream<UserPollState> _showThePoll() async* {
-    /// "show" simple, complex or voted poll
-    if (current. /*poll is*/ voted)
-      yield UserPollIsVotedState();
-    //
-    else {
-      //
-      yield* _showThePollUnvoted();
-    }
-  }
-
-  Stream<UserPollState> _showThePollUnvoted() async* {
     if (user.pollsAreComplex)
       yield UserPollIsComplexState();
     else
@@ -171,7 +160,7 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
       case UserPollSwitchComplexEvent:
         user.pollsAreComplex = !user.pollsAreComplex;
         users.write();
-        yield* _showThePollUnvoted();
+        yield* _showThePoll();
         break;
 
       /// if poll was voted
