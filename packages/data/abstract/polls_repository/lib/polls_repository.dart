@@ -20,6 +20,10 @@ abstract class PollsRepository {
 //--------------------------------------------------------------------------
   /// returns arithmetic mean of values of polls
   Map<PollModelType, double> arithmeticMean(int days) {
+    /// ignore today poll if voted
+    UserPoll saved = this.todayPoll;
+    if (saved != null) curUserPolls.removeLast();
+
     final lengthOfUserPolls = curUserPolls.length;
 
     /// case lengthOfUserPolls ==  0
@@ -55,6 +59,9 @@ abstract class PollsRepository {
 
     /// after sum
     final anyPoll = curUserPolls[0];
+
+    /// add today's poll back
+    if (saved != null) curUserPolls.add(saved);
 
     return {
       //

@@ -57,7 +57,7 @@ class Algorithm {
   Map<ProphecyType, ProphecyEntity> clarify({
     @required UserPoll withPoll,
     UserEntity user,
-    int dt,
+    @required int dt,
   }) {
     return prophet.clarify(
       withPoll: withPoll ?? dat.pollByDateRepo.todayPoll,
@@ -66,7 +66,7 @@ class Algorithm {
 
           /// if no insight were recorded by a prophet
           /// wake him up and force to get another one
-          prophet.ask(dat, dt ?? dtDay),
+          prophet.ask(dat, dt),
     );
   }
 }

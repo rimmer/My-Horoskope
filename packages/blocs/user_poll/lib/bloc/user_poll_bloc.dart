@@ -37,6 +37,7 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
     UserPollEvent event,
   ) async* {
     //
+    yield UserPollLoadingState();
 
     if (loaded) {
       //
