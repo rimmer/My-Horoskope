@@ -54,7 +54,8 @@ class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
 
       // //
       // if (prophecy != null) yield ProphecyWasClarified(prophecy);
-      yield ProphecyWasAsked(await algo.clarify(withPoll: withPoll, dt: dt));
+      yield ProphecyWasClarified(
+          await algo.clarify(withPoll: withPoll, dt: dt));
     }
   }
 
