@@ -82,7 +82,7 @@ class OfOldWayMagic implements MagicSpecialization {
       return mysticInfo;
     }
 
-    if (userPollsMean["MOOD"] == 0.0) {
+    if (userPollsMean["MOOD"] != null && userPollsMean["MOOD"] != 0.0) {
       /// change userWill to part that will be changed
       /// mysticInfo - part, change(part) by user choises
       /// mysticInfo + part
