@@ -23,12 +23,34 @@ Container _date(DateTime date) => Container(
     );
 
 Widget ordinaryDate(DateTime date) => Padding(
-      padding: const EdgeInsets.all(CALENDAR_ORDINARY_DATE_PADDING),
+      padding: const EdgeInsets.only(
+          top: CALENDAR_ORDINARY_DATE_PADDING,
+          bottom: CALENDAR_ORDINARY_DATE_PADDING,
+          right: CALENDAR_ORDINARY_DATE_PADDING),
       child: _date(date),
     );
 
+Widget utilityDate(DateTime date) => _date(date);
+
 Widget selectedDate(DateTime date) => Container(
-      margin: EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
+      margin: const EdgeInsets.only(
+          top: CALENDAR_SELECTED_DATE_MARGIN,
+          bottom: CALENDAR_SELECTED_DATE_MARGIN,
+          right: CALENDAR_SELECTED_DATE_MARGIN * 2),
+      padding: EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: <Color>[
+            AppColors.accentDark,
+            AppColors.accent,
+          ],
+        ),
+        shape: BoxShape.circle,
+      ),
+      child: _date(date),
+    );
+
+Widget selectedUtilityDate(DateTime date) => Container(
       padding: EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -43,7 +65,10 @@ Widget selectedDate(DateTime date) => Container(
     );
 
 Widget monthSeparator() => Padding(
-      padding: EdgeInsets.all(CALENDAR_SEPARATOR_RADIUS),
+      padding: const EdgeInsets.only(
+        top: CALENDAR_SEPARATOR_RADIUS,
+        bottom: CALENDAR_SEPARATOR_RADIUS,
+      ),
       child: Text(
         "|",
         style: TextStyle(
@@ -52,10 +77,6 @@ Widget monthSeparator() => Padding(
         ),
       ),
     );
-
-Widget newMonthDate(DateTime date) => ordinaryDate(date);
-
-Widget newMonthDateSelected(DateTime date) => selectedDate(date);
 
 Widget yearSeparator(DateTime date) => Padding(
       padding: EdgeInsets.all(CALENDAR_SEPARATOR_RADIUS),
@@ -72,7 +93,3 @@ Widget yearSeparator(DateTime date) => Padding(
         ],
       ),
     );
-
-Widget newYearDate(DateTime date) => ordinaryDate(date);
-
-Widget newYearDateSelected(DateTime date) => selectedDate(date);

@@ -50,13 +50,13 @@ extension DailyScreenBuilders on _DailyScreenState {
 
             Flexible(
               child: (index == selected)
-                  ? newYearDateSelected(d[index])
+                  ? selectedUtilityDate(d[index])
                   : GestureDetector(
                       onTap: () {
                         widget.currentIndex.wrapped = index;
                         setState(() {});
                       },
-                      child: newYearDate(d[index]),
+                      child: utilityDate(d[index]),
                     ),
             ),
           ],
@@ -69,21 +69,21 @@ extension DailyScreenBuilders on _DailyScreenState {
       return Container(
         width: CALENDAR_NEW_MONTH_WIDTH,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Flexible(child: monthSeparator()),
+            Expanded(child: monthSeparator()),
             //
 
             Flexible(
               child: (index == selected)
-                  ? newMonthDateSelected(d[index])
+                  ? selectedUtilityDate(d[index])
                   : GestureDetector(
                       onTap: () {
                         widget.currentIndex.wrapped = index;
                         setState(() {});
                       },
-                      child: newMonthDate(d[index]),
+                      child: utilityDate(d[index]),
                     ),
             ),
           ],
