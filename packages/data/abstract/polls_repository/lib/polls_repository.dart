@@ -22,18 +22,19 @@ abstract class PollsRepository {
   Map<PollModelType, double> arithmeticMean(int days) {
     /// ignore today poll if voted
     UserPoll saved = this.todayPoll;
-    if (saved != null) curUserPolls.removeLast();
+    if (saved != null) curUserPolls.remove(saved);
 
-    final lengthOfUserPolls = curUserPolls.length;
-
-    /// case lengthOfUserPolls ==  0
-    if (lengthOfUserPolls == 0) return null;
+    if (curUserPolls.isEmpty || days <= 0) {
+      if (saved != null) curUserPolls.add(saved);
+      return null;
+    }
 
     /// for all other cases
     /// gets a count of poll details
     final detailsCount = curUserPolls[0].details.length;
     int mood = 0;
     List<int> details = List(detailsCount);
+    final lengthOfUserPolls = curUserPolls.length;
 
     /// case lengthOfUserPolls <= days
     if (lengthOfUserPolls <= days)

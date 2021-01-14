@@ -50,7 +50,7 @@ class OfOldWayMagic implements MagicSpecialization {
     int userWillPower;
 
     /// will store a user polls arithmetic mean
-    Map<PollModelType, double> userPollsMean;
+    Map<PollModelType, double> userPollsMean = null;
 
     if (withDat.user.pollAvailability == true) {
       userWillPower = withDat.pollByDateRepo.curUserPolls.length;
@@ -67,9 +67,9 @@ class OfOldWayMagic implements MagicSpecialization {
     final mysticInfo = _askInformation(withDat.user, aboutDay);
 
     //
-    /// if user were weak-willed
+    /// if user did not vote
     /// return events without any changes
-    if (userWillPower == 0 || userPollsMean == null) {
+    if (userPollsMean == null || userWillPower == 0) {
       return mysticInfo;
     }
 
@@ -82,28 +82,30 @@ class OfOldWayMagic implements MagicSpecialization {
       return mysticInfo;
     }
 
-    // /// else change userWill to part that will be changed
-    // /// mysticInfo - part, change(part) by user choises
-    // /// mysticInfo + part
-    // if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 4) {
-    //   userWillPower = 5;
-    // } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 3) {
-    //   userWillPower = 8;
-    // } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 2) {
-    //   userWillPower = 13;
-    // } else {
-    //   userWillPower = 21;
-    // }
+    if (userPollsMean["MOOD"] == 0.0) {
+      /// change userWill to part that will be changed
+      /// mysticInfo - part, change(part) by user choises
+      /// mysticInfo + part
+      if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 4) {
+        userWillPower = 5;
+      } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 3) {
+        userWillPower = 8;
+      } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 2) {
+        userWillPower = 13;
+      } else {
+        userWillPower = 21;
+      }
 
-    // /// when part chosen, let us change our mysticInfo
-    // final result = changePartsOfBase(
-    //   base: mysticInfo,
-    //   percent: userWillPower,
-    //   userPoll: userPollsMean,
-    //   changeBySign: percentChangeBySign,
-    // );
+      /// when part chosen, let us change our mysticInfo
+      final result = changePartsOfBase(
+        base: mysticInfo,
+        percent: userWillPower,
+        userPoll: userPollsMean,
+        changeBySign: percentChangeBySign,
+      );
 
-    // if (result != null) return result;
+      if (result != null) return result;
+    }
 
     return mysticInfo;
   }
