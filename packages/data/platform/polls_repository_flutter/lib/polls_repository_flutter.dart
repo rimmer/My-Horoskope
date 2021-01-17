@@ -11,7 +11,7 @@ class PollsRepositoryFlutter extends PollsRepository {
   /// can be changed in the future
   PollsRepository _impl = PollsRepositoryJson();
 
-  List<UserPoll> get curUserPolls => _impl.curUserPolls;
+  Map<int, UserPoll> get curUserPolls => _impl.curUserPolls;
   Future<bool> save(int userid) => _impl.save(userid);
   Future<bool> load(int userid) => _impl.load(userid);
   UserPoll get todayPoll => _impl.todayPoll;

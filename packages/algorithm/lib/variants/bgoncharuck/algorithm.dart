@@ -50,27 +50,25 @@ class OfOldWayMagic implements MagicSpecialization {
     int userWillPower;
 
     /// will store a user polls arithmetic mean
-    Map<PollModelType, double> userPollsMean;
+    Map<PollModelType, double> userPollsMean = null;
 
-    if (withDat.user.pollAvailability == true) {
-      userWillPower = withDat.pollByDateRepo.curUserPolls.length;
+    userWillPower = withDat.pollByDateRepo.curUserPolls.length;
 
-      if (userWillPower > DAYS_TO_COUNT_IN_POLLS)
-        userPollsMean =
-            withDat.pollByDateRepo.arithmeticMean(DAYS_TO_COUNT_IN_POLLS);
-      else
-        userPollsMean = withDat.pollByDateRepo.arithmeticMean(userWillPower);
-    }
+    if (userWillPower > DAYS_TO_COUNT_IN_POLLS)
+      userPollsMean =
+          withDat.pollByDateRepo.arithmeticMean(DAYS_TO_COUNT_IN_POLLS);
+    else
+      userPollsMean = withDat.pollByDateRepo.arithmeticMean(userWillPower);
 
     //
     /// get information from the mage
     final mysticInfo = _askInformation(withDat.user, aboutDay);
 
     //
-    /// if user were weak-willed
-    /// return events without any changes
-    if (userWillPower == 0 || userPollsMean == null) {
-      return dividedByTen(mysticInfo);
+    /// if user did not vote
+    /// return votes without any changes
+    if (userPollsMean == null) {
+      return mysticInfo;
     }
 
     /// can be replaced in future
@@ -79,20 +77,20 @@ class OfOldWayMagic implements MagicSpecialization {
 
     if (percentChangeBySign == null) {
       print("Error: Astro Methods gave incorrect List");
-      return dividedByTen(mysticInfo);
+      return mysticInfo;
     }
 
-    /// else change userWill to part that will be changed
+    /// change userWill to part that will be changed
     /// mysticInfo - part, change(part) by user choises
     /// mysticInfo + part
     if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 4) {
-      userWillPower = 5;
+      userWillPower = 3;
     } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 3) {
-      userWillPower = 8;
+      userWillPower = 5;
     } else if (userWillPower < DAYS_TO_COUNT_IN_POLLS / 2) {
-      userWillPower = 13;
+      userWillPower = 8;
     } else {
-      userWillPower = 21;
+      userWillPower = 13;
     }
 
     /// when part chosen, let us change our mysticInfo
@@ -103,48 +101,8 @@ class OfOldWayMagic implements MagicSpecialization {
       changeBySign: percentChangeBySign,
     );
 
-    if (result != null) return dividedByTen(result);
-    //
-    return dividedByTen(mysticInfo);
-  }
-
-  //
-  //
-  //
-  Map<ProphecyType, ProphecyEntity> clarify(
-      {@required Map<ProphecyType, ProphecyEntity> prophecies,
-      @required UserEntity user,
-      @required UserPoll withPoll}) {
-    //
-    /// can be replaced in future
-    final userSign = user.model.birth.astroSign;
-    final percentChangeBySign = userSign.choiseConsequenceBySign;
-
-    if (percentChangeBySign == null) {
-      print("Error: Astro Methods gave incorrect List");
-      return prophecies;
-    }
-
-    final result = changePartsOfBase(
-      base: prophecies,
-      percent: TODAY_POLL_PERCENT,
-      changeBySign: percentChangeBySign,
-      userPoll: {
-        PollModelType.MOOD:
-            (withPoll.poll(PollModelType.MOOD)).value.toDouble(),
-        PollModelType.PHYSICAL_ACTIVITY:
-            (withPoll.poll(PollModelType.PHYSICAL_ACTIVITY)).value.toDouble(),
-        PollModelType.PRODUCTIVITY:
-            (withPoll.poll(PollModelType.PRODUCTIVITY)).value.toDouble(),
-        PollModelType.RELATIONSHIPS:
-            (withPoll.poll(PollModelType.RELATIONSHIPS)).value.toDouble(),
-        PollModelType.SELFDEVELOPMENT:
-            (withPoll.poll(PollModelType.SELFDEVELOPMENT)).value.toDouble(),
-      },
-    );
-
     if (result != null) return result;
-    //
-    return prophecies;
+
+    return mysticInfo;
   }
 }

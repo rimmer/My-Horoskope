@@ -189,7 +189,7 @@ extension Karmic on String {
   /// Internal Str - Venus
   /// Moodlet - Mars
   /// Ambition - Sun
-  /// Intelligence - Jupiter
+  /// INTUITION - Jupiter
   /// Luck - Mercury
   ///
   /// 7/13 middle
@@ -201,7 +201,7 @@ extension Karmic on String {
       case "Aries":
         return {
           ProphecyType.INTERNAL_STRENGTH: [5, 6, 7, 8, 9, 10],
-          ProphecyType.INTELLIGENCE: [9, 7, 9, 7, 5, 7],
+          ProphecyType.INTUITION: [9, 7, 9, 7, 5, 7],
           ProphecyType.MOODLET: [9, 9, 9, 9, 9, 9],
           ProphecyType.AMBITION: [8, 8, 8, 8, 8, 8],
           ProphecyType.LUCK: [6, 6, 6, 6, 6, 6],
@@ -209,7 +209,7 @@ extension Karmic on String {
       case "Taurus":
         return {
           ProphecyType.INTERNAL_STRENGTH: [5, 6, 7, 8, 9, 10],
-          ProphecyType.INTELLIGENCE: [9, 9, 9, 9, 9, 9],
+          ProphecyType.INTUITION: [9, 9, 9, 9, 9, 9],
           ProphecyType.MOODLET: [8, 8, 8, 8, 8, 8],
           ProphecyType.AMBITION: [6, 6, 6, 6, 6, 6],
           ProphecyType.LUCK: [9, 7, 9, 7, 5, 7],
@@ -217,7 +217,7 @@ extension Karmic on String {
       case "Gemini":
         return {
           ProphecyType.INTERNAL_STRENGTH: [5, 6, 7, 8, 9, 10],
-          ProphecyType.INTELLIGENCE: [8, 8, 8, 8, 8, 8],
+          ProphecyType.INTUITION: [8, 8, 8, 8, 8, 8],
           ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
           ProphecyType.AMBITION: [9, 7, 9, 7, 5, 7],
           ProphecyType.LUCK: [9, 9, 9, 9, 9, 9],
@@ -225,7 +225,7 @@ extension Karmic on String {
       case "Cancer":
         return {
           ProphecyType.INTERNAL_STRENGTH: [9, 7, 9, 7, 5, 7],
-          ProphecyType.INTELLIGENCE: [8, 8, 8, 8, 8, 8],
+          ProphecyType.INTUITION: [8, 8, 8, 8, 8, 8],
           ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
           ProphecyType.AMBITION: [5, 6, 7, 8, 9, 10],
           ProphecyType.LUCK: [9, 9, 9, 9, 9, 9],
@@ -233,7 +233,7 @@ extension Karmic on String {
       case "Leo":
         return {
           ProphecyType.INTERNAL_STRENGTH: [5, 6, 7, 8, 9, 10],
-          ProphecyType.INTELLIGENCE: [9, 7, 9, 7, 5, 7],
+          ProphecyType.INTUITION: [9, 7, 9, 7, 5, 7],
           ProphecyType.MOODLET: [8, 8, 8, 8, 8, 8],
           ProphecyType.AMBITION: [6, 6, 6, 6, 6, 6],
           ProphecyType.LUCK: [9, 9, 9, 9, 9, 9],
@@ -241,7 +241,7 @@ extension Karmic on String {
       case "Virgo":
         return {
           ProphecyType.INTERNAL_STRENGTH: [8, 8, 8, 8, 8, 8],
-          ProphecyType.INTELLIGENCE: [6, 6, 6, 6, 6, 6],
+          ProphecyType.INTUITION: [6, 6, 6, 6, 6, 6],
           ProphecyType.MOODLET: [9, 9, 9, 9, 9, 9],
           ProphecyType.AMBITION: [5, 6, 7, 8, 9, 10],
           ProphecyType.LUCK: [9, 7, 9, 7, 5, 7],
@@ -249,7 +249,7 @@ extension Karmic on String {
       case "Libra":
         return {
           ProphecyType.INTERNAL_STRENGTH: [9, 9, 9, 9, 9, 9],
-          ProphecyType.INTELLIGENCE: [5, 6, 7, 8, 9, 10],
+          ProphecyType.INTUITION: [5, 6, 7, 8, 9, 10],
           ProphecyType.MOODLET: [8, 8, 8, 8, 8, 8],
           ProphecyType.AMBITION: [9, 7, 9, 7, 5, 7],
           ProphecyType.LUCK: [6, 6, 6, 6, 6, 6],
@@ -257,7 +257,7 @@ extension Karmic on String {
       case "Scorpio":
         return {
           ProphecyType.INTERNAL_STRENGTH: [9, 7, 9, 7, 5, 7],
-          ProphecyType.INTELLIGENCE: [8, 8, 8, 8, 8, 8],
+          ProphecyType.INTUITION: [8, 8, 8, 8, 8, 8],
           ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
           ProphecyType.AMBITION: [9, 9, 9, 9, 9, 9],
           ProphecyType.LUCK: [5, 6, 7, 8, 9, 10],
@@ -265,7 +265,7 @@ extension Karmic on String {
       case "Sagittarius":
         return {
           ProphecyType.INTERNAL_STRENGTH: [8, 8, 8, 8, 8, 8],
-          ProphecyType.INTELLIGENCE: [5, 6, 7, 8, 9, 10],
+          ProphecyType.INTUITION: [5, 6, 7, 8, 9, 10],
           ProphecyType.MOODLET: [9, 9, 9, 9, 9, 9],
           ProphecyType.AMBITION: [9, 7, 9, 7, 5, 7],
           ProphecyType.LUCK: [6, 6, 6, 6, 6, 6],
@@ -273,7 +273,7 @@ extension Karmic on String {
       case "Capricorn":
         return {
           ProphecyType.INTERNAL_STRENGTH: [9, 9, 9, 9, 9, 9],
-          ProphecyType.INTELLIGENCE: [5, 6, 7, 8, 9, 10],
+          ProphecyType.INTUITION: [5, 6, 7, 8, 9, 10],
           ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
           ProphecyType.AMBITION: [8, 8, 8, 8, 8, 8],
           ProphecyType.LUCK: [9, 7, 9, 7, 5, 7],
@@ -281,7 +281,7 @@ extension Karmic on String {
       case "Aquarius":
         return {
           ProphecyType.INTERNAL_STRENGTH: [9, 7, 9, 7, 5, 7],
-          ProphecyType.INTELLIGENCE: [9, 9, 9, 9, 9, 9],
+          ProphecyType.INTUITION: [9, 9, 9, 9, 9, 9],
           ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
           ProphecyType.AMBITION: [5, 6, 7, 8, 9, 10],
           ProphecyType.LUCK: [8, 8, 8, 8, 8, 8],
@@ -289,7 +289,7 @@ extension Karmic on String {
       case "Pisces":
         return {
           ProphecyType.INTERNAL_STRENGTH: [5, 6, 7, 8, 9, 10],
-          ProphecyType.INTELLIGENCE: [8, 8, 8, 8, 8, 8],
+          ProphecyType.INTUITION: [8, 8, 8, 8, 8, 8],
           ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
           ProphecyType.AMBITION: [9, 7, 9, 7, 5, 7],
           ProphecyType.LUCK: [9, 9, 9, 9, 9, 9],

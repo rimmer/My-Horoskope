@@ -37,22 +37,17 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
     UserPollEvent event,
   ) async* {
     //
+    yield UserPollLoadingState();
 
     if (loaded) {
       //
-
       /// if polls are already loaded and start evenet was sent
       if (event.runtimeType == UserPollRestartEvent)
-        yield* _showThePoll();
-
-      //
-
-      else {
-        if (current. /*poll is already*/ voted)
-          yield* _processActionsThatNeedReload(event);
-        else
-          yield* _processUserActions(event);
-      }
+        yield* _processActionsThatNeedReload(event);
+      else if (current. /*poll is already*/ voted)
+        yield UserPollIsVotedState();
+      else
+        yield* _processUserActions(event);
 
       //
     } else {
@@ -134,7 +129,7 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
       repo.todayPoll = current;
 
       /// then save it
-      repo.save(user.id);
+      await repo.save(user.id);
     }
     loaded = true;
 
@@ -143,18 +138,9 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   }
 
   Stream<UserPollState> _showThePoll() async* {
-    /// "show" simple, complex or voted poll
-    if (current. /*poll is*/ voted)
+    if (current. /*poll is already*/ voted)
       yield UserPollIsVotedState();
-    //
-    else {
-      //
-      yield* _showThePollUnvoted();
-    }
-  }
-
-  Stream<UserPollState> _showThePollUnvoted() async* {
-    if (user.pollsAreComplex)
+    else if (user.pollsAreComplex)
       yield UserPollIsComplexState();
     else
       yield UserPollIsSimpleState();
@@ -171,11 +157,13 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
       case UserPollSwitchComplexEvent:
         user.pollsAreComplex = !user.pollsAreComplex;
         users.write();
-        yield* _showThePollUnvoted();
+        yield* _showThePoll();
         break;
 
       /// if poll was voted
       case UserPollVoteEvent:
+        current.voted = true;
+        await repo.save(user.id);
         yield UserPollIsVotedState();
         break;
 

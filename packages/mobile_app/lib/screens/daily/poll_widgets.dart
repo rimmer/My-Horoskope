@@ -55,9 +55,7 @@ class PollSimpleWidget extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 32),
             child: gradientFlatButton(
               onPressed: () {
-                bloc.current.voted = true;
-                bloc.repo.save(bloc.user.id);
-                bloc.add(UserPollRestartEvent());
+                bloc.add(UserPollVoteEvent());
               },
               child: Text(
                 lang.clarifyForecast.toUpperCase(),
@@ -148,9 +146,7 @@ class PollExtendedWidget extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 32),
             child: gradientFlatButton(
               onPressed: () {
-                bloc.current.voted = true;
-                bloc.repo.save(bloc.user.id);
-                bloc.add(UserPollRestartEvent());
+                bloc.add(UserPollVoteEvent());
               },
               child: Text(
                 lang.clarifyForecast.toUpperCase(),

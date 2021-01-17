@@ -3,32 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:language/language.dart';
 import 'constants.dart';
 
-Container _date(DateTime date) => Container(
+Container _date(DateTime date, Color dayColor, Color monthColor) => Container(
       height: CALENDAR_DATE_HEIGHT,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
               date.day.toString(),
-              style: TextStyle(fontSize: 16, color: AppColors.textPrimary),
+              style: TextStyle(fontSize: 16, color: dayColor),
             ),
             SizedBox(
               height: 2,
             ),
             Text(
               lang.month[date.month].substring(0, 3),
-              style: TextStyle(fontSize: 12, color: AppColors.textDisabled),
+              style: TextStyle(fontSize: 12, color: monthColor),
             ),
           ]),
     );
 
 Widget ordinaryDate(DateTime date) => Padding(
-      padding: const EdgeInsets.all(CALENDAR_ORDINARY_DATE_PADDING),
-      child: _date(date),
+      padding: const EdgeInsets.all(CALENDAR_DATE_PADDING),
+      child: _date(date, AppColors.textPrimary, AppColors.textDisabled),
     );
 
 Widget selectedDate(DateTime date) => Container(
-      margin: EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
+      margin: const EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
       padding: EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -39,40 +39,46 @@ Widget selectedDate(DateTime date) => Container(
         ),
         shape: BoxShape.circle,
       ),
-      child: _date(date),
+      child: _date(date, AppColors.textPrimary, AppColors.textDisabled),
     );
 
-Widget monthSeparator() => Padding(
-      padding: EdgeInsets.all(CALENDAR_SEPARATOR_RADIUS),
-      child: Text(
-        "|",
-        style: TextStyle(
-          fontSize: 26,
-          color: AppColors.textPrimary,
+Widget newMonth(DateTime date) => Padding(
+      padding: const EdgeInsets.all(CALENDAR_DATE_PADDING),
+      child: _date(
+          date, AppColors.calendarNewMonthDay, AppColors.calendarNewMonthDay),
+    );
+
+Widget newMonthSelected(DateTime date) => Container(
+      margin: const EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
+      padding: EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: <Color>[
+            AppColors.accentDark,
+            AppColors.accent,
+          ],
         ),
+        shape: BoxShape.circle,
       ),
+      child: _date(date, AppColors.textPrimary, AppColors.textDisabled),
     );
 
-Widget newMonthDate(DateTime date) => ordinaryDate(date);
-
-Widget newMonthDateSelected(DateTime date) => selectedDate(date);
-
-Widget yearSeparator(DateTime date) => Padding(
-      padding: EdgeInsets.all(CALENDAR_SEPARATOR_RADIUS),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            date.year.toString(),
-            style: TextStyle(
-              fontSize: 23,
-              color: AppColors.textPrimary,
-            ),
-          ),
-        ],
-      ),
+Widget newYear(DateTime date) => Padding(
+      padding: const EdgeInsets.all(CALENDAR_DATE_PADDING),
+      child: _date(date, AppColors.textPrimary, AppColors.textDisabled),
     );
 
-Widget newYearDate(DateTime date) => ordinaryDate(date);
-
-Widget newYearDateSelected(DateTime date) => selectedDate(date);
+Widget newYearSelected(DateTime date) => Container(
+      margin: const EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
+      padding: EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: <Color>[
+            AppColors.accentDark,
+            AppColors.accent,
+          ],
+        ),
+        shape: BoxShape.circle,
+      ),
+      child: _date(date, AppColors.textPrimary, AppColors.textDisabled),
+    );

@@ -31,7 +31,7 @@ Padding yesterdayPollSimple(
           SizedBox(height: 16),
           MagicPollPicker(
             onTap: () {
-              userPollBloc.repo.todayPoll.pollSetAll(mood.wrapped);
+              userPollBloc.current.pollSetAll(mood.wrapped);
               userPollBloc.repo.save(userPollBloc.user.id);
             },
             value: mood,
@@ -69,8 +69,7 @@ Padding yesterdayPollExtended({
           SizedBox(height: 16),
           MagicPollPicker(
             onTap: () {
-              userPollBloc.repo.todayPoll
-                  .pollSet(PollModelType.MOOD, mood.wrapped);
+              userPollBloc.current.pollSet(PollModelType.MOOD, mood.wrapped);
               userPollBloc.repo.save(userPollBloc.user.id);
             },
             value: mood,
@@ -85,7 +84,7 @@ Padding yesterdayPollExtended({
           SizedBox(height: 16),
           MagicPollPicker(
             onTap: () {
-              userPollBloc.repo.todayPoll
+              userPollBloc.current
                   .pollSet(PollModelType.PRODUCTIVITY, productivity.wrapped);
               userPollBloc.repo.save(userPollBloc.user.id);
             },
@@ -101,7 +100,7 @@ Padding yesterdayPollExtended({
           SizedBox(height: 16),
           MagicPollPicker(
             onTap: () {
-              userPollBloc.repo.todayPoll
+              userPollBloc.current
                   .pollSet(PollModelType.RELATIONSHIPS, relationship.wrapped);
               userPollBloc.repo.save(userPollBloc.user.id);
             },
@@ -117,7 +116,7 @@ Padding yesterdayPollExtended({
           SizedBox(height: 16),
           MagicPollPicker(
             onTap: () {
-              userPollBloc.repo.todayPoll.pollSet(
+              userPollBloc.current.pollSet(
                   PollModelType.SELFDEVELOPMENT, selfdevelopment.wrapped);
               userPollBloc.repo.save(userPollBloc.user.id);
             },
@@ -133,7 +132,7 @@ Padding yesterdayPollExtended({
           SizedBox(height: 16),
           MagicPollPicker(
             onTap: () {
-              userPollBloc.repo.todayPoll
+              userPollBloc.current
                   .pollSet(PollModelType.PHYSICAL_ACTIVITY, activity.wrapped);
               userPollBloc.repo.save(userPollBloc.user.id);
             },

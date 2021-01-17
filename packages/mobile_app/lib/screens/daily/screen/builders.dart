@@ -37,58 +37,18 @@ extension DailyScreenBuilders on _DailyScreenState {
       ]);
       //
 
-    } else if (d[index - 1].year != d[index].year) {
-      /// happy new year
-      return Container(
-        width: CALENDAR_NEW_YEAR_WIDTH,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Flexible(child: yearSeparator(d[index])),
-            //
-
-            Flexible(
-              child: (index == selected)
-                  ? newYearDateSelected(d[index])
-                  : GestureDetector(
-                      onTap: () {
-                        widget.currentIndex.wrapped = index;
-                        setState(() {});
-                      },
-                      child: newYearDate(d[index]),
-                    ),
-            ),
-          ],
-        ),
-      );
-
-      //
     } else if (d[index - 1].month != d[index].month) {
       /// new month
-      return Container(
-        width: CALENDAR_NEW_MONTH_WIDTH,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Flexible(child: monthSeparator()),
-            //
-
-            Flexible(
-              child: (index == selected)
-                  ? newMonthDateSelected(d[index])
-                  : GestureDetector(
-                      onTap: () {
-                        widget.currentIndex.wrapped = index;
-                        setState(() {});
-                      },
-                      child: newMonthDate(d[index]),
-                    ),
-            ),
-          ],
-        ),
-      );
+      if (index == selected)
+        return newMonthSelected(d[index]);
+      else
+        return GestureDetector(
+          onTap: () {
+            widget.currentIndex.wrapped = index;
+            setState(() {});
+          },
+          child: newMonth(d[index]),
+        );
 
       //
     }
@@ -124,8 +84,7 @@ extension DailyScreenBuilders on _DailyScreenState {
 
       case UserPollIsVotedState:
         print("User poll is voted");
-        sp.prophecyBloc.add(ClarifyProphecy(
-            dt: selected, poll: sp.userPollBloc.repo.todayPoll));
+        sp.prophecyBloc.add(CalculateProphecy(dtDay));
         return SizedBox();
 
       case UserPollIsSimpleState:
@@ -161,7 +120,7 @@ extension DailyScreenBuilders on _DailyScreenState {
         if (toShow.internalStrength == true &&
             toShow.moodlet == true &&
             toShow.ambition == true &&
-            toShow.intelligence == true &&
+            toShow.intuition == true &&
             toShow.luck == true) {
           /// if all prophecies are enabled
           /// we show text for biggest and least prophecies,
@@ -241,9 +200,9 @@ extension DailyScreenBuilders on _DailyScreenState {
                   prophecy: state.prophecy[ProphecyType.AMBITION],
                   planetVariants: dat.currentPlanets)
               : SizedBox(),
-          (toShow.intelligence)
+          (toShow.intuition)
               ? prophecyRecord(
-                  prophecy: state.prophecy[ProphecyType.INTELLIGENCE],
+                  prophecy: state.prophecy[ProphecyType.INTUITION],
                   planetVariants: dat.currentPlanets)
               : SizedBox(),
           (toShow.luck)
@@ -257,7 +216,7 @@ extension DailyScreenBuilders on _DailyScreenState {
           (toShow.internalStrength == false &&
                   toShow.moodlet == false &&
                   toShow.ambition == false &&
-                  toShow.intelligence == false &&
+                  toShow.intuition == false &&
                   toShow.luck == false)
               ? prophecyRecord(
                   prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH],
@@ -284,7 +243,7 @@ extension DailyScreenBuilders on _DailyScreenState {
           birthDate,
         );
         break;
-      case ProphecyType.INTELLIGENCE:
+      case ProphecyType.INTUITION:
         positivePredictionText =
             //
             sp.predictions.predictionPositiveIntelligence(
@@ -328,7 +287,7 @@ extension DailyScreenBuilders on _DailyScreenState {
           birthDate,
         );
         break;
-      case ProphecyType.INTELLIGENCE:
+      case ProphecyType.INTUITION:
         negativePredictionText =
             //
             sp.predictions.predictionNegativeIntelligence(

@@ -8,8 +8,6 @@ part 'user.g.dart';
 @JsonSerializable()
 class UserModel {
   final String name;
-  final String country;
-  final String place;
 
   /// birth date in milliseconds since epoch
   final int birth;
@@ -21,12 +19,11 @@ class UserModel {
   /// 3 - other
   final int sex;
 
-  UserModel(
-      {@required this.name,
-      @required this.birth,
-      @required this.sex,
-      @required this.country,
-      @required this.place});
+  UserModel({
+    @required this.name,
+    @required this.birth,
+    @required this.sex,
+  });
 
   Map<String, Object> toJson() => _$UserModelToJson(this);
 
