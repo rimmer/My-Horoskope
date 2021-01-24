@@ -113,14 +113,3 @@ Map<ProphecyType, ProphecyEntity> changePartsOfBase({
 
   return base;
 }
-
-/// @deprecated
-Map<ProphecyType, ProphecyEntity> dividedByTen(
-    Map<ProphecyType, ProphecyEntity> res) {
-  res[ProphecyType.INTERNAL_STRENGTH].value /= 10;
-  res[ProphecyType.MOODLET].value /= 10;
-  res[ProphecyType.AMBITION].value /= 10;
-  res[ProphecyType.INTUITION].value /= 10;
-  res[ProphecyType.LUCK].value /= 10;
-  return res;
-}

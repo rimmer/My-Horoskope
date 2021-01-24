@@ -18,7 +18,7 @@ abstract class PollsRepository {
   void set todayPoll(UserPoll newPoll);
 
 //--------------------------------------------------------------------------
-  /// returns arithmetic mean of values of polls
+  /// returns arithmetic mean for every poll type (mood, productivity, etc) of every poll
   Map<PollModelType, double> arithmeticMean(int days) {
     //
     if (curUserPolls.isEmpty) return null;
@@ -31,7 +31,7 @@ abstract class PollsRepository {
     final anyPoll = curUserPolls.values.toList()[0];
     final detailsCount = anyPoll.details.length;
 
-    /// then create placeholders for accamulation
+    /// then create placeholders for accamulation of poll values
     List<int> details = List(detailsCount);
     int mood = 0;
 

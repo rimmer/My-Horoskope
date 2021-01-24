@@ -50,7 +50,7 @@ class OfOldWayMagic implements MagicSpecialization {
     int userWillPower;
 
     /// will store a user polls arithmetic mean
-    Map<PollModelType, double> userPollsMean = null;
+    Map<PollModelType, double> userPollsMean;
 
     userWillPower = withDat.pollByDateRepo.curUserPolls.length;
 
@@ -76,7 +76,6 @@ class OfOldWayMagic implements MagicSpecialization {
     final percentChangeBySign = userSign.choiseConsequenceBySign;
 
     if (percentChangeBySign == null) {
-      print("Error: Astro Methods gave incorrect List");
       return mysticInfo;
     }
 

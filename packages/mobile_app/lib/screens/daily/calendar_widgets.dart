@@ -29,7 +29,7 @@ Widget ordinaryDate(DateTime date) => Padding(
 
 Widget selectedDate(DateTime date) => Container(
       margin: const EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
-      padding: EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
+      padding: const EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: <Color>[
@@ -50,7 +50,7 @@ Widget newMonth(DateTime date) => Padding(
 
 Widget newMonthSelected(DateTime date) => Container(
       margin: const EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
-      padding: EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
+      padding: const EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: <Color>[
@@ -70,7 +70,7 @@ Widget newYear(DateTime date) => Padding(
 
 Widget newYearSelected(DateTime date) => Container(
       margin: const EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
-      padding: EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
+      padding: const EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: <Color>[
