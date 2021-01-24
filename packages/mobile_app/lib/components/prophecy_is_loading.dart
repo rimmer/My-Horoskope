@@ -12,7 +12,7 @@ ListView prophecyIsLoading() {
       prophecyRecordLoading(prophecyName: ProphecyType.INTERNAL_STRENGTH.toStr),
       prophecyRecordLoading(prophecyName: ProphecyType.MOODLET.toStr),
       prophecyRecordLoading(prophecyName: ProphecyType.AMBITION.toStr),
-      prophecyRecordLoading(prophecyName: ProphecyType.INTELLIGENCE.toStr),
+      prophecyRecordLoading(prophecyName: ProphecyType.INTUITION.toStr),
       prophecyRecordLoading(prophecyName: ProphecyType.LUCK.toStr),
     ],
   );

@@ -9,9 +9,7 @@ Column userInfo(
     @required UserInfoField month,
     @required UserInfoField day,
     @required UserInfoField year,
-    @required UserInfoPicker sex,
-    @required UserInfoField country,
-    @required UserInfoField place}) {
+    @required UserInfoPicker sex}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -71,8 +69,6 @@ Column userInfo(
           Expanded(flex: 6, child: SizedBox()),
         ],
       ),
-      country,
-      place,
     ],
   );
 }

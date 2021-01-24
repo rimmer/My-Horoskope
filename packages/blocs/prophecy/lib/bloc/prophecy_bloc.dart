@@ -14,8 +14,8 @@ import 'prophecy_state.dart';
 export 'prophecy_event.dart';
 export 'prophecy_state.dart';
 
-const double PROPHECY_VALUE_LIMIT_MIN = 2.7;
-const double PROPHECY_VALUE_LIMIT_MAX = 10.0;
+const double PROPHECY_VALUE_LIMIT_MIN = 27.0;
+const double PROPHECY_VALUE_LIMIT_MAX = 100.0;
 
 class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
   /// algorithm that will calculate prophecies
@@ -26,7 +26,6 @@ class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
   ProphecyState get initialState => ProphecyInitial();
 
   Stream<ProphecyState> _calculateProphecy({@required int dt}) async* {
-    //
     final prophecy = limitProphecies(
       //
       prophecies: await algo.ask(aboutDay: dt),
@@ -39,23 +38,6 @@ class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
     if (prophecy != null) yield ProphecyWasAsked(prophecy);
   }
 
-  Stream<ProphecyState> _clarifyProphecy(
-      {@required int dt, @required UserPoll withPoll}) async* {
-    if (withPoll != null) {
-      //
-      final prophecy = limitProphecies(
-        //
-        prophecies: await algo.clarify(withPoll: withPoll, dt: dt),
-        //
-        min: PROPHECY_VALUE_LIMIT_MIN,
-        max: PROPHECY_VALUE_LIMIT_MAX,
-      );
-
-      //
-      if (prophecy != null) yield ProphecyWasClarified(prophecy);
-    }
-  }
-
   @override
   Stream<ProphecyState> mapEventToState(
     ProphecyEvent event,
@@ -64,10 +46,6 @@ class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
     switch (event.runtimeType) {
       case CalculateProphecy:
         yield* _calculateProphecy(dt: event.dt);
-        break;
-
-      case ClarifyProphecy:
-        yield* _clarifyProphecy(dt: event.dt, withPoll: event.poll);
         break;
     }
   }
@@ -85,7 +63,7 @@ Map<ProphecyType, ProphecyEntity> limitProphecies(
   PropheciesMapLimit(prophecies)
       .limit(type: ProphecyType.AMBITION, min: min, max: max);
   PropheciesMapLimit(prophecies)
-      .limit(type: ProphecyType.INTELLIGENCE, min: min, max: max);
+      .limit(type: ProphecyType.INTUITION, min: min, max: max);
   PropheciesMapLimit(prophecies)
       .limit(type: ProphecyType.LUCK, min: min, max: max);
 

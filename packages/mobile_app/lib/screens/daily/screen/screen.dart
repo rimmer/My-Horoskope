@@ -68,6 +68,7 @@ class _DailyScreenState extends State<DailyScreen> {
   }
 
   void startUserPollBloc() {
+    sp.userPollBloc.loaded = false;
     sp.userPollBloc.add(UserPollRestartEvent());
   }
 

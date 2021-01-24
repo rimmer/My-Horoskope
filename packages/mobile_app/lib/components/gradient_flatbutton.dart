@@ -13,8 +13,8 @@ Row gradientFlatButton({
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      GestureDetector(
-        onTap: () {
+      FlatButton(
+        onPressed: () {
           onPressed();
         },
         child: Container(

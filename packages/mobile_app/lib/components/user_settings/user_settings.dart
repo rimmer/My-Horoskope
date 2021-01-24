@@ -11,8 +11,6 @@ Column userSettingsList({
   @required MutableString year,
   @required MutableInteger sex,
   @required Map<int, String> indexToSex,
-  @required MutableString country,
-  @required MutableString place,
 
   /// defaultIsNull
   MutableBool termsAccepted,
@@ -78,24 +76,6 @@ Column userSettingsList({
             items: indexToSex,
             indexObject: sex,
           ),
-          country: UserInfoField(
-              textObject: country,
-              maxLength: 50,
-              keyboardType: TextInputType.streetAddress,
-              capitalizationType: TextCapitalization.words,
-              hint: lang.birthcountry.capitalize(),
-              validator: (String text) {
-                return null;
-              }),
-          place: UserInfoField(
-              textObject: place,
-              maxLength: 160,
-              keyboardType: TextInputType.streetAddress,
-              capitalizationType: TextCapitalization.words,
-              hint: lang.birthplace.capitalize(),
-              validator: (String text) {
-                return null;
-              }),
         ),
         (termsAccepted != null)
             ? AcceptTermsRow(terms: termsAccepted)

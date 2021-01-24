@@ -16,8 +16,6 @@ class ProfileSettingsScreen extends StatefulWidget {
     2: lang.female.capitalize(),
     3: lang.other.capitalize(),
   };
-  final country = MutableString("");
-  final place = MutableString("");
 
   @override
   _ProfileSettingsScreenState createState() => _ProfileSettingsScreenState();
@@ -48,14 +46,12 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     widget.day.wrapped = birthDate.day.toString();
     widget.year.wrapped = birthDate.year.toString();
     widget.sex.wrapped = user.sex;
-    widget.country.wrapped = user.country;
-    widget.place.wrapped = user.place;
 
     luck.wrapped = sp.show.enabledProphecies.luck;
     internalStrength.wrapped = sp.show.enabledProphecies.internalStrength;
     moodlet.wrapped = sp.show.enabledProphecies.moodlet;
     ambition.wrapped = sp.show.enabledProphecies.ambition;
-    intelligence.wrapped = sp.show.enabledProphecies.intelligence;
+    intelligence.wrapped = sp.show.enabledProphecies.intuition;
 
     super.initState();
   }
@@ -124,8 +120,6 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 year: widget.year,
                 sex: widget.sex,
                 indexToSex: widget.indexToSex,
-                country: widget.country,
-                place: widget.place,
                 validInformationCheck: () {
                   if (widget.name.wrapped.isEmpty) {
                     showOverCurrentScreen(
@@ -154,7 +148,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 onValidInformation: () {
                   final propheciesToShow = EnabledProphecies(
                     luck: luck.wrapped,
-                    intelligence: intelligence.wrapped,
+                    intuition: intelligence.wrapped,
                     internalStrength: internalStrength.wrapped,
                     ambition: ambition.wrapped,
                     moodlet: moodlet.wrapped,
@@ -170,13 +164,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                   final userSettingsNotChanged =
                       widget.name.wrapped == user.name &&
                           birthDateEntered == user.birth &&
-                          widget.sex.wrapped == user.sex &&
-                          widget.country.wrapped == user.country &&
-                          widget.place.wrapped == user.place;
+                          widget.sex.wrapped == user.sex;
 
                   final propheciesToShowNotChanged =
                       sp.show.enabledProphecies.luck == luck.wrapped &&
-                          sp.show.enabledProphecies.intelligence ==
+                          sp.show.enabledProphecies.intuition ==
                               intelligence.wrapped &&
                           sp.show.enabledProphecies.internalStrength ==
                               internalStrength.wrapped &&
@@ -203,8 +195,6 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                     name: widget.name.wrapped,
                     birth: birthDateEntered,
                     sex: widget.sex.wrapped,
-                    country: widget.country.wrapped,
-                    place: widget.place.wrapped,
                   );
 
                   /// services/direct_auth.dart
