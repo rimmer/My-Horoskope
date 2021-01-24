@@ -25,20 +25,11 @@ class AlgoData {
 abstract class MagicSpecialization {
   /// gives a prophecy
   Map<ProphecyType, ProphecyEntity> ask(AlgoData withDat, int aboutDay);
-
-  /// clarifies a prophecy with a today user poll
-  Map<ProphecyType, ProphecyEntity> clarify(
-      {@required Map<ProphecyType, ProphecyEntity> prophecies,
-      @required UserEntity user,
-      @required UserPoll withPoll});
 }
 
 class Algorithm {
   /// here you can change a specialization of your prophet
   MagicSpecialization prophet = OfOldWayMagic();
-
-  /// the last insights that were written by the prophet
-  Map<int, Map<ProphecyType, ProphecyEntity>> curSessionInsights = {};
 
   final AlgoData dat;
   Algorithm({@required this.dat}) {
@@ -49,25 +40,6 @@ class Algorithm {
 
   /// ask for prophecy about given day
   Map<ProphecyType, ProphecyEntity> ask({@required int aboutDay}) {
-    if (curSessionInsights[aboutDay] != null) curSessionInsights[aboutDay];
-    curSessionInsights[aboutDay] = prophet.ask(dat, aboutDay);
-    return curSessionInsights[aboutDay];
-  }
-
-  /// clarifies a prophecy
-  Map<ProphecyType, ProphecyEntity> clarify({
-    @required UserPoll withPoll,
-    UserEntity user,
-    int dt,
-  }) {
-    return prophet.clarify(
-      withPoll: withPoll ?? dat.pollByDateRepo.todayPoll,
-      user: user ?? dat.user,
-      prophecies: curSessionInsights[dt ?? dtDay] ??
-
-          /// if no insight were recorded by a prophet
-          /// wake him up and force to get another one
-          prophet.ask(dat, dt ?? dtDay),
-    );
+    return prophet.ask(dat, aboutDay);
   }
 }

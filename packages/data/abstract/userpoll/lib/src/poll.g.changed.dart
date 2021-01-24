@@ -11,10 +11,10 @@ UserPoll _$UserPollFromJson(Map<String, dynamic> json) {
     dt: json['dt'] as int,
     voted: json['voted'] as bool,
     mood: PollModel.fromJson(json['mood'] as Map<String, dynamic>).value,
-  )..details = (json['details'] as List)
+  )..details.addAll((json['details'] as List)
       ?.map((e) =>
           e == null ? null : PollModel.fromJson(e as Map<String, dynamic>))
-      ?.toList();
+      ?.toList());
 }
 
 Map<String, dynamic> _$UserPollToJson(UserPoll instance) => <String, dynamic>{

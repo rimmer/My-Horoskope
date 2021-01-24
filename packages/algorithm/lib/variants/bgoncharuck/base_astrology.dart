@@ -12,11 +12,12 @@ const _bonusPointsMagnitude = 13;
 class _Astrology implements _OldWisdom {
   Map<ProphecyType, ProphecyEntity> says(UserEntity aboutUser, int inTimeOf) {
     //
+
     /// prophecy value placeholders
     double internalStr = 0.0;
     double moodlet = 0.0;
     double ambition = 0.0;
-    double intelligence = 0.0;
+    double intuition = 0.0;
     double luck = 0.0;
 
     /// if values reach more then 100, they will be cutted down to 100 in the bloc
@@ -67,16 +68,17 @@ class _Astrology implements _OldWisdom {
     moodlet += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.MOODLET);
     ambition +=
         dayOfWeekCalc(birthDate, calculationDate, ProphecyType.AMBITION);
-    intelligence +=
-        dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTELLIGENCE);
+    intuition +=
+        dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTUITION);
     luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.LUCK);
 
-    print("- - -\nChaotic:");
-    print("Prophecy: Internal Strength, chaotic points: $internalStr");
-    print("Prophecy: Moodlet, chaotic points: $moodlet");
-    print("Prophecy: Ambition, chaotic points: $ambition");
-    print("Prophecy: Intelligence, chaotic points: $intelligence");
-    print("Prophecy: Luck, chaotic points: $luck");
+    //@DEBUG
+    // print("- - -\nChaotic:");
+    // print("Prophecy: Internal Strength, chaotic points: $internalStr");
+    // print("Prophecy: Moodlet, chaotic points: $moodlet");
+    // print("Prophecy: Ambition, chaotic points: $ambition");
+    // print("Prophecy: Intuition, chaotic points: $intuition");
+    // print("Prophecy: Luck, chaotic points: $luck");
 
     // - - -
 
@@ -103,9 +105,10 @@ class _Astrology implements _OldWisdom {
     final internalStrAmbitionBase = _InternalStrAmbitionBase
         .mapSignAndMonthToValue[astroSign][calculationDate.month];
 
-    print("- - -\nBase:");
-    print("Prophecy: Internal Strength, base points: $internalStrAmbitionBase");
-    print("Prophecy: Ambition, base points: $internalStrAmbitionBase");
+    //@DEBUG
+    // print("- - -\nBase:");
+    // print("Prophecy: Internal Strength, base points: $internalStrAmbitionBase");
+    // print("Prophecy: Ambition, base points: $internalStrAmbitionBase");
 
     ambition += internalStrAmbitionBase;
     internalStr += internalStrAmbitionBase;
@@ -136,18 +139,20 @@ class _Astrology implements _OldWisdom {
     ///
     /// points avaible are from 4 to 36
     /// this value is slowly changing every day
-    final moodIntelLuckBase =
-        _moodIntelLuckBase(birthDate.day, calculationDate.day);
+    final moodIntuitLuckBase =
+        _moodIntuitLuckBase(birthDate.day, calculationDate.day);
 
-    print("Prophecy: Moodlet, base points: $moodIntelLuckBase");
-    print("Prophecy: Intelligence, base points: $moodIntelLuckBase");
-    print("Prophecy: Luck, base points: $moodIntelLuckBase");
+    //@DEBUG
+    // print("Prophecy: Moodlet, base points: $moodIntuitLuckBase");
+    // print("Prophecy: Intuition, base points: $moodIntuitLuckBase");
+    // print("Prophecy: Luck, base points: $moodIntuitLuckBase");
 
-    moodlet += moodIntelLuckBase;
-    intelligence += moodIntelLuckBase;
-    luck += moodIntelLuckBase;
+    moodlet += moodIntuitLuckBase;
+    intuition += moodIntuitLuckBase;
+    luck += moodIntuitLuckBase;
 
-    print("- - -\nCalesial tarot calcualtion:");
+    //@DEBUG
+    // print("- - -\nCalesial tarot calcualtion:");
 
     /// @MYSTIC
     /// this is the most interesting part of an algorithm
@@ -195,13 +200,15 @@ class _Astrology implements _OldWisdom {
     ///
     /// In modulus %56
     int mod56 = daysLived % 56;
-    print("CTarot: Minor is $mod56,");
+    //@DEBUG
+    // print("CTarot: Minor is $mod56,");
 
     /// In one day from 56
     /// User can get the card that represents its astrologic sign
     bool probabilityMinor = userPatron == _Kabbalah.patronMinor[mod56];
-    print(
-        "CTarot: Minor Card is ${(probabilityMinor) ? "" : "NOT "}user patron,");
+    //@DEBUG
+    // print(
+    //     "CTarot: Minor Card is ${(probabilityMinor) ? "" : "NOT "}user patron,");
 
     ///
     /// Probability is 1/56, but 4 signs have probability 2/56
@@ -213,13 +220,15 @@ class _Astrology implements _OldWisdom {
 
     /// In modulus %78
     int mod78 = daysLived % 78;
-    print("CTarot: Full is $mod78,");
+    //@DEBUG
+    // print("CTarot: Full is $mod78,");
 
     /// In 3 days from 78
     /// User can get the card that represents its astrologic sign
     bool probabilityFull = userPatron == _Kabbalah.patronFull[mod78];
-    print(
-        "CTarot: Minor+Major Card is ${(probabilityFull) ? "" : "NOT "}user patron,");
+    //@DEBUG
+    // print(
+    //     "CTarot: Minor+Major Card is ${(probabilityFull) ? "" : "NOT "}user patron,");
 
     ///
     /// Probability is 3/78 or 1/26
@@ -231,13 +240,15 @@ class _Astrology implements _OldWisdom {
 
     /// In modulus %22
     int mod22 = daysLived % 22;
-    print("CTarot: Major is $mod22,");
+    //@DEBUG
+    // print("CTarot: Major is $mod22,");
 
     /// In 2 days from 22
     /// User can get card that represents its astrologic sign
     bool probabilityMajor = userPatron == _Kabbalah.patronMajor[mod22];
-    print(
-        "CTarot: Major Card is ${(probabilityMajor) ? "" : "NOT "}user patron,");
+    //@DEBUG
+    // print(
+    //     "CTarot: Major Card is ${(probabilityMajor) ? "" : "NOT "}user patron,");
 
     ///
     /// Probability is 2/22 or 1/11
@@ -251,30 +262,33 @@ class _Astrology implements _OldWisdom {
       internalStr += _biggestBonus;
       moodlet += _biggestBonus;
       ambition += _biggestBonus;
-      intelligence += _biggestBonus;
+      intuition += _biggestBonus;
       luck += _biggestBonus;
-      print(
-          "CTarot: user won the biggest bonus, which is $_biggestBonus points for every prophecy,");
+      //@DEBUG
+      // print(
+      //     "CTarot: user won the biggest bonus, which is $_biggestBonus points for every prophecy,");
       //
     } else if (probabilityFull) {
       //
       internalStr += _bigBonus;
       moodlet += _bigBonus;
       ambition += _bigBonus;
-      intelligence += _bigBonus;
+      intuition += _bigBonus;
       luck += _bigBonus;
-      print(
-          "CTarot: user won a big bonus, which is $_bigBonus points for every prophecy,");
+      //@DEBUG
+      // print(
+      //     "CTarot: user won a big bonus, which is $_bigBonus points for every prophecy,");
       //
     } else if (probabilityMajor) {
       //
       internalStr += _middleBonus;
       moodlet += _middleBonus;
       ambition += _middleBonus;
-      intelligence += _middleBonus;
+      intuition += _middleBonus;
       luck += _middleBonus;
-      print(
-          "CTarot: user won a middle bonus, which is $_middleBonus points for every prophecy,");
+      //@DEBUG
+      // print(
+      //     "CTarot: user won a middle bonus, which is $_middleBonus points for every prophecy,");
       //
     } else {
       /// in most days user will not get so huge bonuses
@@ -308,12 +322,13 @@ class _Astrology implements _OldWisdom {
       /// see _Kabbalah.impactMinor for more details
 
       int impactValue = _Kabbalah.impactMinor[mod56][userSuit];
-      print("CTarot: user won $impactValue points for every prophecy,");
+      //@DEBUG
+      // print("CTarot: user won $impactValue points for every prophecy,");
 
       internalStr += impactValue;
       moodlet += impactValue;
       ambition += impactValue;
-      intelligence += impactValue;
+      intuition += impactValue;
       luck += impactValue;
 
       /// And then we have bonus points to one prophecy
@@ -323,25 +338,30 @@ class _Astrology implements _OldWisdom {
       switch (bonusPoints) {
         case ProphecyType.INTERNAL_STRENGTH:
           internalStr += _bonusPointsMagnitude;
-          print(
-              "CTarot: user won $_bonusPointsMagnitude points to internal strength,");
+          //@DEBUG
+          // print(
+          //     "CTarot: user won $_bonusPointsMagnitude points to internal strength,");
           break;
         case ProphecyType.MOODLET:
           moodlet += _bonusPointsMagnitude;
-          print("CTarot: user won $_bonusPointsMagnitude points to moodlet,");
+          //@DEBUG
+          // print("CTarot: user won $_bonusPointsMagnitude points to moodlet,");
           break;
         case ProphecyType.AMBITION:
           ambition += _bonusPointsMagnitude;
-          print("CTarot: user won $_bonusPointsMagnitude points to ambition,");
+          //@DEBUG
+          // print("CTarot: user won $_bonusPointsMagnitude points to ambition,");
           break;
-        case ProphecyType.INTELLIGENCE:
-          intelligence += _bonusPointsMagnitude;
-          print(
-              "CTarot: user won $_bonusPointsMagnitude points to intelligence,");
+        case ProphecyType.INTUITION:
+          intuition += _bonusPointsMagnitude;
+          //@DEBUG
+          // print(
+          //     "CTarot: user won $_bonusPointsMagnitude points to intelligence,");
           break;
         case ProphecyType.LUCK:
           luck += _bonusPointsMagnitude;
-          print("CTarot: user won $_bonusPointsMagnitude points to luck,");
+          //@DEBUG
+          // print("CTarot: user won $_bonusPointsMagnitude points to luck,");
           break;
       }
     }
@@ -354,7 +374,7 @@ class _Astrology implements _OldWisdom {
     print("Prophecy: Internal Strength, total points: $internalStr");
     print("Prophecy: Moodlet, total points: $moodlet");
     print("Prophecy: Ambition, total points: $ambition");
-    print("Prophecy: Intelligence, total points: $intelligence");
+    print("Prophecy: Intelligence, total points: $intuition");
     print("Prophecy: Luck, total points: $luck");
 
     /// Now, we finally send out values to our algorithm module call:
@@ -372,8 +392,8 @@ class _Astrology implements _OldWisdom {
           ProphecyEntity(id: ProphecyType.AMBITION, value: ambition),
       //
 
-      ProphecyType.INTELLIGENCE:
-          ProphecyEntity(id: ProphecyType.INTELLIGENCE, value: intelligence),
+      ProphecyType.INTUITION:
+          ProphecyEntity(id: ProphecyType.INTUITION, value: intuition),
       //
 
       ProphecyType.LUCK: ProphecyEntity(id: ProphecyType.LUCK, value: luck),

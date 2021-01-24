@@ -6,7 +6,7 @@ import 'package:userpoll/userpoll.dart';
 import 'package:storage_access/storage_access.dart' as storage;
 import 'package:int_datetime/int_datetime.dart';
 
-part 'polls_json.g.changed.dart';
+part 'polls_json.g.dart';
 
 /// implements polls repository
 /// using json and storage_access flutter package
@@ -28,7 +28,7 @@ class PollsRepositoryJson extends PollsRepository {
   int _lastUserId;
 
   /// polls for currently loaded user
-  List<UserPoll> curUserPolls = [];
+  Map<int, UserPoll> curUserPolls = {};
 
   @override
   Future<bool> save(int userid) async => await storage.write(
@@ -62,20 +62,12 @@ class PollsRepositoryJson extends PollsRepository {
   /// and tries to find it in the list of user polls
   @override
   UserPoll get todayPoll {
-    final today = dtDay;
-    return curUserPolls.firstWhere((el) => el.dt == today, orElse: () => null);
+    return curUserPolls[dtDay];
   }
 
   @override
   set todayPoll(UserPoll newPoll) {
-    final today = dtDay;
-    final index = curUserPolls.indexWhere((el) => el.dt == today) ?? -1;
-    if (index != -1) {
-      curUserPolls[index] = newPoll;
-    } else {
-      curUserPolls.add(newPoll);
-    }
-    this.save(_lastUserId);
+    curUserPolls[dtDay] = newPoll;
   }
 
   Map<String, Object> toJson() => _$PollsRepositoryJsonToJson(this);

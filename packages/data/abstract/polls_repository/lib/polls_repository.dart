@@ -7,7 +7,7 @@ import 'package:userpoll/userpoll.dart';
 
 abstract class PollsRepository {
   /// empty list or loaded polls for a user id
-  List<UserPoll> get curUserPolls;
+  Map<int, UserPoll> get curUserPolls;
 
   /// loads or save **all** user poles by user id from whatever implemented in `data`/`platform`
   Future<bool> save(int userid);
@@ -18,44 +18,60 @@ abstract class PollsRepository {
   void set todayPoll(UserPoll newPoll);
 
 //--------------------------------------------------------------------------
-  /// returns arithmetic mean of values of polls
+  /// returns arithmetic mean for every poll type (mood, productivity, etc) of every poll
   Map<PollModelType, double> arithmeticMean(int days) {
-    final lengthOfUserPolls = curUserPolls.length;
-
-    /// case lengthOfUserPolls ==  0
-    if (lengthOfUserPolls == 0) return null;
+    //
+    if (curUserPolls.isEmpty) return null;
 
     /// for all other cases
     /// gets a count of poll details
-    final detailsCount = curUserPolls[0].details.length;
-    int mood = 0;
+
+    /// we need to know how many other polls except mood we have
+    /// so we choose any poll and count its details
+    final anyPoll = curUserPolls.values.first;
+    final detailsCount = anyPoll.details.length;
+
+    /// then create placeholders for accamulation of poll values
     List<int> details = List(detailsCount);
+    int mood = 0;
+
+    /// if they are equal, then nothing to sum
+    final lengthOfUserPolls = curUserPolls.length;
+    int unvoted = 0;
 
     /// case lengthOfUserPolls <= days
     if (lengthOfUserPolls <= days)
-      for (UserPoll poll in curUserPolls) {
-        mood += poll.mood.value;
-        poll.accamulateDetails(details);
+      for (UserPoll poll in curUserPolls.values) {
+        if (poll.voted == true) {
+          mood += poll.mood.value;
+          poll.accamulateDetails(details);
+        } else
+          unvoted++;
       }
 
     /// case lengthOfUserPolls > days
     else if (lengthOfUserPolls > days) {
-      for ( //
-          int indexOfCurPoll = lengthOfUserPolls - 1;
-          indexOfCurPoll >= lengthOfUserPolls - days;
-          indexOfCurPoll--
-          //
-          ) {
-        final poll = curUserPolls[indexOfCurPoll];
+      /// the most recent N dates will be the highest integers of dt
+      /// so we sort it, and get the biggest N of them
+      final indexes = curUserPolls.keys.toList()
+        ..sort()
+        ..getRange(lengthOfUserPolls - (days + 1), lengthOfUserPolls - 1);
+      ;
+      //
+      for (int index in indexes) {
+        final poll = curUserPolls[index];
         //
-        mood += poll.mood.value;
-        poll.accamulateDetails(details);
+        if (poll.voted == true) {
+          mood += poll.mood.value;
+          poll.accamulateDetails(details);
+        } else
+          unvoted++;
       }
     }
 
-    /// after sum
-    final anyPoll = curUserPolls[0];
+    if (unvoted == lengthOfUserPolls) return null;
 
+    /// after sum
     return {
       //
       PollModelType.MOOD: mood / days,

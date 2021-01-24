@@ -32,8 +32,8 @@ class PollSettingsState extends State<PollSettings> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
+    return FlatButton(
+      onPressed: () {
         showOverCurrentScreen(
             context: context,
             child: SimpleTransperentScreen(
@@ -129,7 +129,6 @@ class _PollSettingInfoState extends State<PollSettingInfo> {
         ),
         Padding(
             padding: EdgeInsets.only(
-              top: 20.0,
               left: 20.0,
               right: 20.0,
             ),
@@ -147,10 +146,9 @@ class _PollSettingInfoState extends State<PollSettingInfo> {
             )),
         Container(
             margin: EdgeInsets.only(
-              top: 20.0,
               left: 20.0,
               right: 20.0,
-              bottom: 20.0,
+              bottom: 5.0,
             ),
             child: Row(
               children: <Widget>[

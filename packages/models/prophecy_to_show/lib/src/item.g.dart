@@ -12,7 +12,7 @@ EnabledProphecies _$EnabledPropheciesFromJson(Map<String, dynamic> json) {
     internalStrength: json['internalStrength'] as bool,
     moodlet: json['moodlet'] as bool,
     ambition: json['ambition'] as bool,
-    intelligence: json['intelligence'] as bool,
+    intuition: json['intuition'] as bool,
   );
 }
 
@@ -22,5 +22,5 @@ Map<String, dynamic> _$EnabledPropheciesToJson(EnabledProphecies instance) =>
       'internalStrength': instance.internalStrength,
       'moodlet': instance.moodlet,
       'ambition': instance.ambition,
-      'intelligence': instance.intelligence,
+      'intuition': instance.intuition,
     };

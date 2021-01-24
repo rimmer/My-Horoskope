@@ -11,7 +11,7 @@ enum ProphecyType {
   INTERNAL_STRENGTH,
   MOODLET,
   AMBITION,
-  INTELLIGENCE,
+  INTUITION,
 }
 
 extension ProphecyTypeToString on ProphecyType {

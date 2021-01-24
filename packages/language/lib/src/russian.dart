@@ -29,7 +29,7 @@ class RussianLocale implements Locale {
   final String mood = "настроение";
   final String simple = "простой";
   final String extended = "расширенный";
-  final String clarifyForecast = "уточнить прогноз";
+  final String clarifyForecast = "прогноз";
   final String rateYourYesterday = "оцените свое вчерашнее";
   final String productivity = "продуктивность";
   final String relationships = "отношения";
@@ -96,6 +96,6 @@ class RussianLocale implements Locale {
         "INTERNAL_STRENGTH": "Внутренняя Сила",
         "MOODLET": "Самочувствие",
         "AMBITION": "Амбиции",
-        "INTELLIGENCE": "Интеллект",
+        "INTUITION": "Интуиция",
       };
 }

@@ -10,14 +10,14 @@ class EnabledProphecies {
   final bool internalStrength;
   final bool moodlet;
   final bool ambition;
-  final bool intelligence;
+  final bool intuition;
 
   EnabledProphecies({
     this.luck = true,
     this.internalStrength = true,
     this.moodlet = true,
     this.ambition = true,
-    this.intelligence = true,
+    this.intuition = true,
   });
 
   Map<String, Object> toJson() => _$EnabledPropheciesToJson(this);

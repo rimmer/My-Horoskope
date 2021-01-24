@@ -36,9 +36,9 @@ class PollSimpleWidget extends StatelessWidget {
       decoration: BoxDecoration(
           color: AppColors.userPollBackground,
           borderRadius: BorderRadius.circular(8.0)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
           _UserPollTopPart(bloc: bloc),
 
@@ -55,9 +55,7 @@ class PollSimpleWidget extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 32),
             child: gradientFlatButton(
               onPressed: () {
-                bloc.current.voted = true;
-                bloc.repo.save(bloc.user.id);
-                bloc.add(UserPollRestartEvent());
+                bloc.add(UserPollVoteEvent());
               },
               child: Text(
                 lang.clarifyForecast.toUpperCase(),
@@ -127,7 +125,9 @@ class PollExtendedWidget extends StatelessWidget {
       decoration: BoxDecoration(
           color: AppColors.userPollBackground,
           borderRadius: BorderRadius.circular(8.0)),
-      child: Column(
+      child: ListView(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
           _UserPollTopPart(bloc: bloc),
 
@@ -148,9 +148,7 @@ class PollExtendedWidget extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 32),
             child: gradientFlatButton(
               onPressed: () {
-                bloc.current.voted = true;
-                bloc.repo.save(bloc.user.id);
-                bloc.add(UserPollRestartEvent());
+                bloc.add(UserPollVoteEvent());
               },
               child: Text(
                 lang.clarifyForecast.toUpperCase(),
@@ -199,8 +197,8 @@ class _UserPollTopPart extends StatelessWidget {
           Row(
             children: <Widget>[
               // Simple
-              GestureDetector(
-                onTap: () {
+              FlatButton(
+                onPressed: () {
                   if (bloc.user.pollsAreComplex == true)
                     bloc.add(UserPollSwitchSimpleEvent());
                 },
@@ -233,8 +231,8 @@ class _UserPollTopPart extends StatelessWidget {
                 ),
               ),
               // Complex
-              GestureDetector(
-                onTap: () {
+              FlatButton(
+                onPressed: () {
                   if (bloc.user.pollsAreComplex == false)
                     bloc.add(UserPollSwitchComplexEvent());
                 },

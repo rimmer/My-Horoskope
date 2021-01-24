@@ -85,11 +85,11 @@ Map<ProphecyType, ProphecyEntity> changePartsOfBase({
       pollValue: userPoll[PollModelType.PRODUCTIVITY],
       bySign: changeBySign[ProphecyType.AMBITION]);
 
-  base[ProphecyType.INTELLIGENCE] = changePartOfBase(
-      base: base[ProphecyType.INTELLIGENCE],
+  base[ProphecyType.INTUITION] = changePartOfBase(
+      base: base[ProphecyType.INTUITION],
       percent: percent,
       pollValue: userPoll[PollModelType.SELFDEVELOPMENT],
-      bySign: changeBySign[ProphecyType.INTELLIGENCE]);
+      bySign: changeBySign[ProphecyType.INTUITION]);
 
   base[ProphecyType.INTERNAL_STRENGTH] = changePartOfBase(
       base: base[ProphecyType.INTERNAL_STRENGTH],
@@ -112,14 +112,4 @@ Map<ProphecyType, ProphecyEntity> changePartsOfBase({
   //
 
   return base;
-}
-
-Map<ProphecyType, ProphecyEntity> dividedByTen(
-    Map<ProphecyType, ProphecyEntity> res) {
-  res[ProphecyType.INTERNAL_STRENGTH].value /= 10;
-  res[ProphecyType.MOODLET].value /= 10;
-  res[ProphecyType.AMBITION].value /= 10;
-  res[ProphecyType.INTELLIGENCE].value /= 10;
-  res[ProphecyType.LUCK].value /= 10;
-  return res;
 }

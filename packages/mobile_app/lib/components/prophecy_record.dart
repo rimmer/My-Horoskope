@@ -15,17 +15,17 @@ Container prophecyRecord(
 
   final textExists = prophecy.text != null && prophecy.text.isNotEmpty;
   final value = prophecy.value ?? 0.0;
-  final valuePercent = value / 10;
+  final valuePercent = value / 100;
 
-  final isPositive = value > 4.9;
+  final isPositive = value > 49.0;
   final planetName =
       (isPositive) ? planetVariants[true] : planetVariants[false];
 
   final planetImpact = (((
 
                   /// calcualte percent from no value,
-                  /// but its remainder of ten, if negative
-                  (isPositive) ? value : (10.0 - value))
+                  /// but its remainder of 100, if negative
+                  (isPositive) ? value : (100.0 - value))
 
               /// %34
               /
@@ -66,7 +66,7 @@ Container prophecyRecord(
               )),
               Center(
                 child: Text(
-                  value.toStringAsFixed(1),
+                  "${value.toStringAsFixed(0)}%",
                   style: TextStyle(
                     fontSize: 21.0,
                     fontWeight: FontWeight.w400,

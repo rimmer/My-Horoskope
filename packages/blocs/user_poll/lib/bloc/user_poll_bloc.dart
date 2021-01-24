@@ -18,10 +18,12 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   final PollsRepository repo;
   final UsersRepository users;
   UserEntity user;
-  UserPoll current;
   bool loaded = false;
 
-  UserPollBloc({@required this.repo, @required this.users, this.current}) {
+  UserPollBloc({
+    @required this.repo,
+    @required this.users,
+  }) {
     user = users.current;
   }
 
@@ -40,19 +42,13 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
 
     if (loaded) {
       //
-
       /// if polls are already loaded and start evenet was sent
       if (event.runtimeType == UserPollRestartEvent)
-        yield* _showThePoll();
-
-      //
-
-      else {
-        if (current. /*poll is already*/ voted)
-          yield* _processActionsThatNeedReload(event);
-        else
-          yield* _processUserActions(event);
-      }
+        yield* _processActionsThatNeedReload(event);
+      else if (repo.todayPoll. /*poll is already*/ voted)
+        yield UserPollIsVotedState();
+      else
+        yield* _processUserActions(event);
 
       //
     } else {
@@ -124,17 +120,21 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
     await repo.load(user.id);
 
     /// then set the current poll by a todays poll
-    current = await repo.todayPoll;
+    var current = await repo.todayPoll;
 
     if (current == null) {
       /// if no todays poll exists, create one
-      current = UserPoll(dt: dtDay, mood: 3);
+      current = UserPoll(
+        dt: dtDay,
+        mood: 3,
+        voted: false,
+      );
 
       /// and add it to repo
       repo.todayPoll = current;
 
       /// then save it
-      repo.save(user.id);
+      await repo.save(user.id);
     }
     loaded = true;
 
@@ -143,18 +143,9 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   }
 
   Stream<UserPollState> _showThePoll() async* {
-    /// "show" simple, complex or voted poll
-    if (current. /*poll is*/ voted)
+    if (repo.todayPoll. /*poll is already*/ voted)
       yield UserPollIsVotedState();
-    //
-    else {
-      //
-      yield* _showThePollUnvoted();
-    }
-  }
-
-  Stream<UserPollState> _showThePollUnvoted() async* {
-    if (user.pollsAreComplex)
+    else if (user.pollsAreComplex)
       yield UserPollIsComplexState();
     else
       yield UserPollIsSimpleState();
@@ -171,11 +162,13 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
       case UserPollSwitchComplexEvent:
         user.pollsAreComplex = !user.pollsAreComplex;
         users.write();
-        yield* _showThePollUnvoted();
+        yield* _showThePoll();
         break;
 
       /// if poll was voted
       case UserPollVoteEvent:
+        repo.todayPoll.voted = true;
+        await repo.save(user.id);
         yield UserPollIsVotedState();
         break;
 
