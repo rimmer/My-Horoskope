@@ -26,6 +26,8 @@ Column userSettingsList({
           name: UserInfoField(
               textObject: name,
               maxLength: 100,
+              keyboardType: TextInputType.name,
+              capitalizationType: TextCapitalization.words,
               hint: lang.name.capitalize(),
               validator: (String text) {
                 int min = 2;
