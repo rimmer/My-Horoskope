@@ -18,10 +18,12 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   final PollsRepository repo;
   final UsersRepository users;
   UserEntity user;
-  UserPoll current;
   bool loaded = false;
 
-  UserPollBloc({@required this.repo, @required this.users, this.current}) {
+  UserPollBloc({
+    @required this.repo,
+    @required this.users,
+  }) {
     user = users.current;
   }
 
@@ -44,7 +46,7 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
       /// if polls are already loaded and start evenet was sent
       if (event.runtimeType == UserPollRestartEvent)
         yield* _processActionsThatNeedReload(event);
-      else if (current. /*poll is already*/ voted)
+      else if (repo.todayPoll. /*poll is already*/ voted)
         yield UserPollIsVotedState();
       else
         yield* _processUserActions(event);
@@ -119,11 +121,15 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
     await repo.load(user.id);
 
     /// then set the current poll by a todays poll
-    current = await repo.todayPoll;
+    var current = await repo.todayPoll;
 
     if (current == null) {
       /// if no todays poll exists, create one
-      current = UserPoll(dt: dtDay, mood: 3);
+      current = UserPoll(
+        dt: dtDay,
+        mood: 3,
+        voted: false,
+      );
 
       /// and add it to repo
       repo.todayPoll = current;
@@ -138,7 +144,7 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
   }
 
   Stream<UserPollState> _showThePoll() async* {
-    if (current. /*poll is already*/ voted)
+    if (repo.todayPoll. /*poll is already*/ voted)
       yield UserPollIsVotedState();
     else if (user.pollsAreComplex)
       yield UserPollIsComplexState();
@@ -162,7 +168,7 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
 
       /// if poll was voted
       case UserPollVoteEvent:
-        current.voted = true;
+        repo.todayPoll.voted = true;
         await repo.save(user.id);
         yield UserPollIsVotedState();
         break;
