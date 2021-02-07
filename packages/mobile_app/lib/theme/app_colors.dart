@@ -13,40 +13,32 @@ class AppColors {
   static const textSecondary = Color(0xFFD795FF);
   static const textDisabled = Color(0x88FFFFFF);
 
-  static const prophecyGradientStart = Color(0xff3E218D);
+  static const prophecyGradientStart = Color(0xff3C2087);
   static const prophecyGradientEnd = Color(0xff4837B2);
 
   static const appBarBackground = Color(0xff3F1D9D);
   static const calendarBackground = Color(0xff301774);
-  static const calendarNewMonthDay = Color(0xff81d4fa);
+  static const calendarShadow = Colors.black;
+  static const calendarNewMonthDay = Color(0xffFA9A67);
+  static const calendarNewMonthMonth = Color(0xff814B6F);
+  static const calendarDateSelected = Color(0xffF9793F);
+
+  static const prophecyValueProgressGradientBorder = Color(0xff210A61);
 
   // must have 9 colors, from index 0 to 8
   static const prophecyValueProgressGradient = [
-    Color(0xff5D2DA0),
-    Color(0xff5E3AAC),
-    Color(0xff5F46B8),
-    Color(0xff5F53C4),
-    Color(0xff605FCF),
-    Color(0xff5765CD),
-    Color(0xff4F6ACA),
-    Color(0xff4770C8),
-    Color(0xff3F74C6),
-  ];
-
-  // must have 3 colors, from index 0 to 2
-  static const prophecyValueNumber = [
-    Color(0xffD795FF),
-    Colors.white,
-    Color(0xff68FFE4),
+    Color(0xff540096),
+    Color(0xff7F1483),
+    Color(0xffA72870),
+    Color(0xffD13B5C),
+    Color(0xffF94F49),
+    Color(0xffFA6445),
+    Color(0xffFA7B40),
+    Color(0xffFA913B),
+    Color(0xffFAA736),
   ];
 
   static const userPollBackground = Color(0xff1F0A57);
-}
-
-Color chooseNumberColorFromThreeVariants(double value) {
-  if (value < 4.0) return AppColors.prophecyValueNumber[0];
-  if (value < 7.0) return AppColors.prophecyValueNumber[1];
-  return AppColors.prophecyValueNumber[2];
 }
 
 Color chooseNumberColorFromProgressValueBar(double value) {

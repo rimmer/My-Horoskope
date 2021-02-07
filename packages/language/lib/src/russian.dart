@@ -26,7 +26,11 @@ class RussianLocale implements Locale {
       "Ознакомьтесь с пользовательским соглашением и политикой конфиденциальности";
   final String my = "мой";
   final String you = "вы";
+  final String yourProphecies = "ваши показатели";
+  final String yourPropheciesNotation =
+      "Такова наполненность ваших внутренних ресурсов сегодня";
   final String mood = "настроение";
+  final String yesterdayMood = "вчерашнее настроение";
   final String simple = "простой";
   final String extended = "расширенный";
   final String clarifyForecast = "прогноз";
@@ -42,6 +46,11 @@ class RussianLocale implements Locale {
       "отвечая на вопросы о своем вчерашнем настроении Вы помогаете обучить наш искусственный интеллект лучше прогнозировать ваше будущее.";
   final String impact = "влияние";
   final String today = "сегодня";
+  final String todayAdvice = "совет на сегодня";
+  final String todayAdviceNotation =
+      "Эти данные нужны, чтобы искусственный интеллект точнее воссоздал картину вашего самочувствия";
+  final String howTodayAdvice =
+      "чтобы получить совет, пройдите опрос о вчерашнем дне";
   final String tomorrow = "завтра";
   final String datomorrow = "послезавтра";
   final String horoscope = "гороскоп";
@@ -54,12 +63,16 @@ class RussianLocale implements Locale {
   final String rateApp = "оценить приложение";
   final String privacyPolicy = "политика конфеденциальности";
   final String userAgreement = "пользовательское соглашение";
+  final String understood = "понятно";
   final String personalInformation = "личная информация";
   final String propheciesToDisplay = "отображаемые показатели";
   final String save = "сохранить";
   final String noAmbianceTitle = "мы над этим работаем";
   final String noAmbianceDescription =
       "Это будет нечто! Вы сможете добавить жену, мужа, детей, родителей, сотрудников и смотреть прогноз по взаимоотношениям с ними на каждый день!";
+  final String planetImpact = "влияние планет";
+  final String planetImpactNotation =
+      "Эта планета влияет на ваши внутренние ресурсы сегодня";
   final String noAmbianceButton = "работайте";
   final String futureDays =
       "Предсказания могут измениться после дальнейшего уточнения прогноза";
@@ -77,7 +90,7 @@ class RussianLocale implements Locale {
         11: "ноябрь",
         12: "декабрь",
       };
-  Map<String, String> get planetImpact => {
+  Map<String, String> get planetImpactName => {
         "Sun": "Солнца",
         "Moon": "Луны",
         "Mercury": "Меркурия",

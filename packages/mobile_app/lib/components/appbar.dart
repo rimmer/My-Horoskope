@@ -9,7 +9,14 @@ const APPBAR_BETWEEN_ICON_TEXT = 16.0;
 Container myProphetAppBar(
         {@required width, @required label, @required Function onTap}) =>
     Container(
-      color: AppColors.appBarBackground,
+      decoration: BoxDecoration(color: AppColors.appBarBackground, boxShadow: [
+        BoxShadow(
+          color: AppColors.calendarShadow.withOpacity(0.9),
+          spreadRadius: 4,
+          blurRadius: 7,
+          offset: Offset(0, 2), // changes position of shadow
+        ),
+      ]),
       height: APPBAR_HEIGHT,
       width: width,
       child: Row(
@@ -35,6 +42,7 @@ Container myProphetAppBar(
               style: TextStyle(
                 fontSize: APPBAR_FONT_SIZE,
                 color: AppColors.textPrimary,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ),

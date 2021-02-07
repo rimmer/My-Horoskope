@@ -31,6 +31,14 @@ Widget selectedDate(DateTime date) => Container(
       margin: const EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
       padding: const EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.calendarDateSelected.withOpacity(0.5),
+            spreadRadius: 4,
+            blurRadius: 6,
+            offset: Offset(0, 0), // changes position of shadow
+          ),
+        ],
         gradient: LinearGradient(
           colors: <Color>[
             AppColors.accentDark,
@@ -45,13 +53,21 @@ Widget selectedDate(DateTime date) => Container(
 Widget newMonth(DateTime date) => Padding(
       padding: const EdgeInsets.all(CALENDAR_DATE_PADDING),
       child: _date(
-          date, AppColors.calendarNewMonthDay, AppColors.calendarNewMonthDay),
+          date, AppColors.calendarNewMonthDay, AppColors.calendarNewMonthMonth),
     );
 
 Widget newMonthSelected(DateTime date) => Container(
       margin: const EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
       padding: const EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.calendarDateSelected.withOpacity(0.5),
+            spreadRadius: 4,
+            blurRadius: 6,
+            offset: Offset(0, 0), // changes position of shadow
+          ),
+        ],
         gradient: LinearGradient(
           colors: <Color>[
             AppColors.accentDark,
@@ -65,13 +81,22 @@ Widget newMonthSelected(DateTime date) => Container(
 
 Widget newYear(DateTime date) => Padding(
       padding: const EdgeInsets.all(CALENDAR_DATE_PADDING),
-      child: _date(date, AppColors.textPrimary, AppColors.textDisabled),
+      child: _date(
+          date, AppColors.calendarNewMonthDay, AppColors.calendarNewMonthMonth),
     );
 
 Widget newYearSelected(DateTime date) => Container(
       margin: const EdgeInsets.all(CALENDAR_SELECTED_DATE_MARGIN),
       padding: const EdgeInsets.all(CALENDAR_SELECTED_DATE_PADDING),
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.calendarDateSelected.withOpacity(0.5),
+            spreadRadius: 4,
+            blurRadius: 6,
+            offset: Offset(0, 0), // changes position of shadow
+          ),
+        ],
         gradient: LinearGradient(
           colors: <Color>[
             AppColors.accentDark,
