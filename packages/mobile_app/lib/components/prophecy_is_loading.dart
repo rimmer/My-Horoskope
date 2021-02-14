@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:language/language.dart';
 import 'package:prophecy_model/prophecy_model.dart';
 
+/// @TODO redo
 ListView prophecyIsLoading() {
   return ListView(
     shrinkWrap: true,

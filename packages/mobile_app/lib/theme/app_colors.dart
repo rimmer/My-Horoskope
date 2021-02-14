@@ -23,7 +23,13 @@ class AppColors {
   static const calendarNewMonthMonth = Color(0xff814B6F);
   static const calendarDateSelected = Color(0xffF9793F);
 
+  static const negativeImpact = Color(0xffD13B5C);
+  static const positiveImpact = Color(0xff68FFE4);
+
   static const prophecyValueProgressGradientBorder = Color(0xff210A61);
+
+  static const userPollTabActive = Color(0xff7175D6);
+  static const userPollTabInactive = Color(0xff412387);
 
   // must have 9 colors, from index 0 to 8
   static const prophecyValueProgressGradient = [
@@ -37,8 +43,6 @@ class AppColors {
     Color(0xffFA913B),
     Color(0xffFAA736),
   ];
-
-  static const userPollBackground = Color(0xff1F0A57);
 }
 
 Color chooseNumberColorFromProgressValueBar(double value) {

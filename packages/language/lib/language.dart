@@ -50,7 +50,7 @@ class lang {
   static String pollSettingsStudyOption = locale.pollSettingsStudyOption;
   static String pollSettingText = locale.pollSettingText;
   static String planetImpact = locale.planetImpact;
-  static String planetImpactNotation = locale.planetImpactNotation;
+  static String impactNotation = locale.impactNotation;
   static String impact = locale.impact;
   static String today = locale.today;
   static String todayAdvice = locale.todayAdvice;

@@ -61,12 +61,15 @@ class _TitleWithDescriptionState extends State<TitleWithDescription> {
                 ),
                 actions: <Widget>[
                   Expanded(
+                    child: SizedBox(),
+                  ),
+                  Flexible(
                     child: gradientFlatButton(
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
                       child: Text(
-                        lang.understood,
+                        lang.understood.toUpperCase(),
                         style: TextStyle(
                           fontSize: 16,
                         ),

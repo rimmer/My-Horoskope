@@ -33,7 +33,7 @@ class RussianLocale implements Locale {
   final String yesterdayMood = "вчерашнее настроение";
   final String simple = "простой";
   final String extended = "расширенный";
-  final String clarifyForecast = "прогноз";
+  final String clarifyForecast = "получить совет";
   final String rateYourYesterday = "оцените свое вчерашнее";
   final String productivity = "продуктивность";
   final String relationships = "отношения";
@@ -71,8 +71,7 @@ class RussianLocale implements Locale {
   final String noAmbianceDescription =
       "Это будет нечто! Вы сможете добавить жену, мужа, детей, родителей, сотрудников и смотреть прогноз по взаимоотношениям с ними на каждый день!";
   final String planetImpact = "влияние планет";
-  final String planetImpactNotation =
-      "Эта планета влияет на ваши внутренние ресурсы сегодня";
+  final String impactNotation = "Что влияет на ваши внутренние ресурсы сегодня";
   final String noAmbianceButton = "работайте";
   final String futureDays =
       "Предсказания могут измениться после дальнейшего уточнения прогноза";

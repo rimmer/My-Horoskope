@@ -39,7 +39,7 @@ abstract class Locale {
   String get physicalActivity;
   Map<String, String> get planetImpactName;
   String get planetImpact;
-  String get planetImpactNotation;
+  String get impactNotation;
   String get pollSettingPollOption;
   String get pollSettingsStudyOption;
   String get pollSettingsTitle;

@@ -61,21 +61,26 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
             /// main list view
             child: ListView(
               shrinkWrap: true,
+              padding: EdgeInsets.symmetric(
+                vertical: 12.0,
+              ),
               scrollDirection: Axis.vertical,
               physics: const NeverScrollableScrollPhysics(),
               children: <Widget>[
                 /// prophecies listview
                 ListView(
                   shrinkWrap: true,
-                  padding: EdgeInsets.symmetric(
-                      horizontal: PROPHECY_PADDING_HORIZONTAL),
+                  padding: EdgeInsets.only(
+                    left: PROPHECY_PADDING_HORIZONTAL,
+                    right: PROPHECY_PADDING_HORIZONTAL,
+                    bottom: 12.0,
+                  ),
                   scrollDirection: Axis.vertical,
                   physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
                     /// yourProphecies title and notation
                     Padding(
                       padding: const EdgeInsets.only(
-                        top: 12.0,
                         left: 3.0,
                         bottom: 8.0,
                       ),
@@ -132,21 +137,55 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                 //
                 _prophecySheetDivider(),
 
-                // @TODO
-                /// yourProphecies title and notation
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 12.0,
-                    left: 3.0,
-                    bottom: 8.0,
-                  ),
-                  child: TitleWithDescription(
-                    title: lang.planetImpact.capitalize(),
-                    notation: lang.planetImpactNotation,
-                    height: 176.0,
-                    width: 250.0,
-                  ),
-                ),
+                /// planet impact
+                ListView(
+                    shrinkWrap: true,
+                    padding: EdgeInsets.symmetric(
+                        horizontal: PROPHECY_PADDING_HORIZONTAL),
+                    scrollDirection: Axis.vertical,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 18.0,
+                          left: 3.0,
+                        ),
+                        child: TitleWithDescription(
+                          title: lang.impact.capitalize(),
+                          notation: lang.impactNotation,
+                          height: 172.0,
+                          width: 242.0,
+                        ),
+                      ),
+                      Container(
+                        height: 32.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                    " ${lang.planetImpactName[dat.currentPlanets[false]]} "),
+                                SvgPicture.asset(
+                                    "assets/icons/${dat.currentPlanets[false]}.svg",
+                                    color: AppColors.negativeImpact),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                    " ${lang.planetImpactName[dat.currentPlanets[true]]} "),
+                                SvgPicture.asset(
+                                    "assets/icons/${dat.currentPlanets[true]}.svg",
+                                    color: AppColors.positiveImpact),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    ]),
+
                 // @TODO
               ],
             ),
@@ -173,9 +212,11 @@ Container _prophecySheetDivider() => Container(
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ),
-        border: Border.all(
-          color: Colors.black,
-          width: 0.3,
+        border: Border.symmetric(
+          horizontal: BorderSide(
+            color: Colors.black,
+            width: 0.3,
+          ),
         ),
       ),
     );

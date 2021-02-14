@@ -24,11 +24,11 @@ extension DailyScreenUserPollBuilder on _DailyScreenState {
 
       case UserPollIsSimpleState:
         print("User poll is switched to simple state");
-        return PollSimpleWidget(bloc: sp.userPollBloc);
+        return pollSimpleWidget(bloc: sp.userPollBloc);
 
       case UserPollIsComplexState:
         print("User poll is switched to complex state");
-        return PollExtendedWidget(bloc: sp.userPollBloc);
+        return pollExtendedWidget(bloc: sp.userPollBloc);
     }
   }
 }
