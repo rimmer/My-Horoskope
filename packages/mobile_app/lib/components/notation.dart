@@ -3,7 +3,6 @@ import 'package:my_prophet/theme/app_colors.dart';
 
 Container notation({@required String text}) => Container(
       margin: EdgeInsets.symmetric(
-        vertical: 18.0,
         horizontal: 16.0,
       ),
       padding: EdgeInsets.symmetric(
@@ -11,9 +10,15 @@ Container notation({@required String text}) => Container(
         horizontal: 32.0,
       ),
       decoration: BoxDecoration(
-        color: AppColors.primaryDark.withOpacity(0.8),
-        borderRadius: BorderRadius.circular(16.0),
-      ),
+          gradient: LinearGradient(
+            colors: [
+              AppColors.prophecyGradientStart.withOpacity(0.9),
+              AppColors.prophecyGradientEnd.withOpacity(0.9),
+            ],
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+          ),
+          borderRadius: BorderRadius.circular(8.0)),
       child: Text(
         text,
         style: TextStyle(

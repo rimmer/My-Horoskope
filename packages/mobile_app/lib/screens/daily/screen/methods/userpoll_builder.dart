@@ -20,7 +20,27 @@ extension DailyScreenUserPollBuilder on _DailyScreenState {
       case UserPollIsVotedState:
         print("User poll is voted");
         sp.prophecyBloc.add(CalculateProphecy(dtDay));
-        return SizedBox();
+
+        return AccentBlackboard(
+          title: Padding(
+            padding: const EdgeInsets.only(
+              left: 3.0,
+            ),
+            child: TitleWithDescription(
+              title: lang.todayAdvice.capitalize(),
+              notation: lang.todayAdviceNotation,
+              height: 210.0,
+              width: 250.0,
+            ),
+          ),
+          textStream: dat.prediction.stream,
+          margin: EdgeInsets.only(
+            left: 16.0,
+            right: 16.0,
+            bottom: 16.0,
+          ),
+          padding: EdgeInsets.all(16.0),
+        );
 
       case UserPollIsSimpleState:
         print("User poll is switched to simple state");

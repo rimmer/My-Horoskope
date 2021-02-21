@@ -6,4 +6,5 @@ class DailyStateData {
   Row birthRow;
   String sign;
   Map<bool, String> currentPlanets = {};
+  StreamController<String> prediction;
 }

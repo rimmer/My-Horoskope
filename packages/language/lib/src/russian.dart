@@ -74,7 +74,7 @@ class RussianLocale implements Locale {
   final String impactNotation = "Что влияет на ваши внутренние ресурсы сегодня";
   final String noAmbianceButton = "работайте";
   final String futureDays =
-      "Предсказания могут измениться после дальнейшего уточнения прогноза";
+      "Показатели могут измениться после дальнейшего уточнения прогноза";
   Map<int, String> get month => {
         1: "январь",
         2: "февраль",

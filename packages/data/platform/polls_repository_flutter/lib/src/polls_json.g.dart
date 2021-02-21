@@ -17,6 +17,8 @@ PollsRepositoryJson _$PollsRepositoryJsonFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$PollsRepositoryJsonToJson(
         PollsRepositoryJson instance) =>
     <String, dynamic>{
-      'curUserPolls':
-          instance.curUserPolls?.map((k, e) => MapEntry(k.toString(), e)),
+      'curUserPolls': instance.curUserPolls?.map((k, e) => MapEntry(
+            k.toString(),
+            e.toJson(),
+          )),
     };

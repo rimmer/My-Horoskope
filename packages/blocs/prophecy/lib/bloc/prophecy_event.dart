@@ -23,15 +23,3 @@ class CalculateProphecy extends ProphecyEvent {
   @override
   String toString() => _$CalculateProphecyToString(this);
 }
-
-@ToString()
-class ClarifyProphecy extends ProphecyEvent {
-  final int dt;
-  final UserPoll poll;
-  ClarifyProphecy({this.dt, this.poll});
-
-  @override
-  List<Object> get props => [poll, dt];
-  @override
-  String toString() => _$ClarifyProphecyToString(this);
-}

@@ -3,12 +3,22 @@ part of '../screen.dart';
 extension DailyScreenProphecyBuilder on _DailyScreenState {
   Widget prophecyBuilder(BuildContext context, ProphecyState state) {
     //
-    print(dat.labelStr);
+
     if (state is ProphecyInitial) {
       return prophecyIsLoading();
       //
 
-    } else if (state is ProphecyWasAsked || state is ProphecyWasClarified) {
+    } else if (state is ProphecyWasAsked) {
+      /// here is prediction added
+      if (sp.userPollBloc.repo.todayPoll != null &&
+          sp.userPollBloc.repo.todayPoll.voted)
+        //
+        dat.prediction.sink.add(
+          getPrediction(
+            prophecy: state.prophecy,
+            propheciesSum: state.propheciesSum,
+          ),
+        );
       //
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +145,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                 ),
 
                 //
-                _prophecySheetDivider(),
+                prophecySheetDivider(),
 
                 /// planet impact
                 ListView(
@@ -185,8 +195,6 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                         ),
                       )
                     ]),
-
-                // @TODO
               ],
             ),
           ),
@@ -199,24 +207,3 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
     }
   }
 }
-
-Container _prophecySheetDivider() => Container(
-      height: 3.0,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            AppColors.prophecyGradientEnd.withOpacity(0.8),
-            AppColors.prophecyGradientStart.withOpacity(0.8),
-          ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-        ),
-        border: Border.symmetric(
-          horizontal: BorderSide(
-            color: Colors.black,
-            width: 0.3,
-          ),
-        ),
-      ),
-    );

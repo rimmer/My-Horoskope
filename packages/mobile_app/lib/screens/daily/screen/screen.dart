@@ -5,6 +5,7 @@ part 'data.dart';
 part 'methods/calendar_builder.dart';
 part 'methods/userpoll_builder.dart';
 part 'methods/prophecy_builder.dart';
+part 'methods/prediction.dart';
 part 'methods/misc.dart';
 part 'methods/notavaible_button.dart';
 
@@ -35,12 +36,19 @@ class _DailyScreenState extends State<DailyScreen> {
   SingleProvider sp;
   final dat = DailyStateData();
 
+  @override
+  void dispose() {
+    if (dat != null && dat.prediction != null) dat.prediction.close();
+    super.dispose();
+  }
+
   /// @INIT
   @override
   void initState() {
     sp = context.read<SingleProvider>();
     //
 
+    dat.prediction = StreamController.broadcast();
     dat.user = sp.usersRepo.current;
     dat.labelStr =
         "${dat.user.model.name.capitalize()} (${lang.you.capitalize()})";
@@ -117,14 +125,14 @@ class _DailyScreenState extends State<DailyScreen> {
                     ),
 
                     /// ">" icon
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Icon(
-                        Icons.navigate_next,
-                        color: AppColors.textPrimary.withOpacity(0.8),
-                        size: 54.0,
-                      ),
-                    ),
+                    // Align(
+                    //   alignment: Alignment.centerRight,
+                    //   child: Icon(
+                    //     Icons.navigate_next,
+                    //     color: AppColors.textPrimary.withOpacity(0.8),
+                    //     size: 54.0,
+                    //   ),
+                    // ),
                   ],
                 )),
 
