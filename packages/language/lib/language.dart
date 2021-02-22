@@ -17,6 +17,7 @@ class lang {
   static String birthdate = locale.birthdate;
   static String birthcountry = locale.birthcountry;
   static String birthplace = locale.birthplace;
+  static String calendarNotation = locale.calendarNotation;
   static String sex = locale.sex;
   static String male = locale.male;
   static String female = locale.female;

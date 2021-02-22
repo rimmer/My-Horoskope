@@ -25,8 +25,6 @@ String _fileLocation(int userid) =>
 
 @JsonSerializable()
 class PollsRepositoryJson extends PollsRepository {
-  int _lastUserId;
-
   /// polls for currently loaded user
   Map<int, UserPoll> curUserPolls = {};
 
@@ -39,7 +37,6 @@ class PollsRepositoryJson extends PollsRepository {
 
   @override
   Future<bool> load(int userid) async {
-    _lastUserId = userid;
     try {
       final red = await storage.read(fromFile: _fileLocation(userid));
 

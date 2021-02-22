@@ -9,6 +9,7 @@ class RussianLocale implements Locale {
   final String birthdate = "дата рождения";
   final String birthcountry = "страна, в которой вы родились";
   final String birthplace = "населенный пункт, где вы родились";
+  final String calendarNotation = "Свайп для прокрутки календаря";
   final String sex = "пол";
   final String male = "мужской";
   final String female = "женский";

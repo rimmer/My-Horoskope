@@ -124,15 +124,15 @@ class _DailyScreenState extends State<DailyScreen> {
                       ),
                     ),
 
-                    /// ">" icon
-                    // Align(
-                    //   alignment: Alignment.centerRight,
-                    //   child: Icon(
-                    //     Icons.navigate_next,
-                    //     color: AppColors.textPrimary.withOpacity(0.8),
-                    //     size: 54.0,
-                    //   ),
-                    // ),
+                    /// notation
+                    (sp.statusFile.calendarNotationClicked)
+                        ? SizedBox()
+                        : calendarNotation(onClick: () {
+                            setState(() {
+                              sp.statusFile.calendarNotationClicked = true;
+                              sp.statusFile.write();
+                            });
+                          }),
                   ],
                 )),
 

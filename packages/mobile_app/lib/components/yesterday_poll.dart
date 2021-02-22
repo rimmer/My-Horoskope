@@ -5,7 +5,6 @@ import 'package:my_prophet/theme/app_colors.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:language/language.dart';
 import 'package:poll_model/poll_model.dart';
-import 'poll_settings.dart';
 import 'magic_poll.dart';
 
 Column yesterdayPollSimple(

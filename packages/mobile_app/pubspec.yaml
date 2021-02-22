@@ -2,6 +2,7 @@ name: my_prophet
 description: Your personal prophet
 author: Igor Ianishevskyi
 homepage: prophet.ninja
+publish_to: none
 
 version: 0.1.0
 
@@ -50,6 +51,8 @@ dependencies:
     path: ../data/platform/prophecy_to_show_storage_flutter   
   predictions:
     path: ../data/abstract/predictions
+  status_file_flutter:
+    path: ../data/platform/status_file_flutter  
     
   #blocs
   authentication:

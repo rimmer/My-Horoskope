@@ -22,10 +22,6 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
     /// depending on value, all stars will be different
     /// not mine idea, it is from figma
     ///
-    /// ! ListBuilder is not used because of
-    /// better productivity of fixed row
-    /// it looks weird, but, it is faster
-    /// "trust me, I am $PROFFESION_NAME"
     switch (widget.value.wrapped) {
 
       /// value of 1
@@ -357,6 +353,9 @@ class _MagicPollPickerState extends State<MagicPollPicker> {
             SvgPicture.asset("assets/widget/magic_poll/star_on.svg"),
           ],
         );
+
+      default:
+        return SizedBox();
     }
   }
 }

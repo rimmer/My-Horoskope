@@ -2,6 +2,7 @@ name: users_repository
 description: users repository data abstraction
 version: 0.0.1
 author: bgoncharuck
+publish_to: none
 
 environment:
   sdk: ">=2.6.0 <3.0.0"

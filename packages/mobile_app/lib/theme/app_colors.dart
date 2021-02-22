@@ -31,6 +31,8 @@ class AppColors {
   static const userPollTabActive = Color(0xff7175D6);
   static const userPollTabInactive = Color(0xff412387);
 
+  static const clickableNotationBackground = Color(0xff0F0039);
+
   // must have 9 colors, from index 0 to 8
   static const prophecyValueProgressGradient = [
     Color(0xff540096),

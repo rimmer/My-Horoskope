@@ -6,13 +6,6 @@ extension DailyScreenUserPollBuilder on _DailyScreenState {
 
       /// I am adding debug prints, jsut in case
 
-      case UserPollLoadingState:
-        print("User polls are loading.");
-        return SpinKitPulse(
-          color: AppColors.accentDark,
-          size: 32,
-        );
-
       case UserPollIsDisabled:
         print("User polls are disabled for current user");
         return PollSettings();
@@ -49,6 +42,14 @@ extension DailyScreenUserPollBuilder on _DailyScreenState {
       case UserPollIsComplexState:
         print("User poll is switched to complex state");
         return pollExtendedWidget(bloc: sp.userPollBloc);
+
+      case UserPollLoadingState:
+      default:
+        print("User polls are loading.");
+        return SpinKitPulse(
+          color: AppColors.accentDark,
+          size: 32,
+        );
     }
   }
 }

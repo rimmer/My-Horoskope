@@ -14,6 +14,7 @@ abstract class Locale {
   String get birthdate;
   String get birthplace;
   String get clarifyForecast;
+  String get calendarNotation;
   String get datomorrow;
   String get extended;
   String get female;

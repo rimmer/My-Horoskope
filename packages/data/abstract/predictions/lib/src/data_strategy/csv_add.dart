@@ -55,6 +55,8 @@ class SingleCsvAdd extends DataStrategy {
           predictions.negativeIntelligence.add(field[4]);
       }
     }
+
+    return null;
   }
 }
 
