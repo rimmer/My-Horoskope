@@ -1,5 +1,5 @@
-name: status_file_flutter
-description: saves status of things in one file
+name: app_preferences_flutter
+description: saves minor app preferences in one file
 version: 0.0.1
 author: bgoncharuck
 publish_to: none

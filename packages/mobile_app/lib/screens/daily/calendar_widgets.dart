@@ -129,7 +129,7 @@ Widget calendarNotation({Function onClick}) => Container(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                lang.calendarNotation,
+                lang.calendarHint,
                 style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 14.0,

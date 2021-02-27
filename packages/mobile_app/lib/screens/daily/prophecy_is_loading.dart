@@ -14,7 +14,7 @@ ListView prophecyIsLoading() {
         ),
         child: Text(
           "-.-.-.-.-.-.-.-.-",
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+          style: AppTextStyle.userName,
         ),
       ),
 
@@ -29,7 +29,7 @@ ListView prophecyIsLoading() {
           child: Row(
             children: <Widget>[
               SvgPicture.asset("assets/icons/Moon.svg"),
-              Text(" 11.11.2011 ", style: TextStyle(fontSize: 14)),
+              Text(" 11.11.2011 ", style: AppTextStyle.normalText),
             ],
           ),
         ),
@@ -84,7 +84,7 @@ ListView prophecyIsLoading() {
                   ),
                   child: TitleWithDescription(
                     title: lang.yourProphecies.capitalize(),
-                    notation: lang.yourPropheciesNotation,
+                    notation: lang.yourPropheciesHint,
                     height: 176.0,
                     width: 250.0,
                   ),
@@ -120,7 +120,7 @@ ListView prophecyIsLoading() {
                     ),
                     child: TitleWithDescription(
                       title: lang.impact.capitalize(),
-                      notation: lang.impactNotation,
+                      notation: lang.impactHint,
                       height: 172.0,
                       width: 242.0,
                     ),
@@ -177,11 +177,7 @@ Padding prophecyRecordLoading({
         Expanded(
           child: Text(
             lang.prophecyId[prophecyName],
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.w400,
-              color: AppColors.textPrimary,
-            ),
+            style: AppTextStyle.prophecyLabel,
           ),
         ),
         Column(
@@ -189,11 +185,7 @@ Padding prophecyRecordLoading({
           children: [
             Text(
               "${value.toStringAsFixed(0)}%",
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
+              style: AppTextStyle.prophecyPercent,
             ),
             Container(
               margin: EdgeInsets.only(top: 2.0),

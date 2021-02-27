@@ -21,7 +21,7 @@ extension DailyScreenUserPollBuilder on _DailyScreenState {
             ),
             child: TitleWithDescription(
               title: lang.todayAdvice.capitalize(),
-              notation: lang.todayAdviceNotation,
+              notation: lang.todayAdviceHint,
               height: 210.0,
               width: 250.0,
             ),

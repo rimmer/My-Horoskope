@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:my_prophet/theme/app_text_style.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +25,6 @@ FlatButton termsText({@required String text, @required String url}) =>
       onPressed: () => launch(url),
       child: Text(
         text,
-        style: TextStyle(
-          fontSize: 11,
-          color: AppColors.textPrimary,
-          fontWeight: FontWeight.w400,
-          decoration: TextDecoration.underline,
-        ),
+        style: AppTextStyle.termsText,
       ),
     );

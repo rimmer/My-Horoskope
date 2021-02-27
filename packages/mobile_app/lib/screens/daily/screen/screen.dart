@@ -7,7 +7,7 @@ part 'methods/userpoll_builder.dart';
 part 'methods/prophecy_builder.dart';
 part 'methods/prediction.dart';
 part 'methods/misc.dart';
-part 'methods/notavaible_button.dart';
+part 'methods/not_available_button.dart';
 
 class DailyScreen extends StatefulWidget {
   /// current and next NUMBER_OF_DAYS_TO_SHOW days DateTime
@@ -60,7 +60,7 @@ class _DailyScreenState extends State<DailyScreen> {
       children: <Widget>[
         SvgPicture.asset("assets/icons/${dat.sign}.svg"),
         Text(" ${dtConverted.day}.${dtConverted.month}.${dtConverted.year} ",
-            style: TextStyle(fontSize: 14)),
+            style: AppTextStyle.normalText),
       ],
     );
 
@@ -125,12 +125,12 @@ class _DailyScreenState extends State<DailyScreen> {
                     ),
 
                     /// notation
-                    (sp.statusFile.calendarNotationClicked)
+                    (sp.appPreferences.calendarNotationClicked)
                         ? SizedBox()
                         : calendarNotation(onClick: () {
                             setState(() {
-                              sp.statusFile.calendarNotationClicked = true;
-                              sp.statusFile.write();
+                              sp.appPreferences.calendarNotationClicked = true;
+                              sp.appPreferences.write();
                             });
                           }),
                   ],
@@ -168,7 +168,7 @@ class _DailyScreenState extends State<DailyScreen> {
             ),
 
             /// button that says "ambiance (relationship) are not avaible in this version"
-            notAvaibleButton(),
+            notAvailableButton(),
 
             SizedBox(
               height: SPACE_AFTER_AMBIANCE,

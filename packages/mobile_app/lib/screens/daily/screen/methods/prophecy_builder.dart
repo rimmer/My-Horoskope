@@ -31,7 +31,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
             ),
             child: Text(
               dat.labelStr,
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+              style: AppTextStyle.userName,
             ),
           ),
 
@@ -96,7 +96,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                       ),
                       child: TitleWithDescription(
                         title: lang.yourProphecies.capitalize(),
-                        notation: lang.yourPropheciesNotation,
+                        notation: lang.yourPropheciesHint,
                         height: 176.0,
                         width: 250.0,
                       ),
@@ -162,7 +162,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                         ),
                         child: TitleWithDescription(
                           title: lang.impact.capitalize(),
-                          notation: lang.impactNotation,
+                          notation: lang.impactHint,
                           height: 172.0,
                           width: 242.0,
                         ),

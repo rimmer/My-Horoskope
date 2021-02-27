@@ -1,16 +1,13 @@
 part of '../screen.dart';
 
 extension DailyScreenNotAvaibleButton on _DailyScreenState {
-  Widget notAvaibleButton() => NotAvaibleInfo(
+  Widget notAvailableButton() => NotAvaibleInfo(
         height: 242,
         width: 250,
         child: gradientBorderButton(
           child: Text(
             lang.addAmbiance.toUpperCase(),
-            style: TextStyle(
-              color: AppColors.textPrimary,
-              fontSize: 14.0,
-            ),
+            style: AppTextStyle.normalText,
           ),
           gradient: LinearGradient(
             colors: [

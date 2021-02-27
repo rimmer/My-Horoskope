@@ -14,7 +14,7 @@ abstract class Locale {
   String get birthdate;
   String get birthplace;
   String get clarifyForecast;
-  String get calendarNotation;
+  String get calendarHint;
   String get datomorrow;
   String get extended;
   String get female;
@@ -40,7 +40,7 @@ abstract class Locale {
   String get physicalActivity;
   Map<String, String> get planetImpactName;
   String get planetImpact;
-  String get impactNotation;
+  String get impactHint;
   String get pollSettingPollOption;
   String get pollSettingsStudyOption;
   String get pollSettingsTitle;
@@ -64,7 +64,7 @@ abstract class Locale {
   String get termsUserAgreement;
   String get today;
   String get todayAdvice;
-  String get todayAdviceNotation;
+  String get todayAdviceHint;
   String get howTodayAdvice;
   String get tomorrow;
   String get userAgreement;
@@ -72,6 +72,6 @@ abstract class Locale {
   String get writeToDev;
   String get you;
   String get yourProphecies;
-  String get yourPropheciesNotation;
+  String get yourPropheciesHint;
   String get futureDays;
 }

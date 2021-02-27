@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 
 import 'package:my_prophet/theme/app_colors.dart';
+import 'package:my_prophet/theme/app_text_style.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:language/language.dart';
 import 'package:poll_model/poll_model.dart';
 import 'magic_poll.dart';
+
+const _HEIGHT_OF_COMPLEXITY_TAB = 34.0;
+const _WIDTH_OF_COMPLEXITY_TAB = 146.0;
 
 Column yesterdayPollSimple(
         {@required MutableInteger mood, @required UserPollBloc userPollBloc})
@@ -137,8 +141,8 @@ Container userPollTabs({@required UserPollBloc bloc}) => Container(
                     ? AppColors.userPollTabInactive
                     : AppColors.userPollTabActive,
               ),
-              width: 146.0,
-              height: 34.0,
+              height: _HEIGHT_OF_COMPLEXITY_TAB,
+              width: _WIDTH_OF_COMPLEXITY_TAB,
               child: Center(
                 child: Text(
                   lang.simple.toUpperCase(),
@@ -161,15 +165,12 @@ Container userPollTabs({@required UserPollBloc bloc}) => Container(
                   color: (bloc.user.pollsAreComplex)
                       ? AppColors.userPollTabActive
                       : AppColors.userPollTabInactive),
-              height: 34.0,
-              width: 146.0,
+              height: _HEIGHT_OF_COMPLEXITY_TAB,
+              width: _WIDTH_OF_COMPLEXITY_TAB,
               child: Center(
                 child: Text(
                   lang.extended.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: AppColors.textPrimary,
-                  ),
+                  style: AppTextStyle.normalText,
                 ),
               ),
             ),

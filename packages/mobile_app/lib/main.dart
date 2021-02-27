@@ -9,12 +9,15 @@ void main() {
   singleProvider.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());
-  singleProvider.statusFile = StatusFile();
+  singleProvider.appPreferences = AppPreferences();
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
   runApp(AsyncActions(singleProvider));
 }
 
+/// It is needed for async actions durin the app start
+/// that are not covered by BLoCs
+/// for example, initialize some APIs from network or load misc files
 class AsyncActions extends StatefulWidget {
   final SingleProvider singleProvider;
   AsyncActions(this.singleProvider);
@@ -26,12 +29,13 @@ class _AsyncActionsState extends State<AsyncActions> {
   SingleProvider get sp => widget.singleProvider;
 
   /// list of async actions
-  loadStatusFile() async => sp.statusFile = await sp.statusFile.read();
+  loadAppPreferences() async =>
+      sp.appPreferences = await sp.appPreferences.read();
   //
   @override
   void initState() {
     /// calls of async actions
-    loadStatusFile();
+    loadAppPreferences();
     //
     super.initState();
   }

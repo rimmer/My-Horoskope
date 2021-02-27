@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:my_prophet/theme/app_text_style.dart';
 
 FlatButton menuItemLeadingIcon(
         {
@@ -35,11 +36,10 @@ FlatButton menuItemLeadingIcon(
                       )
                     : SizedBox(),
             SizedBox(width: 17.1),
-            Text(text,
-                style: TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 18,
-                )),
+            Text(
+              text,
+              style: AppTextStyle.menuItem,
+            ),
           ],
         ),
       ),
@@ -63,11 +63,10 @@ FlatButton menuItemFootingIcon(
         padding: const EdgeInsets.symmetric(vertical: 20.0),
         child: Row(
           children: [
-            Text(text,
-                style: TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 18,
-                )),
+            Text(
+              text,
+              style: AppTextStyle.menuItem,
+            ),
             Expanded(child: SizedBox()),
             (icon != null)
                 ? Icon(
@@ -96,11 +95,10 @@ FlatButton menuItemRateApp({@required String text, @required Function onTap}) =>
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(text,
-                style: TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 18,
-                )),
+            Text(
+              text,
+              style: AppTextStyle.menuItem,
+            ),
             Expanded(child: SizedBox()),
             Icon(
               Icons.star,

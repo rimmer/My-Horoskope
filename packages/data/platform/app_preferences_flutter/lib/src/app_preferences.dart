@@ -3,23 +3,23 @@ import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:storage_access/storage_access.dart' as storage;
 
-part 'status_file.g.dart';
+part 'app_preferences.g.dart';
 
-const _fileName = "status_file.json";
+const _fileName = "app_preferences.json";
 
 @JsonSerializable()
-class StatusFile {
+class AppPreferences {
   /// fields
   bool calendarNotationClicked;
 
   /// constructor
-  StatusFile({this.calendarNotationClicked = false});
+  AppPreferences({this.calendarNotationClicked = false});
 
   /// json
-  Map<String, Object> toJson() => _$StatusFileToJson(this);
+  Map<String, Object> toJson() => _$AppPreferencesToJson(this);
 
-  static StatusFile fromJson(Map<String, Object> json) =>
-      _$StatusFileFromJson(json);
+  static AppPreferences fromJson(Map<String, Object> json) =>
+      _$AppPreferencesFromJson(json);
 
   /// write and read
   Future<bool> write() async => await storage.write(
@@ -28,7 +28,7 @@ class StatusFile {
       );
 
   /// looks weird, but works and errorproof
-  Future<StatusFile> read() async {
+  Future<AppPreferences> read() async {
     try {
       //
       final red = await storage.read(fromFile: _fileName);
@@ -37,7 +37,7 @@ class StatusFile {
         return this;
       }
 
-      return StatusFile.fromJson(json.decode(red));
+      return AppPreferences.fromJson(json.decode(red));
 
       //
     } catch (_) {

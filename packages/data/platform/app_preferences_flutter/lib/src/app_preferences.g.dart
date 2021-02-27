@@ -1,18 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'status_file.dart';
+part of 'app_preferences.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-StatusFile _$StatusFileFromJson(Map<String, dynamic> json) {
-  return StatusFile(
+AppPreferences _$AppPreferencesFromJson(Map<String, dynamic> json) {
+  return AppPreferences(
     calendarNotationClicked: json['calendarNotationClicked'] as bool,
   );
 }
 
-Map<String, dynamic> _$StatusFileToJson(StatusFile instance) =>
+Map<String, dynamic> _$AppPreferencesToJson(AppPreferences instance) =>
     <String, dynamic>{
       'calendarNotationClicked': instance.calendarNotationClicked,
     };

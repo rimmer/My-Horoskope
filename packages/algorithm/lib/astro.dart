@@ -200,99 +200,99 @@ extension Karmic on String {
       //
       case "Aries":
         return {
-          ProphecyType.INTERNAL_STRENGTH: [5, 6, 7, 8, 9, 10],
-          ProphecyType.INTUITION: [9, 7, 9, 7, 5, 7],
-          ProphecyType.MOODLET: [9, 9, 9, 9, 9, 9],
+          ProphecyType.INTERNAL_STRENGTH: [1, 3, 6, 9, 11, 13],
+          ProphecyType.INTUITION: [13, 4, 5, 9, 2, 9],
+          ProphecyType.MOODLET: [6, 8, 6, 9, 9, 10],
           ProphecyType.AMBITION: [8, 8, 8, 8, 8, 8],
-          ProphecyType.LUCK: [6, 6, 6, 6, 6, 6],
+          ProphecyType.LUCK: [8, 4, 7, 13, 6, 9],
         };
       case "Taurus":
         return {
-          ProphecyType.INTERNAL_STRENGTH: [5, 6, 7, 8, 9, 10],
-          ProphecyType.INTUITION: [9, 9, 9, 9, 9, 9],
+          ProphecyType.INTERNAL_STRENGTH: [1, 3, 6, 9, 11, 13],
+          ProphecyType.INTUITION: [6, 8, 6, 9, 9, 10],
           ProphecyType.MOODLET: [8, 8, 8, 8, 8, 8],
-          ProphecyType.AMBITION: [6, 6, 6, 6, 6, 6],
-          ProphecyType.LUCK: [9, 7, 9, 7, 5, 7],
+          ProphecyType.AMBITION: [8, 4, 7, 13, 6, 9],
+          ProphecyType.LUCK: [13, 4, 5, 9, 2, 9],
         };
       case "Gemini":
         return {
-          ProphecyType.INTERNAL_STRENGTH: [5, 6, 7, 8, 9, 10],
+          ProphecyType.INTERNAL_STRENGTH: [1, 3, 6, 9, 11, 13],
           ProphecyType.INTUITION: [8, 8, 8, 8, 8, 8],
-          ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
-          ProphecyType.AMBITION: [9, 7, 9, 7, 5, 7],
-          ProphecyType.LUCK: [9, 9, 9, 9, 9, 9],
+          ProphecyType.MOODLET: [8, 4, 7, 13, 6, 9],
+          ProphecyType.AMBITION: [13, 4, 5, 9, 2, 9],
+          ProphecyType.LUCK: [6, 8, 6, 9, 9, 10],
         };
       case "Cancer":
         return {
-          ProphecyType.INTERNAL_STRENGTH: [9, 7, 9, 7, 5, 7],
+          ProphecyType.INTERNAL_STRENGTH: [13, 4, 5, 9, 2, 9],
           ProphecyType.INTUITION: [8, 8, 8, 8, 8, 8],
-          ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
-          ProphecyType.AMBITION: [5, 6, 7, 8, 9, 10],
-          ProphecyType.LUCK: [9, 9, 9, 9, 9, 9],
+          ProphecyType.MOODLET: [8, 4, 7, 13, 6, 9],
+          ProphecyType.AMBITION: [1, 3, 6, 9, 11, 13],
+          ProphecyType.LUCK: [6, 8, 6, 9, 9, 10],
         };
       case "Leo":
         return {
-          ProphecyType.INTERNAL_STRENGTH: [5, 6, 7, 8, 9, 10],
-          ProphecyType.INTUITION: [9, 7, 9, 7, 5, 7],
+          ProphecyType.INTERNAL_STRENGTH: [1, 3, 6, 9, 11, 13],
+          ProphecyType.INTUITION: [13, 4, 5, 9, 2, 9],
           ProphecyType.MOODLET: [8, 8, 8, 8, 8, 8],
-          ProphecyType.AMBITION: [6, 6, 6, 6, 6, 6],
-          ProphecyType.LUCK: [9, 9, 9, 9, 9, 9],
+          ProphecyType.AMBITION: [8, 4, 7, 13, 6, 9],
+          ProphecyType.LUCK: [6, 8, 6, 9, 9, 10],
         };
       case "Virgo":
         return {
           ProphecyType.INTERNAL_STRENGTH: [8, 8, 8, 8, 8, 8],
-          ProphecyType.INTUITION: [6, 6, 6, 6, 6, 6],
-          ProphecyType.MOODLET: [9, 9, 9, 9, 9, 9],
-          ProphecyType.AMBITION: [5, 6, 7, 8, 9, 10],
-          ProphecyType.LUCK: [9, 7, 9, 7, 5, 7],
+          ProphecyType.INTUITION: [8, 4, 7, 13, 6, 9],
+          ProphecyType.MOODLET: [6, 8, 6, 9, 9, 10],
+          ProphecyType.AMBITION: [1, 3, 6, 9, 11, 13],
+          ProphecyType.LUCK: [13, 4, 5, 9, 2, 9],
         };
       case "Libra":
         return {
-          ProphecyType.INTERNAL_STRENGTH: [9, 9, 9, 9, 9, 9],
-          ProphecyType.INTUITION: [5, 6, 7, 8, 9, 10],
+          ProphecyType.INTERNAL_STRENGTH: [6, 8, 6, 9, 9, 10],
+          ProphecyType.INTUITION: [1, 3, 6, 9, 11, 13],
           ProphecyType.MOODLET: [8, 8, 8, 8, 8, 8],
-          ProphecyType.AMBITION: [9, 7, 9, 7, 5, 7],
-          ProphecyType.LUCK: [6, 6, 6, 6, 6, 6],
+          ProphecyType.AMBITION: [13, 4, 5, 9, 2, 9],
+          ProphecyType.LUCK: [8, 4, 7, 13, 6, 9],
         };
       case "Scorpio":
         return {
-          ProphecyType.INTERNAL_STRENGTH: [9, 7, 9, 7, 5, 7],
+          ProphecyType.INTERNAL_STRENGTH: [13, 4, 5, 9, 2, 9],
           ProphecyType.INTUITION: [8, 8, 8, 8, 8, 8],
-          ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
-          ProphecyType.AMBITION: [9, 9, 9, 9, 9, 9],
-          ProphecyType.LUCK: [5, 6, 7, 8, 9, 10],
+          ProphecyType.MOODLET: [8, 4, 7, 13, 6, 9],
+          ProphecyType.AMBITION: [6, 8, 6, 9, 9, 10],
+          ProphecyType.LUCK: [1, 3, 6, 9, 11, 13],
         };
       case "Sagittarius":
         return {
           ProphecyType.INTERNAL_STRENGTH: [8, 8, 8, 8, 8, 8],
-          ProphecyType.INTUITION: [5, 6, 7, 8, 9, 10],
-          ProphecyType.MOODLET: [9, 9, 9, 9, 9, 9],
-          ProphecyType.AMBITION: [9, 7, 9, 7, 5, 7],
-          ProphecyType.LUCK: [6, 6, 6, 6, 6, 6],
+          ProphecyType.INTUITION: [1, 3, 6, 9, 11, 13],
+          ProphecyType.MOODLET: [6, 8, 6, 9, 9, 10],
+          ProphecyType.AMBITION: [13, 4, 5, 9, 2, 9],
+          ProphecyType.LUCK: [8, 4, 7, 13, 6, 9],
         };
       case "Capricorn":
         return {
-          ProphecyType.INTERNAL_STRENGTH: [9, 9, 9, 9, 9, 9],
-          ProphecyType.INTUITION: [5, 6, 7, 8, 9, 10],
-          ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
+          ProphecyType.INTERNAL_STRENGTH: [6, 8, 6, 9, 9, 10],
+          ProphecyType.INTUITION: [1, 3, 6, 9, 11, 13],
+          ProphecyType.MOODLET: [8, 4, 7, 13, 6, 9],
           ProphecyType.AMBITION: [8, 8, 8, 8, 8, 8],
-          ProphecyType.LUCK: [9, 7, 9, 7, 5, 7],
+          ProphecyType.LUCK: [13, 4, 5, 9, 2, 9],
         };
       case "Aquarius":
         return {
-          ProphecyType.INTERNAL_STRENGTH: [9, 7, 9, 7, 5, 7],
-          ProphecyType.INTUITION: [9, 9, 9, 9, 9, 9],
-          ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
-          ProphecyType.AMBITION: [5, 6, 7, 8, 9, 10],
+          ProphecyType.INTERNAL_STRENGTH: [13, 4, 5, 9, 2, 9],
+          ProphecyType.INTUITION: [6, 8, 6, 9, 9, 10],
+          ProphecyType.MOODLET: [8, 4, 7, 13, 6, 9],
+          ProphecyType.AMBITION: [1, 3, 6, 9, 11, 13],
           ProphecyType.LUCK: [8, 8, 8, 8, 8, 8],
         };
       case "Pisces":
         return {
-          ProphecyType.INTERNAL_STRENGTH: [5, 6, 7, 8, 9, 10],
+          ProphecyType.INTERNAL_STRENGTH: [1, 3, 6, 9, 11, 13],
           ProphecyType.INTUITION: [8, 8, 8, 8, 8, 8],
-          ProphecyType.MOODLET: [6, 6, 6, 6, 6, 6],
-          ProphecyType.AMBITION: [9, 7, 9, 7, 5, 7],
-          ProphecyType.LUCK: [9, 9, 9, 9, 9, 9],
+          ProphecyType.MOODLET: [8, 4, 7, 13, 6, 9],
+          ProphecyType.AMBITION: [13, 4, 5, 9, 2, 9],
+          ProphecyType.LUCK: [6, 8, 6, 9, 9, 10],
         };
     }
     return null;

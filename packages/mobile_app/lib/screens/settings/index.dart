@@ -8,5 +8,6 @@ export 'package:provider/provider.dart';
 export 'package:my_prophet/components/appbar.dart';
 export 'package:user_model/user_model.dart';
 export 'package:my_prophet/theme/app_colors.dart';
+export 'package:my_prophet/theme/app_text_style.dart';
 export 'package:my_prophet/services/direct_auth.dart';
 export 'package:my_prophet/components/user_settings/user_settings.dart';

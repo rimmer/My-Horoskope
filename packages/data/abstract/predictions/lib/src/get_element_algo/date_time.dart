@@ -9,7 +9,7 @@ class GetPredictionByDate implements GetPredictionAlgorithm {
     //
 
     if (predictions.isEmpty) {
-      throw ("Predictions was not loaded or not correct.");
+      throw ("Predictions were not loaded or not correct.");
     }
 
     final date = data as DateTime;

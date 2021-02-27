@@ -8,6 +8,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
+  app_preferences_flutter:
+    dependency: "direct main"
+    description:
+      path: "../data/platform/app_preferences_flutter"
+      relative: true
+    source: path
+    version: "0.0.1"
   archive:
     dependency: transitive
     description:
@@ -394,13 +401,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-  status_file_flutter:
-    dependency: "direct main"
-    description:
-      path: "../data/platform/status_file_flutter"
-      relative: true
-    source: path
-    version: "0.0.1"
   storage_access:
     dependency: transitive
     description:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_prophet/theme/app_text_style.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 
 Container notation({@required String text}) => Container(
@@ -21,9 +22,6 @@ Container notation({@required String text}) => Container(
           borderRadius: BorderRadius.circular(8.0)),
       child: Text(
         text,
-        style: TextStyle(
-          fontSize: 14.0,
-          color: AppColors.textPrimary,
-        ),
+        style: AppTextStyle.normalText,
       ),
     );

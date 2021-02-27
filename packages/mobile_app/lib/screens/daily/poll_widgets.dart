@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:language/language.dart';
 import 'package:my_prophet/components/title_description.dart';
+import 'package:my_prophet/theme/app_text_style.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:my_prophet/components/yesterday_poll.dart';
@@ -100,16 +101,14 @@ ListView _topPart(UserPollBloc bloc) => ListView(
         children: <Widget>[
           TitleWithDescription(
             title: lang.todayAdvice.capitalize(),
-            notation: lang.todayAdviceNotation,
+            notation: lang.todayAdviceHint,
             height: 210.0,
             width: 250.0,
           ),
           SizedBox(height: 18.0),
           Text(
             "${lang.howTodayAdvice.capitalize()}...",
-            style: TextStyle(
-              fontSize: 14,
-            ),
+            style: AppTextStyle.normalText,
           ),
           userPollTabs(bloc: bloc),
         ]);
@@ -122,9 +121,7 @@ Container _voteButton(UserPollBloc bloc) => Container(
         },
         child: Text(
           lang.clarifyForecast.toUpperCase(),
-          style: TextStyle(
-            fontSize: 14,
-          ),
+          style: AppTextStyle.normalText,
         ),
         padding: EdgeInsets.only(
           top: 11,

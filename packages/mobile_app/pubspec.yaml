@@ -51,8 +51,8 @@ dependencies:
     path: ../data/platform/prophecy_to_show_storage_flutter   
   predictions:
     path: ../data/abstract/predictions
-  status_file_flutter:
-    path: ../data/platform/status_file_flutter  
+  app_preferences_flutter:
+    path: ../data/platform/app_preferences_flutter  
     
   #blocs
   authentication:

@@ -105,10 +105,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               padding: EdgeInsets.symmetric(horizontal: 32.0),
               child: Text(
                 lang.personalInformation.capitalize(),
-                style: TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 20,
-                ),
+                style: AppTextStyle.backgroundLabel,
               ),
             ),
             Padding(

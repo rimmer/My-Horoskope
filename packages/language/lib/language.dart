@@ -17,7 +17,7 @@ class lang {
   static String birthdate = locale.birthdate;
   static String birthcountry = locale.birthcountry;
   static String birthplace = locale.birthplace;
-  static String calendarNotation = locale.calendarNotation;
+  static String calendarHint = locale.calendarHint;
   static String sex = locale.sex;
   static String male = locale.male;
   static String female = locale.female;
@@ -34,7 +34,7 @@ class lang {
   static String termsAreNotAccepted = locale.termsAreNotAccepted;
   static String you = locale.you;
   static String yourProphecies = locale.yourProphecies;
-  static String yourPropheciesNotation = locale.yourPropheciesNotation;
+  static String yourPropheciesHint = locale.yourPropheciesHint;
   static String my = locale.my;
   static String mood = locale.mood;
   static String yesterdayMood = locale.yesterdayMood;
@@ -51,11 +51,11 @@ class lang {
   static String pollSettingsStudyOption = locale.pollSettingsStudyOption;
   static String pollSettingText = locale.pollSettingText;
   static String planetImpact = locale.planetImpact;
-  static String impactNotation = locale.impactNotation;
+  static String impactHint = locale.impactHint;
   static String impact = locale.impact;
   static String today = locale.today;
   static String todayAdvice = locale.todayAdvice;
-  static String todayAdviceNotation = locale.todayAdviceNotation;
+  static String todayAdviceHint = locale.todayAdviceHint;
   static String howTodayAdvice = locale.howTodayAdvice;
   static String tomorrow = locale.tomorrow;
   static String datomorrow = locale.datomorrow;

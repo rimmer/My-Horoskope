@@ -1,10 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:my_prophet/theme/app_text_style.dart';
+import 'package:my_prophet/theme/app_colors.dart';
 import 'package:prophecy_model/prophecy_model.dart';
 import 'package:prophecies/prophecies.dart';
 import 'package:language/language.dart';
-import 'package:my_prophet/theme/app_colors.dart';
 
 Padding prophecyRecord({
   @required ProphecyEntity prophecy,
@@ -24,11 +25,7 @@ Padding prophecyRecord({
         Expanded(
           child: Text(
             lang.prophecyId[prophecy.id.toStr],
-            style: TextStyle(
-              fontSize: 18.0,
-              fontWeight: FontWeight.w400,
-              color: AppColors.textPrimary,
-            ),
+            style: AppTextStyle.prophecyLabel,
           ),
         ),
         Column(
@@ -36,11 +33,7 @@ Padding prophecyRecord({
           children: [
             Text(
               "${value.toStringAsFixed(0)}%",
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
+              style: AppTextStyle.prophecyPercent,
             ),
             Container(
               margin: EdgeInsets.only(top: 2.0),

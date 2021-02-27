@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:my_prophet/components/popup.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:language/language.dart';
+import 'package:my_prophet/theme/app_text_style.dart';
 import 'gradient_flatbutton.dart';
 
 class TitleWithDescription extends StatefulWidget {
@@ -32,11 +33,7 @@ class _TitleWithDescriptionState extends State<TitleWithDescription> {
       children: [
         Text(
           "${widget.title}:",
-          style: TextStyle(
-            color: AppColors.textDisabled,
-            fontSize: 14.0,
-            fontWeight: FontWeight.w700,
-          ),
+          style: AppTextStyle.titleDescription,
         ),
         GestureDetector(
           onTap: () {
@@ -53,9 +50,7 @@ class _TitleWithDescriptionState extends State<TitleWithDescription> {
                   child: Center(
                     child: Text(
                       widget.notation,
-                      style: TextStyle(
-                        fontSize: 14,
-                      ),
+                      style: AppTextStyle.normalText,
                     ),
                   ),
                 ),
@@ -70,9 +65,7 @@ class _TitleWithDescriptionState extends State<TitleWithDescription> {
                       },
                       child: Text(
                         lang.understood.toUpperCase(),
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
+                        style: AppTextStyle.gradientButton,
                       ),
                       padding: EdgeInsets.only(
                         top: 11,

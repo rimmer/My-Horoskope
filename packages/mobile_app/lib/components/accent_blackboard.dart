@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:my_prophet/theme/app_text_style.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 
 class AccentBlackboard extends StatefulWidget {
@@ -21,16 +22,6 @@ class AccentBlackboard extends StatefulWidget {
 }
 
 class _AccentBlackboardState extends State<AccentBlackboard> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
-
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) => Container(
         padding: widget.padding,
@@ -82,9 +73,5 @@ class _AccentBlackboardState extends State<AccentBlackboard> {
 
 Text _text(String text) => Text(
       text,
-      style: TextStyle(
-        color: AppColors.textPrimary,
-        fontSize: 19.0,
-        fontWeight: FontWeight.w500,
-      ),
+      style: AppTextStyle.accentBlackBoardText,
     );
