@@ -1,11 +1,15 @@
 enum TarotSuit { Wands, Pentacles, Swords, Cups }
 
 TarotSuit elementToTarotSuit(String element) {
+  TarotSuit suit;
+
   if (element == "Fire")
-    return TarotSuit.Wands;
+    suit = TarotSuit.Wands;
   else if (element == "Earth")
-    return TarotSuit.Pentacles;
+    suit = TarotSuit.Pentacles;
   else if (element == "Air")
-    return TarotSuit.Swords;
-  else if (element == "Water") return TarotSuit.Cups;
+    suit = TarotSuit.Swords;
+  else if (element == "Water") suit = TarotSuit.Cups;
+
+  return suit;
 }

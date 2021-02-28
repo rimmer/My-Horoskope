@@ -35,41 +35,9 @@ class RegistrationScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Image.asset(
-                'assets/launcher/icon.png',
-                height: 96,
-                width: 96,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Daily ",
-                  style: TextStyle(
-                    color: AppColors.accent,
-                    fontSize: 16,
-                  ),
-                ),
-                Text(
-                  "AI ",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                Text(
-                  "Horoscope",
-                  style: TextStyle(
-                    color: AppColors.accent,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "offline",
-                style: TextStyle(color: AppColors.textDisabled),
+                'assets/launcher/splash.png',
+                height: 120,
+                width: 120,
               ),
             ),
             SizedBox(

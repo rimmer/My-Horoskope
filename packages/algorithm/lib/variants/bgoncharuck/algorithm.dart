@@ -1,9 +1,7 @@
-import 'package:meta/meta.dart';
 import 'package:poll_model/poll_model.dart';
 import 'package:prophecies/prophecies.dart';
 import 'package:prophecy_model/prophecy_model.dart';
 import 'package:users_repository/users_repository.dart';
-import 'package:userpoll/userpoll.dart';
 import 'package:algorithm/astro.dart';
 import 'methods_base.dart';
 import 'methods_userpollcalc.dart';
@@ -13,9 +11,6 @@ import '../../astro.dart';
 import '../../astro_rome.dart';
 import '../../astro_jewish.dart';
 
-// - - -
-// hardcoded
-part 'base_hardcoded.dart';
 // - - -
 // astrology
 part 'base_astrology.dart';
@@ -33,7 +28,6 @@ abstract class _OldWisdom {
 class OfOldWayMagic implements MagicSpecialization {
   //
   /// Cut the red line here! Here we go
-  // final _OldWisdom _mage = _Hardcoded();
   final _OldWisdom _mage = _Astrology();
 
   /// asks information from the Old Way adept mage

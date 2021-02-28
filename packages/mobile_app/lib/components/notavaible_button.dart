@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_prophet/components/popup.dart';
 import 'package:my_prophet/theme/app_colors.dart';
+import 'package:my_prophet/theme/app_text_style.dart';
 import 'gradient_flatbutton.dart';
 
 class NotAvaibleInfo extends StatefulWidget {
@@ -57,9 +58,7 @@ class _NotAvaibleInfoState extends State<NotAvaibleInfo> {
                   },
                   child: Text(
                     widget.button,
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
+                    style: AppTextStyle.gradientButton,
                   ),
                   padding: EdgeInsets.only(
                     top: 11,

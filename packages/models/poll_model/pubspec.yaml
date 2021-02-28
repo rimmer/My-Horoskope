@@ -2,6 +2,7 @@ name: poll_model
 description: poll_model saves user choise in poll
 author: bgoncharuck
 version: 0.0.1+1
+publish_to: none
 
 environment:
   sdk: ">=2.6.0 <3.0.0"

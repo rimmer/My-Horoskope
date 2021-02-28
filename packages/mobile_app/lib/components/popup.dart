@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_prophet/theme/app_colors.dart';
+import 'package:my_prophet/theme/app_text_style.dart';
 
 Future<void> showOverCurrentScreen({
   @required BuildContext context,
@@ -63,11 +64,7 @@ class SimpleTransperentScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           SizedBox(width: 20),
-                          Text(title,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              )),
+                          Text(title, style: AppTextStyle.popupTitle),
                         ],
                       ),
                     )

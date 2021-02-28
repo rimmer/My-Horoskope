@@ -2,6 +2,7 @@ name: auth
 description: auth data abstraction
 version: 0.0.1
 author: bgoncharuck
+publish_to: none
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

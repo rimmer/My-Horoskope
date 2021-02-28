@@ -45,10 +45,7 @@ ListTile _prophecyEnablingItem(
     ListTile(
       leading: Text(
         text,
-        style: TextStyle(
-          color: AppColors.textPrimary,
-          fontSize: 16,
-        ),
+        style: AppTextStyle.labelText,
       ),
       trailing: MagicCheckbox(
         value: value,

@@ -9,7 +9,3 @@ part of 'prophecy_event.dart';
 String _$CalculateProphecyToString(CalculateProphecy o) {
   return """CalculateProphecy{dt: ${o.dt}}""";
 }
-
-String _$ClarifyProphecyToString(ClarifyProphecy o) {
-  return """ClarifyProphecy{dt: ${o.dt}, poll: ${o.poll}}""";
-}

@@ -7,7 +7,6 @@ import 'package:prophecy/bloc.dart';
 
 import 'package:algorithm/interface.dart';
 import 'package:prophecy_model/prophecy_model.dart';
-import 'package:userpoll/userpoll.dart';
 
 import 'prophecy_event.dart';
 import 'prophecy_state.dart';

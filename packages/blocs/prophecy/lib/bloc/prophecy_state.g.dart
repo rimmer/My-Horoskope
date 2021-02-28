@@ -13,7 +13,3 @@ String _$ProphecyInitialToString(ProphecyInitial o) {
 String _$ProphecyWasAskedToString(ProphecyWasAsked o) {
   return """ProphecyWasAsked{prophecy: ${o.prophecy}}""";
 }
-
-String _$ProphecyWasClarifiedToString(ProphecyWasClarified o) {
-  return """ProphecyWasClarified{prophecy: ${o.prophecy}}""";
-}

@@ -4,15 +4,11 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:poll_model/poll_model.dart';
 
-part 'poll.g.changed.dart';
-
-const int POLL_DEFAULT_INIT_VALUE = 3;
-// const int DEFAULT_COMPATIBILITY_VALUE = 42;
+part 'poll.g.dart';
 
 /// a collection of poll models that can be:
 /// - changed in future
 /// - be correctly saved and loaded
-/// - even with changes
 
 @JsonSerializable()
 class UserPoll {
@@ -21,12 +17,6 @@ class UserPoll {
 
   /// if poll was voted
   bool voted;
-
-  // /// if poll is a local poll or synced from anything else
-  // bool isLocal;
-
-  // /// compatibility value that can be used in future
-  // int compatibilityValue;
 
   /// main poll model type, that must exist independent from future changes
   PollModel mood;
@@ -42,29 +32,31 @@ class UserPoll {
     int relationships,
     int selfdevelopment,
     int physicalActivity,
-    // this.isLocal = true,
-    // this.compatibilityValue = DEFAULT_COMPATIBILITY_VALUE,
   }) {
     this.mood = PollModel(
       type: PollModelType.MOOD,
       value: mood,
     );
-    this.details.add(PollModel(
-          type: PollModelType.PRODUCTIVITY,
-          value: productivity ?? mood,
-        ));
-    this.details.add(PollModel(
-          type: PollModelType.RELATIONSHIPS,
-          value: relationships ?? mood,
-        ));
-    this.details.add(PollModel(
-          type: PollModelType.SELFDEVELOPMENT,
-          value: selfdevelopment ?? mood,
-        ));
-    this.details.add(PollModel(
-          type: PollModelType.PHYSICAL_ACTIVITY,
-          value: physicalActivity ?? mood,
-        ));
+    if (productivity != null)
+      this.details.add(PollModel(
+            type: PollModelType.PRODUCTIVITY,
+            value: productivity,
+          ));
+    if (relationships != null)
+      this.details.add(PollModel(
+            type: PollModelType.RELATIONSHIPS,
+            value: relationships,
+          ));
+    if (selfdevelopment != null)
+      this.details.add(PollModel(
+            type: PollModelType.SELFDEVELOPMENT,
+            value: selfdevelopment,
+          ));
+    if (physicalActivity != null)
+      this.details.add(PollModel(
+            type: PollModelType.PHYSICAL_ACTIVITY,
+            value: physicalActivity,
+          ));
   }
 
   int val(int index) => this.details[index].value;

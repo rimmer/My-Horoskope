@@ -10,13 +10,11 @@ ProphecyEntity _$ProphecyEntityFromJson(Map<String, dynamic> json) {
   return ProphecyEntity(
     id: _$enumDecodeNullable(_$ProphecyTypeEnumMap, json['id']),
     value: (json['value'] as num)?.toDouble(),
-    text: json['text'] as String,
   );
 }
 
 Map<String, dynamic> _$ProphecyEntityToJson(ProphecyEntity instance) =>
     <String, dynamic>{
-      'text': instance.text,
       'value': instance.value,
       'id': _$ProphecyTypeEnumMap[instance.id],
     };
