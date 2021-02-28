@@ -66,32 +66,34 @@ dependencies:
   language:
     path: ../language
 
-  # calcualtions
+  # calculations
   algorithm:
     path: ../algorithm
   
   #widgets
-  cupertino_icons: ^0.1.2
-  flutter_svg: ^0.18.0
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^0.19.3
   flutter_spinkit: ^4.1.2+1
 
 dev_dependencies:
   #flutter_test:
     #sdk: flutter
-  flutter_launcher_icons: ^0.7.0
+  flutter_launcher_icons: ^0.8.1
 
 flutter_icons:
   ios: true
   android: true
-  image_path_ios: "assets/launcher/icon.png"
-  image_path_android: "assets/launcher/icon.png"
+  image_path_ios: "assets/launcher/icon-ios.png"
+  image_path_android: "assets/launcher/icon-android-foreground.png"
+  adaptive_icon_background: "assets/launcher/icon-android-background.png"
+  adaptive_icon_foreground: "assets/launcher/icon-android-foreground.png"
 
 
 flutter:
   uses-material-design: true
   assets:
     - assets/background.jpg
-    - assets/launcher/
+    - assets/splash.png
     - assets/icons/
     - assets/widget/
     - assets/widget/magic_poll/

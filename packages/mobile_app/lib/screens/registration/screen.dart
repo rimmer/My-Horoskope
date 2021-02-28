@@ -35,7 +35,7 @@ class RegistrationScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Image.asset(
-                'assets/launcher/splash.png',
+                'assets/splash.png',
                 height: 120,
                 width: 120,
               ),
