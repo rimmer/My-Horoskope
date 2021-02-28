@@ -124,9 +124,14 @@ class UserPollBloc extends Bloc<UserPollEvent, UserPollState> {
 
     if (current == null) {
       /// if no todays poll exists, create one
+      final int mood = 3;
       current = UserPoll(
         dt: dtDay,
-        mood: 3,
+        mood: mood,
+        productivity: mood,
+        relationships: mood,
+        selfdevelopment: mood,
+        physicalActivity: mood,
         voted: false,
       );
 

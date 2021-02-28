@@ -8,6 +8,10 @@ class GetPredictionByDate implements GetPredictionAlgorithm {
   ) {
     //
 
+    if (predictions.isEmpty) {
+      throw ("Predictions were not loaded or not correct.");
+    }
+
     final date = data as DateTime;
     final dateNow = DateTime.now();
 

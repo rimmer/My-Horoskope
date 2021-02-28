@@ -17,6 +17,7 @@ class lang {
   static String birthdate = locale.birthdate;
   static String birthcountry = locale.birthcountry;
   static String birthplace = locale.birthplace;
+  static String calendarHint = locale.calendarHint;
   static String sex = locale.sex;
   static String male = locale.male;
   static String female = locale.female;
@@ -32,8 +33,11 @@ class lang {
   static String dateNotFilled = locale.dateNotFilled;
   static String termsAreNotAccepted = locale.termsAreNotAccepted;
   static String you = locale.you;
+  static String yourProphecies = locale.yourProphecies;
+  static String yourPropheciesHint = locale.yourPropheciesHint;
   static String my = locale.my;
   static String mood = locale.mood;
+  static String yesterdayMood = locale.yesterdayMood;
   static String simple = locale.simple;
   static String extended = locale.extended;
   static String clarifyForecast = locale.clarifyForecast;
@@ -46,8 +50,13 @@ class lang {
   static String pollSettingPollOption = locale.pollSettingPollOption;
   static String pollSettingsStudyOption = locale.pollSettingsStudyOption;
   static String pollSettingText = locale.pollSettingText;
+  static String planetImpact = locale.planetImpact;
+  static String impactHint = locale.impactHint;
   static String impact = locale.impact;
   static String today = locale.today;
+  static String todayAdvice = locale.todayAdvice;
+  static String todayAdviceHint = locale.todayAdviceHint;
+  static String howTodayAdvice = locale.howTodayAdvice;
   static String tomorrow = locale.tomorrow;
   static String datomorrow = locale.datomorrow;
   static String horoscope = locale.horoscope;
@@ -60,6 +69,7 @@ class lang {
   static String rateApp = locale.rateApp;
   static String privacyPolicy = locale.privacyPolicy;
   static String userAgreement = locale.userAgreement;
+  static String understood = locale.understood;
   static String personalInformation = locale.personalInformation;
   static String propheciesToDisplay = locale.propheciesToDisplay;
   static String save = locale.save;
@@ -68,7 +78,7 @@ class lang {
   static String noAmbianceButton = locale.noAmbianceButton;
   static String futureDays = locale.futureDays;
   static Map<int, String> get month => locale.month;
-  static Map<String, String> get planetImpact => locale.planetImpact;
+  static Map<String, String> get planetImpactName => locale.planetImpactName;
   static Map<String, String> get prophecyId => locale.prophecyId;
 }
 

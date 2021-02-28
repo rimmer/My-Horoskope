@@ -1,6 +1,7 @@
 name: prophecy_to_show_storage_flutter
 description: correctly save and load what prophecies to show on flutter platform
 version: 0.0.1
+publish_to: none
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

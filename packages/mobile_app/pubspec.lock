@@ -8,6 +8,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1+1"
+  app_preferences_flutter:
+    dependency: "direct main"
+    description:
+      path: "../data/platform/app_preferences_flutter"
+      relative: true
+    source: path
+    version: "0.0.1"
   archive:
     dependency: transitive
     description:

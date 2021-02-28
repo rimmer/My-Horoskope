@@ -1,6 +1,7 @@
 import 'package:my_prophet/single_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_prophet/theme/app_text_style.dart';
 import 'package:provider/provider.dart';
 import 'package:user_poll/bloc.dart';
 import 'package:my_prophet/components/popup.dart';
@@ -51,9 +52,7 @@ class PollSettingsState extends State<PollSettings> {
                   },
                   child: Text(
                     lang.apply.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
+                    style: AppTextStyle.gradientButton,
                   ),
                   padding: EdgeInsets.only(
                     top: 11,

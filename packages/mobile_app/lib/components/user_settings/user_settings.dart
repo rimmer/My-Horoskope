@@ -1,6 +1,6 @@
 import 'index.dart';
 
-typedef bool returnsTrueOnCorrect();
+typedef bool ReturnsTrueOnCorrect();
 
 int upperYearBound(int bound) => DateTime.now().year - bound;
 
@@ -16,7 +16,7 @@ Column userSettingsList({
   MutableBool termsAccepted,
   Function onUnvalidTerms,
   //
-  @required returnsTrueOnCorrect validInformationCheck,
+  @required ReturnsTrueOnCorrect validInformationCheck,
   @required Function onValidInformation,
   @required String buttonText,
 }) =>

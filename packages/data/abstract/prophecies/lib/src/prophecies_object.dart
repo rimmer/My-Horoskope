@@ -8,10 +8,6 @@ part 'prophecies_object.g.dart';
 /// and show calculated prophecies in the apps
 
 extension PropheciesObject on Map<ProphecyType, ProphecyEntity> {
-  void addText({@required ProphecyType id, @required String text}) {
-    this[id].text = text;
-  }
-
   ProphecyType get least {
     ProphecyEntity res;
     double min = double.maxFinite;
@@ -64,9 +60,11 @@ class ProphecyEntity {
   /// (makes it failproof)
   ProphecyModel _prophecy;
   //
-  String text;
 
-  ProphecyEntity({@required ProphecyType id, double value = 0.0, this.text}) {
+  ProphecyEntity({
+    @required ProphecyType id,
+    double value = 0.0,
+  }) {
     _prophecy = ProphecyModel(id: id, value: value);
   }
 

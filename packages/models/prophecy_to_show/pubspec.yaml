@@ -2,6 +2,7 @@ name: prophecy_to_show
 description: prophecy_to_show
 author: bgoncharuck
 version: 0.0.1+1
+publish_to: none
 
 environment:
   sdk: ">=2.6.0 <3.0.0"

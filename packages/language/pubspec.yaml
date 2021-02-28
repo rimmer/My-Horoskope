@@ -2,6 +2,7 @@ name: language
 description: separate module for localizations
 author: bgoncharuck
 version: 0.0.1+1
+publish_to: none
 
 environment:
   sdk: ">=2.6.0 <3.0.0"

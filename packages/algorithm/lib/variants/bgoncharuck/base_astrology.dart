@@ -297,8 +297,8 @@ class _Astrology implements _OldWisdom {
       ///
       /// And minimal value from this part, for every prophecy will be +14
       /// It will give total 4+3+14= 21 minimal value to any prophecy
-      /// in the worst situation, and will be added up to 32 in the BLoC,
-      /// 32 will be the minimal value possible by a BLoC check.
+      /// in the worst situation, and will be added up to 27 in the BLoC,
+      /// 27 will be the minimal value possible by a BLoC check.
       ///
       /// Now, let us return to this part of algorithm
       /// Even if user did not get a card with his sign

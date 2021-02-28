@@ -38,14 +38,3 @@ class ProphecyWasAsked extends ProphecyState {
   @override
   String toString() => _$ProphecyWasAskedToString(this);
 }
-
-@ToString()
-class ProphecyWasClarified extends ProphecyState {
-  final Map<ProphecyType, ProphecyEntity> prophecy;
-  ProphecyWasClarified(this.prophecy);
-
-  @override
-  List<Object> get props => [prophecy];
-  @override
-  String toString() => _$ProphecyWasClarifiedToString(this);
-}

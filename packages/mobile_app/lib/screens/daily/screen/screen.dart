@@ -1,9 +1,13 @@
 /// all imports are here
 import 'index.dart';
 
-/// keeps it simple
-part 'builders.dart';
 part 'data.dart';
+part 'methods/calendar_builder.dart';
+part 'methods/userpoll_builder.dart';
+part 'methods/prophecy_builder.dart';
+part 'methods/prediction.dart';
+part 'methods/misc.dart';
+part 'methods/not_available_button.dart';
 
 class DailyScreen extends StatefulWidget {
   /// current and next NUMBER_OF_DAYS_TO_SHOW days DateTime
@@ -33,15 +37,22 @@ class _DailyScreenState extends State<DailyScreen> {
   final dat = DailyStateData();
 
   @override
+  void dispose() {
+    if (dat != null && dat.prediction != null) dat.prediction.close();
+    super.dispose();
+  }
+
+  /// @INIT
+  @override
   void initState() {
     sp = context.read<SingleProvider>();
     //
 
+    dat.prediction = StreamController.broadcast();
     dat.user = sp.usersRepo.current;
     dat.labelStr =
-        "${dat.user.model.name.capitalize()} (${userRole(dat.user.role)})";
+        "${dat.user.model.name.capitalize()} (${lang.you.capitalize()})";
     dat.sign = dat.user.model.birth.astroSign;
-    dat.userPatron = dat.user.model.birth.astroHousePlanet;
 
     final dtConverted = dat.user.model.birth.toDateTime;
 
@@ -49,7 +60,7 @@ class _DailyScreenState extends State<DailyScreen> {
       children: <Widget>[
         SvgPicture.asset("assets/icons/${dat.sign}.svg"),
         Text(" ${dtConverted.day}.${dtConverted.month}.${dtConverted.year} ",
-            style: TextStyle(fontSize: 14)),
+            style: AppTextStyle.normalText),
       ],
     );
 
@@ -58,20 +69,7 @@ class _DailyScreenState extends State<DailyScreen> {
     super.initState();
   }
 
-  List<DateTime> get d => widget.day;
-  int get selected => widget.currentIndex.wrapped;
-  EnabledProphecies get toShow => sp.show.enabledProphecies;
-  bool get isToday => d[selected].millisecondsSinceEpoch == dtDay;
-
-  void calculateProphecy() {
-    sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));
-  }
-
-  void startUserPollBloc() {
-    sp.userPollBloc.loaded = false;
-    sp.userPollBloc.add(UserPollRestartEvent());
-  }
-
+  /// @BUILD
   @override
   Widget build(BuildContext context) {
     //
@@ -102,20 +100,57 @@ class _DailyScreenState extends State<DailyScreen> {
 
             /// @CALENDAR
             Container(
-              color: AppColors.calendarBackground.withOpacity(0.4),
-              height: CALENDAR_HEIGHT,
-              width: screen.width,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: NUMBER_OF_DAYS_TO_SHOW,
-                itemBuilder: dayToWidget,
-              ),
-            ),
+                height: CALENDAR_HEIGHT,
+                width: screen.width,
+                child: Stack(
+                  children: [
+                    /// actual calendar
+                    Container(
+                      decoration: BoxDecoration(
+                          color: AppColors.calendarBackground.withOpacity(0.8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.calendarShadow.withOpacity(0.34),
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset:
+                                  Offset(0, 2), // changes position of shadow
+                            ),
+                          ]),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: NUMBER_OF_DAYS_TO_SHOW,
+                        itemBuilder: dayToWidget,
+                      ),
+                    ),
+
+                    /// notation
+                    (sp.appPreferences.calendarNotationClicked)
+                        ? SizedBox()
+                        : calendarNotation(onClick: () {
+                            setState(() {
+                              sp.appPreferences.calendarNotationClicked = true;
+                              sp.appPreferences.write();
+                            });
+                          }),
+                  ],
+                )),
 
             //
 
             SizedBox(
-              height: SPACE_BETWEEN_CALENDAR_POLLS,
+              height: SPACE_BETWEEN_CALENDAR_PROPHECY,
+              width: screen.width,
+            ),
+
+            /// @PROPHECY
+            BlocBuilder<ProphecyBloc, ProphecyState>(
+              bloc: sp.prophecyBloc,
+              builder: prophecyBuilder,
+            ),
+
+            SizedBox(
+              height: SPACE_BETWEEN_PROPHECY_POLLS,
               width: screen.width,
             ),
 
@@ -128,52 +163,12 @@ class _DailyScreenState extends State<DailyScreen> {
                 : notation(text: lang.futureDays),
 
             SizedBox(
-              height: SPACE_BETWEEN_POLLS_PROPHECY,
-              width: screen.width,
-            ),
-
-            /// @PROPHECY
-            BlocBuilder<ProphecyBloc, ProphecyState>(
-              bloc: sp.prophecyBloc,
-              builder: prophecyBuilder,
-            ),
-
-            SizedBox(
               height: SPACE_BEFORE_AMBIANCE,
               width: screen.width,
             ),
 
-            NotAvaibleInfo(
-              height: 242,
-              width: 250,
-              child: gradientBorderButton(
-                child: Text(
-                  lang.addAmbiance.toUpperCase(),
-                  style: TextStyle(
-                    color: AppColors.textPrimary,
-                    fontSize: 14.0,
-                  ),
-                ),
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.accentDark,
-                    AppColors.accent,
-                    AppColors.primary,
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-                borderAsPadding: EdgeInsets.all(1.0),
-                background: AppColors.primaryDark,
-                internalPadding:
-                    EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
-                borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                onPressed: null,
-              ),
-              title: lang.noAmbianceTitle.capitalize(),
-              desc: lang.noAmbianceDescription,
-              button: lang.noAmbianceButton.toUpperCase(),
-            ),
+            /// button that says "ambiance (relationship) are not avaible in this version"
+            notAvailableButton(),
 
             SizedBox(
               height: SPACE_AFTER_AMBIANCE,

@@ -1,6 +1,4 @@
-import 'package:int_datetime/int_datetime.dart';
 import 'package:meta/meta.dart';
-import 'package:userpoll/userpoll.dart';
 import 'package:polls_repository/polls_repository.dart';
 import 'package:users_repository/users_repository.dart';
 import 'package:prophecy_model/prophecy_model.dart';
