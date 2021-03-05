@@ -13,10 +13,10 @@ class _AppPreferences {
 
   _AppPreferences({this.calendarNotationClicked = false});
 
-  Map<String, Object> toJson() => _$_AppPreferencesToJson(this);
+  Map<String, Object> toJson() => _appPreferencesToJson(this);
 
   static _AppPreferences fromJson(Map<String, Object> json) =>
-      _$_AppPreferencesFromJson(json);
+      _appPreferencesFromJson(json);
 }
 
 class AppPreferences {
@@ -26,10 +26,14 @@ class AppPreferences {
     read();
   }
 
-  Future<bool> write() async => await storage.write(
-        data: json.encode(preference.toJson()),
-        asFile: _fileName,
-      );
+  Future<bool> write() async {
+    if (preference == null) preference = _AppPreferences();
+
+    await storage.write(
+      data: json.encode(preference.toJson()),
+      asFile: _fileName,
+    );
+  }
 
   Future read() async {
     try {
