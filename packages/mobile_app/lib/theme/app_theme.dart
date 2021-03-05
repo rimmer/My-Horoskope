@@ -14,8 +14,11 @@ ThemeData appTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.primaryDark,
 
     /// DONT REMOVE IT
-    buttonTheme: ButtonThemeData(
-      padding: EdgeInsets.all(0.0), //adds padding inside the button
-      minWidth: 0, //wraps child's width
-      height: 0,
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
+            (Set<MaterialState> states) {
+          return EdgeInsets.all(0.0);
+        }), //adds padding inside the button
+      ),
     ));

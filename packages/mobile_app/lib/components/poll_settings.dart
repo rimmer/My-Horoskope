@@ -33,7 +33,7 @@ class PollSettingsState extends State<PollSettings> {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
       onPressed: () {
         showOverCurrentScreen(
             context: context,

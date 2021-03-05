@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 
@@ -47,7 +48,7 @@ class _UserInfoFieldState extends State<UserInfoField> {
           textCapitalization: widget.capitalizationType,
           autofocus: widget.autofocus,
           maxLength: widget.maxLength,
-          maxLengthEnforced: true,
+          maxLengthEnforcement: MaxLengthEnforcement.enforced,
           onChanged: (_) {
             if (_formKey.currentState.validate()) {
               widget.textObject.wrapped = _textController.text;

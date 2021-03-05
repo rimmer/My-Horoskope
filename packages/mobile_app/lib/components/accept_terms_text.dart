@@ -20,8 +20,8 @@ Text acceptTermsText(String text, {bool isController = false}) => Text(
               : AppColors.textSecondary),
     );
 
-FlatButton termsText({@required String text, @required String url}) =>
-    FlatButton(
+TextButton termsText({@required String text, @required String url}) =>
+    TextButton(
       onPressed: () => launch(url),
       child: Text(
         text,

@@ -32,7 +32,7 @@ abstract class PollsRepository {
     final detailsCount = anyPoll.details.length;
 
     /// then create placeholders for accamulation of poll values
-    List<int> details = List(detailsCount);
+    List<int> details = List.filled(detailsCount, 0);
     int mood = 0;
 
     /// if they are equal, then nothing to sum

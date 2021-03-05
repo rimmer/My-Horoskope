@@ -8,42 +8,44 @@ part 'app_preferences.g.dart';
 const _fileName = "app_preferences.json";
 
 @JsonSerializable()
-class AppPreferences {
-  /// fields
+class _AppPreferences {
   bool calendarNotationClicked;
 
-  /// constructor
-  AppPreferences({this.calendarNotationClicked = false});
+  _AppPreferences({this.calendarNotationClicked = false});
 
-  /// json
-  Map<String, Object> toJson() => _$AppPreferencesToJson(this);
+  Map<String, Object> toJson() => _$_AppPreferencesToJson(this);
 
-  static AppPreferences fromJson(Map<String, Object> json) =>
-      _$AppPreferencesFromJson(json);
+  static _AppPreferences fromJson(Map<String, Object> json) =>
+      _$_AppPreferencesFromJson(json);
+}
 
-  /// write and read
+class AppPreferences {
+  _AppPreferences preference;
+
+  AppPreferences() {
+    read();
+  }
+
   Future<bool> write() async => await storage.write(
-        data: json.encode(this.toJson()),
+        data: json.encode(preference.toJson()),
         asFile: _fileName,
       );
 
-  /// looks weird, but works and errorproof
-  Future<AppPreferences> read() async {
+  Future read() async {
     try {
       //
       final red = await storage.read(fromFile: _fileName);
       if (red == null) {
         await this.write();
-        return this;
+        return;
       }
 
-      return AppPreferences.fromJson(json.decode(red));
-
+      preference = _AppPreferences.fromJson(json.decode(red));
       //
     } catch (_) {
       print("Error was catched when reading $_fileName file: $_");
       this.write();
-      return this;
+      return;
     }
   }
 }

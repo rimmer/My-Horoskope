@@ -111,9 +111,7 @@ Column userSettingsList({
           },
           child: Text(
             buttonText,
-            style: TextStyle(
-              fontSize: 16,
-            ),
+            style: AppTextStyle.labelText,
           ),
           padding: EdgeInsets.symmetric(
             /// padding for a gradient button

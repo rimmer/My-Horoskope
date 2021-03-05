@@ -130,7 +130,7 @@ Container userPollTabs({@required UserPollBloc bloc}) => Container(
       child: Row(
         children: <Widget>[
           // Simple
-          FlatButton(
+          TextButton(
             onPressed: () {
               if (bloc.user.pollsAreComplex == true)
                 bloc.add(UserPollSwitchSimpleEvent());
@@ -155,7 +155,7 @@ Container userPollTabs({@required UserPollBloc bloc}) => Container(
             ),
           ),
           // Complex
-          FlatButton(
+          TextButton(
             onPressed: () {
               if (bloc.user.pollsAreComplex == false)
                 bloc.add(UserPollSwitchComplexEvent());

@@ -27,9 +27,10 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
         SizedBox(width: 16),
         (dayToIndex["TODAY"] == selected)
             ? selectedDate(d[index])
-            : FlatButton(
+            : TextButton(
                 onPressed: () {
                   widget.currentIndex.wrapped = index;
+                  // ignore: invalid_use_of_protected_member
                   setState(() {});
                 },
                 child: ordinaryDate(d[index]),
@@ -42,9 +43,10 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
       if (index == selected)
         return newMonthSelected(d[index]);
       else
-        return FlatButton(
+        return TextButton(
           onPressed: () {
             widget.currentIndex.wrapped = index;
+            // ignore: invalid_use_of_protected_member
             setState(() {});
           },
           child: newMonth(d[index]),
@@ -57,9 +59,10 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
     if (index == selected)
       return selectedDate(d[index]);
     else
-      return FlatButton(
+      return TextButton(
         onPressed: () {
           widget.currentIndex.wrapped = index;
+          // ignore: invalid_use_of_protected_member
           setState(() {});
         },
         child: ordinaryDate(d[index]),

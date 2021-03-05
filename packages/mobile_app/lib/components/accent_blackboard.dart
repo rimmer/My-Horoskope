@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:language/language.dart';
 import 'package:my_prophet/theme/app_text_style.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 
@@ -63,7 +64,7 @@ class _AccentBlackboardState extends State<AccentBlackboard> {
                   return _text(snapshot.data);
                 }
                 //
-                return _text("........");
+                return _text(lang.dataForPredictionWasChanged);
               },
             ),
           ],

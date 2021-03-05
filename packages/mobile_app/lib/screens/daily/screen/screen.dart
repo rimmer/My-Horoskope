@@ -125,11 +125,12 @@ class _DailyScreenState extends State<DailyScreen> {
                     ),
 
                     /// notation
-                    (sp.appPreferences.calendarNotationClicked)
+                    (sp.appPreferences.preference.calendarNotationClicked)
                         ? SizedBox()
                         : calendarNotation(onClick: () {
                             setState(() {
-                              sp.appPreferences.calendarNotationClicked = true;
+                              sp.appPreferences.preference
+                                  .calendarNotationClicked = true;
                               sp.appPreferences.write();
                             });
                           }),

@@ -1,15 +1,17 @@
 import 'interface.dart';
+
 part 'prediction/russian.dart';
 
 class RussianLocale implements Locale {
-  List<String> predicitonBark() => _predictionsRussian();
-
   final String appName = "Мой Пророк";
+
   final String name = "имя";
   final String birthdate = "дата рождения";
   final String birthcountry = "страна, в которой вы родились";
   final String birthplace = "населенный пункт, где вы родились";
   final String calendarHint = "Свайп для прокрутки календаря";
+  final String dataForPredictionWasChanged =
+      "Вы изменяли данные слишком быстро и совет дня не успел загрузиться. Пожалуйста, перезагрузите приложение.";
   final String sex = "пол";
   final String male = "мужской";
   final String female = "женский";
@@ -111,4 +113,5 @@ class RussianLocale implements Locale {
         "AMBITION": "Амбиции",
         "INTUITION": "Интуиция",
       };
+  List<String> predicitonBark() => _predictionsRussian();
 }

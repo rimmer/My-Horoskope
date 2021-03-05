@@ -12,6 +12,7 @@ void userInformationChangeMisc(
 
   sp.usersRepo.current.model = model;
   await sp.usersRepo.write();
+  sp.userPollBloc.add(UserPollRestartEvent());
 
   Navigator.of(context)
       .pushNamedAndRemoveUntil('/daily', (Route<dynamic> route) => false);
