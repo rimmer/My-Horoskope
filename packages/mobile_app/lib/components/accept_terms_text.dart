@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 
 const _temp = "ru";
 const URL_PRIVACY_POLICY =
-    "https://rimmer.github.io/my_prophet/privacy_policy/$_temp.html";
+    "https://rimmer.github.io/My-Prophet/privacy_policy/$_temp.html";
 const URL_USER_AGREEMENT =
-    "https://rimmer.github.io/my_prophet/user_agreement/$_temp.html";
+    "https://rimmer.github.io/My-Prophet/user_agreement/$_temp.html";
 
 Text acceptTermsText(String text, {bool isController = false}) => Text(
       text,
