@@ -62,7 +62,7 @@ class SingleCsvAdd extends DataStrategy {
 
 extension CsvMethods on String {
   List<String> splitCsvRow() {
-    final lst = List<String>();
+    final lst = <String>[];
     var csvRow = this;
 
     while (csvRow.isNotEmpty) {

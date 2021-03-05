@@ -19,10 +19,13 @@ export 'package:app_preferences_flutter/app_preferences_flutter.dart';
 /// our widget tree and code is a little messy because of providers
 /// I save all needed data in one object that will be inherited
 class SingleProvider {
+  // ignore: close_sinks
   AuthenticationBloc authBloc;
   UsersRepository usersRepo;
   PollsRepository pollsRepo;
+  // ignore: close_sinks
   UserPollBloc userPollBloc;
+  // ignore: close_sinks
   ProphecyBloc prophecyBloc;
   ProphecyToShowStorage show;
   DefaultPredictions predictions;

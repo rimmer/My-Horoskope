@@ -3,7 +3,7 @@ import 'package:my_prophet/theme/app_colors.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_prophet/theme/app_text_style.dart';
 
-FlatButton menuItemLeadingIcon(
+TextButton menuItemLeadingIcon(
         {
 
         /// icon to use
@@ -15,7 +15,7 @@ FlatButton menuItemLeadingIcon(
         //
         @required String text,
         @required Function onTap}) =>
-    FlatButton(
+    TextButton(
       onPressed: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0),
@@ -45,7 +45,7 @@ FlatButton menuItemLeadingIcon(
       ),
     );
 
-FlatButton menuItemFootingIcon(
+TextButton menuItemFootingIcon(
         {
 
         /// icon to use
@@ -57,7 +57,7 @@ FlatButton menuItemFootingIcon(
         //
         @required String text,
         @required Function onTap}) =>
-    FlatButton(
+    TextButton(
       onPressed: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0),
@@ -87,8 +87,8 @@ FlatButton menuItemFootingIcon(
       ),
     );
 
-FlatButton menuItemRateApp({@required String text, @required Function onTap}) =>
-    FlatButton(
+TextButton menuItemRateApp({@required String text, @required Function onTap}) =>
+    TextButton(
       onPressed: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0),

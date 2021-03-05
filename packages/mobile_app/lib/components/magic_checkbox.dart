@@ -11,7 +11,7 @@ class MagicCheckbox extends StatefulWidget {
 class _MagicCheckboxState extends State<MagicCheckbox> {
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
       onPressed: () {
         setState(() {
           widget.value.wrapped = !widget.value.wrapped;

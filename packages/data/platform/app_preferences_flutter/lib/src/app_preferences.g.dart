@@ -6,13 +6,15 @@ part of 'app_preferences.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AppPreferences _$AppPreferencesFromJson(Map<String, dynamic> json) {
-  return AppPreferences(
+// ignore: non_constant_identifier_names
+_AppPreferences _$_AppPreferencesFromJson(Map<String, dynamic> json) {
+  return _AppPreferences(
     calendarNotationClicked: json['calendarNotationClicked'] as bool,
   );
 }
 
-Map<String, dynamic> _$AppPreferencesToJson(AppPreferences instance) =>
+// ignore: non_constant_identifier_names
+Map<String, dynamic> _$_AppPreferencesToJson(_AppPreferences instance) =>
     <String, dynamic>{
       'calendarNotationClicked': instance.calendarNotationClicked,
     };

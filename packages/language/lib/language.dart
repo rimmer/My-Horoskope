@@ -9,14 +9,13 @@ class lang {
   /// `static` fields and variable **"locale"** that can be used to switch language.
   static Locale locale = RussianLocale();
 
-  /// Bark annalogy from the tree bark
-  static List<String> predicitonBark() => locale.predicitonBark();
-
   static String appName = locale.appName;
   static String name = locale.name;
   static String birthdate = locale.birthdate;
   static String birthcountry = locale.birthcountry;
   static String birthplace = locale.birthplace;
+  static String dataForPredictionWasChanged =
+      locale.dataForPredictionWasChanged;
   static String calendarHint = locale.calendarHint;
   static String sex = locale.sex;
   static String male = locale.male;
@@ -80,6 +79,9 @@ class lang {
   static Map<int, String> get month => locale.month;
   static Map<String, String> get planetImpactName => locale.planetImpactName;
   static Map<String, String> get prophecyId => locale.prophecyId;
+
+  /// Bark annalogy from the tree bark
+  static List<String> predicitonBark() => locale.predicitonBark();
 }
 
 /// capitalize first letter of string

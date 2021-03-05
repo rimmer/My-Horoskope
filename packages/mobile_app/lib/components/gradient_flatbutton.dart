@@ -13,7 +13,7 @@ Row gradientFlatButton({
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      FlatButton(
+      TextButton(
         onPressed: () {
           onPressed();
         },

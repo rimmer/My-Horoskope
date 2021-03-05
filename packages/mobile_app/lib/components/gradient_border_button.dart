@@ -13,7 +13,7 @@ Row gradientBorderButton({
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
-      FlatButton(
+      TextButton(
         onPressed: onPressed,
         child: Container(
           padding: borderAsPadding,
