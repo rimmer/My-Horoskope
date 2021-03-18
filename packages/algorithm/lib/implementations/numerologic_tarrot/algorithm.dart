@@ -14,7 +14,7 @@ const _bonusPointsMagnitude = 13;
 /// Researched, calculated and created with love by @bgoncharuck
 /// Rights reserved by @rimmer
 Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
-    {UserEntity aboutUser, int inTimeOf}) {
+    {UserEntity aboutUser, int inTimeOf, bool isDebug = false}) {
   //
 
   /// prophecy value placeholders
@@ -37,7 +37,9 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   TarotSuit userSuit = elementToTarotSuit(birthDateInteger.astroElement);
   //
 
-  print(calculationDate.toIso8601String());
+  if (isDebug) {
+    print(calculationDate.toIso8601String());
+  }
 
   /// @CHAOTIC value of placeholders
   /// The most unstable value of the algorithm
@@ -73,13 +75,14 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
       dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTUITION);
   luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.LUCK);
 
-  //@DEBUG
-  // print("- - -\nChaotic:");
-  // print("Prophecy: Internal Strength, chaotic points: $internalStr");
-  // print("Prophecy: Moodlet, chaotic points: $moodlet");
-  // print("Prophecy: Ambition, chaotic points: $ambition");
-  // print("Prophecy: Intuition, chaotic points: $intuition");
-  // print("Prophecy: Luck, chaotic points: $luck");
+  if (isDebug) {
+    print("- - -\nChaotic:");
+    print("Prophecy: Internal Strength, chaotic points: $internalStr");
+    print("Prophecy: Moodlet, chaotic points: $moodlet");
+    print("Prophecy: Ambition, chaotic points: $ambition");
+    print("Prophecy: Intuition, chaotic points: $intuition");
+    print("Prophecy: Luck, chaotic points: $luck");
+  }
 
   // - - -
 
@@ -106,10 +109,11 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   final internalStrAmbitionBase = InternalStrAmbitionBase
       .mapSignAndMonthToValue[astroSign][calculationDate.month];
 
-  //@DEBUG
-  // print("- - -\nBase:");
-  // print("Prophecy: Internal Strength, base points: $internalStrAmbitionBase");
-  // print("Prophecy: Ambition, base points: $internalStrAmbitionBase");
+  if (isDebug) {
+    print("- - -\nBase:");
+    print("Prophecy: Internal Strength, base points: $internalStrAmbitionBase");
+    print("Prophecy: Ambition, base points: $internalStrAmbitionBase");
+  }
 
   ambition += internalStrAmbitionBase;
   internalStr += internalStrAmbitionBase;
@@ -134,7 +138,7 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   ///
   /// I used difference between numerologic union of birthday and
   /// numerologic union of current day of month as a base for
-  /// intelligence, luck and mood
+  /// Intuition, luck and mood
   /// the bigger is difference, the lesser points will be getted
   /// multiplier is 4
   ///
@@ -143,17 +147,17 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   final moodIntuitLuckBase =
       moodIntuitionLuckBase(birthDate.day, calculationDate.day);
 
-  //@DEBUG
-  // print("Prophecy: Moodlet, base points: $moodIntuitLuckBase");
-  // print("Prophecy: Intuition, base points: $moodIntuitLuckBase");
-  // print("Prophecy: Luck, base points: $moodIntuitLuckBase");
+  if (isDebug) {
+    print("Prophecy: Moodlet, base points: $moodIntuitLuckBase");
+    print("Prophecy: Intuition, base points: $moodIntuitLuckBase");
+    print("Prophecy: Luck, base points: $moodIntuitLuckBase");
+  }
 
   moodlet += moodIntuitLuckBase;
   intuition += moodIntuitLuckBase;
   luck += moodIntuitLuckBase;
 
-  //@DEBUG
-  // print("- - -\nCalesial tarot calcualtion:");
+  if (isDebug) print("- - -\nCalesial tarot calcualtion:");
 
   /// @MYSTIC
   /// this is the most interesting part of an algorithm
@@ -201,15 +205,16 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   ///
   /// In modulus %56
   int mod56 = daysLived % 56;
-  //@DEBUG
-  // print("CTarot: Minor is $mod56,");
+
+  if (isDebug) print("CTarot: Minor is $mod56,");
 
   /// In one day from 56
   /// User can get the card that represents its astrologic sign
   bool probabilityMinor = userPatron == Kabbalah.patronMinor[mod56];
-  //@DEBUG
-  // print(
-  //     "CTarot: Minor Card is ${(probabilityMinor) ? "" : "NOT "}user patron,");
+
+  if (isDebug)
+    print(
+        "CTarot: Minor Card is ${(probabilityMinor) ? "" : "NOT "}user patron,");
 
   ///
   /// Probability is 1/56, but 4 signs have probability 2/56
@@ -220,15 +225,16 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   /// But this ideal situation can happen once per 10 years or so.
   /// In modulus %78
   int mod78 = daysLived % 78;
-  //@DEBUG
-  // print("CTarot: Full is $mod78,");
+
+  if (isDebug) print("CTarot: Full is $mod78,");
 
   /// In 3 days from 78
   /// User can get the card that represents its astrologic sign
   bool probabilityFull = userPatron == Kabbalah.patronFull[mod78];
-  //@DEBUG
-  // print(
-  //     "CTarot: Minor+Major Card is ${(probabilityFull) ? "" : "NOT "}user patron,");
+
+  if (isDebug)
+    print(
+        "CTarot: Minor+Major Card is ${(probabilityFull) ? "" : "NOT "}user patron,");
 
   ///
   /// Probability is 3/78 or 1/26
@@ -239,15 +245,16 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   /// But this ideal situation can happen once per 7 years or so
   /// In modulus %22
   int mod22 = daysLived % 22;
-  //@DEBUG
-  // print("CTarot: Major is $mod22,");
+
+  if (isDebug) print("CTarot: Major is $mod22,");
 
   /// In 2 days from 22
   /// User can get card that represents its astrologic sign
   bool probabilityMajor = userPatron == Kabbalah.patronMajor[mod22];
-  //@DEBUG
-  // print(
-  //     "CTarot: Major Card is ${(probabilityMajor) ? "" : "NOT "}user patron,");
+
+  if (isDebug)
+    print(
+        "CTarot: Major Card is ${(probabilityMajor) ? "" : "NOT "}user patron,");
 
   ///
   /// Probability is 2/22 or 1/11
@@ -262,9 +269,10 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     ambition += _biggestBonus;
     intuition += _biggestBonus;
     luck += _biggestBonus;
-    //@DEBUG
-    // print(
-    //     "CTarot: user won the biggest bonus, which is $_biggestBonus points for every prophecy,");
+
+    if (isDebug)
+      print(
+          "CTarot: user won the biggest bonus, which is $_biggestBonus points for every prophecy,");
     //
   } else if (probabilityFull) {
     //
@@ -273,9 +281,10 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     ambition += _bigBonus;
     intuition += _bigBonus;
     luck += _bigBonus;
-    //@DEBUG
-    // print(
-    //     "CTarot: user won a big bonus, which is $_bigBonus points for every prophecy,");
+
+    if (isDebug)
+      print(
+          "CTarot: user won a big bonus, which is $_bigBonus points for every prophecy,");
     //
   } else if (probabilityMajor) {
     //
@@ -284,9 +293,10 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     ambition += _middleBonus;
     intuition += _middleBonus;
     luck += _middleBonus;
-    //@DEBUG
-    // print(
-    //     "CTarot: user won a middle bonus, which is $_middleBonus points for every prophecy,");
+
+    if (isDebug)
+      print(
+          "CTarot: user won a middle bonus, which is $_middleBonus points for every prophecy,");
     //
   } else {
     /// in most days user will not get so huge bonuses
@@ -319,8 +329,9 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     /// This value changes dynamically every day by only 1 point
     /// see _Kabbalah.impactMinor for more details
     int impactValue = Kabbalah.impactMinor[mod56][userSuit];
-    //@DEBUG
-    // print("CTarot: user won $impactValue points for every prophecy,");
+
+    if (isDebug)
+      print("CTarot: user won $impactValue points for every prophecy,");
 
     internalStr += impactValue;
     moodlet += impactValue;
@@ -335,30 +346,34 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     switch (bonusPoints) {
       case ProphecyType.INTERNAL_STRENGTH:
         internalStr += _bonusPointsMagnitude;
-        //@DEBUG
-        // print(
-        //     "CTarot: user won $_bonusPointsMagnitude points to internal strength,");
+
+        if (isDebug)
+          print(
+              "CTarot: user won $_bonusPointsMagnitude points to internal strength,");
         break;
       case ProphecyType.MOODLET:
         moodlet += _bonusPointsMagnitude;
-        //@DEBUG
-        // print("CTarot: user won $_bonusPointsMagnitude points to moodlet,");
+
+        if (isDebug)
+          print("CTarot: user won $_bonusPointsMagnitude points to moodlet,");
         break;
       case ProphecyType.AMBITION:
         ambition += _bonusPointsMagnitude;
-        //@DEBUG
-        // print("CTarot: user won $_bonusPointsMagnitude points to ambition,");
+
+        if (isDebug)
+          print("CTarot: user won $_bonusPointsMagnitude points to ambition,");
         break;
       case ProphecyType.INTUITION:
         intuition += _bonusPointsMagnitude;
-        //@DEBUG
-        // print(
-        //     "CTarot: user won $_bonusPointsMagnitude points to intelligence,");
+
+        if (isDebug)
+          print("CTarot: user won $_bonusPointsMagnitude points to intuition,");
         break;
       case ProphecyType.LUCK:
         luck += _bonusPointsMagnitude;
-        //@DEBUG
-        // print("CTarot: user won $_bonusPointsMagnitude points to luck,");
+
+        if (isDebug)
+          print("CTarot: user won $_bonusPointsMagnitude points to luck,");
         break;
     }
   }
@@ -367,12 +382,14 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   /// Result,
   ///
   /// First we print,
-  print("- - -\nResult:");
-  print("Prophecy: Internal Strength, total points: $internalStr");
-  print("Prophecy: Moodlet, total points: $moodlet");
-  print("Prophecy: Ambition, total points: $ambition");
-  print("Prophecy: Intelligence, total points: $intuition");
-  print("Prophecy: Luck, total points: $luck");
+  if (isDebug) {
+    print("- - -\nResult:");
+    print("Prophecy: Internal Strength, total points: $internalStr");
+    print("Prophecy: Moodlet, total points: $moodlet");
+    print("Prophecy: Ambition, total points: $ambition");
+    print("Prophecy: Intuition, total points: $intuition");
+    print("Prophecy: Luck, total points: $luck");
+  }
 
   /// Now, we finally send out values to our algorithm module call:
   return {

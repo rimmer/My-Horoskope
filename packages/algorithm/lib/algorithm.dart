@@ -34,14 +34,20 @@ class Algorithm extends AlgorithmInterface {
 
   /// strategy pattern, but you can save functions as variables in Dart
   Map<ProphecyType, ProphecyEntity> // return type
-          Function({UserEntity aboutUser, int inTimeOf}) askProphet =
+          Function({UserEntity aboutUser, int inTimeOf, bool isDebug})
+      askProphet =
 
       /// implementation that used
       numerologicAndTarrotProphet;
 
   final AlgoData dat;
 
-  Map<ProphecyType, ProphecyEntity> ask({@required int aboutDay}) {
-    return askProphet(aboutUser: dat.user, inTimeOf: aboutDay);
+  Map<ProphecyType, ProphecyEntity> ask(
+      {@required int aboutDay, UserEntity testUser, bool isDebug}) {
+    return askProphet(
+      aboutUser: testUser ?? dat.user,
+      inTimeOf: aboutDay,
+      isDebug: isDebug,
+    );
   }
 }
