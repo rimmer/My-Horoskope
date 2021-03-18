@@ -1,4 +1,373 @@
-part of 'algorithm.dart';
+// all astrology was created for this months
+// and now we have 12, not 10 months
+// it is a quite stupid problem
+// enum RomMonAncient {
+//   Martius,
+//   Aprilis,
+//   Maius,
+//   Junius,
+//   Quintilis,
+//   Sextilis,
+//   September,
+//   October,
+//   November,
+//   December,
+// None,
+// }
+
+import 'package:my_prophet/prophecy/entity/prophecy.dart';
+
+enum RomGod {
+  None,
+  Mars,
+  Venus,
+  Mercury,
+  Luna,
+  Helios,
+  Pluto,
+  Jupiter,
+  Saturn,
+  Uranus,
+  Neptune,
+}
+
+// this relation is best, but we can't use it
+// const AncientRomMonthToGod = {
+//   RomMonAncient.Martius: RomGod.Mars,
+//   RomMonAncient.Aprilis: RomGod.Venus,
+//   RomMonAncient.Maius: RomGod.Mercury,
+//   RomMonAncient.Junius: RomGod.Luna,
+//   RomMonAncient.Quintilis: RomGod.Helios,
+//   RomMonAncient.Sextilis: RomGod.Uranus,
+//   RomMonAncient.September: RomGod.Neptune,
+//   RomMonAncient.October: RomGod.Pluto,
+//   RomMonAncient.November: RomGod.Jupiter,
+//   RomMonAncient.December: RomGod.Saturn,
+// };
+
+// we cant use it too, because calendar was shifted in XV century
+// const RomMonthToGodJulianCalendar = {
+// RomMon.Martius: RomGod.Mars,
+// RomMon.Aprilis: RomGod.Venus,
+// RomMon.Maius: RomGod.Mercury,
+// RomMon.Iunius: RomGod.Luna,
+// RomMon.Quintilis: RomGod.Helios,
+// Mercury used again because 2 months were added
+// and romans did not approve new gods with unique months
+// RomMon.Sextilis: RomGod.Mercury,
+// same with Venus
+// RomMon.September: RomGod.Venus,
+// RomMon.October: RomGod.Pluto,
+// RomMon.November: RomGod.Jupiter,
+// RomMon.December: RomGod.Saturn,
+// RomMon.Ianuarius: RomGod.Uranus,
+// RomMon.Februarius: RomGod.Neptune,
+// };
+
+/// Month names have incorrect relationship
+/// to the God's name and Greek/Rome astrology
+/// but, this is what we use, because of
+/// 2 calendar changes
+const RomMonthToGod = {
+  RomMon.Martius: RomGod.Neptune,
+  RomMon.Aprilis: RomGod.Mars,
+  RomMon.Maius: RomGod.Venus,
+  RomMon.Iunius: RomGod.Mercury,
+  RomMon.Quintilis: RomGod.Luna,
+  RomMon.Sextilis: RomGod.Helios,
+  RomMon.September: RomGod.Mercury,
+  RomMon.October: RomGod.Venus,
+  RomMon.November: RomGod.Pluto,
+  RomMon.December: RomGod.Jupiter,
+  RomMon.Ianuarius: RomGod.Saturn,
+  RomMon.Februarius: RomGod.Uranus,
+};
+
+/// Julian Calendar Names
+enum RomMon {
+  Ianuarius,
+  Februarius,
+  Martius,
+  Aprilis,
+  Maius,
+  Iunius,
+  Quintilis,
+  Sextilis,
+  September,
+  October,
+  November,
+  December,
+}
+
+extension RomePatron on DateTime {
+  RomGod get patron {
+    //
+
+    RomMon patron = RomMon.December;
+
+    switch (this.month) {
+      case 1:
+        patron = RomMon.Ianuarius;
+        break;
+
+      case 2:
+        patron = RomMon.Februarius;
+        break;
+
+      case 3:
+        patron = RomMon.Martius;
+        break;
+
+      case 4:
+        patron = RomMon.Aprilis;
+        break;
+
+      case 5:
+        patron = RomMon.Maius;
+        break;
+
+      case 6:
+        patron = RomMon.Iunius;
+        break;
+
+      case 7:
+        patron = RomMon.Quintilis;
+        break;
+
+      case 8:
+        patron = RomMon.Sextilis;
+        break;
+
+      case 9:
+        patron = RomMon.September;
+        break;
+
+      case 10:
+        patron = RomMon.October;
+        break;
+
+      case 11:
+        patron = RomMon.November;
+        break;
+
+      case 12:
+      default:
+        break;
+    }
+
+    return RomMonthToGod[patron];
+  }
+}
+
+enum TarotSuit { Wands, Pentacles, Swords, Cups }
+
+TarotSuit elementToTarotSuit(String element) {
+  TarotSuit suit;
+
+  if (element == "Fire")
+    suit = TarotSuit.Wands;
+  else if (element == "Earth")
+    suit = TarotSuit.Pentacles;
+  else if (element == "Air")
+    suit = TarotSuit.Swords;
+  else if (element == "Water") suit = TarotSuit.Cups;
+
+  return suit;
+}
+
+/// unique month impact for every sign
+/// multiple of 3, 12 monthes
+/// 3, 6, 9.. 36
+class InternalStrAmbitionBase {
+  static const Map<String, Map<int, int>> mapSignAndMonthToValue = {
+    "Aries": {
+      1: 18,
+      2: 21,
+      3: 6,
+      4: 36,
+      5: 12,
+      6: 24,
+      7: 9,
+      8: 30,
+      9: 15,
+      10: 27,
+      11: 3,
+      12: 33,
+    },
+    "Taurus": {
+      1: 30,
+      2: 9,
+      3: 24,
+      4: 12,
+      5: 36,
+      6: 6,
+      7: 21,
+      8: 18,
+      9: 33,
+      10: 3,
+      11: 27,
+      12: 15,
+    },
+    "Gemini": {
+      1: 3,
+      2: 33,
+      3: 18,
+      4: 21,
+      5: 6,
+      6: 36,
+      7: 12,
+      8: 24,
+      9: 9,
+      10: 30,
+      11: 15,
+      12: 27,
+    },
+    "Cancer": {
+      1: 27,
+      2: 15,
+      3: 30,
+      4: 9,
+      5: 24,
+      6: 12,
+      7: 36,
+      8: 6,
+      9: 21,
+      10: 18,
+      11: 33,
+      12: 3,
+    },
+    "Leo": {
+      1: 15,
+      2: 27,
+      3: 3,
+      4: 33,
+      5: 18,
+      6: 21,
+      7: 6,
+      8: 36,
+      9: 12,
+      10: 24,
+      11: 9,
+      12: 30,
+    },
+    "Virgo": {
+      1: 33,
+      2: 3,
+      3: 27,
+      4: 15,
+      5: 30,
+      6: 9,
+      7: 24,
+      8: 12,
+      9: 36,
+      10: 6,
+      11: 21,
+      12: 18,
+    },
+    "Libra": {
+      1: 9,
+      2: 30,
+      3: 15,
+      4: 27,
+      5: 3,
+      6: 33,
+      7: 18,
+      8: 21,
+      9: 6,
+      10: 36,
+      11: 12,
+      12: 24,
+    },
+    "Scorpio": {
+      1: 21,
+      2: 18,
+      3: 33,
+      4: 3,
+      5: 27,
+      6: 15,
+      7: 30,
+      8: 9,
+      9: 24,
+      10: 12,
+      11: 36,
+      12: 6,
+    },
+    "Sagittarius": {
+      1: 12,
+      2: 24,
+      3: 9,
+      4: 30,
+      5: 15,
+      6: 27,
+      7: 3,
+      8: 33,
+      9: 18,
+      10: 21,
+      11: 6,
+      12: 36,
+    },
+    "Capricorn": {
+      1: 36,
+      2: 6,
+      3: 21,
+      4: 18,
+      5: 33,
+      6: 3,
+      7: 27,
+      8: 15,
+      9: 30,
+      10: 9,
+      11: 24,
+      12: 12,
+    },
+    "Aquarius": {
+      1: 6,
+      2: 36,
+      3: 12,
+      4: 24,
+      5: 9,
+      6: 30,
+      7: 15,
+      8: 27,
+      9: 3,
+      10: 33,
+      11: 18,
+      12: 21,
+    },
+    "Pisces": {
+      1: 24,
+      2: 12,
+      3: 36,
+      4: 6,
+      5: 21,
+      6: 18,
+      7: 33,
+      8: 3,
+      9: 27,
+      10: 15,
+      11: 30,
+      12: 9,
+    },
+  };
+}
+
+const Map<String, int> astroSignToDayOfWeek = {
+  "Aries": 2,
+  "Taurus": 5,
+  "Gemini": 3,
+  "Cancer": 1,
+  "Leo": 7,
+  "Virgo": 3,
+  "Libra": 5,
+  "Scorpio": 2,
+  "Sagittarius": 4,
+  "Capricorn": 6,
+  // Aquarius is under Uranus and Saturn, but I place Jupiter here,
+  // Jupiter is Thursday
+  "Aquarius": 4,
+  // "Aquarius": 6,
+  "Pisces": 1,
+};
 
 /// use Kabbalah and Calestial Tarot
 /// connects it with roman (greek) astrology
@@ -24,7 +393,7 @@ part of 'algorithm.dart';
 /// if no patron matched,
 /// ordinaryImpact must be used
 ///
-class _Kabbalah {
+class Kabbalah {
   //
 
   /// it must be counted from 1, but we will do

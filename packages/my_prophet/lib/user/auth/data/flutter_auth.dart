@@ -1,16 +1,23 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
-import '../interface.dart';
-import '../../../repository/interface.dart';
-import '../../../repository/flutter_default/flutter_default.dart';
+import 'interface.dart';
+import '../../repository/interface.dart';
+import '../../repository/flutter_default/flutter_default.dart';
 
 class AuthFlutter implements Auth {
+  // singleton
+  AuthFlutter._({@required this.repository});
+  static AuthFlutter _authFlutter;
+  factory AuthFlutter({@required UsersRepositoryFlutter repository}) {
+    if (_authFlutter == null)
+      _authFlutter = AuthFlutter._(repository: repository);
+    return _authFlutter;
+  }
+
   /// implements Auth data controller
   /// using already implemented  users_repository
   //
   final UsersRepositoryFlutter repository;
-
-  AuthFlutter({@required this.repository});
 
   /// prepares users_repository
   Future<bool> prepare() async => await repository.prepare();

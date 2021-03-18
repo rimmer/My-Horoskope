@@ -43,10 +43,10 @@ class RussianLocale implements Locale {
 
 ## Library:
 
-library has a class called `lang` which has `static` fields and variable **"locale"** that can be used to switch language.
+library has a class called `localeText` which has `static` fields and variable **"locale"** that can be used to switch language.
 
 ```
-class lang {
+class localeText {
     static Locale locale = RussianLocale();
 
     static String name = locale.name;
@@ -63,14 +63,11 @@ class lang {
 
 ```
 Text(
-    lang.birthcountry, 
+    localeText.birthcountry, 
     style: TextStyle(color: Colors.purple),
 ),
 ```
 
 ```
-lang.locale= EnglishLocale();
-print(lang.name);
-lang.locale= ChineseLocale();
-print(lang.name);
+localeText.switchLocaleToEnglish();
 ```

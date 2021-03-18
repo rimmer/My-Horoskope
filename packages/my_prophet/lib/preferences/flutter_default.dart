@@ -5,6 +5,15 @@ import 'interface.dart';
 const String _fileName = "app_prefrences.json";
 
 class AppPreferencesFlutter extends AppPreferences {
+  // singleton
+  AppPreferencesFlutter._();
+  static AppPreferencesFlutter _appPreferencesFlutter;
+  factory AppPreferencesFlutter() {
+    if (_appPreferencesFlutter == null)
+      _appPreferencesFlutter = AppPreferencesFlutter._();
+    return _appPreferencesFlutter;
+  }
+
   Future save() async => await storage.write(
         data: json.encode(dat.toJson()),
         asFile: _fileName,

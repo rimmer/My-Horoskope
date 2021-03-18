@@ -15,10 +15,18 @@ const double PROPHECY_VALUE_LIMIT_MIN = 27.0;
 const double PROPHECY_VALUE_LIMIT_MAX = 100.0;
 
 class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
+  // singleton
+  ProphecyBloc._({@required this.algo});
+  // ignore: close_sinks
+  static ProphecyBloc _prophecyBloc;
+  factory ProphecyBloc({@required AlgorithmInterface algo}) {
+    if (_prophecyBloc == null) _prophecyBloc = ProphecyBloc._(algo: algo);
+    return _prophecyBloc;
+  }
+
   /// algorithm that will calculate prophecies
   /// and already has needed, loaded data
   final AlgorithmInterface algo;
-  ProphecyBloc({@required this.algo});
 
   ProphecyState get initialState => ProphecyInitial();
 

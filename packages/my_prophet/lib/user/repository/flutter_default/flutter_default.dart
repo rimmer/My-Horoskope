@@ -4,6 +4,15 @@ import '../interface.dart';
 /// Implements users_repository for flutter
 
 class UsersRepositoryFlutter implements UsersRepository {
+  // singleton
+  UsersRepositoryFlutter._();
+  static UsersRepositoryFlutter _usersRepositoryFlutter;
+  factory UsersRepositoryFlutter() {
+    if (_usersRepositoryFlutter == null)
+      _usersRepositoryFlutter = UsersRepositoryFlutter._();
+    return _usersRepositoryFlutter;
+  }
+
   /// what implementation to use
   /// can be changed here
   UsersRepository _impl = UsersRepositoryStorageJson();

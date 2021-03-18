@@ -87,6 +87,7 @@ extension PropheciesObject on Map<ProphecyType, ProphecyEntity> {
   }
 }
 
+// ignore: non_constant_identifier_names
 Map<ProphecyType, ProphecyEntity> Prophecies() => {
       ProphecyType.INTERNAL_STRENGTH:
           ProphecyEntity(id: ProphecyType.INTERNAL_STRENGTH),

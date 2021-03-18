@@ -3,6 +3,14 @@ import '../data_strategy/interface.dart';
 import '../interface.dart';
 
 class DefaultPredictions extends IPredictions {
+  // singleton
+  DefaultPredictions._();
+  static DefaultPredictions _defaultPredictions;
+  factory DefaultPredictions() {
+    if (_defaultPredictions == null)
+      _defaultPredictions = DefaultPredictions._();
+    return _defaultPredictions;
+  }
   //
   /// you cant change them directly,
   /// you can only add or remove items from it,
