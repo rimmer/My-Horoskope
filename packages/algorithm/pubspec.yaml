@@ -10,17 +10,11 @@ environment:
 dependencies:
   meta: ^1.1.8
   
-  int_datetime:
-    path: ../int_datetime
+  my_prophet:
+    path: ../my_prophet
 
-  users_repository:
-    path: ../data/abstract/users_repository
-  userpoll:
-    path: ../data/abstract/userpoll
-  polls_repository:
-    path: ../data/abstract/polls_repository
-  prophecies:
-    path: ../data/abstract/prophecies
+  flutter:
+    sdk: flutter
 
-  prophecy_model:
-    path: ../models/prophecy_model
+flutter:
+

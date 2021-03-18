@@ -1,5 +1,5 @@
-import 'package:int_datetime/int_datetime.dart';
-import 'package:prophecy_model/prophecy_model.dart';
+import 'package:my_prophet/int_datetime.dart';
+import 'package:my_prophet/prophecy/entity/prophecy.dart';
 
 extension BasicAstrology on int {
   /// 21.01 .. 20.02 Aquarius

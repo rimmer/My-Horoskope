@@ -1,0 +1,25 @@
+name: my_prophet
+description: main module
+author: bgoncharuck
+version: 0.0.1+1
+publish_to: none
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  meta: ^1.1.8
+  json_annotation: ^3.0.1
+  storage_access: ^0.0.6
+  bloc: ^4.0.0
+  equatable: ^1.2.0
+  to_string: ^1.2.1
+  
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  build_runner: ^1.0.0
+  json_serializable: ^3.2.0
+
+flutter:
