@@ -1,0 +1,61 @@
+name: my_prophet
+description: Your personal prophet
+author: Igor Ianishevskyi
+homepage: prophet.ninja
+publish_to: none
+
+version: 0.1.0
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # flutter mobile app stuff
+  provider: ^4.3.2+1
+  flutter_bloc: ^4.0.0
+  url_launcher: ^5.5.0
+  launch_review: ^3.0.1
+  mutable_wrappers: ^1.0.0
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^0.19.3
+  flutter_spinkit: ^4.1.2+1
+
+  # base
+  base:
+    path: ../base
+  text:
+    path: ../text
+  algorithm:
+    path: ../algorithm
+
+
+dev_dependencies:
+  #flutter_test:
+    #sdk: flutter
+  flutter_launcher_icons: ^0.8.1
+
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/launcher/icon-ios.png"
+  image_path_android: "assets/launcher/icon-android.png"
+  adaptive_icon_background: "assets/launcher/icon-android-background.png"
+  adaptive_icon_foreground: "assets/launcher/icon-android-foreground.png"
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/background.jpg
+    - assets/splash.png
+    - assets/icons/
+    - assets/widget/
+    - assets/widget/magic_poll/
+  #data
+    # - packages/prophecies_repository_flutter/data/prophecies.json
+  # #localization
+    # - packages/language/locales/ru.json

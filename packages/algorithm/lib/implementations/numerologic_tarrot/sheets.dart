@@ -1,3 +1,4 @@
+import 'package:base/prophecy/entity/prophecy.dart';
 // all astrology was created for this months
 // and now we have 12, not 10 months
 // it is a quite stupid problem
@@ -14,8 +15,6 @@
 //   December,
 // None,
 // }
-
-import 'package:my_prophet/prophecy/entity/prophecy.dart';
 
 enum RomGod {
   None,

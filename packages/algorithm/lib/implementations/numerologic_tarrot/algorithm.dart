@@ -1,6 +1,6 @@
-import 'package:my_prophet/prophecy/entity/prophecy.dart';
-import 'package:my_prophet/int_datetime.dart';
-import 'package:my_prophet/user/entity/user.dart';
+import 'package:base/prophecy/entity/prophecy.dart';
+import 'package:base/int_datetime.dart';
+import 'package:base/user/entity/user.dart';
 import 'sheets.dart';
 import 'fucntions.dart';
 

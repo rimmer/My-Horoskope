@@ -10,8 +10,8 @@ environment:
 dependencies:
   meta: ^1.1.8
   
-  my_prophet:
-    path: ../my_prophet
+  base:
+    path: ../base
 
   flutter:
     sdk: flutter

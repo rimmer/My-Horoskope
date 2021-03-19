@@ -1,6 +1,6 @@
-import 'package:my_prophet/prophecy/entity/prophecy.dart';
+import 'package:base/prophecy/entity/prophecy.dart';
 import 'sheets.dart' show astroSignToDayOfWeek;
-import 'package:my_prophet/int_datetime.dart' show BasicAstrology;
+import 'package:base/int_datetime.dart' show BasicAstrology;
 
 /// in: 26, out: 8
 ///

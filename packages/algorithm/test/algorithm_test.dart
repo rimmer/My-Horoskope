@@ -1,6 +1,6 @@
-import 'package:my_prophet/prophecy/entity/prophecy.dart';
-import 'package:my_prophet/user/entity/user.dart';
-import 'package:my_prophet/user/repository/flutter_default/flutter_default.dart';
+import 'package:base/prophecy/entity/prophecy.dart';
+import 'package:base/user/entity/user.dart';
+import 'package:base/user/repository/flutter_default/flutter_default.dart';
 import 'package:algorithm/algorithm.dart';
 import 'package:test/test.dart';
 

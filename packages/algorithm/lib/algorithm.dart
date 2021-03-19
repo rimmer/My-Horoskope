@@ -1,7 +1,7 @@
 import 'package:meta/meta.dart';
-import 'package:my_prophet/algorithm_interface.dart';
-import 'package:my_prophet/prophecy/entity/prophecy.dart';
-import 'package:my_prophet/user/repository/interface.dart';
+import 'package:base/algorithm_interface.dart';
+import 'package:base/prophecy/entity/prophecy.dart';
+import 'package:base/user/repository/interface.dart';
 
 /// implementations
 import 'implementations/numerologic_tarrot/algorithm.dart';
@@ -43,7 +43,7 @@ class Algorithm extends AlgorithmInterface {
   final AlgoData dat;
 
   Map<ProphecyType, ProphecyEntity> ask(
-      {@required int aboutDay, UserEntity testUser, bool isDebug}) {
+      {@required int aboutDay, UserEntity testUser, bool isDebug = false}) {
     return askProphet(
       aboutUser: testUser ?? dat.user,
       inTimeOf: aboutDay,

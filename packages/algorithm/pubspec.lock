@@ -29,6 +29,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0"
+  base:
+    dependency: "direct main"
+    description:
+      path: "../base"
+      relative: true
+    source: path
+    version: "0.0.1+1"
   bloc:
     dependency: transitive
     description:
@@ -188,13 +195,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  my_prophet:
-    dependency: "direct main"
-    description:
-      path: "../my_prophet"
-      relative: true
-    source: path
-    version: "0.0.1+1"
   node_preamble:
     dependency: transitive
     description:
