@@ -19,70 +19,57 @@ Future<void> showOverCurrentScreen({
 class SimpleTransperentScreen extends StatelessWidget {
   final String title;
   final Widget body;
-  final double height;
-  final double width;
   final List<Widget> actions;
   const SimpleTransperentScreen({
     Key key,
     this.title,
     @required this.body,
-    @required this.height,
-    @required this.width,
     this.actions = const [],
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return Container(
-      color: Colors.transparent,
-      height: height,
-      width: width,
-      child: Center(
-        child: Container(
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(8.0),
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      width: width * 3 / 4,
+      child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          (title != null)
+              ? Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryDark,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8),
+                    ),
+                  ),
+                  height: 44,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(width: 20),
+                      Text(title, style: AppTextStyle.popupTitle),
+                    ],
+                  ),
+                )
+              : SizedBox(),
+          body,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: actions,
           ),
-          height: height,
-          width: width,
-          child: ListView(
-            scrollDirection: Axis.vertical,
-            children: <Widget>[
-              (title != null)
-                  ? Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.primaryDark,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8),
-                          topRight: Radius.circular(8),
-                        ),
-                      ),
-                      height: 44,
-                      width: width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(width: 20),
-                          Text(title, style: AppTextStyle.popupTitle),
-                        ],
-                      ),
-                    )
-                  : SizedBox(),
-              Container(
-                width: width,
-                child: body,
-              ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: actions,
-                ),
-              ),
-            ],
-          ),
-        ),
+          SizedBox(height: 16.0),
+        ],
       ),
     );
   }

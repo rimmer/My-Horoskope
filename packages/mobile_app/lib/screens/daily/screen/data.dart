@@ -6,4 +6,7 @@ class DailyStateData {
   Row birthRow;
   String sign;
   Map<bool, String> currentPlanets = {};
+  // animation
+  AnimationController animationSheetsFadeOutController;
+  Animation<double> animationSheetsFadeOut;
 }

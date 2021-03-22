@@ -29,9 +29,18 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
             ? selectedDate(d[index])
             : TextButton(
                 onPressed: () {
-                  widget.currentIndex.wrapped = index;
                   // ignore: invalid_use_of_protected_member
-                  setState(() {});
+                  setState(() {
+                    dat.animationSheetsFadeOutController
+                        .reverse()
+                        .whenCompleteOrCancel(() {
+                      // ignore: invalid_use_of_protected_member
+                      setState(() {
+                        widget.currentIndex.wrapped = index;
+                        dat.animationSheetsFadeOutController.forward();
+                      });
+                    });
+                  });
                 },
                 child: ordinaryDate(d[index]),
               )
@@ -45,9 +54,18 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
       else
         return TextButton(
           onPressed: () {
-            widget.currentIndex.wrapped = index;
             // ignore: invalid_use_of_protected_member
-            setState(() {});
+            setState(() {
+              dat.animationSheetsFadeOutController
+                  .reverse()
+                  .whenCompleteOrCancel(() {
+                // ignore: invalid_use_of_protected_member
+                setState(() {
+                  widget.currentIndex.wrapped = index;
+                  dat.animationSheetsFadeOutController.forward();
+                });
+              });
+            });
           },
           child: newMonth(d[index]),
         );
@@ -61,9 +79,18 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
     else
       return TextButton(
         onPressed: () {
-          widget.currentIndex.wrapped = index;
           // ignore: invalid_use_of_protected_member
-          setState(() {});
+          setState(() {
+            dat.animationSheetsFadeOutController
+                .reverse()
+                .whenCompleteOrCancel(() {
+              // ignore: invalid_use_of_protected_member
+              setState(() {
+                widget.currentIndex.wrapped = index;
+                dat.animationSheetsFadeOutController.forward();
+              });
+            });
+          });
         },
         child: ordinaryDate(d[index]),
       );

@@ -46,8 +46,6 @@ class _MenuScreenState extends State<MenuScreen> {
                       });
                     }),
                 NotAvaibleInfo(
-                  height: 242,
-                  width: 250,
                   child: menuItemLeadingIcon(
                     icon: Icons.group_add,
                     text: "${localeText.addAmbiance.capitalize()}",
@@ -73,7 +71,9 @@ class _MenuScreenState extends State<MenuScreen> {
                 menuItemRateApp(
                     text: "${localeText.rateApp.capitalize()}",
                     onTap: () {
-                      LaunchReview.launch();
+                      LaunchReview.launch(
+                        writeReview: false,
+                      );
                     }),
               ],
             ),

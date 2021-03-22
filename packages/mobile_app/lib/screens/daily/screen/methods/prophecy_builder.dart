@@ -87,8 +87,6 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                       child: TitleWithDescription(
                         title: localeText.yourProphecies.capitalize(),
                         notation: localeText.yourPropheciesHint,
-                        height: 176.0,
-                        width: 250.0,
                       ),
                     ),
                     //
@@ -153,8 +151,6 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                         child: TitleWithDescription(
                           title: localeText.impact.capitalize(),
                           notation: localeText.impactHint,
-                          height: 172.0,
-                          width: 242.0,
                         ),
                       ),
                       Container(

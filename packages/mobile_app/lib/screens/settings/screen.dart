@@ -60,151 +60,160 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.primaryDark,
-      body: SafeArea(
-        child: ListView(
-          children: [
-            myProphetAppBar(
-                width: screen.width,
-                label: localeText.profileSettings.capitalize(),
-                onTap: () {
-                  Navigator.pushNamed(context, '/menu');
-                }),
-            SizedBox(height: 8.0),
-            //
+      body: Listener(
+        onPointerUp: (_) {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
+            currentFocus.focusedChild.unfocus();
+          }
+        },
+        child: SafeArea(
+          child: ListView(
+            children: [
+              myProphetAppBar(
+                  width: screen.width,
+                  label: localeText.profileSettings.capitalize(),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/menu');
+                  }),
+              SizedBox(height: 8.0),
+              //
 
-            /// prophecies enabling/disabling
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32.0),
-              child: Text(
-                localeText.propheciesToDisplay.capitalize(),
-                style: TextStyle(
-                  color: AppColors.textPrimary,
-                  fontSize: 20,
+              /// prophecies enabling/disabling
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32.0),
+                child: Text(
+                  localeText.propheciesToDisplay.capitalize(),
+                  style: TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 20,
+                  ),
                 ),
               ),
-            ),
-            Container(
-              color: AppColors.primary.withOpacity(0.3),
-              padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
-              margin: EdgeInsets.symmetric(
-                vertical: 16.0,
+              Container(
+                color: AppColors.primary.withOpacity(0.3),
+                padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+                margin: EdgeInsets.symmetric(
+                  vertical: 16.0,
+                ),
+                child: propheciesEnabling(
+                  luck: luck,
+                  internalStrength: internalStrength,
+                  moodlet: moodlet,
+                  ambition: ambition,
+                  intelligence: intelligence,
+                ),
               ),
-              child: propheciesEnabling(
-                luck: luck,
-                internalStrength: internalStrength,
-                moodlet: moodlet,
-                ambition: ambition,
-                intelligence: intelligence,
-              ),
-            ),
 
-            /// profile-settings
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32.0),
-              child: Text(
-                localeText.personalInformation.capitalize(),
-                style: AppTextStyle.backgroundLabel,
+              /// profile-settings
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32.0),
+                child: Text(
+                  localeText.personalInformation.capitalize(),
+                  style: AppTextStyle.backgroundLabel,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32.0),
-              child: userSettingsList(
-                name: widget.name,
-                month: widget.month,
-                day: widget.day,
-                year: widget.year,
-                sex: widget.sex,
-                indexToSex: widget.indexToSex,
-                validInformationCheck: () {
-                  if (widget.name.wrapped.isEmpty) {
-                    showOverCurrentScreen(
-                      context: context,
-                      child: wrongInformation(localeText.nameNotFilled),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32.0),
+                child: userSettingsList(
+                  name: widget.name,
+                  month: widget.month,
+                  day: widget.day,
+                  year: widget.year,
+                  sex: widget.sex,
+                  indexToSex: widget.indexToSex,
+                  validInformationCheck: () {
+                    if (widget.name.wrapped.isEmpty) {
+                      showOverCurrentScreen(
+                        context: context,
+                        child: wrongInformation(localeText.nameNotFilled),
+                      );
+                      return false;
+                    }
+                    if (widget.day.wrapped.isEmpty ||
+                        widget.month.wrapped.isEmpty ||
+                        widget.year.wrapped.isEmpty ||
+                        int.parse(widget.year.wrapped) > upperYearBound(12) ||
+                        int.parse(widget.year.wrapped) < 1921 ||
+                        int.parse(widget.month.wrapped) > 12 ||
+                        int.parse(widget.month.wrapped) < 1 ||
+                        int.parse(widget.day.wrapped) > 31 ||
+                        int.parse(widget.day.wrapped) < 1) {
+                      showOverCurrentScreen(
+                        context: context,
+                        child: wrongInformation(localeText.dateNotFilled),
+                      );
+                      return false;
+                    }
+                    return true;
+                  },
+                  onValidInformation: () {
+                    final propheciesToShow = EnabledProphecies(
+                      luck: luck.wrapped,
+                      intuition: intelligence.wrapped,
+                      internalStrength: internalStrength.wrapped,
+                      ambition: ambition.wrapped,
+                      moodlet: moodlet.wrapped,
                     );
-                    return false;
-                  }
-                  if (widget.day.wrapped.isEmpty ||
-                      widget.month.wrapped.isEmpty ||
-                      widget.year.wrapped.isEmpty ||
-                      int.parse(widget.year.wrapped) > upperYearBound(12) ||
-                      int.parse(widget.year.wrapped) < 1921 ||
-                      int.parse(widget.month.wrapped) > 12 ||
-                      int.parse(widget.month.wrapped) < 1 ||
-                      int.parse(widget.day.wrapped) > 31 ||
-                      int.parse(widget.day.wrapped) < 1) {
-                    showOverCurrentScreen(
-                      context: context,
-                      child: wrongInformation(localeText.dateNotFilled),
+
+                    /// it is better to calculate it once
+                    final birthDateEntered = DateTime.utc(
+                      int.parse(widget.year.wrapped),
+                      int.parse(widget.month.wrapped),
+                      int.parse(widget.day.wrapped),
+                    ).millisecondsSinceEpoch;
+
+                    final userSettingsNotChanged =
+                        widget.name.wrapped == user.name &&
+                            birthDateEntered == user.birth &&
+                            widget.sex.wrapped == user.sex;
+
+                    final propheciesToShowNotChanged =
+                        sp.appPref.enabledProphecies.luck == luck.wrapped &&
+                            sp.appPref.enabledProphecies.intuition ==
+                                intelligence.wrapped &&
+                            sp.appPref.enabledProphecies.internalStrength ==
+                                internalStrength.wrapped &&
+                            sp.appPref.enabledProphecies.ambition ==
+                                ambition.wrapped &&
+                            sp.appPref.enabledProphecies.moodlet ==
+                                moodlet.wrapped;
+
+                    if (userSettingsNotChanged && propheciesToShowNotChanged) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/daily', (Route<dynamic> route) => false);
+                      return;
+                    }
+
+                    sp.appPref.enabledProphecies = propheciesToShow;
+
+                    if (userSettingsNotChanged) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/daily', (Route<dynamic> route) => false);
+                      return;
+                    }
+
+                    /// it is better to calculate it once
+                    final enteredUserModel = UserModel(
+                      name: widget.name.wrapped,
+                      birth: birthDateEntered,
+                      sex: widget.sex.wrapped,
                     );
-                    return false;
-                  }
-                  return true;
-                },
-                onValidInformation: () {
-                  final propheciesToShow = EnabledProphecies(
-                    luck: luck.wrapped,
-                    intuition: intelligence.wrapped,
-                    internalStrength: internalStrength.wrapped,
-                    ambition: ambition.wrapped,
-                    moodlet: moodlet.wrapped,
-                  );
 
-                  /// it is better to calculate it once
-                  final birthDateEntered = DateTime.utc(
-                    int.parse(widget.year.wrapped),
-                    int.parse(widget.month.wrapped),
-                    int.parse(widget.day.wrapped),
-                  ).millisecondsSinceEpoch;
-
-                  final userSettingsNotChanged =
-                      widget.name.wrapped == user.name &&
-                          birthDateEntered == user.birth &&
-                          widget.sex.wrapped == user.sex;
-
-                  final propheciesToShowNotChanged =
-                      sp.appPref.enabledProphecies.luck == luck.wrapped &&
-                          sp.appPref.enabledProphecies.intuition ==
-                              intelligence.wrapped &&
-                          sp.appPref.enabledProphecies.internalStrength ==
-                              internalStrength.wrapped &&
-                          sp.appPref.enabledProphecies.ambition ==
-                              ambition.wrapped &&
-                          sp.appPref.enabledProphecies.moodlet ==
-                              moodlet.wrapped;
-
-                  if (userSettingsNotChanged && propheciesToShowNotChanged) {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        '/daily', (Route<dynamic> route) => false);
-                    return;
-                  }
-
-                  sp.appPref.enabledProphecies = propheciesToShow;
-
-                  if (userSettingsNotChanged) {
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        '/daily', (Route<dynamic> route) => false);
-                    return;
-                  }
-
-                  /// it is better to calculate it once
-                  final enteredUserModel = UserModel(
-                    name: widget.name.wrapped,
-                    birth: birthDateEntered,
-                    sex: widget.sex.wrapped,
-                  );
-
-                  /// services/direct_auth.dart
-                  if (user.birth == birthDateEntered)
-                    userInformationChangeMisc(
-                        sp: sp, model: enteredUserModel, context: context);
-                  else
-                    userInformationChangeMajor(
-                        sp: sp, model: enteredUserModel, context: context);
-                },
-                buttonText: localeText.save.toUpperCase(),
+                    /// services/direct_auth.dart
+                    if (user.birth == birthDateEntered)
+                      userInformationChangeMisc(
+                          sp: sp, model: enteredUserModel, context: context);
+                    else
+                      userInformationChangeMajor(
+                          sp: sp, model: enteredUserModel, context: context);
+                  },
+                  buttonText: localeText.save.toUpperCase(),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

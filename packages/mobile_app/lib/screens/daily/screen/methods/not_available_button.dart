@@ -2,8 +2,6 @@ part of '../screen.dart';
 
 extension DailyScreenNotAvaibleButton on _DailyScreenState {
   Widget notAvailableButton() => NotAvaibleInfo(
-        height: 242,
-        width: 250,
         child: gradientBorderButton(
           child: Text(
             localeText.addAmbiance.toUpperCase(),

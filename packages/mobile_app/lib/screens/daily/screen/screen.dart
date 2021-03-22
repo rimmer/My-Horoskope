@@ -30,15 +30,11 @@ class DailyScreen extends StatefulWidget {
   _DailyScreenState createState() => _DailyScreenState();
 }
 
-class _DailyScreenState extends State<DailyScreen> {
+class _DailyScreenState extends State<DailyScreen>
+    with SingleTickerProviderStateMixin {
   //
   SingleProvider sp;
   final dat = DailyStateData();
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   /// @INIT
   @override
@@ -63,7 +59,28 @@ class _DailyScreenState extends State<DailyScreen> {
 
     calculateProphecy();
 
+    // animation
+
+    dat.animationSheetsFadeOutController = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..forward();
+
+    dat.animationSheetsFadeOut = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: dat.animationSheetsFadeOutController,
+      curve: Curves.easeInOut,
+    ));
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    dat.animationSheetsFadeOutController.dispose();
+    super.dispose();
   }
 
   /// @BUILD
@@ -98,28 +115,22 @@ class _DailyScreenState extends State<DailyScreen> {
             Container(
                 height: CALENDAR_HEIGHT,
                 width: screen.width,
-                child: Stack(
-                  children: [
-                    /// actual calendar
-                    Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.calendarBackground.withOpacity(0.8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.calendarShadow.withOpacity(0.34),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset:
-                                  Offset(0, 2), // changes position of shadow
-                            ),
-                          ]),
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: NUMBER_OF_DAYS_TO_SHOW,
-                        itemBuilder: dayToWidget,
-                      ),
-                    ),
-                  ],
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: AppColors.calendarBackground.withOpacity(0.8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.calendarShadow.withOpacity(0.34),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 2), // changes position of shadow
+                        ),
+                      ]),
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: NUMBER_OF_DAYS_TO_SHOW,
+                    itemBuilder: dayToWidget,
+                  ),
                 )),
 
             //
@@ -129,31 +140,44 @@ class _DailyScreenState extends State<DailyScreen> {
               width: screen.width,
             ),
 
-            /// @PROPHECY
-            BlocBuilder<ProphecyBloc, ProphecyState>(
-              bloc: sp.prophecyBloc,
-              builder: prophecyBuilder,
-            ),
+            Builder(
+              builder: (context) => FadeTransition(
+                opacity: dat.animationSheetsFadeOut,
+                child: ListView(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    /// @PROPHECY
+                    BlocBuilder<ProphecyBloc, ProphecyState>(
+                      bloc: sp.prophecyBloc,
+                      builder: prophecyBuilder,
+                    ),
+                    SizedBox(
+                      height: SPACE_AFTER_PROPHECY,
+                      width: screen.width,
+                    ),
 
-            SizedBox(
-              height: SPACE_BETWEEN_PROPHECY_POLLS,
-              width: screen.width,
-            ),
+                    /// @Sheets
+                    (isToday)
+                        ? SizedBox()
+                        : notation(text: localeText.futureDays),
 
-            /// @CARDS
-            (isToday) ? SizedBox() : notation(text: localeText.futureDays),
+                    SizedBox(
+                      height: SPACE_BEFORE_AMBIANCE,
+                      width: screen.width,
+                    ),
 
-            SizedBox(
-              height: SPACE_BEFORE_AMBIANCE,
-              width: screen.width,
-            ),
+                    /// button that says "ambiance (relationship) are not avaible in this version"
+                    notAvailableButton(),
 
-            /// button that says "ambiance (relationship) are not avaible in this version"
-            notAvailableButton(),
-
-            SizedBox(
-              height: SPACE_AFTER_AMBIANCE,
-              width: screen.width,
+                    SizedBox(
+                      height: SPACE_AFTER_AMBIANCE,
+                      width: screen.width,
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

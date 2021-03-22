@@ -9,15 +9,11 @@ import 'gradient_flatbutton.dart';
 class TitleWithDescription extends StatefulWidget {
   final String title;
   final String notation;
-  final double height;
-  final double width;
 
   TitleWithDescription({
     @required this.title,
     Icon icon,
     @required this.notation,
-    @required this.height,
-    @required this.width,
   });
 
   @override
@@ -40,18 +36,14 @@ class _TitleWithDescriptionState extends State<TitleWithDescription> {
             showOverCurrentScreen(
               context: context,
               child: SimpleTransperentScreen(
-                height: widget.height,
-                width: widget.width,
                 title: widget.title,
                 body: Padding(
                   padding: const EdgeInsets.all(
                     20.0,
                   ),
-                  child: Center(
-                    child: Text(
-                      widget.notation,
-                      style: AppTextStyle.normalText,
-                    ),
+                  child: Text(
+                    widget.notation,
+                    style: AppTextStyle.normalText,
                   ),
                 ),
                 actions: <Widget>[
