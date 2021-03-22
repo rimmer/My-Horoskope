@@ -25,5 +25,4 @@ export 'package:my_prophet/theme/app_text_style.dart';
 export 'package:my_prophet/components/prophecy_sheet_divider.dart';
 
 export '../calendar_widgets.dart';
-export '../prophecy_is_loading.dart';
 export '../constants.dart';

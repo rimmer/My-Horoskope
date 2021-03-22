@@ -5,7 +5,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
     //
 
     if (state is ProphecyInitial) {
-      return prophecyIsLoading();
+      return SizedBox();
       //
 
     } else if (state is ProphecyWasAsked) {
@@ -92,29 +92,55 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                     //
 
                     (toShow.internalStrength)
-                        ? prophecyRecord(
-                            prophecy:
-                                state.prophecy[ProphecyType.INTERNAL_STRENGTH],
+                        ? Builder(
+                            builder: (_) => SlideTransition(
+                              position: dat.animationProphecyInternalStr,
+                              child: prophecyRecord(
+                                prophecy: state
+                                    .prophecy[ProphecyType.INTERNAL_STRENGTH],
+                              ),
+                            ),
                           )
                         : SizedBox(),
                     (toShow.moodlet)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.MOODLET],
+                        ? Builder(
+                            builder: (_) => SlideTransition(
+                              position: dat.animationProphecyMood,
+                              child: prophecyRecord(
+                                prophecy: state.prophecy[ProphecyType.MOODLET],
+                              ),
+                            ),
                           )
                         : SizedBox(),
                     (toShow.ambition)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.AMBITION],
+                        ? Builder(
+                            builder: (_) => SlideTransition(
+                              position: dat.animationProphecyAmbition,
+                              child: prophecyRecord(
+                                prophecy: state.prophecy[ProphecyType.AMBITION],
+                              ),
+                            ),
                           )
                         : SizedBox(),
                     (toShow.intuition)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.INTUITION],
+                        ? Builder(
+                            builder: (_) => SlideTransition(
+                              position: dat.animationProphecyIntuition,
+                              child: prophecyRecord(
+                                prophecy:
+                                    state.prophecy[ProphecyType.INTUITION],
+                              ),
+                            ),
                           )
                         : SizedBox(),
                     (toShow.luck)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.LUCK],
+                        ? Builder(
+                            builder: (_) => SlideTransition(
+                              position: dat.animationProphecyLuck,
+                              child: prophecyRecord(
+                                prophecy: state.prophecy[ProphecyType.LUCK],
+                              ),
+                            ),
                           )
                         : SizedBox(),
                     //
@@ -124,9 +150,14 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                             toShow.ambition == false &&
                             toShow.intuition == false &&
                             toShow.luck == false)
-                        ? prophecyRecord(
-                            prophecy:
-                                state.prophecy[ProphecyType.INTERNAL_STRENGTH],
+                        ? Builder(
+                            builder: (_) => SlideTransition(
+                              position: dat.animationProphecyInternalStr,
+                              child: prophecyRecord(
+                                prophecy: state
+                                    .prophecy[ProphecyType.INTERNAL_STRENGTH],
+                              ),
+                            ),
                           )
                         : SizedBox(),
                   ],

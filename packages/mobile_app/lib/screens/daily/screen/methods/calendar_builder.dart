@@ -26,22 +26,11 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
       return Row(children: [
         SizedBox(width: 16),
         (dayToIndex["TODAY"] == selected)
-            ? selectedDate(d[index])
+            ? (dat.showCalendarSelection)
+                ? selectedDate(d[index])
+                : ordinaryDate(d[index])
             : TextButton(
-                onPressed: () {
-                  // ignore: invalid_use_of_protected_member
-                  setState(() {
-                    dat.animationSheetsFadeOutController
-                        .reverse()
-                        .whenCompleteOrCancel(() {
-                      // ignore: invalid_use_of_protected_member
-                      setState(() {
-                        widget.currentIndex.wrapped = index;
-                        dat.animationSheetsFadeOutController.forward();
-                      });
-                    });
-                  });
-                },
+                onPressed: () => calendarTap(index),
                 child: ordinaryDate(d[index]),
               )
       ]);
@@ -50,23 +39,12 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
     } else if (d[index - 1].month != d[index].month) {
       /// new month
       if (index == selected)
-        return newMonthSelected(d[index]);
+        return (dat.showCalendarSelection)
+            ? newMonthSelected(d[index])
+            : newMonth(d[index]);
       else
         return TextButton(
-          onPressed: () {
-            // ignore: invalid_use_of_protected_member
-            setState(() {
-              dat.animationSheetsFadeOutController
-                  .reverse()
-                  .whenCompleteOrCancel(() {
-                // ignore: invalid_use_of_protected_member
-                setState(() {
-                  widget.currentIndex.wrapped = index;
-                  dat.animationSheetsFadeOutController.forward();
-                });
-              });
-            });
-          },
+          onPressed: () => calendarTap(index),
           child: newMonth(d[index]),
         );
 
@@ -75,23 +53,12 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
 
     //
     if (index == selected)
-      return selectedDate(d[index]);
+      return (dat.showCalendarSelection)
+          ? selectedDate(d[index])
+          : ordinaryDate(d[index]);
     else
       return TextButton(
-        onPressed: () {
-          // ignore: invalid_use_of_protected_member
-          setState(() {
-            dat.animationSheetsFadeOutController
-                .reverse()
-                .whenCompleteOrCancel(() {
-              // ignore: invalid_use_of_protected_member
-              setState(() {
-                widget.currentIndex.wrapped = index;
-                dat.animationSheetsFadeOutController.forward();
-              });
-            });
-          });
-        },
+        onPressed: () => calendarTap(index),
         child: ordinaryDate(d[index]),
       );
   }

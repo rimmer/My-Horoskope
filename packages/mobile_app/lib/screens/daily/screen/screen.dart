@@ -7,6 +7,7 @@ part 'methods/prophecy_builder.dart';
 part 'methods/prediction.dart';
 part 'methods/misc.dart';
 part 'methods/not_available_button.dart';
+part 'methods/animation.dart';
 
 class DailyScreen extends StatefulWidget {
   /// current and next NUMBER_OF_DAYS_TO_SHOW days DateTime
@@ -31,7 +32,7 @@ class DailyScreen extends StatefulWidget {
 }
 
 class _DailyScreenState extends State<DailyScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   //
   SingleProvider sp;
   final dat = DailyStateData();
@@ -57,35 +58,23 @@ class _DailyScreenState extends State<DailyScreen>
       ],
     );
 
+    initAnimations();
     calculateProphecy();
-
-    // animation
-
-    dat.animationSheetsFadeOutController = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..forward();
-
-    dat.animationSheetsFadeOut = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: dat.animationSheetsFadeOutController,
-      curve: Curves.easeInOut,
-    ));
+    animationFirstStart();
 
     super.initState();
   }
 
   @override
   void dispose() {
-    dat.animationSheetsFadeOutController.dispose();
+    disposeAnimations();
     super.dispose();
   }
 
   /// @BUILD
   @override
   Widget build(BuildContext context) {
+    animationNewStateRoutine();
     //
     /// gets planets for current period
     dat.currentPlanets.clear();
