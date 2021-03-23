@@ -15,11 +15,9 @@ class DailyStateData {
   AnimationController animationProphecyAmbitionController;
   AnimationController animationProphecyIntuitionController;
   AnimationController animationProphecyLuckController;
-  AnimationController animationCardsHolderController;
   Animation<Offset> animationProphecyInternalStr;
   Animation<Offset> animationProphecyMood;
   Animation<Offset> animationProphecyAmbition;
   Animation<Offset> animationProphecyIntuition;
   Animation<Offset> animationProphecyLuck;
-  Animation<double> animationCardsHolder;
 }

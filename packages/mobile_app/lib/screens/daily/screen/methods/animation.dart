@@ -3,7 +3,7 @@ part of '../screen.dart';
 extension DailyScreenAniamtionMethods on _DailyScreenState {
   initAnimations() {
     dat.animationSheetsFadeOutController = AnimationController(
-      duration: Duration(milliseconds: 600),
+      duration: Duration(milliseconds: 800),
       vsync: this,
     );
 
@@ -19,31 +19,31 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
     dat.animationProphecyInternalStrController = AnimationController(
         vsync: this,
         duration: Duration(
-          milliseconds: 750,
+          milliseconds: 450,
         ));
 
     dat.animationProphecyMoodController = AnimationController(
         vsync: this,
         duration: Duration(
-          milliseconds: 800,
+          milliseconds: 500,
         ));
 
     dat.animationProphecyAmbitionController = AnimationController(
         vsync: this,
         duration: Duration(
-          milliseconds: 850,
+          milliseconds: 550,
         ));
 
     dat.animationProphecyIntuitionController = AnimationController(
         vsync: this,
         duration: Duration(
-          milliseconds: 900,
+          milliseconds: 600,
         ));
 
     dat.animationProphecyLuckController = AnimationController(
         vsync: this,
         duration: Duration(
-          milliseconds: 950,
+          milliseconds: 650,
         ));
 
     dat.animationProphecyInternalStr = Tween<Offset>(
@@ -93,6 +93,8 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
         curve: Curves.bounceIn,
       ),
     );
+
+    //
   }
 
   disposeAnimations() {
@@ -115,7 +117,7 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
   animationFirstStart() {
     dat.animationSheetsFadeOutController.animateTo(
       dat.animationSheetsFadeOutController.upperBound,
-      duration: Duration(milliseconds: 0),
+      duration: Duration(seconds: 8),
       curve: Curves.ease,
     );
 

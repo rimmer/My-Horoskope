@@ -5,9 +5,10 @@ part 'data.dart';
 part 'methods/calendar_builder.dart';
 part 'methods/prophecy_builder.dart';
 part 'methods/prediction.dart';
-part 'methods/misc.dart';
-part 'methods/not_available_button.dart';
 part 'methods/animation.dart';
+part 'methods/cards.dart';
+part 'methods/not_available_button.dart';
+part 'methods/misc.dart';
 
 class DailyScreen extends StatefulWidget {
   /// current and next NUMBER_OF_DAYS_TO_SHOW days DateTime
@@ -129,43 +130,43 @@ class _DailyScreenState extends State<DailyScreen>
               width: screen.width,
             ),
 
-            Builder(
-              builder: (context) => FadeTransition(
+            AnimatedBuilder(
+              animation: dat.animationSheetsFadeOutController,
+              builder: (context, child) => FadeTransition(
                 opacity: dat.animationSheetsFadeOut,
-                child: ListView(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    /// @PROPHECY
-                    BlocBuilder<ProphecyBloc, ProphecyState>(
-                      bloc: sp.prophecyBloc,
-                      builder: prophecyBuilder,
-                    ),
-                    SizedBox(
-                      height: SPACE_AFTER_PROPHECY,
-                      width: screen.width,
-                    ),
+                child: child,
+              ),
+              child: ListView(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  /// @PROPHECY
+                  BlocBuilder<ProphecyBloc, ProphecyState>(
+                    bloc: sp.prophecyBloc,
+                    builder: prophecyBuilder,
+                  ),
+                  SizedBox(
+                    height: SPACE_AFTER_PROPHECY,
+                    width: screen.width,
+                  ),
 
-                    /// @Sheets
-                    (isToday)
-                        ? SizedBox()
-                        : notation(text: localeText.futureDays),
+                  /// @Sheets
+                  (isToday) ? cards() : notation(text: localeText.futureDays),
 
-                    SizedBox(
-                      height: SPACE_BEFORE_AMBIANCE,
-                      width: screen.width,
-                    ),
+                  SizedBox(
+                    height: SPACE_BEFORE_AMBIANCE,
+                    width: screen.width,
+                  ),
 
-                    /// button that says "ambiance (relationship) are not avaible in this version"
-                    notAvailableButton(),
+                  /// button that says "ambiance (relationship) are not avaible in this version"
+                  notAvailableButton(),
 
-                    SizedBox(
-                      height: SPACE_AFTER_AMBIANCE,
-                      width: screen.width,
-                    ),
-                  ],
-                ),
+                  SizedBox(
+                    height: SPACE_AFTER_AMBIANCE,
+                    width: screen.width,
+                  ),
+                ],
               ),
             ),
           ],

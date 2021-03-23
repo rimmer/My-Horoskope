@@ -77,15 +77,13 @@ ListView prophecyIsLoading() {
               physics: const NeverScrollableScrollPhysics(),
               children: <Widget>[
                 /// yourProphecies title and notation
-                Padding(
-                  padding: const EdgeInsets.only(
+                TitleWithDescription(
+                  padding: EdgeInsets.only(
                     left: 3.0,
                     bottom: 8.0,
                   ),
-                  child: TitleWithDescription(
-                    title: localeText.yourProphecies.capitalize(),
-                    notation: localeText.yourPropheciesHint,
-                  ),
+                  title: localeText.yourProphecies.capitalize(),
+                  notation: localeText.yourPropheciesHint,
                 ),
                 //
 
@@ -106,15 +104,13 @@ ListView prophecyIsLoading() {
                 scrollDirection: Axis.vertical,
                 physics: const NeverScrollableScrollPhysics(),
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
+                  TitleWithDescription(
+                    padding: EdgeInsets.only(
                       top: 18.0,
                       left: 3.0,
                     ),
-                    child: TitleWithDescription(
-                      title: localeText.impact.capitalize(),
-                      notation: localeText.impactHint,
-                    ),
+                    title: localeText.impact.capitalize(),
+                    notation: localeText.impactHint,
                   ),
                   Container(
                     height: 32.0,

@@ -65,7 +65,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                 vertical: 12.0,
               ),
               scrollDirection: Axis.vertical,
-              physics: const NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               children: <Widget>[
                 /// prophecies listview
                 ListView(
@@ -79,86 +79,95 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                   physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
                     /// yourProphecies title and notation
-                    Padding(
-                      padding: const EdgeInsets.only(
+                    TitleWithDescription(
+                      padding: EdgeInsets.only(
                         left: 3.0,
                         bottom: 8.0,
                       ),
-                      child: TitleWithDescription(
-                        title: localeText.yourProphecies.capitalize(),
-                        notation: localeText.yourPropheciesHint,
-                      ),
+                      title: localeText.yourProphecies.capitalize(),
+                      notation: localeText.yourPropheciesHint,
                     ),
                     //
 
                     (toShow.internalStrength)
-                        ? Builder(
-                            builder: (_) => SlideTransition(
-                              position: dat.animationProphecyInternalStr,
-                              child: prophecyRecord(
+                        ? AnimatedBuilder(
+                            animation:
+                                dat.animationProphecyInternalStrController,
+                            builder: (_, child) => SlideTransition(
+                                  position: dat.animationProphecyInternalStr,
+                                  child: child,
+                                ),
+                            child: prophecyRecord(
                                 prophecy: state
-                                    .prophecy[ProphecyType.INTERNAL_STRENGTH],
-                              ),
-                            ),
-                          )
-                        : SizedBox(),
-                    (toShow.moodlet)
-                        ? Builder(
-                            builder: (_) => SlideTransition(
-                              position: dat.animationProphecyMood,
-                              child: prophecyRecord(
-                                prophecy: state.prophecy[ProphecyType.MOODLET],
-                              ),
-                            ),
-                          )
-                        : SizedBox(),
-                    (toShow.ambition)
-                        ? Builder(
-                            builder: (_) => SlideTransition(
-                              position: dat.animationProphecyAmbition,
-                              child: prophecyRecord(
-                                prophecy: state.prophecy[ProphecyType.AMBITION],
-                              ),
-                            ),
-                          )
-                        : SizedBox(),
-                    (toShow.intuition)
-                        ? Builder(
-                            builder: (_) => SlideTransition(
-                              position: dat.animationProphecyIntuition,
-                              child: prophecyRecord(
-                                prophecy:
-                                    state.prophecy[ProphecyType.INTUITION],
-                              ),
-                            ),
-                          )
-                        : SizedBox(),
-                    (toShow.luck)
-                        ? Builder(
-                            builder: (_) => SlideTransition(
-                              position: dat.animationProphecyLuck,
-                              child: prophecyRecord(
-                                prophecy: state.prophecy[ProphecyType.LUCK],
-                              ),
-                            ),
-                          )
+                                    .prophecy[ProphecyType.INTERNAL_STRENGTH]))
                         : SizedBox(),
                     //
+
+                    (toShow.luck)
+                        ? AnimatedBuilder(
+                            animation: dat.animationProphecyLuckController,
+                            builder: (_, child) => SlideTransition(
+                                  position: dat.animationProphecyLuck,
+                                  child: child,
+                                ),
+                            child: prophecyRecord(
+                                prophecy: state.prophecy[ProphecyType.LUCK]))
+                        : SizedBox(),
+                    //
+
+                    (toShow.ambition)
+                        ? AnimatedBuilder(
+                            animation: dat.animationProphecyAmbitionController,
+                            builder: (_, child) => SlideTransition(
+                                  position: dat.animationProphecyAmbition,
+                                  child: child,
+                                ),
+                            child: prophecyRecord(
+                                prophecy:
+                                    state.prophecy[ProphecyType.AMBITION]))
+                        : SizedBox(),
+                    //
+
+                    (toShow.intuition)
+                        ? AnimatedBuilder(
+                            animation: dat.animationProphecyIntuitionController,
+                            builder: (_, child) => SlideTransition(
+                                  position: dat.animationProphecyIntuition,
+                                  child: child,
+                                ),
+                            child: prophecyRecord(
+                                prophecy:
+                                    state.prophecy[ProphecyType.INTUITION]))
+                        : SizedBox(),
+                    //
+
+                    (toShow.moodlet)
+                        ? AnimatedBuilder(
+                            animation: dat.animationProphecyMoodController,
+                            builder: (_, child) => SlideTransition(
+                                position: dat.animationProphecyMood,
+                                child: child),
+                            child: prophecyRecord(
+                                prophecy: state.prophecy[ProphecyType.MOODLET]))
+                        : SizedBox(),
+                    //
+
                     /// if all prophecies are disabled show internal strength
                     (toShow.internalStrength == false &&
                             toShow.moodlet == false &&
                             toShow.ambition == false &&
                             toShow.intuition == false &&
                             toShow.luck == false)
-                        ? Builder(
-                            builder: (_) => SlideTransition(
-                              position: dat.animationProphecyInternalStr,
-                              child: prophecyRecord(
+                        ? AnimatedBuilder(
+                            animation:
+                                dat.animationProphecyInternalStrController,
+                            builder: (_, child) => SlideTransition(
+                                  position: dat.animationProphecyInternalStr,
+                                  child: child,
+                                ),
+                            child: prophecyRecord(
                                 prophecy: state
-                                    .prophecy[ProphecyType.INTERNAL_STRENGTH],
-                              ),
-                            ),
-                          )
+                                    .prophecy[ProphecyType.INTERNAL_STRENGTH]))
                         : SizedBox(),
                   ],
                 ),
@@ -174,15 +183,13 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                     scrollDirection: Axis.vertical,
                     physics: const NeverScrollableScrollPhysics(),
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
+                      TitleWithDescription(
+                        padding: EdgeInsets.only(
                           top: 18.0,
                           left: 3.0,
                         ),
-                        child: TitleWithDescription(
-                          title: localeText.impact.capitalize(),
-                          notation: localeText.impactHint,
-                        ),
+                        title: localeText.impact.capitalize(),
+                        notation: localeText.impactHint,
                       ),
                       Container(
                         height: 32.0,
