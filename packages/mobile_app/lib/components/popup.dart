@@ -74,7 +74,7 @@ class _SimpleTransperentScreenState extends State<SimpleTransperentScreen>
         position: _popupCreation,
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.9),
+            color: AppColors.primary.withOpacity(0.95),
             borderRadius: BorderRadius.circular(8.0),
           ),
           width: width * 3 / 4,

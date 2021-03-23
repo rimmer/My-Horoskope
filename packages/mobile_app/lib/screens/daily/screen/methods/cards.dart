@@ -50,7 +50,7 @@ Padding _card({String icon = "star"}) => Padding(
             Align(
               alignment: Alignment.center,
               child: SvgPicture.asset(
-                "assets/cards/$icon.svg",
+                "assets/icons/$icon.svg",
                 color: Colors.white,
               ),
             ),

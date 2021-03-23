@@ -90,65 +90,33 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                     //
 
                     (toShow.internalStrength)
-                        ? AnimatedBuilder(
-                            animation:
-                                dat.animationProphecyInternalStrController,
-                            builder: (_, child) => SlideTransition(
-                                  position: dat.animationProphecyInternalStr,
-                                  child: child,
-                                ),
-                            child: prophecyRecord(
-                                prophecy: state
-                                    .prophecy[ProphecyType.INTERNAL_STRENGTH]))
+                        ? prophecyRecord(
+                            prophecy:
+                                state.prophecy[ProphecyType.INTERNAL_STRENGTH])
                         : SizedBox(),
                     //
 
                     (toShow.luck)
-                        ? AnimatedBuilder(
-                            animation: dat.animationProphecyLuckController,
-                            builder: (_, child) => SlideTransition(
-                                  position: dat.animationProphecyLuck,
-                                  child: child,
-                                ),
-                            child: prophecyRecord(
-                                prophecy: state.prophecy[ProphecyType.LUCK]))
+                        ? prophecyRecord(
+                            prophecy: state.prophecy[ProphecyType.LUCK])
                         : SizedBox(),
                     //
 
                     (toShow.ambition)
-                        ? AnimatedBuilder(
-                            animation: dat.animationProphecyAmbitionController,
-                            builder: (_, child) => SlideTransition(
-                                  position: dat.animationProphecyAmbition,
-                                  child: child,
-                                ),
-                            child: prophecyRecord(
-                                prophecy:
-                                    state.prophecy[ProphecyType.AMBITION]))
+                        ? prophecyRecord(
+                            prophecy: state.prophecy[ProphecyType.AMBITION])
                         : SizedBox(),
                     //
 
                     (toShow.intuition)
-                        ? AnimatedBuilder(
-                            animation: dat.animationProphecyIntuitionController,
-                            builder: (_, child) => SlideTransition(
-                                  position: dat.animationProphecyIntuition,
-                                  child: child,
-                                ),
-                            child: prophecyRecord(
-                                prophecy:
-                                    state.prophecy[ProphecyType.INTUITION]))
+                        ? prophecyRecord(
+                            prophecy: state.prophecy[ProphecyType.INTUITION])
                         : SizedBox(),
                     //
 
                     (toShow.moodlet)
-                        ? AnimatedBuilder(
-                            animation: dat.animationProphecyMoodController,
-                            builder: (_, child) => SlideTransition(
-                                position: dat.animationProphecyMood,
-                                child: child),
-                            child: prophecyRecord(
-                                prophecy: state.prophecy[ProphecyType.MOODLET]))
+                        ? prophecyRecord(
+                            prophecy: state.prophecy[ProphecyType.MOODLET])
                         : SizedBox(),
                     //
 
@@ -158,16 +126,9 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                             toShow.ambition == false &&
                             toShow.intuition == false &&
                             toShow.luck == false)
-                        ? AnimatedBuilder(
-                            animation:
-                                dat.animationProphecyInternalStrController,
-                            builder: (_, child) => SlideTransition(
-                                  position: dat.animationProphecyInternalStr,
-                                  child: child,
-                                ),
-                            child: prophecyRecord(
-                                prophecy: state
-                                    .prophecy[ProphecyType.INTERNAL_STRENGTH]))
+                        ? prophecyRecord(
+                            prophecy:
+                                state.prophecy[ProphecyType.INTERNAL_STRENGTH])
                         : SizedBox(),
                   ],
                 ),

@@ -4,7 +4,7 @@ import 'theme/app_theme.dart';
 import 'package:bloc/bloc.dart';
 
 import 'screens/daily/screen/screen.dart';
-import 'screens/menu/screen/screen.dart';
+import 'screens/menu/screen.dart';
 import 'screens/settings/screen.dart';
 
 //
