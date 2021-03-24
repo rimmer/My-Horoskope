@@ -10,4 +10,7 @@ class DailyStateData {
   bool showCalendarSelection = true;
   AnimationController animationSheetsFadeOutController;
   Animation<double> animationSheetsFadeOut;
+  Widget currentCard;
+  AnimationController animationCardFadeController;
+  Animation<double> animationCardFade;
 }

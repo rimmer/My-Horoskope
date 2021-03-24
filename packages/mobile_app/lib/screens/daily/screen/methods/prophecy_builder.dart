@@ -87,48 +87,39 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                       title: localeText.yourProphecies.capitalize(),
                       notation: localeText.yourPropheciesHint,
                     ),
-                    //
-
-                    (toShow.internalStrength)
-                        ? prophecyRecord(
-                            prophecy:
-                                state.prophecy[ProphecyType.INTERNAL_STRENGTH])
-                        : SizedBox(),
-                    //
-
-                    (toShow.luck)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.LUCK])
-                        : SizedBox(),
-                    //
-
-                    (toShow.ambition)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.AMBITION])
-                        : SizedBox(),
-                    //
-
-                    (toShow.intuition)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.INTUITION])
-                        : SizedBox(),
-                    //
 
                     (toShow.moodlet)
                         ? prophecyRecord(
                             prophecy: state.prophecy[ProphecyType.MOODLET])
                         : SizedBox(),
+                    (toShow.intuition)
+                        ? prophecyRecord(
+                            prophecy: state.prophecy[ProphecyType.INTUITION])
+                        : SizedBox(),
+                    (toShow.luck)
+                        ? prophecyRecord(
+                            prophecy: state.prophecy[ProphecyType.LUCK])
+                        : SizedBox(),
+                    (toShow.ambition)
+                        ? prophecyRecord(
+                            prophecy: state.prophecy[ProphecyType.AMBITION])
+                        : SizedBox(),
+                    (toShow.internalStrength)
+                        ? prophecyRecord(
+                            prophecy:
+                                state.prophecy[ProphecyType.INTERNAL_STRENGTH])
+                        : SizedBox(),
+
                     //
 
-                    /// if all prophecies are disabled show internal strength
+                    /// if all prophecies are disabled show luck
                     (toShow.internalStrength == false &&
                             toShow.moodlet == false &&
                             toShow.ambition == false &&
                             toShow.intuition == false &&
                             toShow.luck == false)
                         ? prophecyRecord(
-                            prophecy:
-                                state.prophecy[ProphecyType.INTERNAL_STRENGTH])
+                            prophecy: state.prophecy[ProphecyType.LUCK])
                         : SizedBox(),
                   ],
                 ),

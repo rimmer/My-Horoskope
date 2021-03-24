@@ -54,79 +54,71 @@ class _MenuScreenState extends State<MenuScreen>
             opacity: _animationFadeOut,
             child: child,
           ),
-          child: Column(
+          child: ListView(
+            padding: EdgeInsets.only(
+              top: 32.0,
+              left: 32.0,
+              right: 32.0,
+            ),
+            scrollDirection: Axis.vertical,
             children: [
-              Container(
-                height: screen.height - _BOTTOM_ROW_HEIGHT,
-                padding: EdgeInsets.only(
-                  top: 32.0,
-                  left: 32.0,
-                  right: 32.0,
+              menuItemLeadingIcon(
+                  asset: sp.usersRepo.current.model.birth.astroSign,
+                  text:
+                      " ${localeText.my.capitalize()} ${localeText.horoscope}",
+                  onTap: () {
+                    setState(() {
+                      Navigator.pushNamed(context, '/daily');
+                    });
+                  }),
+              NotAvaibleInfo(
+                child: menuItemLeadingIcon(
+                  icon: Icons.group_add,
+                  text: "${localeText.addAmbiance.capitalize()}",
+                  onTap: null,
                 ),
-                child: ListView(
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    menuItemLeadingIcon(
-                        asset: sp.usersRepo.current.model.birth.astroSign,
-                        text:
-                            " ${localeText.my.capitalize()} ${localeText.horoscope}",
-                        onTap: () {
-                          setState(() {
-                            Navigator.pushNamed(context, '/daily');
-                          });
-                        }),
-                    NotAvaibleInfo(
-                      child: menuItemLeadingIcon(
-                        icon: Icons.group_add,
-                        text: "${localeText.addAmbiance.capitalize()}",
-                        onTap: null,
-                      ),
-                      title: localeText.noAmbianceTitle.capitalize(),
-                      desc: localeText.noAmbianceDescription,
-                      button: localeText.noAmbianceButton.toUpperCase(),
-                    ),
-                    menuItemLeadingIcon(
-                        icon: Icons.perm_identity,
-                        text: "${localeText.profileSettings.capitalize()}",
-                        onTap: () {
-                          setState(() {
-                            Navigator.pushNamed(context, '/settings');
-                          });
-                        }),
-                    menuItemFootingIcon(
-                        text: "${localeText.writeToDev.capitalize()}",
-                        onTap: () {
-                          launch(_WRITE_TO_DEV_URL);
-                        }),
-                    menuItemRateApp(
-                        text: "${localeText.rateApp.capitalize()}",
-                        onTap: () {
-                          LaunchReview.launch(
-                            writeReview: false,
-                          );
-                        }),
-                  ],
-                ),
+                title: localeText.noAmbianceTitle.capitalize(),
+                desc: localeText.noAmbianceDescription,
+                button: localeText.noAmbianceButton.toUpperCase(),
               ),
-              Container(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Flexible(
-                      child: termsText(
-                        text: localeText.userAgreement.capitalize(),
-                        url: URL_USER_AGREEMENT,
-                      ),
+              menuItemLeadingIcon(
+                  icon: Icons.perm_identity,
+                  text: "${localeText.profileSettings.capitalize()}",
+                  onTap: () {
+                    setState(() {
+                      Navigator.pushNamed(context, '/settings');
+                    });
+                  }),
+              menuItemFootingIcon(
+                  text: "${localeText.writeToDev.capitalize()}",
+                  onTap: () {
+                    launch(_WRITE_TO_DEV_URL);
+                  }),
+              menuItemRateApp(
+                  text: "${localeText.rateApp.capitalize()}",
+                  onTap: () {
+                    LaunchReview.launch(
+                      writeReview: false,
+                    );
+                  }),
+              SizedBox(height: 50.0),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Flexible(
+                    child: termsText(
+                      text: localeText.userAgreement.capitalize(),
+                      url: URL_USER_AGREEMENT,
                     ),
-                    Flexible(
-                      child: termsText(
-                        text: localeText.privacyPolicy.capitalize(),
-                        url: URL_PRIVACY_POLICY,
-                      ),
+                  ),
+                  Flexible(
+                    child: termsText(
+                      text: localeText.privacyPolicy.capitalize(),
+                      url: URL_PRIVACY_POLICY,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),

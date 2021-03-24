@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 class AppTextStyle {
+  static const bigBadCardText = TextStyle(
+    fontSize: 22,
+    color: AppColors.textPrimary,
+    fontWeight: FontWeight.w500,
+  );
   static const fadeText = TextStyle(color: AppColors.textDisabled);
   static const normalText = TextStyle(
     fontSize: 14,
