@@ -32,67 +32,97 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                 onTap: () {
                   // ignore: invalid_use_of_protected_member
                   setState(() {
+                    dat.treeChoise = true;
+                    dat.treeWasChossen = true;
+                    dat.coinChoise = false;
+                    dat.starChoise = false;
+                    dat.swordChoise = false;
+                    dat.cupChoise = false;
                     dat.animationCardFadeController
                       ..reset()
                       ..forward();
                     dat.currentCard = BigBadCard(
-                      text: "I am card one!",
+                      text: getPrediction(type: ProphecyType.MOODLET),
                     );
                   });
                 },
-                child: _card()),
+                child: (dat.treeChoise) ? SmallBadCard() : _card()),
             GestureDetector(
                 onTap: () {
                   // ignore: invalid_use_of_protected_member
                   setState(() {
+                    dat.coinChoise = true;
+                    dat.coinWasChossen = true;
+                    dat.treeChoise = false;
+                    dat.starChoise = false;
+                    dat.swordChoise = false;
+                    dat.cupChoise = false;
                     dat.animationCardFadeController
                       ..reset()
                       ..forward();
                     dat.currentCard = BigBadCard(
-                      text: "I am card two!",
+                      text: getPrediction(type: ProphecyType.INTUITION),
                     );
                   });
                 },
-                child: _card()),
+                child: (dat.coinChoise) ? SmallBadCard() : _card()),
             GestureDetector(
                 onTap: () {
                   // ignore: invalid_use_of_protected_member
                   setState(() {
+                    dat.starChoise = true;
+                    dat.starWasChossen = true;
+                    dat.treeChoise = false;
+                    dat.coinChoise = false;
+                    dat.swordChoise = false;
+                    dat.cupChoise = false;
                     dat.animationCardFadeController
                       ..reset()
                       ..forward();
                     dat.currentCard = BigBadCard(
-                      text: "I am card three!",
+                      text: getPrediction(type: ProphecyType.LUCK),
                     );
                   });
                 },
-                child: _card()),
+                child: (dat.starChoise) ? SmallBadCard() : _card()),
             GestureDetector(
                 onTap: () {
                   // ignore: invalid_use_of_protected_member
                   setState(() {
+                    dat.swordChoise = true;
+                    dat.swordWasChossen = true;
+                    dat.treeChoise = false;
+                    dat.coinChoise = false;
+                    dat.starChoise = false;
+                    dat.cupChoise = false;
                     dat.animationCardFadeController
                       ..reset()
                       ..forward();
                     dat.currentCard = BigBadCard(
-                      text: "I am card four!",
+                      text: getPrediction(type: ProphecyType.AMBITION),
                     );
                   });
                 },
-                child: _card()),
+                child: (dat.swordChoise) ? SmallBadCard() : _card()),
             GestureDetector(
                 onTap: () {
                   // ignore: invalid_use_of_protected_member
                   setState(() {
+                    dat.cupChoise = true;
+                    dat.cupWasChossen = true;
+                    dat.treeChoise = false;
+                    dat.coinChoise = false;
+                    dat.starChoise = false;
+                    dat.swordChoise = false;
                     dat.animationCardFadeController
                       ..reset()
                       ..forward();
                     dat.currentCard = BigBadCard(
-                      text: "I am card five!",
+                      text: getPrediction(type: ProphecyType.INTERNAL_STRENGTH),
                     );
                   });
                 },
-                child: _card()),
+                child: (dat.cupChoise) ? SmallBadCard() : _card()),
           ],
         ),
       ],

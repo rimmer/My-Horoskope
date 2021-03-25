@@ -26,6 +26,7 @@ class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
   /// algorithm that will calculate prophecies
   /// and already has needed, loaded data
   final AlgorithmInterface algo;
+  ProphecyState currentState;
 
   ProphecyState get initialState => ProphecyInitial();
 

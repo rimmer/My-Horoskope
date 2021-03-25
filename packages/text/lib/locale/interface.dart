@@ -22,7 +22,6 @@ abstract class Locale {
   String get futureDays;
   String get horoscope;
   String get horoscopeFor;
-  String get howTodayAdvice;
   String get impact;
   String get impactHint;
   String get male;
@@ -40,10 +39,6 @@ abstract class Locale {
   String get personalInformation;
   String get physicalActivity;
   String get planetImpact;
-  String get pollSettingPollOption;
-  String get pollSettingText;
-  String get pollSettingsStudyOption;
-  String get pollSettingsTitle;
   String get privacyPolicy;
   String get productivity;
   String get profileSettings;

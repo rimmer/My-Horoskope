@@ -3,7 +3,7 @@ import 'app_colors.dart';
 
 class AppTextStyle {
   static const bigBadCardText = TextStyle(
-    fontSize: 22,
+    fontSize: 18,
     color: AppColors.textPrimary,
     fontWeight: FontWeight.w500,
   );

@@ -20,10 +20,9 @@ class RussianLocale implements Locale {
       "Показатели могут измениться после дальнейшего уточнения прогноза";
   final String horoscope = "гороскоп";
   final String horoscopeFor = "гороскоп на";
-  final String howTodayAdvice =
-      "чтобы получить совет, пройдите опрос о вчерашнем дне";
   final String impact = "влияние";
-  final String impactHint = "Что влияет на ваши внутренние ресурсы сегодня";
+  final String impactHint =
+      "Красная планета влияет на вас негативно в данный период, а синяя - положительно";
   final String male = "мужской";
   final String mood = "настроение";
   final String my = "мой";
@@ -40,11 +39,6 @@ class RussianLocale implements Locale {
   final String personalInformation = "личная информация";
   final String physicalActivity = "физическая активность";
   final String planetImpact = "влияние планет";
-  final String pollSettingPollOption = "проводить опрос";
-  final String pollSettingsStudyOption = "включить обучение AI";
-  final String pollSettingsTitle = "обучение AI";
-  final String pollSettingText =
-      "отвечая на вопросы о своем вчерашнем настроении Вы помогаете обучить наш искусственный интеллект лучше прогнозировать ваше будущее.";
   final String privacyPolicy = "политика конфеденциальности";
   final String productivity = "продуктивность";
   final String profileSettings = "настройки профиля";

@@ -1,6 +1,5 @@
 import 'index.dart';
 
-const _BOTTOM_ROW_HEIGHT = 80.0;
 const _WRITE_TO_DEV_URL = "https://forms.gle/R67F71wPMYEbEWrs7";
 
 class MenuScreen extends StatefulWidget {
@@ -43,8 +42,6 @@ class _MenuScreenState extends State<MenuScreen>
 
   @override
   Widget build(BuildContext context) {
-    final screen = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: AppColors.primaryDark,
       body: SafeArea(

@@ -9,6 +9,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
       //
 
     } else if (state is ProphecyWasAsked) {
+      sp.prophecyBloc.currentState = state;
       //
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,

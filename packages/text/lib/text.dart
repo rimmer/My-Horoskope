@@ -28,7 +28,6 @@ class localeText {
   static String futureDays = locale.futureDays;
   static String horoscope = locale.horoscope;
   static String horoscopeFor = locale.horoscopeFor;
-  static String howTodayAdvice = locale.howTodayAdvice;
   static String impact = locale.impact;
   static String impactHint = locale.impactHint;
   static String male = locale.male;
@@ -46,10 +45,6 @@ class localeText {
   static String personalInformation = locale.personalInformation;
   static String physicalActivity = locale.physicalActivity;
   static String planetImpact = locale.planetImpact;
-  static String pollSettingPollOption = locale.pollSettingPollOption;
-  static String pollSettingText = locale.pollSettingText;
-  static String pollSettingsStudyOption = locale.pollSettingsStudyOption;
-  static String pollSettingsTitle = locale.pollSettingsTitle;
   static String privacyPolicy = locale.privacyPolicy;
   static String productivity = locale.productivity;
   static String profileSettings = locale.profileSettings;

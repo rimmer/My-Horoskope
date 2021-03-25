@@ -1,10 +1,12 @@
-import 'dart:math' as Math;
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_prophet/theme/app_text_style.dart';
+import 'package:marquee/marquee.dart';
 
 const _height = 445.0;
 const _width = 260.0;
+const _textLengthTillScroll = 180;
 
 class BigBadCard extends StatefulWidget {
   final String text;
@@ -29,7 +31,7 @@ class _BigBadCardState extends State<BigBadCard>
   void initState() {
     _cardRotation = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 2400),
+      duration: Duration(milliseconds: 3200),
       value: 0,
     );
 
@@ -92,9 +94,25 @@ class _BigBadCardState extends State<BigBadCard>
           ),
           Align(
             alignment: Alignment.center,
-            child: Text(
-              widget.text,
-              style: AppTextStyle.bigBadCardText,
+            child: Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 32.0,
+                vertical: 78.0,
+              ),
+              child: (widget.text.length > _textLengthTillScroll)
+                  ? Marquee(
+                      text: widget.text,
+                      style: AppTextStyle.bigBadCardText,
+                      scrollAxis: Axis.vertical,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      velocity: 5.0,
+                    )
+                  : Center(
+                      child: Text(
+                        widget.text,
+                        style: AppTextStyle.bigBadCardText,
+                      ),
+                    ),
             ),
           ),
         ],
@@ -123,7 +141,7 @@ class _BigBadCardState extends State<BigBadCard>
           animation: _cardRotation,
           builder: (context, child) {
             return Transform(
-              transform: Matrix4.rotationY((_cardRotation.value) * Math.pi / 2),
+              transform: Matrix4.rotationY(_cardRotation.value * pi / 2),
               alignment: Alignment.center,
               child: Container(
                 height: _height,

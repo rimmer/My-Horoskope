@@ -7,10 +7,12 @@ void main() async {
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final singleProvider = SingleProvider();
+
   singleProvider.appPref = AppPreferencesFlutter();
   await singleProvider.appPref.load();
+  singleProvider.predictions = PredictionsFlutterMobile();
+  await singleProvider.predictions.prepare();
 
-  // singleProvider.predictions = PredictionsFlutterMobile();
   singleProvider.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());

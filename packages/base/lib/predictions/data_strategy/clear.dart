@@ -10,5 +10,11 @@ class Clear extends DataStrategy {
     predictions.positiveMoodlet.clear();
     predictions.positiveAmbition.clear();
     predictions.positiveIntelligence.clear();
+
+    predictions.negativeLuck.clear();
+    predictions.negativeInternalStr.clear();
+    predictions.negativeMoodlet.clear();
+    predictions.negativeAmbition.clear();
+    predictions.negativeIntelligence.clear();
   }
 }

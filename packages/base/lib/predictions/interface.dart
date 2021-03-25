@@ -18,6 +18,12 @@ abstract class IPredictions {
   Set<String> get positiveAmbition;
   Set<String> get positiveIntelligence;
 
+  Set<String> get negativeLuck;
+  Set<String> get negativeInternalStr;
+  Set<String> get negativeMoodlet;
+  Set<String> get negativeAmbition;
+  Set<String> get negativeIntelligence;
+
   GetPredictionAlgorithm get getPredictionAlgorithm;
   //
 
@@ -50,6 +56,38 @@ abstract class IPredictions {
   /// returns correct prediction in the String format
   String predictionPositiveIntelligence(dynamic data) => getPredictionAlgorithm
       .prediction(positiveIntelligence.toList(growable: false), data);
+
+  //
+
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionNegativeLuck(dynamic data) =>
+      getPredictionAlgorithm.prediction(negativeLuck.toList(), data);
+
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionNegativeInternalStr(dynamic data) =>
+      getPredictionAlgorithm.prediction(negativeInternalStr.toList(), data);
+
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionNegativeMoodlet(dynamic data) =>
+      getPredictionAlgorithm.prediction(negativeMoodlet.toList(), data);
+
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionNegativeAmbition(dynamic data) =>
+      getPredictionAlgorithm.prediction(negativeAmbition.toList(), data);
+
+  /// Argument is a data needed for the algorithm
+  /// to search a correct index
+  /// returns correct prediction in the String format
+  String predictionNegativeIntelligence(dynamic data) =>
+      getPredictionAlgorithm.prediction(negativeIntelligence.toList(), data);
 
   //
   /// allows change this object in multiple ways

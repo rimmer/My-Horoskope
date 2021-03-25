@@ -16,9 +16,9 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
     ));
 
     dat.animationCardFadeController = AnimationController(
-      duration: Duration(seconds: 4),
+      duration: Duration(milliseconds: 800),
       vsync: this,
-    );
+    )..forward();
 
     dat.animationCardFade = Tween<double>(
       begin: 0.0,
@@ -41,7 +41,7 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
   animationFirstStart() {
     dat.animationSheetsFadeOutController.animateTo(
       dat.animationSheetsFadeOutController.upperBound,
-      duration: Duration(seconds: 7),
+      duration: Duration(seconds: 8),
       curve: Curves.ease,
     );
   }
@@ -54,6 +54,11 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
         // ignore: invalid_use_of_protected_member
         setState(() {
           dat.currentCard = null;
+          dat.treeChoise = false;
+          dat.coinChoise = false;
+          dat.starChoise = false;
+          dat.swordChoise = false;
+          dat.cupChoise = false;
           widget.currentIndex.wrapped = index;
           dat.showCalendarSelection = true;
           dat.animationSheetsFadeOutController.forward();
