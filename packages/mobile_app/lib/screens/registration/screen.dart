@@ -89,7 +89,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                   SizedBox(
                     height: 8.0,
                   ),
-                  userSettingsList(
+                  UserSettingsList(
                     name: widget.name,
                     month: widget.month,
                     day: widget.day,

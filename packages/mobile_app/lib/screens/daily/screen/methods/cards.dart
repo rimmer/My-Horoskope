@@ -1,7 +1,7 @@
 part of '../screen.dart';
 
-const _cardHeight = 95.7;
-const _cardWidth = 59.4;
+const _cardHeight = 95.0;
+const _cardWidth = 59.0;
 
 extension DailyScreenCardsMethods on _DailyScreenState {
   ListView cards() {
@@ -13,7 +13,7 @@ extension DailyScreenCardsMethods on _DailyScreenState {
         (dat.currentCard != null)
             ? Center(
                 child: AnimatedBuilder(
-                    animation: dat.animationCardFade,
+                    animation: dat.animationCardFadeController,
                     builder: (context, child) => FadeTransition(
                           opacity: dat.animationCardFade,
                           child: child,
@@ -26,126 +26,141 @@ extension DailyScreenCardsMethods on _DailyScreenState {
             //
 
             (toShow.moodlet)
-                ? GestureDetector(
-                    onTap: () {
-                      if (dat.treeWasChossen ||
-                          dat.coinWasChossen ||
-                          dat.starWasChossen ||
-                          dat.swordWasChossen ||
-                          dat.cupWasChossen)
-                        dat.animationCardFadeController
-                            .reverse()
-                            .whenCompleteOrCancel(() {
-                          _chooseTree();
-                        });
-                      else
-                        _chooseTree();
-                    },
-                    child: (dat.treeChoise)
-                        ? SmallBadCard()
-                        : (dat.treeWasChossen)
-                            ? _card()
-                            : _notUsedCard())
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.5),
+                    child: GestureDetector(
+                        onTap: () {
+                          if (dat.treeWasChossen ||
+                              dat.coinWasChossen ||
+                              dat.starWasChossen ||
+                              dat.swordWasChossen ||
+                              dat.cupWasChossen)
+                            dat.animationCardFadeController
+                                .reverse()
+                                .whenCompleteOrCancel(() {
+                              _chooseTree();
+                            });
+                          else
+                            _chooseTree();
+                        },
+                        child: (dat.treeChoise)
+                            ? SmallBadCard()
+                            : (dat.treeWasChossen)
+                                ? _card()
+                                : _notUsedCard()),
+                  )
                 : SizedBox(),
 
             //
 
             (toShow.intuition)
-                ? GestureDetector(
-                    onTap: () {
-                      if (dat.treeWasChossen ||
-                          dat.coinWasChossen ||
-                          dat.starWasChossen ||
-                          dat.swordWasChossen ||
-                          dat.cupWasChossen)
-                        dat.animationCardFadeController
-                            .reverse()
-                            .whenCompleteOrCancel(() {
-                          _chooseCoin();
-                        });
-                      else
-                        _chooseCoin();
-                    },
-                    child: (dat.coinChoise)
-                        ? SmallBadCard()
-                        : (dat.coinWasChossen)
-                            ? _card()
-                            : _notUsedCard())
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.5),
+                    child: GestureDetector(
+                        onTap: () {
+                          if (dat.treeWasChossen ||
+                              dat.coinWasChossen ||
+                              dat.starWasChossen ||
+                              dat.swordWasChossen ||
+                              dat.cupWasChossen)
+                            dat.animationCardFadeController
+                                .reverse()
+                                .whenCompleteOrCancel(() {
+                              _chooseCoin();
+                            });
+                          else
+                            _chooseCoin();
+                        },
+                        child: (dat.coinChoise)
+                            ? SmallBadCard()
+                            : (dat.coinWasChossen)
+                                ? _card()
+                                : _notUsedCard()),
+                  )
                 : SizedBox(),
 
             //
 
             (toShow.luck)
-                ? GestureDetector(
-                    onTap: () {
-                      if (dat.treeWasChossen ||
-                          dat.coinWasChossen ||
-                          dat.starWasChossen ||
-                          dat.swordWasChossen ||
-                          dat.cupWasChossen)
-                        dat.animationCardFadeController
-                            .reverse()
-                            .whenCompleteOrCancel(() {
-                          _chooseStar();
-                        });
-                      else
-                        _chooseStar();
-                    },
-                    child: (dat.starChoise)
-                        ? SmallBadCard()
-                        : (dat.starWasChossen)
-                            ? _card()
-                            : _notUsedCard())
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.5),
+                    child: GestureDetector(
+                        onTap: () {
+                          if (dat.treeWasChossen ||
+                              dat.coinWasChossen ||
+                              dat.starWasChossen ||
+                              dat.swordWasChossen ||
+                              dat.cupWasChossen)
+                            dat.animationCardFadeController
+                                .reverse()
+                                .whenCompleteOrCancel(() {
+                              _chooseStar();
+                            });
+                          else
+                            _chooseStar();
+                        },
+                        child: (dat.starChoise)
+                            ? SmallBadCard()
+                            : (dat.starWasChossen)
+                                ? _card()
+                                : _notUsedCard()),
+                  )
                 : SizedBox(),
 
             //
 
             (toShow.ambition)
-                ? GestureDetector(
-                    onTap: () {
-                      if (dat.treeWasChossen ||
-                          dat.coinWasChossen ||
-                          dat.starWasChossen ||
-                          dat.swordWasChossen ||
-                          dat.cupWasChossen)
-                        dat.animationCardFadeController
-                            .reverse()
-                            .whenCompleteOrCancel(() {
-                          _chooseSword();
-                        });
-                      else
-                        _chooseSword();
-                    },
-                    child: (dat.swordChoise)
-                        ? SmallBadCard()
-                        : (dat.swordWasChossen)
-                            ? _card()
-                            : _notUsedCard())
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.5),
+                    child: GestureDetector(
+                        onTap: () {
+                          if (dat.treeWasChossen ||
+                              dat.coinWasChossen ||
+                              dat.starWasChossen ||
+                              dat.swordWasChossen ||
+                              dat.cupWasChossen)
+                            dat.animationCardFadeController
+                                .reverse()
+                                .whenCompleteOrCancel(() {
+                              _chooseSword();
+                            });
+                          else
+                            _chooseSword();
+                        },
+                        child: (dat.swordChoise)
+                            ? SmallBadCard()
+                            : (dat.swordWasChossen)
+                                ? _card()
+                                : _notUsedCard()),
+                  )
                 : SizedBox(),
 
             //
 
             (toShow.internalStrength)
-                ? GestureDetector(
-                    onTap: () {
-                      if (dat.treeWasChossen ||
-                          dat.coinWasChossen ||
-                          dat.starWasChossen ||
-                          dat.swordWasChossen ||
-                          dat.cupWasChossen)
-                        dat.animationCardFadeController
-                            .reverse()
-                            .whenCompleteOrCancel(() {
-                          _chooseCup();
-                        });
-                      else
-                        _chooseCup();
-                    },
-                    child: (dat.cupChoise)
-                        ? SmallBadCard()
-                        : (dat.cupWasChossen)
-                            ? _card()
-                            : _notUsedCard())
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.5),
+                    child: GestureDetector(
+                        onTap: () {
+                          if (dat.treeWasChossen ||
+                              dat.coinWasChossen ||
+                              dat.starWasChossen ||
+                              dat.swordWasChossen ||
+                              dat.cupWasChossen)
+                            dat.animationCardFadeController
+                                .reverse()
+                                .whenCompleteOrCancel(() {
+                              _chooseCup();
+                            });
+                          else
+                            _chooseCup();
+                        },
+                        child: (dat.cupChoise)
+                            ? SmallBadCard()
+                            : (dat.cupWasChossen)
+                                ? _card()
+                                : _notUsedCard()),
+                  )
                 : SizedBox(),
 
             //
@@ -155,26 +170,29 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                     toShow.ambition == false &&
                     toShow.intuition == false &&
                     toShow.luck == false)
-                ? GestureDetector(
-                    onTap: () {
-                      if (dat.treeWasChossen ||
-                          dat.coinWasChossen ||
-                          dat.starWasChossen ||
-                          dat.swordWasChossen ||
-                          dat.cupWasChossen)
-                        dat.animationCardFadeController
-                            .reverse()
-                            .whenCompleteOrCancel(() {
-                          _chooseStar();
-                        });
-                      else
-                        _chooseStar();
-                    },
-                    child: (dat.starChoise)
-                        ? SmallBadCard()
-                        : (dat.starWasChossen)
-                            ? _card()
-                            : _notUsedCard())
+                ? Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.5),
+                    child: GestureDetector(
+                        onTap: () {
+                          if (dat.treeWasChossen ||
+                              dat.coinWasChossen ||
+                              dat.starWasChossen ||
+                              dat.swordWasChossen ||
+                              dat.cupWasChossen)
+                            dat.animationCardFadeController
+                                .reverse()
+                                .whenCompleteOrCancel(() {
+                              _chooseStar();
+                            });
+                          else
+                            _chooseStar();
+                        },
+                        child: (dat.starChoise)
+                            ? SmallBadCard()
+                            : (dat.starWasChossen)
+                                ? _card()
+                                : _notUsedCard()),
+                  )
                 : SizedBox()
 
             //
@@ -183,34 +201,6 @@ extension DailyScreenCardsMethods on _DailyScreenState {
       ],
     );
   }
-
-  Padding _card({
-    String icon = "star",
-  }) =>
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 3.5),
-        child: Container(
-          height: _cardHeight,
-          width: _cardWidth,
-          child: Stack(
-            children: [
-              SvgPicture.asset(
-                "assets/card/card_light.svg",
-                height: _cardHeight,
-                width: _cardWidth,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: SvgPicture.asset(
-                  "assets/card/${icon}_light.svg",
-                  height: _cardHeight,
-                  width: _cardWidth,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
 
   _chooseTree() {
     // ignore: invalid_use_of_protected_member
@@ -292,31 +282,47 @@ extension DailyScreenCardsMethods on _DailyScreenState {
     });
   }
 
-  Padding _notUsedCard({
+  Container _card({
     String icon = "star",
   }) =>
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 3.5),
-        child: Container(
-          height: _cardHeight,
-          width: _cardWidth,
-          child: Stack(
-            children: [
-              SvgPicture.asset(
-                "assets/card/card_dark.svg",
-                height: _cardHeight,
-                width: _cardWidth,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: SvgPicture.asset(
-                  "assets/card/${icon}_dark.svg",
-                  height: _cardHeight,
-                  width: _cardWidth,
-                ),
-              ),
-            ],
-          ),
+      Container(
+        height: _cardHeight,
+        width: _cardWidth,
+        child: Stack(
+          children: [
+            SvgPicture.asset(
+              "assets/card/card_light.svg",
+              height: _cardHeight,
+              width: _cardWidth,
+            ),
+            SvgPicture.asset(
+              "assets/card/${icon}_light.svg",
+              height: _cardHeight,
+              width: _cardWidth,
+            ),
+          ],
+        ),
+      );
+
+  Container _notUsedCard({
+    String icon = "star",
+  }) =>
+      Container(
+        height: _cardHeight,
+        width: _cardWidth,
+        child: Stack(
+          children: [
+            SvgPicture.asset(
+              "assets/card/card_dark.svg",
+              height: _cardHeight,
+              width: _cardWidth,
+            ),
+            SvgPicture.asset(
+              "assets/card/${icon}_dark.svg",
+              height: _cardHeight,
+              width: _cardWidth,
+            ),
+          ],
         ),
       );
 }

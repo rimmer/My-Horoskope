@@ -146,7 +146,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen>
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 32.0),
-                  child: userSettingsList(
+                  child: UserSettingsList(
                     name: widget.name,
                     month: widget.month,
                     day: widget.day,

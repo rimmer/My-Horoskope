@@ -4,23 +4,41 @@ typedef bool ReturnsTrueOnCorrect();
 
 int upperYearBound(int bound) => DateTime.now().year - bound;
 
-Column userSettingsList({
-  @required MutableString name,
-  @required MutableString month,
-  @required MutableString day,
-  @required MutableString year,
-  @required MutableInteger sex,
-  @required Map<int, String> indexToSex,
+class UserSettingsList extends StatelessWidget {
+  final MutableString name;
+  final MutableString month;
+  final MutableString day;
+  final MutableString year;
+  final MutableInteger sex;
+  final Map<int, String> indexToSex;
+  final MutableBool termsAccepted;
+  final Function onUnvalidTerms;
+  final ReturnsTrueOnCorrect validInformationCheck;
+  final Function onValidInformation;
+  final String buttonText;
 
-  /// defaultIsNull
-  MutableBool termsAccepted,
-  Function onUnvalidTerms,
-  //
-  @required ReturnsTrueOnCorrect validInformationCheck,
-  @required Function onValidInformation,
-  @required String buttonText,
-}) =>
-    Column(
+  UserSettingsList({
+    @required this.name,
+    @required this.month,
+    @required this.day,
+    @required this.year,
+    @required this.sex,
+    @required this.indexToSex,
+
+    /// defaultIsNull
+    this.termsAccepted,
+    this.onUnvalidTerms,
+    //
+    @required this.validInformationCheck,
+    @required this.onValidInformation,
+    @required this.buttonText,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final node = FocusScope.of(context);
+
+    return Column(
       children: <Widget>[
         userInfo(
           name: UserInfoField(
@@ -29,6 +47,7 @@ Column userSettingsList({
               keyboardType: TextInputType.name,
               capitalizationType: TextCapitalization.words,
               hint: localeText.name.capitalize(),
+              onEditingComplete: () => node.nextFocus(),
               validator: (String text) {
                 int min = 2;
                 if (text.isEmpty || text.length < min)
@@ -40,11 +59,14 @@ Column userSettingsList({
               maxLength: 2,
               keyboardType: TextInputType.datetime,
               hint: "dd",
+              onEditingComplete: () => node.nextFocus(),
               validator: (String text) {
                 int min = 1;
                 if (text.isEmpty || text.length < min)
                   return "${text.length}/$min";
                 if (int.parse(text) > 31 || int.parse(text) < 1) return "x";
+                if (text.length == 1 && int.parse(text) > 3) node.nextFocus();
+                if (text.length == 2) node.nextFocus();
                 return null;
               }),
           month: UserInfoField(
@@ -52,11 +74,14 @@ Column userSettingsList({
               maxLength: 2,
               keyboardType: TextInputType.datetime,
               hint: "mm",
+              onEditingComplete: () => node.nextFocus(),
               validator: (String text) {
                 int min = 1;
                 if (text.isEmpty || text.length < min)
                   return "${text.length}/$min";
                 if (int.parse(text) > 12 || int.parse(text) < 1) return "x";
+                if (text.length == 1 && int.parse(text) > 1) node.nextFocus();
+                if (text.length == 2) node.nextFocus();
                 return null;
               }),
           year: UserInfoField(
@@ -64,12 +89,14 @@ Column userSettingsList({
               maxLength: 4,
               keyboardType: TextInputType.datetime,
               hint: "yyyy",
+              onEditingComplete: () => node.unfocus(),
               validator: (String text) {
                 int min = 4;
                 if (text.isEmpty || text.length < min)
                   return "${text.length}/$min";
                 if (int.parse(text) > upperYearBound(12) ||
                     int.parse(text) < 1921) return "x";
+                if (text.length == 4) node.nextFocus();
                 return null;
               }),
           sex: UserInfoPicker(
@@ -138,6 +165,8 @@ Column userSettingsList({
         ),
       ],
     );
+  }
+}
 
 Container wrongInformation(String title) => Container(
       color: Colors.transparent,

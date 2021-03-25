@@ -11,6 +11,7 @@ class UserInfoField extends StatefulWidget {
   final bool autofocus;
   final int maxLength;
   final MutableString textObject;
+  final Function onEditingComplete;
 
   UserInfoField(
       {Key key,
@@ -20,6 +21,7 @@ class UserInfoField extends StatefulWidget {
       this.keyboardType = TextInputType.text,
       this.capitalizationType = TextCapitalization.none,
       this.autofocus = false,
+      @required this.onEditingComplete,
       @required this.maxLength})
       : super(key: key);
 
@@ -54,9 +56,7 @@ class _UserInfoFieldState extends State<UserInfoField> {
               widget.textObject.wrapped = _textController.text;
             }
           },
-          onEditingComplete: () {
-            FocusScope.of(context).unfocus();
-          },
+          onEditingComplete: widget.onEditingComplete,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(
               left: 4.0,
