@@ -56,8 +56,6 @@ abstract class Locale {
   String get termsPrivacyPolicy;
   String get termsUserAgreement;
   String get today;
-  String get todayAdvice;
-  String get todayAdviceHint;
   String get tomorrow;
   String get understood;
   String get userAgreement;

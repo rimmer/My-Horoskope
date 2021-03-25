@@ -62,8 +62,6 @@ class localeText {
   static String termsPrivacyPolicy = locale.termsPrivacyPolicy;
   static String termsUserAgreement = locale.termsUserAgreement;
   static String today = locale.today;
-  static String todayAdvice = locale.todayAdvice;
-  static String todayAdviceHint = locale.todayAdviceHint;
   static String tomorrow = locale.tomorrow;
   static String understood = locale.understood;
   static String userAgreement = locale.userAgreement;

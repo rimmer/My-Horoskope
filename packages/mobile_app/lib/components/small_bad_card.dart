@@ -2,8 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-const _height = 89.0;
-const _width = 52.0;
+const _height = 95.7;
+const _width = 59.4;
 
 class SmallBadCard extends StatefulWidget {
   final String icon;
@@ -64,17 +64,16 @@ class _SmallBadCardState extends State<SmallBadCard>
             child: Stack(
               children: [
                 SvgPicture.asset(
-                  "assets/widget/card.svg",
+                  "assets/card/card_light.svg",
                   height: _height,
                   width: _width,
                 ),
                 Align(
                   alignment: Alignment.center,
                   child: SvgPicture.asset(
-                    "assets/icons/${widget.icon}.svg",
-                    color: Colors.white,
-                    height: 160.0,
-                    width: 160.0,
+                    "assets/card/${widget.icon}_light.svg",
+                    height: _height,
+                    width: _width,
                   ),
                 ),
               ],

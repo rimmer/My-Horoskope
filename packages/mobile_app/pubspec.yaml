@@ -54,6 +54,7 @@ flutter:
     - assets/splash.png
     - assets/icons/
     - assets/widget/
+    - assets/card/
   #data
     # - packages/prophecies_repository_flutter/data/prophecies.json
   # #localization

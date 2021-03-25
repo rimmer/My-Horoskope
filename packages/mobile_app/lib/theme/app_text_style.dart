@@ -7,6 +7,14 @@ class AppTextStyle {
     color: AppColors.textPrimary,
     fontWeight: FontWeight.w500,
   );
+
+  static const bigCardText = TextStyle(
+    fontSize: 16,
+    color: AppColors.textPrimary,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.0,
+  );
+
   static const fadeText = TextStyle(color: AppColors.textDisabled);
   static const normalText = TextStyle(
     fontSize: 14,

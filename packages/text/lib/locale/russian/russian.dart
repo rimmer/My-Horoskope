@@ -57,9 +57,6 @@ class RussianLocale implements Locale {
   final String termsPrivacyPolicy = "политики конфиденциальности";
   final String termsUserAgreement = "пользовательского соглашения";
   final String today = "сегодня";
-  final String todayAdvice = "совет на сегодня";
-  final String todayAdviceHint =
-      "Эти данные нужны, чтобы искусственный интеллект точнее воссоздал картину вашего самочувствия";
   final String tomorrow = "завтра";
   final String understood = "понятно";
   final String userAgreement = "пользовательское соглашение";

@@ -18,7 +18,7 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
     dat.animationCardFadeController = AnimationController(
       duration: Duration(milliseconds: 800),
       vsync: this,
-    )..forward();
+    );
 
     dat.animationCardFade = Tween<double>(
       begin: 0.0,
@@ -59,6 +59,11 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
           dat.starChoise = false;
           dat.swordChoise = false;
           dat.cupChoise = false;
+          dat.treeWasChossen = false;
+          dat.coinWasChossen = false;
+          dat.starWasChossen = false;
+          dat.swordWasChossen = false;
+          dat.cupWasChossen = false;
           widget.currentIndex.wrapped = index;
           dat.showCalendarSelection = true;
           dat.animationSheetsFadeOutController.forward();
