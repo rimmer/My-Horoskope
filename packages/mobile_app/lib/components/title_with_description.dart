@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:my_prophet/components/popup.dart';
+import 'package:my_prophet/services/static_assets.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:text/text.dart';
 import 'package:my_prophet/theme/app_text_style.dart';
@@ -90,7 +90,7 @@ class _TitleWithDescriptionState extends State<TitleWithDescription> {
               "${widget.title}:",
               style: AppTextStyle.titleDescription,
             ),
-            SvgPicture.asset("assets/widget/title_info.svg"),
+            StaticAsset.svg["title_info"],
           ],
         ),
       ),

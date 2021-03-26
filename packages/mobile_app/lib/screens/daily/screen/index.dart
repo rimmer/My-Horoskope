@@ -4,10 +4,9 @@ export 'package:flutter/material.dart';
 export 'package:flutter/rendering.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:flutter_spinkit/flutter_spinkit.dart';
-export 'package:flutter_svg/flutter_svg.dart';
 export 'package:provider/provider.dart';
 
-export 'package:my_prophet/single_provider.dart';
+export 'package:my_prophet/services/single_provider.dart';
 export 'package:base/preferences/setting/enabled_prophecies/item.dart';
 export 'package:text/text.dart';
 export 'package:base/int_datetime.dart';
@@ -29,3 +28,5 @@ export 'package:my_prophet/components/prophecy_sheet_divider.dart';
 
 export '../calendar_widgets.dart';
 export '../constants.dart';
+export 'package:my_prophet/services/static_assets.dart';
+export 'package:flutter_svg/flutter_svg.dart';

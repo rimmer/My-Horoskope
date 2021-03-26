@@ -6,10 +6,11 @@ import 'package:bloc/bloc.dart';
 import 'screens/daily/screen/screen.dart';
 import 'screens/menu/screen.dart';
 import 'screens/settings/screen.dart';
+import 'services/static_assets.dart';
 
 //
+export 'services/single_provider.dart';
 export 'package:provider/provider.dart';
-export 'single_provider.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:base/user/auth/data/flutter_auth.dart';
@@ -22,15 +23,14 @@ export 'screens/daily/screen/screen.dart';
 export 'screens/registration/screen.dart';
 export 'screens/loading.dart';
 
-Container imageBackground({@required Widget child, @required String asset}) =>
-    Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(asset),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: child);
+Container imageBackground({@required Widget child}) => Container(
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: StaticAsset.rust["background"],
+        fit: BoxFit.cover,
+      ),
+    ),
+    child: child);
 
 MaterialApp myProphet({@required Widget authResolver}) => MaterialApp(
       title: localeText.appName,

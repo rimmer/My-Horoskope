@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_prophet/services/static_assets.dart';
 import 'package:my_prophet/theme/app_text_style.dart';
 
-const _height = 222.0;
-const _width = 437.0;
+// const _height = 222.0;
+// const _width = 437.0;
 
 class BigCard extends StatefulWidget {
   final String text;
-  final background = SvgPicture.asset(
-    "assets/card/card_text.svg",
-    height: _height,
-    width: _width,
-  );
 
   BigCard({this.text = "I am the card!"});
 
@@ -54,28 +49,27 @@ class _BigCardState extends State<BigCard> with TickerProviderStateMixin {
       builder: (context, child) => SlideTransition(
         position: _cardMove,
         child: Container(
-          height: _height,
-          width: _width,
-          child: Stack(
-            children: [
-              widget.background,
-              Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 32.0,
-                    vertical: 16.0,
-                  ),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Text(
-                      widget.text,
-                      style: AppTextStyle.bigCardText,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          margin: EdgeInsets.only(
+            left: 16.0,
+            right: 16.0,
+            bottom: 8.0,
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 8.0,
+          ),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: StaticAsset.rust["card_text"],
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Center(
+            child: Text(
+              widget.text,
+              style: AppTextStyle.bigCardText,
+            ),
           ),
         ),
       ),

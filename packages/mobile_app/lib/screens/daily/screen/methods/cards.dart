@@ -1,8 +1,5 @@
 part of '../screen.dart';
 
-const _cardHeight = 95.0;
-const _cardWidth = 59.0;
-
 extension DailyScreenCardsMethods on _DailyScreenState {
   ListView cards() {
     return ListView(
@@ -29,25 +26,29 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                 ? Padding(
                     padding: EdgeInsets.symmetric(horizontal: 3.5),
                     child: GestureDetector(
-                        onTap: () {
-                          if (dat.treeWasChossen ||
-                              dat.coinWasChossen ||
-                              dat.starWasChossen ||
-                              dat.swordWasChossen ||
-                              dat.cupWasChossen)
-                            dat.animationCardFadeController
-                                .reverse()
-                                .whenCompleteOrCancel(() {
-                              _chooseTree();
-                            });
-                          else
-                            _chooseTree();
-                        },
-                        child: (dat.treeChoise)
-                            ? SmallBadCard()
-                            : (dat.treeWasChossen)
-                                ? _card()
-                                : _notUsedCard()),
+                      onTap: () {
+                        if (dat.treeWasChossen ||
+                            dat.coinWasChossen ||
+                            dat.starWasChossen ||
+                            dat.swordWasChossen ||
+                            dat.cupWasChossen) {
+                          _chooseTree();
+                          dat.animationCardFadeController
+                              .reverse()
+                              .whenCompleteOrCancel(() {
+                            _chooseTreeBig();
+                          });
+                        } else {
+                          _chooseTree();
+                          _chooseTreeBig();
+                        }
+                      },
+                      child: (dat.treeChoise)
+                          ? SmallBadCard(icon: "tree")
+                          : (dat.treeWasChossen)
+                              ? StaticAsset.svg["light_tree"]
+                              : StaticAsset.svg["dark_tree"],
+                    ),
                   )
                 : SizedBox(),
 
@@ -57,25 +58,29 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                 ? Padding(
                     padding: EdgeInsets.symmetric(horizontal: 3.5),
                     child: GestureDetector(
-                        onTap: () {
-                          if (dat.treeWasChossen ||
-                              dat.coinWasChossen ||
-                              dat.starWasChossen ||
-                              dat.swordWasChossen ||
-                              dat.cupWasChossen)
-                            dat.animationCardFadeController
-                                .reverse()
-                                .whenCompleteOrCancel(() {
-                              _chooseCoin();
-                            });
-                          else
-                            _chooseCoin();
-                        },
-                        child: (dat.coinChoise)
-                            ? SmallBadCard()
-                            : (dat.coinWasChossen)
-                                ? _card()
-                                : _notUsedCard()),
+                      onTap: () {
+                        if (dat.treeWasChossen ||
+                            dat.coinWasChossen ||
+                            dat.starWasChossen ||
+                            dat.swordWasChossen ||
+                            dat.cupWasChossen) {
+                          _chooseCoin();
+                          dat.animationCardFadeController
+                              .reverse()
+                              .whenCompleteOrCancel(() {
+                            _chooseCoinBig();
+                          });
+                        } else {
+                          _chooseCoin();
+                          _chooseCoinBig();
+                        }
+                      },
+                      child: (dat.coinChoise)
+                          ? SmallBadCard(icon: "coins")
+                          : (dat.coinWasChossen)
+                              ? StaticAsset.svg["light_coins"]
+                              : StaticAsset.svg["dark_coins"],
+                    ),
                   )
                 : SizedBox(),
 
@@ -85,25 +90,29 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                 ? Padding(
                     padding: EdgeInsets.symmetric(horizontal: 3.5),
                     child: GestureDetector(
-                        onTap: () {
-                          if (dat.treeWasChossen ||
-                              dat.coinWasChossen ||
-                              dat.starWasChossen ||
-                              dat.swordWasChossen ||
-                              dat.cupWasChossen)
-                            dat.animationCardFadeController
-                                .reverse()
-                                .whenCompleteOrCancel(() {
-                              _chooseStar();
-                            });
-                          else
-                            _chooseStar();
-                        },
-                        child: (dat.starChoise)
-                            ? SmallBadCard()
-                            : (dat.starWasChossen)
-                                ? _card()
-                                : _notUsedCard()),
+                      onTap: () {
+                        if (dat.treeWasChossen ||
+                            dat.coinWasChossen ||
+                            dat.starWasChossen ||
+                            dat.swordWasChossen ||
+                            dat.cupWasChossen) {
+                          _chooseStar();
+                          dat.animationCardFadeController
+                              .reverse()
+                              .whenCompleteOrCancel(() {
+                            _chooseStarBig();
+                          });
+                        } else {
+                          _chooseStar();
+                          _chooseStarBig();
+                        }
+                      },
+                      child: (dat.starChoise)
+                          ? SmallBadCard(icon: "star")
+                          : (dat.starWasChossen)
+                              ? StaticAsset.svg["light_star"]
+                              : StaticAsset.svg["dark_star"],
+                    ),
                   )
                 : SizedBox(),
 
@@ -113,25 +122,29 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                 ? Padding(
                     padding: EdgeInsets.symmetric(horizontal: 3.5),
                     child: GestureDetector(
-                        onTap: () {
-                          if (dat.treeWasChossen ||
-                              dat.coinWasChossen ||
-                              dat.starWasChossen ||
-                              dat.swordWasChossen ||
-                              dat.cupWasChossen)
-                            dat.animationCardFadeController
-                                .reverse()
-                                .whenCompleteOrCancel(() {
-                              _chooseSword();
-                            });
-                          else
-                            _chooseSword();
-                        },
-                        child: (dat.swordChoise)
-                            ? SmallBadCard()
-                            : (dat.swordWasChossen)
-                                ? _card()
-                                : _notUsedCard()),
+                      onTap: () {
+                        if (dat.treeWasChossen ||
+                            dat.coinWasChossen ||
+                            dat.starWasChossen ||
+                            dat.swordWasChossen ||
+                            dat.cupWasChossen) {
+                          _chooseSword();
+                          dat.animationCardFadeController
+                              .reverse()
+                              .whenCompleteOrCancel(() {
+                            _chooseSwordBig();
+                          });
+                        } else {
+                          _chooseSword();
+                          _chooseSwordBig();
+                        }
+                      },
+                      child: (dat.swordChoise)
+                          ? SmallBadCard(icon: "sword")
+                          : (dat.swordWasChossen)
+                              ? StaticAsset.svg["light_sword"]
+                              : StaticAsset.svg["dark_sword"],
+                    ),
                   )
                 : SizedBox(),
 
@@ -141,25 +154,29 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                 ? Padding(
                     padding: EdgeInsets.symmetric(horizontal: 3.5),
                     child: GestureDetector(
-                        onTap: () {
-                          if (dat.treeWasChossen ||
-                              dat.coinWasChossen ||
-                              dat.starWasChossen ||
-                              dat.swordWasChossen ||
-                              dat.cupWasChossen)
-                            dat.animationCardFadeController
-                                .reverse()
-                                .whenCompleteOrCancel(() {
-                              _chooseCup();
-                            });
-                          else
-                            _chooseCup();
-                        },
-                        child: (dat.cupChoise)
-                            ? SmallBadCard()
-                            : (dat.cupWasChossen)
-                                ? _card()
-                                : _notUsedCard()),
+                      onTap: () {
+                        if (dat.treeWasChossen ||
+                            dat.coinWasChossen ||
+                            dat.starWasChossen ||
+                            dat.swordWasChossen ||
+                            dat.cupWasChossen) {
+                          _chooseCup();
+                          dat.animationCardFadeController
+                              .reverse()
+                              .whenCompleteOrCancel(() {
+                            _chooseCupBig();
+                          });
+                        } else {
+                          _chooseCup();
+                          _chooseCupBig();
+                        }
+                      },
+                      child: (dat.cupChoise)
+                          ? SmallBadCard(icon: "cup")
+                          : (dat.cupWasChossen)
+                              ? StaticAsset.svg["light_cup"]
+                              : StaticAsset.svg["dark_cup"],
+                    ),
                   )
                 : SizedBox(),
 
@@ -173,25 +190,29 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                 ? Padding(
                     padding: EdgeInsets.symmetric(horizontal: 3.5),
                     child: GestureDetector(
-                        onTap: () {
-                          if (dat.treeWasChossen ||
-                              dat.coinWasChossen ||
-                              dat.starWasChossen ||
-                              dat.swordWasChossen ||
-                              dat.cupWasChossen)
-                            dat.animationCardFadeController
-                                .reverse()
-                                .whenCompleteOrCancel(() {
-                              _chooseStar();
-                            });
-                          else
-                            _chooseStar();
-                        },
-                        child: (dat.starChoise)
-                            ? SmallBadCard()
-                            : (dat.starWasChossen)
-                                ? _card()
-                                : _notUsedCard()),
+                      onTap: () {
+                        if (dat.treeWasChossen ||
+                            dat.coinWasChossen ||
+                            dat.starWasChossen ||
+                            dat.swordWasChossen ||
+                            dat.cupWasChossen) {
+                          _chooseStar();
+                          dat.animationCardFadeController
+                              .reverse()
+                              .whenCompleteOrCancel(() {
+                            _chooseStarBig();
+                          });
+                        } else {
+                          _chooseStar();
+                          _chooseStarBig();
+                        }
+                      },
+                      child: (dat.starChoise)
+                          ? SmallBadCard(icon: "star")
+                          : (dat.starWasChossen)
+                              ? StaticAsset.svg["light_star"]
+                              : StaticAsset.svg["dark_star"],
+                    ),
                   )
                 : SizedBox()
 
@@ -211,10 +232,16 @@ extension DailyScreenCardsMethods on _DailyScreenState {
       dat.starChoise = false;
       dat.swordChoise = false;
       dat.cupChoise = false;
-      dat.animationCardFadeController..forward();
+    });
+  }
+
+  _chooseTreeBig() {
+    // ignore: invalid_use_of_protected_member
+    setState(() {
       dat.currentCard = BigCard(
         text: getPrediction(type: ProphecyType.MOODLET),
       );
+      dat.animationCardFadeController..forward();
     });
   }
 
@@ -227,10 +254,16 @@ extension DailyScreenCardsMethods on _DailyScreenState {
       dat.starChoise = false;
       dat.swordChoise = false;
       dat.cupChoise = false;
-      dat.animationCardFadeController..forward();
+    });
+  }
+
+  _chooseCoinBig() {
+    // ignore: invalid_use_of_protected_member
+    setState(() {
       dat.currentCard = BigCard(
         text: getPrediction(type: ProphecyType.INTUITION),
       );
+      dat.animationCardFadeController..forward();
     });
   }
 
@@ -243,10 +276,16 @@ extension DailyScreenCardsMethods on _DailyScreenState {
       dat.coinChoise = false;
       dat.swordChoise = false;
       dat.cupChoise = false;
-      dat.animationCardFadeController..forward();
+    });
+  }
+
+  _chooseStarBig() {
+    // ignore: invalid_use_of_protected_member
+    setState(() {
       dat.currentCard = BigCard(
         text: getPrediction(type: ProphecyType.LUCK),
       );
+      dat.animationCardFadeController..forward();
     });
   }
 
@@ -259,10 +298,16 @@ extension DailyScreenCardsMethods on _DailyScreenState {
       dat.coinChoise = false;
       dat.starChoise = false;
       dat.cupChoise = false;
-      dat.animationCardFadeController..forward();
+    });
+  }
+
+  _chooseSwordBig() {
+    // ignore: invalid_use_of_protected_member
+    setState(() {
       dat.currentCard = BigCard(
         text: getPrediction(type: ProphecyType.AMBITION),
       );
+      dat.animationCardFadeController..forward();
     });
   }
 
@@ -275,54 +320,16 @@ extension DailyScreenCardsMethods on _DailyScreenState {
       dat.coinChoise = false;
       dat.starChoise = false;
       dat.swordChoise = false;
-      dat.animationCardFadeController..forward();
-      dat.currentCard = BigCard(
-        text: getPrediction(type: ProphecyType.INTERNAL_STRENGTH),
-      );
     });
   }
 
-  Container _card({
-    String icon = "star",
-  }) =>
-      Container(
-        height: _cardHeight,
-        width: _cardWidth,
-        child: Stack(
-          children: [
-            SvgPicture.asset(
-              "assets/card/card_light.svg",
-              height: _cardHeight,
-              width: _cardWidth,
-            ),
-            SvgPicture.asset(
-              "assets/card/${icon}_light.svg",
-              height: _cardHeight,
-              width: _cardWidth,
-            ),
-          ],
-        ),
+  _chooseCupBig() {
+    // ignore: invalid_use_of_protected_member
+    setState(() {
+      dat.currentCard = BigCard(
+        text: getPrediction(type: ProphecyType.INTERNAL_STRENGTH),
       );
-
-  Container _notUsedCard({
-    String icon = "star",
-  }) =>
-      Container(
-        height: _cardHeight,
-        width: _cardWidth,
-        child: Stack(
-          children: [
-            SvgPicture.asset(
-              "assets/card/card_dark.svg",
-              height: _cardHeight,
-              width: _cardWidth,
-            ),
-            SvgPicture.asset(
-              "assets/card/${icon}_dark.svg",
-              height: _cardHeight,
-              width: _cardWidth,
-            ),
-          ],
-        ),
-      );
+      dat.animationCardFadeController..forward();
+    });
+  }
 }

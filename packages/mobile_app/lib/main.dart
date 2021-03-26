@@ -23,9 +23,6 @@ void main() async {
 Widget appBuilder(SingleProvider singleProvider) => Provider<SingleProvider>(
       create: (_) => singleProvider,
       child: imageBackground(
-        asset: "assets/background.jpg",
-        //
-
         child: myProphet(
           authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
             //

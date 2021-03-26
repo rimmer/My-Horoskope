@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_prophet/services/static_assets.dart';
 
-const _height = 95.0;
-const _width = 59.0;
+const _height = 100.0;
+const _width = 64.0;
 
 class SmallBadCard extends StatefulWidget {
   final String icon;
@@ -18,13 +18,15 @@ class SmallBadCard extends StatefulWidget {
 class _SmallBadCardState extends State<SmallBadCard>
     with SingleTickerProviderStateMixin {
   AnimationController _cardRotation;
+  bool _showFront = true;
   bool _cardNotChanged = true;
 
   @override
   void initState() {
+    _showFront = !_showFront;
     _cardRotation = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 1200),
       value: 0,
     );
 
@@ -40,6 +42,7 @@ class _SmallBadCardState extends State<SmallBadCard>
   rotate() async {
     await _cardRotation.forward();
     setState(() {
+      _showFront = !_showFront;
       _cardNotChanged = false;
     });
     await _cardRotation.reverse();
@@ -61,20 +64,7 @@ class _SmallBadCardState extends State<SmallBadCard>
           child: Container(
             height: _height,
             width: _width,
-            child: Stack(
-              children: [
-                SvgPicture.asset(
-                  "assets/card/card_light.svg",
-                  height: _height,
-                  width: _width,
-                ),
-                SvgPicture.asset(
-                  "assets/card/${widget.icon}_light.svg",
-                  height: _height,
-                  width: _width,
-                ),
-              ],
-            ),
+            child: StaticAsset.svg["light_${widget.icon}"],
           ),
         );
       },

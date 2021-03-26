@@ -16,7 +16,7 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
     ));
 
     dat.animationCardFadeController = AnimationController(
-      duration: Duration(milliseconds: 200),
+      duration: Duration(milliseconds: 1200),
       vsync: this,
     );
 
