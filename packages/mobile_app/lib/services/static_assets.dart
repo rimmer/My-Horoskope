@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_prophet/components/user_settings/index.dart';
 
 const _smallCardHeightFull = 100.0;
 const _smallCardWidthFull = 64.0;

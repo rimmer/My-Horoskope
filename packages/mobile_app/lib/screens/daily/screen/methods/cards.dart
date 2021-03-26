@@ -26,10 +26,10 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseTreeBig();
                       },
                       child: (dat.treeChoise)
-                          ? SmallBadCard(mode: 2, icon: "tree")
+                          ? SmallCard(mode: 2, icon: "tree")
                           : (dat.treeWasChossen)
-                              ? SmallBadCard(mode: 1, icon: "tree")
-                              : SmallBadCard(mode: 0, icon: "tree"),
+                              ? SmallCard(mode: 1, icon: "tree")
+                              : SmallCard(mode: 0, icon: "tree"),
                     ),
                   )
                 : SizedBox(),
@@ -45,10 +45,10 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseCoinBig();
                       },
                       child: (dat.coinChoise)
-                          ? SmallBadCard(mode: 2, icon: "coins")
+                          ? SmallCard(mode: 2, icon: "coins")
                           : (dat.coinWasChossen)
-                              ? SmallBadCard(mode: 1, icon: "coins")
-                              : SmallBadCard(mode: 0, icon: "coins"),
+                              ? SmallCard(mode: 1, icon: "coins")
+                              : SmallCard(mode: 0, icon: "coins"),
                     ),
                   )
                 : SizedBox(),
@@ -64,10 +64,10 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseStarBig();
                       },
                       child: (dat.starChoise)
-                          ? SmallBadCard(mode: 2, icon: "star")
+                          ? SmallCard(mode: 2, icon: "star")
                           : (dat.starWasChossen)
-                              ? SmallBadCard(mode: 1, icon: "star")
-                              : SmallBadCard(mode: 0, icon: "star"),
+                              ? SmallCard(mode: 1, icon: "star")
+                              : SmallCard(mode: 0, icon: "star"),
                     ),
                   )
                 : SizedBox(),
@@ -83,10 +83,10 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseSwordBig();
                       },
                       child: (dat.swordChoise)
-                          ? SmallBadCard(mode: 2, icon: "sword")
+                          ? SmallCard(mode: 2, icon: "sword")
                           : (dat.swordWasChossen)
-                              ? SmallBadCard(mode: 1, icon: "sword")
-                              : SmallBadCard(mode: 0, icon: "sword"),
+                              ? SmallCard(mode: 1, icon: "sword")
+                              : SmallCard(mode: 0, icon: "sword"),
                     ),
                   )
                 : SizedBox(),
@@ -102,10 +102,10 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseCupBig();
                       },
                       child: (dat.cupChoise)
-                          ? SmallBadCard(mode: 2, icon: "cup")
+                          ? SmallCard(mode: 2, icon: "cup")
                           : (dat.cupWasChossen)
-                              ? SmallBadCard(mode: 1, icon: "cup")
-                              : SmallBadCard(mode: 0, icon: "cup"),
+                              ? SmallCard(mode: 1, icon: "cup")
+                              : SmallCard(mode: 0, icon: "cup"),
                     ),
                   )
                 : SizedBox(),
@@ -125,10 +125,10 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseStarBig();
                       },
                       child: (dat.starChoise)
-                          ? SmallBadCard(mode: 2, icon: "star")
+                          ? SmallCard(mode: 2, icon: "star")
                           : (dat.starWasChossen)
-                              ? SmallBadCard(mode: 1, icon: "star")
-                              : SmallBadCard(mode: 0, icon: "star"),
+                              ? SmallCard(mode: 1, icon: "star")
+                              : SmallCard(mode: 0, icon: "star"),
                     ),
                   )
                 : SizedBox()
