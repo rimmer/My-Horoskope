@@ -7,9 +7,8 @@ const _width = 64.0;
 
 class SmallBadCard extends StatefulWidget {
   final String icon;
-  SmallBadCard({
-    this.icon = "star",
-  });
+  final int mode;
+  SmallBadCard({this.icon = "star", @required this.mode});
 
   @override
   _SmallBadCardState createState() => _SmallBadCardState();
@@ -18,16 +17,14 @@ class SmallBadCard extends StatefulWidget {
 class _SmallBadCardState extends State<SmallBadCard>
     with SingleTickerProviderStateMixin {
   AnimationController _cardRotation;
-  bool _showFront = true;
   bool _cardNotChanged = true;
 
   @override
   void initState() {
-    _showFront = !_showFront;
     _cardRotation = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 1200),
-      value: 0,
+      duration: Duration(milliseconds: 600),
+      value: 0.0,
     );
 
     super.initState();
@@ -42,7 +39,6 @@ class _SmallBadCardState extends State<SmallBadCard>
   rotate() async {
     await _cardRotation.forward();
     setState(() {
-      _showFront = !_showFront;
       _cardNotChanged = false;
     });
     await _cardRotation.reverse();
@@ -53,21 +49,37 @@ class _SmallBadCardState extends State<SmallBadCard>
 
   @override
   Widget build(BuildContext context) {
-    if (_cardNotChanged) rotate();
+    if (_cardNotChanged && widget.mode == 2) rotate();
 
-    return AnimatedBuilder(
-      animation: _cardRotation,
-      builder: (context, child) {
-        return Transform(
-          transform: Matrix4.rotationY(_cardRotation.value * pi / 2),
-          alignment: Alignment.center,
-          child: Container(
-            height: _height,
-            width: _width,
-            child: StaticAsset.svg["light_${widget.icon}"],
+    return Container(
+      height: _height,
+      width: _width,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: AnimatedBuilder(
+              animation: _cardRotation,
+              builder: (context, child) {
+                return Transform(
+                    transform: Matrix4.rotationY(_cardRotation.value * pi / 2),
+                    alignment: Alignment.center,
+                    child: StaticAsset.svg["light_${widget.icon}"]);
+              },
+            ),
           ),
-        );
-      },
+          (widget.mode == 1)
+              ? Align(
+                  alignment: Alignment.center,
+                  child: StaticAsset.svg["light_${widget.icon}"])
+              : SizedBox(),
+          (widget.mode == 0)
+              ? Align(
+                  alignment: Alignment.center,
+                  child: StaticAsset.svg["dark_${widget.icon}"])
+              : SizedBox(),
+        ],
+      ),
     );
   }
 }

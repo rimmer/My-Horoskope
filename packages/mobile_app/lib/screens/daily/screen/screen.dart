@@ -33,7 +33,7 @@ class DailyScreen extends StatefulWidget {
 }
 
 class _DailyScreenState extends State<DailyScreen>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   //
   SingleProvider sp;
   final dat = DailyStateData();

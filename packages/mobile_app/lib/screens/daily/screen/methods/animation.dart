@@ -15,25 +15,11 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
       curve: Curves.ease,
     ));
 
-    dat.animationCardFadeController = AnimationController(
-      duration: Duration(milliseconds: 1200),
-      vsync: this,
-    );
-
-    dat.animationCardFade = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: dat.animationCardFadeController,
-      curve: Curves.ease,
-    ));
-
     //
   }
 
   disposeAnimations() {
     dat.animationSheetsFadeOutController.dispose();
-    dat.animationCardFadeController.dispose();
   }
 
   animationNewStateRoutine() {}

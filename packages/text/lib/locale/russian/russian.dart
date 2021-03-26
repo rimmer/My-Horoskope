@@ -11,7 +11,7 @@ class RussianLocale implements Locale {
   final String birthdate = "дата рождения";
   final String birthplace = "населенный пункт, где вы родились";
   final String calendarHint = "Свайп для прокрутки календаря";
-  final String clarifyForecast = "получить совет";
+  final String clarifyForecast = "Выберите карточки таро на сегодня";
   final String dateNotFilled = 'Заполните дату рождения';
   final String datomorrow = "послезавтра";
   final String extended = "расширенный";

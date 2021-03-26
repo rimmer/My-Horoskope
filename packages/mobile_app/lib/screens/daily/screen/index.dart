@@ -21,6 +21,7 @@ export 'package:my_prophet/components/notavaible_button.dart';
 export 'package:my_prophet/components/notation.dart';
 export 'package:my_prophet/components/title_with_description.dart';
 export 'package:my_prophet/components/big_card.dart';
+export 'package:my_prophet/components/big_card_placeholder.dart';
 export 'package:my_prophet/components/small_bad_card.dart';
 export 'package:my_prophet/theme/app_colors.dart';
 export 'package:my_prophet/theme/app_text_style.dart';
@@ -28,5 +29,4 @@ export 'package:my_prophet/components/prophecy_sheet_divider.dart';
 
 export '../calendar_widgets.dart';
 export '../constants.dart';
-export 'package:my_prophet/services/static_assets.dart';
 export 'package:flutter_svg/flutter_svg.dart';
