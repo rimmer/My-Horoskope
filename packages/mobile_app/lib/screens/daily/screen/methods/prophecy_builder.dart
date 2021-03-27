@@ -5,20 +5,11 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
     //
 
     if (state is ProphecyInitial) {
-      return prophecyIsLoading();
+      return SizedBox();
       //
 
     } else if (state is ProphecyWasAsked) {
-      /// here is prediction added
-      if (sp.userPollBloc.repo.todayPoll != null &&
-          sp.userPollBloc.repo.todayPoll.voted)
-        //
-        dat.prediction.sink.add(
-          getPrediction(
-            prophecy: state.prophecy,
-            propheciesSum: state.propheciesSum,
-          ),
-        );
+      sp.prophecyBloc.currentState = state;
       //
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +66,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                 vertical: 12.0,
               ),
               scrollDirection: Axis.vertical,
-              physics: const NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               children: <Widget>[
                 /// prophecies listview
                 ListView(
@@ -89,57 +80,47 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                   physics: const NeverScrollableScrollPhysics(),
                   children: <Widget>[
                     /// yourProphecies title and notation
-                    Padding(
-                      padding: const EdgeInsets.only(
+                    TitleWithDescription(
+                      padding: EdgeInsets.only(
                         left: 3.0,
                         bottom: 8.0,
                       ),
-                      child: TitleWithDescription(
-                        title: lang.yourProphecies.capitalize(),
-                        notation: lang.yourPropheciesHint,
-                        height: 176.0,
-                        width: 250.0,
-                      ),
+                      title: localeText.yourProphecies.capitalize(),
+                      notation: localeText.yourPropheciesHint,
                     ),
-                    //
 
-                    (toShow.internalStrength)
-                        ? prophecyRecord(
-                            prophecy:
-                                state.prophecy[ProphecyType.INTERNAL_STRENGTH],
-                          )
-                        : SizedBox(),
                     (toShow.moodlet)
                         ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.MOODLET],
-                          )
-                        : SizedBox(),
-                    (toShow.ambition)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.AMBITION],
-                          )
+                            prophecy: state.prophecy[ProphecyType.MOODLET])
                         : SizedBox(),
                     (toShow.intuition)
                         ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.INTUITION],
-                          )
+                            prophecy: state.prophecy[ProphecyType.INTUITION])
                         : SizedBox(),
                     (toShow.luck)
                         ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.LUCK],
-                          )
+                            prophecy: state.prophecy[ProphecyType.LUCK])
                         : SizedBox(),
+                    (toShow.ambition)
+                        ? prophecyRecord(
+                            prophecy: state.prophecy[ProphecyType.AMBITION])
+                        : SizedBox(),
+                    (toShow.internalStrength)
+                        ? prophecyRecord(
+                            prophecy:
+                                state.prophecy[ProphecyType.INTERNAL_STRENGTH])
+                        : SizedBox(),
+
                     //
-                    /// if all prophecies are disabled show internal strength
+
+                    /// if all prophecies are disabled show luck
                     (toShow.internalStrength == false &&
                             toShow.moodlet == false &&
                             toShow.ambition == false &&
                             toShow.intuition == false &&
                             toShow.luck == false)
                         ? prophecyRecord(
-                            prophecy:
-                                state.prophecy[ProphecyType.INTERNAL_STRENGTH],
-                          )
+                            prophecy: state.prophecy[ProphecyType.LUCK])
                         : SizedBox(),
                   ],
                 ),
@@ -155,17 +136,13 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                     scrollDirection: Axis.vertical,
                     physics: const NeverScrollableScrollPhysics(),
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
+                      TitleWithDescription(
+                        padding: EdgeInsets.only(
                           top: 18.0,
                           left: 3.0,
                         ),
-                        child: TitleWithDescription(
-                          title: lang.impact.capitalize(),
-                          notation: lang.impactHint,
-                          height: 172.0,
-                          width: 242.0,
-                        ),
+                        title: localeText.impact.capitalize(),
+                        notation: localeText.impactHint,
                       ),
                       Container(
                         height: 32.0,
@@ -176,7 +153,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                             Row(
                               children: [
                                 Text(
-                                    " ${lang.planetImpactName[dat.currentPlanets[false]]} "),
+                                    " ${localeText.planetImpactName[dat.currentPlanets[false]]} "),
                                 SvgPicture.asset(
                                     "assets/icons/${dat.currentPlanets[false]}.svg",
                                     color: AppColors.negativeImpact),
@@ -185,7 +162,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                             Row(
                               children: [
                                 Text(
-                                    " ${lang.planetImpactName[dat.currentPlanets[true]]} "),
+                                    " ${localeText.planetImpactName[dat.currentPlanets[true]]} "),
                                 SvgPicture.asset(
                                     "assets/icons/${dat.currentPlanets[true]}.svg",
                                     color: AppColors.positiveImpact),

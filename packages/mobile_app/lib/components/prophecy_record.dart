@@ -3,9 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:my_prophet/theme/app_text_style.dart';
 import 'package:my_prophet/theme/app_colors.dart';
-import 'package:prophecy_model/prophecy_model.dart';
-import 'package:prophecies/prophecies.dart';
-import 'package:language/language.dart';
+import 'package:base/prophecy/entity/prophecy.dart';
+import 'package:text/text.dart';
 
 Padding prophecyRecord({
   @required ProphecyEntity prophecy,
@@ -24,7 +23,7 @@ Padding prophecyRecord({
       children: <Widget>[
         Expanded(
           child: Text(
-            lang.prophecyId[prophecy.id.toStr],
+            localeText.prophecyId[prophecy.id.toStr],
             style: AppTextStyle.prophecyLabel,
           ),
         ),

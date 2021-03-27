@@ -12,13 +12,9 @@ ThemeData appTheme = ThemeData(
     // Define the default font family.
     fontFamily: 'Roboto',
     scaffoldBackgroundColor: AppColors.primaryDark,
-
-    /// DONT REMOVE IT
+    //
     textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        padding: MaterialStateProperty.resolveWith<EdgeInsetsGeometry>(
-            (Set<MaterialState> states) {
-          return EdgeInsets.all(0.0);
-        }), //adds padding inside the button
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.all(0.0),
       ),
     ));

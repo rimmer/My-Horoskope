@@ -1,7 +1,7 @@
-import 'package:predictions/predictions.dart';
-import 'package:language/language.dart';
+import 'package:base/predictions/index.dart';
+import 'package:text/text.dart';
 
-export 'package:predictions/predictions.dart';
+export 'package:base/predictions/interface.dart';
 
 class PredictionsFlutterMobile extends DefaultPredictions {
   /// constructor
@@ -9,15 +9,15 @@ class PredictionsFlutterMobile extends DefaultPredictions {
     getPredictionAlgorithm = GetPredictionByDate();
     dataManipulation["add_csv"] = SingleCsvAdd();
     // dataManipulation["clear"] = Clear();
+  }
 
+  Future prepare() async {
     /// Bark annalogy from the tree bark
-    final predictionBark = lang.predicitonBark();
-
+    final predictionBark = localeText.predicitonBark();
     for (var layer in predictionBark) {
       if (layer.isEmpty) continue;
       this.jobSync("add_csv", layer);
     }
-    
   }
 
   GetPredictionAlgorithm getPredictionAlgorithm;

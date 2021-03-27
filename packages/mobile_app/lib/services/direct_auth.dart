@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:user_model/user_model.dart';
-import 'package:my_prophet/single_provider.dart';
+import 'package:base/user/entity/user.dart';
+import 'single_provider.dart';
 
 /// solves https://github.com/rimmer/my_prophet/issues/30
 
@@ -12,7 +12,6 @@ void userInformationChangeMisc(
 
   sp.usersRepo.current.model = model;
   await sp.usersRepo.write();
-  sp.userPollBloc.add(UserPollRestartEvent());
 
   Navigator.of(context)
       .pushNamedAndRemoveUntil('/daily', (Route<dynamic> route) => false);

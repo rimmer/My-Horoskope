@@ -4,16 +4,16 @@ String appBarLabel({@required int selected, @required DateTime dateTime}) {
   String label = "";
 
   if (dayToIndex["TODAY"] == selected)
-    label = lang.today;
+    label = localeText.today;
   else if (dayToIndex["TOMORROW"] == selected)
-    label = lang.tomorrow;
+    label = localeText.tomorrow;
   else if (dayToIndex["DAY AFTER TOMORROW"] == selected)
-    label = lang.datomorrow;
+    label = localeText.datomorrow;
   else {
     label = "${dateTime.day}.${dateTime.month}.${dateTime.year}";
   }
 
-  return "${lang.horoscopeFor.capitalize()} $label";
+  return "${localeText.horoscopeFor.capitalize()} $label";
 }
 
 extension DailyScreenCalendarBuilder on _DailyScreenState {
@@ -26,13 +26,11 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
       return Row(children: [
         SizedBox(width: 16),
         (dayToIndex["TODAY"] == selected)
-            ? selectedDate(d[index])
+            ? (dat.showCalendarSelection)
+                ? selectedDate(d[index])
+                : ordinaryDate(d[index])
             : TextButton(
-                onPressed: () {
-                  widget.currentIndex.wrapped = index;
-                  // ignore: invalid_use_of_protected_member
-                  setState(() {});
-                },
+                onPressed: () => calendarTap(index),
                 child: ordinaryDate(d[index]),
               )
       ]);
@@ -41,14 +39,12 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
     } else if (d[index - 1].month != d[index].month) {
       /// new month
       if (index == selected)
-        return newMonthSelected(d[index]);
+        return (dat.showCalendarSelection)
+            ? newMonthSelected(d[index])
+            : newMonth(d[index]);
       else
         return TextButton(
-          onPressed: () {
-            widget.currentIndex.wrapped = index;
-            // ignore: invalid_use_of_protected_member
-            setState(() {});
-          },
+          onPressed: () => calendarTap(index),
           child: newMonth(d[index]),
         );
 
@@ -57,14 +53,12 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
 
     //
     if (index == selected)
-      return selectedDate(d[index]);
+      return (dat.showCalendarSelection)
+          ? selectedDate(d[index])
+          : ordinaryDate(d[index]);
     else
       return TextButton(
-        onPressed: () {
-          widget.currentIndex.wrapped = index;
-          // ignore: invalid_use_of_protected_member
-          setState(() {});
-        },
+        onPressed: () => calendarTap(index),
         child: ordinaryDate(d[index]),
       );
   }

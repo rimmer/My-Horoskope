@@ -10,27 +10,27 @@ Column propheciesEnabling({
   return Column(
     children: [
       _prophecyEnablingItem(
-        text: lang.prophecyId['LUCK'],
+        text: localeText.prophecyId['LUCK'],
         value: luck,
         onChanged: (_) {},
       ),
       _prophecyEnablingItem(
-        text: lang.prophecyId['INTERNAL_STRENGTH'],
+        text: localeText.prophecyId['INTERNAL_STRENGTH'],
         value: internalStrength,
         onChanged: (_) {},
       ),
       _prophecyEnablingItem(
-        text: lang.prophecyId['MOODLET'],
+        text: localeText.prophecyId['MOODLET'],
         value: moodlet,
         onChanged: (_) {},
       ),
       _prophecyEnablingItem(
-        text: lang.prophecyId['AMBITION'],
+        text: localeText.prophecyId['AMBITION'],
         value: ambition,
         onChanged: (_) {},
       ),
       _prophecyEnablingItem(
-        text: lang.prophecyId['INTUITION'],
+        text: localeText.prophecyId['INTUITION'],
         value: intelligence,
         onChanged: (_) {},
       ),

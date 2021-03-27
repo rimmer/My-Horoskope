@@ -5,14 +5,17 @@ void main() async {
   /// also allows to use async
   WidgetsFlutterBinding.ensureInitialized();
 
+  BlocSupervisor.delegate = SimpleBlocDelegate();
   final singleProvider = SingleProvider();
-  singleProvider.appPreferences = AppPreferences();
-  singleProvider.show = ProphecyToShowStorageFlutter();
+
+  singleProvider.appPref = AppPreferencesFlutter();
+  await singleProvider.appPref.load();
   singleProvider.predictions = PredictionsFlutterMobile();
+  await singleProvider.predictions.prepare();
+
   singleProvider.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());
-  BlocSupervisor.delegate = SimpleBlocDelegate();
 
   runApp(appBuilder(singleProvider));
 }
@@ -20,9 +23,6 @@ void main() async {
 Widget appBuilder(SingleProvider singleProvider) => Provider<SingleProvider>(
       create: (_) => singleProvider,
       child: imageBackground(
-        asset: "assets/background.jpg",
-        //
-
         child: myProphet(
           authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
             //
@@ -33,20 +33,13 @@ Widget appBuilder(SingleProvider singleProvider) => Provider<SingleProvider>(
               if (state is Authenticated) {
                 singleProvider.usersRepo =
                     singleProvider.authBloc.auth.repository;
-                singleProvider.pollsRepo = PollsRepositoryFlutter();
 
                 singleProvider.prophecyBloc = ProphecyBloc(
                   algo: Algorithm(
                     dat: AlgoData(
-                      pollByDateRepo: singleProvider.pollsRepo,
                       usersRepository: singleProvider.usersRepo,
                     ),
                   ),
-                );
-
-                singleProvider.userPollBloc = UserPollBloc(
-                  users: singleProvider.usersRepo,
-                  repo: singleProvider.pollsRepo,
                 );
 
                 return DailyScreen();

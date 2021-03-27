@@ -1,49 +1,20 @@
 part of '../screen.dart';
 
+const _isPositive = 49.0;
+
 extension DailyScreenPredictionMethods on _DailyScreenState {
   //
-  String getPrediction({
-    Map<ProphecyType, ProphecyEntity> prophecy,
-    double propheciesSum,
-  }) {
-    final least = prophecy[prophecy.least];
-    final biggest = prophecy[prophecy.biggest];
-
-    final middle = (PROPHECY_VALUE_LIMIT_MAX + PROPHECY_VALUE_LIMIT_MIN) / 2;
-
-    final leastImportance = middle - least.value;
-    final biggestImportance = biggest.value - middle;
-
-    /// if the least number is bigger then the middle number, give a positive prediction by biggest number prophecy
-    if (leastImportance <= 0.0)
+  String getPrediction({@required ProphecyType type}) {
+    if (sp.prophecyBloc.currentState.prophecy[type].value > _isPositive)
       return positivePrediction(
-        type: biggest.id,
-        birthDate: DateTime.fromMillisecondsSinceEpoch(
-          dat.user.model.birth,
-        ),
-      );
-
-    /// if the biggest number is smaller then the middle number, give a negative prediction by least number prophecy
-    if (biggestImportance <= 0.0) {
-      return negativePrediction(
-        type: least.id,
-        birthDate: DateTime.fromMillisecondsSinceEpoch(
-          dat.user.model.birth,
-        ),
-      );
-    }
-
-    /// else, return positive prediction if sum is bigger then middle value sum and negative if lower
-    if (propheciesSum < ((PROPHECY_VALUE_LIMIT_MAX / 2) * 5))
-      return negativePrediction(
-        type: least.id,
+        type: type,
         birthDate: DateTime.fromMillisecondsSinceEpoch(
           dat.user.model.birth,
         ),
       );
     else
-      return positivePrediction(
-        type: biggest.id,
+      return negativePrediction(
+        type: type,
         birthDate: DateTime.fromMillisecondsSinceEpoch(
           dat.user.model.birth,
         ),

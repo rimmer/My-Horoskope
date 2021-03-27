@@ -16,39 +16,74 @@ Future<void> showOverCurrentScreen({
       ),
     );
 
-class SimpleTransperentScreen extends StatelessWidget {
+class SimpleTransperentScreen extends StatefulWidget {
   final String title;
   final Widget body;
-  final double height;
-  final double width;
   final List<Widget> actions;
   const SimpleTransperentScreen({
     Key key,
     this.title,
     @required this.body,
-    @required this.height,
-    @required this.width,
     this.actions = const [],
   }) : super(key: key);
 
+  _SimpleTransperentScreenState createState() =>
+      _SimpleTransperentScreenState();
+}
+
+class _SimpleTransperentScreenState extends State<SimpleTransperentScreen>
+    with SingleTickerProviderStateMixin {
+  AnimationController _popupCreationController;
+  Animation<Offset> _popupCreation;
+
+  @override
+  void initState() {
+    _popupCreationController = AnimationController(
+        vsync: this,
+        duration: Duration(
+          milliseconds: 200,
+        ))
+      ..forward();
+
+    _popupCreation = Tween<Offset>(
+      begin: Offset(
+        -2.0,
+        0.0,
+      ),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _popupCreationController,
+      curve: Curves.ease,
+    ));
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _popupCreationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.transparent,
-      height: height,
-      width: width,
-      child: Center(
+    final width = MediaQuery.of(context).size.width;
+
+    return Builder(
+      builder: (_) => SlideTransition(
+        position: _popupCreation,
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.primary,
+            color: AppColors.primary.withOpacity(0.95),
             borderRadius: BorderRadius.circular(8.0),
           ),
-          height: height,
-          width: width,
+          width: width * 3 / 4,
           child: ListView(
+            shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            children: <Widget>[
-              (title != null)
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              (widget.title != null)
                   ? Container(
                       decoration: BoxDecoration(
                         color: AppColors.primaryDark,
@@ -58,28 +93,23 @@ class SimpleTransperentScreen extends StatelessWidget {
                         ),
                       ),
                       height: 44,
-                      width: width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           SizedBox(width: 20),
-                          Text(title, style: AppTextStyle.popupTitle),
+                          Text(widget.title, style: AppTextStyle.popupTitle),
                         ],
                       ),
                     )
                   : SizedBox(),
-              Container(
-                width: width,
-                child: body,
+              widget.body,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: widget.actions,
               ),
-              Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: actions,
-                ),
-              ),
+              SizedBox(height: 16.0),
             ],
           ),
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:language/language.dart';
+import 'package:text/text.dart';
 import 'package:my_prophet/theme/app_text_style.dart';
 import './userinfo_field.dart';
 import './userinfo_picker.dart';
@@ -17,7 +17,7 @@ Column userInfo(
       Padding(
         padding: const EdgeInsets.only(top: 16.0, left: 4.0),
         child: Text(
-          lang.birthdate.capitalize(),
+          localeText.birthdate.capitalize(),
           style: AppTextStyle.fadeText,
         ),
       ),
@@ -51,7 +51,7 @@ Column userInfo(
       Padding(
         padding: const EdgeInsets.only(top: 16.0, left: 4.0),
         child: Text(
-          lang.sex.capitalize(),
+          localeText.sex.capitalize(),
           style: AppTextStyle.fadeText,
         ),
       ),

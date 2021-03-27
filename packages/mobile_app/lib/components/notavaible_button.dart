@@ -9,16 +9,12 @@ class NotAvaibleInfo extends StatefulWidget {
   final String title;
   final String desc;
   final String button;
-  final double height;
-  final double width;
 
   NotAvaibleInfo(
       {@required this.child,
       @required this.title,
       @required this.desc,
       @required this.button,
-      @required this.height,
-      @required this.width,
       Key key})
       : super(key: key);
 
@@ -34,8 +30,6 @@ class _NotAvaibleInfoState extends State<NotAvaibleInfo> {
         showOverCurrentScreen(
           context: context,
           child: SimpleTransperentScreen(
-            height: widget.height,
-            width: widget.width,
             title: widget.title,
             body: Padding(
               padding: const EdgeInsets.all(

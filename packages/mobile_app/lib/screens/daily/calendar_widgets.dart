@@ -1,6 +1,6 @@
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:language/language.dart';
+import 'package:text/text.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'constants.dart';
 
@@ -17,7 +17,7 @@ Container _date(DateTime date, Color dayColor, Color monthColor) => Container(
               height: 2,
             ),
             Text(
-              lang.month[date.month].substring(0, 3),
+              localeText.month[date.month].substring(0, 3),
               style: TextStyle(fontSize: 12, color: monthColor),
             ),
           ]),
@@ -129,7 +129,7 @@ Widget calendarNotation({Function onClick}) => Container(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                lang.calendarHint,
+                localeText.calendarHint,
                 style: TextStyle(
                   color: AppColors.textPrimary,
                   fontSize: 14.0,
@@ -138,7 +138,7 @@ Widget calendarNotation({Function onClick}) => Container(
               GestureDetector(
                 onTap: onClick,
                 child: Text(
-                  lang.understood,
+                  localeText.understood,
                   style: TextStyle(
                     color: AppColors.accent,
                     fontSize: 14.0,

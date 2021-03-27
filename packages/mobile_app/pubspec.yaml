@@ -13,67 +13,25 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # flutter mobile app stuff
+  marquee: ^2.0.0
   provider: ^4.3.2+1
   flutter_bloc: ^4.0.0
   url_launcher: ^5.5.0
-  launch_review: ^2.0.0
+  launch_review: ^3.0.1
   mutable_wrappers: ^1.0.0
-
-  int_datetime:
-    path: ../int_datetime
-
-  #models
-  prophecy_model:
-    path: ../models/prophecy_model
-  user_model:
-    path: ../models/user_model 
-  prophecy_to_show:
-    path: ../models/prophecy_to_show 
-  
-  #data
-  users_repository:
-    path: ../data/abstract/users_repository
-  auth:
-    path: ../data/abstract/auth
-  userpoll:
-    path: ../data/abstract/userpoll
-  users_repository_flutter:
-    path: ../data/platform/users_repository_flutter      
-  auth_flutter:
-    path: ../data/platform/auth_flutter  
-  polls_repository_flutter:
-    path: ../data/platform/polls_repository_flutter  
-  prophecies:
-    path: ../data/abstract/prophecies
-  prophecy_to_show_storage:
-    path: ../data/abstract/prophecy_to_show_storage
-  prophecy_to_show_storage_flutter:
-    path: ../data/platform/prophecy_to_show_storage_flutter   
-  predictions:
-    path: ../data/abstract/predictions
-  app_preferences_flutter:
-    path: ../data/platform/app_preferences_flutter  
-    
-  #blocs
-  authentication:
-    path: ../blocs/authentication
-  prophecy:
-    path: ../blocs/prophecy
-  user_poll:
-    path: ../blocs/user_poll
-
-  #localization
-  language:
-    path: ../language
-
-  # calculations
-  algorithm:
-    path: ../algorithm
-  
-  #widgets
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.19.3
   flutter_spinkit: ^4.1.2+1
+
+  # base
+  base:
+    path: ../base
+  text:
+    path: ../text
+  algorithm:
+    path: ../algorithm
+
 
 dev_dependencies:
   #flutter_test:
@@ -96,7 +54,7 @@ flutter:
     - assets/splash.png
     - assets/icons/
     - assets/widget/
-    - assets/widget/magic_poll/
+    - assets/card/
   #data
     # - packages/prophecies_repository_flutter/data/prophecies.json
   # #localization

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
+import 'package:my_prophet/services/static_assets.dart';
 
 class MagicCheckbox extends StatefulWidget {
   final MutableBool value;
@@ -19,8 +20,8 @@ class _MagicCheckboxState extends State<MagicCheckbox> {
         });
       },
       child: (widget.value.wrapped)
-          ? Image(image: AssetImage('assets/widget/magic_checkbox_true.png'))
-          : Image(image: AssetImage('assets/widget/magic_checkbox_false.png')),
+          ? Image(image: StaticAsset.rust["magic_checkbox_true"])
+          : Image(image: StaticAsset.rust["magic_checkbox_false"]),
     );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:text/text.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:language/language.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:my_prophet/components/accept_terms_text.dart';
 
@@ -41,7 +41,8 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
                       ),
                     ),
                     Flexible(
-                      child: acceptTermsText(lang.termsAccept.capitalize(),
+                      child: acceptTermsText(
+                          localeText.termsAccept.capitalize(),
                           isController: true),
                     ),
                   ],
@@ -52,7 +53,7 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
               child: TextButton(
                 onPressed: () => launch(URL_USER_AGREEMENT),
                 child: acceptTermsText(
-                  lang.termsUserAgreement,
+                  localeText.termsUserAgreement,
                 ),
               ),
             ),
@@ -60,7 +61,7 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
               child: TextButton(
                 onPressed: () => launch(URL_PRIVACY_POLICY),
                 child: acceptTermsText(
-                  lang.termsPrivacyPolicy,
+                  localeText.termsPrivacyPolicy,
                 ),
               ),
             ),
