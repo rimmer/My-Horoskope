@@ -39,17 +39,6 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
       dat.animationSheetsFadeOutController.reverse().whenCompleteOrCancel(() {
         // ignore: invalid_use_of_protected_member
         setState(() {
-          dat.currentCard = null;
-          dat.treeChoise = false;
-          dat.coinChoise = false;
-          dat.starChoise = false;
-          dat.swordChoise = false;
-          dat.cupChoise = false;
-          dat.treeWasChossen = false;
-          dat.coinWasChossen = false;
-          dat.starWasChossen = false;
-          dat.swordWasChossen = false;
-          dat.cupWasChossen = false;
           widget.currentIndex.wrapped = index;
           dat.showCalendarSelection = true;
           dat.animationSheetsFadeOutController.forward();
