@@ -5,6 +5,10 @@ void main() async {
   /// also allows to use async
   WidgetsFlutterBinding.ensureInitialized();
 
+  /// language
+  chooseLocale();
+
+  /// file loads and init
   BlocSupervisor.delegate = SimpleBlocDelegate();
   final singleProvider = SingleProvider();
 
@@ -13,10 +17,12 @@ void main() async {
   singleProvider.predictions = PredictionsFlutterMobile();
   await singleProvider.predictions.prepare();
 
+  /// authetication
   singleProvider.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());
 
+  /// app start
   runApp(appBuilder(singleProvider));
 }
 

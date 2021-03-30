@@ -7,14 +7,10 @@ class RussianLocale implements Locale {
   final String apply = "применить";
   final String appName = "Мой Пророк";
   final String atLeastXsymbolsNeeded = "минимальное количество символов: ";
-  final String birthcountry = "страна, в которой вы родились";
   final String birthdate = "дата рождения";
-  final String birthplace = "населенный пункт, где вы родились";
-  final String calendarHint = "Свайп для прокрутки календаря";
-  final String clarifyForecast = "Выберите карточки таро на сегодня";
+  final String clarifyForecast = "Выберите карточки Таро на сегодня";
   final String dateNotFilled = 'Заполните дату рождения';
   final String datomorrow = "послезавтра";
-  final String extended = "расширенный";
   final String female = "женский";
   final String futureDays =
       "Показатели могут измениться после дальнейшего уточнения прогноза";
@@ -24,7 +20,6 @@ class RussianLocale implements Locale {
   final String impactHint =
       "Красная планета влияет на вас негативно в данный период, а синяя - положительно";
   final String male = "мужской";
-  final String mood = "настроение";
   final String my = "мой";
   final String name = "имя";
   final String nameNotFilled = 'Заполните поле "Имя"';
@@ -37,19 +32,13 @@ class RussianLocale implements Locale {
   final String notSelectedSex = "выбрать";
   final String other = "другой";
   final String personalInformation = "личная информация";
-  final String physicalActivity = "физическая активность";
   final String planetImpact = "влияние планет";
-  final String privacyPolicy = "политика конфеденциальности";
-  final String productivity = "продуктивность";
+  final String privacyPolicy = "политика конфиденциальности";
   final String profileSettings = "настройки профиля";
   final String propheciesToDisplay = "отображаемые показатели";
-  final String rateApp = "оценить приложение";
-  final String rateYourYesterday = "оцените свое вчерашнее";
-  final String relationships = "отношения";
+  final String rateApp = "оценить";
   final String save = "сохранить";
-  final String selfdevelopment = "саморазвитие";
   final String sex = "пол";
-  final String simple = "простой";
   final String start = "начать";
   final String termsAccept = "я принимаю условия";
   final String termsAreNotAccepted =
@@ -61,7 +50,6 @@ class RussianLocale implements Locale {
   final String understood = "понятно";
   final String userAgreement = "пользовательское соглашение";
   final String writeToDev = "написать разработчику";
-  final String yesterdayMood = "вчерашнее настроение";
   final String you = "вы";
   final String yourProphecies = "ваши показатели";
   final String yourPropheciesHint =
