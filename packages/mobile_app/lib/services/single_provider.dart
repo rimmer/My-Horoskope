@@ -2,6 +2,7 @@ import 'package:base/user/repository/interface.dart';
 import 'package:base/user/auth/bloc/bloc.dart';
 import 'package:base/prophecy/bloc/bloc.dart';
 import 'package:base/preferences/interface.dart';
+import 'package:flutter/widgets.dart';
 import 'predictions.dart';
 
 export 'package:base/user/repository/interface.dart';
@@ -28,4 +29,18 @@ class SingleProvider {
   ProphecyBloc prophecyBloc;
   AppPreferences appPref;
   PredictionsFlutterMobile predictions;
+
+  //
+  bool treeChoise = false;
+  bool coinChoise = false;
+  bool starChoise = false;
+  bool swordChoise = false;
+  bool cupChoise = false;
+  bool treeWasChossen = false;
+  bool coinWasChossen = false;
+  bool starWasChossen = false;
+  bool swordWasChossen = false;
+  bool cupWasChossen = false;
+  Widget currentCard = SizedBox();
+  bool currentCardIsNan = true;
 }

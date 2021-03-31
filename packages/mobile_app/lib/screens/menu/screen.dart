@@ -91,13 +91,15 @@ class _MenuScreenState extends State<MenuScreen>
                   onTap: () {
                     launch(_WRITE_TO_DEV_URL);
                   }),
-              menuItemRateApp(
-                  text: "${localeText.rateApp.capitalize()}",
-                  onTap: () {
-                    LaunchReview.launch(
-                      writeReview: false,
-                    );
-                  }),
+              SingleChildScrollView(
+                child: menuItemRateApp(
+                    text: "${localeText.rateApp.capitalize()}",
+                    onTap: () {
+                      LaunchReview.launch(
+                        writeReview: false,
+                      );
+                    }),
+              ),
               SizedBox(height: 50.0),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,3 +1,4 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:text/text.dart';
 import 'theme/app_theme.dart';
@@ -61,4 +62,25 @@ class SimpleBlocDelegate extends BlocDelegate {
     print(error);
     super.onError(bloc, error, stackTrace);
   }
+}
+
+chooseLocale() {
+  /// @TODO, add predictions
+  // final languageCode = Platform.localeName.split('_')[0];
+
+  // switch (languageCode) {
+  //   case "uk":
+  //     localeText.switchLocaleToUkrainian();
+  //     break;
+
+  //   case "ru":
+  //     localeText.switchLocaleToRussian();
+  //     break;
+
+  //   case "en":
+  //   default:
+  //     localeText.switchLocaleToEnglish();
+  //     break;
+  // }
+  localeText.switchLocaleToRussian();
 }
