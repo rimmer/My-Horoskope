@@ -116,6 +116,11 @@ extension CsvMethods on String {
       /// continue till csvRow is not empty
     }
 
+    if (lst.length == 1) lst.add("");
+    if (lst.length == 2) lst.add("");
+    if (lst.length == 3) lst.add("");
+    if (lst.length == 4) lst.add("");
+
     return lst;
   }
 }
