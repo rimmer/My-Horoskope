@@ -4,7 +4,6 @@ void main() async {
   /// Ensures that all objects here are initialized before doing runApp
   /// also allows to use async
   WidgetsFlutterBinding.ensureInitialized();
-  // BlocSupervisor.delegate = SimpleBlocDelegate();
 
   /// language
   chooseLocale();
@@ -15,6 +14,9 @@ void main() async {
   await singleProvider.appPref.load();
   singleProvider.predictions = PredictionsFlutterMobile();
   await singleProvider.predictions.prepare();
+
+  /// firebase
+  await Firebase.initializeApp();
   singleProvider.firebaseAnalytics = FirebaseAnalytics();
 
   /// authetication
@@ -30,7 +32,7 @@ Widget appBuilder(SingleProvider singleProvider) => Provider<SingleProvider>(
       create: (_) => singleProvider,
       child: imageBackground(
         child: myProphet(
-          sp: singleProvider,
+          // sp: singleProvider,
           authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
             //
             bloc: singleProvider.authBloc,

@@ -1,8 +1,7 @@
 // import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
-// import 'package:firebase_analytics/observer.dart';
-import 'package:my_prophet/services/single_provider.dart';
+// import 'package:my_prophet/services/single_provider.dart';
 import 'package:text/text.dart';
 import 'theme/app_theme.dart';
 import 'screens/daily/screen/screen.dart';
@@ -23,9 +22,13 @@ export 'package:algorithm/algorithm.dart';
 export 'screens/daily/screen/screen.dart';
 export 'screens/registration/screen.dart';
 export 'screens/loading.dart';
+export 'package:firebase_core/firebase_core.dart';
+export 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
-MaterialApp myProphet(
-    {@required Widget authResolver, @required SingleProvider sp}) {
+MaterialApp myProphet({
+  @required Widget authResolver,
+  // @required SingleProvider sp,
+}) {
   return MaterialApp(
     title: localeText.appName,
     theme: appTheme,
@@ -35,9 +38,6 @@ MaterialApp myProphet(
       "/settings": (BuildContext context) => ProfileSettingsScreen(),
     },
     home: authResolver,
-    // navigatorObservers: [
-    //   FirebaseAnalyticsObserver(analytics: sp.firebaseAnalytics),
-    // ],
   );
 }
 

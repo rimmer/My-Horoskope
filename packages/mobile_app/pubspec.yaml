@@ -32,12 +32,13 @@ dependencies:
   # network
   firebase_core:
   firebase_analytics:
+  firebase_crashlytics:
 
 
 dev_dependencies:
   #flutter_test:
     #sdk: flutter
-  flutter_launcher_icons: ^0.8.1
+  flutter_launcher_icons: 
 
 flutter_icons:
   ios: true

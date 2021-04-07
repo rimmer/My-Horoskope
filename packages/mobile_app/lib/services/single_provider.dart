@@ -31,6 +31,8 @@ class SingleProvider {
   ProphecyBloc prophecyBloc;
   AppPreferences appPref;
   PredictionsFlutterMobile predictions;
+
+  /// firebase
   FirebaseAnalytics firebaseAnalytics;
 
   //
