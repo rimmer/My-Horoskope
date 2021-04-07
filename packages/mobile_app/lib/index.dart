@@ -1,9 +1,10 @@
-import 'dart:io' show Platform;
+// import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
+import 'package:bloc/bloc.dart';
+// import 'package:firebase_analytics/observer.dart';
+import 'package:my_prophet/services/single_provider.dart';
 import 'package:text/text.dart';
 import 'theme/app_theme.dart';
-import 'package:bloc/bloc.dart';
-
 import 'screens/daily/screen/screen.dart';
 import 'screens/menu/screen.dart';
 import 'screens/settings/screen.dart';
@@ -19,10 +20,26 @@ export 'package:base/preferences/flutter_default.dart';
 export 'package:my_prophet/services/predictions.dart';
 export 'package:base/user/repository/flutter_default/flutter_default.dart';
 export 'package:algorithm/algorithm.dart';
-
 export 'screens/daily/screen/screen.dart';
 export 'screens/registration/screen.dart';
 export 'screens/loading.dart';
+
+MaterialApp myProphet(
+    {@required Widget authResolver, @required SingleProvider sp}) {
+  return MaterialApp(
+    title: localeText.appName,
+    theme: appTheme,
+    routes: {
+      "/daily": (BuildContext context) => DailyScreen(),
+      "/menu": (BuildContext context) => MenuScreen(),
+      "/settings": (BuildContext context) => ProfileSettingsScreen(),
+    },
+    home: authResolver,
+    // navigatorObservers: [
+    //   FirebaseAnalyticsObserver(analytics: sp.firebaseAnalytics),
+    // ],
+  );
+}
 
 Container imageBackground({@required Widget child}) => Container(
     decoration: BoxDecoration(
@@ -32,37 +49,6 @@ Container imageBackground({@required Widget child}) => Container(
       ),
     ),
     child: child);
-
-MaterialApp myProphet({@required Widget authResolver}) => MaterialApp(
-      title: localeText.appName,
-      theme: appTheme,
-      routes: {
-        "/daily": (BuildContext context) => DailyScreen(),
-        "/menu": (BuildContext context) => MenuScreen(),
-        "/settings": (BuildContext context) => ProfileSettingsScreen(),
-      },
-      home: authResolver,
-    );
-
-class SimpleBlocDelegate extends BlocDelegate {
-  @override
-  void onEvent(Bloc bloc, Object event) {
-    print(event);
-    super.onEvent(bloc, event);
-  }
-
-  @override
-  void onTransition(Bloc bloc, Transition transition) {
-    print(transition);
-    super.onTransition(bloc, transition);
-  }
-
-  @override
-  void onError(Bloc bloc, Object error, StackTrace stackTrace) {
-    print(error);
-    super.onError(bloc, error, stackTrace);
-  }
-}
 
 chooseLocale() {
   /// @TODO, add predictions
@@ -83,4 +69,24 @@ chooseLocale() {
   //     break;
   // }
   localeText.switchLocaleToRussian();
+}
+
+class SimpleBlocDelegate extends BlocDelegate {
+  @override
+  void onEvent(Bloc bloc, Object event) {
+    print(event);
+    super.onEvent(bloc, event);
+  }
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {
+    print(transition);
+    super.onTransition(bloc, transition);
+  }
+
+  @override
+  void onError(Bloc bloc, Object error, StackTrace stackTrace) {
+    print(error);
+    super.onError(bloc, error, stackTrace);
+  }
 }

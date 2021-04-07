@@ -75,6 +75,13 @@ class _DailyScreenState extends State<DailyScreen>
   /// @BUILD
   @override
   Widget build(BuildContext context) {
+    /// send information about what day user looking at
+    sp.firebaseAnalytics.logEvent(
+      name: (isToday)
+          ? "user_watch_current_day"
+          : "user_watch_next_${selected}_day",
+    );
+
     animationNewStateRoutine();
     //
     /// gets planets for current period
