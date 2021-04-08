@@ -1,5 +1,3 @@
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-
 import 'index.dart';
 
 const _WRITE_TO_DEV_URL = "https://forms.gle/R67F71wPMYEbEWrs7";

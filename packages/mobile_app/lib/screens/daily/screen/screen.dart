@@ -61,6 +61,7 @@ class _DailyScreenState extends State<DailyScreen>
             style: AppTextStyle.normalText),
       ],
     );
+    if (sp.debug.isNotDebug) sp.debug.testerField.wrapped = dat.user.isTester;
 
     /// animation
     initAnimations();

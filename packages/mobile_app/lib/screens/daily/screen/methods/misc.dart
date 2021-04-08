@@ -7,6 +7,7 @@ extension DailyScreenMiscMethods on _DailyScreenState {
   bool get isToday => d[selected].millisecondsSinceEpoch == dtDay;
 
   void calculateProphecy() {
-    sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch));
+    sp.prophecyBloc.add(CalculateProphecy(d[selected].millisecondsSinceEpoch,
+        isDebug: sp.debug.isDebug));
   }
 }

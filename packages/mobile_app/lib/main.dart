@@ -10,14 +10,20 @@ void main() async {
 
   /// file loads and init
   final singleProvider = SingleProvider();
+
+  if (singleProvider.debug.isDebug)
+    BlocSupervisor.delegate = SimpleBlocDelegate();
+
   singleProvider.appPref = AppPreferencesFlutter();
   await singleProvider.appPref.load();
   singleProvider.predictions = PredictionsFlutterMobile();
   await singleProvider.predictions.prepare();
 
   /// firebase
-  await Firebase.initializeApp();
-  singleProvider.firebaseAnalytics = FirebaseAnalytics();
+  if (singleProvider.debug.isNotDebug) {
+    await Firebase.initializeApp();
+    singleProvider.firebase.analytics = FirebaseAnalytics();
+  }
 
   /// authetication
   singleProvider.authBloc = AuthenticationBloc(

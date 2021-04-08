@@ -8,7 +8,9 @@ extension DailyScreenCardsMethods on _DailyScreenState {
       physics: NeverScrollableScrollPhysics(),
       children: [
         Center(
-          child: (sp.currentCardIsNan) ? BigCardPlaceholder() : sp.currentCard,
+          child: (sp.cards.currentCardIsNan)
+              ? BigCardPlaceholder()
+              : sp.cards.currentCard,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -23,9 +25,9 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseTree();
                         _chooseTreeBig();
                       },
-                      child: (sp.treeChoise)
+                      child: (sp.cards.treeChoise)
                           ? SmallCard(mode: 2, icon: "tree")
-                          : (sp.treeWasChossen)
+                          : (sp.cards.treeWasChossen)
                               ? SmallCard(mode: 1, icon: "tree")
                               : SmallCard(mode: 0, icon: "tree"),
                     ),
@@ -42,9 +44,9 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseCoin();
                         _chooseCoinBig();
                       },
-                      child: (sp.coinChoise)
+                      child: (sp.cards.coinChoise)
                           ? SmallCard(mode: 2, icon: "coins")
-                          : (sp.coinWasChossen)
+                          : (sp.cards.coinWasChossen)
                               ? SmallCard(mode: 1, icon: "coins")
                               : SmallCard(mode: 0, icon: "coins"),
                     ),
@@ -61,9 +63,9 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseStar();
                         _chooseStarBig();
                       },
-                      child: (sp.starChoise)
+                      child: (sp.cards.starChoise)
                           ? SmallCard(mode: 2, icon: "star")
-                          : (sp.starWasChossen)
+                          : (sp.cards.starWasChossen)
                               ? SmallCard(mode: 1, icon: "star")
                               : SmallCard(mode: 0, icon: "star"),
                     ),
@@ -80,9 +82,9 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseSword();
                         _chooseSwordBig();
                       },
-                      child: (sp.swordChoise)
+                      child: (sp.cards.swordChoise)
                           ? SmallCard(mode: 2, icon: "sword")
-                          : (sp.swordWasChossen)
+                          : (sp.cards.swordWasChossen)
                               ? SmallCard(mode: 1, icon: "sword")
                               : SmallCard(mode: 0, icon: "sword"),
                     ),
@@ -99,9 +101,9 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseCup();
                         _chooseCupBig();
                       },
-                      child: (sp.cupChoise)
+                      child: (sp.cards.cupChoise)
                           ? SmallCard(mode: 2, icon: "cup")
-                          : (sp.cupWasChossen)
+                          : (sp.cards.cupWasChossen)
                               ? SmallCard(mode: 1, icon: "cup")
                               : SmallCard(mode: 0, icon: "cup"),
                     ),
@@ -122,9 +124,9 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                         _chooseStar();
                         _chooseStarBig();
                       },
-                      child: (sp.starChoise)
+                      child: (sp.cards.starChoise)
                           ? SmallCard(mode: 2, icon: "star")
-                          : (sp.starWasChossen)
+                          : (sp.cards.starWasChossen)
                               ? SmallCard(mode: 1, icon: "star")
                               : SmallCard(mode: 0, icon: "star"),
                     ),
@@ -141,110 +143,110 @@ extension DailyScreenCardsMethods on _DailyScreenState {
   _chooseTree() {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      sp.treeChoise = true;
-      sp.treeWasChossen = true;
-      sp.coinChoise = false;
-      sp.starChoise = false;
-      sp.swordChoise = false;
-      sp.cupChoise = false;
+      sp.cards.treeChoise = true;
+      sp.cards.treeWasChossen = true;
+      sp.cards.coinChoise = false;
+      sp.cards.starChoise = false;
+      sp.cards.swordChoise = false;
+      sp.cards.cupChoise = false;
     });
   }
 
   _chooseTreeBig() {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      sp.currentCard = BigCard(
+      sp.cards.currentCard = BigCard(
         text: getPrediction(type: ProphecyType.MOODLET),
       );
-      sp.currentCardIsNan = false;
+      sp.cards.currentCardIsNan = false;
     });
   }
 
   _chooseCoin() {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      sp.coinChoise = true;
-      sp.coinWasChossen = true;
-      sp.treeChoise = false;
-      sp.starChoise = false;
-      sp.swordChoise = false;
-      sp.cupChoise = false;
+      sp.cards.coinChoise = true;
+      sp.cards.coinWasChossen = true;
+      sp.cards.treeChoise = false;
+      sp.cards.starChoise = false;
+      sp.cards.swordChoise = false;
+      sp.cards.cupChoise = false;
     });
   }
 
   _chooseCoinBig() {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      sp.currentCard = BigCard(
+      sp.cards.currentCard = BigCard(
         text: getPrediction(type: ProphecyType.INTUITION),
       );
-      sp.currentCardIsNan = false;
+      sp.cards.currentCardIsNan = false;
     });
   }
 
   _chooseStar() {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      sp.starChoise = true;
-      sp.starWasChossen = true;
-      sp.treeChoise = false;
-      sp.coinChoise = false;
-      sp.swordChoise = false;
-      sp.cupChoise = false;
+      sp.cards.starChoise = true;
+      sp.cards.starWasChossen = true;
+      sp.cards.treeChoise = false;
+      sp.cards.coinChoise = false;
+      sp.cards.swordChoise = false;
+      sp.cards.cupChoise = false;
     });
   }
 
   _chooseStarBig() {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      sp.currentCard = BigCard(
+      sp.cards.currentCard = BigCard(
         text: getPrediction(type: ProphecyType.LUCK),
       );
-      sp.currentCardIsNan = false;
+      sp.cards.currentCardIsNan = false;
     });
   }
 
   _chooseSword() {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      sp.swordChoise = true;
-      sp.swordWasChossen = true;
-      sp.treeChoise = false;
-      sp.coinChoise = false;
-      sp.starChoise = false;
-      sp.cupChoise = false;
+      sp.cards.swordChoise = true;
+      sp.cards.swordWasChossen = true;
+      sp.cards.treeChoise = false;
+      sp.cards.coinChoise = false;
+      sp.cards.starChoise = false;
+      sp.cards.cupChoise = false;
     });
   }
 
   _chooseSwordBig() {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      sp.currentCard = BigCard(
+      sp.cards.currentCard = BigCard(
         text: getPrediction(type: ProphecyType.AMBITION),
       );
-      sp.currentCardIsNan = false;
+      sp.cards.currentCardIsNan = false;
     });
   }
 
   _chooseCup() {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      sp.cupChoise = true;
-      sp.cupWasChossen = true;
-      sp.treeChoise = false;
-      sp.coinChoise = false;
-      sp.starChoise = false;
-      sp.swordChoise = false;
+      sp.cards.cupChoise = true;
+      sp.cards.cupWasChossen = true;
+      sp.cards.treeChoise = false;
+      sp.cards.coinChoise = false;
+      sp.cards.starChoise = false;
+      sp.cards.swordChoise = false;
     });
   }
 
   _chooseCupBig() {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      sp.currentCard = BigCard(
+      sp.cards.currentCard = BigCard(
         text: getPrediction(type: ProphecyType.INTERNAL_STRENGTH),
       );
-      sp.currentCardIsNan = false;
+      sp.cards.currentCardIsNan = false;
     });
   }
 }
