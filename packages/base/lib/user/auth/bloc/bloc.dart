@@ -13,7 +13,7 @@ export 'state.dart';
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   // singleton
-  AuthenticationBloc._({@required this.auth});
+  AuthenticationBloc._({@required this.auth}) : super(Uninitialized());
   // ignore: close_sinks
   static AuthenticationBloc _authenticationBloc;
   factory AuthenticationBloc({@required Auth auth}) {
@@ -22,8 +22,6 @@ class AuthenticationBloc
     return _authenticationBloc;
   }
 
-  @override
-  AuthenticationState get initialState => Uninitialized();
   final Auth auth;
 
   @override

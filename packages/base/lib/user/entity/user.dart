@@ -63,6 +63,8 @@ class UserEntity {
   /// (makes it failproof)
   UserModel model;
 
+  bool isTester;
+
   /// other peoples in user' life that
   /// magically impact his life
   /// and important enough to be added
@@ -76,6 +78,7 @@ class UserEntity {
     this.role = UserRole.USER,
     this.ambiance = const [],
     this.lastLogin = false,
+    this.isTester = false,
     @required this.model,
   }) : this.id = id ?? model.birth;
 

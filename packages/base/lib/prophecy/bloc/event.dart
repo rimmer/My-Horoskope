@@ -7,13 +7,15 @@ part 'event.g.dart';
 @immutable
 abstract class ProphecyEvent extends Equatable {
   int get dt;
+  bool get isDebug;
   const ProphecyEvent();
 }
 
 @ToString()
 class CalculateProphecy extends ProphecyEvent {
   final int dt;
-  CalculateProphecy(this.dt);
+  final bool isDebug;
+  CalculateProphecy(this.dt, {this.isDebug = false});
 
   @override
   List<Object> get props => [dt];

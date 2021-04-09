@@ -9,6 +9,7 @@ part 'methods/animation.dart';
 part 'methods/cards.dart';
 part 'methods/not_available_button.dart';
 part 'methods/misc.dart';
+part 'methods/firebase_events.dart';
 
 class DailyScreen extends StatefulWidget {
   /// current and next NUMBER_OF_DAYS_TO_SHOW days DateTime
@@ -37,6 +38,7 @@ class _DailyScreenState extends State<DailyScreen>
   //
   SingleProvider sp;
   final dat = DailyStateData();
+  DateTime birthDate;
 
   /// @INIT
   @override
@@ -44,24 +46,28 @@ class _DailyScreenState extends State<DailyScreen>
     sp = context.read<SingleProvider>();
     //
 
+    /// date init
     dat.user = sp.usersRepo.current;
     dat.labelStr =
         "${dat.user.model.name.capitalize()} (${localeText.you.capitalize()})";
     dat.sign = dat.user.model.birth.astroSign;
 
-    final dtConverted = dat.user.model.birth.toDateTime;
+    birthDate = dat.user.model.birth.toDateTime;
 
     dat.birthRow = Row(
       children: <Widget>[
         SvgPicture.asset("assets/icons/${dat.sign}.svg"),
-        Text(" ${dtConverted.day}.${dtConverted.month}.${dtConverted.year} ",
+        Text(" ${birthDate.day}.${birthDate.month}.${birthDate.year} ",
             style: AppTextStyle.normalText),
       ],
     );
+    if (sp.debug.isNotDebug) sp.debug.testerField.wrapped = dat.user.isTester;
 
+    /// animation
     initAnimations();
-    calculateProphecy();
     animationFirstStart();
+
+    /// initial events
 
     super.initState();
   }

@@ -9,13 +9,30 @@ void main() async {
   chooseLocale();
 
   /// file loads and init
-  BlocSupervisor.delegate = SimpleBlocDelegate();
   final singleProvider = SingleProvider();
 
   singleProvider.appPref = AppPreferencesFlutter();
   await singleProvider.appPref.load();
   singleProvider.predictions = PredictionsFlutterMobile();
   await singleProvider.predictions.prepare();
+
+  /// firebase
+  if (singleProvider.debug.isNotDebug) {
+    await Firebase.initializeApp();
+    singleProvider.firebase.analytics = FirebaseAnalytics();
+
+    singleProvider.firebase.messaging = FirebaseMessaging.instance;
+    singleProvider.firebase.notifications =
+        await singleProvider.firebase.messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+  }
 
   /// authetication
   singleProvider.authBloc = AuthenticationBloc(
@@ -30,6 +47,7 @@ Widget appBuilder(SingleProvider singleProvider) => Provider<SingleProvider>(
       create: (_) => singleProvider,
       child: imageBackground(
         child: myProphet(
+          // sp: singleProvider,
           authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
             //
             bloc: singleProvider.authBloc,

@@ -10,12 +10,9 @@ import 'state.dart';
 export 'event.dart';
 export 'state.dart';
 
-const double PROPHECY_VALUE_LIMIT_MIN = 27.0;
-const double PROPHECY_VALUE_LIMIT_MAX = 100.0;
-
 class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
   // singleton
-  ProphecyBloc._({@required this.algo});
+  ProphecyBloc._({@required this.algo}) : super(ProphecyInitial());
   // ignore: close_sinks
   static ProphecyBloc _prophecyBloc;
   factory ProphecyBloc({@required AlgorithmInterface algo}) {
@@ -28,12 +25,11 @@ class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
   final AlgorithmInterface algo;
   ProphecyState currentState;
 
-  ProphecyState get initialState => ProphecyInitial();
-
-  Stream<ProphecyState> _calculateProphecy({@required int dt}) async* {
+  Stream<ProphecyState> _calculateProphecy(
+      {@required int dt, bool isDebug = false}) async* {
     final prophecy = limitProphecies(
       //
-      prophecies: algo.ask(aboutDay: dt),
+      prophecies: algo.ask(aboutDay: dt, isDebug: isDebug),
       //
       min: PROPHECY_VALUE_LIMIT_MIN,
       max: PROPHECY_VALUE_LIMIT_MAX,
@@ -50,7 +46,7 @@ class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
     yield ProphecyInitial();
     switch (event.runtimeType) {
       case CalculateProphecy:
-        yield* _calculateProphecy(dt: event.dt);
+        yield* _calculateProphecy(dt: event.dt, isDebug: event.isDebug);
         break;
     }
   }

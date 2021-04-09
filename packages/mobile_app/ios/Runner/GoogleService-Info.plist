@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1031466051666-nmpfvsfdj636qbuqn67hrdft5s572hur.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1031466051666-nmpfvsfdj636qbuqn67hrdft5s572hur</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1031466051666-led253chka8uubciqpqkk27b8sq8bhqs.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAU4orB6S0CkH-QR9uOKYjia_XTtWf443A</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1031466051666</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>app.myprophet</string>
+	<key>PROJECT_ID</key>
+	<string>prophet-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>prophet-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1031466051666:ios:471d705ddb4d1d7a2f578b</string>
+	<key>DATABASE_URL</key>
+	<string>https://prophet-app.firebaseio.com</string>
+</dict>
+</plist>
