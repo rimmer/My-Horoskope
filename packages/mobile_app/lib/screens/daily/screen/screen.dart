@@ -65,7 +65,6 @@ class _DailyScreenState extends State<DailyScreen>
 
     /// animation
     initAnimations();
-    calculateProphecy();
     animationFirstStart();
 
     /// initial events

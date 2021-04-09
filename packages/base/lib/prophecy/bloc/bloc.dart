@@ -12,7 +12,7 @@ export 'state.dart';
 
 class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
   // singleton
-  ProphecyBloc._({@required this.algo});
+  ProphecyBloc._({@required this.algo}) : super(ProphecyInitial());
   // ignore: close_sinks
   static ProphecyBloc _prophecyBloc;
   factory ProphecyBloc({@required AlgorithmInterface algo}) {
@@ -24,8 +24,6 @@ class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
   /// and already has needed, loaded data
   final AlgorithmInterface algo;
   ProphecyState currentState;
-
-  ProphecyState get initialState => ProphecyInitial();
 
   Stream<ProphecyState> _calculateProphecy(
       {@required int dt, bool isDebug = false}) async* {

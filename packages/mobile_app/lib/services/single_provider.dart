@@ -3,6 +3,7 @@ import 'package:base/user/auth/bloc/bloc.dart';
 import 'package:base/prophecy/bloc/bloc.dart';
 import 'package:base/preferences/interface.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_prophet/components/user_settings/index.dart';
 import 'predictions.dart';
@@ -67,6 +68,8 @@ class _Firebase {
   }
 
   FirebaseAnalytics analytics;
+  NotificationSettings notifications;
+  FirebaseMessaging messaging;
 }
 
 class _Cards {

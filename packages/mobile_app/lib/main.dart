@@ -11,9 +11,6 @@ void main() async {
   /// file loads and init
   final singleProvider = SingleProvider();
 
-  if (singleProvider.debug.isDebug)
-    BlocSupervisor.delegate = SimpleBlocDelegate();
-
   singleProvider.appPref = AppPreferencesFlutter();
   await singleProvider.appPref.load();
   singleProvider.predictions = PredictionsFlutterMobile();
@@ -23,6 +20,18 @@ void main() async {
   if (singleProvider.debug.isNotDebug) {
     await Firebase.initializeApp();
     singleProvider.firebase.analytics = FirebaseAnalytics();
+
+    singleProvider.firebase.messaging = FirebaseMessaging.instance;
+    singleProvider.firebase.notifications =
+        await singleProvider.firebase.messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
   }
 
   /// authetication

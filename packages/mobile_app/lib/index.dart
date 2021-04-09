@@ -1,6 +1,5 @@
 // import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
-import 'package:bloc/bloc.dart';
 // import 'package:my_prophet/services/single_provider.dart';
 import 'package:text/text.dart';
 import 'theme/app_theme.dart';
@@ -24,6 +23,8 @@ export 'screens/registration/screen.dart';
 export 'screens/loading.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:firebase_crashlytics/firebase_crashlytics.dart';
+export 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
+export 'package:firebase_messaging/firebase_messaging.dart';
 
 MaterialApp myProphet({
   @required Widget authResolver,
@@ -69,24 +70,4 @@ chooseLocale() {
   //     break;
   // }
   localeText.switchLocaleToRussian();
-}
-
-class SimpleBlocDelegate extends BlocDelegate {
-  @override
-  void onEvent(Bloc bloc, Object event) {
-    print(event);
-    super.onEvent(bloc, event);
-  }
-
-  @override
-  void onTransition(Bloc bloc, Transition transition) {
-    print(transition);
-    super.onTransition(bloc, transition);
-  }
-
-  @override
-  void onError(Bloc bloc, Object error, StackTrace stackTrace) {
-    print(error);
-    super.onError(bloc, error, stackTrace);
-  }
 }
