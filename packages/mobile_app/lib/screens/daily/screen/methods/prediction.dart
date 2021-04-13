@@ -1,6 +1,6 @@
 part of '../screen.dart';
 
-const _isPositive = 49.0;
+const _isPositive = 57.0;
 
 extension DailyScreenPredictionMethods on _DailyScreenState {
   //

@@ -1,17 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:my_prophet/services/static_assets.dart';
-import 'package:my_prophet/theme/app_text_style.dart';
-import 'package:text/text.dart';
-
-const _height = 159.0;
-const _width = 437.0;
+import 'common.dart';
 
 class BigCardPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: _height,
-      width: _width,
+      height: height,
+      width: width,
       margin: EdgeInsets.only(
         left: 16.0,
         right: 16.0,

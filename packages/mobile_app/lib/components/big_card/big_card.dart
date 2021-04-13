@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:my_prophet/services/static_assets.dart';
-import 'package:my_prophet/theme/app_text_style.dart';
-
-const _height = 159.0;
-const _width = 437.0;
+import 'common.dart';
 
 class BigCard extends StatefulWidget {
   final String text;
@@ -49,8 +44,8 @@ class _BigCardState extends State<BigCard> with SingleTickerProviderStateMixin {
       ..forward();
 
     return Container(
-      height: _height,
-      width: _width,
+      height: height,
+      width: width,
       margin: EdgeInsets.only(
         left: 16.0,
         right: 16.0,

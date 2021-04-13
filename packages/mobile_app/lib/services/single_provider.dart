@@ -56,7 +56,7 @@ class SingleProvider {
   final ads = _Ads();
 
   /// getters
-  bool get adsAreDisabled => ads.disabled || debug.isDebug;
+  bool get adsAreDisabled => ads.disabled || debug.isDebug || ads.dontShow;
 }
 
 class _Firebase {
@@ -92,6 +92,13 @@ class _Cards {
   bool cupWasChossen = false;
   Widget currentCard = SizedBox();
   bool currentCardIsNan = true;
+
+  int numberOfCardsChosen() =>
+      (treeWasChossen ? 1 : 0) +
+      (coinWasChossen ? 1 : 0) +
+      (starWasChossen ? 1 : 0) +
+      (swordWasChossen ? 1 : 0) +
+      (cupWasChossen ? 1 : 0);
 }
 
 class _Ads {
@@ -102,6 +109,14 @@ class _Ads {
     return _ads;
   }
 
+  bool toBuild = false;
+  Function() whenWatched;
+
   /// we can add function to disable adds later
   final bool disabled = false;
+
+  int cardsShown = 0;
+  bool watched = false;
+  bool get show => cardsShown == 4 && watched == false;
+  bool get dontShow => cardsShown != 4 || watched;
 }
