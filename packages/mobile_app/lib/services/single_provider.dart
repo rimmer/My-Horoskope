@@ -4,8 +4,8 @@ import 'package:base/prophecy/bloc/bloc.dart';
 import 'package:base/preferences/interface.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/widgets.dart';
 import 'package:my_prophet/components/user_settings/index.dart';
+import 'package:my_prophet/screens/daily/screen/index.dart';
 import 'predictions.dart';
 
 export 'package:base/user/repository/interface.dart';
@@ -51,72 +51,21 @@ class SingleProvider {
 
   /// fields that needed between screens
   final firebase = _Firebase();
-  final cards = _Cards();
   final debug = _Tester();
-  final ads = _Ads();
 
   /// getters
-  bool get adsAreDisabled => ads.disabled || debug.isDebug || ads.dontShow;
+  bool get adsAreDisabled => debug.isDebug;
 }
 
 class _Firebase {
+  FirebaseAnalytics analytics;
+  NotificationSettings notifications;
+  FirebaseMessaging messaging;
+
   _Firebase._();
   static _Firebase _firebase;
   factory _Firebase() {
     if (_firebase == null) _firebase = _Firebase._();
     return _firebase;
   }
-
-  FirebaseAnalytics analytics;
-  NotificationSettings notifications;
-  FirebaseMessaging messaging;
-}
-
-class _Cards {
-  _Cards._();
-  static _Cards _cards;
-  factory _Cards() {
-    if (_cards == null) _cards = _Cards._();
-    return _cards;
-  }
-
-  bool treeChoise = false;
-  bool coinChoise = false;
-  bool starChoise = false;
-  bool swordChoise = false;
-  bool cupChoise = false;
-  bool treeWasChossen = false;
-  bool coinWasChossen = false;
-  bool starWasChossen = false;
-  bool swordWasChossen = false;
-  bool cupWasChossen = false;
-  Widget currentCard = SizedBox();
-  bool currentCardIsNan = true;
-
-  int numberOfCardsChosen() =>
-      (treeWasChossen ? 1 : 0) +
-      (coinWasChossen ? 1 : 0) +
-      (starWasChossen ? 1 : 0) +
-      (swordWasChossen ? 1 : 0) +
-      (cupWasChossen ? 1 : 0);
-}
-
-class _Ads {
-  _Ads._();
-  static _Ads _ads;
-  factory _Ads() {
-    if (_ads == null) _ads = _Ads._();
-    return _ads;
-  }
-
-  bool toBuild = false;
-  Function() whenWatched;
-
-  /// we can add function to disable adds later
-  final bool disabled = false;
-
-  int cardsShown = 0;
-  bool watched = false;
-  bool get show => cardsShown == 4 && watched == false;
-  bool get dontShow => cardsShown != 4 || watched;
 }

@@ -39,6 +39,7 @@ class _DailyScreenState extends State<DailyScreen>
   SingleProvider sp;
   final dat = DailyStateData();
   DateTime birthDate;
+  final _cards = Cards();
 
   /// @INIT
   @override

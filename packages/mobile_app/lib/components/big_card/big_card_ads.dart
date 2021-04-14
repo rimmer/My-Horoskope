@@ -1,22 +1,10 @@
-import 'package:my_prophet/components/user_settings/index.dart';
-
 import 'common.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import '../gradient_border_button.dart';
 
-class BigCardAds extends StatefulWidget {
-  @override
-  _BigCardAdsState createState() => _BigCardAdsState();
-}
-
-class _BigCardAdsState extends State<BigCardAds> {
-  SingleProvider _sp;
-
-  @override
-  void initState() {
-    _sp = context.read<SingleProvider>();
-    super.initState();
-  }
+class BigCardAds extends StatelessWidget {
+  final Function action;
+  BigCardAds({@required this.action});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +35,7 @@ class _BigCardAdsState extends State<BigCardAds> {
         children: [
           Text(
             localeText.adsCardDescription,
-            style: AppTextStyle.bigCardText,
+            style: AppTextStyle.bigCardAdText,
           ),
           SizedBox(
             height: 16.0,
@@ -55,7 +43,7 @@ class _BigCardAdsState extends State<BigCardAds> {
           gradientBorderButton(
             child: Text(
               localeText.watchAdsButton.toUpperCase(),
-              style: AppTextStyle.normalText,
+              style: AppTextStyle.adsButtonText,
             ),
             gradient: LinearGradient(
               colors: [
@@ -71,10 +59,7 @@ class _BigCardAdsState extends State<BigCardAds> {
             internalPadding:
                 EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
-            onPressed: () {
-              _sp.ads.watched = true;
-              _sp.ads.whenWatched();
-            },
+            onPressed: action,
           ),
         ],
       ),

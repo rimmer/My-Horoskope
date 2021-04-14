@@ -8,7 +8,7 @@ class EnglishLocale implements Locale {
   final String appName = "My Prophet";
   final String atLeastXsymbolsNeeded = "symbols needed: ";
   final String adsCardDescription =
-      "To see the prediction,\nplease watch the ad -\nit will support us.\nThank you.";
+      "To see the prediction,\nplease watch the ad —\nit will support us.\nThank you.";
   final String watchAdsButton = "watch ad";
   final String birthdate = "date of birth";
   final String clarifyForecast = "Choose your Tarot cards for today";

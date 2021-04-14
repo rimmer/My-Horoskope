@@ -15,11 +15,24 @@ class AppTextStyle {
     letterSpacing: 0.0,
   );
 
+  static const bigCardAdText = TextStyle(
+    fontSize: 15,
+    color: AppColors.textPrimary,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.0,
+  );
+
   static const fadeText = TextStyle(color: AppColors.textDisabled);
   static const normalText = TextStyle(
     fontSize: 14,
     color: AppColors.textPrimary,
   );
+
+  static const adsButtonText = TextStyle(
+    fontSize: 12,
+    color: AppColors.textPrimary,
+  );
+
   static const labelText = TextStyle(
     color: AppColors.textPrimary,
     fontSize: 16,
