@@ -66,9 +66,9 @@ extension DailyScreenCardsMethods on _DailyScreenState {
     if (internet == true) {
       // ignore: invalid_use_of_protected_member
       setState(() {
-        if (StaticProvider.ads.cardAd == null) StaticProvider.ads.initCardAd();
-        StaticProvider.ads.cardAd.load();
-        StaticProvider.ads.cardAd.show();
+        final cardAd = getCardAd();
+        cardAd.load();
+        cardAd.show();
       });
     } else {
       print("no internet connection!");

@@ -39,7 +39,6 @@ class StaticProvider {
   /// services
   static _Firebase firebase = _Firebase();
   static _Tester debug = _Tester();
-  static _AdsService ads = _AdsService();
 
   /// getters
   static bool get adsAreDisabled => debug.isDebug;
