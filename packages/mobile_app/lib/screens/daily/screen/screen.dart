@@ -36,7 +36,6 @@ class DailyScreen extends StatefulWidget {
 class _DailyScreenState extends State<DailyScreen>
     with SingleTickerProviderStateMixin {
   //
-  SingleProvider sp;
   final dat = DailyStateData();
   DateTime birthDate;
   final _cards = Cards();
@@ -44,11 +43,8 @@ class _DailyScreenState extends State<DailyScreen>
   /// @INIT
   @override
   void initState() {
-    sp = context.read<SingleProvider>();
-    //
-
     /// date init
-    dat.user = sp.usersRepo.current;
+    dat.user = StaticProvider.data.usersRepo.current;
     dat.labelStr =
         "${dat.user.model.name.capitalize()} (${localeText.you.capitalize()})";
     dat.sign = dat.user.model.birth.astroSign;
@@ -62,7 +58,8 @@ class _DailyScreenState extends State<DailyScreen>
             style: AppTextStyle.normalText),
       ],
     );
-    if (sp.debug.isNotDebug) sp.debug.testerField.wrapped = dat.user.isTester;
+    if (StaticProvider.debug.isNotDebug)
+      StaticProvider.debug.testerField.wrapped = dat.user.isTester;
 
     /// animation
     initAnimations();
@@ -150,7 +147,7 @@ class _DailyScreenState extends State<DailyScreen>
                 children: [
                   /// @PROPHECY
                   BlocBuilder<ProphecyBloc, ProphecyState>(
-                    bloc: sp.prophecyBloc,
+                    bloc: StaticProvider.prophecyBloc,
                     builder: prophecyBuilder,
                   ),
                   SizedBox(

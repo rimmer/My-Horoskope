@@ -14,12 +14,10 @@ dependencies:
     sdk: flutter
 
   # flutter mobile app stuff
-  provider: 
   flutter_bloc: 
   url_launcher: 
   launch_review: 
   mutable_wrappers: 
-  cupertino_icons: 
   flutter_svg: 
   flutter_spinkit: 
   # base
@@ -35,6 +33,7 @@ dependencies:
   firebase_crashlytics:
   firebase_in_app_messaging: 
   firebase_messaging:
+  # google_mobile_ads:
 
 
 dev_dependencies:

@@ -32,31 +32,11 @@ class UserModel {
       _$UserModelFromJson(json);
 }
 
-/// more rolls will be added
-enum UserRole {
-  NONE,
-  USER,
-  FRIEND,
-  COWORKER,
-  MANAGER,
-  SUBORDINATE,
-  BOYFRIEND,
-  GIRLFRIEND,
-  LOVER,
-  HUSBAND,
-  WIFE,
-  SON,
-  DAUGHTER,
-  FAMILY,
-  PET,
-  GUARDIAN,
-}
-
 @JsonSerializable()
 class UserEntity {
   /// unique user id
   final int id;
-  UserRole role;
+  String role;
 
   /// model is immutable and
   /// must be recreated every time it changed
@@ -75,7 +55,7 @@ class UserEntity {
 
   UserEntity({
     id,
-    this.role = UserRole.USER,
+    this.role = "user",
     this.ambiance = const [],
     this.lastLogin = false,
     this.isTester = false,

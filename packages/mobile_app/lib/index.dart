@@ -1,6 +1,5 @@
 // import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
-// import 'package:my_prophet/services/single_provider.dart';
 import 'package:text/text.dart';
 import 'theme/app_theme.dart';
 import 'screens/daily/screen/screen.dart';
@@ -9,8 +8,7 @@ import 'screens/settings/screen.dart';
 import 'services/static_assets.dart';
 
 //
-export 'services/single_provider.dart';
-export 'package:provider/provider.dart';
+export 'services/static_provider.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:base/user/auth/data/flutter_auth.dart';

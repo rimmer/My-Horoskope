@@ -65,7 +65,7 @@ class AuthFlutter implements Auth {
       curUser = UserEntity(
         model: model,
         lastLogin: true,
-        role: UserRole.USER,
+        role: "user",
       );
 
       /// add it

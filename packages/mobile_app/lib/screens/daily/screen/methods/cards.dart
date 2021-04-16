@@ -18,7 +18,7 @@ extension DailyScreenCardsMethods on _DailyScreenState {
 
                   /// if some card was chosen
                   /// and it is time to build ads
-                  : sp.adsAreDisabled == false && _cards.toBuildAds
+                  : StaticProvider.adsAreDisabled == false && _cards.toBuildAds
 
                       /// we build our ads card
                       ? BigCardAds(
@@ -77,17 +77,22 @@ extension DailyScreenCardsMethods on _DailyScreenState {
               _cards.choise = cardType;
             });
           },
-          child: (_cards.choise == cardType)
+          child: (_cards.choise == cardType && _cards.cardShown[cardType])
 
-              /// if current card is choosed show mode 2
-              ? SmallCard(mode: 2, icon: cardTypeToString[cardType])
+              /// if current card is chosen
+              ? SmallCard(
+                  mode: SmallCardMode.CHOSEN, icon: cardTypeToString[cardType])
               : (_cards.cardShown[cardType])
 
-                  /// if our card was chosen previously show mode 1
-                  ? SmallCard(mode: 1, icon: cardTypeToString[cardType])
+                  /// if our card was chosen once
+                  ? SmallCard(
+                      mode: SmallCardMode.WASCHOSEN,
+                      icon: cardTypeToString[cardType])
 
-                  /// if our card was not clicked at all show mode 0
-                  : SmallCard(mode: 0, icon: cardTypeToString[cardType]),
+                  /// if our card was not clicked at all
+                  : SmallCard(
+                      mode: SmallCardMode.INTACT,
+                      icon: cardTypeToString[cardType]),
         ),
       );
 }

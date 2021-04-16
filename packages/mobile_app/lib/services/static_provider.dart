@@ -5,7 +5,6 @@ import 'package:base/preferences/interface.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:my_prophet/components/user_settings/index.dart';
-import 'package:my_prophet/screens/daily/screen/index.dart';
 import 'predictions.dart';
 
 export 'package:base/user/repository/interface.dart';
@@ -21,51 +20,34 @@ class _Tester {
   //
   bool get isDebug => testerField.wrapped;
   bool get isNotDebug => !testerField.wrapped;
-
-  _Tester._();
-  static _Tester _tester;
-  factory _Tester() {
-    if (_tester == null) _tester = _Tester._();
-    return _tester;
-  }
 }
 
-/// single provider that cleans widget tree from providers nesting
-class SingleProvider {
-  // singleton
-  SingleProvider._();
-  static SingleProvider _singleProvider;
-  factory SingleProvider() {
-    if (_singleProvider == null) _singleProvider = SingleProvider._();
-    return _singleProvider;
-  }
+class StaticProvider {
+  /// data
+  static SPData data = SPData();
 
-  /// objects
-  UsersRepository usersRepo;
+  /// blocs
   // ignore: close_sinks
-  AuthenticationBloc authBloc;
+  static AuthenticationBloc authBloc;
   // ignore: close_sinks
-  ProphecyBloc prophecyBloc;
-  AppPreferences appPref;
-  PredictionsFlutterMobile predictions;
+  static ProphecyBloc prophecyBloc;
 
-  /// fields that needed between screens
-  final firebase = _Firebase();
-  final debug = _Tester();
+  /// services
+  static _Firebase firebase = _Firebase();
+  static _Tester debug = _Tester();
 
   /// getters
-  bool get adsAreDisabled => debug.isDebug;
+  static bool get adsAreDisabled => debug.isDebug;
+}
+
+class SPData {
+  UsersRepository usersRepo;
+  AppPreferences appPref;
+  PredictionsFlutterMobile predictions;
 }
 
 class _Firebase {
   FirebaseAnalytics analytics;
   NotificationSettings notifications;
   FirebaseMessaging messaging;
-
-  _Firebase._();
-  static _Firebase _firebase;
-  factory _Firebase() {
-    if (_firebase == null) _firebase = _Firebase._();
-    return _firebase;
-  }
 }

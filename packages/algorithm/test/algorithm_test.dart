@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 
 main() {
   final vsevolod = UserEntity(
-    role: UserRole.USER,
+    role: "user",
     model: UserModel(
       sex: 2,
       name: "Vsevolod",

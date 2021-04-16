@@ -11,14 +11,7 @@ export 'event.dart';
 export 'state.dart';
 
 class ProphecyBloc extends Bloc<ProphecyEvent, ProphecyState> {
-  // singleton
-  ProphecyBloc._({@required this.algo}) : super(ProphecyInitial());
-  // ignore: close_sinks
-  static ProphecyBloc _prophecyBloc;
-  factory ProphecyBloc({@required AlgorithmInterface algo}) {
-    if (_prophecyBloc == null) _prophecyBloc = ProphecyBloc._(algo: algo);
-    return _prophecyBloc;
-  }
+  ProphecyBloc({@required this.algo}) : super(ProphecyInitial());
 
   /// algorithm that will calculate prophecies
   /// and already has needed, loaded data
