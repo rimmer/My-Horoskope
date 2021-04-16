@@ -33,7 +33,7 @@ dependencies:
   firebase_crashlytics:
   firebase_in_app_messaging: 
   firebase_messaging:
-  # google_mobile_ads:
+  google_mobile_ads:
 
 
 dev_dependencies:

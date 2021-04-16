@@ -23,6 +23,7 @@ export 'package:firebase_core/firebase_core.dart';
 export 'package:firebase_crashlytics/firebase_crashlytics.dart';
 export 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 export 'package:firebase_messaging/firebase_messaging.dart';
+export 'package:google_mobile_ads/google_mobile_ads.dart';
 
 MaterialApp myProphet({
   @required Widget authResolver,

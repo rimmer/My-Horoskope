@@ -23,13 +23,7 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                       /// we build our ads card
                       ? BigCardAds(
                           action: () {
-                            // ignore: invalid_use_of_protected_member
-                            setState(() {
-                              /// here we show our ads
-                              //
-                              /// here we make needed stuff after ads watched
-                              _cards.whenAdsWatched();
-                            });
+                            onWatchAdsClick();
                           },
                         )
 
@@ -65,6 +59,20 @@ extension DailyScreenCardsMethods on _DailyScreenState {
         ),
       ],
     );
+  }
+
+  onWatchAdsClick() async {
+    final internet = await internetCheck();
+    if (internet == true) {
+      // ignore: invalid_use_of_protected_member
+      setState(() {
+        if (StaticProvider.ads.cardAd == null) StaticProvider.ads.initCardAd();
+        StaticProvider.ads.cardAd.load();
+        StaticProvider.ads.cardAd.show();
+      });
+    } else {
+      print("no internet connection!");
+    }
   }
 
   Padding _smallCardBuilder(CardType cardType) => Padding(

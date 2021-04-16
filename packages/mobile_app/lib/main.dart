@@ -30,6 +30,7 @@ void main() async {
       provisional: false,
       sound: true,
     );
+    MobileAds.instance.initialize();
   }
 
   /// authetication
