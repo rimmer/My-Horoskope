@@ -8,22 +8,20 @@ void main() async {
   /// language
   chooseLocale();
 
-  /// file loads and init
-  final singleProvider = SingleProvider();
-
-  singleProvider.appPref = AppPreferencesFlutter();
-  await singleProvider.appPref.load();
-  singleProvider.predictions = PredictionsFlutterMobile();
-  await singleProvider.predictions.prepare();
+  /// data init and load
+  StaticProvider.data.appPref = AppPreferencesFlutter();
+  await StaticProvider.data.appPref.load();
+  StaticProvider.data.predictions = PredictionsFlutterMobile();
+  await StaticProvider.data.predictions.prepare();
 
   /// firebase
-  if (singleProvider.debug.isNotDebug) {
+  if (StaticProvider.debug.isNotDebug) {
     await Firebase.initializeApp();
-    singleProvider.firebase.analytics = FirebaseAnalytics();
+    StaticProvider.firebase.analytics = FirebaseAnalytics();
 
-    singleProvider.firebase.messaging = FirebaseMessaging.instance;
-    singleProvider.firebase.notifications =
-        await singleProvider.firebase.messaging.requestPermission(
+    StaticProvider.firebase.messaging = FirebaseMessaging.instance;
+    StaticProvider.firebase.notifications =
+        await StaticProvider.firebase.messaging.requestPermission(
       alert: true,
       announcement: false,
       badge: true,
@@ -32,50 +30,47 @@ void main() async {
       provisional: false,
       sound: true,
     );
+    MobileAds.instance.initialize();
   }
 
   /// authetication
-  singleProvider.authBloc = AuthenticationBloc(
+  StaticProvider.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());
 
   /// app start
-  runApp(appBuilder(singleProvider));
+  runApp(appBuilder());
 }
 
-Widget appBuilder(SingleProvider singleProvider) => Provider<SingleProvider>(
-      create: (_) => singleProvider,
-      child: imageBackground(
-        child: myProphet(
-          // sp: singleProvider,
-          authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+Widget appBuilder() => imageBackground(
+      child: myProphet(
+        authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+          //
+          bloc: StaticProvider.authBloc,
+          builder: (context, state) {
             //
-            bloc: singleProvider.authBloc,
-            builder: (context, state) {
-              //
 
-              if (state is Authenticated) {
-                singleProvider.usersRepo =
-                    singleProvider.authBloc.auth.repository;
+            if (state is Authenticated) {
+              StaticProvider.data.usersRepo =
+                  StaticProvider.authBloc.auth.repository;
 
-                singleProvider.prophecyBloc = ProphecyBloc(
-                  algo: Algorithm(
-                    dat: AlgoData(
-                      usersRepository: singleProvider.usersRepo,
-                    ),
+              StaticProvider.prophecyBloc = ProphecyBloc(
+                algo: Algorithm(
+                  dat: AlgoData(
+                    usersRepository: StaticProvider.data.usersRepo,
                   ),
-                );
+                ),
+              );
 
-                return DailyScreen();
+              return DailyScreen();
 
-                //
-              } else if (state is Unauthenticated)
-                return RegistrationScreen();
-              else {
-                return LoadingScreen();
-              }
-            },
-          ),
+              //
+            } else if (state is Unauthenticated)
+              return RegistrationScreen();
+            else {
+              return LoadingScreen();
+            }
+          },
         ),
       ),
     );

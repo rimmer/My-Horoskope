@@ -9,15 +9,11 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen>
     with SingleTickerProviderStateMixin {
-  SingleProvider sp;
-
   AnimationController _animationFadeOutController;
   Animation<double> _animationFadeOut;
 
   @override
   void initState() {
-    sp = context.read<SingleProvider>();
-
     _animationFadeOutController = AnimationController(
       duration: Duration(seconds: 3),
       vsync: this,
@@ -60,7 +56,8 @@ class _MenuScreenState extends State<MenuScreen>
             scrollDirection: Axis.vertical,
             children: [
               menuItemLeadingIcon(
-                  asset: sp.usersRepo.current.model.birth.astroSign,
+                  asset: StaticProvider
+                      .data.usersRepo.current.model.birth.astroSign,
                   text:
                       " ${localeText.my.capitalize()} ${localeText.horoscope}",
                   onTap: () {

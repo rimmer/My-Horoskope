@@ -4,9 +4,15 @@ import 'package:my_prophet/services/static_assets.dart';
 const _height = 130.0;
 const _width = 64.0;
 
+enum SmallCardMode {
+  CHOSEN,
+  WASCHOSEN,
+  INTACT,
+}
+
 class SmallCard extends StatefulWidget {
   final String icon;
-  final int mode;
+  final SmallCardMode mode;
   SmallCard({this.icon = "star", @required this.mode});
 
   @override
@@ -17,7 +23,7 @@ class _SmallCardState extends State<SmallCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: (widget.mode == 2)
+      margin: (widget.mode == SmallCardMode.CHOSEN)
           ? EdgeInsets.only(left: 4.0, right: 4.0)
           : EdgeInsets.all(0.0),
       height: _height,
@@ -27,16 +33,16 @@ class _SmallCardState extends State<SmallCard> {
           Align(
             alignment: Alignment.topCenter,
             child: Opacity(
-              opacity: (widget.mode == 2) ? 1.0 : 0.0,
+              opacity: (widget.mode == SmallCardMode.CHOSEN) ? 1.0 : 0.0,
               child: StaticAsset.svg["light_${widget.icon}"],
             ),
           ),
-          (widget.mode == 1)
+          (widget.mode == SmallCardMode.WASCHOSEN)
               ? Align(
                   alignment: Alignment.center,
                   child: StaticAsset.svg["light_${widget.icon}"])
               : SizedBox(),
-          (widget.mode == 0)
+          (widget.mode == SmallCardMode.INTACT)
               ? Align(
                   alignment: Alignment.center,
                   child: StaticAsset.svg["dark_${widget.icon}"])

@@ -18,6 +18,8 @@ class localeText {
   static String appName = locale.appName;
   static String apply = locale.apply;
   static String atLeastXsymbolsNeeded = locale.atLeastXsymbolsNeeded;
+  static String adsCardDescription = locale.adsCardDescription;
+  static String watchAdsButton = locale.watchAdsButton;
   static String birthdate = locale.birthdate;
   static String clarifyForecast = locale.clarifyForecast;
   static String dateNotFilled = locale.dateNotFilled;

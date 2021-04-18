@@ -10,6 +10,8 @@ abstract class Locale {
   String get appName;
   String get apply;
   String get atLeastXsymbolsNeeded;
+  String get adsCardDescription;
+  String get watchAdsButton;
   String get birthdate;
   String get clarifyForecast;
   String get dateNotFilled;

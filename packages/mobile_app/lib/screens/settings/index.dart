@@ -4,7 +4,7 @@ export 'package:base/preferences/setting/enabled_prophecies/item.dart';
 export 'package:my_prophet/services/direct_auth.dart';
 export 'package:my_prophet/components/popup.dart';
 export 'package:my_prophet/components/magic_checkbox.dart';
-export 'package:my_prophet/services/single_provider.dart';
+export 'package:my_prophet/services/static_provider.dart';
 export 'package:flutter/material.dart';
 export 'package:mutable_wrappers/mutable_wrappers.dart';
 export 'package:text/text.dart';

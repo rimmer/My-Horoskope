@@ -19,15 +19,11 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen>
     with SingleTickerProviderStateMixin {
-  SingleProvider sp;
   AnimationController _animationFadeOutController;
   Animation<double> _animationFadeOut;
 
   @override
   void initState() {
-    /// getting single provider
-    sp = context.read<SingleProvider>();
-
     _animationFadeOutController = AnimationController(
       duration: Duration(seconds: 6),
       vsync: this,
@@ -129,7 +125,7 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                               wrongInformation(localeText.termsAreNotAccepted));
                     },
                     onValidInformation: () {
-                      sp.authBloc.add(AuthEvent(UserModel(
+                      StaticProvider.authBloc.add(AuthEvent(UserModel(
                         name: widget.name.wrapped,
                         birth: DateTime.utc(
                           int.parse(widget.year.wrapped),

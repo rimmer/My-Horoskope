@@ -1,11 +1,12 @@
 part of '../screen.dart';
 
-const _isPositive = 49.0;
+const _isPositive = 57.0;
 
 extension DailyScreenPredictionMethods on _DailyScreenState {
   //
   String getPrediction({@required ProphecyType type}) {
-    if (sp.prophecyBloc.currentState.prophecy[type].value > _isPositive)
+    if (StaticProvider.prophecyBloc.currentState.prophecy[type].value >
+        _isPositive)
       return positivePrediction(
         type: type,
         birthDate: DateTime.fromMillisecondsSinceEpoch(
@@ -29,26 +30,26 @@ extension DailyScreenPredictionMethods on _DailyScreenState {
     switch (type) {
       case ProphecyType.AMBITION:
         positivePredictionText = //
-            sp.predictions.predictionPositiveAmbition(
+            StaticProvider.data.predictions.predictionPositiveAmbition(
           birthDate,
         );
         break;
       case ProphecyType.INTUITION:
         positivePredictionText =
             //
-            sp.predictions.predictionPositiveIntelligence(
+            StaticProvider.data.predictions.predictionPositiveIntelligence(
           birthDate,
         );
         break;
       case ProphecyType.LUCK:
         positivePredictionText = //
-            sp.predictions.predictionPositiveLuck(
+            StaticProvider.data.predictions.predictionPositiveLuck(
           birthDate,
         );
         break;
       case ProphecyType.MOODLET:
         positivePredictionText = //
-            sp.predictions.predictionPositiveMoodlet(
+            StaticProvider.data.predictions.predictionPositiveMoodlet(
           birthDate,
         );
         break;
@@ -57,7 +58,7 @@ extension DailyScreenPredictionMethods on _DailyScreenState {
       default:
         positivePredictionText =
             //
-            sp.predictions.predictionPositiveInternalStr(
+            StaticProvider.data.predictions.predictionPositiveInternalStr(
           birthDate,
         );
         break;
@@ -75,26 +76,26 @@ extension DailyScreenPredictionMethods on _DailyScreenState {
     switch (type) {
       case ProphecyType.AMBITION:
         negativePredictionText = //
-            sp.predictions.predictionNegativeAmbition(
+            StaticProvider.data.predictions.predictionNegativeAmbition(
           birthDate,
         );
         break;
       case ProphecyType.INTUITION:
         negativePredictionText =
             //
-            sp.predictions.predictionNegativeIntelligence(
+            StaticProvider.data.predictions.predictionNegativeIntelligence(
           birthDate,
         );
         break;
       case ProphecyType.LUCK:
         negativePredictionText = //
-            sp.predictions.predictionNegativeLuck(
+            StaticProvider.data.predictions.predictionNegativeLuck(
           birthDate,
         );
         break;
       case ProphecyType.MOODLET:
         negativePredictionText = //
-            sp.predictions.predictionNegativeMoodlet(
+            StaticProvider.data.predictions.predictionNegativeMoodlet(
           birthDate,
         );
         break;
@@ -103,7 +104,7 @@ extension DailyScreenPredictionMethods on _DailyScreenState {
       default:
         negativePredictionText =
             //
-            sp.predictions.predictionNegativeInternalStr(
+            StaticProvider.data.predictions.predictionNegativeInternalStr(
           birthDate,
         );
         break;

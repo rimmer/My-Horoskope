@@ -21,7 +21,6 @@ class ProfileSettingsScreen extends StatefulWidget {
 
 class _ProfileSettingsScreenState extends State<ProfileSettingsScreen>
     with SingleTickerProviderStateMixin {
-  SingleProvider sp;
   UserModel user;
 
   final MutableBool luck = MutableBool(true);
@@ -35,11 +34,8 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen>
 
   @override
   void initState() {
-    /// getting single provider
-    sp = context.read<SingleProvider>();
-
     /// setting current values
-    user = sp.usersRepo.current.model;
+    user = StaticProvider.data.usersRepo.current.model;
     widget.name.wrapped = user.name;
     final birthDate = DateTime.fromMillisecondsSinceEpoch(user.birth);
     widget.month.wrapped = (birthDate.month).toString();
@@ -49,11 +45,13 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen>
     widget.year.wrapped = birthDate.year.toString();
     widget.sex.wrapped = user.sex;
 
-    luck.wrapped = sp.appPref.enabledProphecies.luck;
-    internalStrength.wrapped = sp.appPref.enabledProphecies.internalStrength;
-    moodlet.wrapped = sp.appPref.enabledProphecies.moodlet;
-    ambition.wrapped = sp.appPref.enabledProphecies.ambition;
-    intelligence.wrapped = sp.appPref.enabledProphecies.intuition;
+    luck.wrapped = StaticProvider.data.appPref.enabledProphecies.luck;
+    internalStrength.wrapped =
+        StaticProvider.data.appPref.enabledProphecies.internalStrength;
+    moodlet.wrapped = StaticProvider.data.appPref.enabledProphecies.moodlet;
+    ambition.wrapped = StaticProvider.data.appPref.enabledProphecies.ambition;
+    intelligence.wrapped =
+        StaticProvider.data.appPref.enabledProphecies.intuition;
 
     _animationFadeOutController = AnimationController(
       duration: Duration(seconds: 3),
@@ -200,14 +198,19 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen>
                               widget.sex.wrapped == user.sex;
 
                       final propheciesToShowNotChanged =
-                          sp.appPref.enabledProphecies.luck == luck.wrapped &&
-                              sp.appPref.enabledProphecies.intuition ==
+                          StaticProvider.data.appPref.enabledProphecies.luck ==
+                                  luck.wrapped &&
+                              StaticProvider.data.appPref.enabledProphecies
+                                      .intuition ==
                                   intelligence.wrapped &&
-                              sp.appPref.enabledProphecies.internalStrength ==
+                              StaticProvider.data.appPref.enabledProphecies
+                                      .internalStrength ==
                                   internalStrength.wrapped &&
-                              sp.appPref.enabledProphecies.ambition ==
+                              StaticProvider.data.appPref.enabledProphecies
+                                      .ambition ==
                                   ambition.wrapped &&
-                              sp.appPref.enabledProphecies.moodlet ==
+                              StaticProvider
+                                      .data.appPref.enabledProphecies.moodlet ==
                                   moodlet.wrapped;
 
                       if (userSettingsNotChanged &&
@@ -217,7 +220,8 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen>
                         return;
                       }
 
-                      sp.appPref.enabledProphecies = propheciesToShow;
+                      StaticProvider.data.appPref.enabledProphecies =
+                          propheciesToShow;
 
                       if (userSettingsNotChanged) {
                         Navigator.of(context).pushNamedAndRemoveUntil(
@@ -235,10 +239,10 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen>
                       /// services/direct_auth.dart
                       if (user.birth == birthDateEntered)
                         userInformationChangeMisc(
-                            sp: sp, model: enteredUserModel, context: context);
+                            model: enteredUserModel, context: context);
                       else
                         userInformationChangeMajor(
-                            sp: sp, model: enteredUserModel, context: context);
+                            model: enteredUserModel, context: context);
                     },
                     buttonText: localeText.save.toUpperCase(),
                   ),

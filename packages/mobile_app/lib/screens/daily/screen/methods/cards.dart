@@ -8,245 +8,99 @@ extension DailyScreenCardsMethods on _DailyScreenState {
       physics: NeverScrollableScrollPhysics(),
       children: [
         Center(
-          child: (sp.cards.currentCardIsNan)
-              ? BigCardPlaceholder()
-              : sp.cards.currentCard,
+          child:
+
+              /// if no card was chosen then current big card is empty
+              _cards.currentBigCardIsEmpty
+
+                  /// so we show card placeholder
+                  ? BigCardPlaceholder()
+
+                  /// if some card was chosen
+                  /// and it is time to build ads
+                  : StaticProvider.adsAreDisabled == false && _cards.toBuildAds
+
+                      /// we build our ads card
+                      ? BigCardAds(
+                          action: () {
+                            onWatchAdsClick();
+                          },
+                        )
+
+                      /// otherwise we build our big card
+                      : BigCard(
+                          text: getPrediction(
+                            /// and add needed text to it
+                            /// if conditions same, it will create a new state and will not rebuild the card
+                            type: cardTypeToProphecy[_cards.choise],
+                          ),
+                        ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            //
-
-            (toShow.moodlet)
-                ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 1.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        _chooseTree();
-                        _chooseTreeBig();
-                      },
-                      child: (sp.cards.treeChoise)
-                          ? SmallCard(mode: 2, icon: "tree")
-                          : (sp.cards.treeWasChossen)
-                              ? SmallCard(mode: 1, icon: "tree")
-                              : SmallCard(mode: 0, icon: "tree"),
-                    ),
-                  )
-                : SizedBox(),
-
-            //
-
-            (toShow.intuition)
-                ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 1.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        _chooseCoin();
-                        _chooseCoinBig();
-                      },
-                      child: (sp.cards.coinChoise)
-                          ? SmallCard(mode: 2, icon: "coins")
-                          : (sp.cards.coinWasChossen)
-                              ? SmallCard(mode: 1, icon: "coins")
-                              : SmallCard(mode: 0, icon: "coins"),
-                    ),
-                  )
-                : SizedBox(),
-
-            //
-
-            (toShow.luck)
-                ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 1.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        _chooseStar();
-                        _chooseStarBig();
-                      },
-                      child: (sp.cards.starChoise)
-                          ? SmallCard(mode: 2, icon: "star")
-                          : (sp.cards.starWasChossen)
-                              ? SmallCard(mode: 1, icon: "star")
-                              : SmallCard(mode: 0, icon: "star"),
-                    ),
-                  )
-                : SizedBox(),
-
-            //
-
-            (toShow.ambition)
-                ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 1.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        _chooseSword();
-                        _chooseSwordBig();
-                      },
-                      child: (sp.cards.swordChoise)
-                          ? SmallCard(mode: 2, icon: "sword")
-                          : (sp.cards.swordWasChossen)
-                              ? SmallCard(mode: 1, icon: "sword")
-                              : SmallCard(mode: 0, icon: "sword"),
-                    ),
-                  )
-                : SizedBox(),
-
-            //
-
+            /// here is our small cards row
+            (toShow.moodlet) ? _smallCardBuilder(CardType.TREE) : SizedBox(),
+            (toShow.intuition) ? _smallCardBuilder(CardType.COIN) : SizedBox(),
+            (toShow.luck) ? _smallCardBuilder(CardType.STAR) : SizedBox(),
+            (toShow.ambition) ? _smallCardBuilder(CardType.SWORD) : SizedBox(),
             (toShow.internalStrength)
-                ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 1.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        _chooseCup();
-                        _chooseCupBig();
-                      },
-                      child: (sp.cards.cupChoise)
-                          ? SmallCard(mode: 2, icon: "cup")
-                          : (sp.cards.cupWasChossen)
-                              ? SmallCard(mode: 1, icon: "cup")
-                              : SmallCard(mode: 0, icon: "cup"),
-                    ),
-                  )
+                ? _smallCardBuilder(CardType.CUP)
                 : SizedBox(),
-
             //
-
             (toShow.internalStrength == false &&
                     toShow.moodlet == false &&
                     toShow.ambition == false &&
                     toShow.intuition == false &&
                     toShow.luck == false)
-                ? Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 1.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        _chooseStar();
-                        _chooseStarBig();
-                      },
-                      child: (sp.cards.starChoise)
-                          ? SmallCard(mode: 2, icon: "star")
-                          : (sp.cards.starWasChossen)
-                              ? SmallCard(mode: 1, icon: "star")
-                              : SmallCard(mode: 0, icon: "star"),
-                    ),
-                  )
+                ? _smallCardBuilder(CardType.STAR)
                 : SizedBox()
-
-            //
           ],
         ),
       ],
     );
   }
 
-  _chooseTree() {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      sp.cards.treeChoise = true;
-      sp.cards.treeWasChossen = true;
-      sp.cards.coinChoise = false;
-      sp.cards.starChoise = false;
-      sp.cards.swordChoise = false;
-      sp.cards.cupChoise = false;
-    });
+  onWatchAdsClick() async {
+    final internet = await internetCheck();
+    if (internet == true) {
+      // ignore: invalid_use_of_protected_member
+      setState(() {
+        final cardAd = getCardAd();
+        cardAd.load();
+        cardAd.show();
+      });
+    } else {
+      print("no internet connection!");
+    }
   }
 
-  _chooseTreeBig() {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      sp.cards.currentCard = BigCard(
-        text: getPrediction(type: ProphecyType.MOODLET),
+  Padding _smallCardBuilder(CardType cardType) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: 1.0),
+        child: GestureDetector(
+          onTap: () {
+            // ignore: invalid_use_of_protected_member
+            setState(() {
+              /// if card clicked - choose it
+              _cards.choise = cardType;
+            });
+          },
+          child: (_cards.choise == cardType && _cards.cardShown[cardType])
+
+              /// if current card is chosen
+              ? SmallCard(
+                  mode: SmallCardMode.CHOSEN, icon: cardTypeToString[cardType])
+              : (_cards.cardShown[cardType])
+
+                  /// if our card was chosen once
+                  ? SmallCard(
+                      mode: SmallCardMode.WASCHOSEN,
+                      icon: cardTypeToString[cardType])
+
+                  /// if our card was not clicked at all
+                  : SmallCard(
+                      mode: SmallCardMode.INTACT,
+                      icon: cardTypeToString[cardType]),
+        ),
       );
-      sp.cards.currentCardIsNan = false;
-    });
-  }
-
-  _chooseCoin() {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      sp.cards.coinChoise = true;
-      sp.cards.coinWasChossen = true;
-      sp.cards.treeChoise = false;
-      sp.cards.starChoise = false;
-      sp.cards.swordChoise = false;
-      sp.cards.cupChoise = false;
-    });
-  }
-
-  _chooseCoinBig() {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      sp.cards.currentCard = BigCard(
-        text: getPrediction(type: ProphecyType.INTUITION),
-      );
-      sp.cards.currentCardIsNan = false;
-    });
-  }
-
-  _chooseStar() {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      sp.cards.starChoise = true;
-      sp.cards.starWasChossen = true;
-      sp.cards.treeChoise = false;
-      sp.cards.coinChoise = false;
-      sp.cards.swordChoise = false;
-      sp.cards.cupChoise = false;
-    });
-  }
-
-  _chooseStarBig() {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      sp.cards.currentCard = BigCard(
-        text: getPrediction(type: ProphecyType.LUCK),
-      );
-      sp.cards.currentCardIsNan = false;
-    });
-  }
-
-  _chooseSword() {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      sp.cards.swordChoise = true;
-      sp.cards.swordWasChossen = true;
-      sp.cards.treeChoise = false;
-      sp.cards.coinChoise = false;
-      sp.cards.starChoise = false;
-      sp.cards.cupChoise = false;
-    });
-  }
-
-  _chooseSwordBig() {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      sp.cards.currentCard = BigCard(
-        text: getPrediction(type: ProphecyType.AMBITION),
-      );
-      sp.cards.currentCardIsNan = false;
-    });
-  }
-
-  _chooseCup() {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      sp.cards.cupChoise = true;
-      sp.cards.cupWasChossen = true;
-      sp.cards.treeChoise = false;
-      sp.cards.coinChoise = false;
-      sp.cards.starChoise = false;
-      sp.cards.swordChoise = false;
-    });
-  }
-
-  _chooseCupBig() {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      sp.cards.currentCard = BigCard(
-        text: getPrediction(type: ProphecyType.INTERNAL_STRENGTH),
-      );
-      sp.cards.currentCardIsNan = false;
-    });
-  }
 }

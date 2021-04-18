@@ -7,6 +7,9 @@ class UkrainianLocale implements Locale {
   final String apply = "застосувати";
   final String appName = "Мій Провидець";
   final String atLeastXsymbolsNeeded = "найменша кількість символів: ";
+  final String adsCardDescription =
+      "Щоб побачити передбачення,\nгляньте, будь ласка, рекламу —\nце допоможе нашому проекту.";
+  final String watchAdsButton = "подивитися рекламу";
   final String birthdate = "дата народження";
   final String clarifyForecast = "Оберіть картки Таро на цей день";
   final String dateNotFilled = 'Дата народження пуста';
