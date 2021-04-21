@@ -2,11 +2,25 @@ import 'common.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import '../gradient_border_button.dart';
 
-class BigCardAds extends StatelessWidget {
-  final Function action;
-  BigCardAds({@required this.action});
+class PredictionCardWithButton extends StatelessWidget {
+  final String text;
+  final double textFontSize;
+  final String buttonText;
+  final double buttonTextFontSize;
+  final Function onButtonTap;
+  final TextStyle customTextStyle;
+  final TextStyle customButtonTextStyle;
 
-  @override
+  PredictionCardWithButton({
+    @required this.text,
+    this.textFontSize = 15,
+    @required this.buttonText,
+    this.buttonTextFontSize = 12,
+    @required this.onButtonTap,
+    this.customTextStyle,
+    this.customButtonTextStyle,
+  });
+
   Widget build(BuildContext context) {
     return Container(
       height: height,
@@ -34,16 +48,26 @@ class BigCardAds extends StatelessWidget {
         scrollDirection: Axis.vertical,
         children: [
           Text(
-            localeText.adsCardDescription,
-            style: AppTextStyle.bigCardAdText,
+            text,
+            style: customTextStyle ??
+                TextStyle(
+                  fontSize: textFontSize,
+                  color: AppColors.textPrimary,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.0,
+                ),
           ),
           SizedBox(
             height: 16.0,
           ),
           gradientBorderButton(
             child: Text(
-              localeText.watchAdsButton.toUpperCase(),
-              style: AppTextStyle.adsButtonText,
+              buttonText,
+              style: customButtonTextStyle ??
+                  TextStyle(
+                    fontSize: buttonTextFontSize,
+                    color: AppColors.textPrimary,
+                  ),
             ),
             gradient: LinearGradient(
               colors: [
@@ -59,7 +83,7 @@ class BigCardAds extends StatelessWidget {
             internalPadding:
                 EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
             borderRadius: BorderRadius.all(Radius.circular(32.0)),
-            onPressed: action,
+            onPressed: onButtonTap,
           ),
         ],
       ),

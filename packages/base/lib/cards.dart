@@ -68,6 +68,9 @@ class Cards {
     _choise = newChoise;
   }
 
+  /// can be used in some cases
+  bool internetAvailable = true;
+
   /// singleton constructor
   Cards._();
   static Cards _cards;

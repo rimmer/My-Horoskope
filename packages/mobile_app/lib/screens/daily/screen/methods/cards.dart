@@ -14,21 +14,31 @@ extension DailyScreenCardsMethods on _DailyScreenState {
               _cards.currentBigCardIsEmpty
 
                   /// so we show card placeholder
-                  ? BigCardPlaceholder()
+                  ? PredictionCardPlaceholder()
 
                   /// if some card was chosen
                   /// and it is time to build ads
                   : StaticProvider.adsAreDisabled == false && _cards.toBuildAds
 
                       /// we build our ads card
-                      ? BigCardAds(
-                          action: () {
-                            onWatchAdsClick();
-                          },
-                        )
+                      ? _cards.internetAvailable
+                          ? PredictionCardWithButton(
+                              text: localeText.adsCardDescription,
+                              buttonText:
+                                  localeText.watchAdsButton.toUpperCase(),
+                              onButtonTap: () {
+                                onWatchAdsClick();
+                              })
+                          : PredictionCardWithButton(
+                              text: localeText.noInternetText,
+                              textFontSize: 14,
+                              buttonText:
+                                  localeText.noInternetButton.toUpperCase(),
+                              onButtonTap: adsOnNoInternet,
+                            )
 
                       /// otherwise we build our big card
-                      : BigCard(
+                      : PredictionCard(
                           text: getPrediction(
                             /// and add needed text to it
                             /// if conditions same, it will create a new state and will not rebuild the card
@@ -40,12 +50,12 @@ extension DailyScreenCardsMethods on _DailyScreenState {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             /// here is our small cards row
-            (toShow.moodlet) ? _smallCardBuilder(CardType.TREE) : SizedBox(),
-            (toShow.intuition) ? _smallCardBuilder(CardType.COIN) : SizedBox(),
-            (toShow.luck) ? _smallCardBuilder(CardType.STAR) : SizedBox(),
-            (toShow.ambition) ? _smallCardBuilder(CardType.SWORD) : SizedBox(),
+            (toShow.moodlet) ? _tarrotCardBuilder(CardType.TREE) : SizedBox(),
+            (toShow.intuition) ? _tarrotCardBuilder(CardType.COIN) : SizedBox(),
+            (toShow.luck) ? _tarrotCardBuilder(CardType.STAR) : SizedBox(),
+            (toShow.ambition) ? _tarrotCardBuilder(CardType.SWORD) : SizedBox(),
             (toShow.internalStrength)
-                ? _smallCardBuilder(CardType.CUP)
+                ? _tarrotCardBuilder(CardType.CUP)
                 : SizedBox(),
             //
             (toShow.internalStrength == false &&
@@ -53,7 +63,7 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                     toShow.ambition == false &&
                     toShow.intuition == false &&
                     toShow.luck == false)
-                ? _smallCardBuilder(CardType.STAR)
+                ? _tarrotCardBuilder(CardType.STAR)
                 : SizedBox()
           ],
         ),
@@ -62,20 +72,40 @@ extension DailyScreenCardsMethods on _DailyScreenState {
   }
 
   onWatchAdsClick() async {
-    final internet = await internetCheck();
-    if (internet == true) {
+    _cards.internetAvailable = await internetCheck();
+    if (_cards.internetAvailable == true)
+      await adsOnInternetAvailable();
+    else {
       // ignore: invalid_use_of_protected_member
-      setState(() {
-        final cardAd = getCardAd();
-        cardAd.load();
-        cardAd.show();
-      });
-    } else {
-      print("no internet connection!");
+      setState(() {});
     }
   }
 
-  Padding _smallCardBuilder(CardType cardType) => Padding(
+  adsOnNoInternet() {
+    /// It doesn't send event when no internet, and don't send it on the next start
+    /// need to discuss
+    // StaticProvider.firebase.analytics.logEvent(name: "no_internet_for_ads");
+
+    // ignore: invalid_use_of_protected_member
+    setState(() {
+      _cards.whenAdsWatched();
+    });
+  }
+
+  adsOnInternetAvailable() async {
+    final cardAd = getCardAd(
+        whenAdsWatched: () {
+          // ignore: invalid_use_of_protected_member
+          setState(() {
+            _cards.whenAdsWatched();
+          });
+        },
+        isDebug: StaticProvider.debug.isDebug);
+    await cardAd.load();
+    await cardAd.show();
+  }
+
+  Padding _tarrotCardBuilder(CardType cardType) => Padding(
         padding: EdgeInsets.symmetric(horizontal: 1.0),
         child: GestureDetector(
           onTap: () {
@@ -88,18 +118,18 @@ extension DailyScreenCardsMethods on _DailyScreenState {
           child: (_cards.choise == cardType && _cards.cardShown[cardType])
 
               /// if current card is chosen
-              ? SmallCard(
-                  mode: SmallCardMode.CHOSEN, icon: cardTypeToString[cardType])
+              ? TarrotCard(
+                  mode: TarrotCardMode.CHOSEN, icon: cardTypeToString[cardType])
               : (_cards.cardShown[cardType])
 
                   /// if our card was chosen once
-                  ? SmallCard(
-                      mode: SmallCardMode.WASCHOSEN,
+                  ? TarrotCard(
+                      mode: TarrotCardMode.WAS_CHOSEN,
                       icon: cardTypeToString[cardType])
 
                   /// if our card was not clicked at all
-                  : SmallCard(
-                      mode: SmallCardMode.INTACT,
+                  : TarrotCard(
+                      mode: TarrotCardMode.INTACT,
                       icon: cardTypeToString[cardType]),
         ),
       );

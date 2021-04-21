@@ -7,8 +7,9 @@ class EnglishLocale implements Locale {
   final String apply = "apply";
   final String appName = "My Prophet";
   final String atLeastXsymbolsNeeded = "symbols needed: ";
-  final String adsCardDescription =
-      "To see the prediction,\nplease watch the ad —\nit will support us.\nThank you.";
+  final String adsCardDescription = "To see the prediction,\n"
+      "please watch the ad —\n"
+      "it will support us.";
   final String watchAdsButton = "watch ad";
   final String birthdate = "date of birth";
   final String clarifyForecast = "Choose your Tarot cards for today";
@@ -30,6 +31,10 @@ class EnglishLocale implements Locale {
   final String noAmbianceDescription =
       "It will be something! You can add a spouse, relatives, employees, friends and see the forecast for relationships with them for every day!";
   final String noAmbianceTitle = "we are working on it";
+  final String noInternetText = "No internet 😥\n"
+      "However, your prediction is ready!\n"
+      "Please support us by viewing the ad tomorrow 🤞";
+  final String noInternetButton = "see prediction";
   final String notification = "notification";
   final String notificationAt = "notification at";
   final String notSelectedSex = "choose";

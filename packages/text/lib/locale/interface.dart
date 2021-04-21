@@ -29,6 +29,8 @@ abstract class Locale {
   String get noAmbianceButton;
   String get noAmbianceDescription;
   String get noAmbianceTitle;
+  String get noInternetText;
+  String get noInternetButton;
   String get notSelectedSex;
   String get notification;
   String get notificationAt;
