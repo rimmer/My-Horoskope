@@ -31,9 +31,9 @@ class EnglishLocale implements Locale {
   final String noAmbianceDescription =
       "It will be something! You can add a spouse, relatives, employees, friends and see the forecast for relationships with them for every day!";
   final String noAmbianceTitle = "we are working on it";
-  final String noInternetText = "No internet =(\n"
+  final String noInternetText = "No internet 😥\n"
       "However, your prediction is ready!\n"
-      "Please support us by viewing the ad tomorrow =)";
+      "Please support us by viewing the ad tomorrow 🤞";
   final String noInternetButton = "see prediction";
   final String notification = "notification";
   final String notificationAt = "notification at";
