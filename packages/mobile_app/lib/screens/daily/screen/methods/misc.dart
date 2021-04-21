@@ -11,14 +11,4 @@ extension DailyScreenMiscMethods on _DailyScreenState {
         d[selected].millisecondsSinceEpoch,
         isDebug: StaticProvider.debug.isDebug));
   }
-
-  Future<bool> internetCheck() async {
-    try {
-      final result = await InternetAddress.lookup('pub.dev');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        return true;
-      }
-    } catch (_) {}
-    return false;
-  }
 }

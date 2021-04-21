@@ -7,8 +7,9 @@ class RussianLocale implements Locale {
   final String apply = "применить";
   final String appName = "Мой Пророк";
   final String atLeastXsymbolsNeeded = "минимальное количество символов: ";
-  final String adsCardDescription =
-      "Чтобы увидеть совет,\nпросмотрите, пожалуйста, рекламу —\nэто поддержит наш проект.";
+  final String adsCardDescription = "Чтобы увидеть совет,\n"
+      "просмотрите, пожалуйста, рекламу —\n"
+      "это поддержит наш проект.";
   final String watchAdsButton = "посмотреть рекламу";
   final String birthdate = "дата рождения";
   final String clarifyForecast = "Выберите карточки Таро на сегодня";
@@ -30,6 +31,10 @@ class RussianLocale implements Locale {
   final String noAmbianceDescription =
       "Это будет нечто! Вы сможете добавить жену, мужа, детей, родителей, сотрудников и смотреть прогноз по взаимоотношениям с ними на каждый день!";
   final String noAmbianceTitle = "мы над этим работаем";
+  final String noInternetText = "Нет интернета =(\n"
+      "Однако, Ваше предсказание готово!\n"
+      "Пожалуйста, поддержите нас просмотром рекламы завтра =)";
+  final String noInternetButton = "посмотреть совет";
   final String notification = "уведомления";
   final String notificationAt = "уведомления в";
   final String notSelectedSex = "выбрать";

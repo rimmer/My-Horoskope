@@ -37,6 +37,8 @@ class localeText {
   static String noAmbianceButton = locale.noAmbianceButton;
   static String noAmbianceDescription = locale.noAmbianceDescription;
   static String noAmbianceTitle = locale.noAmbianceTitle;
+  static String noInternetText = locale.noInternetText;
+  static String noInternetButton = locale.noInternetButton;
   static String notSelectedSex = locale.notSelectedSex;
   static String notification = locale.notification;
   static String notificationAt = locale.notificationAt;

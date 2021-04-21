@@ -7,8 +7,9 @@ class UkrainianLocale implements Locale {
   final String apply = "застосувати";
   final String appName = "Мій Провидець";
   final String atLeastXsymbolsNeeded = "найменша кількість символів: ";
-  final String adsCardDescription =
-      "Щоб побачити передбачення,\nгляньте, будь ласка, рекламу —\nце допоможе нашому проекту.";
+  final String adsCardDescription = "Щоб побачити передбачення,\n"
+      "гляньте, будь ласка, рекламу —\n"
+      "це допоможе нашому проекту.";
   final String watchAdsButton = "подивитися рекламу";
   final String birthdate = "дата народження";
   final String clarifyForecast = "Оберіть картки Таро на цей день";
@@ -30,6 +31,10 @@ class UkrainianLocale implements Locale {
   final String noAmbianceDescription =
       "Це буде щось! Ви зможете додати дружину, чоловіка, дітей, батьків, співробітників та дивитися прогноз по взаємовідносинах з ними на кожен день!";
   final String noAmbianceTitle = "ми над цим працюємо";
+  final String noInternetText = "Відсутній інтернет =(\n"
+      "Проте, Ваше передбачення готове!\n"
+      "Будь ласка, підтримайте нас переглядом реклами завтра =)";
+  final String noInternetButton = "подивитися передбачення";
   final String notification = "сповіщення";
   final String notificationAt = "сповіщення о";
   final String notSelectedSex = "обрати";

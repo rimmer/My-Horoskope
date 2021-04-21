@@ -1,6 +1,6 @@
 import 'common.dart';
 
-class BigCardPlaceholder extends StatelessWidget {
+class PredictionCardPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +25,7 @@ class BigCardPlaceholder extends StatelessWidget {
       child: Center(
         child: Text(
           localeText.clarifyForecast,
-          style: AppTextStyle.bigCardText,
+          style: AppTextStyle.predictionCardText,
         ),
       ),
     );

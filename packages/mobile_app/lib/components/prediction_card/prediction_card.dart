@@ -1,15 +1,16 @@
 import 'common.dart';
 
-class BigCard extends StatefulWidget {
+class PredictionCard extends StatefulWidget {
   final String text;
 
-  BigCard({this.text = "I am the card!"});
+  PredictionCard({this.text = "I am the card!"});
 
   @override
-  _BigCardState createState() => _BigCardState();
+  _PredictionCardState createState() => _PredictionCardState();
 }
 
-class _BigCardState extends State<BigCard> with SingleTickerProviderStateMixin {
+class _PredictionCardState extends State<PredictionCard>
+    with SingleTickerProviderStateMixin {
   AnimationController _textFadeController;
   Animation<double> _textFade;
 
@@ -70,7 +71,7 @@ class _BigCardState extends State<BigCard> with SingleTickerProviderStateMixin {
             child: SingleChildScrollView(
               child: Text(
                 widget.text,
-                style: AppTextStyle.bigCardText,
+                style: AppTextStyle.predictionCardText,
               ),
             ),
           ),

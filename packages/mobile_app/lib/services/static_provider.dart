@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:base/user/repository/interface.dart';
 import 'package:base/user/auth/bloc/bloc.dart';
 import 'package:base/prophecy/bloc/bloc.dart';
@@ -5,8 +6,6 @@ import 'package:base/preferences/interface.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:my_prophet/components/user_settings/index.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:base/cards.dart';
 import 'predictions.dart';
 
 export 'package:base/user/repository/interface.dart';
@@ -15,8 +14,6 @@ export 'package:base/prophecy/bloc/bloc.dart';
 export 'package:base/preferences/interface.dart';
 export 'package:firebase_analytics/firebase_analytics.dart';
 export 'predictions.dart';
-
-part 'ads.dart';
 
 class _Tester {
   // @DEBUG change false to true inside MutableBool
@@ -54,4 +51,14 @@ class _Firebase {
   FirebaseAnalytics analytics;
   NotificationSettings notifications;
   FirebaseMessaging messaging;
+}
+
+Future<bool> internetCheck() async {
+  try {
+    final result = await InternetAddress.lookup('example.com');
+    if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+      return true;
+    }
+  } catch (_) {}
+  return false;
 }

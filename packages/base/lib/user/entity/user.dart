@@ -36,6 +36,10 @@ class UserModel {
 class UserEntity {
   /// unique user id
   final int id;
+
+  /// We use String here
+  /// Since user an enter any role he want
+  /// Even fictional ones
   String role;
 
   /// model is immutable and
