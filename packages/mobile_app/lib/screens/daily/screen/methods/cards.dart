@@ -93,16 +93,25 @@ extension DailyScreenCardsMethods on _DailyScreenState {
   }
 
   adsOnInternetAvailable() async {
-    final cardAd = getCardAd(
-        whenAdsWatched: () {
+    getAdsManager(
+        // for some reason `await card.load()
+        onLoaded: (ad) {
+          ad.show();
+        },
+        onWatched: () {
           // ignore: invalid_use_of_protected_member
           setState(() {
             _cards.whenAdsWatched();
           });
         },
-        isDebug: StaticProvider.debug.isDebug);
-    await cardAd.load();
-    await cardAd.show();
+        onFailed: (error) {
+          // ignore: invalid_use_of_protected_member
+          setState(() {
+            _cards.whenAdsWatched();
+          });
+        },
+        isDebug: StaticProvider.debug.isDebug)
+    .load();
   }
 
   Padding _tarrotCardBuilder(CardType cardType) => Padding(

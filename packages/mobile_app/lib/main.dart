@@ -15,8 +15,9 @@ void main() async {
   await StaticProvider.data.predictions.prepare();
 
   /// firebase
+  var app = await Firebase.initializeApp();
+  app.setAutomaticDataCollectionEnabled(StaticProvider.debug.isNotDebug);
   if (StaticProvider.debug.isNotDebug) {
-    await Firebase.initializeApp();
     StaticProvider.firebase.analytics = FirebaseAnalytics();
 
     StaticProvider.firebase.messaging = FirebaseMessaging.instance;
@@ -30,8 +31,10 @@ void main() async {
       provisional: false,
       sound: true,
     );
-    MobileAds.instance.initialize();
   }
+
+  /// ads
+  MobileAds.instance.initialize();
 
   /// authetication
   StaticProvider.authBloc = AuthenticationBloc(

@@ -1,36 +1,44 @@
 import 'package:flutter/widgets.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:my_prophet/index.dart';
 
-AdWithoutView getCardAd(
-        {@required Function whenAdsWatched, bool isDebug = false}) =>
+/// Ad successfully received and ready to be shown
+/// Call [AdWithoutView.show()] to show the ad
+typedef AdsLoadedCallback = void Function(AdWithoutView ad);
+
+/// Ad has been displayed and next action can be performed
+typedef AdsWatchedCallback = void Function();
+
+/// Something went wrong with the ad loading
+typedef AdsFailedCallback = void Function(LoadAdError error);
+
+AdWithoutView getAdsManager(
+        {@required AdsLoadedCallback onLoaded,
+        @required AdsWatchedCallback onWatched,
+        @required AdsFailedCallback onFailed,
+        bool isDebug = false}) =>
     InterstitialAd(
-      adUnitId: 'ca-app-pub-4088776870080587/3604438949',
+      adUnitId: StaticProvider.ads.adUnitId,
       request: AdRequest(),
-      listener: AdListener(
-          // Called when an ad is successfully received.
-          onAdLoaded: (Ad ad) {
+      listener: AdListener(onAdLoaded: (Ad ad) {
+        // Ad is successfully received.
+        onLoaded(ad);
         if (isDebug) print('Ad loaded.');
-      },
-          // Called when an ad request failed.
-          onAdFailedToLoad: (Ad ad, LoadAdError error) {
-        whenAdsWatched();
+      }, onAdFailedToLoad: (Ad ad, LoadAdError error) {
+        // Ad request failed.
+        onFailed(error);
         ad.dispose();
         if (isDebug) print('Ad failed to load: $error');
-      },
-          // Called when an ad opens an overlay that covers the screen.
-          onAdOpened: (Ad ad) {
+      }, onAdOpened: (Ad ad) {
+        // Ad opens an overlay that covers the screen.
         if (isDebug) print('Ad opened.');
-      },
-          // Called when an ad removes an overlay that covers the screen.
-          onAdClosed: (Ad ad) {
-        whenAdsWatched();
+      }, onAdClosed: (Ad ad) {
+        // Ad removes an overlay that covers the screen.
+        onWatched();
         ad.dispose();
         if (isDebug) print('Ad closed.');
-      },
-          // Called when an ad is in the process of leaving the application.
-          onApplicationExit: (Ad ad) {
+      }, onApplicationExit: (Ad ad) {
+        // Ad is in the process of leaving the application.
         if (isDebug) print('Left application.');
-      }, onRewardedAdUserEarnedReward: (Ad ad, _) {
-        whenAdsWatched();
       }),
     );
