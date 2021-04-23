@@ -1,4 +1,6 @@
 /// all imports are here
+import 'package:my_prophet/screens/daily/prophecy_is_loading.dart';
+
 import 'index.dart';
 
 part 'data.dart';
@@ -67,6 +69,17 @@ class _DailyScreenState extends State<DailyScreen>
 
     /// initial events
 
+    int numberOfCards = (toShow.ambition ? 1 : 0) +
+        (toShow.internalStrength ? 1 : 0) +
+        (toShow.intuition ? 1 : 0) +
+        (toShow.luck ? 1 : 0) +
+        (toShow.moodlet ? 1 : 0);
+    if (numberOfCards == 0) numberOfCards = 1;
+    _cards.maxNumberOfCards = numberOfCards;
+
+    /// if need to see ads inside debug mode, comment this line
+    if (StaticProvider.adsAreDisabled) _cards.adsWatched = true;
+
     super.initState();
   }
 
@@ -98,7 +111,7 @@ class _DailyScreenState extends State<DailyScreen>
           children: <Widget>[
             //
             /// @APPBAR
-            myProphetAppBar(
+            MyProphetAppBar(
                 width: screen.width,
                 label: appBarLabel(selected: selected, dateTime: d[selected]),
                 onTap: () {
@@ -129,9 +142,8 @@ class _DailyScreenState extends State<DailyScreen>
 
             //
 
-            SizedBox(
+            const SizedBox(
               height: SPACE_BETWEEN_CALENDAR_PROPHECY,
-              width: screen.width,
             ),
 
             AnimatedBuilder(
@@ -150,25 +162,22 @@ class _DailyScreenState extends State<DailyScreen>
                     bloc: StaticProvider.prophecyBloc,
                     builder: prophecyBuilder,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: SPACE_AFTER_PROPHECY,
-                    width: screen.width,
                   ),
 
                   /// @Sheets
-                  (isToday) ? cards() : notation(text: localeText.futureDays),
+                  (isToday) ? cards() : Notation(localeText.futureDays),
 
-                  SizedBox(
+                  const SizedBox(
                     height: SPACE_BEFORE_AMBIANCE,
-                    width: screen.width,
                   ),
 
                   /// button that says "ambiance (relationship) are not avaible in this version"
-                  notAvailableButton(),
+                  const NotAvailableButton(),
 
-                  SizedBox(
+                  const SizedBox(
                     height: SPACE_AFTER_AMBIANCE,
-                    width: screen.width,
                   ),
                 ],
               ),

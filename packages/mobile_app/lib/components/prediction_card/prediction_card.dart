@@ -47,12 +47,12 @@ class _PredictionCardState extends State<PredictionCard>
     return Container(
       height: height,
       width: width,
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
         left: 16.0,
         right: 16.0,
         bottom: 8.0,
       ),
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
         vertical: 8.0,
       ),

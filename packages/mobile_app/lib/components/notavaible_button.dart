@@ -32,9 +32,7 @@ class _NotAvaibleInfoState extends State<NotAvaibleInfo> {
           child: SimpleTransperentScreen(
             title: widget.title,
             body: Padding(
-              padding: const EdgeInsets.all(
-                20.0,
-              ),
+              padding: const EdgeInsets.all(20.0),
               child: Center(
                 child: Text(
                   widget.desc,
@@ -46,7 +44,7 @@ class _NotAvaibleInfoState extends State<NotAvaibleInfo> {
             ),
             actions: <Widget>[
               Expanded(
-                child: gradientFlatButton(
+                child: GradientFlatButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -54,7 +52,7 @@ class _NotAvaibleInfoState extends State<NotAvaibleInfo> {
                     widget.button,
                     style: AppTextStyle.gradientButton,
                   ),
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     top: 11,
                     bottom: 11,
                     left: 20,
@@ -76,26 +74,25 @@ class _NotAvaibleInfoState extends State<NotAvaibleInfo> {
                   ],
                 ),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
             ],
           ),
         );
       },
-      child: (widget.child == null)
-          ? Container(
-              padding: EdgeInsets.only(
-                left: 32,
-                right: 16,
-                top: 16,
-                bottom: 16,
-              ),
-              child: Icon(
-                Icons.error,
-                size: 14,
-                color: AppColors.textSecondary,
-              ),
-            )
-          : widget.child,
+      child: widget.child ??
+          Container(
+            padding: const EdgeInsets.only(
+              left: 32,
+              right: 16,
+              top: 16,
+              bottom: 16,
+            ),
+            child: const Icon(
+              Icons.error,
+              size: 14,
+              color: AppColors.textSecondary,
+            ),
+          ),
     );
   }
 }

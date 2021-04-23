@@ -12,6 +12,7 @@ class AppColors {
   static const textPrimary = Color(0xFFFFFFFF);
   static const textSecondary = Color(0xFFD795FF);
   static const textDisabled = Color(0x88FFFFFF);
+  static const textError = Color(0xFF7A49B8);
 
   static const prophecyGradientStart = Color(0xff3C2087);
   static const prophecyGradientEnd = Color(0xff4837B2);
@@ -27,10 +28,6 @@ class AppColors {
   static const positiveImpact = Color(0xff68FFE4);
 
   static const prophecyValueProgressGradientBorder = Color(0xff210A61);
-
-  static const userPollTabActive = Color(0xff7175D6);
-  static const userPollTabInactive = Color(0xff412387);
-
   static const clickableNotationBackground = Color(0xff0F0039);
 
   // must have 9 colors, from index 0 to 8

@@ -41,11 +41,11 @@ class _TitleWithDescriptionState extends State<TitleWithDescription> {
               ),
             ),
             actions: <Widget>[
-              Expanded(
+              const Expanded(
                 child: SizedBox(),
               ),
               Flexible(
-                child: gradientFlatButton(
+                child: GradientFlatButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -75,7 +75,7 @@ class _TitleWithDescriptionState extends State<TitleWithDescription> {
                   ],
                 ),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
             ],
           ),
         );

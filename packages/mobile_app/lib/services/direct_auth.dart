@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:base/user/entity/user.dart';
+import 'package:base/cards.dart';
 import 'static_provider.dart';
 
 /// solves https://github.com/rimmer/my_prophet/issues/30
@@ -18,6 +19,7 @@ void userInformationChangeMisc(
 void userInformationChangeMajor(
     {@required UserModel model, @required BuildContext context}) async {
   //
+  Cards().restart();
 
   /// Yup, looks silly, but it works.
   Navigator.of(context)

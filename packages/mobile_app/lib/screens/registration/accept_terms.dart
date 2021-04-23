@@ -4,6 +4,7 @@ import 'package:text/text.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:my_prophet/components/accept_terms_text.dart';
+import 'package:my_prophet/components/magic_checkbox.dart';
 
 class AcceptTermsRow extends StatefulWidget {
   final MutableBool terms;
@@ -16,57 +17,51 @@ class AcceptTermsRow extends StatefulWidget {
 class _AcceptTermsRowState extends State<AcceptTermsRow> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16),
-      child: Container(
-        height: 64,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Flexible(
-              child: GestureDetector(
-                onTap: () => setState(
-                  () => widget.terms.wrapped = !widget.terms.wrapped,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Flexible(
-                      child: Checkbox(
-                        activeColor: AppColors.accentDark,
-                        value: widget.terms.wrapped,
-                        onChanged: (accepted) => setState(
-                          () => widget.terms.wrapped = accepted,
-                        ),
-                      ),
-                    ),
-                    Flexible(
-                      child: acceptTermsText(
-                          localeText.termsAccept.capitalize(),
-                          isController: true),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Flexible(
-              child: TextButton(
-                onPressed: () => launch(URL_USER_AGREEMENT),
-                child: acceptTermsText(
-                  localeText.termsUserAgreement,
-                ),
-              ),
-            ),
-            Flexible(
-              child: TextButton(
-                onPressed: () => launch(URL_PRIVACY_POLICY),
-                child: acceptTermsText(
-                  localeText.termsPrivacyPolicy,
-                ),
-              ),
-            ),
-          ],
+    final rightColumnItems = <Widget>[
+      Flexible(
+          child: AcceptTermsText(localeText.termsAccept.capitalize(),
+              isController: true)),
+      //
+      Flexible(
+        child: TextButton(
+          onPressed: () => launch(URL_USER_AGREEMENT),
+          child: AcceptTermsText(
+            localeText.termsUserAgreement,
+          ),
         ),
+      ),
+      Flexible(
+        child: TextButton(
+          onPressed: () => launch(URL_PRIVACY_POLICY),
+          child: AcceptTermsText(
+            localeText.termsPrivacyPolicy,
+          ),
+        ),
+      ),
+    ];
+
+    return Container(
+      margin: const EdgeInsets.only(top: 32.0, bottom: 8.0),
+      height: 48,
+      child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget>[
+          MagicCheckbox(
+            value: widget.terms,
+            onChanged: (_) {},
+          ),
+          const SizedBox(
+            width: 16.0,
+          ),
+          //
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: rightColumnItems,
+          ),
+        ],
       ),
     );
   }

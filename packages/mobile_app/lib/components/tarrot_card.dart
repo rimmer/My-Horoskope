@@ -24,8 +24,8 @@ class _TarrotCardState extends State<TarrotCard> {
   Widget build(BuildContext context) {
     return Container(
       margin: (widget.mode == TarrotCardMode.CHOSEN)
-          ? EdgeInsets.only(left: 4.0, right: 4.0)
-          : EdgeInsets.all(0.0),
+          ? const EdgeInsets.only(left: 4.0, right: 4.0)
+          : const EdgeInsets.all(0.0),
       height: _height,
       width: _width,
       child: Stack(
