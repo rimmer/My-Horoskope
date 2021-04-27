@@ -24,9 +24,6 @@ import 'package:base/prophecy/entity/prophecy.dart';
 /// also it will mark current "_choise" as true
 /// inside "cardShown" map,
 class Cards {
-  /// can be used in some cases
-  bool internetAvailable = true;
-  bool adsAreLoading = false;
   int maxNumberOfCards = 5;
 
   /// booleans to know if some card was chosen once

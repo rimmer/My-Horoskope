@@ -36,12 +36,12 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                   : _cards.toBuildAds
 
                       /// we build our ads card
-                      ? _cards.internetAvailable
+                      ? StaticProvider.internetAvailable
                           ? PredictionCardWithButton(
                               text: localeText.adsCardDescription,
                               buttonText:
                                   localeText.watchAdsButton.toUpperCase(),
-                              onButtonTap: (_cards.adsAreLoading)
+                              onButtonTap: (StaticProvider.ads.areLoading)
                                   ? () {}
                                   : () {
                                       onWatchAdsClick();
@@ -73,8 +73,8 @@ extension DailyScreenCardsMethods on _DailyScreenState {
   }
 
   onWatchAdsClick() async {
-    _cards.internetAvailable = await internetCheck();
-    if (_cards.internetAvailable == true)
+    StaticProvider.internetAvailable = await internetCheck();
+    if (StaticProvider.internetAvailable == true)
       await adsOnInternetAvailable();
     else {
       // ignore: invalid_use_of_protected_member
@@ -96,7 +96,7 @@ extension DailyScreenCardsMethods on _DailyScreenState {
   adsOnInternetAvailable() async {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      _cards.adsAreLoading = true;
+      StaticProvider.ads.areLoading = true;
     });
     getAdsManager(
             // for some reason `await card.load()

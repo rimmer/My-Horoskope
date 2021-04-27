@@ -45,6 +45,8 @@ class StaticProvider {
   /// ads
   static _Ads ads = _Ads();
 
+  static bool internetAvailable = true;
+
   /// getters
   static bool get adsAreDisabled => debug.isDebug;
 }
@@ -67,6 +69,8 @@ class _Ads {
   //
   String get adUnitId =>
       StaticProvider.debug.isDebug ? _adUnitTest : _adUnitProd;
+
+  bool areLoading = false;
 }
 
 Future<bool> internetCheck() async {
