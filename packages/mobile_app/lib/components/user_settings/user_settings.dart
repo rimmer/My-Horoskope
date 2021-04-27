@@ -40,7 +40,7 @@ class UserSettingsList extends StatelessWidget {
 
     return Column(
       children: <Widget>[
-        userInfo(
+        UserInfo(
           name: UserInfoField(
               textObject: name,
               maxLength: 100,
@@ -112,7 +112,7 @@ class UserSettingsList extends StatelessWidget {
         SizedBox(
           height: 24,
         ),
-        gradientFlatButton(
+        GradientFlatButton(
           onPressed: () {
             // // @DEBUG
             // print("Name ${name.wrapped}");

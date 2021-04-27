@@ -25,12 +25,12 @@ class PredictionCardWithButton extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
         left: 16.0,
         right: 16.0,
         bottom: 8.0,
       ),
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 16.0,
         vertical: 8.0,
       ),
@@ -42,7 +42,7 @@ class PredictionCardWithButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: ListView(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           top: 16.0,
         ),
         scrollDirection: Axis.vertical,
@@ -57,10 +57,10 @@ class PredictionCardWithButton extends StatelessWidget {
                   letterSpacing: 0.0,
                 ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16.0,
           ),
-          gradientBorderButton(
+          GradientBorderButton(
             child: Text(
               buttonText,
               style: customButtonTextStyle ??
@@ -69,7 +69,7 @@ class PredictionCardWithButton extends StatelessWidget {
                     color: AppColors.textPrimary,
                   ),
             ),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               colors: [
                 AppColors.accentDark,
                 AppColors.accent,
@@ -78,11 +78,11 @@ class PredictionCardWithButton extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
-            borderAsPadding: EdgeInsets.all(1.0),
+            borderAsPadding: const EdgeInsets.all(1.0),
             background: AppColors.primaryDark,
             internalPadding:
-                EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
-            borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                const EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
+            borderRadius: const BorderRadius.all(Radius.circular(32.0)),
             onPressed: onButtonTap,
           ),
         ],

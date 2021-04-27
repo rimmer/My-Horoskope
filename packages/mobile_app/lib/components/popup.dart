@@ -97,7 +97,7 @@ class _SimpleTransperentScreenState extends State<SimpleTransperentScreen>
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Text(widget.title, style: AppTextStyle.popupTitle),
                         ],
                       ),
@@ -109,7 +109,7 @@ class _SimpleTransperentScreenState extends State<SimpleTransperentScreen>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: widget.actions,
               ),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
             ],
           ),
         ),

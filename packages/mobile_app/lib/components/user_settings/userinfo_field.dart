@@ -58,7 +58,7 @@ class _UserInfoFieldState extends State<UserInfoField> {
           },
           onEditingComplete: widget.onEditingComplete,
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.only(
+            contentPadding: const EdgeInsets.only(
               left: 4.0,
               top: 12.0,
               bottom: 8.0,
@@ -67,7 +67,6 @@ class _UserInfoFieldState extends State<UserInfoField> {
             border: _defaultInputBorder(),
             focusedBorder: _defaultInputBorder(color: AppColors.accent),
             enabledBorder: _defaultInputBorder(),
-            errorBorder: _defaultInputBorder(color: AppColors.accentDark),
             disabledBorder: _defaultInputBorder(),
             hintText: widget.hint,
             labelText: widget.hint,

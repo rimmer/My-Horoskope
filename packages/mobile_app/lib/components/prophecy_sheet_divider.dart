@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 
-Container prophecySheetDivider() => Container(
+class ProphecySheetDivider extends StatelessWidget {
+  const ProphecySheetDivider();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       height: 3.0,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -21,3 +26,5 @@ Container prophecySheetDivider() => Container(
         ),
       ),
     );
+  }
+}

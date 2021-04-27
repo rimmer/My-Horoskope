@@ -98,7 +98,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen>
             ),
             child: ListView(
               children: [
-                myProphetAppBar(
+                MyProphetAppBar(
                     width: screen.width,
                     label: localeText.profileSettings.capitalize(),
                     onTap: () {
@@ -125,7 +125,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen>
                   margin: EdgeInsets.symmetric(
                     vertical: 16.0,
                   ),
-                  child: propheciesEnabling(
+                  child: PropheciesEnabling(
                     luck: luck,
                     internalStrength: internalStrength,
                     moodlet: moodlet,

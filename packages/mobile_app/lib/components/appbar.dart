@@ -6,9 +6,17 @@ const APPBAR_HEIGHT = 56.0;
 const APPBAR_ICON_SIZE = 24.0;
 const APPBAR_BETWEEN_ICON_TEXT = 16.0;
 
-Container myProphetAppBar(
-        {@required width, @required label, @required Function onTap}) =>
-    Container(
+class MyProphetAppBar extends StatelessWidget {
+  final double width;
+  final String label;
+  final Function onTap;
+
+  const MyProphetAppBar(
+      {@required this.width, @required this.label, @required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       decoration: BoxDecoration(color: AppColors.appBarBackground, boxShadow: [
         BoxShadow(
           color: AppColors.calendarShadow.withOpacity(0.9),
@@ -23,7 +31,7 @@ Container myProphetAppBar(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Flexible(child: SizedBox(width: APPBAR_ICON_SIZE / 3)),
+          const Flexible(child: SizedBox(width: APPBAR_ICON_SIZE / 3)),
           Flexible(
             child: IconButton(
               icon: Icon(
@@ -34,7 +42,7 @@ Container myProphetAppBar(
               onPressed: onTap,
             ),
           ),
-          Flexible(child: SizedBox(width: APPBAR_BETWEEN_ICON_TEXT)),
+          const Flexible(child: SizedBox(width: APPBAR_BETWEEN_ICON_TEXT)),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Text(
@@ -45,3 +53,5 @@ Container myProphetAppBar(
         ],
       ),
     );
+  }
+}

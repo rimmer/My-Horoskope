@@ -26,8 +26,8 @@ export 'package:my_prophet/components/prediction_card/prediction_card_placeholde
 export 'package:my_prophet/components/prediction_card/prediction_card_with_button.dart';
 export 'package:my_prophet/components/tarrot_card.dart';
 export 'package:my_prophet/components/prophecy_sheet_divider.dart';
+export 'package:my_prophet/components/calendar_items.dart';
 export 'package:my_prophet/theme/app_colors.dart';
 export 'package:my_prophet/theme/app_text_style.dart';
 
-export '../calendar_widgets.dart';
 export '../constants.dart';

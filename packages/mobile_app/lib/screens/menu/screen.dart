@@ -55,7 +55,7 @@ class _MenuScreenState extends State<MenuScreen>
             ),
             scrollDirection: Axis.vertical,
             children: [
-              menuItemLeadingIcon(
+              MenuItemLeadingIcon(
                   asset: StaticProvider
                       .data.usersRepo.current.model.birth.astroSign,
                   text:
@@ -66,7 +66,7 @@ class _MenuScreenState extends State<MenuScreen>
                     });
                   }),
               NotAvaibleInfo(
-                child: menuItemLeadingIcon(
+                child: MenuItemLeadingIcon(
                   icon: Icons.group_add,
                   text: "${localeText.addAmbiance.capitalize()}",
                   onTap: null,
@@ -75,7 +75,7 @@ class _MenuScreenState extends State<MenuScreen>
                 desc: localeText.noAmbianceDescription,
                 button: localeText.noAmbianceButton.toUpperCase(),
               ),
-              menuItemLeadingIcon(
+              MenuItemLeadingIcon(
                   icon: Icons.perm_identity,
                   text: "${localeText.profileSettings.capitalize()}",
                   onTap: () {
@@ -83,13 +83,13 @@ class _MenuScreenState extends State<MenuScreen>
                       Navigator.pushNamed(context, '/settings');
                     });
                   }),
-              menuItemFootingIcon(
+              MenuItemFootingIcon(
                   text: "${localeText.writeToDev.capitalize()}",
                   onTap: () {
                     launch(_WRITE_TO_DEV_URL);
                   }),
               SingleChildScrollView(
-                child: menuItemRateApp(
+                child: MenuItemRateApp(
                     text: "${localeText.rateApp.capitalize()}",
                     onTap: () {
                       LaunchReview.launch(
@@ -103,13 +103,13 @@ class _MenuScreenState extends State<MenuScreen>
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Flexible(
-                    child: termsText(
+                    child: TermsText(
                       text: localeText.userAgreement.capitalize(),
                       url: URL_USER_AGREEMENT,
                     ),
                   ),
                   Flexible(
-                    child: termsText(
+                    child: TermsText(
                       text: localeText.privacyPolicy.capitalize(),
                       url: URL_PRIVACY_POLICY,
                     ),

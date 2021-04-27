@@ -6,8 +6,7 @@ export 'package:my_prophet/theme/app_text_style.dart';
 export 'package:my_prophet/services/static_provider.dart';
 export 'package:my_prophet/components/accept_terms_text.dart';
 export 'package:my_prophet/components/notavaible_button.dart';
+export 'package:my_prophet/components/menu_items.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:launch_review/launch_review.dart';
 export 'package:base/int_datetime.dart';
-
-export 'menu_items.dart';

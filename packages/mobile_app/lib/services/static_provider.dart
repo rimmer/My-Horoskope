@@ -20,7 +20,6 @@ export 'package:firebase_analytics/firebase_analytics.dart';
 export 'predictions.dart';
 
 class _Tester {
-  // @DEBUG change false to true inside MutableBool
   final MutableBool testerField = MutableBool(!kReleaseMode);
 
   //
@@ -47,7 +46,7 @@ class StaticProvider {
   static _Ads ads = _Ads();
 
   /// getters
-  static bool get adsAreDisabled => false;
+  static bool get adsAreDisabled => debug.isDebug;
 }
 
 class _SPData {

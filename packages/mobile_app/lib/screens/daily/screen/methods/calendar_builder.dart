@@ -27,11 +27,11 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
         SizedBox(width: 16),
         (dayToIndex["TODAY"] == selected)
             ? (dat.showCalendarSelection)
-                ? selectedDate(d[index])
-                : ordinaryDate(d[index])
+                ? SelectedDate(d[index])
+                : OrdinaryDate(d[index])
             : TextButton(
                 onPressed: () => calendarTap(index),
-                child: ordinaryDate(d[index]),
+                child: OrdinaryDate(d[index]),
               )
       ]);
       //
@@ -40,12 +40,12 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
       /// new month
       if (index == selected)
         return (dat.showCalendarSelection)
-            ? newMonthSelected(d[index])
-            : newMonth(d[index]);
+            ? NewMonthSelected(d[index])
+            : NewMonth(d[index]);
       else
         return TextButton(
           onPressed: () => calendarTap(index),
-          child: newMonth(d[index]),
+          child: NewMonth(d[index]),
         );
 
       //
@@ -54,12 +54,12 @@ extension DailyScreenCalendarBuilder on _DailyScreenState {
     //
     if (index == selected)
       return (dat.showCalendarSelection)
-          ? selectedDate(d[index])
-          : ordinaryDate(d[index]);
+          ? SelectedDate(d[index])
+          : OrdinaryDate(d[index]);
     else
       return TextButton(
         onPressed: () => calendarTap(index),
-        child: ordinaryDate(d[index]),
+        child: OrdinaryDate(d[index]),
       );
   }
 }

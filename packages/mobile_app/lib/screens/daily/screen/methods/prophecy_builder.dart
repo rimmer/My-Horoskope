@@ -5,12 +5,46 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
     //
 
     if (state is ProphecyInitial) {
-      return SizedBox();
+      return const ProphecyIsLoading();
       //
 
     } else if (state is ProphecyWasAsked) {
       StaticProvider.prophecyBloc.currentState = state;
+
+      /// smarter conditions check
+      final propheciesSheet = <Widget>[
+        /// yourProphecies title and notation
+        TitleWithDescription(
+          padding: const EdgeInsets.only(
+            left: 3.0,
+            bottom: 8.0,
+          ),
+          title: localeText.yourProphecies.capitalize(),
+          notation: localeText.yourPropheciesHint,
+        ),
+
+        if (toShow.moodlet)
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.MOODLET]),
+        if (toShow.intuition)
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.INTUITION]),
+        if (toShow.luck)
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.LUCK]),
+        if (toShow.ambition)
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.AMBITION]),
+        if (toShow.internalStrength)
+          ProphecyRecord(
+              prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH]),
+
+        /// if all prophecies are disabled show luck
+        if (toShow.internalStrength == false &&
+            toShow.moodlet == false &&
+            toShow.ambition == false &&
+            toShow.intuition == false &&
+            toShow.luck == false)
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.LUCK]),
+      ];
       //
+
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -40,10 +74,10 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
 
           /// Prophecy Sheet
           Container(
-            margin: EdgeInsets.symmetric(
+            margin: const EdgeInsets.symmetric(
               horizontal: 16.0,
             ),
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               vertical: 4.0,
             ),
 
@@ -62,7 +96,7 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
             /// main list view
             child: ListView(
               shrinkWrap: true,
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 vertical: 12.0,
               ),
               scrollDirection: Axis.vertical,
@@ -71,73 +105,29 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                 /// prophecies listview
                 ListView(
                   shrinkWrap: true,
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: PROPHECY_PADDING_HORIZONTAL,
                     right: PROPHECY_PADDING_HORIZONTAL,
                     bottom: 12.0,
                   ),
                   scrollDirection: Axis.vertical,
                   physics: const NeverScrollableScrollPhysics(),
-                  children: <Widget>[
-                    /// yourProphecies title and notation
-                    TitleWithDescription(
-                      padding: EdgeInsets.only(
-                        left: 3.0,
-                        bottom: 8.0,
-                      ),
-                      title: localeText.yourProphecies.capitalize(),
-                      notation: localeText.yourPropheciesHint,
-                    ),
-
-                    (toShow.moodlet)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.MOODLET])
-                        : SizedBox(),
-                    (toShow.intuition)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.INTUITION])
-                        : SizedBox(),
-                    (toShow.luck)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.LUCK])
-                        : SizedBox(),
-                    (toShow.ambition)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.AMBITION])
-                        : SizedBox(),
-                    (toShow.internalStrength)
-                        ? prophecyRecord(
-                            prophecy:
-                                state.prophecy[ProphecyType.INTERNAL_STRENGTH])
-                        : SizedBox(),
-
-                    //
-
-                    /// if all prophecies are disabled show luck
-                    (toShow.internalStrength == false &&
-                            toShow.moodlet == false &&
-                            toShow.ambition == false &&
-                            toShow.intuition == false &&
-                            toShow.luck == false)
-                        ? prophecyRecord(
-                            prophecy: state.prophecy[ProphecyType.LUCK])
-                        : SizedBox(),
-                  ],
+                  children: propheciesSheet,
                 ),
 
                 //
-                prophecySheetDivider(),
+                ProphecySheetDivider(),
 
                 /// planet impact
                 ListView(
                     shrinkWrap: true,
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                         horizontal: PROPHECY_PADDING_HORIZONTAL),
                     scrollDirection: Axis.vertical,
                     physics: const NeverScrollableScrollPhysics(),
                     children: <Widget>[
                       TitleWithDescription(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           top: 18.0,
                           left: 3.0,
                         ),

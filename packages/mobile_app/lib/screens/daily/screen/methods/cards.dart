@@ -2,6 +2,21 @@ part of '../screen.dart';
 
 extension DailyScreenCardsMethods on _DailyScreenState {
   ListView cards() {
+    final tarrotCardsRow = <Widget>[
+      if (toShow.moodlet) _tarrotCardBuilder(CardType.TREE),
+      if (toShow.intuition) _tarrotCardBuilder(CardType.COIN),
+      if (toShow.luck) _tarrotCardBuilder(CardType.STAR),
+      if (toShow.ambition) _tarrotCardBuilder(CardType.SWORD),
+      if (toShow.internalStrength) _tarrotCardBuilder(CardType.CUP),
+      //
+      if (toShow.internalStrength == false &&
+          toShow.moodlet == false &&
+          toShow.ambition == false &&
+          toShow.intuition == false &&
+          toShow.luck == false)
+        _tarrotCardBuilder(CardType.STAR)
+    ];
+
     return ListView(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
@@ -18,7 +33,7 @@ extension DailyScreenCardsMethods on _DailyScreenState {
 
                   /// if some card was chosen
                   /// and it is time to build ads
-                  : StaticProvider.adsAreDisabled == false && _cards.toBuildAds
+                  : _cards.toBuildAds
 
                       /// we build our ads card
                       ? _cards.internetAvailable
@@ -26,9 +41,12 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                               text: localeText.adsCardDescription,
                               buttonText:
                                   localeText.watchAdsButton.toUpperCase(),
-                              onButtonTap: () {
-                                onWatchAdsClick();
-                              })
+                              onButtonTap: (_cards.adsAreLoading)
+                                  ? () {}
+                                  : () {
+                                      onWatchAdsClick();
+                                    },
+                            )
                           : PredictionCardWithButton(
                               text: localeText.noInternetText,
                               textFontSize: 14,
@@ -48,24 +66,7 @@ extension DailyScreenCardsMethods on _DailyScreenState {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            /// here is our small cards row
-            (toShow.moodlet) ? _tarrotCardBuilder(CardType.TREE) : SizedBox(),
-            (toShow.intuition) ? _tarrotCardBuilder(CardType.COIN) : SizedBox(),
-            (toShow.luck) ? _tarrotCardBuilder(CardType.STAR) : SizedBox(),
-            (toShow.ambition) ? _tarrotCardBuilder(CardType.SWORD) : SizedBox(),
-            (toShow.internalStrength)
-                ? _tarrotCardBuilder(CardType.CUP)
-                : SizedBox(),
-            //
-            (toShow.internalStrength == false &&
-                    toShow.moodlet == false &&
-                    toShow.ambition == false &&
-                    toShow.intuition == false &&
-                    toShow.luck == false)
-                ? _tarrotCardBuilder(CardType.STAR)
-                : SizedBox()
-          ],
+          children: tarrotCardsRow,
         ),
       ],
     );
@@ -84,7 +85,7 @@ extension DailyScreenCardsMethods on _DailyScreenState {
   adsOnNoInternet() {
     /// It doesn't send event when no internet, and don't send it on the next start
     /// need to discuss
-    // StaticProvider.firebase.analytics.logEvent(name: "no_internet_for_ads");
+    // logEventNoInternetForAds();
 
     // ignore: invalid_use_of_protected_member
     setState(() {
@@ -93,25 +94,29 @@ extension DailyScreenCardsMethods on _DailyScreenState {
   }
 
   adsOnInternetAvailable() async {
+    // ignore: invalid_use_of_protected_member
+    setState(() {
+      _cards.adsAreLoading = true;
+    });
     getAdsManager(
-        // for some reason `await card.load()
-        onLoaded: (ad) {
-          ad.show();
-        },
-        onWatched: () {
-          // ignore: invalid_use_of_protected_member
-          setState(() {
-            _cards.whenAdsWatched();
-          });
-        },
-        onFailed: (error) {
-          // ignore: invalid_use_of_protected_member
-          setState(() {
-            _cards.whenAdsWatched();
-          });
-        },
-        isDebug: StaticProvider.debug.isDebug)
-    .load();
+            // for some reason `await card.load()
+            onLoaded: (ad) {
+              ad.show();
+            },
+            onWatched: () {
+              // ignore: invalid_use_of_protected_member
+              setState(() {
+                _cards.whenAdsWatched();
+              });
+            },
+            onFailed: (error) {
+              // ignore: invalid_use_of_protected_member
+              setState(() {
+                _cards.whenAdsWatched();
+              });
+            },
+            isDebug: StaticProvider.debug.isDebug)
+        .load();
   }
 
   Padding _tarrotCardBuilder(CardType cardType) => Padding(
