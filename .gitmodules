@@ -1,0 +1,3 @@
+[submodule "packages/My-Prophet-Texts"]
+	path = packages/My-Prophet-Texts
+	url = https://github.com/rimmer/My-Prophet-Texts

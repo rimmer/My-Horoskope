@@ -24,7 +24,7 @@ dependencies:
   base:
     path: ../base
   text:
-    path: ../text
+    path: ../My-Prophet-Texts/text
   algorithm:
     path: ../algorithm
   # network

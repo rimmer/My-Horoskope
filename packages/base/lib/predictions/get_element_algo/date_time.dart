@@ -13,10 +13,10 @@ class GetPredictionByDate implements GetPredictionAlgorithm {
       return "There is no predictions";
     }
 
-    final date = data as DateTime;
+    final birthdate = data as DateTime;
     final dateNow = DateTime.now();
 
-    final diff = dateNow.difference(date).inDays;
+    final diff = dateNow.difference(birthdate).inDays;
     final length = predictions.length - 1;
 
     final index = diff % length;
