@@ -35,6 +35,22 @@ void main() async {
 
   /// ads
   MobileAds.instance.initialize();
+  StaticProvider.internetAvailable = await internetCheck();
+
+  if (StaticProvider.internetAvailable) {
+    await getAdsManager(
+            onLoaded: (ad) {
+              StaticProvider.ads.loadedAd = ad;
+            },
+            onWatched: () {
+              StaticProvider.ads.adsAreWatched = true;
+            },
+            onFailed: (error) {
+              StaticProvider.ads.adsAreWatched = true;
+            },
+            isDebug: StaticProvider.debug.isDebug)
+        .load();
+  }
 
   /// authetication
   StaticProvider.authBloc = AuthenticationBloc(

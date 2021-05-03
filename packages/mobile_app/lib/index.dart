@@ -9,6 +9,8 @@ import 'services/static_assets.dart';
 
 //
 export 'services/static_provider.dart';
+export 'services/ads.dart';
+export 'package:base/cards.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:base/user/auth/data/flutter_auth.dart';

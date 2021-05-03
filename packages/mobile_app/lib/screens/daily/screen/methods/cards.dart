@@ -41,11 +41,12 @@ extension DailyScreenCardsMethods on _DailyScreenState {
                               text: localeText.adsCardDescription,
                               buttonText:
                                   localeText.watchAdsButton.toUpperCase(),
-                              onButtonTap: (StaticProvider.ads.areLoading)
-                                  ? () {}
-                                  : () {
-                                      onWatchAdsClick();
-                                    },
+                              onButtonTap:
+                                  (StaticProvider.ads.watchAdsButtonIsInactive)
+                                      ? () {}
+                                      : () {
+                                          adsOnInternetAvailable();
+                                        },
                             )
                           : PredictionCardWithButton(
                               text: localeText.noInternetText,
@@ -72,16 +73,6 @@ extension DailyScreenCardsMethods on _DailyScreenState {
     );
   }
 
-  onWatchAdsClick() async {
-    StaticProvider.internetAvailable = await internetCheck();
-    if (StaticProvider.internetAvailable == true)
-      await adsOnInternetAvailable();
-    else {
-      // ignore: invalid_use_of_protected_member
-      setState(() {});
-    }
-  }
-
   adsOnNoInternet() {
     /// It doesn't send event when no internet, and don't send it on the next start
     /// need to discuss
@@ -96,27 +87,15 @@ extension DailyScreenCardsMethods on _DailyScreenState {
   adsOnInternetAvailable() async {
     // ignore: invalid_use_of_protected_member
     setState(() {
-      StaticProvider.ads.areLoading = true;
+      StaticProvider.ads.watchAdsButtonIsInactive = true;
     });
-    getAdsManager(
-            // for some reason `await card.load()
-            onLoaded: (ad) {
-              ad.show();
-            },
-            onWatched: () {
-              // ignore: invalid_use_of_protected_member
-              setState(() {
-                _cards.whenAdsWatched();
-              });
-            },
-            onFailed: (error) {
-              // ignore: invalid_use_of_protected_member
-              setState(() {
-                _cards.whenAdsWatched();
-              });
-            },
-            isDebug: StaticProvider.debug.isDebug)
-        .load();
+
+    await StaticProvider.ads.loadedAd.show();
+
+    // ignore: invalid_use_of_protected_member
+    setState(() {
+      _cards.whenAdsWatched();
+    });
   }
 
   Padding _tarrotCardBuilder(CardType cardType) => Padding(
