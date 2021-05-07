@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 
 const _temp = "ru";
 const URL_PRIVACY_POLICY =
-    "https://rimmer.github.io/My-Prophet/privacy_policy/$_temp.html";
+    "https://rimmer.github.io/My-Horoskope/privacy_policy/$_temp.html";
 const URL_USER_AGREEMENT =
-    "https://rimmer.github.io/My-Prophet/user_agreement/$_temp.html";
+    "https://rimmer.github.io/My-Horoskope/user_agreement/$_temp.html";
 
 class AcceptTermsText extends StatelessWidget {
   final String text;
