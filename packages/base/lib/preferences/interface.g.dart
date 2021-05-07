@@ -11,10 +11,14 @@ AppPreferencesDat _$AppPreferencesDatFromJson(Map<String, dynamic> json) {
     ep: json['ep'] == null
         ? null
         : EnabledProphecies.fromJson(json['ep'] as Map<String, dynamic>),
+    locale: json['locale'] == null
+        ? null
+        : LocaleSettings.fromJson(json['locale'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$AppPreferencesDatToJson(AppPreferencesDat instance) =>
     <String, dynamic>{
       'ep': instance.ep,
+      'locale': instance.locale,
     };

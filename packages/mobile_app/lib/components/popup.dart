@@ -24,7 +24,7 @@ class SimpleTransperentScreen extends StatefulWidget {
     Key key,
     this.title,
     @required this.body,
-    this.actions = const [],
+    this.actions,
   }) : super(key: key);
 
   _SimpleTransperentScreenState createState() =>
@@ -67,7 +67,44 @@ class _SimpleTransperentScreenState extends State<SimpleTransperentScreen>
 
   @override
   Widget build(BuildContext context) {
+    if (widget.title == null && widget.actions == null)
+      return Builder(
+        builder: (_) => SlideTransition(
+          position: _popupCreation,
+          child: widget.body,
+        ),
+      );
+
     final width = MediaQuery.of(context).size.width;
+    final items = <Widget>[
+      if (widget.title != null)
+        Container(
+          decoration: BoxDecoration(
+            color: AppColors.primaryDark,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(8),
+              topRight: Radius.circular(8),
+            ),
+          ),
+          height: 44,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              const SizedBox(width: 20),
+              Text(widget.title, style: AppTextStyle.popupTitle),
+            ],
+          ),
+        ),
+      widget.body,
+      if (widget.actions != null)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: widget.actions,
+        ),
+      if (widget.actions != null) const SizedBox(height: 16.0),
+    ];
 
     return Builder(
       builder: (_) => SlideTransition(
@@ -82,35 +119,7 @@ class _SimpleTransperentScreenState extends State<SimpleTransperentScreen>
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
             physics: const NeverScrollableScrollPhysics(),
-            children: [
-              (widget.title != null)
-                  ? Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.primaryDark,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(8),
-                          topRight: Radius.circular(8),
-                        ),
-                      ),
-                      height: 44,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          const SizedBox(width: 20),
-                          Text(widget.title, style: AppTextStyle.popupTitle),
-                        ],
-                      ),
-                    )
-                  : SizedBox(),
-              widget.body,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: widget.actions,
-              ),
-              const SizedBox(height: 16.0),
-            ],
+            children: items,
           ),
         ),
       ),

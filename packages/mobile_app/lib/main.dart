@@ -5,14 +5,13 @@ void main() async {
   /// also allows to use async
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// language
-  chooseLocale();
-
-  /// data init and load
+  /// Application Preferences init
   StaticProvider.data.appPref = AppPreferencesFlutter();
   await StaticProvider.data.appPref.load();
+
+  /// predictions init and load
   StaticProvider.data.predictions = PredictionsFlutterMobile();
-  await StaticProvider.data.predictions.prepare();
+  await chooseLocale();
 
   /// firebase
   var app = await Firebase.initializeApp();

@@ -10,3 +10,4 @@ export 'package:my_prophet/components/menu_items.dart';
 export 'package:url_launcher/url_launcher.dart';
 export 'package:launch_review/launch_review.dart';
 export 'package:base/int_datetime.dart';
+export 'package:my_prophet/components/language_picker.dart';

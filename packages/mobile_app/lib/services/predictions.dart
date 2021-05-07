@@ -8,7 +8,7 @@ class PredictionsFlutterMobile extends DefaultPredictions {
   PredictionsFlutterMobile() {
     getPredictionAlgorithm = GetPredictionByDate();
     dataManipulation["add_csv"] = SingleCsvAdd();
-    // dataManipulation["clear"] = Clear();
+    dataManipulation["clear"] = Clear();
   }
 
   Future prepare() async {

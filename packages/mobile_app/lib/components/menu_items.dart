@@ -20,7 +20,7 @@ class MenuItemLeadingIcon extends StatelessWidget {
 
       //
       @required this.text,
-      @required this.onTap});
+      this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +45,20 @@ class MenuItemLeadingIcon extends StatelessWidget {
       ),
     ];
 
-    return TextButton(
-      onPressed: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0),
-        child: Row(
-          children: row,
-        ),
+    final item = Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
+      child: Row(
+        children: row,
       ),
     );
+
+    if (onTap != null)
+      return TextButton(
+        onPressed: onTap,
+        child: item,
+      );
+
+    return item;
   }
 }
 
