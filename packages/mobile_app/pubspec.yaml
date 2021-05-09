@@ -19,12 +19,13 @@ dependencies:
   launch_review: 
   mutable_wrappers: 
   flutter_svg: 
-  flutter_spinkit: 
+  flutter_spinkit:
+
   # base
   base:
     path: ../base
   text:
-    path: ../My-Prophet-Texts/text
+    path: ../text
   algorithm:
     path: ../algorithm
   # network

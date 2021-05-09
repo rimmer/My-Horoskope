@@ -425,7 +425,7 @@ packages:
   text:
     dependency: "direct main"
     description:
-      path: "../My-Prophet-Texts/text"
+      path: "../text"
       relative: true
     source: path
     version: "0.0.1+1"
