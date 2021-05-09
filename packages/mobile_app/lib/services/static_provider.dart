@@ -7,6 +7,7 @@ import 'package:base/user/repository/interface.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:my_prophet/components/user_settings/index.dart';
 
 import 'predictions.dart';
@@ -45,6 +46,8 @@ class StaticProvider {
   /// ads
   static _Ads ads = _Ads();
 
+  static bool internetAvailable = true;
+
   /// getters
   static bool get adsAreDisabled => debug.isDebug;
 }
@@ -67,6 +70,10 @@ class _Ads {
   //
   String get adUnitId =>
       StaticProvider.debug.isDebug ? _adUnitTest : _adUnitProd;
+
+  bool watchAdsButtonIsInactive = false;
+  AdWithoutView loadedAd;
+  bool adsAreWatched = false;
 }
 
 Future<bool> internetCheck() async {

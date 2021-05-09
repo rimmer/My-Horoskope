@@ -83,6 +83,12 @@ class _MenuScreenState extends State<MenuScreen>
                       Navigator.pushNamed(context, '/settings');
                     });
                   }),
+              LanguagePicker(
+                  child: MenuItemLeadingIcon(
+                icon: Icons.flag,
+                text: localeText.language.capitalize(),
+                onTap: null,
+              )),
               MenuItemFootingIcon(
                   text: "${localeText.writeToDev.capitalize()}",
                   onTap: () {

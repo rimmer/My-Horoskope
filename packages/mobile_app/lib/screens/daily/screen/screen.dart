@@ -78,7 +78,7 @@ class _DailyScreenState extends State<DailyScreen>
     _cards.maxNumberOfCards = numberOfCards;
 
     /// if need to see ads inside debug mode, comment this line
-    if (StaticProvider.adsAreDisabled) _cards.adsWatched = true;
+    // if (StaticProvider.adsAreDisabled) _cards.adsWatched = true;
 
     super.initState();
   }

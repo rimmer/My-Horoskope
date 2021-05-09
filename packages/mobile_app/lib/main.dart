@@ -5,14 +5,13 @@ void main() async {
   /// also allows to use async
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// language
-  chooseLocale();
-
-  /// data init and load
+  /// Application Preferences init
   StaticProvider.data.appPref = AppPreferencesFlutter();
   await StaticProvider.data.appPref.load();
+
+  /// predictions init and load
   StaticProvider.data.predictions = PredictionsFlutterMobile();
-  await StaticProvider.data.predictions.prepare();
+  await chooseLocale();
 
   /// firebase
   var app = await Firebase.initializeApp();
@@ -35,6 +34,22 @@ void main() async {
 
   /// ads
   MobileAds.instance.initialize();
+  StaticProvider.internetAvailable = await internetCheck();
+
+  if (StaticProvider.internetAvailable) {
+    await getAdsManager(
+            onLoaded: (ad) {
+              StaticProvider.ads.loadedAd = ad;
+            },
+            onWatched: () {
+              StaticProvider.ads.adsAreWatched = true;
+            },
+            onFailed: (error) {
+              StaticProvider.ads.adsAreWatched = true;
+            },
+            isDebug: StaticProvider.debug.isDebug)
+        .load();
+  }
 
   /// authetication
   StaticProvider.authBloc = AuthenticationBloc(

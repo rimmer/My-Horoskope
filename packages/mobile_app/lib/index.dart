@@ -1,4 +1,3 @@
-// import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:text/text.dart';
 import 'theme/app_theme.dart';
@@ -9,6 +8,8 @@ import 'services/static_assets.dart';
 
 //
 export 'services/static_provider.dart';
+export 'services/ads.dart';
+export 'package:base/cards.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:base/user/auth/data/flutter_auth.dart';
@@ -16,6 +17,7 @@ export 'package:base/preferences/flutter_default.dart';
 export 'package:my_prophet/services/predictions.dart';
 export 'package:base/user/repository/flutter_default/flutter_default.dart';
 export 'package:algorithm/algorithm.dart';
+export 'services/locale.dart';
 export 'screens/daily/screen/screen.dart';
 export 'screens/registration/screen.dart';
 export 'screens/loading.dart';
@@ -49,24 +51,3 @@ Container imageBackground({@required Widget child}) => Container(
       ),
     ),
     child: child);
-
-chooseLocale() {
-  /// @TODO, add predictions
-  // final languageCode = Platform.localeName.split('_')[0];
-
-  // switch (languageCode) {
-  //   case "uk":
-  //     localeText.switchLocaleToUkrainian();
-  //     break;
-
-  //   case "ru":
-  //     localeText.switchLocaleToRussian();
-  //     break;
-
-  //   case "en":
-  //   default:
-  //     localeText.switchLocaleToEnglish();
-  //     break;
-  // }
-  localeText.switchLocaleToRussian();
-}

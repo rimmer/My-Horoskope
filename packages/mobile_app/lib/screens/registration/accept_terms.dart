@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:text/text.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:my_prophet/theme/app_colors.dart';
 import 'package:my_prophet/components/accept_terms_text.dart';
 import 'package:my_prophet/components/magic_checkbox.dart';
 
