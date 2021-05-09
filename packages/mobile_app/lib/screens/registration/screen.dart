@@ -134,6 +134,8 @@ class _RegistrationScreenState extends State<RegistrationScreen>
                         ).millisecondsSinceEpoch,
                         sex: widget.sex.wrapped,
                       )));
+                      StaticProvider.firebase.analytics
+                          .logSignUp(signUpMethod: "local");
                     },
                     buttonText: localeText.start.toUpperCase(),
                   ),

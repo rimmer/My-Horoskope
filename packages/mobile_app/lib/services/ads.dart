@@ -24,19 +24,28 @@ AdWithoutView getAdsManager(
         // Ad is successfully received.
         onLoaded(ad);
         if (isDebug) print('Ad loaded.');
+        StaticProvider.firebase.analytics.logEvent(name: "ad_loaded");
       }, onAdFailedToLoad: (Ad ad, LoadAdError error) {
         // Ad request failed.
         onFailed(error);
         ad.dispose();
+        StaticProvider.firebase.analytics.logEvent(
+            name: "ad_failed",
+            parameters: {
+              'error_message': error.message,
+              'error_code': error.code
+            });
         if (isDebug) print('Ad failed to load: $error');
       }, onAdOpened: (Ad ad) {
         // Ad opens an overlay that covers the screen.
         if (isDebug) print('Ad opened.');
+        StaticProvider.firebase.analytics.logEvent(name: "ad_opened");
       }, onAdClosed: (Ad ad) {
         // Ad removes an overlay that covers the screen.
         onWatched();
         ad.dispose();
         if (isDebug) print('Ad closed.');
+        StaticProvider.firebase.analytics.logEvent(name: "ad_watched");
       }, onApplicationExit: (Ad ad) {
         // Ad is in the process of leaving the application.
         if (isDebug) print('Left application.');

@@ -1,31 +1,35 @@
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
+import 'package:my_prophet/services/static_provider.dart';
 import 'package:text/text.dart';
-import 'theme/app_theme.dart';
+
 import 'screens/daily/screen/screen.dart';
 import 'screens/menu/screen.dart';
 import 'screens/settings/screen.dart';
 import 'services/static_assets.dart';
+import 'theme/app_theme.dart';
 
-//
-export 'services/static_provider.dart';
-export 'services/ads.dart';
-export 'package:base/cards.dart';
-export 'package:flutter/material.dart';
-export 'package:flutter_bloc/flutter_bloc.dart';
-export 'package:base/user/auth/data/flutter_auth.dart';
-export 'package:base/preferences/flutter_default.dart';
-export 'package:my_prophet/services/predictions.dart';
-export 'package:base/user/repository/flutter_default/flutter_default.dart';
 export 'package:algorithm/algorithm.dart';
-export 'services/locale.dart';
-export 'screens/daily/screen/screen.dart';
-export 'screens/registration/screen.dart';
-export 'screens/loading.dart';
+export 'package:base/cards.dart';
+export 'package:base/preferences/flutter_default.dart';
+export 'package:base/user/auth/data/flutter_auth.dart';
+export 'package:base/user/repository/flutter_default/flutter_default.dart';
 export 'package:firebase_core/firebase_core.dart';
 export 'package:firebase_crashlytics/firebase_crashlytics.dart';
 export 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 export 'package:firebase_messaging/firebase_messaging.dart';
+export 'package:flutter/material.dart';
+export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:google_mobile_ads/google_mobile_ads.dart';
+export 'package:my_prophet/services/predictions.dart';
+
+export 'screens/daily/screen/screen.dart';
+export 'screens/loading.dart';
+export 'screens/registration/screen.dart';
+export 'services/ads.dart';
+export 'services/locale.dart';
+//
+export 'services/static_provider.dart';
 
 MaterialApp myProphet({
   @required Widget authResolver,
@@ -40,6 +44,9 @@ MaterialApp myProphet({
       "/settings": (BuildContext context) => ProfileSettingsScreen(),
     },
     home: authResolver,
+    navigatorObservers: [
+      FirebaseAnalyticsObserver(analytics: StaticProvider.firebase.analytics),
+    ],
   );
 }
 
