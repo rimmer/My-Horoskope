@@ -16,9 +16,10 @@ void main() async {
   /// firebase
   var app = await Firebase.initializeApp();
   app.setAutomaticDataCollectionEnabled(StaticProvider.debug.isNotDebug);
+  StaticProvider.firebase.analytics = FirebaseAnalytics();
+  StaticProvider.firebase.analytics
+      .setAnalyticsCollectionEnabled(StaticProvider.debug.isNotDebug);
   if (StaticProvider.debug.isNotDebug) {
-    StaticProvider.firebase.analytics = FirebaseAnalytics();
-
     StaticProvider.firebase.messaging = FirebaseMessaging.instance;
     StaticProvider.firebase.notifications =
         await StaticProvider.firebase.messaging.requestPermission(
