@@ -35,6 +35,7 @@ dependencies:
   firebase_in_app_messaging: 
   firebase_messaging:
   google_mobile_ads:
+  flutter_local_notifications:
 
 
 dev_dependencies:

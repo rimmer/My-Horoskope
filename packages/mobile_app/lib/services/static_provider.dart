@@ -8,7 +8,8 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:my_prophet/components/user_settings/index.dart';
+import 'package:mutable_wrappers/mutable_wrappers.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'predictions.dart';
 
@@ -42,6 +43,7 @@ class StaticProvider {
   /// services
   static _Firebase firebase = _Firebase();
   static _Tester debug = _Tester();
+  static _LocalNotifications notifications;
 
   /// ads
   static _Ads ads = _Ads();
@@ -74,6 +76,12 @@ class _Ads {
   bool watchAdsButtonIsInactive = false;
   AdWithoutView loadedAd;
   bool adsAreWatched = false;
+}
+
+class _LocalNotifications {
+  FlutterLocalNotificationsPlugin instance;
+  //
+  InitializationSettings initSettings;
 }
 
 Future<bool> internetCheck() async {
