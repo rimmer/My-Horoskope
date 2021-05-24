@@ -1,4 +1,5 @@
 import 'index.dart';
+import 'package:my_prophet/services/local_notifications.dart';
 
 const _WRITE_TO_DEV_URL = "https://forms.gle/R67F71wPMYEbEWrs7";
 
@@ -39,6 +40,14 @@ class _MenuScreenState extends State<MenuScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: IconButton(
+        icon: Icon(Icons.notifications),
+        onPressed: () {
+          suddenNotification(
+              body: "Today is a good day for a dance.",
+              channelInfo: StaticProvider.notifications.reminderChannel);
+        },
+      ),
       backgroundColor: AppColors.primaryDark,
       body: SafeArea(
         child: AnimatedBuilder(

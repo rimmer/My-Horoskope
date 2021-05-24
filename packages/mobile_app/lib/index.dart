@@ -22,6 +22,7 @@ export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:google_mobile_ads/google_mobile_ads.dart';
 export 'package:my_prophet/services/predictions.dart';
+export 'package:my_prophet/services/local_notifications.dart';
 
 export 'screens/daily/screen/screen.dart';
 export 'screens/loading.dart';

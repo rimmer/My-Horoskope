@@ -52,6 +52,11 @@ void main() async {
         .load();
   }
 
+  await initLocalNotifications();
+  await createNotificationChannel(
+    StaticProvider.notifications.reminderChannel,
+  );
+
   /// authetication
   StaticProvider.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))

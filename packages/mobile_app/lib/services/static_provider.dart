@@ -10,7 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
+import 'local_notifications.dart';
 import 'predictions.dart';
 
 export 'package:base/preferences/interface.dart';
@@ -43,7 +43,7 @@ class StaticProvider {
   /// services
   static _Firebase firebase = _Firebase();
   static _Tester debug = _Tester();
-  static _LocalNotifications notifications;
+  static LocalNotifications notifications = LocalNotifications();
 
   /// ads
   static _Ads ads = _Ads();
@@ -78,10 +78,13 @@ class _Ads {
   bool adsAreWatched = false;
 }
 
-class _LocalNotifications {
-  FlutterLocalNotificationsPlugin instance;
-  //
-  InitializationSettings initSettings;
+class LocalNotifications {
+  final instance = FlutterLocalNotificationsPlugin();
+  final reminderChannel = NotificationChannelInfo(
+    "my_prophet_remind", // id
+    "My Horoscope, Reminder", // name that displayed in smartphone settings
+    "My Horoscope app notifications channel for reminders.", // description
+  );
 }
 
 Future<bool> internetCheck() async {
