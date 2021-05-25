@@ -43,7 +43,7 @@ class StaticProvider {
   /// services
   static _Firebase firebase = _Firebase();
   static _Tester debug = _Tester();
-  static LocalNotifications notifications = LocalNotifications();
+  static _LocalNotifications notifications = _LocalNotifications();
 
   /// ads
   static _Ads ads = _Ads();
@@ -78,7 +78,7 @@ class _Ads {
   bool adsAreWatched = false;
 }
 
-class LocalNotifications {
+class _LocalNotifications {
   final instance = FlutterLocalNotificationsPlugin();
   final reminderChannel = NotificationChannelInfo(
     "my_prophet_remind", // id

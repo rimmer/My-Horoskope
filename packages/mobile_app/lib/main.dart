@@ -9,9 +9,12 @@ void main() async {
   StaticProvider.data.appPref = AppPreferencesFlutter();
   await StaticProvider.data.appPref.load();
 
-  /// predictions init and load
+  /// predictions init and load, language locale
   StaticProvider.data.predictions = PredictionsFlutterMobile();
   await chooseLocale();
+
+  /// timezone configuration
+  await configureLocalTimeZone();
 
   /// firebase
   var app = await Firebase.initializeApp();

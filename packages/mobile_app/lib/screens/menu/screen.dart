@@ -42,10 +42,12 @@ class _MenuScreenState extends State<MenuScreen>
     return Scaffold(
       floatingActionButton: IconButton(
         icon: Icon(Icons.notifications),
-        onPressed: () {
-          suddenNotification(
-              body: "Today is a good day for a dance.",
-              channelInfo: StaticProvider.notifications.reminderChannel);
+        onPressed: () async {
+          await timeoutNotification(
+            body: "Today is a good day for a dance.",
+            channelInfo: StaticProvider.notifications.reminderChannel,
+            timeout: Duration(seconds: 10),
+          );
         },
       ),
       backgroundColor: AppColors.primaryDark,

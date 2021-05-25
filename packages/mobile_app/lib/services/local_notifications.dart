@@ -1,9 +1,11 @@
-// import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:my_prophet/index.dart';
 import 'package:text/text.dart';
 import 'package:flutter/widgets.dart';
+import 'package:timezone/timezone.dart' as tz;
+
 import 'static_provider.dart';
+
+const _DEFAULT_PAYLOAD = "/daily";
 
 @immutable
 class NotificationChannelInfo {
@@ -15,7 +17,7 @@ class NotificationChannelInfo {
 
 Future initLocalNotifications() async {
   const AndroidInitializationSettings initializationSettingsAndroid =
-      AndroidInitializationSettings('notifications_icon');
+      AndroidInitializationSettings('notifications_icon_color');
   final IOSInitializationSettings initializationSettingsIOS =
       IOSInitializationSettings();
   final InitializationSettings initializationSettings = InitializationSettings(
@@ -44,10 +46,39 @@ Future createNotificationChannel(NotificationChannelInfo channelInfo) async {
       ?.createNotificationChannel(androidNotificationChannel);
 }
 
+Future timeoutNotification({
+  String title = "",
+  String body = "",
+  String payload = _DEFAULT_PAYLOAD,
+  @required NotificationChannelInfo channelInfo,
+  @required Duration timeout,
+}) async {
+  if (title.isEmpty) title = localeText.appName;
+
+  await StaticProvider.notifications.instance.zonedSchedule(
+      0,
+      title,
+      body,
+      tz.TZDateTime.now(tz.local).add(timeout),
+      //
+      NotificationDetails(
+          android: AndroidNotificationDetails(
+        channelInfo.id,
+        channelInfo.name,
+        channelInfo.description,
+      )),
+      //
+      payload: payload,
+      //
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime);
+}
+
 Future suddenNotification({
   String title = "",
   String body = "",
-  String payload = "my_prophet_daily_screen",
+  String payload = _DEFAULT_PAYLOAD,
   @required NotificationChannelInfo channelInfo,
 }) async {
   if (title.isEmpty) title = localeText.appName;
