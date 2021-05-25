@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:base/preferences/interface.dart';
 import 'package:base/prophecy/bloc/bloc.dart';
@@ -10,7 +11,6 @@ import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'local_notifications.dart';
 import 'predictions.dart';
 
 export 'package:base/preferences/interface.dart';
@@ -30,6 +30,8 @@ class _Tester {
 }
 
 class StaticProvider {
+  static Random rand = Random.secure();
+
   /// data
   static _SPData data = _SPData();
 
@@ -80,11 +82,6 @@ class _Ads {
 
 class _LocalNotifications {
   final instance = FlutterLocalNotificationsPlugin();
-  final reminderChannel = NotificationChannelInfo(
-    "my_prophet_remind", // id
-    "My Horoscope, Reminder", // name that displayed in smartphone settings
-    "My Horoscope app notifications channel for reminders.", // description
-  );
 }
 
 Future<bool> internetCheck() async {

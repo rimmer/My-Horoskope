@@ -45,8 +45,9 @@ class _MenuScreenState extends State<MenuScreen>
         onPressed: () async {
           await timeoutNotification(
             body: "Today is a good day for a dance.",
-            channelInfo: StaticProvider.notifications.reminderChannel,
+            channelInfo: Notif.reminderChannel,
             timeout: Duration(seconds: 10),
+            eventId: StaticProvider.rand.nextInt(99),
           );
         },
       ),

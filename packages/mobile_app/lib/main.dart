@@ -56,9 +56,7 @@ void main() async {
   }
 
   await initLocalNotifications();
-  await createNotificationChannel(
-    StaticProvider.notifications.reminderChannel,
-  );
+  await createNotificationChannel(Notif.reminderChannel);
 
   /// authetication
   StaticProvider.authBloc = AuthenticationBloc(
