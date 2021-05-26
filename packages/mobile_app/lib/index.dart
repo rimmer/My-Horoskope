@@ -32,6 +32,7 @@ export 'services/locale.dart';
 //
 export 'services/static_provider.dart';
 export 'services/timezone.dart';
+export 'services/reminder.dart';
 
 MaterialApp myProphet({
   @required Widget authResolver,

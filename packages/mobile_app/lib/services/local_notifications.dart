@@ -47,7 +47,7 @@ Future createNotificationChannel(NotificationChannelInfo channelInfo) async {
       ?.createNotificationChannel(androidNotificationChannel);
 }
 
-Future cancelNotifications(int id) async => await localNotifications.cancel(id);
+Future cancelNotification(int id) async => await localNotifications.cancel(id);
 
 /// @functionality
 Future initLocalNotifications() async {

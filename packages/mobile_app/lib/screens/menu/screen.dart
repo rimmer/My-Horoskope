@@ -40,17 +40,6 @@ class _MenuScreenState extends State<MenuScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: IconButton(
-        icon: Icon(Icons.notifications),
-        onPressed: () async {
-          await timeoutNotification(
-            body: "Today is a good day for a dance.",
-            channelInfo: Notif.reminderChannel,
-            timeout: Duration(seconds: 10),
-            eventId: StaticProvider.rand.nextInt(99),
-          );
-        },
-      ),
       backgroundColor: AppColors.primaryDark,
       body: SafeArea(
         child: AnimatedBuilder(

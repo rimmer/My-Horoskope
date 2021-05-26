@@ -87,6 +87,8 @@ Widget appBuilder() => imageBackground(
                 ),
               );
 
+              reminderConfig();
+
               return DailyScreen();
 
               //
