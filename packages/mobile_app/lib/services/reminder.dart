@@ -50,8 +50,10 @@ Future reminderConfig() async {
   for (_Remind reminder in reminders)
     await timeoutNotification(
       channelInfo: Notif.reminderChannel,
-      // timeout: reminder.duration,
-      timeout: Duration(seconds: (reminder.id + 2) * 10),
+      timeout: reminder.duration,
+
+      /// @DEBUG dont delete me please
+      // timeout: Duration(seconds: (reminder.id + 2) * 10),
       body: reminder.customText == false
           ? await getPredictionText(
               DateTime.now().add(reminder.duration).millisecondsSinceEpoch,
@@ -70,6 +72,9 @@ Future<String> getPredictionText(int atDay) async {
       .biggest;
 
   String predictionText;
+  DateTime dateNow = DateTime.fromMillisecondsSinceEpoch(
+    atDay,
+  );
   DateTime birthDate = DateTime.fromMillisecondsSinceEpoch(
     StaticProvider.data.usersRepo.current.model.birth,
   );
@@ -78,24 +83,36 @@ Future<String> getPredictionText(int atDay) async {
     case ProphecyType.AMBITION:
       predictionText =
           StaticProvider.data.predictions.predictionPositiveAmbition(
-        birthDate,
+        {
+          'birthDate': birthDate,
+          'dateNow': dateNow,
+        },
       );
       break;
     case ProphecyType.INTUITION:
       predictionText =
           StaticProvider.data.predictions.predictionPositiveIntelligence(
-        birthDate,
+        {
+          'birthDate': birthDate,
+          'dateNow': dateNow,
+        },
       );
       break;
     case ProphecyType.LUCK:
       predictionText = StaticProvider.data.predictions.predictionPositiveLuck(
-        birthDate,
+        {
+          'birthDate': birthDate,
+          'dateNow': dateNow,
+        },
       );
       break;
     case ProphecyType.MOODLET:
       predictionText =
           StaticProvider.data.predictions.predictionPositiveMoodlet(
-        birthDate,
+        {
+          'birthDate': birthDate,
+          'dateNow': dateNow,
+        },
       );
       break;
 
@@ -103,7 +120,10 @@ Future<String> getPredictionText(int atDay) async {
     default:
       predictionText =
           StaticProvider.data.predictions.predictionPositiveInternalStr(
-        birthDate,
+        {
+          'birthDate': birthDate,
+          'dateNow': dateNow,
+        },
       );
       break;
   }

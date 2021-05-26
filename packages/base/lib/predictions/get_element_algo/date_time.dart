@@ -13,8 +13,16 @@ class GetPredictionByDate implements GetPredictionAlgorithm {
       return "There is no predictions";
     }
 
-    final birthDate = data as DateTime;
-    final dateNow = DateTime.now();
+    DateTime birthDate;
+    DateTime dateNow;
+
+    if (data is DateTime) {
+      birthDate = data;
+      dateNow = DateTime.now();
+    } else if (data is Map<String, DateTime>) {
+      birthDate = data['birthDate'];
+      dateNow = data['dateNow'];
+    }
 
     final diff = dateNow.difference(birthDate).inDays;
     final length = predictions.length - 1;
