@@ -80,7 +80,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen>
     final screen = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColors.primaryDark,
+      backgroundColor: Colors.transparent,
       body: Listener(
         onPointerUp: (_) {
           FocusScopeNode currentFocus = FocusScope.of(context);

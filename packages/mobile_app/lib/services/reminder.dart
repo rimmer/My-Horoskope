@@ -47,20 +47,21 @@ Future reminderConfig() async {
     );
 
   /// add new
-  for (_Remind reminder in reminders)
-    await timeoutNotification(
-      channelInfo: Notif.reminderChannel,
-      timeout: reminder.duration,
+  if (StaticProvider.data.appPref.dat.notifications.disabled == false)
+    for (_Remind reminder in reminders)
+      await timeoutNotification(
+        channelInfo: Notif.reminderChannel,
+        timeout: reminder.duration,
 
-      /// @DEBUG dont delete me please
-      // timeout: Duration(seconds: (reminder.id + 2) * 10),
-      body: reminder.customText == false
-          ? await getPredictionText(
-              DateTime.now().add(reminder.duration).millisecondsSinceEpoch,
-            )
-          : localeText.locale.youAreBusyNotif,
-      eventId: reminder.id,
-    );
+        /// @DEBUG dont delete me please
+        // timeout: Duration(seconds: (reminder.id + 2) * 10),
+        body: reminder.customText == false
+            ? await getPredictionText(
+                DateTime.now().add(reminder.duration).millisecondsSinceEpoch,
+              )
+            : localeText.locale.youAreBusyNotif,
+        eventId: reminder.id,
+      );
 }
 
 Future<String> getPredictionText(int atDay) async {

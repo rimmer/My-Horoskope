@@ -1,5 +1,4 @@
 import 'index.dart';
-import 'package:my_prophet/services/local_notifications.dart';
 
 const _WRITE_TO_DEV_URL = "https://forms.gle/R67F71wPMYEbEWrs7";
 
@@ -12,6 +11,8 @@ class _MenuScreenState extends State<MenuScreen>
     with SingleTickerProviderStateMixin {
   AnimationController _animationFadeOutController;
   Animation<double> _animationFadeOut;
+  //
+  final MutableBool notificationsAreDisabled = MutableBool(false);
 
   @override
   void initState() {
@@ -28,6 +29,9 @@ class _MenuScreenState extends State<MenuScreen>
       curve: Curves.ease,
     ));
 
+    notificationsAreDisabled.wrapped =
+        StaticProvider.data.appPref.dat.notifications.disabled;
+
     super.initState();
   }
 
@@ -40,7 +44,7 @@ class _MenuScreenState extends State<MenuScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryDark,
+      backgroundColor: Colors.transparent,
       body: SafeArea(
         child: AnimatedBuilder(
           animation: _animationFadeOutController,
@@ -48,82 +52,113 @@ class _MenuScreenState extends State<MenuScreen>
             opacity: _animationFadeOut,
             child: child,
           ),
-          child: ListView(
-            padding: EdgeInsets.only(
+          child: Padding(
+            padding: const EdgeInsets.only(
               top: 32.0,
-              left: 32.0,
-              right: 32.0,
             ),
-            scrollDirection: Axis.vertical,
-            children: [
-              MenuItemLeadingIcon(
-                  asset: StaticProvider
-                      .data.usersRepo.current.model.birth.astroSign,
-                  text:
-                      " ${localeText.my.capitalize()} ${localeText.horoscope}",
-                  onTap: () {
-                    setState(() {
-                      Navigator.pushNamed(context, '/daily');
-                    });
-                  }),
-              NotAvaibleInfo(
-                child: MenuItemLeadingIcon(
-                  icon: Icons.group_add,
-                  text: "${localeText.addAmbiance.capitalize()}",
-                  onTap: null,
-                ),
-                title: localeText.noAmbianceTitle.capitalize(),
-                desc: localeText.noAmbianceDescription,
-                button: localeText.noAmbianceButton.toUpperCase(),
-              ),
-              MenuItemLeadingIcon(
-                  icon: Icons.perm_identity,
-                  text: "${localeText.profileSettings.capitalize()}",
-                  onTap: () {
-                    setState(() {
-                      Navigator.pushNamed(context, '/settings');
-                    });
-                  }),
-              LanguagePicker(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
                   child: MenuItemLeadingIcon(
-                icon: Icons.flag,
-                text: localeText.language.capitalize(),
-                onTap: null,
-              )),
-              MenuItemFootingIcon(
-                  text: "${localeText.writeToDev.capitalize()}",
-                  onTap: () {
-                    launch(_WRITE_TO_DEV_URL);
-                  }),
-              SingleChildScrollView(
-                child: MenuItemRateApp(
-                    text: "${localeText.rateApp.capitalize()}",
-                    onTap: () {
-                      LaunchReview.launch(
-                        writeReview: false,
-                      );
-                    }),
-              ),
-              SizedBox(height: 50.0),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Flexible(
-                    child: TermsText(
-                      text: localeText.userAgreement.capitalize(),
-                      url: URL_USER_AGREEMENT,
+                      asset: StaticProvider
+                          .data.usersRepo.current.model.birth.astroSign,
+                      text:
+                          " ${localeText.my.capitalize()} ${localeText.horoscope}",
+                      onTap: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/daily');
+                        });
+                      }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: NotAvaibleInfo(
+                    child: MenuItemLeadingIcon(
+                      icon: Icons.group_add,
+                      text: "${localeText.addAmbiance.capitalize()}",
+                      onTap: null,
                     ),
+                    title: localeText.noAmbianceTitle.capitalize(),
+                    desc: localeText.noAmbianceDescription,
+                    button: localeText.noAmbianceButton.toUpperCase(),
                   ),
-                  Flexible(
-                    child: TermsText(
-                      text: localeText.privacyPolicy.capitalize(),
-                      url: URL_PRIVACY_POLICY,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: MenuItemLeadingIcon(
+                      icon: Icons.perm_identity,
+                      text: "${localeText.profileSettings.capitalize()}",
+                      onTap: () {
+                        setState(() {
+                          Navigator.pushNamed(context, '/settings');
+                        });
+                      }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: LanguagePicker(
+                      child: MenuItemLeadingIcon(
+                    icon: Icons.flag,
+                    text: localeText.language.capitalize(),
+                    onTap: null,
+                  )),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32.0,
+                  ),
+                  color: AppColors.primary.withOpacity(0.3),
+                  child: SingleChildScrollView(
+                    child: MenuItemRateApp(
+                        text: "${localeText.rateApp.capitalize()}",
+                        onTap: () {
+                          LaunchReview.launch(
+                            writeReview: false,
+                          );
+                        }),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: MenuItemFootingIcon(
+                      text: "${localeText.writeToDev.capitalize()}",
+                      onTap: () {
+                        launch(_WRITE_TO_DEV_URL);
+                      }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: SwitchableMenuItem(
+                    text: localeText.disableNotifications.capitalize(),
+                    value: notificationsAreDisabled,
+                    onChanged: (bool newVal) {
+                      StaticProvider.data.appPref.notifications =
+                          NotificationsPreferences(disabled: newVal);
+                    },
+                  ),
+                ),
+                SizedBox(height: 40.0),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Flexible(
+                      child: TermsText(
+                        text: localeText.userAgreement.capitalize(),
+                        url: URL_USER_AGREEMENT,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    Flexible(
+                      child: TermsText(
+                        text: localeText.privacyPolicy.capitalize(),
+                        url: URL_PRIVACY_POLICY,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
