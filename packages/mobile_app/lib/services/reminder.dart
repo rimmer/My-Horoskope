@@ -7,7 +7,9 @@ class _Remind {
   final Duration duration;
   final int id;
   final bool customText;
-  const _Remind({this.duration, this.id, this.customText = false});
+  final String payload;
+  const _Remind(
+      {this.duration, this.id, this.customText = false, this.payload});
 }
 
 Future reminderConfig() async {
@@ -15,26 +17,32 @@ Future reminderConfig() async {
   const reminders = <_Remind>[
     const _Remind(
       id: 1,
+      payload: "After 3 days",
       duration: Duration(days: 3),
     ),
     const _Remind(
       id: 2,
+      payload: "After 4 days",
       duration: Duration(days: 4),
     ),
     const _Remind(
       id: 3,
+      payload: "After 5 days",
       duration: Duration(days: 5),
     ),
     const _Remind(
       id: 4,
+      payload: "After 6 days",
       duration: Duration(days: 6),
     ),
     const _Remind(
       id: 5,
+      payload: "After 13 days",
       duration: Duration(days: 13),
     ),
     const _Remind(
       id: 6,
+      payload: "After 20 days",
       duration: Duration(days: 20),
       customText: true,
     ),
@@ -61,6 +69,7 @@ Future reminderConfig() async {
               )
             : localeText.locale.youAreBusyNotif,
         eventId: reminder.id,
+        payload: reminder.payload,
       );
 }
 

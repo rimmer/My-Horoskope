@@ -14,3 +14,4 @@ export 'package:base/int_datetime.dart';
 export 'package:base/preferences/setting/notifications/item.dart';
 export 'package:my_prophet/components/language_picker.dart';
 export 'package:my_prophet/components/magic_checkbox.dart';
+export 'package:my_prophet/services/local_notifications.dart';

@@ -132,9 +132,15 @@ class _MenuScreenState extends State<MenuScreen>
                   child: SwitchableMenuItem(
                     text: localeText.disableNotifications.capitalize(),
                     value: notificationsAreDisabled,
-                    onChanged: (bool newVal) {
+                    onChanged: (bool disabled) {
+                      StaticProvider.firebase.analytics.logEvent(
+                        name: disabled
+                            ? "notifications_disabled"
+                            : "notifications_enabled",
+                        parameters: {},
+                      );
                       StaticProvider.data.appPref.notifications =
-                          NotificationsPreferences(disabled: newVal);
+                          NotificationsPreferences(disabled: disabled);
                     },
                   ),
                 ),

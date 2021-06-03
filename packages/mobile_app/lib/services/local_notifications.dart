@@ -5,7 +5,7 @@ import 'package:timezone/timezone.dart' as tz;
 import 'static_provider.dart';
 
 /// @constants
-const _DEFAULT_PAYLOAD = "/daily";
+const _DEFAULT_PAYLOAD = "default_payload";
 
 class Notif {
   static const reminderChannel = NotificationChannelInfo(
@@ -62,10 +62,20 @@ Future initLocalNotifications() async {
 
   await localNotifications.initialize(
     initializationSettings,
+    onSelectNotification: whenNotificationIsClicked,
   );
 
   if (StaticProvider.debug.isDebug)
     print("Local notifications were initialized");
+}
+
+Future whenNotificationIsClicked(String payload) async {
+  StaticProvider.firebase.analytics.logEvent(
+    name: "notification_clicked",
+    parameters: {
+      "VALUE": payload,
+    },
+  );
 }
 
 Future timeoutNotification({

@@ -22,6 +22,7 @@ export 'package:firebase_analytics/firebase_analytics.dart';
 export 'predictions.dart';
 
 class _Tester {
+  // final MutableBool testerField = MutableBool(false);
   final MutableBool testerField = MutableBool(!kReleaseMode);
 
   //
