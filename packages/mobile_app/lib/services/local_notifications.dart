@@ -62,14 +62,19 @@ Future initLocalNotifications() async {
 
   await localNotifications.initialize(
     initializationSettings,
-    onSelectNotification: whenNotificationIsClicked,
   );
 
   if (StaticProvider.debug.isDebug)
     print("Local notifications were initialized");
+
+  final NotificationAppLaunchDetails notificationAppLaunchDetails =
+      await localNotifications.getNotificationAppLaunchDetails();
+
+  if (notificationAppLaunchDetails.didNotificationLaunchApp)
+    whenNotificationIsClicked(notificationAppLaunchDetails.payload);
 }
 
-Future whenNotificationIsClicked(String payload) async {
+whenNotificationIsClicked(String payload) {
   StaticProvider.firebase.analytics.logEvent(
     name: "notification_clicked",
     parameters: {
