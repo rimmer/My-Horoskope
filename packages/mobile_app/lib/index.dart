@@ -22,6 +22,7 @@ export 'package:flutter/material.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:google_mobile_ads/google_mobile_ads.dart';
 export 'package:my_prophet/services/predictions.dart';
+export 'package:my_prophet/services/local_notifications.dart';
 
 export 'screens/daily/screen/screen.dart';
 export 'screens/loading.dart';
@@ -30,6 +31,8 @@ export 'services/ads.dart';
 export 'services/locale.dart';
 //
 export 'services/static_provider.dart';
+export 'services/timezone.dart';
+export 'services/reminder.dart';
 
 MaterialApp myProphet({
   @required Widget authResolver,

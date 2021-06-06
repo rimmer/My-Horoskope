@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:my_prophet/screens/settings/index.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:my_prophet/theme/app_text_style.dart';
 
@@ -167,4 +168,43 @@ class MenuItemRateApp extends StatelessWidget {
           ),
         ),
       );
+}
+
+class SwitchableMenuItem extends StatelessWidget {
+  final text;
+  final MutableBool value;
+  final Function(bool) onChanged;
+  final EdgeInsets padding;
+
+  SwitchableMenuItem({
+    @required this.text,
+    @required this.value,
+    this.onChanged,
+    this.padding = const EdgeInsets.symmetric(vertical: 6.0),
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final row = <Widget>[
+      Text(
+        text,
+        style: AppTextStyle.menuItem,
+      ),
+      Expanded(child: SizedBox()),
+      MagicCheckbox(
+        value: value,
+        onChanged: onChanged,
+      )
+    ];
+
+    return TextButton(
+      onPressed: null,
+      child: Padding(
+        padding: padding,
+        child: Row(
+          children: row,
+        ),
+      ),
+    );
+  }
 }
