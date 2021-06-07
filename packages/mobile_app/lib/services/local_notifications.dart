@@ -8,10 +8,11 @@ import 'static_provider.dart';
 const _DEFAULT_PAYLOAD = "default_payload";
 
 class Notif {
-  static const reminderChannel = NotificationChannelInfo(
+  static final reminderChannel = NotificationChannelInfo(
     "remind", // id
-    "Reminder", // name that displayed in smartphone settings
-    "Notifications channel for reminders.", // description
+    localeText
+        .notificationChannelReminderName, // name that displayed in smartphone settings
+    localeText.notificationChannelReminderDescription, // description
     defaultEventId: 2500, // event id
   );
 }
@@ -64,8 +65,7 @@ Future initLocalNotifications() async {
     initializationSettings,
   );
 
-  if (StaticProvider.debug.isDebug)
-    print("Local notifications were initialized");
+  debugPrint("Local notifications were initialized");
 
   final NotificationAppLaunchDetails notificationAppLaunchDetails =
       await localNotifications.getNotificationAppLaunchDetails();

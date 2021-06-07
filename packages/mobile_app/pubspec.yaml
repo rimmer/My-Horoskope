@@ -56,12 +56,12 @@ flutter_icons:
 
 flutter_native_splash:
   image: "assets/splash.png"
-  background_image: "assets/background.jpg"
+  background_image: "assets/background.png"
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/background.jpg
+    - assets/background.png
     - assets/splash.png
     - assets/icons/
     - assets/widget/

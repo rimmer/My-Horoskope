@@ -42,17 +42,16 @@ void main() async {
 
   if (StaticProvider.internetAvailable) {
     await getAdsManager(
-            onLoaded: (ad) {
-              StaticProvider.ads.loadedAd = ad;
-            },
-            onWatched: () {
-              StaticProvider.ads.adsAreWatched = true;
-            },
-            onFailed: (error) {
-              StaticProvider.ads.adsAreWatched = true;
-            },
-            isDebug: StaticProvider.debug.isDebug)
-        .load();
+      onLoaded: (ad) {
+        StaticProvider.ads.loadedAd = ad;
+      },
+      onWatched: () {
+        StaticProvider.ads.adsAreWatched = true;
+      },
+      onFailed: (error) {
+        StaticProvider.ads.adsAreWatched = true;
+      },
+    ).load();
   }
 
   await initLocalNotifications();

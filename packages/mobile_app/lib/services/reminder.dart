@@ -64,7 +64,7 @@ Future reminderConfig() async {
         /// @DEBUG dont delete me please
         // timeout: Duration(seconds: (reminder.id + 2) * 10),
         body: reminder.customText == false
-            ? await getPredictionText(
+            ? await _getPredictionText(
                 DateTime.now().add(reminder.duration).millisecondsSinceEpoch,
               )
             : localeText.locale.youAreBusyNotif,
@@ -73,7 +73,7 @@ Future reminderConfig() async {
       );
 }
 
-Future<String> getPredictionText(int atDay) async {
+Future<String> _getPredictionText(int atDay) async {
   final biggestProphecyType = StaticProvider.prophecyBloc.algo
       .ask(
         aboutDay: atDay,

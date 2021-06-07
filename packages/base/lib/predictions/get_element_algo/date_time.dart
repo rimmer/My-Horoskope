@@ -22,6 +22,11 @@ class GetPredictionByDate implements GetPredictionAlgorithm {
     } else if (data is Map<String, DateTime>) {
       birthDate = data['birthDate'];
       dateNow = data['dateNow'];
+    } else {
+      throw FormatException(
+        "Incorrect data given as second argument for GetPredictionByDate",
+        data,
+      );
     }
 
     final diff = dateNow.difference(birthDate).inDays;

@@ -64,7 +64,7 @@ class StaticAsset {
     ),
   };
   static Map<String, AssetImage> rust = {
-    "background": AssetImage('assets/background.jpg'),
+    "background": AssetImage('assets/background.png'),
     "card_text": AssetImage("assets/card/card_text.png"),
     "card_placeholder": AssetImage("assets/card/card_placeholder.png"),
     "magic_checkbox_true": AssetImage('assets/widget/magic_checkbox_true.png'),
