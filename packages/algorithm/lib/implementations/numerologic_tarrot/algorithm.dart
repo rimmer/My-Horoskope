@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:base/prophecy/entity/prophecy.dart';
 import 'package:base/int_datetime.dart';
 import 'package:base/user/entity/user.dart';
@@ -38,7 +39,7 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   //
 
   if (isDebug) {
-    print(calculationDate.toIso8601String());
+    log(calculationDate.toIso8601String());
   }
 
   /// @CHAOTIC value of placeholders
@@ -67,21 +68,20 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   /// Both week name and astrologic sign are decided to some gods
   /// if these Gods have the same name, prophecy will get additional 4 points
   ///
-  internalStr +=
-      dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTERNAL_STRENGTH);
-  moodlet += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.MOODLET);
-  ambition += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.AMBITION);
-  intuition +=
-      dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTUITION);
-  luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.LUCK);
+
+  moodlet += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.ROOT);
+  luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.SACRAL);
+  ambition += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.SOLAR);
+  internalStr += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.HEART);
+  intuition += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.THROAT);
 
   if (isDebug) {
-    print("- - -\nChaotic:");
-    print("Prophecy: Internal Strength, chaotic points: $internalStr");
-    print("Prophecy: Moodlet, chaotic points: $moodlet");
-    print("Prophecy: Ambition, chaotic points: $ambition");
-    print("Prophecy: Intuition, chaotic points: $intuition");
-    print("Prophecy: Luck, chaotic points: $luck");
+    log("- - -\nChaotic:");
+    log("Prophecy: Internal Strength, chaotic points: $internalStr");
+    log("Prophecy: Moodlet, chaotic points: $moodlet");
+    log("Prophecy: Ambition, chaotic points: $ambition");
+    log("Prophecy: Intuition, chaotic points: $intuition");
+    log("Prophecy: Luck, chaotic points: $luck");
   }
 
   // - - -
@@ -110,9 +110,9 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
       .mapSignAndMonthToValue[astroSign][calculationDate.month];
 
   if (isDebug) {
-    print("- - -\nBase:");
-    print("Prophecy: Internal Strength, base points: $internalStrAmbitionBase");
-    print("Prophecy: Ambition, base points: $internalStrAmbitionBase");
+    log("- - -\nBase:");
+    log("Prophecy: Internal Strength, base points: $internalStrAmbitionBase");
+    log("Prophecy: Ambition, base points: $internalStrAmbitionBase");
   }
 
   ambition += internalStrAmbitionBase;
@@ -148,16 +148,16 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
       moodIntuitionLuckBase(birthDate.day, calculationDate.day);
 
   if (isDebug) {
-    print("Prophecy: Moodlet, base points: $moodIntuitLuckBase");
-    print("Prophecy: Intuition, base points: $moodIntuitLuckBase");
-    print("Prophecy: Luck, base points: $moodIntuitLuckBase");
+    log("Prophecy: Moodlet, base points: $moodIntuitLuckBase");
+    log("Prophecy: Intuition, base points: $moodIntuitLuckBase");
+    log("Prophecy: Luck, base points: $moodIntuitLuckBase");
   }
 
   moodlet += moodIntuitLuckBase;
   intuition += moodIntuitLuckBase;
   luck += moodIntuitLuckBase;
 
-  if (isDebug) print("- - -\nCalesial tarot calcualtion:");
+  if (isDebug) log("- - -\nCalesial tarot calcualtion:");
 
   /// @MYSTIC
   /// this is the most interesting part of an algorithm
@@ -206,15 +206,14 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   /// In modulus %56
   int mod56 = daysLived % 56;
 
-  if (isDebug) print("CTarot: Minor is $mod56,");
+  if (isDebug) log("CTarot: Minor is $mod56,");
 
   /// In one day from 56
   /// User can get the card that represents its astrologic sign
   bool probabilityMinor = userPatron == Kabbalah.patronMinor[mod56];
 
   if (isDebug)
-    print(
-        "CTarot: Minor Card is ${(probabilityMinor) ? "" : "NOT "}user patron,");
+    log("CTarot: Minor Card is ${(probabilityMinor) ? "" : "NOT "}user patron,");
 
   ///
   /// Probability is 1/56, but 4 signs have probability 2/56
@@ -226,15 +225,14 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   /// In modulus %78
   int mod78 = daysLived % 78;
 
-  if (isDebug) print("CTarot: Full is $mod78,");
+  if (isDebug) log("CTarot: Full is $mod78,");
 
   /// In 3 days from 78
   /// User can get the card that represents its astrologic sign
   bool probabilityFull = userPatron == Kabbalah.patronFull[mod78];
 
   if (isDebug)
-    print(
-        "CTarot: Minor+Major Card is ${(probabilityFull) ? "" : "NOT "}user patron,");
+    log("CTarot: Minor+Major Card is ${(probabilityFull) ? "" : "NOT "}user patron,");
 
   ///
   /// Probability is 3/78 or 1/26
@@ -246,15 +244,14 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   /// In modulus %22
   int mod22 = daysLived % 22;
 
-  if (isDebug) print("CTarot: Major is $mod22,");
+  if (isDebug) log("CTarot: Major is $mod22,");
 
   /// In 2 days from 22
   /// User can get card that represents its astrologic sign
   bool probabilityMajor = userPatron == Kabbalah.patronMajor[mod22];
 
   if (isDebug)
-    print(
-        "CTarot: Major Card is ${(probabilityMajor) ? "" : "NOT "}user patron,");
+    log("CTarot: Major Card is ${(probabilityMajor) ? "" : "NOT "}user patron,");
 
   ///
   /// Probability is 2/22 or 1/11
@@ -271,8 +268,7 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     luck += _biggestBonus;
 
     if (isDebug)
-      print(
-          "CTarot: user won the biggest bonus, which is $_biggestBonus points for every prophecy,");
+      log("CTarot: user won the biggest bonus, which is $_biggestBonus points for every prophecy,");
     //
   } else if (probabilityFull) {
     //
@@ -283,8 +279,7 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     luck += _bigBonus;
 
     if (isDebug)
-      print(
-          "CTarot: user won a big bonus, which is $_bigBonus points for every prophecy,");
+      log("CTarot: user won a big bonus, which is $_bigBonus points for every prophecy,");
     //
   } else if (probabilityMajor) {
     //
@@ -295,8 +290,7 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     luck += _middleBonus;
 
     if (isDebug)
-      print(
-          "CTarot: user won a middle bonus, which is $_middleBonus points for every prophecy,");
+      log("CTarot: user won a middle bonus, which is $_middleBonus points for every prophecy,");
     //
   } else {
     /// in most days user will not get so huge bonuses
@@ -331,7 +325,7 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     int impactValue = Kabbalah.impactMinor[mod56][userSuit];
 
     if (isDebug)
-      print("CTarot: user won $impactValue points for every prophecy,");
+      log("CTarot: user won $impactValue points for every prophecy,");
 
     internalStr += impactValue;
     moodlet += impactValue;
@@ -344,36 +338,35 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     ProphecyType bonusPoints = Kabbalah.impactMajor[mod22];
 
     switch (bonusPoints) {
-      case ProphecyType.INTERNAL_STRENGTH:
+      case ProphecyType.HEART:
         internalStr += _bonusPointsMagnitude;
 
         if (isDebug)
-          print(
-              "CTarot: user won $_bonusPointsMagnitude points to internal strength,");
+          log("CTarot: user won $_bonusPointsMagnitude points to internal strength,");
         break;
-      case ProphecyType.MOODLET:
+      case ProphecyType.ROOT:
         moodlet += _bonusPointsMagnitude;
 
         if (isDebug)
-          print("CTarot: user won $_bonusPointsMagnitude points to moodlet,");
+          log("CTarot: user won $_bonusPointsMagnitude points to moodlet,");
         break;
-      case ProphecyType.AMBITION:
+      case ProphecyType.SOLAR:
         ambition += _bonusPointsMagnitude;
 
         if (isDebug)
-          print("CTarot: user won $_bonusPointsMagnitude points to ambition,");
+          log("CTarot: user won $_bonusPointsMagnitude points to ambition,");
         break;
-      case ProphecyType.INTUITION:
+      case ProphecyType.THROAT:
         intuition += _bonusPointsMagnitude;
 
         if (isDebug)
-          print("CTarot: user won $_bonusPointsMagnitude points to intuition,");
+          log("CTarot: user won $_bonusPointsMagnitude points to intuition,");
         break;
-      case ProphecyType.LUCK:
+      case ProphecyType.SACRAL:
         luck += _bonusPointsMagnitude;
 
         if (isDebug)
-          print("CTarot: user won $_bonusPointsMagnitude points to luck,");
+          log("CTarot: user won $_bonusPointsMagnitude points to luck,");
         break;
     }
   }
@@ -381,34 +374,32 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   /// @END
   /// Result,
   ///
-  /// First we print,
+  /// First we log,
   if (isDebug) {
-    print("- - -\nResult:");
-    print("Prophecy: Internal Strength, total points: $internalStr");
-    print("Prophecy: Moodlet, total points: $moodlet");
-    print("Prophecy: Ambition, total points: $ambition");
-    print("Prophecy: Intuition, total points: $intuition");
-    print("Prophecy: Luck, total points: $luck");
+    log("- - -\nResult:");
+    log("Prophecy: Internal Strength, total points: $internalStr");
+    log("Prophecy: Moodlet, total points: $moodlet");
+    log("Prophecy: Ambition, total points: $ambition");
+    log("Prophecy: Intuition, total points: $intuition");
+    log("Prophecy: Luck, total points: $luck");
   }
 
   /// Now, we finally send out values to our algorithm module call:
   return {
-    ProphecyType.INTERNAL_STRENGTH:
-        ProphecyEntity(id: ProphecyType.INTERNAL_STRENGTH, value: internalStr),
+    ProphecyType.HEART:
+        ProphecyEntity(id: ProphecyType.HEART, value: internalStr),
     //
 
-    ProphecyType.MOODLET:
-        ProphecyEntity(id: ProphecyType.MOODLET, value: moodlet),
+    ProphecyType.ROOT: ProphecyEntity(id: ProphecyType.ROOT, value: moodlet),
     //
 
-    ProphecyType.AMBITION:
-        ProphecyEntity(id: ProphecyType.AMBITION, value: ambition),
+    ProphecyType.SOLAR: ProphecyEntity(id: ProphecyType.SOLAR, value: ambition),
     //
 
-    ProphecyType.INTUITION:
-        ProphecyEntity(id: ProphecyType.INTUITION, value: intuition),
+    ProphecyType.THROAT:
+        ProphecyEntity(id: ProphecyType.THROAT, value: intuition),
     //
 
-    ProphecyType.LUCK: ProphecyEntity(id: ProphecyType.LUCK, value: luck),
+    ProphecyType.SACRAL: ProphecyEntity(id: ProphecyType.SACRAL, value: luck),
   };
 }

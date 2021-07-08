@@ -28,33 +28,33 @@ extension DailyScreenPredictionMethods on _DailyScreenState {
     String positivePredictionText;
 
     switch (type) {
-      case ProphecyType.AMBITION:
+      case ProphecyType.SOLAR:
         positivePredictionText = //
             StaticProvider.data.predictions.predictionPositiveAmbition(
           birthDate,
         );
         break;
-      case ProphecyType.INTUITION:
+      case ProphecyType.THROAT:
         positivePredictionText =
             //
             StaticProvider.data.predictions.predictionPositiveIntelligence(
           birthDate,
         );
         break;
-      case ProphecyType.LUCK:
+      case ProphecyType.SACRAL:
         positivePredictionText = //
             StaticProvider.data.predictions.predictionPositiveLuck(
           birthDate,
         );
         break;
-      case ProphecyType.MOODLET:
+      case ProphecyType.ROOT:
         positivePredictionText = //
             StaticProvider.data.predictions.predictionPositiveMoodlet(
           birthDate,
         );
         break;
 
-      case ProphecyType.INTERNAL_STRENGTH:
+      case ProphecyType.HEART:
       default:
         positivePredictionText =
             //
@@ -74,33 +74,33 @@ extension DailyScreenPredictionMethods on _DailyScreenState {
     String negativePredictionText;
 
     switch (type) {
-      case ProphecyType.AMBITION:
+      case ProphecyType.SOLAR:
         negativePredictionText = //
             StaticProvider.data.predictions.predictionNegativeAmbition(
           birthDate,
         );
         break;
-      case ProphecyType.INTUITION:
+      case ProphecyType.THROAT:
         negativePredictionText =
             //
             StaticProvider.data.predictions.predictionNegativeIntelligence(
           birthDate,
         );
         break;
-      case ProphecyType.LUCK:
+      case ProphecyType.SACRAL:
         negativePredictionText = //
             StaticProvider.data.predictions.predictionNegativeLuck(
           birthDate,
         );
         break;
-      case ProphecyType.MOODLET:
+      case ProphecyType.ROOT:
         negativePredictionText = //
             StaticProvider.data.predictions.predictionNegativeMoodlet(
           birthDate,
         );
         break;
 
-      case ProphecyType.INTERNAL_STRENGTH:
+      case ProphecyType.HEART:
       default:
         negativePredictionText =
             //

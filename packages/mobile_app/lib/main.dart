@@ -9,9 +9,12 @@ void main() async {
   StaticProvider.data.appPref = AppPreferencesFlutter();
   await StaticProvider.data.appPref.load();
 
-  /// predictions init and load
+  /// predictions init and load, language locale
   StaticProvider.data.predictions = PredictionsFlutterMobile();
   await chooseLocale();
+
+  /// timezone configuration
+  await configureLocalTimeZone();
 
   /// firebase
   var app = await Firebase.initializeApp();
@@ -39,18 +42,20 @@ void main() async {
 
   if (StaticProvider.internetAvailable) {
     await getAdsManager(
-            onLoaded: (ad) {
-              StaticProvider.ads.loadedAd = ad;
-            },
-            onWatched: () {
-              StaticProvider.ads.adsAreWatched = true;
-            },
-            onFailed: (error) {
-              StaticProvider.ads.adsAreWatched = true;
-            },
-            isDebug: StaticProvider.debug.isDebug)
-        .load();
+      onLoaded: (ad) {
+        StaticProvider.ads.loadedAd = ad;
+      },
+      onWatched: () {
+        StaticProvider.ads.adsAreWatched = true;
+      },
+      onFailed: (error) {
+        StaticProvider.ads.adsAreWatched = true;
+      },
+    ).load();
   }
+
+  await initLocalNotifications();
+  await createNotificationChannel(Notif.reminderChannel);
 
   /// authetication
   StaticProvider.authBloc = AuthenticationBloc(
@@ -80,6 +85,8 @@ Widget appBuilder() => imageBackground(
                   ),
                 ),
               );
+
+              reminderConfig();
 
               return DailyScreen();
 

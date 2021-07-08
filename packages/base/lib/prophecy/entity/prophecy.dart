@@ -4,11 +4,11 @@ import 'package:meta/meta.dart';
 part 'prophecy.g.dart';
 
 enum ProphecyType {
-  LUCK,
-  INTERNAL_STRENGTH,
-  MOODLET,
-  AMBITION,
-  INTUITION,
+  ROOT,
+  SACRAL,
+  SOLAR,
+  HEART,
+  THROAT,
 }
 
 extension ProphecyTypeToString on ProphecyType {
@@ -89,10 +89,9 @@ extension PropheciesObject on Map<ProphecyType, ProphecyEntity> {
 
 // ignore: non_constant_identifier_names
 Map<ProphecyType, ProphecyEntity> Prophecies() => {
-      ProphecyType.INTERNAL_STRENGTH:
-          ProphecyEntity(id: ProphecyType.INTERNAL_STRENGTH),
-      ProphecyType.MOODLET: ProphecyEntity(id: ProphecyType.MOODLET),
-      ProphecyType.AMBITION: ProphecyEntity(id: ProphecyType.AMBITION),
-      ProphecyType.INTUITION: ProphecyEntity(id: ProphecyType.INTUITION),
-      ProphecyType.LUCK: ProphecyEntity(id: ProphecyType.LUCK),
+      ProphecyType.ROOT: ProphecyEntity(id: ProphecyType.ROOT),
+      ProphecyType.SACRAL: ProphecyEntity(id: ProphecyType.SACRAL),
+      ProphecyType.SOLAR: ProphecyEntity(id: ProphecyType.SOLAR),
+      ProphecyType.HEART: ProphecyEntity(id: ProphecyType.HEART),
+      ProphecyType.THROAT: ProphecyEntity(id: ProphecyType.THROAT),
     };

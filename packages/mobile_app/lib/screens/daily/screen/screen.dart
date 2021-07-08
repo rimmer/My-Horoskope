@@ -157,11 +157,36 @@ class _DailyScreenState extends State<DailyScreen>
                 scrollDirection: Axis.vertical,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
+                  /// {NAME} {ROLE}
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 16.0,
+                      left: 16.0,
+                    ),
+                    child: Text(
+                      dat.labelStr,
+                      style: AppTextStyle.userName,
+                    ),
+                  ),
+
+                  /// {Astrosign} {Birthdate}
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16.0,
+                      bottom: 8.0,
+                    ),
+                    child: SizedBox(
+                      height: 32,
+                      child: dat.birthRow,
+                    ),
+                  ),
+
                   /// @PROPHECY
                   BlocBuilder<ProphecyBloc, ProphecyState>(
                     bloc: StaticProvider.prophecyBloc,
                     builder: prophecyBuilder,
                   ),
+
                   const SizedBox(
                     height: SPACE_AFTER_PROPHECY,
                   ),

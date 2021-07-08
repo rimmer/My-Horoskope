@@ -94,11 +94,11 @@ enum CardType {
 }
 
 const Map<CardType, ProphecyType> cardTypeToProphecy = {
-  CardType.TREE: ProphecyType.MOODLET,
-  CardType.COIN: ProphecyType.INTUITION,
-  CardType.STAR: ProphecyType.LUCK,
-  CardType.SWORD: ProphecyType.AMBITION,
-  CardType.CUP: ProphecyType.INTERNAL_STRENGTH,
+  CardType.TREE: ProphecyType.ROOT,
+  CardType.STAR: ProphecyType.SACRAL,
+  CardType.SWORD: ProphecyType.SOLAR,
+  CardType.CUP: ProphecyType.HEART,
+  CardType.COIN: ProphecyType.THROAT,
 };
 
 const Map<CardType, String> cardTypeToString = {

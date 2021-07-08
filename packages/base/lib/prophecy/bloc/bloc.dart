@@ -51,15 +51,15 @@ Map<ProphecyType, ProphecyEntity> limitProphecies(
     @required double max}) {
   //
   PropheciesMapLimit(prophecies)
-      .limit(type: ProphecyType.INTERNAL_STRENGTH, min: min, max: max);
+      .limit(type: ProphecyType.ROOT, min: min, max: max);
   PropheciesMapLimit(prophecies)
-      .limit(type: ProphecyType.MOODLET, min: min, max: max);
+      .limit(type: ProphecyType.SACRAL, min: min, max: max);
   PropheciesMapLimit(prophecies)
-      .limit(type: ProphecyType.AMBITION, min: min, max: max);
+      .limit(type: ProphecyType.SOLAR, min: min, max: max);
   PropheciesMapLimit(prophecies)
-      .limit(type: ProphecyType.INTUITION, min: min, max: max);
+      .limit(type: ProphecyType.HEART, min: min, max: max);
   PropheciesMapLimit(prophecies)
-      .limit(type: ProphecyType.LUCK, min: min, max: max);
+      .limit(type: ProphecyType.THROAT, min: min, max: max);
 
   return prophecies;
 }

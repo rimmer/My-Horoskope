@@ -35,10 +35,10 @@ main() {
       isDebug: true,
     );
 
-    expect(result[ProphecyType.INTERNAL_STRENGTH].value, 61.0);
-    expect(result[ProphecyType.MOODLET].value, 50.0);
-    expect(result[ProphecyType.AMBITION].value, 59.0);
-    expect(result[ProphecyType.INTUITION].value, 65.0);
-    expect(result[ProphecyType.LUCK].value, 70.0);
+    expect(result[ProphecyType.ROOT].value, 50.0);
+    expect(result[ProphecyType.SACRAL].value, 70.0);
+    expect(result[ProphecyType.SOLAR].value, 59.0);
+    expect(result[ProphecyType.HEART].value, 61.0);
+    expect(result[ProphecyType.THROAT].value, 65.0);
   });
 }

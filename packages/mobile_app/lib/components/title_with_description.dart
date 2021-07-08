@@ -41,41 +41,38 @@ class _TitleWithDescriptionState extends State<TitleWithDescription> {
               ),
             ),
             actions: <Widget>[
-              const Expanded(
-                child: SizedBox(),
-              ),
-              Flexible(
-                child: GradientFlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    localeText.understood.toUpperCase(),
-                    style: AppTextStyle.gradientButton,
-                  ),
-                  padding: EdgeInsets.only(
-                    top: 11,
-                    bottom: 11,
-                    left: 20,
-                    right: 15,
-                  ),
-                  gradient: LinearGradient(
-                    colors: <Color>[
-                      AppColors.accentDark,
-                      AppColors.accent,
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(30.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.accentDark,
-                      offset: Offset(-1.0, 2.0),
-                      blurRadius: 16,
-                    )
+              GradientFlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  localeText.understood.toUpperCase(),
+                  style: AppTextStyle.gradientButton,
+                ),
+                padding: EdgeInsets.only(
+                  top: 11,
+                  bottom: 11,
+                  left: 20,
+                  right: 15,
+                ),
+                gradient: LinearGradient(
+                  colors: <Color>[
+                    AppColors.accentDark,
+                    AppColors.accent,
                   ],
                 ),
+                borderRadius: BorderRadius.circular(30.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.accentDark,
+                    offset: Offset(-1.0, 2.0),
+                    blurRadius: 16,
+                  )
+                ],
               ),
-              const SizedBox(width: 20),
+              SizedBox(
+                width: 20.0,
+              )
             ],
           ),
         );
@@ -87,7 +84,7 @@ class _TitleWithDescriptionState extends State<TitleWithDescription> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "${widget.title}:",
+              widget.title,
               style: AppTextStyle.titleDescription,
             ),
             StaticAsset.svg["title_info"],

@@ -35,12 +35,16 @@ dependencies:
   firebase_in_app_messaging: 
   firebase_messaging:
   google_mobile_ads:
+  flutter_local_notifications:
+  timezone: 
+  flutter_native_timezone: 
 
 
 dev_dependencies:
   #flutter_test:
     #sdk: flutter
-  flutter_launcher_icons: 
+  flutter_launcher_icons:
+  flutter_native_splash:
 
 flutter_icons:
   ios: true
@@ -50,11 +54,14 @@ flutter_icons:
   adaptive_icon_background: "assets/launcher/icon-android-background.png"
   adaptive_icon_foreground: "assets/launcher/icon-android-foreground.png"
 
+flutter_native_splash:
+  image: "assets/splash.png"
+  background_image: "assets/background.png"
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/background.jpg
+    - assets/background.png
     - assets/splash.png
     - assets/icons/
     - assets/widget/

@@ -24,16 +24,15 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
         ),
 
         if (toShow.moodlet)
-          ProphecyRecord(prophecy: state.prophecy[ProphecyType.MOODLET]),
-        if (toShow.intuition)
-          ProphecyRecord(prophecy: state.prophecy[ProphecyType.INTUITION]),
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.ROOT]),
         if (toShow.luck)
-          ProphecyRecord(prophecy: state.prophecy[ProphecyType.LUCK]),
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.SACRAL]),
         if (toShow.ambition)
-          ProphecyRecord(prophecy: state.prophecy[ProphecyType.AMBITION]),
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.SOLAR]),
         if (toShow.internalStrength)
-          ProphecyRecord(
-              prophecy: state.prophecy[ProphecyType.INTERNAL_STRENGTH]),
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.HEART]),
+        if (toShow.intuition)
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.THROAT]),
 
         /// if all prophecies are disabled show luck
         if (toShow.internalStrength == false &&
@@ -41,37 +40,13 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
             toShow.ambition == false &&
             toShow.intuition == false &&
             toShow.luck == false)
-          ProphecyRecord(prophecy: state.prophecy[ProphecyType.LUCK]),
+          ProphecyRecord(prophecy: state.prophecy[ProphecyType.SACRAL]),
       ];
       //
 
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          /// {NAME} {ROLE}
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 16.0,
-              left: 16.0,
-            ),
-            child: Text(
-              dat.labelStr,
-              style: AppTextStyle.userName,
-            ),
-          ),
-
-          /// {Astrosign} {Birthdate}
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-              bottom: 8.0,
-            ),
-            child: SizedBox(
-              height: 32,
-              child: dat.birthRow,
-            ),
-          ),
-
           /// Prophecy Sheet
           Container(
             margin: const EdgeInsets.symmetric(
@@ -131,8 +106,8 @@ extension DailyScreenProphecyBuilder on _DailyScreenState {
                           top: 18.0,
                           left: 3.0,
                         ),
-                        title: localeText.impact.capitalize(),
-                        notation: localeText.impactHint,
+                        title: localeText.impactPlanets.capitalize(),
+                        notation: localeText.impactPlanetsHint,
                       ),
                       Container(
                         height: 32.0,

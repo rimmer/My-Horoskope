@@ -4,10 +4,10 @@ extension DailyScreenCardsMethods on _DailyScreenState {
   ListView cards() {
     final tarrotCardsRow = <Widget>[
       if (toShow.moodlet) _tarrotCardBuilder(CardType.TREE),
-      if (toShow.intuition) _tarrotCardBuilder(CardType.COIN),
       if (toShow.luck) _tarrotCardBuilder(CardType.STAR),
       if (toShow.ambition) _tarrotCardBuilder(CardType.SWORD),
       if (toShow.internalStrength) _tarrotCardBuilder(CardType.CUP),
+      if (toShow.intuition) _tarrotCardBuilder(CardType.COIN),
       //
       if (toShow.internalStrength == false &&
           toShow.moodlet == false &&

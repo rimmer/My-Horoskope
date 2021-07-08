@@ -52,11 +52,11 @@ T _$enumDecodeNullable<T>(
 }
 
 const _$ProphecyTypeEnumMap = {
-  ProphecyType.LUCK: 'LUCK',
-  ProphecyType.INTERNAL_STRENGTH: 'INTERNAL_STRENGTH',
-  ProphecyType.MOODLET: 'MOODLET',
-  ProphecyType.AMBITION: 'AMBITION',
-  ProphecyType.INTUITION: 'INTUITION',
+  ProphecyType.ROOT: 'ROOT',
+  ProphecyType.SACRAL: 'SACRAL',
+  ProphecyType.SOLAR: 'SOLAR',
+  ProphecyType.HEART: 'HEART',
+  ProphecyType.THROAT: 'THROAT',
 };
 
 ProphecyEntity _$ProphecyEntityFromJson(Map<String, dynamic> json) {

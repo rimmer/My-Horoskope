@@ -28,8 +28,8 @@ class ProphecyIsLoading extends StatelessWidget {
           top: 18.0,
           left: 3.0,
         ),
-        title: localeText.impact.capitalize(),
-        notation: localeText.impactHint,
+        title: localeText.impactPlanets.capitalize(),
+        notation: localeText.impactPlanetsHint,
       ),
       Container(
         height: 32.0,

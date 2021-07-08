@@ -42,23 +42,23 @@ int dayOfWeekCalc(DateTime birthDate, DateTime cur, ProphecyType prophecy) {
   int addition;
 
   switch (prophecy) {
-    case ProphecyType.INTERNAL_STRENGTH:
+    case ProphecyType.HEART:
       addition = 1;
       break;
 
-    case ProphecyType.MOODLET:
+    case ProphecyType.ROOT:
       addition = 6;
       break;
 
-    case ProphecyType.AMBITION:
+    case ProphecyType.SOLAR:
       addition = 5;
       break;
 
-    case ProphecyType.INTUITION:
+    case ProphecyType.THROAT:
       addition = 2;
       break;
 
-    case ProphecyType.LUCK:
+    case ProphecyType.SACRAL:
       addition = 3;
       break;
   }
