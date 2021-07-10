@@ -58,6 +58,14 @@ class ProphecyEntity {
 }
 
 extension PropheciesObject on Map<ProphecyType, ProphecyEntity> {
+  double get sum {
+    double sum = 0.0;
+    this.forEach((key, value) {
+      sum += value.value;
+    });
+    return sum;
+  }
+
   ProphecyType get least {
     ProphecyEntity res;
     double min = double.maxFinite;
@@ -85,6 +93,38 @@ extension PropheciesObject on Map<ProphecyType, ProphecyEntity> {
 
     return res.id;
   }
+
+  void limit(
+      {@required ProphecyType type,
+      @required double min,
+      @required double max}) {
+    //
+
+    final unLimVal = this[type].value;
+
+    if (unLimVal > max)
+      this[type].value = max;
+    else if (unLimVal < min) this[type].value = min;
+  }
+}
+
+Map<ProphecyType, ProphecyEntity> limitProphecies(
+    {@required Map<ProphecyType, ProphecyEntity> prophecies,
+    @required double min,
+    @required double max}) {
+  //
+  PropheciesObject(prophecies)
+      .limit(type: ProphecyType.ROOT, min: min, max: max);
+  PropheciesObject(prophecies)
+      .limit(type: ProphecyType.SACRAL, min: min, max: max);
+  PropheciesObject(prophecies)
+      .limit(type: ProphecyType.SOLAR, min: min, max: max);
+  PropheciesObject(prophecies)
+      .limit(type: ProphecyType.HEART, min: min, max: max);
+  PropheciesObject(prophecies)
+      .limit(type: ProphecyType.THROAT, min: min, max: max);
+
+  return prophecies;
 }
 
 // ignore: non_constant_identifier_names

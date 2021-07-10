@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 class AppTextStyle {
-  static const predictionCardText = TextStyle(
+  static const cardText = TextStyle(
     fontSize: 16,
     color: AppColors.textPrimary,
     fontWeight: FontWeight.w500,

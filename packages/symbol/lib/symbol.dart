@@ -3,7 +3,7 @@ import 'package:base/prophecy/entity/prophecy.dart';
 // private
 import 'src/models.dart';
 
-const SymbolCombinations = <PropheciesRange, SymbolCombination>{
+final SymbolCombinations = <PropheciesRange, SymbolCombination>{
   PropheciesRange(
     mood: Range.low,
     intuition: Range.low,

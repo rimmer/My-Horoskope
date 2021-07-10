@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:base/preferences/interface.dart';
-import 'package:base/prophecy/bloc/bloc.dart';
+import 'package:base/prophecy/util/prophecy_utility.dart';
 import 'package:base/user/auth/bloc/bloc.dart';
 import 'package:base/user/repository/interface.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -14,7 +14,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'predictions.dart';
 
 export 'package:base/preferences/interface.dart';
-export 'package:base/prophecy/bloc/bloc.dart';
+export 'package:base/prophecy/util/prophecy_utility.dart';
 export 'package:base/user/auth/bloc/bloc.dart';
 export 'package:base/user/repository/interface.dart';
 export 'package:firebase_analytics/firebase_analytics.dart';
@@ -40,8 +40,7 @@ class StaticProvider {
   // ignore: close_sinks
   static AuthenticationBloc authBloc;
 
-  // ignore: close_sinks
-  static ProphecyBloc prophecyBloc;
+  static ProphecyUtility prophecyUtil;
 
   /// services
   static _Firebase firebase = _Firebase();

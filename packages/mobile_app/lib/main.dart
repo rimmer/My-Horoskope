@@ -40,19 +40,19 @@ void main() async {
   MobileAds.instance.initialize();
   StaticProvider.internetAvailable = await internetCheck();
 
-  if (StaticProvider.internetAvailable) {
-    await getAdsManager(
-      onLoaded: (ad) {
-        StaticProvider.ads.loadedAd = ad;
-      },
-      onWatched: () {
-        StaticProvider.ads.adsAreWatched = true;
-      },
-      onFailed: (error) {
-        StaticProvider.ads.adsAreWatched = true;
-      },
-    ).load();
-  }
+  // if (StaticProvider.internetAvailable) {
+  //   await getAdsManager(
+  //     onLoaded: (ad) {
+  //       StaticProvider.ads.loadedAd = ad;
+  //     },
+  //     onWatched: () {
+  //       StaticProvider.ads.adsAreWatched = true;
+  //     },
+  //     onFailed: (error) {
+  //       StaticProvider.ads.adsAreWatched = true;
+  //     },
+  //   ).load();
+  // }
 
   await initLocalNotifications();
   await createNotificationChannel(Notif.reminderChannel);
@@ -78,8 +78,8 @@ Widget appBuilder() => imageBackground(
               StaticProvider.data.usersRepo =
                   StaticProvider.authBloc.auth.repository;
 
-              StaticProvider.prophecyBloc = ProphecyBloc(
-                algo: Algorithm(
+              StaticProvider.prophecyUtil = ProphecyUtility(
+                Algorithm(
                   dat: AlgoData(
                     usersRepository: StaticProvider.data.usersRepo,
                   ),

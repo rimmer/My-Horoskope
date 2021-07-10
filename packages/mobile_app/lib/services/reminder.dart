@@ -74,7 +74,7 @@ Future reminderConfig() async {
 }
 
 Future<String> _getPredictionText(int atDay) async {
-  final biggestProphecyType = StaticProvider.prophecyBloc.algo
+  final biggestProphecyType = StaticProvider.prophecyUtil.algo
       .ask(
         aboutDay: atDay,
         isDebug: false,
