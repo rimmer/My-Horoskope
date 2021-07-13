@@ -69,14 +69,8 @@ class _Firebase {
 }
 
 class _Ads {
-  String _adUnitTest = "ca-app-pub-3940256099942544/1033173712";
-  String _adUnitProd = "ca-app-pub-4088776870080587/3604438949";
-  //
-  String get adUnitId =>
-      StaticProvider.debug.isDebug ? _adUnitTest : _adUnitProd;
-
+  AdManagerInterstitialAd manager;
   bool watchAdsButtonIsInactive = false;
-  AdWithoutView loadedAd;
   bool adsAreWatched = false;
 }
 

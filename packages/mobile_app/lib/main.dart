@@ -5,6 +5,8 @@ void main() async {
   /// also allows to use async
   WidgetsFlutterBinding.ensureInitialized();
 
+  await dotenv.load(fileName: "assets/.env");
+
   /// Application Preferences init
   StaticProvider.data.appPref = AppPreferencesFlutter();
   await StaticProvider.data.appPref.load();
@@ -40,19 +42,15 @@ void main() async {
   MobileAds.instance.initialize();
   StaticProvider.internetAvailable = await internetCheck();
 
-  // if (StaticProvider.internetAvailable) {
-  //   await getAdsManager(
-  //     onLoaded: (ad) {
-  //       StaticProvider.ads.loadedAd = ad;
-  //     },
-  //     onWatched: () {
-  //       StaticProvider.ads.adsAreWatched = true;
-  //     },
-  //     onFailed: (error) {
-  //       StaticProvider.ads.adsAreWatched = true;
-  //     },
-  //   ).load();
-  // }
+  if (StaticProvider.internetAvailable)
+    await initAds(
+      onLoaded: (manager) {
+        StaticProvider.ads.manager = manager;
+      },
+      onWatched: () {
+        StaticProvider.ads.adsAreWatched = true;
+      },
+    );
 
   await initLocalNotifications();
   await createNotificationChannel(Notif.reminderChannel);

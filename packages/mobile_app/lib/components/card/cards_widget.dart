@@ -66,8 +66,10 @@ class CardsWidgetState extends State<CardsWidget> {
       ),
     };
 
+    if (StaticProvider.ads.adsAreWatched) cards.adsWatched = true;
+
     /// if need to see ads inside debug mode, comment this line
-    if (StaticProvider.adsAreDisabled) cards.adsWatched = true;
+    // if (StaticProvider.adsAreDisabled) cards.adsWatched = true;
 
     super.initState();
   }
@@ -149,8 +151,7 @@ class CardsWidgetState extends State<CardsWidget> {
       StaticProvider.ads.watchAdsButtonIsInactive = true;
     });
 
-    // @TODO
-    // await StaticProvider.ads.loadedAd.show();
+    await StaticProvider.ads.manager.show();
 
     // ignore: invalid_use_of_protected_member
     setState(() {

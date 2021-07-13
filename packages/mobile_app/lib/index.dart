@@ -9,6 +9,7 @@ import 'screens/settings/screen.dart';
 import 'services/static_assets.dart';
 import 'theme/app_theme.dart';
 
+export 'package:flutter_dotenv/flutter_dotenv.dart';
 export 'package:algorithm/algorithm.dart';
 export 'package:base/cards.dart';
 export 'package:base/preferences/flutter_default.dart';
