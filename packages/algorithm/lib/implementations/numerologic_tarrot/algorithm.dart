@@ -68,13 +68,12 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
   /// Both week name and astrologic sign are decided to some gods
   /// if these Gods have the same name, prophecy will get additional 4 points
   ///
-  internalStr +=
-      dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTERNAL_STRENGTH);
-  moodlet += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.MOODLET);
-  ambition += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.AMBITION);
-  intuition +=
-      dayOfWeekCalc(birthDate, calculationDate, ProphecyType.INTUITION);
-  luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.LUCK);
+
+  moodlet += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.ROOT);
+  luck += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.SACRAL);
+  ambition += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.SOLAR);
+  internalStr += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.HEART);
+  intuition += dayOfWeekCalc(birthDate, calculationDate, ProphecyType.THROAT);
 
   if (isDebug) {
     log("- - -\nChaotic:");
@@ -339,31 +338,31 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
     ProphecyType bonusPoints = Kabbalah.impactMajor[mod22];
 
     switch (bonusPoints) {
-      case ProphecyType.INTERNAL_STRENGTH:
+      case ProphecyType.HEART:
         internalStr += _bonusPointsMagnitude;
 
         if (isDebug)
           log("CTarot: user won $_bonusPointsMagnitude points to internal strength,");
         break;
-      case ProphecyType.MOODLET:
+      case ProphecyType.ROOT:
         moodlet += _bonusPointsMagnitude;
 
         if (isDebug)
           log("CTarot: user won $_bonusPointsMagnitude points to moodlet,");
         break;
-      case ProphecyType.AMBITION:
+      case ProphecyType.SOLAR:
         ambition += _bonusPointsMagnitude;
 
         if (isDebug)
           log("CTarot: user won $_bonusPointsMagnitude points to ambition,");
         break;
-      case ProphecyType.INTUITION:
+      case ProphecyType.THROAT:
         intuition += _bonusPointsMagnitude;
 
         if (isDebug)
           log("CTarot: user won $_bonusPointsMagnitude points to intuition,");
         break;
-      case ProphecyType.LUCK:
+      case ProphecyType.SACRAL:
         luck += _bonusPointsMagnitude;
 
         if (isDebug)
@@ -387,22 +386,20 @@ Map<ProphecyType, ProphecyEntity> numerologicAndTarrotProphet(
 
   /// Now, we finally send out values to our algorithm module call:
   return {
-    ProphecyType.INTERNAL_STRENGTH:
-        ProphecyEntity(id: ProphecyType.INTERNAL_STRENGTH, value: internalStr),
+    ProphecyType.HEART:
+        ProphecyEntity(id: ProphecyType.HEART, value: internalStr),
     //
 
-    ProphecyType.MOODLET:
-        ProphecyEntity(id: ProphecyType.MOODLET, value: moodlet),
+    ProphecyType.ROOT: ProphecyEntity(id: ProphecyType.ROOT, value: moodlet),
     //
 
-    ProphecyType.AMBITION:
-        ProphecyEntity(id: ProphecyType.AMBITION, value: ambition),
+    ProphecyType.SOLAR: ProphecyEntity(id: ProphecyType.SOLAR, value: ambition),
     //
 
-    ProphecyType.INTUITION:
-        ProphecyEntity(id: ProphecyType.INTUITION, value: intuition),
+    ProphecyType.THROAT:
+        ProphecyEntity(id: ProphecyType.THROAT, value: intuition),
     //
 
-    ProphecyType.LUCK: ProphecyEntity(id: ProphecyType.LUCK, value: luck),
+    ProphecyType.SACRAL: ProphecyEntity(id: ProphecyType.SACRAL, value: luck),
   };
 }

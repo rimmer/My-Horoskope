@@ -28,18 +28,18 @@ class Cards {
 
   /// booleans to know if some card was chosen once
   final Map<CardType, bool> cardShown = {
-    CardType.TREE: false,
-    CardType.COIN: false,
-    CardType.STAR: false,
-    CardType.SWORD: false,
-    CardType.CUP: false,
+    CardType.COLOR: false,
+    CardType.NUMBER: false,
+    CardType.TARROT: false,
+    CardType.GEM: false,
+    CardType.TEXT: false,
   };
   int cardsShownCount() =>
-      (cardShown[CardType.TREE] ? 1 : 0) +
-      (cardShown[CardType.COIN] ? 1 : 0) +
-      (cardShown[CardType.STAR] ? 1 : 0) +
-      (cardShown[CardType.SWORD] ? 1 : 0) +
-      (cardShown[CardType.CUP] ? 1 : 0);
+      (cardShown[CardType.COLOR] ? 1 : 0) +
+      (cardShown[CardType.NUMBER] ? 1 : 0) +
+      (cardShown[CardType.TARROT] ? 1 : 0) +
+      (cardShown[CardType.GEM] ? 1 : 0) +
+      (cardShown[CardType.TEXT] ? 1 : 0);
 
   /// ads part
   bool adsWatched = false;
@@ -85,26 +85,26 @@ class Cards {
 }
 
 enum CardType {
-  TREE,
-  COIN,
-  STAR,
-  SWORD,
-  CUP,
+  COLOR,
+  NUMBER,
+  TARROT,
+  GEM,
+  TEXT,
   NONE,
 }
 
 const Map<CardType, ProphecyType> cardTypeToProphecy = {
-  CardType.TREE: ProphecyType.MOODLET,
-  CardType.COIN: ProphecyType.INTUITION,
-  CardType.STAR: ProphecyType.LUCK,
-  CardType.SWORD: ProphecyType.AMBITION,
-  CardType.CUP: ProphecyType.INTERNAL_STRENGTH,
+  CardType.COLOR: ProphecyType.ROOT,
+  CardType.TARROT: ProphecyType.SACRAL,
+  CardType.GEM: ProphecyType.SOLAR,
+  CardType.TEXT: ProphecyType.HEART,
+  CardType.NUMBER: ProphecyType.THROAT,
 };
 
 const Map<CardType, String> cardTypeToString = {
-  CardType.TREE: "tree",
-  CardType.COIN: "coins",
-  CardType.STAR: "star",
-  CardType.SWORD: "sword",
-  CardType.CUP: "cup",
+  CardType.COLOR: "colors",
+  CardType.NUMBER: "numbers",
+  CardType.TARROT: "tarrot",
+  CardType.GEM: "gems",
+  CardType.TEXT: "text",
 };

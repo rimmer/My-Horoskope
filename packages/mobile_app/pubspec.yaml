@@ -28,6 +28,11 @@ dependencies:
     path: ../text
   algorithm:
     path: ../algorithm
+  symbol:
+    path: ../symbol
+
+  flutter_dotenv: 
+    
   # network
   firebase_core:
   firebase_analytics:
@@ -61,11 +66,15 @@ flutter_native_splash:
 flutter:
   uses-material-design: true
   assets:
+    - .env
     - assets/background.png
     - assets/splash.png
     - assets/icons/
     - assets/widget/
     - assets/card/
+    - assets/gem/
+    - assets/numerology/
+    - assets/tarrot/
   #data
     # - packages/prophecies_repository_flutter/data/prophecies.json
   # #localization

@@ -1,17 +1,12 @@
 /// all imports are here
-import 'package:my_prophet/screens/daily/prophecy_is_loading.dart';
-
 import 'index.dart';
 
 part 'data.dart';
-part 'methods/calendar_builder.dart';
-part 'methods/prophecy_builder.dart';
-part 'methods/prediction.dart';
-part 'methods/animation.dart';
-part 'methods/cards.dart';
-part 'methods/not_available_button.dart';
-part 'methods/misc.dart';
-part 'methods/firebase_events.dart';
+part 'extensions/calendar_builder.dart';
+part 'extensions/prediction.dart';
+part 'extensions/animation.dart';
+part 'extensions/misc.dart';
+part 'extensions/firebase_events.dart';
 
 class DailyScreen extends StatefulWidget {
   /// current and next NUMBER_OF_DAYS_TO_SHOW days DateTime
@@ -40,7 +35,6 @@ class _DailyScreenState extends State<DailyScreen>
   //
   final dat = DailyStateData();
   DateTime birthDate;
-  final _cards = Cards();
 
   /// @INIT
   @override
@@ -69,17 +63,6 @@ class _DailyScreenState extends State<DailyScreen>
 
     /// initial events
 
-    int numberOfCards = (toShow.ambition ? 1 : 0) +
-        (toShow.internalStrength ? 1 : 0) +
-        (toShow.intuition ? 1 : 0) +
-        (toShow.luck ? 1 : 0) +
-        (toShow.moodlet ? 1 : 0);
-    if (numberOfCards == 0) numberOfCards = 1;
-    _cards.maxNumberOfCards = numberOfCards;
-
-    /// if need to see ads inside debug mode, comment this line
-    // if (StaticProvider.adsAreDisabled) _cards.adsWatched = true;
-
     super.initState();
   }
 
@@ -92,7 +75,6 @@ class _DailyScreenState extends State<DailyScreen>
   /// @BUILD
   @override
   Widget build(BuildContext context) {
-    animationNewStateRoutine();
     //
     /// gets planets for current period
     dat.currentPlanets.clear();
@@ -102,6 +84,9 @@ class _DailyScreenState extends State<DailyScreen>
     final screen = MediaQuery.of(context).size;
 
     calculateProphecy();
+    if (isToday)
+      dat.combination =
+          getSymbolCombination(StaticProvider.prophecyUtil.current);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -157,17 +142,49 @@ class _DailyScreenState extends State<DailyScreen>
                 scrollDirection: Axis.vertical,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  /// @PROPHECY
-                  BlocBuilder<ProphecyBloc, ProphecyState>(
-                    bloc: StaticProvider.prophecyBloc,
-                    builder: prophecyBuilder,
+                  /// {NAME} {ROLE}
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 16.0,
+                      left: 16.0,
+                    ),
+                    child: Text(
+                      dat.labelStr,
+                      style: AppTextStyle.userName,
+                    ),
                   ),
+
+                  /// {Astrosign} {Birthdate}
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16.0,
+                      bottom: 8.0,
+                    ),
+                    child: SizedBox(
+                      height: 32,
+                      child: dat.birthRow,
+                    ),
+                  ),
+
+                  /// @PROPHECY
+                  ProphecySheet(
+                    prophecies: StaticProvider.prophecyUtil.current,
+                    planets: dat.currentPlanets,
+                    toShow: toShow,
+                  ),
+
                   const SizedBox(
                     height: SPACE_AFTER_PROPHECY,
                   ),
 
                   /// @Sheets
-                  (isToday) ? cards() : Notation(localeText.futureDays),
+                  (isToday)
+                      ? CardsWidget(
+                          combination: dat.combination,
+                          predictionTextCallback: getPrediction,
+                          toShow: toShow,
+                        )
+                      : Notation(localeText.futureDays),
 
                   const SizedBox(
                     height: SPACE_BEFORE_AMBIANCE,

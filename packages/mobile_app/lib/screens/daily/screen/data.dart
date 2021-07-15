@@ -9,6 +9,7 @@ class DailyStateData {
   // animation
   bool showCalendarSelection = true;
   AnimationController animationSheetsFadeOutController;
+  PreparedSymbolCombination combination;
   Animation<double> animationSheetsFadeOut;
   AnimationController animationCardFadeController;
   Animation<double> animationCardFade;

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:my_prophet/theme/app_text_style.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';

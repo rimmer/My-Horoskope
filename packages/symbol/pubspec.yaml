@@ -1,0 +1,24 @@
+name: symbol
+description: separate module for symbol values
+author: bgoncharuck
+version: 0.0.1+1
+publish_to: none
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  meta: 
+  
+  equatable: ^2.0.0
+
+  base:
+    path: ../base
+
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  test: 
+
+flutter:

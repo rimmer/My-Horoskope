@@ -74,7 +74,7 @@ Future reminderConfig() async {
 }
 
 Future<String> _getPredictionText(int atDay) async {
-  final biggestProphecyType = StaticProvider.prophecyBloc.algo
+  final biggestProphecyType = StaticProvider.prophecyUtil.algo
       .ask(
         aboutDay: atDay,
         isDebug: false,
@@ -90,7 +90,7 @@ Future<String> _getPredictionText(int atDay) async {
   );
 
   switch (biggestProphecyType) {
-    case ProphecyType.AMBITION:
+    case ProphecyType.SOLAR:
       predictionText =
           StaticProvider.data.predictions.predictionPositiveAmbition(
         {
@@ -99,7 +99,7 @@ Future<String> _getPredictionText(int atDay) async {
         },
       );
       break;
-    case ProphecyType.INTUITION:
+    case ProphecyType.THROAT:
       predictionText =
           StaticProvider.data.predictions.predictionPositiveIntelligence(
         {
@@ -108,7 +108,7 @@ Future<String> _getPredictionText(int atDay) async {
         },
       );
       break;
-    case ProphecyType.LUCK:
+    case ProphecyType.SACRAL:
       predictionText = StaticProvider.data.predictions.predictionPositiveLuck(
         {
           'birthDate': birthDate,
@@ -116,7 +116,7 @@ Future<String> _getPredictionText(int atDay) async {
         },
       );
       break;
-    case ProphecyType.MOODLET:
+    case ProphecyType.ROOT:
       predictionText =
           StaticProvider.data.predictions.predictionPositiveMoodlet(
         {
@@ -126,7 +126,7 @@ Future<String> _getPredictionText(int atDay) async {
       );
       break;
 
-    case ProphecyType.INTERNAL_STRENGTH:
+    case ProphecyType.HEART:
     default:
       predictionText =
           StaticProvider.data.predictions.predictionPositiveInternalStr(
