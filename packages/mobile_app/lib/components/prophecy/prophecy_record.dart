@@ -18,7 +18,7 @@ class ProphecyRecord extends StatelessWidget {
     //
 
     final value = prophecy.value ?? 0.0;
-    var valueNewFormula = (value - 50.0);
+    var valueNewFormula = (value - 50.0) * 1.5;
     final isNegative = valueNewFormula < 0.0;
     if (isNegative) valueNewFormula *= -1.0;
 
