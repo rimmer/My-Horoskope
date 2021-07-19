@@ -87,13 +87,19 @@ class _SimpleTransperentScreenState extends State<SimpleTransperentScreen>
             ),
           ),
           height: 44,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              const SizedBox(width: 20),
-              Text(widget.title, style: AppTextStyle.popupTitle),
-            ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const SizedBox(width: 10),
+                Text(
+                  widget.title,
+                  style: AppTextStyle.popupTitle,
+                ),
+              ],
+            ),
           ),
         ),
       widget.body,

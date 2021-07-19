@@ -19,27 +19,27 @@ class PropheciesEnabling extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: [
           _ProphecyEnablingItem(
-            text: localeText.prophecyId['LUCK'],
+            text: localeText.prophecyId['SACRAL'],
             value: luck,
             onChanged: (_) {},
           ),
           _ProphecyEnablingItem(
-            text: localeText.prophecyId['INTERNAL_STRENGTH'],
+            text: localeText.prophecyId['HEART'],
             value: internalStrength,
             onChanged: (_) {},
           ),
           _ProphecyEnablingItem(
-            text: localeText.prophecyId['MOODLET'],
+            text: localeText.prophecyId['ROOT'],
             value: moodlet,
             onChanged: (_) {},
           ),
           _ProphecyEnablingItem(
-            text: localeText.prophecyId['AMBITION'],
+            text: localeText.prophecyId['SOLAR'],
             value: ambition,
             onChanged: (_) {},
           ),
           _ProphecyEnablingItem(
-            text: localeText.prophecyId['INTUITION'],
+            text: localeText.prophecyId['THROAT'],
             value: intelligence,
             onChanged: (_) {},
           ),

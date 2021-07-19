@@ -26,14 +26,6 @@ class ProphecySheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final propheciesSheet = <Widget>[
       /// yourProphecies title and notation
-      TitleWithDescription(
-        padding: const EdgeInsets.only(
-          left: 3.0,
-          bottom: 8.0,
-        ),
-        title: localeText.yourProphecies.capitalize(),
-        notation: localeText.yourPropheciesHint,
-      ),
 
       if (toShow.moodlet)
         ProphecyRecord(prophecy: prophecies[ProphecyType.ROOT]),
@@ -56,103 +48,92 @@ class ProphecySheet extends StatelessWidget {
     ];
     //
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        /// Prophecy Sheet
-        Container(
-          margin: const EdgeInsets.symmetric(
-            horizontal: 16.0,
-          ),
-          padding: const EdgeInsets.symmetric(
-            vertical: 4.0,
-          ),
+    return Container(
+      margin: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+      ),
+      padding: const EdgeInsets.symmetric(
+        vertical: 4.0,
+      ),
 
-          /// Background gradient
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.prophecyGradientStart.withOpacity(0.9),
-                  AppColors.prophecyGradientEnd.withOpacity(0.9),
-                ],
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-              ),
-              borderRadius: BorderRadius.circular(8.0)),
+      /// Background gradient
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              AppColors.prophecyGradientStart.withOpacity(0.9),
+              AppColors.prophecyGradientEnd.withOpacity(0.9),
+            ],
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
+          ),
+          borderRadius: BorderRadius.circular(8.0)),
 
-          /// main list view
-          child: ListView(
+      /// main list view
+      child: ListView(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        physics: NeverScrollableScrollPhysics(),
+        children: <Widget>[
+          /// planet impact
+          ListView(
             shrinkWrap: true,
             padding: const EdgeInsets.symmetric(
-              vertical: 12.0,
-            ),
+                horizontal: PROPHECY_PADDING_HORIZONTAL),
             scrollDirection: Axis.vertical,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: <Widget>[
-              /// prophecies listview
-              ListView(
-                shrinkWrap: true,
+              TitleWithDescription(
                 padding: const EdgeInsets.only(
-                  left: PROPHECY_PADDING_HORIZONTAL,
-                  right: PROPHECY_PADDING_HORIZONTAL,
-                  bottom: 12.0,
+                  top: 14.0,
+                  left: 3.0,
                 ),
-                scrollDirection: Axis.vertical,
-                physics: const NeverScrollableScrollPhysics(),
-                children: propheciesSheet,
+                title: localeText.impactPlanets.capitalize(),
+                notation: localeText.impactPlanetsHint,
               ),
-
-              //
-              ProphecySheetDivider(),
-
-              /// planet impact
-              ListView(
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: PROPHECY_PADDING_HORIZONTAL),
-                  scrollDirection: Axis.vertical,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: <Widget>[
-                    TitleWithDescription(
-                      padding: const EdgeInsets.only(
-                        top: 18.0,
-                        left: 3.0,
-                      ),
-                      title: localeText.impactPlanets.capitalize(),
-                      notation: localeText.impactPlanetsHint,
+              Container(
+                height: 64.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                            " ${localeText.planetImpactName[planets[false]]} "),
+                        SvgPicture.asset("assets/icons/${planets[false]}.svg",
+                            color: AppColors.negativeImpact),
+                      ],
                     ),
-                    Container(
-                      height: 32.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                  " ${localeText.planetImpactName[planets[false]]} "),
-                              SvgPicture.asset(
-                                  "assets/icons/${planets[false]}.svg",
-                                  color: AppColors.negativeImpact),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                  " ${localeText.planetImpactName[planets[true]]} "),
-                              SvgPicture.asset(
-                                  "assets/icons/${planets[true]}.svg",
-                                  color: AppColors.positiveImpact),
-                            ],
-                          ),
-                        ],
-                      ),
-                    )
-                  ]),
+                    Row(
+                      children: [
+                        Text(" ${localeText.planetImpactName[planets[true]]} "),
+                        SvgPicture.asset("assets/icons/${planets[true]}.svg",
+                            color: AppColors.positiveImpact),
+                      ],
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
-        ),
-      ],
+
+          //
+          ProphecySheetDivider(),
+
+          /// prophecies listview
+          ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.only(
+              left: PROPHECY_PADDING_HORIZONTAL,
+              right: PROPHECY_PADDING_HORIZONTAL,
+              bottom: 12.0,
+            ),
+            scrollDirection: Axis.vertical,
+            physics: const NeverScrollableScrollPhysics(),
+            children: propheciesSheet,
+          ),
+        ],
+      ),
     );
   }
 }

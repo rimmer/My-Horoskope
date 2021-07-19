@@ -6,6 +6,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await dotenv.load(fileName: "assets/.env");
+  await StaticAsset.svgLoad();
 
   /// Application Preferences init
   StaticProvider.data.appPref = AppPreferencesFlutter();
@@ -64,11 +65,9 @@ void main() async {
     ..add(AppStarted());
 
   /// app start
-  runApp(appBuilder());
-}
-
-Widget appBuilder() => imageBackground(
-      child: myProphet(
+  runApp(
+    ImageBack(
+      child: MyProphet(
         authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
           //
           bloc: StaticProvider.authBloc,
@@ -100,4 +99,6 @@ Widget appBuilder() => imageBackground(
           },
         ),
       ),
-    );
+    ),
+  );
+}

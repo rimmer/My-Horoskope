@@ -13,8 +13,8 @@ class CardTypeNumber extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SvgPicture.asset(
-            "assets/numerology/$numberName",
+          ScalableImageWidget(
+            si: StaticAsset.svg[numberName],
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),

@@ -151,7 +151,8 @@ class CardsWidgetState extends State<CardsWidget> {
       StaticProvider.ads.watchAdsButtonIsInactive = true;
     });
 
-    await StaticProvider.ads.manager.show();
+    if (StaticProvider.ads.adsAreWatched == false)
+      await StaticProvider.ads.manager.show();
 
     // ignore: invalid_use_of_protected_member
     setState(() {

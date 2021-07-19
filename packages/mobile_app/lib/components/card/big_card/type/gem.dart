@@ -1,5 +1,3 @@
-import 'package:my_prophet/screens/daily/screen/index.dart';
-
 import '../common.dart';
 
 class CardTypeGem extends StatelessWidget {

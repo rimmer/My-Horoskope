@@ -26,7 +26,8 @@ initAds({
 
   //
   final adUnitProd = dotenv.env["ad_unit_prod_id"];
-  final adUnitTest = dotenv.env["ad-unit-test-id"];
+  final adUnitTest = dotenv.env["ad_unit_test_id"];
+  // final adUnitTest = dotenv.env["ad_unit_prod_id"];
 
   //
 

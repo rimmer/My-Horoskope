@@ -25,7 +25,7 @@ extension DailyScreenAniamtionMethods on _DailyScreenState {
   animationFirstStart() {
     dat.animationSheetsFadeOutController.animateTo(
       dat.animationSheetsFadeOutController.upperBound,
-      duration: Duration(seconds: 8),
+      duration: Duration(milliseconds: 800),
       curve: Curves.ease,
     );
   }

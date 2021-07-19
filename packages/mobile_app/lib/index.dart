@@ -32,33 +32,49 @@ export 'services/ads.dart';
 export 'services/locale.dart';
 //
 export 'services/static_provider.dart';
+export 'services/static_assets.dart';
 export 'services/timezone.dart';
 export 'services/reminder.dart';
 
-MaterialApp myProphet({
-  @required Widget authResolver,
-  // @required SingleProvider sp,
-}) {
-  return MaterialApp(
-    title: localeText.appName,
-    theme: appTheme,
-    routes: {
-      "/daily": (BuildContext context) => DailyScreen(),
-      "/menu": (BuildContext context) => MenuScreen(),
-      "/settings": (BuildContext context) => ProfileSettingsScreen(),
-    },
-    home: authResolver,
-    navigatorObservers: [
-      FirebaseAnalyticsObserver(analytics: StaticProvider.firebase.analytics),
-    ],
-  );
+class MyProphet extends StatelessWidget {
+  final Widget authResolver;
+
+  MyProphet({@required this.authResolver});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: localeText.appName,
+      theme: appTheme,
+      routes: {
+        "/daily": (BuildContext context) => DailyScreen(),
+        "/menu": (BuildContext context) => MenuScreen(),
+        "/settings": (BuildContext context) => ProfileSettingsScreen(),
+      },
+      home: authResolver,
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: StaticProvider.firebase.analytics),
+      ],
+    );
+  }
 }
 
-Container imageBackground({@required Widget child}) => Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        image: StaticAsset.rust["background"],
-        fit: BoxFit.cover,
-      ),
-    ),
-    child: child);
+class ImageBack extends StatelessWidget {
+  final Widget child;
+
+  ImageBack({@required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    StaticAsset.rustLoad(context);
+
+    return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/background.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: child);
+  }
+}

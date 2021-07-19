@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:jovial_svg/jovial_svg.dart';
+import 'package:my_prophet/services/static_assets.dart';
 
 const _height = 130.0;
 const _width = 64.0;
@@ -39,29 +40,23 @@ class _DeckCardState extends State<DeckCard> {
             alignment: Alignment.topCenter,
             child: Opacity(
               opacity: (widget.mode == DeckCardMode.CHOSEN) ? 1.0 : 0.0,
-              child: SvgPicture.asset(
-                "assets/card/light_${widget.icon}.svg",
-                height: _smallCardHeight,
-                width: _smallCardWidth,
+              child: ScalableImageWidget(
+                si: StaticAsset.svg["light_${widget.icon}"],
               ),
             ),
           ),
           (widget.mode == DeckCardMode.WAS_CHOSEN)
               ? Align(
                   alignment: Alignment.center,
-                  child: SvgPicture.asset(
-                    "assets/card/light_${widget.icon}.svg",
-                    height: _smallCardHeight,
-                    width: _smallCardWidth,
+                  child: ScalableImageWidget(
+                    si: StaticAsset.svg["light_${widget.icon}"],
                   ))
               : SizedBox(),
           (widget.mode == DeckCardMode.INTACT)
               ? Align(
                   alignment: Alignment.center,
-                  child: SvgPicture.asset(
-                    "assets/card/dark_${widget.icon}.svg",
-                    height: _smallCardHeightFull,
-                    width: _smallCardWidthFull,
+                  child: ScalableImageWidget(
+                    si: StaticAsset.svg["dark_${widget.icon}"],
                   ))
               : SizedBox(),
         ],
