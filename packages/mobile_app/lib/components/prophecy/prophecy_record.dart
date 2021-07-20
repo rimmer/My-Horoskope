@@ -18,7 +18,9 @@ class ProphecyRecord extends StatelessWidget {
     //
 
     final value = prophecy.value ?? 0.0;
-    final valuePercent = value / 100;
+    var valueNewFormula = (value - 50.0) * 1.5;
+    final isNegative = valueNewFormula < 0.0;
+    if (isNegative) valueNewFormula *= -1.0;
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -26,6 +28,7 @@ class ProphecyRecord extends StatelessWidget {
         horizontal: 2.0,
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Expanded(
             child: Text(
@@ -33,54 +36,55 @@ class ProphecyRecord extends StatelessWidget {
               style: AppTextStyle.prophecyLabel,
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                "${value.toStringAsFixed(0)}%",
-                style: AppTextStyle.prophecyPercent,
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 2.0),
-                height: 4.0,
-                width: 45.0,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                      color: AppColors.prophecyValueProgressGradientBorder),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                  gradient: LinearGradient(colors: [
-                    AppColors.prophecyValueProgressGradient[0],
-                    AppColors.prophecyValueProgressGradient[1],
-                    AppColors.prophecyValueProgressGradient[2],
-                    AppColors.prophecyValueProgressGradient[3],
-                    AppColors.prophecyValueProgressGradient[4],
-                    AppColors.prophecyValueProgressGradient[5],
-                    AppColors.prophecyValueProgressGradient[6],
-                    AppColors.prophecyValueProgressGradient[7],
-                    AppColors.prophecyValueProgressGradient[8],
-                    AppColors.prophecyValueProgressGradient[8],
-                    Colors.transparent
-                  ], stops: [
-                    0.0,
-                    0.1,
-                    (valuePercent > 0.3) ? 0.3 : valuePercent,
-                    (valuePercent > 0.4) ? 0.4 : valuePercent,
-                    (valuePercent > 0.5) ? 0.5 : valuePercent,
-                    (valuePercent > 0.6) ? 0.6 : valuePercent,
-                    (valuePercent > 0.7) ? 0.7 : valuePercent,
-                    (valuePercent > 0.8) ? 0.8 : valuePercent,
-                    (valuePercent > 0.9) ? 0.9 : valuePercent,
-                    (valuePercent > 1.0) ? 1.0 : valuePercent,
-                    valuePercent,
-                  ]),
-                ),
-              ),
-            ],
+          SizedBox(
+            height: 8.0,
+            width: 8.0,
+            child: CustomPaint(
+              painter: _TrianglePainter(isNegative: isNegative),
+            ),
           ),
+          const SizedBox(
+            width: 8.0,
+          ),
+          Text(
+            "${valueNewFormula.toStringAsFixed(0)}%",
+            style: AppTextStyle.prophecyPercent,
+          )
         ],
       ),
     );
   }
+}
+
+class _TrianglePainter extends CustomPainter {
+  final bool isNegative;
+  const _TrianglePainter({@required this.isNegative});
+
+  void paint(Canvas canvas, Size size) {
+    final paintWithColor =
+        isNegative ? AppColors.negativeImpact : AppColors.positiveImpact;
+
+    final style = Paint()
+      ..color = paintWithColor
+      ..style = PaintingStyle.fill;
+
+    final path = Path();
+
+    if (isNegative) {
+      path.moveTo(0, 0);
+      path.lineTo(size.width, 0);
+      path.lineTo(size.width / 2, size.height);
+      path.close();
+    } else {
+      path.moveTo(size.width / 2, 0);
+      path.lineTo(0, size.height);
+      path.lineTo(size.width, size.height);
+      path.close();
+    }
+
+    canvas.drawPath(path, style);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

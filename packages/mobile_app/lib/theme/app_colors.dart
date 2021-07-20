@@ -24,8 +24,8 @@ class AppColors {
   static const calendarNewMonthMonth = Color(0xff814B6F);
   static const calendarDateSelected = Color(0xffF9793F);
 
-  static const negativeImpact = Color(0xffD13B5C);
-  static const positiveImpact = Color(0xff68FFE4);
+  static const negativeImpact = Color(0xffEF4B4B);
+  static const positiveImpact = Color(0xff26E539);
 
   static const prophecyValueProgressGradientBorder = Color(0xff210A61);
   static const clickableNotationBackground = Color(0xff0F0039);

@@ -21,7 +21,7 @@ class CardPlaceholder extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: StaticAsset.rust["card_placeholder"],
+          image: AssetImage("assets/card/card_placeholder.png"),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(8.0),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_prophet/screens/settings/index.dart';
 import 'package:my_prophet/theme/app_colors.dart';
 import 'package:my_prophet/theme/app_text_style.dart';

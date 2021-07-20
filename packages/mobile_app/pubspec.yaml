@@ -19,6 +19,7 @@ dependencies:
   launch_review: 
   mutable_wrappers: 
   flutter_svg: 
+  jovial_svg:
   flutter_spinkit:
 
   # base
