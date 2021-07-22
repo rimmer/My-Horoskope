@@ -69,7 +69,7 @@ class CardsWidgetState extends State<CardsWidget> {
     if (StaticProvider.ads.adsAreWatched) cards.adsWatched = true;
 
     /// if need to see ads inside debug mode, comment this line
-    // if (StaticProvider.adsAreDisabled) cards.adsWatched = true;
+    if (StaticProvider.adsAreDisabled) cards.adsWatched = true;
 
     super.initState();
   }
@@ -88,7 +88,7 @@ class CardsWidgetState extends State<CardsWidget> {
               cards.currentBigCardIsEmpty
 
                   /// so we show card placeholder
-                  ? CardPlaceholder()
+                  ? const CardPlaceholder()
 
                   /// if some card was chosen
                   /// and it is time to build ads

@@ -178,13 +178,12 @@ class _DailyScreenState extends State<DailyScreen>
                   ),
 
                   /// @Sheets
-                  (isToday)
-                      ? CardsWidget(
-                          combination: dat.combination,
-                          predictionTextCallback: getPrediction,
-                          toShow: toShow,
-                        )
-                      : Notation(localeText.futureDays),
+                  if (isToday)
+                    CardsWidget(
+                      combination: dat.combination,
+                      predictionTextCallback: getPrediction,
+                      toShow: toShow,
+                    ),
 
                   const SizedBox(
                     height: SPACE_BEFORE_AMBIANCE,

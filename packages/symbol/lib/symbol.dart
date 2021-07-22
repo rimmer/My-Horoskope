@@ -3032,18 +3032,15 @@ class SymbolCombination {
 
 @immutable
 class PreparedSymbolCombination {
-  final String digit;
-  final String mineral;
-  final List<int> colors;
-  final String tarrot;
+  final SymbolCombination _sv;
+  String get digit => DigitToFileName[_sv.digit];
+  String get mineral => GemToFileName[_sv.mineral];
+  List<int> get colors => [
+        ColorToInt[_sv.colors[0]],
+        ColorToInt[_sv.colors[1]],
+        ColorToInt[_sv.colors[2]],
+      ];
+  String get tarrot => TarrotMajorToFileName[_sv.tarrot];
 
-  PreparedSymbolCombination(SymbolCombination sv)
-      : this.digit = DigitToFileName[sv.digit],
-        this.mineral = GemToFileName[sv.mineral],
-        this.colors = [
-          ColorToInt[sv.colors[0]],
-          ColorToInt[sv.colors[1]],
-          ColorToInt[sv.colors[2]],
-        ],
-        this.tarrot = TarrotMajorToFileName[sv.tarrot];
+  const PreparedSymbolCombination(SymbolCombination this._sv);
 }
