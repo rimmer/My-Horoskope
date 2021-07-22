@@ -7,38 +7,38 @@ class CardTypeGem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          gemName.contains(".png")
-              ? Image(
-                  image: AssetImage("assets/gem/$gemName"),
-                )
-              : SvgPicture.asset(
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        gemName.contains(".png")
+            ? Image(
+                image: AssetImage("assets/gem/$gemName"),
+              )
+            : Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: SvgPicture.asset(
                   "assets/gem/$gemName",
                 ),
-          Padding(
-            padding: const EdgeInsets.only(left: 4.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  localeText.yourGemForToday,
-                  style: AppTextStyle.normalText,
-                ),
-                Text(
-                  localeText.gemName[gemName],
-                  style: AppTextStyle.cardText,
-                ),
-              ],
-            ),
+              ),
+        Padding(
+          padding: const EdgeInsets.only(left: 4.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                localeText.yourGemForToday,
+                style: AppTextStyle.normalText,
+              ),
+              Text(
+                localeText.gemName[gemName],
+                style: AppTextStyle.cardText,
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

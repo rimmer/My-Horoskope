@@ -11,7 +11,7 @@ class PredictionCardWithButton extends StatelessWidget {
   final TextStyle customTextStyle;
   final TextStyle customButtonTextStyle;
 
-  PredictionCardWithButton({
+  const PredictionCardWithButton({
     @required this.text,
     this.textFontSize = 15,
     @required this.buttonText,

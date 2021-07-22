@@ -11,7 +11,7 @@ class TitleWithDescription extends StatefulWidget {
   final String notation;
   final EdgeInsetsGeometry padding;
 
-  TitleWithDescription({
+  const TitleWithDescription({
     @required this.title,
     Icon icon,
     @required this.notation,

@@ -118,7 +118,7 @@ class ProphecySheet extends StatelessWidget {
           ),
 
           //
-          ProphecySheetDivider(),
+          const ProphecySheetDivider(),
 
           /// prophecies listview
           ListView(

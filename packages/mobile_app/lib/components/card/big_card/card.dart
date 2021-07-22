@@ -3,7 +3,7 @@ import 'common.dart';
 class PredictionCard extends StatefulWidget {
   final Widget type;
 
-  PredictionCard({this.type});
+  const PredictionCard({this.type});
 
   @override
   _PredictionCardState createState() => _PredictionCardState();
