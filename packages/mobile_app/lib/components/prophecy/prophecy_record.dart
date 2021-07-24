@@ -18,9 +18,8 @@ class ProphecyRecord extends StatelessWidget {
     //
 
     final value = prophecy.value ?? 0.0;
-    var valueNewFormula = (value - 50.0) * 1.5;
+    final valueNewFormula = (value - 50.0);
     final isNegative = valueNewFormula < 0.0;
-    if (isNegative) valueNewFormula *= -1.0;
 
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -47,7 +46,7 @@ class ProphecyRecord extends StatelessWidget {
             width: 8.0,
           ),
           Text(
-            "${valueNewFormula.toStringAsFixed(0)}%",
+            "${value.toStringAsFixed(0)}%",
             style: AppTextStyle.prophecyPercent,
           )
         ],
