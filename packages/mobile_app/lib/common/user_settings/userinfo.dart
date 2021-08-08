@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:text/text.dart';
 import 'package:my_prophet/theme/app_text_style.dart';
-import './userinfo_field.dart';
-import './userinfo_picker.dart';
+import '../userinfo_field.dart';
+import '../userinfo_picker.dart';
 
 class UserInfo extends StatelessWidget {
   final UserInfoField name;

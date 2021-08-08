@@ -9,7 +9,8 @@ extension DailyScreenMiscMethods on _DailyScreenState {
   void calculateProphecy() {
     AppGlobal.prophecyUtil.calculate(
         dt: d[selected].millisecondsSinceEpoch,
-        isDebug: AppGlobal.debug.isDebug);
+        isDebug: AppGlobal.debug.isDebug,
+        user: dat.user);
   }
 
   PreparedSymbolCombination getCombinationCallback() =>

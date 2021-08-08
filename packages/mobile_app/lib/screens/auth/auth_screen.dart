@@ -18,13 +18,7 @@ class AuthScreen extends StatelessWidget {
           // if user authenticated
           else if (state is Authenticated) {
             AppGlobal.data.usersRepo = AppGlobal.authBloc.auth.repository;
-            AppGlobal.prophecyUtil = ProphecyUtility(
-              Algorithm(
-                dat: AlgoData(
-                  usersRepository: AppGlobal.data.usersRepo,
-                ),
-              ),
-            );
+            AppGlobal.prophecyUtil = ProphecyUtility(Algorithm());
             reminderConfig();
 
             SchedulerBinding.instance.addPostFrameCallback((_) {

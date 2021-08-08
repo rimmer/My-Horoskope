@@ -1,8 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:my_prophet/common/triangle_painter.dart';
 import 'package:my_prophet/theme/app_text_style.dart';
-import 'package:my_prophet/theme/app_colors.dart';
 import 'package:base/prophecy/entity/prophecy.dart';
 import 'package:text/text.dart';
 
@@ -39,7 +37,7 @@ class ProphecyRecord extends StatelessWidget {
             height: 8.0,
             width: 8.0,
             child: CustomPaint(
-              painter: _TrianglePainter(isNegative: isNegative),
+              painter: TrianglePainter(isNegative: isNegative),
             ),
           ),
           const SizedBox(
@@ -53,37 +51,4 @@ class ProphecyRecord extends StatelessWidget {
       ),
     );
   }
-}
-
-class _TrianglePainter extends CustomPainter {
-  final bool isNegative;
-  const _TrianglePainter({@required this.isNegative});
-
-  void paint(Canvas canvas, Size size) {
-    final paintWithColor =
-        isNegative ? AppColors.negativeImpact : AppColors.positiveImpact;
-
-    final style = Paint()
-      ..color = paintWithColor
-      ..style = PaintingStyle.fill;
-
-    final path = Path();
-
-    if (isNegative) {
-      path.moveTo(0, 0);
-      path.lineTo(size.width, 0);
-      path.lineTo(size.width / 2, size.height);
-      path.close();
-    } else {
-      path.moveTo(size.width / 2, 0);
-      path.lineTo(0, size.height);
-      path.lineTo(size.width, size.height);
-      path.close();
-    }
-
-    canvas.drawPath(path, style);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

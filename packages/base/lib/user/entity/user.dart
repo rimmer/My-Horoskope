@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -7,7 +8,7 @@ part 'user.g.dart';
 
 /// user model stores basic user information like a name and birthdate
 @JsonSerializable()
-class UserModel {
+class UserModel extends Equatable {
   final String name;
 
   /// birth date in milliseconds since epoch
@@ -25,6 +26,9 @@ class UserModel {
     @required this.birth,
     @required this.sex,
   });
+
+  @override
+  List<Object> get props => [name, birth, sex];
 
   Map<String, Object> toJson() => _$UserModelToJson(this);
 
@@ -52,7 +56,7 @@ class UserEntity {
   /// other peoples in user' life that
   /// magically impact his life
   /// and important enough to be added
-  List<UserEntity> ambiance;
+  List<UserEntity> ambiance = [];
 
   /// used to check what user was logged in previous session
   bool lastLogin;
@@ -60,7 +64,7 @@ class UserEntity {
   UserEntity({
     id,
     this.role = "user",
-    this.ambiance = const [],
+    this.ambiance,
     this.lastLogin = false,
     this.isTester = false,
     @required this.model,

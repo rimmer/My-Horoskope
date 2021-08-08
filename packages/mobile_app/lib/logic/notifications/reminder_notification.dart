@@ -78,6 +78,7 @@ Future<String> _getPredictionText(int atDay) async {
       .ask(
         aboutDay: atDay,
         isDebug: false,
+        user: AppGlobal.data.usersRepo.current,
       )
       .biggest;
 
