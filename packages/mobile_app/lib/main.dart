@@ -6,14 +6,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await dotenv.load(fileName: "assets/.env");
-  await StaticAsset.svgLoad();
+  await PrecacheAssets.svgLoad();
 
   /// Application Preferences init
-  StaticProvider.data.appPref = AppPreferencesFlutter();
-  await StaticProvider.data.appPref.load();
+  AppGlobal.data.appPref = AppPreferencesFlutter();
+  await AppGlobal.data.appPref.load();
 
   /// predictions init and load, language locale
-  StaticProvider.data.predictions = PredictionsFlutterMobile();
+  AppGlobal.data.predictions = PredictionsFlutterMobile();
   await chooseLocale();
 
   /// timezone configuration
@@ -21,14 +21,14 @@ void main() async {
 
   /// firebase
   var app = await Firebase.initializeApp();
-  app.setAutomaticDataCollectionEnabled(StaticProvider.debug.isNotDebug);
-  StaticProvider.firebase.analytics = FirebaseAnalytics();
-  StaticProvider.firebase.analytics
-      .setAnalyticsCollectionEnabled(StaticProvider.debug.isNotDebug);
-  if (StaticProvider.debug.isNotDebug) {
-    StaticProvider.firebase.messaging = FirebaseMessaging.instance;
-    StaticProvider.firebase.notifications =
-        await StaticProvider.firebase.messaging.requestPermission(
+  app.setAutomaticDataCollectionEnabled(AppGlobal.debug.isNotDebug);
+  AppGlobal.firebase.analytics = FirebaseAnalytics();
+  AppGlobal.firebase.analytics
+      .setAnalyticsCollectionEnabled(AppGlobal.debug.isNotDebug);
+  if (AppGlobal.debug.isNotDebug) {
+    AppGlobal.firebase.messaging = FirebaseMessaging.instance;
+    AppGlobal.firebase.notifications =
+        await AppGlobal.firebase.messaging.requestPermission(
       alert: true,
       announcement: false,
       badge: true,
@@ -41,15 +41,15 @@ void main() async {
 
   /// ads
   MobileAds.instance.initialize();
-  StaticProvider.internetAvailable = await internetCheck();
+  AppGlobal.internetAvailable = await internetCheck();
 
-  if (StaticProvider.internetAvailable)
+  if (AppGlobal.internetAvailable)
     await initAds(
       onLoaded: (manager) {
-        StaticProvider.ads.manager = manager;
+        AppGlobal.ads.manager = manager;
       },
       onWatched: () {
-        StaticProvider.ads.adsAreWatched = true;
+        AppGlobal.ads.adsAreWatched = true;
       },
     );
 
@@ -60,45 +60,26 @@ void main() async {
   await createNotificationChannel(Notif.reminderChannel);
 
   /// authetication
-  StaticProvider.authBloc = AuthenticationBloc(
+  AppGlobal.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());
 
-  /// app start
-  runApp(
-    ImageBack(
-      child: MyProphet(
-        authResolver: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-          //
-          bloc: StaticProvider.authBloc,
-          builder: (context, state) {
-            //
+  runApp(const _Root());
+}
 
-            if (state is Authenticated) {
-              StaticProvider.data.usersRepo =
-                  StaticProvider.authBloc.auth.repository;
+class _Root extends StatelessWidget {
+  const _Root({Key key}) : super(key: key);
 
-              StaticProvider.prophecyUtil = ProphecyUtility(
-                Algorithm(
-                  dat: AlgoData(
-                    usersRepository: StaticProvider.data.usersRepo,
-                  ),
-                ),
-              );
+  @override
+  Widget build(BuildContext context) {
+    PrecacheAssets.rustLoad(context);
 
-              reminderConfig();
-
-              return DailyScreen();
-
-              //
-            } else if (state is Unauthenticated)
-              return RegistrationScreen();
-            else {
-              return LoadingScreen();
-            }
-          },
-        ),
-      ),
-    ),
-  );
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: localeText.appName,
+      theme: appTheme,
+      initialRoute: AppPath.auth,
+      onGenerateRoute: AppPath.generateRoute,
+    );
+  }
 }

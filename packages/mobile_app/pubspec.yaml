@@ -4,25 +4,16 @@ author: Igor Ianishevskyi
 homepage: prophet.ninja
 publish_to: none
 
-version: 0.1.0
+version: 0.1.1
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.11.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  # flutter mobile app stuff
-  flutter_bloc: 
-  url_launcher: 
-  launch_review: 
-  mutable_wrappers: 
-  flutter_svg: 
-  jovial_svg:
-  flutter_spinkit:
-
-  # base
+  # basic modules
   base:
     path: ../base
   text:
@@ -32,18 +23,35 @@ dependencies:
   symbol:
     path: ../symbol
 
-  flutter_dotenv: 
-    
+  # needed for models
+  flutter_bloc: ^7.1.0
+  mutable_wrappers: ^1.0.0
+
+  # assets
+  flutter_svg: ^0.22.0
+  jovial_svg: ^1.0.6
+
+  # animation
+  flutter_spinkit: ^5.0.0
+  proste_route_animation: ^2.0.2
+
+  # services
+  url_launcher: ^6.0.9
+  launch_review: ^3.0.1
+  flutter_dotenv: ^5.0.0
+  flutter_local_notifications: ^8.1.1
+  timezone: ^0.7.0
+  flutter_native_timezone: ^2.0.0
+  
   # network
-  firebase_core:
-  firebase_analytics:
-  firebase_crashlytics:
-  firebase_in_app_messaging: 
-  firebase_messaging:
-  google_mobile_ads:
-  flutter_local_notifications:
-  timezone: 
-  flutter_native_timezone: 
+  firebase_core: ^1.4.0
+  firebase_analytics: ^8.2.0
+  firebase_crashlytics: ^2.1.1
+  google_mobile_ads: ^0.13.3
+
+  # not used
+  firebase_in_app_messaging: any 
+  firebase_messaging: any
 
 
 dev_dependencies:
@@ -76,7 +84,3 @@ flutter:
     - assets/gem/
     - assets/numerology/
     - assets/tarrot/
-  #data
-    # - packages/prophecies_repository_flutter/data/prophecies.json
-  # #localization
-    # - packages/language/locales/ru.json
