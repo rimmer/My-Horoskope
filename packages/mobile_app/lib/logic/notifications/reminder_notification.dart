@@ -1,4 +1,4 @@
-import 'package:my_prophet/app_global.dart';
+import 'package:my_horoskope/app_global.dart';
 import 'package:base/prophecy/entity/prophecy.dart';
 import 'package:text/text.dart';
 import 'notifications_config.dart';

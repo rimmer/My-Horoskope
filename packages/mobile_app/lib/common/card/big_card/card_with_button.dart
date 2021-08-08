@@ -1,5 +1,5 @@
 import 'common.dart';
-import 'package:my_prophet/theme/app_colors.dart';
+import 'package:my_horoskope/theme/app_colors.dart';
 import '../../gradient_border_button.dart';
 
 class PredictionCardWithButton extends StatelessWidget {

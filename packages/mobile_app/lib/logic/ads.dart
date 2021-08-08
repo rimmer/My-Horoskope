@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:my_prophet/app_global.dart';
+import 'package:my_horoskope/app_global.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Ad successfully received and ready to be shown

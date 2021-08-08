@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:my_prophet/common/magic_checkbox.dart';
-import 'package:my_prophet/theme/app_colors.dart';
-import 'package:my_prophet/theme/app_text_style.dart';
+import 'package:my_horoskope/common/magic_checkbox.dart';
+import 'package:my_horoskope/theme/app_colors.dart';
+import 'package:my_horoskope/theme/app_text_style.dart';
 
 class MenuItemLeadingIcon extends StatelessWidget {
   final IconData icon;

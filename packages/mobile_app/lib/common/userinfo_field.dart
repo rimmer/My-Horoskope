@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:my_prophet/theme/app_colors.dart';
+import 'package:my_horoskope/theme/app_colors.dart';
 
 class UserInfoField extends StatefulWidget {
   final String hint;

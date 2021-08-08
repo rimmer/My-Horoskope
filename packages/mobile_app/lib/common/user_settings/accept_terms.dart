@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:text/text.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:my_prophet/common/accept_terms_text.dart';
-import 'package:my_prophet/common/magic_checkbox.dart';
+import 'package:my_horoskope/common/accept_terms_text.dart';
+import 'package:my_horoskope/common/magic_checkbox.dart';
 
 class AcceptTermsRow extends StatefulWidget {
   final MutableBool terms;

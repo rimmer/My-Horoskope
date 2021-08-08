@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:base/cards.dart';
 import 'package:base/preferences/setting/enabled_prophecies/item.dart';
-import 'package:my_prophet/common/card/big_card/type/tarrot.dart';
-import 'package:my_prophet/app_global.dart';
+import 'package:my_horoskope/common/card/big_card/type/tarrot.dart';
+import 'package:my_horoskope/app_global.dart';
 import 'package:text/text.dart';
 import 'package:symbol/symbol.dart';
 

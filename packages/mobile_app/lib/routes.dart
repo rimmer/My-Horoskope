@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_prophet/screens/auth/auth_screen.dart';
-import 'package:my_prophet/screens/daily/daily_screen.dart';
-import 'package:my_prophet/screens/menu/menu_screen.dart';
-import 'package:my_prophet/screens/settings/settings_screen.dart';
+import 'package:my_horoskope/screens/auth/auth_screen.dart';
+import 'package:my_horoskope/screens/daily/daily_screen.dart';
+import 'package:my_horoskope/screens/menu/menu_screen.dart';
+import 'package:my_horoskope/screens/settings/settings_screen.dart';
 import 'package:proste_route_animation/proste_route_animation.dart';
 
 class AppPath {

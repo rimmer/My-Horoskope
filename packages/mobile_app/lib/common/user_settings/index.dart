@@ -1,12 +1,12 @@
-export 'package:my_prophet/common/popup_deprecated.dart';
+export 'package:my_horoskope/common/popup_deprecated.dart';
 export 'package:flutter/material.dart';
 export 'package:mutable_wrappers/mutable_wrappers.dart';
 export 'package:text/text.dart';
-export 'package:my_prophet/theme/app_colors.dart';
-export 'package:my_prophet/theme/app_text_style.dart';
+export 'package:my_horoskope/theme/app_colors.dart';
+export 'package:my_horoskope/theme/app_text_style.dart';
 export 'package:provider/provider.dart';
 export 'package:base/user/entity/user.dart';
-export 'package:my_prophet/common/gradient_flatbutton.dart';
+export 'package:my_horoskope/common/gradient_flatbutton.dart';
 export '../userinfo_field.dart';
 export './userinfo.dart';
 export '../userinfo_picker.dart';

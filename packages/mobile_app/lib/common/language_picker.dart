@@ -1,11 +1,11 @@
 import 'package:base/cards.dart';
 import 'package:flutter/material.dart';
-import 'package:my_prophet/common/popup_deprecated.dart';
+import 'package:my_horoskope/common/popup_deprecated.dart';
 import 'package:base/preferences/setting/locale/item.dart';
-import 'package:my_prophet/theme/app_colors.dart';
-import 'package:my_prophet/theme/app_text_style.dart';
-import 'package:my_prophet/app_global.dart';
-import 'package:my_prophet/logic/localization/locale.dart';
+import 'package:my_horoskope/theme/app_colors.dart';
+import 'package:my_horoskope/theme/app_text_style.dart';
+import 'package:my_horoskope/app_global.dart';
+import 'package:my_horoskope/logic/localization/locale.dart';
 
 class LanguagePicker extends StatelessWidget {
   final Widget child;
