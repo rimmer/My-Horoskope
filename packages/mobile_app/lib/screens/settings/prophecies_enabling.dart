@@ -1,4 +1,4 @@
-part of 'screen.dart';
+part of 'settings_screen.dart';
 
 class PropheciesEnabling extends StatelessWidget {
   final MutableBool luck;

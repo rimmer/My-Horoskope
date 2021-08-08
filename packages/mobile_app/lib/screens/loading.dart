@@ -7,10 +7,10 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: AppColors.primaryDark,
-      body: SafeArea(
-        child: Loading(),
+      body: const SafeArea(
+        child: const Loading(),
       ),
     );
   }
@@ -21,8 +21,8 @@ class Loading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SpinKitPouringHourglass(color: AppColors.primaryLight),
+    return const Center(
+      child: const SpinKitPouringHourglass(color: AppColors.primaryLight),
     );
   }
 }

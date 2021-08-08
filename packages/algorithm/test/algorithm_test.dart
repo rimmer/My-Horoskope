@@ -18,11 +18,7 @@ main() {
     ),
   );
 
-  final algorithm = Algorithm(
-    dat: AlgoData(
-      usersRepository: UsersRepositoryFlutter(),
-    ),
-  );
+  final algorithm = Algorithm();
 
   test('Check if values correct for 18.3.2021', () {
     final result = algorithm.ask(
@@ -31,7 +27,7 @@ main() {
         3,
         18,
       ).millisecondsSinceEpoch,
-      testUser: vsevolod,
+      user: vsevolod,
       isDebug: true,
     );
 
