@@ -1,4 +1,5 @@
 import '../common.dart';
+import 'package:my_prophet/common/card/card_image_widget.dart';
 
 class CardTypeNumber extends StatelessWidget {
   final String numberName;
@@ -13,9 +14,7 @@ class CardTypeNumber extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          ScalableImageWidget(
-            si: PrecacheAssets.svg[numberName],
-          ),
+          CardImageWidget(PrecacheAssets.svg[numberName]),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(

@@ -1,6 +1,5 @@
 name: my_prophet
 description: Your personal prophet
-author: Igor Ianishevskyi
 homepage: prophet.ninja
 publish_to: none
 
@@ -80,7 +79,9 @@ flutter:
     - assets/splash.png
     - assets/icons/
     - assets/widget/
-    - assets/card/
+    - assets/card/card_placeholder.png
+    - assets/card/card_text.png
+    - assets/card/si/
     - assets/gem/
-    - assets/numerology/
+    - assets/numerology/si/
     - assets/tarrot/

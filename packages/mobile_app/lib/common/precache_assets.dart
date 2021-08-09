@@ -5,64 +5,42 @@ import 'package:jovial_svg/jovial_svg.dart';
 class PrecacheAssets {
   static Map<String, ScalableImage> svg = {};
 
-  static Future svgLoad() async {
-//
-    svg["dark_colors"] = await ScalableImage.fromSvgAsset(
-        rootBundle, "assets/card/dark_colors.svg");
-//
-    svg["dark_gems"] = await ScalableImage.fromSvgAsset(
-        rootBundle, "assets/card/dark_gems.svg");
-//
-    svg["dark_numbers"] = await ScalableImage.fromSvgAsset(
-        rootBundle, "assets/card/dark_numbers.svg");
-//
-    svg["dark_tarrot"] = await ScalableImage.fromSvgAsset(
-        rootBundle, "assets/card/dark_tarrot.svg");
-//
-    svg["dark_text"] = await ScalableImage.fromSvgAsset(
-        rootBundle, "assets/card/dark_text.svg");
-//
-    svg["light_colors"] = await ScalableImage.fromSvgAsset(
-        rootBundle, "assets/card/light_colors.svg");
-//
-    svg["light_gems"] = await ScalableImage.fromSvgAsset(
-        rootBundle, "assets/card/light_gems.svg");
-//
-    svg["light_numbers"] = await ScalableImage.fromSvgAsset(
-        rootBundle, "assets/card/light_numbers.svg");
-//
-    svg["light_tarrot"] = await ScalableImage.fromSvgAsset(
-        rootBundle, "assets/card/light_tarrot.svg");
-//
-    svg["light_text"] = await ScalableImage.fromSvgAsset(
-        rootBundle, "assets/card/light_text.svg");
-//
-    svg["1.svg"] =
-        await ScalableImage.fromSvgAsset(rootBundle, "assets/numerology/1.svg");
-//
-    svg["2.svg"] =
-        await ScalableImage.fromSvgAsset(rootBundle, "assets/numerology/2.svg");
-//
-    svg["3.svg"] =
-        await ScalableImage.fromSvgAsset(rootBundle, "assets/numerology/3.svg");
-//
-    svg["4.svg"] =
-        await ScalableImage.fromSvgAsset(rootBundle, "assets/numerology/4.svg");
-//
-    svg["5.svg"] =
-        await ScalableImage.fromSvgAsset(rootBundle, "assets/numerology/5.svg");
-//
-    svg["6.svg"] =
-        await ScalableImage.fromSvgAsset(rootBundle, "assets/numerology/6.svg");
-//
-    svg["7.svg"] =
-        await ScalableImage.fromSvgAsset(rootBundle, "assets/numerology/7.svg");
-//
-    svg["8.svg"] =
-        await ScalableImage.fromSvgAsset(rootBundle, "assets/numerology/8.svg");
-//
-    svg["9.svg"] =
-        await ScalableImage.fromSvgAsset(rootBundle, "assets/numerology/9.svg");
+  static List<String> _cardsAssets = [
+    "dark_colors",
+    "dark_gems",
+    "dark_numbers",
+    "dark_tarrot",
+    "dark_text",
+    "light_colors",
+    "light_gems",
+    "light_numbers",
+    "light_tarrot",
+    "light_text",
+  ];
+  
+  static Future<void> startSvgLoad() async {
+    List<Future<ScalableImage>> imageFutures = [];
+
+    // add cards
+    _cardsAssets.forEach((card) {
+      imageFutures.add(
+          ScalableImage.fromSIAsset(rootBundle, "assets/card/$card.si"));
+    });
+
+    // add numerology assets
+    for (var i = 1; i < 10; i++) {
+      imageFutures.add(
+          ScalableImage.fromSIAsset(rootBundle, "assets/numerology/$i.si"));
+    };
+    
+    return Future.wait(imageFutures).then((images) => {
+      for (var i = 0; i < _cardsAssets.length; i++) {
+        svg[_cardsAssets[i]] = images[i]
+      },
+      for (var i = 1; i < 10; i++) {
+        svg["$i.svg"] = images[_cardsAssets.length + i - 1]
+      }
+    });
 //
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jovial_svg/jovial_svg.dart';
+import 'package:my_prophet/common/card/card_image_widget.dart';
 import 'package:my_prophet/common/precache_assets.dart';
 
 const _height = 130.0;
@@ -40,24 +40,19 @@ class _DeckCardState extends State<DeckCard> {
             alignment: Alignment.topCenter,
             child: Opacity(
               opacity: (widget.mode == DeckCardMode.CHOSEN) ? 1.0 : 0.0,
-              child: ScalableImageWidget(
-                si: PrecacheAssets.svg["light_${widget.icon}"],
-              ),
+              child: CardImageWidget(PrecacheAssets.svg["light_${widget.icon}"]),
             ),
           ),
           (widget.mode == DeckCardMode.WAS_CHOSEN)
               ? Align(
                   alignment: Alignment.center,
-                  child: ScalableImageWidget(
-                    si: PrecacheAssets.svg["light_${widget.icon}"],
-                  ))
-              : SizedBox(),
+                  child: CardImageWidget(PrecacheAssets.svg["light_${widget.icon}"]),
+              ) : SizedBox(),
           (widget.mode == DeckCardMode.INTACT)
               ? Align(
                   alignment: Alignment.center,
-                  child: ScalableImageWidget(
-                    si: PrecacheAssets.svg["dark_${widget.icon}"],
-                  ))
+                  child: CardImageWidget(PrecacheAssets.svg["dark_${widget.icon}"]),
+                  )
               : SizedBox(),
         ],
       ),

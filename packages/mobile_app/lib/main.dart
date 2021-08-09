@@ -5,8 +5,11 @@ void main() async {
   /// also allows to use async
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Measure startup time
+  Stopwatch initTime = Stopwatch()..start();
+
   await dotenv.load(fileName: "assets/.env");
-  await PrecacheAssets.svgLoad();
+  var assets = PrecacheAssets.startSvgLoad();
 
   /// Application Preferences init
   AppGlobal.data.appPref = AppPreferencesFlutter();
@@ -41,29 +44,32 @@ void main() async {
 
   /// ads
   MobileAds.instance.initialize();
-  AppGlobal.internetAvailable = await internetCheck();
 
-  if (AppGlobal.internetAvailable)
-    await initAds(
-      onLoaded: (manager) {
-        AppGlobal.ads.manager = manager;
-      },
-      onWatched: () {
-        AppGlobal.ads.adsAreWatched = true;
-      },
-    );
+  initAds(
+    onLoaded: (manager) {
+      AppGlobal.ads.manager = manager;
+    },
+    onWatched: () {
+      AppGlobal.ads.adsAreWatched = true;
+    },
+  );
 
-  await initLocalNotifications();
-  await createNotificationChannel(Notif.reminderChannel);
+  var notificationFuture = initLocalNotifications().then((_) =>
+      createNotificationChannel(Notif.reminderChannel));
 
-  await initLocalNotifications();
-  await createNotificationChannel(Notif.reminderChannel);
-
-  /// authetication
+  /// authentication
   AppGlobal.authBloc = AuthenticationBloc(
       auth: AuthFlutter(repository: UsersRepositoryFlutter()))
     ..add(AppStarted());
 
+  await Future.wait([
+    notificationFuture,
+    assets
+  ]);
+
+  print("Initialization took ${initTime.elapsed}");
+
+  //
   runApp(const _Root());
 }
 

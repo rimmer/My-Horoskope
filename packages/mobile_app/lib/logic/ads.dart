@@ -13,7 +13,7 @@ typedef AdsWatchedCallback = void Function();
 /// Something went wrong with the ad
 typedef AdsFailedCallback = void Function(AdError error);
 
-initAds({
+Future<void> initAds({
   @required AdsLoadedCallback onLoaded,
   @required AdsWatchedCallback onWatched,
   AdsFailedCallback onFailed,
@@ -33,7 +33,7 @@ initAds({
 
   String adUnitId = AppGlobal.debug.isDebug ? adUnitTest : adUnitProd;
 
-  await AdManagerInterstitialAd.load(
+  return AdManagerInterstitialAd.load(
     adUnitId: adUnitId,
     adLoadCallback: AdManagerInterstitialAdLoadCallback(
       /// If Ad request is successfully received.
@@ -56,44 +56,44 @@ initAds({
       },
     ),
     request: AdManagerAdRequest(),
-  );
-
-  if (AppGlobal.ads.manager != null)
-    AppGlobal.ads.manager.fullScreenContentCallback = FullScreenContentCallback(
-
+  ).then((_) => { if (AppGlobal.ads.manager != null) {
+      AppGlobal.ads.manager.fullScreenContentCallback = FullScreenContentCallback(
         /// When Ad opens an overlay that covers the screen.
         onAdShowedFullScreenContent: (AdManagerInterstitialAd manager) {
-      debugPrint('Ad opened.');
-      AppGlobal.firebase.analytics.logEvent(name: "ad_opened");
-    },
+          debugPrint('Ad opened.');
+          AppGlobal.firebase.analytics.logEvent(name: "ad_opened");
+        },
 
         /// When Ad removes an overlay that covers the screen.
         onAdDismissedFullScreenContent: (AdManagerInterstitialAd manager) {
-      onWatched();
-      manager.dispose();
-      debugPrint('Ad closed.');
-      AppGlobal.firebase.analytics.logEvent(name: "ad_watched");
-    },
+          onWatched();
+          manager.dispose();
+          debugPrint('Ad closed.');
+          AppGlobal.firebase.analytics.logEvent(name: "ad_watched");
+        },
 
         /// An InterstitialAd can only be shown once.
         /// Subsequent calls to show will trigger this
         onAdFailedToShowFullScreenContent:
             (AdManagerInterstitialAd manager, AdError error) {
-      /// dispose anyway
-      manager.dispose();
+          /// dispose anyway
+          manager.dispose();
 
-      /// if not watched then it is not a subsequent call
-      if (AppGlobal.ads.adsAreWatched == false) {
-        onFailed(error);
-        AppGlobal.firebase.analytics.logEvent(
-            name: "ad_failed_show",
-            parameters: {
-              'error_message': error.message,
-              'error_code': error.code
-            });
-        debugPrint('Ad failed to show: $error');
-      }
-    }, onAdImpression: (AdManagerInterstitialAd manager) {
-      // @TODO
-    });
+          /// if not watched then it is not a subsequent call
+          if (AppGlobal.ads.adsAreWatched == false) {
+            onFailed(error);
+            AppGlobal.firebase.analytics.logEvent(
+                name: "ad_failed_show",
+                parameters: {
+                  'error_message': error.message,
+                  'error_code': error.code
+                });
+            debugPrint('Ad failed to show: $error');
+          }
+        },
+        onAdImpression: (AdManagerInterstitialAd manager) {
+          // @TODO
+        }
+      )
+  }});
 }
