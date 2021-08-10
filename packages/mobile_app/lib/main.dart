@@ -5,11 +5,8 @@ void main() async {
   /// also allows to use async
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Measure startup time
-  Stopwatch initTime = Stopwatch()..start();
-
   await dotenv.load(fileName: "assets/.env");
-  var assets = PrecacheAssets.startSvgLoad();
+  final assets = PrecacheAssets.startSvgLoad();
 
   /// Application Preferences init
   AppGlobal.data.appPref = AppPreferencesFlutter();
@@ -23,7 +20,7 @@ void main() async {
   await configureLocalTimeZone();
 
   /// firebase
-  var app = await Firebase.initializeApp();
+  final app = await Firebase.initializeApp();
   app.setAutomaticDataCollectionEnabled(AppGlobal.debug.isNotDebug);
   AppGlobal.firebase.analytics = FirebaseAnalytics();
   AppGlobal.firebase.analytics
@@ -44,17 +41,17 @@ void main() async {
 
   /// ads
   MobileAds.instance.initialize();
-  initAds(
-    onLoaded: (manager) {
-      AppGlobal.ads.manager = manager;
-    },
-    onWatched: () {
-      AppGlobal.ads.adsAreWatched = true;
-    },
-  );
+  initAds(onLoaded: (manager) {
+    AppGlobal.ads.adsLoaded = true;
+    AppGlobal.ads.manager = manager;
+  }, onWatched: () {
+    AppGlobal.ads.adsWatched = true;
+  }, onFailed: (error) {
+    AppGlobal.ads.adsLoaded = false;
+  });
 
-  var notificationFuture = initLocalNotifications().then((_) =>
-      createNotificationChannel(Notif.reminderChannel));
+  final notificationFuture = initLocalNotifications()
+      .then((_) => createNotificationChannel(Notif.reminderChannel));
 
   /// authentication
   AppGlobal.authBloc = AuthenticationBloc(
@@ -63,10 +60,8 @@ void main() async {
 
   await Future.wait([
     notificationFuture,
-    assets
+    assets,
   ]);
-
-  print("Initialization took ${initTime.elapsed}");
 
   //
   runApp(const _Root());

@@ -56,44 +56,49 @@ Future<void> initAds({
       },
     ),
     request: AdManagerAdRequest(),
-  ).then((_) => { if (AppGlobal.ads.manager != null) {
-      AppGlobal.ads.manager.fullScreenContentCallback = FullScreenContentCallback(
-        /// When Ad opens an overlay that covers the screen.
-        onAdShowedFullScreenContent: (AdManagerInterstitialAd manager) {
-          debugPrint('Ad opened.');
-          AppGlobal.firebase.analytics.logEvent(name: "ad_opened");
-        },
+  ).then((_) => {
+        if (AppGlobal.ads.manager != null)
+          {
+            AppGlobal.ads.manager.fullScreenContentCallback =
+                FullScreenContentCallback(
 
-        /// When Ad removes an overlay that covers the screen.
-        onAdDismissedFullScreenContent: (AdManagerInterstitialAd manager) {
-          onWatched();
-          manager.dispose();
-          debugPrint('Ad closed.');
-          AppGlobal.firebase.analytics.logEvent(name: "ad_watched");
-        },
+                    /// When Ad opens an overlay that covers the screen.
+                    onAdShowedFullScreenContent:
+                        (AdManagerInterstitialAd manager) {
+              debugPrint('Ad opened.');
+              AppGlobal.firebase.analytics.logEvent(name: "ad_opened");
+            },
 
-        /// An InterstitialAd can only be shown once.
-        /// Subsequent calls to show will trigger this
-        onAdFailedToShowFullScreenContent:
-            (AdManagerInterstitialAd manager, AdError error) {
-          /// dispose anyway
-          manager.dispose();
+                    /// When Ad removes an overlay that covers the screen.
+                    onAdDismissedFullScreenContent:
+                        (AdManagerInterstitialAd manager) {
+              onWatched();
+              manager.dispose();
+              debugPrint('Ad closed.');
+              AppGlobal.firebase.analytics.logEvent(name: "ad_watched");
+            },
 
-          /// if not watched then it is not a subsequent call
-          if (AppGlobal.ads.adsAreWatched == false) {
-            onFailed(error);
-            AppGlobal.firebase.analytics.logEvent(
-                name: "ad_failed_show",
-                parameters: {
-                  'error_message': error.message,
-                  'error_code': error.code
-                });
-            debugPrint('Ad failed to show: $error');
+                    /// An InterstitialAd can only be shown once.
+                    /// Subsequent calls to show will trigger this
+                    onAdFailedToShowFullScreenContent:
+                        (AdManagerInterstitialAd manager, AdError error) {
+              /// dispose anyway
+              manager.dispose();
+
+              /// if not watched then it is not a subsequent call
+              if (AppGlobal.ads.adsWatched == false) {
+                onFailed(error);
+                AppGlobal.firebase.analytics.logEvent(
+                    name: "ad_failed_show",
+                    parameters: {
+                      'error_message': error.message,
+                      'error_code': error.code
+                    });
+                debugPrint('Ad failed to show: $error');
+              }
+            }, onAdImpression: (AdManagerInterstitialAd manager) {
+              // @TODO
+            })
           }
-        },
-        onAdImpression: (AdManagerInterstitialAd manager) {
-          // @TODO
-        }
-      )
-  }});
+      });
 }

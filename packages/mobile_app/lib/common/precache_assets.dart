@@ -17,30 +17,29 @@ class PrecacheAssets {
     "light_tarrot",
     "light_text",
   ];
-  
+
   static Future<void> startSvgLoad() async {
     List<Future<ScalableImage>> imageFutures = [];
 
     // add cards
     _cardsAssets.forEach((card) {
       imageFutures.add(
-          ScalableImage.fromSIAsset(rootBundle, "assets/card/$card.si"));
+          ScalableImage.fromSIAsset(rootBundle, "assets/card/si/$card.si"));
     });
 
     // add numerology assets
     for (var i = 1; i < 10; i++) {
       imageFutures.add(
-          ScalableImage.fromSIAsset(rootBundle, "assets/numerology/$i.si"));
-    };
-    
+          ScalableImage.fromSIAsset(rootBundle, "assets/numerology/si/$i.si"));
+    }
+    ;
+
     return Future.wait(imageFutures).then((images) => {
-      for (var i = 0; i < _cardsAssets.length; i++) {
-        svg[_cardsAssets[i]] = images[i]
-      },
-      for (var i = 1; i < 10; i++) {
-        svg["$i.svg"] = images[_cardsAssets.length + i - 1]
-      }
-    });
+          for (var i = 0; i < _cardsAssets.length; i++)
+            {svg[_cardsAssets[i]] = images[i]},
+          for (var i = 1; i < 10; i++)
+            {svg["$i.svg"] = images[_cardsAssets.length + i - 1]}
+        });
 //
   }
 

@@ -2,36 +2,62 @@ import 'index.dart';
 
 part 'prophecies_enabling.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key key}) : super(key: key);
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen();
+
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  UserModel user;
+
+  final name = MutableString("");
+  final month = MutableString("");
+  final day = MutableString("");
+  final year = MutableString("");
+  final sex = MutableInteger(0);
+  final indexToSex = {
+    0: localeText.notSelectedSex.capitalize(),
+    1: localeText.male.capitalize(),
+    2: localeText.female.capitalize(),
+    3: localeText.other.capitalize(),
+  };
+  final MutableBool luck = MutableBool(true);
+  final MutableBool internalStrength = MutableBool(true);
+  final MutableBool moodlet = MutableBool(true);
+  final MutableBool ambition = MutableBool(true);
+  final MutableBool intelligence = MutableBool(true);
+
+  @override
+  void initState() {
+    /// setting current values
+    user = AppGlobal.data.usersRepo.current.model;
+    name.wrapped = user.name;
+    final birthDate = DateTime.fromMillisecondsSinceEpoch(user.birth);
+    month.wrapped = (birthDate.month).toString();
+    if (month.wrapped.length == 1) month.wrapped = "0${month.wrapped}";
+    day.wrapped = birthDate.day.toString();
+    year.wrapped = birthDate.year.toString();
+    sex.wrapped = user.sex;
+
+    luck.wrapped = AppGlobal.data.appPref.enabledProphecies.luck;
+    internalStrength.wrapped =
+        AppGlobal.data.appPref.enabledProphecies.internalStrength;
+    moodlet.wrapped = AppGlobal.data.appPref.enabledProphecies.moodlet;
+    ambition.wrapped = AppGlobal.data.appPref.enabledProphecies.ambition;
+    intelligence.wrapped = AppGlobal.data.appPref.enabledProphecies.intuition;
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final user = AppGlobal.data.usersRepo.current.model;
-    final name = MutableString(user.name);
-    final birthDate = DateTime.fromMillisecondsSinceEpoch(user.birth);
-    final month = MutableString(birthDate.month.toString());
-    if (month.wrapped.length == 1) month.wrapped = "0${month.wrapped}";
-    final day = MutableString(birthDate.day.toString());
-    final year = MutableString(birthDate.year.toString());
-    final sex = MutableInteger(user.sex);
-    final indexToSex = {
-      0: localeText.notSelectedSex.capitalize(),
-      1: localeText.male.capitalize(),
-      2: localeText.female.capitalize(),
-      3: localeText.other.capitalize(),
-    };
-    final MutableBool luck =
-        MutableBool(AppGlobal.data.appPref.enabledProphecies.luck);
-    final MutableBool internalStrength =
-        MutableBool(AppGlobal.data.appPref.enabledProphecies.internalStrength);
-    final MutableBool moodlet =
-        MutableBool(AppGlobal.data.appPref.enabledProphecies.moodlet);
-    final MutableBool ambition =
-        MutableBool(AppGlobal.data.appPref.enabledProphecies.ambition);
-    final MutableBool intelligence =
-        MutableBool(AppGlobal.data.appPref.enabledProphecies.intuition);
-
     final screen = MediaQuery.of(context).size;
 
     return Scaffold(

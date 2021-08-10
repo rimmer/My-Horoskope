@@ -8,7 +8,6 @@ export 'package:my_horoskope/app_global.dart';
 export 'package:flutter/material.dart';
 export 'package:mutable_wrappers/mutable_wrappers.dart';
 export 'package:text/text.dart';
-export 'package:provider/provider.dart';
 export 'package:my_horoskope/common/appbar.dart';
 export 'package:my_horoskope/theme/app_colors.dart';
 export 'package:my_horoskope/theme/app_text_style.dart';
