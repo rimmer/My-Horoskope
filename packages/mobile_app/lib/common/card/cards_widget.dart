@@ -66,10 +66,10 @@ class CardsWidgetState extends State<CardsWidget> {
       ),
     };
 
-    if (AppGlobal.ads.adsWatched) cards.adsWatched = true;
+    if (AppGlobal.ads.adsAreWatched) cards.adsWatched = true;
 
     /// if need to see ads inside debug mode, comment this line
-    if (AppGlobal.adsAreDisabled) cards.adsWatched = true;
+    // if (AppGlobal.adsAreDisabled) cards.adsWatched = true;
 
     super.initState();
   }
@@ -95,18 +95,17 @@ class CardsWidgetState extends State<CardsWidget> {
                   : cards.toBuildAds
 
                       /// we build our ads card
-                      ? AppGlobal.ads.adsLoaded
+                      ? AppGlobal.ads.adsAreLoaded
                           ? PredictionCardWithButton(
                               text: localeText.adsCardDescription,
                               buttonText:
                                   localeText.watchAdsButton.toUpperCase(),
-                              onButtonTap: adsOnAdsAvailable
-                            )
+                              onButtonTap: adsOnAdsAvailable)
                           : PredictionCardWithButton(
                               text: localeText.adsErrorLoadingText,
                               textFontSize: 14,
-                              buttonText:
-                                  localeText.adsErrorLoadingButton.toUpperCase(),
+                              buttonText: localeText.adsErrorLoadingButton
+                                  .toUpperCase(),
                               onButtonTap: adsOnNotAvailable,
                             )
 
@@ -141,11 +140,10 @@ class CardsWidgetState extends State<CardsWidget> {
   }
 
   adsOnAdsAvailable() {
-    if (!AppGlobal.ads.adsWatched)
+    if (!AppGlobal.ads.adsAreWatched)
       AppGlobal.ads.manager.show().then((_) => setState(() {
-          cards.whenAdsWatched();
-        })
-      );
+            cards.whenAdsWatched();
+          }));
   }
 
   Padding _deckCardBuilder(CardType cardType) => Padding(

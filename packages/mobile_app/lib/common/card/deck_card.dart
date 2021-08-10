@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_prophet/common/card/card_image_widget.dart';
-import 'package:my_prophet/common/precache_assets.dart';
+import 'package:my_horoskope/common/card/card_image_widget.dart';
+import 'package:my_horoskope/common/precache_assets.dart';
 
 const _height = 130.0;
 const _width = 64.0;
@@ -35,19 +35,23 @@ class _DeckCardState extends State<DeckCard> {
             alignment: Alignment.topCenter,
             child: Opacity(
               opacity: (widget.mode == DeckCardMode.CHOSEN) ? 1.0 : 0.0,
-              child: CardImageWidget(PrecacheAssets.svg["light_${widget.icon}"]),
+              child:
+                  CardImageWidget(PrecacheAssets.svg["light_${widget.icon}"]),
             ),
           ),
           (widget.mode == DeckCardMode.WAS_CHOSEN)
               ? Align(
                   alignment: Alignment.center,
-                  child: CardImageWidget(PrecacheAssets.svg["light_${widget.icon}"]),
-              ) : SizedBox(),
+                  child: CardImageWidget(
+                      PrecacheAssets.svg["light_${widget.icon}"]),
+                )
+              : SizedBox(),
           (widget.mode == DeckCardMode.INTACT)
               ? Align(
                   alignment: Alignment.center,
-                  child: CardImageWidget(PrecacheAssets.svg["dark_${widget.icon}"]),
-                  )
+                  child: CardImageWidget(
+                      PrecacheAssets.svg["dark_${widget.icon}"]),
+                )
               : SizedBox(),
         ],
       ),

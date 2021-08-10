@@ -1,5 +1,4 @@
 import '../common.dart';
-import 'package:my_prophet/common/card/card_image_widget.dart';
 
 class CardTypeNumber extends StatelessWidget {
   final String numberName;

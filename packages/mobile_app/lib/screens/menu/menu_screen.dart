@@ -106,7 +106,7 @@ class MenuScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  SizedBox(height: 40.0),
+                  const SizedBox(height: 40.0),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
