@@ -1,9 +1,7 @@
 name: my_horoskope
 description: Your personal prophet
-author: Igor Ianishevskyi
-homepage: myhoroskope.app
+homepage: prophet.ninja
 publish_to: none
-
 version: 0.5.59
 
 environment:
@@ -80,7 +78,9 @@ flutter:
     - assets/splash.png
     - assets/icons/
     - assets/widget/
-    - assets/card/
+    - assets/card/card_placeholder.png
+    - assets/card/card_text.png
+    - assets/card/si/
     - assets/gem/
-    - assets/numerology/
+    - assets/numerology/si/
     - assets/tarrot/
