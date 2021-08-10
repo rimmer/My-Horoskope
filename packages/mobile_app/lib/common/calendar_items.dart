@@ -1,4 +1,4 @@
-import 'package:my_prophet/theme/app_colors.dart';
+import 'package:my_horoskope/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:text/text.dart';
 

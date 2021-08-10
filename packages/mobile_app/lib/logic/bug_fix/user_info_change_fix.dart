@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:base/user/entity/user.dart';
 import 'package:base/cards.dart';
-import 'package:my_prophet/app_global.dart';
-import 'package:my_prophet/routes.dart';
+import 'package:my_horoskope/app_global.dart';
+import 'package:my_horoskope/routes.dart';
 
-/// solves https://github.com/rimmer/my_prophet/issues/30
+/// solves https://github.com/rimmer/my_horoskope/issues/30
 
 void userInformationChangeMisc(
     {@required UserModel model, @required BuildContext context}) async {

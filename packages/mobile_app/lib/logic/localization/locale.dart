@@ -1,5 +1,5 @@
 import 'dart:io' show Platform;
-import 'package:my_prophet/app_global.dart';
+import 'package:my_horoskope/app_global.dart';
 import 'package:text/text.dart';
 
 Future chooseLocale() async {

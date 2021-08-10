@@ -49,7 +49,7 @@ class AppGlobal {
   /// ads
   static _Ads ads = _Ads();
 
-  static bool internetAvailable = true;
+  static get internetAvailable async => await internetCheck();
 
   /// getters
   static bool get adsAreDisabled => debug.isDebug;
@@ -69,8 +69,8 @@ class _Firebase {
 
 class _Ads {
   AdManagerInterstitialAd manager;
-  bool watchAdsButtonIsInactive = false;
-  bool adsAreWatched = false;
+  bool adsWatched = false;
+  bool adsLoaded = false;
 }
 
 class _LocalNotifications {

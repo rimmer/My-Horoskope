@@ -1,9 +1,8 @@
-name: my_prophet
+name: my_horoskope
 description: Your personal prophet
 homepage: prophet.ninja
 publish_to: none
-
-version: 0.1.1
+version: 0.5.59
 
 environment:
   sdk: ">=2.11.0 <3.0.0"

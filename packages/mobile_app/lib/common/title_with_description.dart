@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_prophet/common/popup_deprecated.dart';
+import 'package:my_horoskope/common/popup_deprecated.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_prophet/theme/app_colors.dart';
+import 'package:my_horoskope/theme/app_colors.dart';
 import 'package:text/text.dart';
-import 'package:my_prophet/theme/app_text_style.dart';
+import 'package:my_horoskope/theme/app_text_style.dart';
 import 'gradient_flatbutton.dart';
 
 class TitleWithDescription extends StatefulWidget {

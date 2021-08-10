@@ -44,7 +44,6 @@ void main() async {
 
   /// ads
   MobileAds.instance.initialize();
-
   initAds(
     onLoaded: (manager) {
       AppGlobal.ads.manager = manager;

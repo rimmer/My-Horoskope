@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_prophet/theme/app_text_style.dart';
-import 'package:my_prophet/theme/app_colors.dart';
+import 'package:my_horoskope/theme/app_text_style.dart';
+import 'package:my_horoskope/theme/app_colors.dart';
 
 const APPBAR_HEIGHT = 56.0;
 const APPBAR_ICON_SIZE = 24.0;
