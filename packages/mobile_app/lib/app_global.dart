@@ -52,7 +52,7 @@ class AppGlobal {
   static get internetAvailable async => await internetCheck();
 
   /// getters
-  static bool get adsAreDisabled => debug.isDebug;
+  static bool get adsDisabled => debug.isDebug;
 }
 
 class _AppGlobalData {
