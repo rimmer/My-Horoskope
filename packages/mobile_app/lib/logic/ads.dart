@@ -86,7 +86,7 @@ Future<void> initAds({
               manager.dispose();
 
               /// if not watched then it is not a subsequent call
-              if (AppGlobal.ads.adsAreWatched == false) {
+              if (AppGlobal.ads.adsWatched == false) {
                 onFailed(error);
                 AppGlobal.firebase.analytics.logEvent(
                     name: "ad_failed_show",

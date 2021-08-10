@@ -69,8 +69,8 @@ class _Firebase {
 
 class _Ads {
   AdManagerInterstitialAd manager;
-  bool adsAreWatched = false;
-  bool adsAreLoaded = false;
+  bool adsWatched = false;
+  bool adsLoaded = false;
 }
 
 class _LocalNotifications {

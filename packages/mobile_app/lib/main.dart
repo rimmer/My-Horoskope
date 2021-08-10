@@ -5,9 +5,6 @@ void main() async {
   /// also allows to use async
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Measure startup time
-  // Stopwatch initTime = Stopwatch()..start();
-
   await dotenv.load(fileName: "assets/.env");
   final assets = PrecacheAssets.startSvgLoad();
 
@@ -44,13 +41,13 @@ void main() async {
 
   /// ads
   MobileAds.instance.initialize();
-  final initAd = initAds(onLoaded: (manager) {
-    AppGlobal.ads.adsAreLoaded = true;
+  initAds(onLoaded: (manager) {
+    AppGlobal.ads.adsLoaded = true;
     AppGlobal.ads.manager = manager;
   }, onWatched: () {
-    AppGlobal.ads.adsAreWatched = true;
+    AppGlobal.ads.adsWatched = true;
   }, onFailed: (error) {
-    AppGlobal.ads.adsAreLoaded = false;
+    AppGlobal.ads.adsLoaded = false;
   });
 
   final notificationFuture = initLocalNotifications()
@@ -64,10 +61,7 @@ void main() async {
   await Future.wait([
     notificationFuture,
     assets,
-    initAd,
   ]);
-
-  // print("Initialization took ${initTime.elapsed}");
 
   //
   runApp(const _Root());
