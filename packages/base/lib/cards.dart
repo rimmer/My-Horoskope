@@ -46,7 +46,7 @@ class Cards {
   bool get dontShowAds =>
       cardsShownCount() != (maxNumberOfCards - 1) || adsWatched;
 
-  bool toBuildAds = false;
+  bool toBuildAds = true;
   whenAdsWatched() {
     adsWatched = true;
     toBuildAds = false;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:base/cards.dart';
 import 'package:base/preferences/setting/enabled_prophecies/item.dart';
-import 'package:my_prophet/common/card/big_card/type/tarrot.dart';
-import 'package:my_prophet/app_global.dart';
+import 'package:my_horoskope/common/card/big_card/type/tarrot.dart';
+import 'package:my_horoskope/app_global.dart';
 import 'package:text/text.dart';
 import 'package:symbol/symbol.dart';
 
@@ -66,7 +66,7 @@ class CardsWidgetState extends State<CardsWidget> {
       ),
     };
 
-    if (AppGlobal.ads.adsAreWatched) cards.adsWatched = true;
+    if (AppGlobal.ads.adsWatched) cards.adsWatched = true;
 
     /// if need to see ads inside debug mode, comment this line
     if (AppGlobal.adsAreDisabled) cards.adsWatched = true;
@@ -95,24 +95,19 @@ class CardsWidgetState extends State<CardsWidget> {
                   : cards.toBuildAds
 
                       /// we build our ads card
-                      ? AppGlobal.internetAvailable
+                      ? AppGlobal.ads.adsLoaded
                           ? PredictionCardWithButton(
                               text: localeText.adsCardDescription,
                               buttonText:
                                   localeText.watchAdsButton.toUpperCase(),
-                              onButtonTap:
-                                  (AppGlobal.ads.watchAdsButtonIsInactive)
-                                      ? () {}
-                                      : () {
-                                          adsOnInternetAvailable();
-                                        },
+                              onButtonTap: adsOnAdsAvailable
                             )
                           : PredictionCardWithButton(
-                              text: localeText.noInternetText,
+                              text: localeText.adsErrorLoadingText,
                               textFontSize: 14,
                               buttonText:
-                                  localeText.noInternetButton.toUpperCase(),
-                              onButtonTap: adsOnNoInternet,
+                                  localeText.adsErrorLoadingButton.toUpperCase(),
+                              onButtonTap: adsOnNotAvailable,
                             )
 
                       /// otherwise we build our big card
@@ -134,7 +129,7 @@ class CardsWidgetState extends State<CardsWidget> {
     );
   }
 
-  adsOnNoInternet() {
+  adsOnNotAvailable() {
     /// It doesn't send event when no internet, and don't send it on the next start
     /// need to discuss
     // logEventNoInternetForAds();
@@ -145,19 +140,12 @@ class CardsWidgetState extends State<CardsWidget> {
     });
   }
 
-  adsOnInternetAvailable() async {
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      AppGlobal.ads.watchAdsButtonIsInactive = true;
-    });
-
-    if (AppGlobal.ads.adsAreWatched == false)
-      await AppGlobal.ads.manager.show();
-
-    // ignore: invalid_use_of_protected_member
-    setState(() {
-      cards.whenAdsWatched();
-    });
+  adsOnAdsAvailable() {
+    if (!AppGlobal.ads.adsWatched)
+      AppGlobal.ads.manager.show().then((_) => setState(() {
+          cards.whenAdsWatched();
+        })
+      );
   }
 
   Padding _deckCardBuilder(CardType cardType) => Padding(

@@ -41,17 +41,21 @@ void main() async {
 
   /// ads
   MobileAds.instance.initialize();
-  AppGlobal.internetAvailable = await internetCheck();
 
-  if (AppGlobal.internetAvailable)
-    await initAds(
-      onLoaded: (manager) {
-        AppGlobal.ads.manager = manager;
-      },
-      onWatched: () {
-        AppGlobal.ads.adsAreWatched = true;
-      },
-    );
+  // no need to check if internet is available,
+  // google play services might serve the ad from cache
+  await initAds(
+    onLoaded: (manager) {
+      AppGlobal.ads.adsLoaded = true;
+      AppGlobal.ads.manager = manager;
+    },
+    onWatched: () {
+      AppGlobal.ads.adsWatched = true;
+    },
+    onFailed: (error) {
+      AppGlobal.ads.adsLoaded = false;
+    }
+  );
 
   await initLocalNotifications();
   await createNotificationChannel(Notif.reminderChannel);

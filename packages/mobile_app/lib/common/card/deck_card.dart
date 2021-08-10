@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jovial_svg/jovial_svg.dart';
-import 'package:my_prophet/common/precache_assets.dart';
+import 'package:my_horoskope/common/precache_assets.dart';
 
 const _height = 130.0;
 const _width = 64.0;
-
-const _smallCardHeightFull = 100.0;
-const _smallCardWidthFull = 64.0;
-const _smallCardHeight = 95.0;
-const _smallCardWidth = 60.8;
 
 enum DeckCardMode {
   CHOSEN,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_prophet/theme/app_colors.dart';
+import 'package:my_horoskope/theme/app_colors.dart';
 
 class TrianglePainter extends CustomPainter {
   final bool isNegative;

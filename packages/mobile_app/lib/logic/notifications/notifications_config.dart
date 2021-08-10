@@ -2,7 +2,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:text/text.dart';
 import 'package:flutter/widgets.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:my_prophet/app_global.dart';
+import 'package:my_horoskope/app_global.dart';
 
 /// @constants
 const _DEFAULT_PAYLOAD = "default_payload";

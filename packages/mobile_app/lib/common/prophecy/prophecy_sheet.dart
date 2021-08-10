@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_prophet/theme/app_colors.dart';
+import 'package:my_horoskope/theme/app_colors.dart';
 import 'package:text/text.dart';
 import 'package:base/prophecy/entity/prophecy.dart';
 import 'package:base/preferences/setting/enabled_prophecies/item.dart';
