@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:my_horoskope/theme/app_colors.dart';
 
+int upperYearBound(int bound) => DateTime.now().year - bound;
+
 class UserInfoField extends StatefulWidget {
   final String hint;
   final Function(String toValidate) validator;

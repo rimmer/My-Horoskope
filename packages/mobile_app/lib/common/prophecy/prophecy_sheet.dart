@@ -7,7 +7,7 @@ import 'package:base/preferences/setting/enabled_prophecies/item.dart';
 
 import '../title_with_description.dart';
 import 'prophecy_record.dart';
-import 'prophecy_sheet_divider.dart';
+import '../sheet_divider.dart';
 
 const PROPHECY_PADDING_HORIZONTAL = 16.0;
 

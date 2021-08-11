@@ -2,8 +2,6 @@ import 'index.dart';
 
 typedef bool ReturnsTrueOnCorrect();
 
-int upperYearBound(int bound) => DateTime.now().year - bound;
-
 class UserSettingsList extends StatelessWidget {
   final MutableString name;
   final MutableString month;

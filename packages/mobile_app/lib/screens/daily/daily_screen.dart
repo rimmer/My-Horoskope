@@ -194,7 +194,9 @@ class _DailyScreenState extends State<DailyScreen>
                         ),
 
                         /// button that says "ambiance (relationship) are not avaible in this version"
-                        const NotAvailableButton(),
+                        AddAmbianceButton(
+                          onTap: () => focusAmbianceAdd(),
+                        ),
 
                         const SizedBox(
                           height: SPACE_AFTER_AMBIANCE,
@@ -206,6 +208,22 @@ class _DailyScreenState extends State<DailyScreen>
               ),
             ),
           ),
+          if (dat.ambianceAdd || dat.ambianceChange)
+            Positioned.fill(
+              child: GestureDetector(
+                onTap: () => unfocusAmbiancePopup(),
+                child: Container(
+                  color: Colors.black.withOpacity(0.6),
+                ),
+              ),
+            ),
+          if (dat.ambianceAdd)
+            Align(
+              alignment: Alignment.center,
+              child: AmbianceSubjectNew(
+                onComplete: () => unfocusAmbiancePopup(),
+              ),
+            ),
         ],
       ),
     );

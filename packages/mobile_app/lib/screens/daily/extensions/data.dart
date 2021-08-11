@@ -13,4 +13,7 @@ class DailyStateData {
   Animation<double> animationSheetsFadeOut;
   AnimationController animationCardFadeController;
   Animation<double> animationCardFade;
+  bool ambianceAdd = false;
+  bool ambianceChange = false;
+  UserEntity ambianceChangeSubject;
 }

@@ -37,19 +37,6 @@ class MenuScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                    child: NotAvaibleInfo(
-                      child: MenuItemLeadingIcon(
-                        icon: Icons.group_add,
-                        text: "${localeText.addAmbiance.capitalize()}",
-                        onTap: null,
-                      ),
-                      title: localeText.noAmbianceTitle.capitalize(),
-                      desc: localeText.noAmbianceDescription,
-                      button: localeText.noAmbianceButton.toUpperCase(),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
                     child: MenuItemLeadingIcon(
                         icon: Icons.perm_identity,
                         text: "${localeText.profileSettings.capitalize()}",

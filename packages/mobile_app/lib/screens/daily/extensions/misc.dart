@@ -6,6 +6,28 @@ extension DailyScreenMiscMethods on _DailyScreenState {
   EnabledProphecies get toShow => AppGlobal.data.appPref.enabledProphecies;
   bool get isToday => d[selected].millisecondsSinceEpoch == dtDay;
 
+  unfocusAmbiancePopup() {
+    // ignore: invalid_use_of_protected_member
+    setState(() {
+      dat.ambianceAdd = false;
+      dat.ambianceChange = false;
+    });
+  }
+
+  focusAmbianceAdd() {
+    // ignore: invalid_use_of_protected_member
+    setState(() {
+      dat.ambianceAdd = true;
+    });
+  }
+
+  focusAmbianceChange() {
+    // ignore: invalid_use_of_protected_member
+    setState(() {
+      dat.ambianceChange = true;
+    });
+  }
+
   void calculateProphecy() {
     AppGlobal.prophecyUtil.calculate(
         dt: d[selected].millisecondsSinceEpoch,
