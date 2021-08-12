@@ -71,7 +71,12 @@ class _AmbianceSubjectNewState extends State<AmbianceSubjectNew> {
           ),
           GradientFlatButton(
             onPressed: () {
-              if (int.parse(month.wrapped) > 12 ||
+              if (name.wrapped.isEmpty ||
+                  role.wrapped.isEmpty ||
+                  day.wrapped.isEmpty ||
+                  month.wrapped.isEmpty ||
+                  year.wrapped.isEmpty ||
+                  int.parse(month.wrapped) > 12 ||
                   int.parse(month.wrapped) < 1 ||
                   int.parse(day.wrapped) > 31 ||
                   int.parse(day.wrapped) < 1) return;
