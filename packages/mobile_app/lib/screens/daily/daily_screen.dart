@@ -39,7 +39,6 @@ class _DailyScreenState extends State<DailyScreen>
   @override
   void initState() {
     /// date init
-    dat.user = AppGlobal.data.usersRepo.current;
     dat.labelStr =
         "${dat.user.model.name.capitalize()} (${localeText.you.capitalize()})";
     dat.sign = dat.user.model.birth.astroSign;
@@ -189,11 +188,24 @@ class _DailyScreenState extends State<DailyScreen>
                             toShow: toShow,
                           ),
 
-                        const SizedBox(
-                          height: SPACE_BEFORE_AMBIANCE,
-                        ),
+                        /// ambiance
+                        if (dat.user.ambiance.isNotEmpty)
+                          ListView.builder(
+                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: dat.user.ambiance.length,
+                            itemBuilder: (context, index) {
+                              return AmbiacneSubject(
+                                onOptionsTap: () {},
+                                subject: dat.user.ambiance[index],
+                                compatibility: 80.0,
+                              );
+                            },
+                          ),
 
-                        /// button that says "ambiance (relationship) are not avaible in this version"
+                        /// add ambiance
                         AddAmbianceButton(
                           onTap: () => focusAmbianceAdd(),
                         ),

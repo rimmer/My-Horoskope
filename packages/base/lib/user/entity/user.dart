@@ -70,6 +70,27 @@ class UserEntity {
     @required this.model,
   }) : this.id = id ?? model.birth;
 
+  addAmbianceSubject(UserEntity subject) {
+    if (!ambiance.contains(subject)) ambiance.add(subject);
+  }
+
+  updateAmbianceSubject(UserEntity subject, UserEntity update) {
+    if (ambiance.contains(subject)) {
+      ambiance[ambiance.indexOf(subject)] = update;
+    }
+  }
+
+  removeAmbianceSubject(UserEntity subject) {
+    if (ambiance.contains(subject)) ambiance.remove(subject);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (other is UserEntity) if (other.model == this.model &&
+        other.role == this.role) return true;
+    return false;
+  }
+
   Map<String, Object> toJson() => _$UserEntityToJson(this);
 
   static UserEntity fromJson(Map<String, Object> json) =>

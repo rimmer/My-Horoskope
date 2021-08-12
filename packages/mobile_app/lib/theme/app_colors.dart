@@ -44,6 +44,18 @@ class AppColors {
   ];
 }
 
+class SheetGradient extends LinearGradient {
+  SheetGradient()
+      : super(
+          colors: [
+            AppColors.prophecyGradientStart,
+            AppColors.prophecyGradientEnd,
+          ],
+          begin: Alignment.bottomLeft,
+          end: Alignment.topRight,
+        );
+}
+
 Color chooseNumberColorFromProgressValueBar(double value) {
   if (value < 2.5) return AppColors.prophecyValueProgressGradient[0];
   if (value < 3) return AppColors.prophecyValueProgressGradient[1];

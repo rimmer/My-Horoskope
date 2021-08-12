@@ -58,15 +58,9 @@ class ProphecySheet extends StatelessWidget {
 
       /// Background gradient
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              AppColors.prophecyGradientStart.withOpacity(0.9),
-              AppColors.prophecyGradientEnd.withOpacity(0.9),
-            ],
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
-          ),
-          borderRadius: BorderRadius.circular(8.0)),
+        gradient: SheetGradient(),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
 
       /// main list view
       child: ListView(

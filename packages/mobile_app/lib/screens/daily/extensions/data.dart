@@ -1,7 +1,7 @@
 part of '../daily_screen.dart';
 
 class DailyStateData {
-  UserEntity user;
+  UserEntity get user => AppGlobal.data.usersRepo.current;
   String labelStr;
   Row birthRow;
   String sign;

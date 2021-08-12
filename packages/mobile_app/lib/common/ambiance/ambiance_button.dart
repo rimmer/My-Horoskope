@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:text/text.dart';
-import 'package:my_horoskope/theme/app_colors.dart';
-import 'package:my_horoskope/theme/app_text_style.dart';
-import '../gradient_border_button.dart';
+import 'common.dart';
 
 class AddAmbianceButton extends StatelessWidget {
   final Function onTap;

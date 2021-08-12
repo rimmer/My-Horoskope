@@ -24,14 +24,7 @@ class _AmbianceSubjectNewState extends State<AmbianceSubjectNew> {
       width: 250.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
-        gradient: LinearGradient(
-          colors: [
-            AppColors.prophecyGradientStart,
-            AppColors.prophecyGradientEnd,
-          ],
-          begin: Alignment.bottomLeft,
-          end: Alignment.topRight,
-        ),
+        gradient: SheetGradient(),
       ),
       child: ListView(
         padding: const EdgeInsets.all(0.0),
@@ -77,9 +70,29 @@ class _AmbianceSubjectNewState extends State<AmbianceSubjectNew> {
             height: 18.0,
           ),
           GradientFlatButton(
-            // adding to the ambiance
             onPressed: () {
-              print("${name.wrapped} ${role.wrapped}");
+              if (int.parse(month.wrapped) > 12 ||
+                  int.parse(month.wrapped) < 1 ||
+                  int.parse(day.wrapped) > 31 ||
+                  int.parse(day.wrapped) < 1) return;
+
+              final ambianceSubject = UserEntity(
+                model: UserModel(
+                  name: name.wrapped,
+                  birth: DateTime.utc(
+                    int.parse(year.wrapped),
+                    int.parse(month.wrapped),
+                    int.parse(day.wrapped),
+                  ).millisecondsSinceEpoch,
+                  sex: sex.wrapped,
+                ),
+                role: role.wrapped,
+              );
+
+              AppGlobal.data.usersRepo.current
+                  .addAmbianceSubject(ambianceSubject);
+              AppGlobal.data.usersRepo.write();
+
               widget.onComplete();
             },
             child: Padding(

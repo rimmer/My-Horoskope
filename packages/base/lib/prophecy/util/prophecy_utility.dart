@@ -25,12 +25,8 @@ class ProphecyUtility {
   double compatibility({
     @required int dt,
     @required UserEntity user,
-    @required UserModel subjectModel,
-    @required String subjectRole,
+    @required UserEntity subject,
   }) {
-    final subject = user.ambiance.firstWhere((subject) =>
-        subject.model == subjectModel && subject.role == subject.role);
-
     final calculationForUser = this.calculate(dt: dt, user: user);
     final calculationForSubject = this.calculate(dt: dt, user: subject);
 
