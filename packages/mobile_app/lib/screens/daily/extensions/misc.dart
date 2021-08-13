@@ -35,6 +35,14 @@ extension DailyScreenMiscMethods on _DailyScreenState {
         user: dat.user);
   }
 
+  double getCompatibility(UserEntity subject) {
+    return AppGlobal.prophecyUtil.compatibility(
+      dt: d[selected].millisecondsSinceEpoch,
+      user: dat.user,
+      subject: subject,
+    );
+  }
+
   PreparedSymbolCombination getCombinationCallback() =>
       getSymbolCombination(AppGlobal.prophecyUtil.current);
 }

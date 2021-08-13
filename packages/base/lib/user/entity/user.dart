@@ -56,7 +56,7 @@ class UserEntity {
   /// other peoples in user' life that
   /// magically impact his life
   /// and important enough to be added
-  List<UserEntity> ambiance = [];
+  List<UserEntity> ambiance;
 
   /// used to check what user was logged in previous session
   bool lastLogin;
@@ -64,23 +64,26 @@ class UserEntity {
   UserEntity({
     id,
     this.role = "user",
-    this.ambiance,
+    this.ambiance = const [],
     this.lastLogin = false,
     this.isTester = false,
     @required this.model,
   }) : this.id = id ?? model.birth;
 
   addAmbianceSubject(UserEntity subject) {
+    if (ambiance == null || ambiance.isEmpty) ambiance = [];
     if (!ambiance.contains(subject)) ambiance.add(subject);
   }
 
   updateAmbianceSubject(UserEntity subject, UserEntity update) {
+    if (ambiance == null || ambiance.isEmpty) ambiance = [];
     if (ambiance.contains(subject)) {
       ambiance[ambiance.indexOf(subject)] = update;
     }
   }
 
   removeAmbianceSubject(UserEntity subject) {
+    if (ambiance == null || ambiance.isEmpty) ambiance = [];
     if (ambiance.contains(subject)) ambiance.remove(subject);
   }
 
