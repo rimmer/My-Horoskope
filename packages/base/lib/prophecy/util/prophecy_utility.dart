@@ -30,7 +30,7 @@ class ProphecyUtility {
     final calcUser = this.calculate(dt: dt, user: user);
     final calcSubj = this.calculate(dt: dt, user: subject);
 
-    double result = 10.0;
+    double result = 0.0;
 
     /// overall health feeling (root chakra)
     result += calcUser[ProphecyType.ROOT].value * 0.1 +
