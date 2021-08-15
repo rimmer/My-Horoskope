@@ -201,9 +201,16 @@ class _DailyScreenState extends State<DailyScreen>
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: dat.user.ambiance.length,
                             itemBuilder: (context, index) {
+                              //
                               final subject = dat.user.ambiance[index];
+
+                              //
                               return AmbiacneSubject(
-                                onOptionsTap: () {},
+                                onOptionsTap: () {
+                                  dat.ambianceChangeSubject = subject;
+                                  focusAmbianceChange();
+                                  //
+                                },
                                 subject: subject,
                                 compatibility: getCompatibility(subject),
                               );
@@ -243,6 +250,15 @@ class _DailyScreenState extends State<DailyScreen>
                 alignment: Alignment.center,
                 child: AmbianceSubjectNew(
                   onComplete: () => unfocusAmbiancePopup(),
+                ),
+              ),
+          if (isToday)
+            if (dat.ambianceChange)
+              Align(
+                alignment: Alignment.center,
+                child: AmbianceSubjectChange(
+                  onComplete: () => unfocusAmbiancePopup(),
+                  subject: dat.ambianceChangeSubject,
                 ),
               ),
         ],

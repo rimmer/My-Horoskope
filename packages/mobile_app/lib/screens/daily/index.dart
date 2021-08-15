@@ -29,5 +29,6 @@ export 'package:my_horoskope/theme/app_colors.dart';
 export 'package:my_horoskope/theme/app_text_style.dart';
 export 'package:my_horoskope/common/ambiance/ambiance_subject_new.dart';
 export 'package:my_horoskope/common/ambiance/ambiance_subject_item.dart';
+export 'package:my_horoskope/common/ambiance/ambiance_subject_settings.dart';
 
 export 'extensions/constants.dart';

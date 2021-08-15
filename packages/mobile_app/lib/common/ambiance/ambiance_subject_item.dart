@@ -53,8 +53,8 @@ class AmbiacneSubject extends StatelessWidget {
 
         /// {Astrosign} {Birthdate}
         Padding(
-          padding: const EdgeInsets.only(
-            left: 16.0,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
           ),
           child: SizedBox(
             height: 32,
@@ -64,6 +64,17 @@ class AmbiacneSubject extends StatelessWidget {
                 Text(
                   " ${birthDate.day}.${birthDate.month}.${birthDate.year} ",
                   style: AppTextStyle.normalText,
+                ),
+                Expanded(
+                  child: const SizedBox(),
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.more_horiz,
+                    color: AppColors.textPrimary,
+                    size: 32.0,
+                  ),
+                  onPressed: onOptionsTap,
                 ),
               ],
             ),
