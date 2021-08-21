@@ -59,8 +59,7 @@ class AmbianceUserInputFields extends StatelessWidget {
           onEditingComplete: () => node.nextFocus(),
           validator: (String text) {
             int min = 2;
-            if (text.isEmpty || text.length < min)
-              return "${localeText.atLeastXsymbolsNeeded} $min";
+            if (text.isEmpty || text.length < min) return "${localeText.atLeastXsymbolsNeeded} $min";
             return null;
           },
         ),
@@ -74,8 +73,7 @@ class AmbianceUserInputFields extends StatelessWidget {
           onEditingComplete: () => node.nextFocus(),
           validator: (String text) {
             int min = 1;
-            if (text.isEmpty || text.length < min)
-              return "${localeText.atLeastXsymbolsNeeded} $min";
+            if (text.isEmpty || text.length < min) return "${localeText.atLeastXsymbolsNeeded} $min";
             return null;
           },
         ),
@@ -101,11 +99,9 @@ class AmbianceUserInputFields extends StatelessWidget {
                   onEditingComplete: () => node.nextFocus(),
                   validator: (String text) {
                     int min = 1;
-                    if (text.isEmpty || text.length < min)
-                      return "${text.length}/$min";
+                    if (text.isEmpty || text.length < min) return "${text.length}/$min";
                     if (int.parse(text) > 31 || int.parse(text) < 1) return "x";
-                    if (text.length == 1 && int.parse(text) > 3)
-                      node.nextFocus();
+                    if (text.length == 1 && int.parse(text) > 3) node.nextFocus();
                     if (text.length == 2) node.nextFocus();
                     return null;
                   },
@@ -124,11 +120,9 @@ class AmbianceUserInputFields extends StatelessWidget {
                   onEditingComplete: () => node.nextFocus(),
                   validator: (String text) {
                     int min = 1;
-                    if (text.isEmpty || text.length < min)
-                      return "${text.length}/$min";
+                    if (text.isEmpty || text.length < min) return "${text.length}/$min";
                     if (int.parse(text) > 12 || int.parse(text) < 1) return "x";
-                    if (text.length == 1 && int.parse(text) > 1)
-                      node.nextFocus();
+                    if (text.length == 1 && int.parse(text) > 1) node.nextFocus();
                     if (text.length == 2) node.nextFocus();
                     return null;
                   },
@@ -147,10 +141,7 @@ class AmbianceUserInputFields extends StatelessWidget {
                   onEditingComplete: () => node.unfocus(),
                   validator: (String text) {
                     int min = 4;
-                    if (text.isEmpty || text.length < min)
-                      return "${text.length}/$min";
-                    if (int.parse(text) > upperYearBound(12) ||
-                        int.parse(text) < 1921) return "x";
+                    if (text.isEmpty || text.length < min) return "${text.length}/$min";
                     if (text.length == 4) node.unfocus();
                     return null;
                   },
