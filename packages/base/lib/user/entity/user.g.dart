@@ -24,10 +24,13 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
   return UserEntity(
     id: json['id'],
     role: (json['role'] as String).toLowerCase(),
-    ambiance: (json['ambiance'] as List)
-        ?.map((e) =>
-            e == null ? null : UserEntity.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
+    ambiance: json['ambiance'] == null
+        ? []
+        : (json['ambiance'] as List)
+            ?.map((e) => e == null
+                ? null
+                : UserEntity.fromJson(e as Map<String, dynamic>))
+            ?.toList(),
     lastLogin: json['lastLogin'] as bool,
     isTester: json['model'] != null && json['model']['name'] != null
         ? _isTesterCheck(json['model']['name'] as String, [

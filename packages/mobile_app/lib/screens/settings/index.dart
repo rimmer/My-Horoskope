@@ -14,3 +14,4 @@ export 'package:my_horoskope/theme/app_text_style.dart';
 export 'package:my_horoskope/common/app_background.dart';
 export 'package:my_horoskope/common/user_settings/user_settings.dart';
 export 'package:my_horoskope/routes.dart';
+export 'package:my_horoskope/common/userinfo_field.dart';

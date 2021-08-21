@@ -14,7 +14,6 @@ const dayToIndex = {
 //
 const SPACE_BETWEEN_CALENDAR_PROPHECY = 1.0;
 const SPACE_AFTER_PROPHECY = 16.0;
-const SPACE_BEFORE_AMBIANCE = 16.0;
 const SPACE_AFTER_AMBIANCE = 16.0;
 //
 

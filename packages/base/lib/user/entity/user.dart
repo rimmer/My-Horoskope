@@ -32,8 +32,7 @@ class UserModel extends Equatable {
 
   Map<String, Object> toJson() => _$UserModelToJson(this);
 
-  static UserModel fromJson(Map<String, Object> json) =>
-      _$UserModelFromJson(json);
+  static UserModel fromJson(Map<String, Object> json) => _$UserModelFromJson(json);
 }
 
 @JsonSerializable()
@@ -56,7 +55,7 @@ class UserEntity {
   /// other peoples in user' life that
   /// magically impact his life
   /// and important enough to be added
-  List<UserEntity> ambiance = [];
+  List<UserEntity> ambiance;
 
   /// used to check what user was logged in previous session
   bool lastLogin;
@@ -64,16 +63,41 @@ class UserEntity {
   UserEntity({
     id,
     this.role = "user",
-    this.ambiance,
+    this.ambiance = const [],
     this.lastLogin = false,
     this.isTester = false,
     @required this.model,
   }) : this.id = id ?? model.birth;
 
+  addAmbianceSubject(UserEntity subject) {
+    if (ambiance == null || ambiance.isEmpty) ambiance = [];
+    if (!ambiance.contains(subject)) ambiance.add(subject);
+  }
+
+  updateAmbianceSubject(UserEntity subject, UserEntity update) {
+    if (ambiance == null || ambiance.isEmpty) ambiance = [];
+    final indx = ambiance.indexOf(subject);
+    if (indx == -1) {
+      ambiance.add(update);
+    } else if (indx < ambiance.length) {
+      ambiance[indx] = update;
+    }
+  }
+
+  removeAmbianceSubject(UserEntity subject) {
+    if (ambiance == null || ambiance.isEmpty) ambiance = [];
+    ambiance.remove(subject);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (other is UserEntity) if (other.model == this.model && other.role == this.role) return true;
+    return false;
+  }
+
   Map<String, Object> toJson() => _$UserEntityToJson(this);
 
-  static UserEntity fromJson(Map<String, Object> json) =>
-      _$UserEntityFromJson(json);
+  static UserEntity fromJson(Map<String, Object> json) => _$UserEntityFromJson(json);
 
   @override
   String toString() {

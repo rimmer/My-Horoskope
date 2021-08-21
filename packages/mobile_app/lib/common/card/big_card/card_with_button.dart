@@ -46,6 +46,7 @@ class PredictionCardWithButton extends StatelessWidget {
           top: 16.0,
         ),
         scrollDirection: Axis.vertical,
+        physics: NeverScrollableScrollPhysics(),
         children: [
           Text(
             text,

@@ -39,7 +39,6 @@ class _DailyScreenState extends State<DailyScreen>
   @override
   void initState() {
     /// date init
-    dat.user = AppGlobal.data.usersRepo.current;
     dat.labelStr =
         "${dat.user.model.name.capitalize()} (${localeText.you.capitalize()})";
     dat.sign = dat.user.model.birth.astroSign;
@@ -77,6 +76,7 @@ class _DailyScreenState extends State<DailyScreen>
         planetFor[d[selected].millisecondsSinceEpoch.astroSign][dat.sign]);
 
     calculateProphecy();
+
     if (isToday)
       dat.combination = getSymbolCombination(AppGlobal.prophecyUtil.current);
 
@@ -189,16 +189,44 @@ class _DailyScreenState extends State<DailyScreen>
                             toShow: toShow,
                           ),
 
-                        const SizedBox(
-                          height: SPACE_BEFORE_AMBIANCE,
-                        ),
+                        /// ambiance
+                        if (isToday &&
+                            dat.user != null &&
+                            dat.user.ambiance != null &&
+                            dat.user.ambiance.isNotEmpty)
+                          ListView.builder(
+                            padding: EdgeInsets.symmetric(vertical: 16.0),
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: dat.user.ambiance.length,
+                            itemBuilder: (context, index) {
+                              //
+                              final subject = dat.user.ambiance[index];
 
-                        /// button that says "ambiance (relationship) are not avaible in this version"
-                        const NotAvailableButton(),
+                              //
+                              return AmbiacneSubject(
+                                onOptionsTap: () {
+                                  dat.ambianceChangeSubject = subject;
+                                  focusAmbianceChange();
+                                  //
+                                },
+                                subject: subject,
+                                compatibility: getCompatibility(subject),
+                              );
+                            },
+                          ),
 
-                        const SizedBox(
-                          height: SPACE_AFTER_AMBIANCE,
-                        ),
+                        /// add ambiance
+                        if (isToday)
+                          AddAmbianceButton(
+                            onTap: () => focusAmbianceAdd(),
+                          ),
+
+                        if (isToday)
+                          const SizedBox(
+                            height: SPACE_AFTER_AMBIANCE,
+                          ),
                       ],
                     ),
                   ),
@@ -206,6 +234,33 @@ class _DailyScreenState extends State<DailyScreen>
               ),
             ),
           ),
+          if (isToday)
+            if (dat.ambianceAdd || dat.ambianceChange)
+              Positioned.fill(
+                child: GestureDetector(
+                  onTap: () => unfocusAmbiancePopup(),
+                  child: Container(
+                    color: Colors.black.withOpacity(0.6),
+                  ),
+                ),
+              ),
+          if (isToday)
+            if (dat.ambianceAdd)
+              Align(
+                alignment: Alignment.center,
+                child: AmbianceSubjectNew(
+                  onComplete: () => unfocusAmbiancePopup(),
+                ),
+              ),
+          if (isToday)
+            if (dat.ambianceChange)
+              Align(
+                alignment: Alignment.center,
+                child: AmbianceSubjectChange(
+                  onComplete: () => unfocusAmbiancePopup(),
+                  subject: dat.ambianceChangeSubject,
+                ),
+              ),
         ],
       ),
     );

@@ -1,7 +1,7 @@
 part of '../daily_screen.dart';
 
 class DailyStateData {
-  UserEntity user;
+  UserEntity get user => AppGlobal.data.usersRepo.current;
   String labelStr;
   Row birthRow;
   String sign;
@@ -13,4 +13,7 @@ class DailyStateData {
   Animation<double> animationSheetsFadeOut;
   AnimationController animationCardFadeController;
   Animation<double> animationCardFade;
+  bool ambianceAdd = false;
+  bool ambianceChange = false;
+  UserEntity ambianceChangeSubject;
 }

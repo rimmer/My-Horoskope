@@ -7,7 +7,7 @@ import 'package:base/preferences/setting/enabled_prophecies/item.dart';
 
 import '../title_with_description.dart';
 import 'prophecy_record.dart';
-import 'prophecy_sheet_divider.dart';
+import '../sheet_divider.dart';
 
 const PROPHECY_PADDING_HORIZONTAL = 16.0;
 
@@ -58,15 +58,9 @@ class ProphecySheet extends StatelessWidget {
 
       /// Background gradient
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              AppColors.prophecyGradientStart.withOpacity(0.9),
-              AppColors.prophecyGradientEnd.withOpacity(0.9),
-            ],
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
-          ),
-          borderRadius: BorderRadius.circular(8.0)),
+        gradient: SheetGradient(),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
 
       /// main list view
       child: ListView(
