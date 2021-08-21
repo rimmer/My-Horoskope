@@ -32,8 +32,7 @@ class UserModel extends Equatable {
 
   Map<String, Object> toJson() => _$UserModelToJson(this);
 
-  static UserModel fromJson(Map<String, Object> json) =>
-      _$UserModelFromJson(json);
+  static UserModel fromJson(Map<String, Object> json) => _$UserModelFromJson(json);
 }
 
 @JsonSerializable()
@@ -77,27 +76,28 @@ class UserEntity {
 
   updateAmbianceSubject(UserEntity subject, UserEntity update) {
     if (ambiance == null || ambiance.isEmpty) ambiance = [];
-    if (ambiance.contains(subject)) {
-      ambiance[ambiance.indexOf(subject)] = update;
+    final indx = ambiance.indexOf(subject);
+    if (indx == -1) {
+      ambiance.add(update);
+    } else if (indx < ambiance.length) {
+      ambiance[indx] = update;
     }
   }
 
   removeAmbianceSubject(UserEntity subject) {
     if (ambiance == null || ambiance.isEmpty) ambiance = [];
-    if (ambiance.contains(subject)) ambiance.remove(subject);
+    ambiance.remove(subject);
   }
 
   @override
   bool operator ==(Object other) {
-    if (other is UserEntity) if (other.model == this.model &&
-        other.role == this.role) return true;
+    if (other is UserEntity) if (other.model == this.model && other.role == this.role) return true;
     return false;
   }
 
   Map<String, Object> toJson() => _$UserEntityToJson(this);
 
-  static UserEntity fromJson(Map<String, Object> json) =>
-      _$UserEntityFromJson(json);
+  static UserEntity fromJson(Map<String, Object> json) => _$UserEntityFromJson(json);
 
   @override
   String toString() {

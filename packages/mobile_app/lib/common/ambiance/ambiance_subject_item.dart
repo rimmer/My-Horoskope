@@ -29,7 +29,7 @@ class AmbiacneSubject extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "${localeText.you.capitalize()}",
+                localeText.you.capitalize(),
                 style: AppTextStyle.userName,
               ),
               const Padding(
@@ -116,7 +116,7 @@ class AmbiacneSubject extends StatelessWidget {
                 width: 8.0,
               ),
               Text(
-                "${compatibility.toStringAsFixed(0)}%",
+                compatibility.toStringAsFixed(0),
                 style: AppTextStyle.prophecyPercent,
               )
             ],
