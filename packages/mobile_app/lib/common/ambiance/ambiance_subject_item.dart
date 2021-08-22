@@ -26,28 +26,12 @@ class AmbiacneSubject extends StatelessWidget {
             top: 16.0,
             left: 16.0,
           ),
-          child: Row(
-            children: [
-              Text(
-                localeText.you.capitalize(),
-                style: AppTextStyle.userName,
-              ),
-              const Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: const Icon(
-                  Icons.compare_arrows,
-                  color: Colors.white,
-                  size: 32.0,
-                ),
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Text(
-                  "${subject.model.name.capitalize()} (${subject.role.capitalize()})",
-                  style: AppTextStyle.userName,
-                ),
-              ),
-            ],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+              "${subject.model.name.capitalize()} (${subject.role.capitalize()})",
+              style: AppTextStyle.userName,
+            ),
           ),
         ),
 
@@ -57,8 +41,9 @@ class AmbiacneSubject extends StatelessWidget {
             horizontal: 16.0,
           ),
           child: SizedBox(
-            height: 32,
+            height: 48,
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 SvgPicture.asset("assets/icons/$sign.svg"),
                 Text(
@@ -72,7 +57,7 @@ class AmbiacneSubject extends StatelessWidget {
                   icon: const Icon(
                     Icons.more_horiz,
                     color: AppColors.textPrimary,
-                    size: 32.0,
+                    size: 24.0,
                   ),
                   onPressed: onOptionsTap,
                 ),

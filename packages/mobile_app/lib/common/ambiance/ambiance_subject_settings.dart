@@ -24,14 +24,13 @@ class _AmbianceSubjectChangeState extends State<AmbianceSubjectChange> {
   @override
   void initState() {
     name.wrapped = widget.subject.model.name;
-    final birthDate =
-        DateTime.fromMillisecondsSinceEpoch(widget.subject.model.birth);
+    final birthDate = DateTime.fromMillisecondsSinceEpoch(widget.subject.model.birth);
     month.wrapped = (birthDate.month).toString();
     if (month.wrapped.length == 1) month.wrapped = "0${month.wrapped}";
     day.wrapped = birthDate.day.toString();
     year.wrapped = birthDate.year.toString();
     sex.wrapped = widget.subject.model.sex;
-    role.wrapped = widget.subject.role;
+    role.wrapped = widget.subject.role.capitalize();
     //
 
     super.initState();
@@ -91,14 +90,12 @@ class _AmbianceSubjectChangeState extends State<AmbianceSubjectChange> {
               ),
               borderAsPadding: const EdgeInsets.all(1.0),
               background: AppColors.primaryDark,
-              internalPadding:
-                  const EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
+              internalPadding: const EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
               borderRadius: BorderRadius.all(Radius.circular(32.0)),
               onPressed: () {
                 //
 
-                AppGlobal.data.usersRepo.current
-                    .removeAmbianceSubject(widget.subject);
+                AppGlobal.data.usersRepo.current.removeAmbianceSubject(widget.subject);
                 AppGlobal.data.usersRepo.write();
 
                 widget.onComplete();

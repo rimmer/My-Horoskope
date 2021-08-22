@@ -6,24 +6,23 @@ class AddAmbianceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GradientBorderButton(
+    return GradientFlatButton(
       child: Text(
         localeText.addAmbiance.toUpperCase(),
         style: AppTextStyle.normalText,
       ),
       gradient: LinearGradient(
         colors: [
-          AppColors.accentDark,
           AppColors.accent,
-          AppColors.primary,
+          AppColors.accentDark,
         ],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
       ),
-      borderAsPadding: const EdgeInsets.all(1.0),
-      background: AppColors.primaryDark,
-      internalPadding:
-          const EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 32.0,
+        vertical: 16.0,
+      ),
       borderRadius: BorderRadius.all(Radius.circular(32.0)),
       onPressed: onTap,
     );
