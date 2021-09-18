@@ -67,7 +67,7 @@ class _LanguageChoise extends StatelessWidget {
     @required this.languageName,
   });
 
-  _languageChoise(BuildContext context) async {
+  _languageChoice(BuildContext context) async {
     AppGlobal.data.appPref.locale = LocaleSettings(language: languageCode);
 
     await chooseLocale();
@@ -83,7 +83,7 @@ class _LanguageChoise extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        _languageChoise(context);
+        _languageChoice(context);
       },
       child: Text(
         languageName,

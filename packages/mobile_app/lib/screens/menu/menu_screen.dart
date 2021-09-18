@@ -102,12 +102,14 @@ class MenuScreen extends StatelessWidget {
                         child: TermsText(
                           text: localeText.userAgreement.capitalize(),
                           url: URL_USER_AGREEMENT,
+                          lang: AppGlobal.data.appPref.locale.language,
                         ),
                       ),
                       Flexible(
                         child: TermsText(
                           text: localeText.privacyPolicy.capitalize(),
                           url: URL_PRIVACY_POLICY,
+                          lang: AppGlobal.data.appPref.locale.language,
                         ),
                       ),
                     ],
