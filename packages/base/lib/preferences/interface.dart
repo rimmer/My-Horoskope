@@ -1,3 +1,4 @@
+import 'package:base/preferences/setting/locale/utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 /// @settings
@@ -17,7 +18,8 @@ class AppPreferencesDat {
   AppPreferencesDat({this.ep, this.locale, this.notifications}) {
     /// @settings
     if (ep == null) ep = EnabledProphecies();
-    if (locale == null) locale = LocaleSettings();
+    if (locale == null)
+      locale = LocaleSettings(language: guessLocaleFromSystem());
     if (notifications == null) notifications = NotificationsPreferences();
   }
 
