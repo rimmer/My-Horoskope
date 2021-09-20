@@ -5,7 +5,6 @@ export 'package:firebase_core/firebase_core.dart';
 export 'package:firebase_messaging/firebase_messaging.dart';
 export 'package:flutter/material.dart';
 export 'package:flutter_dotenv/flutter_dotenv.dart';
-export 'package:google_mobile_ads/google_mobile_ads.dart';
 export 'package:algorithm/algorithm.dart';
 export 'package:my_horoskope/app_global.dart';
 export 'package:my_horoskope/common/precache_assets.dart';

@@ -40,10 +40,8 @@ void main() async {
   }
 
   /// ads
-  MobileAds.instance.initialize();
-  initAds(onLoaded: (manager) {
+  initAds(onLoaded: () {
     AppGlobal.ads.adsLoaded = true;
-    AppGlobal.ads.manager = manager;
   }, onWatched: () {
     AppGlobal.ads.adsWatched = true;
   }, onFailed: (error) {

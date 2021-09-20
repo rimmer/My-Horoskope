@@ -1,17 +1,17 @@
+import 'package:appodeal_flutter/appodeal_flutter.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:my_horoskope/app_global.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 /// Ad successfully received and ready to be shown
 /// Call [AdWithoutView.show()] to show the ad
-typedef AdsLoadedCallback = void Function(AdWithoutView ad);
+typedef AdsLoadedCallback = void Function();
 
 /// Ad has been displayed and next action can be performed
 typedef AdsWatchedCallback = void Function();
 
 /// Something went wrong with the ad
-typedef AdsFailedCallback = void Function(AdError error);
+typedef AdsFailedCallback = void Function(String error);
 
 Future<void> initAds({
   @required AdsLoadedCallback onLoaded,
@@ -19,86 +19,93 @@ Future<void> initAds({
   AdsFailedCallback onFailed,
 }) async {
   //
-  if (onFailed == null)
-    onFailed = (error) {
-      onWatched();
-    };
-
-  //
-  final adUnitProd = dotenv.env["ad_unit_prod_id"];
-  final adUnitTest = dotenv.env["ad_unit_test_id"];
-  // final adUnitTest = dotenv.env["ad_unit_prod_id"];
-
-  //
-
-  String adUnitId = AppGlobal.debug.isDebug ? adUnitTest : adUnitProd;
-
-  return AdManagerInterstitialAd.load(
-    adUnitId: adUnitId,
-    adLoadCallback: AdManagerInterstitialAdLoadCallback(
-      /// If Ad request is successfully received.
-      onAdLoaded: (AdManagerInterstitialAd manager) {
-        onLoaded(manager);
+  AppGlobal.ads.manager = new AppodealAdsManager();
+  final androidAppKey = dotenv.env["appodeal_android_id"];
+  Appodeal.setAppKeys(androidAppKey: androidAppKey);
+  Appodeal.setInterstitialCallback((event) {
+    switch (event) {
+      case "onInterstitialLoaded":
         debugPrint('Ad loaded.');
         AppGlobal.firebase.analytics.logEvent(name: "ad_loaded");
-      },
+        onLoaded();
+        break;
+      case "onInterstitialFailedToLoad":
+        AppGlobal.firebase.analytics.logEvent(name: "ad_failed_load");
+        debugPrint('Ad failed to load');
+        if (onFailed != null) onFailed(event);
+        break;
+      case "onInterstitialShowFailed":
+        AppGlobal.firebase.analytics.logEvent(name: "ad_failed_show");
+        debugPrint('Ad failed to show');
+        if (onFailed != null) onFailed(event);
+        break;
+      case "onInterstitialClosed":
+        debugPrint('Ad closed.');
+        AppGlobal.firebase.analytics.logEvent(name: "ad_watched");
+        onWatched();
+        break;
+      case "onInterstitialShown":
+        debugPrint('Ad opened.');
+        AppGlobal.firebase.analytics.logEvent(name: "ad_opened");
+        break;
+      case "onInterstitialClicked":
+        debugPrint('Ad clicked.');
+        AppGlobal.firebase.analytics.logEvent(name: "ad_clicked");
+        break;
+      // case "onInterstitialExpired":
+    }
+  });
 
-      /// If Ad request is failed.
-      onAdFailedToLoad: (LoadAdError error) {
-        onFailed(error);
-        AppGlobal.firebase.analytics.logEvent(
-            name: "ad_failed_load",
-            parameters: {
-              'error_message': error.message,
-              'error_code': error.code
-            });
-        debugPrint('Ad failed to load: $error');
-      },
-    ),
-    request: AdManagerAdRequest(),
-  ).then((_) => {
-        if (AppGlobal.ads.manager != null)
-          {
-            AppGlobal.ads.manager.fullScreenContentCallback =
-                FullScreenContentCallback(
+  await checkConsentGivenAndInit();
 
-                    /// When Ad opens an overlay that covers the screen.
-                    onAdShowedFullScreenContent:
-                        (AdManagerInterstitialAd manager) {
-              debugPrint('Ad opened.');
-              AppGlobal.firebase.analytics.logEvent(name: "ad_opened");
-            },
+  // we'd like tp cache ads right here
+  await Appodeal.cache(AdType.INTERSTITIAL);
+}
 
-                    /// When Ad removes an overlay that covers the screen.
-                    onAdDismissedFullScreenContent:
-                        (AdManagerInterstitialAd manager) {
-              onWatched();
-              manager.dispose();
-              debugPrint('Ad closed.');
-              AppGlobal.firebase.analytics.logEvent(name: "ad_watched");
-            },
+Future<void> checkConsentGivenAndInit() async {
+  // only do the check if concent is required
+  AppGlobal.ads.adsConsentNeeded = await Appodeal.shouldShowConsent();
 
-                    /// An InterstitialAd can only be shown once.
-                    /// Subsequent calls to show will trigger this
-                    onAdFailedToShowFullScreenContent:
-                        (AdManagerInterstitialAd manager, AdError error) {
-              /// dispose anyway
-              manager.dispose();
+  if (AppGlobal.ads.adsConsentNeeded) {
+    // check if the user already gave their consent
+    final consent = await Appodeal.fetchConsentInfo();
+    AppGlobal.ads.adsConsentGiven =
+        consent.status == ConsentStatus.PERSONALIZED ||
+            consent.status == ConsentStatus.PARTLY_PERSONALIZED;
+  } else {
+    AppGlobal.ads.adsConsentGiven = true;
+  }
+  // if not, we will initialize again later when consent will be asked
+  return Appodeal.initialize(
+    hasConsent: AppGlobal.ads.adsConsentGiven,
+    adTypes: [AdType.INTERSTITIAL], // we need only INTERSTITIAL
+    testMode: AppGlobal.debug.isDebug,
+    verbose: AppGlobal.debug.isDebug,
+  );
+}
 
-              /// if not watched then it is not a subsequent call
-              if (AppGlobal.ads.adsWatched == false) {
-                onFailed(error);
-                AppGlobal.firebase.analytics.logEvent(
-                    name: "ad_failed_show",
-                    parameters: {
-                      'error_message': error.message,
-                      'error_code': error.code
-                    });
-                debugPrint('Ad failed to show: $error');
-              }
-            }, onAdImpression: (AdManagerInterstitialAd manager) {
-              // @TODO
-            })
-          }
-      });
+/**
+ * Abstraction responsible for showing ads
+ */
+abstract class AdsManager {
+  /**
+   * Triggers showing the INTERSTITIAL ad
+   */
+  Future<void> show();
+
+  Future<void> askUserConcent();
+}
+
+/**
+ * Implementation for Appodeal
+ * Manages showing ads
+ */
+class AppodealAdsManager extends AdsManager {
+  @override
+  Future<void> show() => Appodeal.show(AdType.INTERSTITIAL);
+
+  @override
+  Future<void> askUserConcent() {
+    return Appodeal.requestConsentAuthorization();
+  }
 }

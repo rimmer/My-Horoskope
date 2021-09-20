@@ -3,6 +3,7 @@ import 'package:base/cards.dart';
 import 'package:base/preferences/setting/enabled_prophecies/item.dart';
 import 'package:my_horoskope/common/card/big_card/type/tarrot.dart';
 import 'package:my_horoskope/app_global.dart';
+import 'package:my_horoskope/logic/ads.dart';
 import 'package:text/text.dart';
 import 'package:symbol/symbol.dart';
 
@@ -81,39 +82,43 @@ class CardsWidgetState extends State<CardsWidget> {
       scrollDirection: Axis.vertical,
       physics: NeverScrollableScrollPhysics(),
       children: [
-        Center(
-          child:
-
-              /// if no card was chosen then current big card is empty
-              cards.currentBigCardIsEmpty
-
-                  /// so we show card placeholder
-                  ? const CardPlaceholder()
-
-                  /// if some card was chosen
-                  /// and it is time to build ads
-                  : cards.toBuildAds
-
-                      /// we build our ads card
-                      ? AppGlobal.ads.adsLoaded
-                          ? PredictionCardWithButton(
-                              text: localeText.adsCardDescription,
-                              buttonText:
-                                  localeText.watchAdsButton.toUpperCase(),
-                              onButtonTap: adsOnAdsAvailable)
-                          : PredictionCardWithButton(
-                              text: localeText.adsErrorLoadingText,
-                              textFontSize: 14,
-                              buttonText: localeText.adsErrorLoadingButton
-                                  .toUpperCase(),
-                              onButtonTap: adsOnNotAvailable,
-                            )
-
-                      /// otherwise we build our big card
-                      : PredictionCard(
-                          type: cardType[cards.choise],
-                        ),
-        ),
+        Center(child: Builder(builder: (_) {
+          /// if no card was chosen then current big card is empty
+          if (cards.currentBigCardIsEmpty) {
+            /// so we show card placeholder
+            return const CardPlaceholder();
+          } else {
+            /// if some card was chosen
+            /// and it is time to build ads
+            if (cards.toBuildAds) {
+              /// we build our ads card
+              if (AppGlobal.ads.adsConsentNeeded &&
+                  !AppGlobal.ads.adsConsentGiven) {
+                return PredictionCardWithButton(
+                    text: localeText.adsGiveConcent,
+                    buttonText: localeText.adsGiveConcentButton.toUpperCase(),
+                    onButtonTap: adsOnConsent);
+              } else if (AppGlobal.ads.adsLoaded) {
+                return PredictionCardWithButton(
+                    text: localeText.adsCardDescription,
+                    buttonText: localeText.watchAdsButton.toUpperCase(),
+                    onButtonTap: adsOnAdsAvailable);
+              } else {
+                return PredictionCardWithButton(
+                  text: localeText.adsErrorLoadingText,
+                  textFontSize: 14,
+                  buttonText: localeText.adsErrorLoadingButton.toUpperCase(),
+                  onButtonTap: adsOnNotAvailable,
+                );
+              }
+            } else {
+              /// otherwise we build our big card
+              return PredictionCard(
+                type: cardType[cards.choise],
+              );
+            }
+          }
+        })),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -144,6 +149,20 @@ class CardsWidgetState extends State<CardsWidget> {
       AppGlobal.ads.manager.show().then((_) => setState(() {
             cards.whenAdsWatched();
           }));
+  }
+
+  adsOnConsent() {
+    // because of a bug in `flutter-appodeal` we need to force the user
+    // to press the button twice because there is no way of getting the status
+    // of the concent after the dialog is closed.
+    // `Appodeal.requestConsentAuthorization()` exits immidiately after call
+    // see https://github.com/vegidio/flutter-appodeal/blob/master/android/src/main/kotlin/io/vinicius/appodeal_flutter/AppodealFlutterPlugin.kt#L203
+    checkConsentGivenAndInit().then((_) {
+      if (AppGlobal.ads.adsConsentNeeded && !AppGlobal.ads.adsConsentGiven)
+        AppGlobal.ads.manager.askUserConcent();
+      else
+        setState(() {});
+    });
   }
 
   Padding _deckCardBuilder(CardType cardType) => Padding(

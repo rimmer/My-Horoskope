@@ -8,9 +8,9 @@ import 'package:base/user/repository/interface.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'logic/ads.dart';
 import 'logic/localization/predictions.dart';
 
 export 'package:base/preferences/interface.dart';
@@ -68,9 +68,11 @@ class _Firebase {
 }
 
 class _Ads {
-  AdManagerInterstitialAd manager;
   bool adsWatched = false;
-  bool adsLoaded = false;
+  bool adsLoaded = true;
+  bool adsConsentGiven = false;
+  bool adsConsentNeeded = false;
+  AdsManager manager;
 }
 
 class _LocalNotifications {
