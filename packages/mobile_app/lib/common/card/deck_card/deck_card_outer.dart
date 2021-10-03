@@ -15,16 +15,22 @@ class DeckCardOuter extends StatefulWidget {
 class _DeckCardOuterState extends State<DeckCardOuter> {
   CardType get type => widget.cardType;
 
+  bool isCurrent = false;
+  bool wasChosen = false;
+
   @override
   Widget build(BuildContext context) {
     if (CardsLogic.of(context).choise == type) {
+      isCurrent = true;
       return DeckCardInner(
         mode: DeckCardMode.CHOSEN,
         icon: cardTypeToString[type],
       );
     }
+    isCurrent = false;
 
     if (CardsLogic.of(context).cardShown[type]) {
+      wasChosen = true;
       return DeckCardInner(
         mode: DeckCardMode.WAS_CHOSEN,
         icon: cardTypeToString[type],
@@ -41,6 +47,13 @@ class _DeckCardOuterState extends State<DeckCardOuter> {
   void didChangeDependencies() {
     CardsLogic.of(context).addListener(() {
       try {
+        if (wasChosen) {
+          if (CardsLogic.of(context).choise != type && !isCurrent || CardsLogic.of(context).choise == type && isCurrent)
+            return;
+        } else if (!wasChosen && !CardsLogic.of(context).cardShown[type]) {
+          return;
+        }
+
         setState(() {});
       } catch (_) {}
     });
