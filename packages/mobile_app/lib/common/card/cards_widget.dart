@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_horoskope/app_global.dart';
+import 'package:my_horoskope/common/card/big_card/type/prophecy.dart';
 import 'package:my_horoskope/common/card/big_card/type/tarrot.dart';
 import 'package:my_horoskope/logic/cards/cards_logic.dart';
 import 'package:symbol/symbol.dart';
@@ -44,7 +45,7 @@ class CardsWidgetState extends State<CardsWidget> {
       CardType.GEM: CardTypeGem(
         gemName: widget.combination.mineral,
       ),
-      CardType.TEXT: CardTypeText(),
+      CardType.TEXT: CardTypeProphecy(),
     };
 
     if (AppGlobal.ads.adsWatched) CardsLogic.of(context).adsWatched = true;
