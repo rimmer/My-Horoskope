@@ -16,3 +16,4 @@ export 'package:my_horoskope/logic/notifications/timezone.dart';
 export 'package:my_horoskope/routes.dart';
 export 'package:text/text.dart';
 export 'package:my_horoskope/theme/app_theme.dart';
+export 'package:my_horoskope/logic/cards/cards_logic.dart';

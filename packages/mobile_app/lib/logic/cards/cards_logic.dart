@@ -1,4 +1,4 @@
-import 'package:base/prophecy/entity/prophecy.dart';
+import 'package:flutter/widgets.dart';
 
 /// How it works
 ///
@@ -23,7 +23,7 @@ import 'package:base/prophecy/entity/prophecy.dart';
 ///
 /// also it will mark current "_choise" as true
 /// inside "cardShown" map,
-class Cards {
+class _CardsLogic extends ChangeNotifier {
   int maxNumberOfCards = 5;
 
   /// booleans to know if some card was chosen once
@@ -42,14 +42,19 @@ class Cards {
       (cardShown[CardType.TEXT] ? 1 : 0);
 
   /// ads part
-  bool adsWatched = false;
+  bool _adsWatched = false;
+  bool get adsWatched => _adsWatched;
+  set adsWatched(bool val) {
+    _adsWatched = val;
+    notifyListeners();
+  }
+
   bool get dontShowAds => cardsShownCount() != (maxNumberOfCards - 1) || adsWatched;
 
-  bool toBuildAds = true;
   whenAdsWatched() {
-    adsWatched = true;
-    toBuildAds = false;
+    _adsWatched = true;
     cardShown[_choise] = true;
+    notifyListeners();
   }
 
   /// current choise
@@ -61,25 +66,11 @@ class Cards {
   /// @SETTER
   set choise(CardType newChoise) {
     if (dontShowAds || cardShown[newChoise]) {
-      toBuildAds = false;
       cardShown[newChoise] = true;
-    } else {
-      toBuildAds = true;
     }
 
     _choise = newChoise;
-  }
-
-  restart() {
-    _cards = Cards._();
-  }
-
-  /// singleton constructor
-  Cards._();
-  static Cards _cards;
-  factory Cards() {
-    if (_cards == null) _cards = Cards._();
-    return _cards;
+    notifyListeners();
   }
 }
 
@@ -99,3 +90,16 @@ const Map<CardType, String> cardTypeToString = {
   CardType.GEM: "gems",
   CardType.TEXT: "text",
 };
+
+class CardsLogic extends InheritedWidget {
+  CardsLogic({
+    @required Widget child,
+  }) : super(child: child);
+
+  final _CardsLogic _bound = _CardsLogic();
+
+  static _CardsLogic of(BuildContext context) => (context.dependOnInheritedWidgetOfExactType<CardsLogic>())._bound;
+
+  @override
+  bool updateShouldNotify(CardsLogic old) => false;
+}

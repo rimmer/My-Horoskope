@@ -21,16 +21,14 @@ class DailyScreen extends StatefulWidget {
     day.add(today);
 
     /// fills the list with all other days
-    for (int d = 1; d <= NUMBER_OF_DAYS_TO_SHOW; d++)
-      day.add(today.add(new Duration(days: d)));
+    for (int d = 1; d <= NUMBER_OF_DAYS_TO_SHOW; d++) day.add(today.add(new Duration(days: d)));
   }
 
   @override
   _DailyScreenState createState() => _DailyScreenState();
 }
 
-class _DailyScreenState extends State<DailyScreen>
-    with SingleTickerProviderStateMixin {
+class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStateMixin {
   //
   final dat = DailyStateData();
   DateTime birthDate;
@@ -39,19 +37,16 @@ class _DailyScreenState extends State<DailyScreen>
   @override
   void initState() {
     /// date init
-    dat.labelStr =
-        "${dat.user.model.name.capitalize()} (${localeText.you.capitalize()})";
+    dat.labelStr = "${dat.user.model.name.capitalize()} (${localeText.you.capitalize()})";
     dat.sign = dat.user.model.birth.astroSign;
     birthDate = dat.user.model.birth.toDateTime;
     dat.birthRow = Row(
       children: <Widget>[
         SvgPicture.asset("assets/icons/${dat.sign}.svg"),
-        Text(" ${birthDate.day}.${birthDate.month}.${birthDate.year} ",
-            style: AppTextStyle.normalText),
+        Text(" ${birthDate.day}.${birthDate.month}.${birthDate.year} ", style: AppTextStyle.normalText),
       ],
     );
-    if (AppGlobal.debug.isNotDebug)
-      AppGlobal.debug.testerField.wrapped = dat.user.isTester;
+    if (AppGlobal.debug.isNotDebug) AppGlobal.debug.testerField.wrapped = dat.user.isTester;
 
     /// animation
     initAnimations();
@@ -72,13 +67,11 @@ class _DailyScreenState extends State<DailyScreen>
     //
     /// gets planets for current period
     dat.currentPlanets.clear();
-    dat.currentPlanets.addAll(
-        planetFor[d[selected].millisecondsSinceEpoch.astroSign][dat.sign]);
+    dat.currentPlanets.addAll(planetFor[d[selected].millisecondsSinceEpoch.astroSign][dat.sign]);
 
     calculateProphecy();
 
-    if (isToday)
-      dat.combination = getSymbolCombination(AppGlobal.prophecyUtil.current);
+    if (isToday) dat.combination = getSymbolCombination(AppGlobal.prophecyUtil.current);
 
     //
     final screen = MediaQuery.of(context).size;
@@ -98,8 +91,7 @@ class _DailyScreenState extends State<DailyScreen>
                   /// @APPBAR
                   MyProphetAppBar(
                       width: screen.width,
-                      label: appBarLabel(
-                          selected: selected, dateTime: d[selected]),
+                      label: appBarLabel(selected: selected, dateTime: d[selected]),
                       onTap: () {
                         Navigator.of(context).pushNamed(AppPath.menu);
                       }),
@@ -109,19 +101,14 @@ class _DailyScreenState extends State<DailyScreen>
                       height: CALENDAR_HEIGHT,
                       width: screen.width,
                       child: Container(
-                        decoration: BoxDecoration(
-                            color:
-                                AppColors.calendarBackground.withOpacity(0.8),
-                            boxShadow: [
-                              BoxShadow(
-                                color:
-                                    AppColors.calendarShadow.withOpacity(0.34),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset:
-                                    Offset(0, 2), // changes position of shadow
-                              ),
-                            ]),
+                        decoration: BoxDecoration(color: AppColors.calendarBackground.withOpacity(0.8), boxShadow: [
+                          BoxShadow(
+                            color: AppColors.calendarShadow.withOpacity(0.34),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 2), // changes position of shadow
+                          ),
+                        ]),
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: NUMBER_OF_DAYS_TO_SHOW,
@@ -183,17 +170,16 @@ class _DailyScreenState extends State<DailyScreen>
 
                         /// @Sheets
                         if (isToday)
-                          CardsWidget(
-                            combination: dat.combination,
+                          PredictionLogic(
                             predictionTextCallback: getPrediction,
                             toShow: toShow,
+                            child: CardsWidget(
+                              combination: dat.combination,
+                            ),
                           ),
 
                         /// ambiance
-                        if (isToday &&
-                            dat.user != null &&
-                            dat.user.ambiance != null &&
-                            dat.user.ambiance.isNotEmpty)
+                        if (isToday && dat.user != null && dat.user.ambiance != null && dat.user.ambiance.isNotEmpty)
                           ListView.builder(
                             padding: EdgeInsets.symmetric(vertical: 16.0),
                             shrinkWrap: true,

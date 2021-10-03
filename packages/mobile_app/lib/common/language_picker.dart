@@ -1,4 +1,3 @@
-import 'package:base/cards.dart';
 import 'package:flutter/material.dart';
 import 'package:my_horoskope/common/popup_deprecated.dart';
 import 'package:base/preferences/setting/locale/item.dart';
@@ -40,10 +39,8 @@ class LanguagePicker extends StatelessWidget {
                     child: Column(
                       /// add language options here
                       children: [
-                        _LanguageChoise(
-                            languageCode: "en", languageName: "English"),
-                        _LanguageChoise(
-                            languageCode: "ru", languageName: "Русский"),
+                        _LanguageChoise(languageCode: "en", languageName: "English"),
+                        _LanguageChoise(languageCode: "ru", languageName: "Русский"),
                       ],
                     ),
                   ),
@@ -71,11 +68,6 @@ class _LanguageChoise extends StatelessWidget {
     AppGlobal.data.appPref.locale = LocaleSettings(language: languageCode);
 
     await chooseLocale();
-
-    bool adsWatched = Cards().adsWatched;
-    Cards().restart();
-    Cards().adsWatched = adsWatched;
-
     Navigator.pushNamed(context, '/daily');
   }
 

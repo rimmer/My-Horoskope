@@ -9,10 +9,11 @@ export 'package:my_horoskope/logic/ads.dart';
 export 'package:base/preferences/setting/enabled_prophecies/item.dart';
 export 'package:base/int_datetime.dart';
 export 'package:base/prophecy/entity/prophecy.dart';
-export 'package:base/cards.dart';
 export 'package:algorithm/planets.dart';
 export 'package:text/text.dart';
 export 'package:symbol/symbol.dart';
+
+export 'package:my_horoskope/logic/cards/prediction_logic.dart';
 
 export 'package:my_horoskope/routes.dart';
 export 'package:my_horoskope/common/gradient_border_button.dart';
