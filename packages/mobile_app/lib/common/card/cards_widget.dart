@@ -58,24 +58,28 @@ class CardsWidgetState extends State<CardsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Widget bigCard;
-
-    if (CardsLogic.of(context).currentBigCardIsEmpty) {
-      bigCard = const CardPlaceholder();
-    } else if (CardsLogic.of(context).dontShowAds) {
-      bigCard = PredictionCard(
-        type: cardType[CardsLogic.of(context).choise],
-      );
-    } else {
-      bigCard = CardsAdsResolver();
-    }
-
     return ListView(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
       physics: NeverScrollableScrollPhysics(),
       children: [
-        bigCard,
+        if (CardsLogic.of(context).adsWatched)
+          PredictionCard(
+            type: cardType[CardsLogic.of(context).choise],
+          ),
+        //
+        if (!CardsLogic.of(context).adsWatched && CardsLogic.of(context).currentBigCardIsEmpty) const CardPlaceholder(),
+        //
+        if (!CardsLogic.of(context).adsWatched &&
+            !CardsLogic.of(context).currentBigCardIsEmpty &&
+            CardsLogic.of(context).dontShowAds)
+          PredictionCard(
+            type: cardType[CardsLogic.of(context).choise],
+          ),
+        //
+        if (!CardsLogic.of(context).adsWatched && !CardsLogic.of(context).dontShowAds) CardsAdsResolver(),
+        //
+        //
         const DeckCards(),
       ],
     );

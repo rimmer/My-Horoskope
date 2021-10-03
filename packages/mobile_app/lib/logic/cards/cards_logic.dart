@@ -65,7 +65,7 @@ class _CardsLogic extends ChangeNotifier {
 
   /// @SETTER
   set choise(CardType newChoise) {
-    if (dontShowAds || cardShown[newChoise]) {
+    if (dontShowAds) {
       cardShown[newChoise] = true;
     }
 
