@@ -75,6 +75,11 @@ Future<void> checkConsentGivenAndInit() async {
   } else {
     AppGlobal.ads.adsConsentGiven = true;
   }
+
+  AppGlobal.firebase.analytics.setUserProperty(
+      name: "ads_consent_given",
+      value: AppGlobal.ads.adsConsentGiven.toString());
+
   // if not, we will initialize again later when consent will be asked
   return Appodeal.initialize(
     hasConsent: AppGlobal.ads.adsConsentGiven,
