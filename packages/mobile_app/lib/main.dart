@@ -23,12 +23,10 @@ void main() async {
   final app = await Firebase.initializeApp();
   app.setAutomaticDataCollectionEnabled(AppGlobal.debug.isNotDebug);
   AppGlobal.firebase.analytics = FirebaseAnalytics();
-  AppGlobal.firebase.analytics
-      .setAnalyticsCollectionEnabled(AppGlobal.debug.isNotDebug);
+  AppGlobal.firebase.analytics.setAnalyticsCollectionEnabled(AppGlobal.debug.isNotDebug);
   if (AppGlobal.debug.isNotDebug) {
     AppGlobal.firebase.messaging = FirebaseMessaging.instance;
-    AppGlobal.firebase.notifications =
-        await AppGlobal.firebase.messaging.requestPermission(
+    AppGlobal.firebase.notifications = await AppGlobal.firebase.messaging.requestPermission(
       alert: true,
       announcement: false,
       badge: true,
@@ -48,13 +46,10 @@ void main() async {
     AppGlobal.ads.adsLoaded = false;
   });
 
-  final notificationFuture = initLocalNotifications()
-      .then((_) => createNotificationChannel(Notif.reminderChannel));
+  final notificationFuture = initLocalNotifications().then((_) => createNotificationChannel(Notif.reminderChannel));
 
   /// authentication
-  AppGlobal.authBloc = AuthenticationBloc(
-      auth: AuthFlutter(repository: UsersRepositoryFlutter()))
-    ..add(AppStarted());
+  AppGlobal.authBloc = AuthenticationBloc(auth: AuthFlutter(repository: UsersRepositoryFlutter()))..add(AppStarted());
 
   await Future.wait([
     notificationFuture,
@@ -72,12 +67,14 @@ class _Root extends StatelessWidget {
   Widget build(BuildContext context) {
     PrecacheAssets.rustLoad(context);
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: localeText.appName,
-      theme: appTheme,
-      initialRoute: AppPath.auth,
-      onGenerateRoute: AppPath.generateRoute,
+    return CardsLogic(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: localeText.appName,
+        theme: appTheme,
+        initialRoute: AppPath.auth,
+        onGenerateRoute: AppPath.generateRoute,
+      ),
     );
   }
 }

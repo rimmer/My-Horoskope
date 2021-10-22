@@ -11,16 +11,20 @@ enum DeckCardMode {
   INTACT,
 }
 
-class DeckCard extends StatefulWidget {
+class DeckCardInner extends StatefulWidget {
+  const DeckCardInner({
+    this.icon = "star",
+    @required this.mode,
+  });
+
   final String icon;
   final DeckCardMode mode;
-  DeckCard({this.icon = "star", @required this.mode});
 
   @override
-  _DeckCardState createState() => _DeckCardState();
+  _DeckCardInnerState createState() => _DeckCardInnerState();
 }
 
-class _DeckCardState extends State<DeckCard> {
+class _DeckCardInnerState extends State<DeckCardInner> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,22 +39,19 @@ class _DeckCardState extends State<DeckCard> {
             alignment: Alignment.topCenter,
             child: Opacity(
               opacity: (widget.mode == DeckCardMode.CHOSEN) ? 1.0 : 0.0,
-              child:
-                  CardImageWidget(PrecacheAssets.svg["light_${widget.icon}"]),
+              child: CardImageWidget(PrecacheAssets.svg["light_${widget.icon}"]),
             ),
           ),
           (widget.mode == DeckCardMode.WAS_CHOSEN)
               ? Align(
                   alignment: Alignment.center,
-                  child: CardImageWidget(
-                      PrecacheAssets.svg["light_${widget.icon}"]),
+                  child: CardImageWidget(PrecacheAssets.svg["light_${widget.icon}"]),
                 )
               : SizedBox(),
           (widget.mode == DeckCardMode.INTACT)
               ? Align(
                   alignment: Alignment.center,
-                  child: CardImageWidget(
-                      PrecacheAssets.svg["dark_${widget.icon}"]),
+                  child: CardImageWidget(PrecacheAssets.svg["dark_${widget.icon}"]),
                 )
               : SizedBox(),
         ],
