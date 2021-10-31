@@ -171,7 +171,7 @@ class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStat
                         /// @Sheets
                         if (isToday)
                           PredictionLogic(
-                            predictionTextCallback: getPrediction,
+                            predictionTextCallback: getPredictionByType,
                             toShow: toShow,
                             child: CardsWidget(
                               combination: dat.combination,

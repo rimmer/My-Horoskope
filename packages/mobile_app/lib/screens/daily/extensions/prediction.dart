@@ -3,24 +3,6 @@ part of '../daily_screen.dart';
 const _isPositive = 57.0;
 
 extension DailyScreenPredictionMethods on _DailyScreenState {
-  String getPrediction() {
-    final propheciesSum = AppGlobal.prophecyUtil.current.sum;
-    final prophecies = AppGlobal.prophecyUtil.current;
-    ProphecyType type;
-    String result;
-
-    if (propheciesSum >= 300.0) {
-      type = prophecies.biggest;
-      result = getPredictionByType(type: type);
-    } else {
-      type = prophecies.least;
-      result = getPredictionByType(type: type);
-    }
-
-    return result;
-  }
-
-  //
   String getPredictionByType({@required ProphecyType type}) {
     if (AppGlobal.prophecyUtil.current[type].value > _isPositive)
       return positivePrediction(
@@ -38,8 +20,7 @@ extension DailyScreenPredictionMethods on _DailyScreenState {
       );
   }
 
-  String positivePrediction(
-      {@required ProphecyType type, @required DateTime birthDate}) {
+  String positivePrediction({@required ProphecyType type, @required DateTime birthDate}) {
     print("Positive prediction, ${type.toStr}\n");
     String positivePredictionText;
 
@@ -83,8 +64,7 @@ extension DailyScreenPredictionMethods on _DailyScreenState {
     return positivePredictionText;
   }
 
-  String negativePrediction(
-      {@required ProphecyType type, @required DateTime birthDate}) {
+  String negativePrediction({@required ProphecyType type, @required DateTime birthDate}) {
     print("Negative prediction, ${type.toStr}\n");
 
     String negativePredictionText;
