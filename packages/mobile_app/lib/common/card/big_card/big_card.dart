@@ -5,9 +5,9 @@ import 'package:my_horoskope/common/card/big_card/type/tarrot.dart';
 import 'package:my_horoskope/logic/cards/cards_logic.dart';
 import 'package:symbol/symbol.dart';
 
-import '../ads_resolver.dart';
-import 'card.dart';
-import 'placeholder.dart';
+import 'package:my_horoskope/common/card/ads_resolver.dart';
+import 'prediction_card.dart';
+import 'card_placeholder.dart';
 import 'type/color.dart';
 import 'type/number.dart';
 import 'type/gem.dart';
@@ -43,7 +43,7 @@ class BigCardState extends State<BigCard> {
       CardType.GEM: CardTypeGem(
         gemName: widget.combination.mineral,
       ),
-      CardType.TEXT: CardTypeProphecy(),
+      CardType.TEXT: const CardTypeProphecy(),
     };
 
     if (AppGlobal.ads.adsWatched) CardsLogic.of(context).adsWatched = true;
@@ -78,8 +78,15 @@ class BigCardState extends State<BigCard> {
       return CardsAdsResolver();
     }
 
+    final choise = CardsLogic.of(context).choise;
+    if (choise == CardType.TEXT)
+      return PredictionCard(
+        type: cardType[choise],
+        padding: const EdgeInsets.only(top: 8.0),
+      );
+
     return PredictionCard(
-      type: cardType[CardsLogic.of(context).choise],
+      type: cardType[choise],
     );
   }
 

@@ -9,6 +9,12 @@ class AppTextStyle {
     letterSpacing: 0.0,
   );
 
+  static const cardCarouselLabel = TextStyle(
+    fontSize: 14,
+    color: AppColors.textPrimary,
+    fontWeight: FontWeight.w500,
+  );
+
   static const fadeText = TextStyle(color: AppColors.textDisabled);
   static const normalText = TextStyle(
     fontSize: 14,

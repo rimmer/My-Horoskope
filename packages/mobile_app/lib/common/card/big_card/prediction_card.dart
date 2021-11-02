@@ -2,15 +2,21 @@ import 'common.dart';
 
 class PredictionCard extends StatefulWidget {
   final Widget type;
+  final EdgeInsetsGeometry padding;
 
-  const PredictionCard({this.type});
+  const PredictionCard({
+    @required this.type,
+    this.padding = const EdgeInsets.symmetric(
+      horizontal: 16.0,
+      vertical: 8.0,
+    ),
+  });
 
   @override
   _PredictionCardState createState() => _PredictionCardState();
 }
 
-class _PredictionCardState extends State<PredictionCard>
-    with SingleTickerProviderStateMixin {
+class _PredictionCardState extends State<PredictionCard> with SingleTickerProviderStateMixin {
   AnimationController _textFadeController;
   Animation<double> _textFade;
 
@@ -52,10 +58,7 @@ class _PredictionCardState extends State<PredictionCard>
         right: 16.0,
         bottom: 8.0,
       ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 8.0,
-      ),
+      padding: widget.padding,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/card/card_text.png"),

@@ -1,4 +1,5 @@
 import 'package:base/preferences/setting/enabled_prophecies/item.dart';
+import 'package:base/prophecy/entity/prophecy.dart';
 import 'package:flutter/widgets.dart';
 
 class _PredictionLogic extends ChangeNotifier {
@@ -7,7 +8,7 @@ class _PredictionLogic extends ChangeNotifier {
     @required this.predictionTextCallback,
   });
   final EnabledProphecies toShow;
-  final String Function() predictionTextCallback;
+  final String Function({@required ProphecyType type}) predictionTextCallback;
 }
 
 class PredictionLogic extends InheritedWidget {
