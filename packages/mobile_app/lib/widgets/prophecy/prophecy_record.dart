@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_horoskope/common/triangle_painter.dart';
+import 'package:my_horoskope/widgets/common/triangle_painter.dart';
 import 'package:my_horoskope/theme/app_text_style.dart';
 import 'package:base/prophecy/entity/prophecy.dart';
 import 'package:text/text.dart';

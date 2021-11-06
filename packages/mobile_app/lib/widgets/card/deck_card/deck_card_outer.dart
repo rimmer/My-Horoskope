@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_horoskope/common/card/deck_card/deck_card_inner.dart';
+import 'package:my_horoskope/widgets/card/deck_card/deck_card_inner.dart';
 import 'package:my_horoskope/logic/cards/cards_logic.dart';
 
 class DeckCardOuter extends StatefulWidget {

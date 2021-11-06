@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:text/text.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:my_horoskope/common/accept_terms_text.dart';
-import 'package:my_horoskope/common/magic_checkbox.dart';
+import 'package:my_horoskope/widgets/common/accept_terms_text.dart';
+import 'package:my_horoskope/widgets/common/magic_checkbox.dart';
 
 class AcceptTermsRow extends StatefulWidget {
   final MutableBool terms;
@@ -17,9 +17,7 @@ class _AcceptTermsRowState extends State<AcceptTermsRow> {
   @override
   Widget build(BuildContext context) {
     final rightColumnItems = <Widget>[
-      Flexible(
-          child: AcceptTermsText(localeText.termsAccept.capitalize(),
-              isController: true)),
+      Flexible(child: AcceptTermsText(localeText.termsAccept.capitalize(), isController: true)),
       //
       Flexible(
         child: TextButton(

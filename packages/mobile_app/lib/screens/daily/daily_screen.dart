@@ -1,4 +1,4 @@
-import 'index.dart';
+import 'exports_for_daily_screen.dart';
 
 part 'extensions/data.dart';
 part 'extensions/calendar_builder.dart';

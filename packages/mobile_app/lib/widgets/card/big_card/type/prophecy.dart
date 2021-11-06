@@ -1,7 +1,6 @@
-import 'package:my_horoskope/common/card/big_card/type/card_carousel.dart';
+import 'package:my_horoskope/widgets/card/big_card/type/card_carousel.dart';
 import 'package:my_horoskope/logic/cards/prediction_logic.dart';
-import 'package:my_horoskope/screens/daily/index.dart';
-import '../common.dart';
+import 'package:my_horoskope/screens/daily/exports_for_daily_screen.dart';
 
 class CardTypeProphecy extends StatelessWidget {
   const CardTypeProphecy();

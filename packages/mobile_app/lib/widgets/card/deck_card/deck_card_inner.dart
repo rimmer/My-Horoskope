@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_horoskope/common/card/card_image_widget.dart';
-import 'package:my_horoskope/common/precache_assets.dart';
+import 'package:my_horoskope/widgets/card/card_image_widget.dart';
+import 'package:my_horoskope/widgets/common/precache_assets.dart';
 
 const _height = 130.0;
 const _width = 64.0;

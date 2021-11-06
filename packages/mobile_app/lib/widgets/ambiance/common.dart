@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:text/text.dart';
 import 'package:my_horoskope/theme/app_text_style.dart';
 import 'package:mutable_wrappers/mutable_wrappers.dart';
-import 'package:my_horoskope/common//userinfo_field.dart';
-import 'package:my_horoskope/common//userinfo_picker.dart';
+import 'package:my_horoskope/widgets/common/userinfo_field.dart';
+import 'package:my_horoskope/widgets/common/userinfo_picker.dart';
 
 export 'package:flutter/material.dart';
 export 'package:text/text.dart';
@@ -11,11 +11,11 @@ export 'package:my_horoskope/theme/app_colors.dart';
 export 'package:my_horoskope/theme/app_text_style.dart';
 export 'package:mutable_wrappers/mutable_wrappers.dart';
 export 'package:my_horoskope/app_global.dart';
-export 'package:my_horoskope/common/gradient_flatbutton.dart';
-export 'package:my_horoskope/common//gradient_border_button.dart';
+export 'package:my_horoskope/widgets/common/gradient_flatbutton.dart';
+export 'package:my_horoskope/widgets/common/gradient_border_button.dart';
 export 'package:base/int_datetime.dart';
 export 'package:flutter_svg/flutter_svg.dart';
-export 'package:my_horoskope/common//triangle_painter.dart';
+export 'package:my_horoskope/widgets/common/triangle_painter.dart';
 
 class AmbianceUserInputFields extends StatelessWidget {
   final MutableString name;

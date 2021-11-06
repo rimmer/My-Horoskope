@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_horoskope/common/popup_deprecated.dart';
+import 'package:my_horoskope/widgets/common/popup_deprecated.dart';
 import 'package:my_horoskope/theme/app_colors.dart';
 import 'package:my_horoskope/theme/app_text_style.dart';
 import 'gradient_flatbutton.dart';
@@ -10,12 +10,7 @@ class NotAvaibleInfo extends StatefulWidget {
   final String desc;
   final String button;
 
-  NotAvaibleInfo(
-      {@required this.child,
-      @required this.title,
-      @required this.desc,
-      @required this.button,
-      Key key})
+  NotAvaibleInfo({@required this.child, @required this.title, @required this.desc, @required this.button, Key key})
       : super(key: key);
 
   @override

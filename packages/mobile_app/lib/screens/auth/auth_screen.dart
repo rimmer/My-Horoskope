@@ -1,13 +1,12 @@
 import 'package:flutter/scheduler.dart';
 
-import 'index.dart';
+import 'exports_for_auth_screen.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) =>
-      BlocBuilder<AuthenticationBloc, AuthenticationState>(
+  Widget build(BuildContext context) => BlocBuilder<AuthenticationBloc, AuthenticationState>(
         //
         bloc: AppGlobal.authBloc,
         builder: (context, state) {

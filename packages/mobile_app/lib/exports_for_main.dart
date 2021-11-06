@@ -7,7 +7,7 @@ export 'package:flutter/material.dart';
 export 'package:flutter_dotenv/flutter_dotenv.dart';
 export 'package:algorithm/algorithm.dart';
 export 'package:my_horoskope/app_global.dart';
-export 'package:my_horoskope/common/precache_assets.dart';
+export 'package:my_horoskope/widgets/common/precache_assets.dart';
 export 'package:my_horoskope/logic/notifications/reminder_notification.dart';
 export 'package:my_horoskope/logic/ads.dart';
 export 'package:my_horoskope/logic/notifications/notifications_config.dart';

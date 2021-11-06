@@ -1,4 +1,4 @@
-import 'index.dart';
+import 'exports_for_register_screen.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({Key key}) : super(key: key);
@@ -81,10 +81,7 @@ class RegistrationScreen extends StatelessWidget {
                       return true;
                     },
                     onUnvalidTerms: () {
-                      showOverCurrentScreen(
-                          context: context,
-                          child:
-                              wrongInformation(localeText.termsAreNotAccepted));
+                      showOverCurrentScreen(context: context, child: wrongInformation(localeText.termsAreNotAccepted));
                     },
                     onValidInformation: () {
                       AppGlobal.authBloc.add(AuthEvent(UserModel(
@@ -96,8 +93,7 @@ class RegistrationScreen extends StatelessWidget {
                         ).millisecondsSinceEpoch,
                         sex: sex.wrapped,
                       )));
-                      AppGlobal.firebase.analytics
-                          .logSignUp(signUpMethod: "local");
+                      AppGlobal.firebase.analytics.logSignUp(signUpMethod: "local");
                     },
                     buttonText: localeText.start.toUpperCase(),
                   ),

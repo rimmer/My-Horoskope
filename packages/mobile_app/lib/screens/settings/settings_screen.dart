@@ -1,4 +1,4 @@
-import 'index.dart';
+import 'exports_for_settings_screen.dart';
 
 part 'prophecies_enabling.dart';
 
@@ -42,8 +42,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     sex.wrapped = user.sex;
 
     luck.wrapped = AppGlobal.data.appPref.enabledProphecies.luck;
-    internalStrength.wrapped =
-        AppGlobal.data.appPref.enabledProphecies.internalStrength;
+    internalStrength.wrapped = AppGlobal.data.appPref.enabledProphecies.internalStrength;
     moodlet.wrapped = AppGlobal.data.appPref.enabledProphecies.moodlet;
     ambition.wrapped = AppGlobal.data.appPref.enabledProphecies.ambition;
     intelligence.wrapped = AppGlobal.data.appPref.enabledProphecies.intuition;
@@ -92,8 +91,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   Container(
                     color: AppColors.primary.withOpacity(0.3),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 32.0, vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
                     margin: const EdgeInsets.symmetric(
                       vertical: 16.0,
                     ),
@@ -165,32 +163,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ).millisecondsSinceEpoch;
 
                         final userSettingsNotChanged =
-                            name.wrapped == user.name &&
-                                birthDateEntered == user.birth &&
-                                sex.wrapped == user.sex;
+                            name.wrapped == user.name && birthDateEntered == user.birth && sex.wrapped == user.sex;
 
-                        final propheciesToShowNotChanged = AppGlobal
-                                    .data.appPref.enabledProphecies.luck ==
-                                luck.wrapped &&
-                            AppGlobal
-                                    .data.appPref.enabledProphecies.intuition ==
-                                intelligence.wrapped &&
-                            AppGlobal.data.appPref.enabledProphecies
-                                    .internalStrength ==
-                                internalStrength.wrapped &&
-                            AppGlobal.data.appPref.enabledProphecies.ambition ==
-                                ambition.wrapped &&
-                            AppGlobal.data.appPref.enabledProphecies.moodlet ==
-                                moodlet.wrapped;
+                        final propheciesToShowNotChanged =
+                            AppGlobal.data.appPref.enabledProphecies.luck == luck.wrapped &&
+                                AppGlobal.data.appPref.enabledProphecies.intuition == intelligence.wrapped &&
+                                AppGlobal.data.appPref.enabledProphecies.internalStrength == internalStrength.wrapped &&
+                                AppGlobal.data.appPref.enabledProphecies.ambition == ambition.wrapped &&
+                                AppGlobal.data.appPref.enabledProphecies.moodlet == moodlet.wrapped;
 
-                        if (userSettingsNotChanged &&
-                            propheciesToShowNotChanged) {
+                        if (userSettingsNotChanged && propheciesToShowNotChanged) {
                           Navigator.of(context).pushNamed(AppPath.daily);
                           return;
                         }
 
-                        AppGlobal.data.appPref.enabledProphecies =
-                            propheciesToShow;
+                        AppGlobal.data.appPref.enabledProphecies = propheciesToShow;
 
                         if (userSettingsNotChanged) {
                           Navigator.of(context).pushNamed(AppPath.daily);
@@ -206,11 +193,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                         /// services/direct_auth.dart
                         if (user.birth == birthDateEntered)
-                          userInformationChangeMisc(
-                              model: enteredUserModel, context: context);
+                          userInformationChangeMisc(model: enteredUserModel, context: context);
                         else
-                          userInformationChangeMajor(
-                              model: enteredUserModel, context: context);
+                          userInformationChangeMajor(model: enteredUserModel, context: context);
                       },
                       buttonText: localeText.save.toUpperCase(),
                     ),

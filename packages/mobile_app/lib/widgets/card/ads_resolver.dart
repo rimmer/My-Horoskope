@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:text/text.dart';
-import 'package:my_horoskope/common/card/big_card/card_with_button.dart';
+import 'package:my_horoskope/widgets/card/big_card/card_with_button.dart';
 import 'package:my_horoskope/logic/ads.dart';
 import 'package:my_horoskope/app_global.dart';
 import 'package:my_horoskope/logic/cards/cards_logic.dart';

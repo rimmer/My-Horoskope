@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_horoskope/widgets/common/userinfo_field.dart';
+import 'package:my_horoskope/widgets/common/userinfo_picker.dart';
 import 'package:text/text.dart';
 import 'package:my_horoskope/theme/app_text_style.dart';
-import '../userinfo_field.dart';
-import '../userinfo_picker.dart';
 
 class UserInfo extends StatelessWidget {
   final UserInfoField name;
@@ -12,11 +12,7 @@ class UserInfo extends StatelessWidget {
   final UserInfoPicker sex;
 
   const UserInfo(
-      {@required this.name,
-      @required this.month,
-      @required this.day,
-      @required this.year,
-      @required this.sex});
+      {@required this.name, @required this.month, @required this.day, @required this.year, @required this.sex});
 
   @override
   Widget build(BuildContext context) {

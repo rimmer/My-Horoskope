@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:my_horoskope/widgets/common/sheet_divider.dart';
+import 'package:my_horoskope/widgets/common/title_with_description.dart';
 import 'package:my_horoskope/theme/app_colors.dart';
 import 'package:text/text.dart';
 import 'package:base/prophecy/entity/prophecy.dart';
 import 'package:base/preferences/setting/enabled_prophecies/item.dart';
 
-import '../title_with_description.dart';
 import 'prophecy_record.dart';
-import '../sheet_divider.dart';
 
 const PROPHECY_PADDING_HORIZONTAL = 16.0;
 
@@ -27,16 +27,11 @@ class ProphecySheet extends StatelessWidget {
     final propheciesSheet = <Widget>[
       /// yourProphecies title and notation
 
-      if (toShow.moodlet)
-        ProphecyRecord(prophecy: prophecies[ProphecyType.ROOT]),
-      if (toShow.luck)
-        ProphecyRecord(prophecy: prophecies[ProphecyType.SACRAL]),
-      if (toShow.ambition)
-        ProphecyRecord(prophecy: prophecies[ProphecyType.SOLAR]),
-      if (toShow.internalStrength)
-        ProphecyRecord(prophecy: prophecies[ProphecyType.HEART]),
-      if (toShow.intuition)
-        ProphecyRecord(prophecy: prophecies[ProphecyType.THROAT]),
+      if (toShow.moodlet) ProphecyRecord(prophecy: prophecies[ProphecyType.ROOT]),
+      if (toShow.luck) ProphecyRecord(prophecy: prophecies[ProphecyType.SACRAL]),
+      if (toShow.ambition) ProphecyRecord(prophecy: prophecies[ProphecyType.SOLAR]),
+      if (toShow.internalStrength) ProphecyRecord(prophecy: prophecies[ProphecyType.HEART]),
+      if (toShow.intuition) ProphecyRecord(prophecy: prophecies[ProphecyType.THROAT]),
 
       /// if all prophecies are disabled show luck
       if (toShow.internalStrength == false &&
@@ -71,8 +66,7 @@ class ProphecySheet extends StatelessWidget {
           /// planet impact
           ListView(
             shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(
-                horizontal: PROPHECY_PADDING_HORIZONTAL),
+            padding: const EdgeInsets.symmetric(horizontal: PROPHECY_PADDING_HORIZONTAL),
             scrollDirection: Axis.vertical,
             physics: const NeverScrollableScrollPhysics(),
             children: <Widget>[
@@ -92,17 +86,14 @@ class ProphecySheet extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text(
-                            " ${localeText.planetImpactName[planets[false]]} "),
-                        SvgPicture.asset("assets/icons/${planets[false]}.svg",
-                            color: AppColors.negativeImpact),
+                        Text(" ${localeText.planetImpactName[planets[false]]} "),
+                        SvgPicture.asset("assets/icons/${planets[false]}.svg", color: AppColors.negativeImpact),
                       ],
                     ),
                     Row(
                       children: [
                         Text(" ${localeText.planetImpactName[planets[true]]} "),
-                        SvgPicture.asset("assets/icons/${planets[true]}.svg",
-                            color: AppColors.positiveImpact),
+                        SvgPicture.asset("assets/icons/${planets[true]}.svg", color: AppColors.positiveImpact),
                       ],
                     ),
                   ],

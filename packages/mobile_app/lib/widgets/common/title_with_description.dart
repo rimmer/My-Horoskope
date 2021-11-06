@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_horoskope/common/popup_deprecated.dart';
+import 'package:my_horoskope/widgets/common/popup_deprecated.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_horoskope/theme/app_colors.dart';
 import 'package:text/text.dart';

@@ -1,6 +1,6 @@
 import 'common.dart';
 import 'package:my_horoskope/theme/app_colors.dart';
-import '../../gradient_border_button.dart';
+import 'package:my_horoskope/widgets/common/gradient_border_button.dart';
 
 class PredictionCardWithButton extends StatelessWidget {
   final String text;
@@ -81,8 +81,7 @@ class PredictionCardWithButton extends StatelessWidget {
             ),
             borderAsPadding: const EdgeInsets.all(1.0),
             background: AppColors.primaryDark,
-            internalPadding:
-                const EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
+            internalPadding: const EdgeInsets.symmetric(horizontal: 38, vertical: 12.0),
             borderRadius: const BorderRadius.all(Radius.circular(32.0)),
             onPressed: onButtonTap,
           ),
