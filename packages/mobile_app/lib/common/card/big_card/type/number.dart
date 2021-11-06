@@ -7,22 +7,20 @@ class CardTypeNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          CardImageWidget(PrecacheAssets.svg[numberName]),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Text(
-              localeText.yourNumberForToday,
-              style: AppTextStyle.cardText,
-            ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        CardImageWidget(PrecacheAssets.svg[numberName]),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Text(
+            localeText.yourNumberForToday,
+            style: AppTextStyle.cardText,
+            textAlign: TextAlign.center,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

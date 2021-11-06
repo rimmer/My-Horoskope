@@ -13,25 +13,22 @@ class CardTypeTarrot extends StatelessWidget {
       children: [
         Image(
           image: AssetImage("assets/tarrot/$tarrotName"),
-          height: 150.0,
-          width: 150.0,
+          height: 170.0,
+          width: 170.0,
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 4.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                localeText.yourTarrotCardForToday,
-                style: AppTextStyle.normalText,
-              ),
-              Text(
-                localeText.tarrotCardName[tarrotName],
-                style: AppTextStyle.cardText,
-              ),
-            ],
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              localeText.yourTarrotCardForToday,
+              style: AppTextStyle.normalText,
+            ),
+            Text(
+              localeText.tarrotCardName[tarrotName],
+              style: AppTextStyle.cardText,
+            ),
+          ],
         ),
       ],
     );

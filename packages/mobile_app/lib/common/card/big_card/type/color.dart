@@ -43,10 +43,12 @@ class CardTypeColor extends StatelessWidget {
             Text(
               "${urClrTdy[0]} ${urClrTdy[1]}",
               style: AppTextStyle.cardText,
+              textAlign: TextAlign.center,
             ),
             Text(
               "${urClrTdy[2]} ${urClrTdy[3]}",
               style: AppTextStyle.cardText,
+              textAlign: TextAlign.center,
             ),
           ],
         ),

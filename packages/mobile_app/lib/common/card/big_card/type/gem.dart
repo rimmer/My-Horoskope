@@ -27,10 +27,12 @@ class CardTypeGem extends StatelessWidget {
               Text(
                 localeText.yourGemForToday,
                 style: AppTextStyle.normalText,
+                textAlign: TextAlign.center,
               ),
               Text(
                 localeText.gemName[gemName],
                 style: AppTextStyle.cardText,
+                textAlign: TextAlign.center,
               ),
             ],
           ),

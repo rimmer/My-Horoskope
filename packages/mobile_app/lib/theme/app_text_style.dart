@@ -3,7 +3,7 @@ import 'app_colors.dart';
 
 class AppTextStyle {
   static const cardText = TextStyle(
-    fontSize: 16,
+    fontSize: 18,
     color: AppColors.textPrimary,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.0,
