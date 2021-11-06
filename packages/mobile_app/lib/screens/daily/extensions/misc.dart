@@ -6,7 +6,11 @@ extension DailyScreenMiscMethods on _DailyScreenState {
   EnabledProphecies get toShow => AppGlobal.data.appPref.enabledProphecies;
   bool get isToday => d[selected].millisecondsSinceEpoch == dtDay;
 
-  unfocusAmbiancePopup() {
+  void setAmbianceChangeSubject(UserEntity newSubject) {
+    dat.ambianceChangeSubject = newSubject;
+  }
+
+  void unfocusAmbiancePopup() {
     // ignore: invalid_use_of_protected_member
     setState(() {
       dat.ambianceAdd = false;
@@ -14,14 +18,14 @@ extension DailyScreenMiscMethods on _DailyScreenState {
     });
   }
 
-  focusAmbianceAdd() {
+  void focusAmbianceAdd() {
     // ignore: invalid_use_of_protected_member
     setState(() {
       dat.ambianceAdd = true;
     });
   }
 
-  focusAmbianceChange() {
+  void focusAmbianceChange() {
     // ignore: invalid_use_of_protected_member
     setState(() {
       dat.ambianceChange = true;
@@ -29,10 +33,8 @@ extension DailyScreenMiscMethods on _DailyScreenState {
   }
 
   void calculateProphecy() {
-    AppGlobal.prophecyUtil.calculate(
-        dt: d[selected].millisecondsSinceEpoch,
-        isDebug: AppGlobal.debug.isDebug,
-        user: dat.user);
+    AppGlobal.prophecyUtil
+        .calculate(dt: d[selected].millisecondsSinceEpoch, isDebug: AppGlobal.debug.isDebug, user: dat.user);
   }
 
   double getCompatibility(UserEntity subject) {
@@ -43,6 +45,5 @@ extension DailyScreenMiscMethods on _DailyScreenState {
     );
   }
 
-  PreparedSymbolCombination getCombinationCallback() =>
-      getSymbolCombination(AppGlobal.prophecyUtil.current);
+  PreparedSymbolCombination getCombinationCallback() => getSymbolCombination(AppGlobal.prophecyUtil.current);
 }

@@ -87,41 +87,19 @@ class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStat
               child: ListView(
                 scrollDirection: Axis.vertical,
                 children: <Widget>[
-                  //
-                  /// @APPBAR
                   MyProphetAppBar(
                       width: screen.width,
                       label: appBarLabel(selected: selected, dateTime: d[selected]),
                       onTap: () {
                         Navigator.of(context).pushNamed(AppPath.menu);
                       }),
-
-                  /// @CALENDAR
-                  Container(
-                      height: CALENDAR_HEIGHT,
-                      width: screen.width,
-                      child: Container(
-                        decoration: BoxDecoration(color: AppColors.calendarBackground.withOpacity(0.8), boxShadow: [
-                          BoxShadow(
-                            color: AppColors.calendarShadow.withOpacity(0.34),
-                            spreadRadius: 2,
-                            blurRadius: 5,
-                            offset: Offset(0, 2), // changes position of shadow
-                          ),
-                        ]),
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: NUMBER_OF_DAYS_TO_SHOW,
-                          itemBuilder: dayToWidget,
-                        ),
-                      )),
-
-                  //
-
+                  _DailyScreenCalendar(
+                    width: screen.width,
+                    calendarItemBuilder: dayToWidget,
+                  ),
                   const SizedBox(
                     height: SPACE_BETWEEN_CALENDAR_PROPHECY,
                   ),
-
                   AnimatedBuilder(
                     animation: dat.animationSheetsFadeOutController,
                     builder: (context, child) => FadeTransition(
@@ -133,42 +111,18 @@ class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStat
                       scrollDirection: Axis.vertical,
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        /// {NAME} {ROLE}
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 16.0,
-                            left: 16.0,
-                          ),
-                          child: Text(
-                            dat.labelStr,
-                            style: AppTextStyle.userName,
-                          ),
+                        _DailyScreenLabelAndBirth(
+                          label: dat.labelStr,
+                          birthRow: dat.birthRow,
                         ),
-
-                        /// {Astrosign} {Birthdate}
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 16.0,
-                            bottom: 8.0,
-                          ),
-                          child: SizedBox(
-                            height: 32,
-                            child: dat.birthRow,
-                          ),
-                        ),
-
-                        /// @PROPHECY
                         ProphecySheet(
                           prophecies: AppGlobal.prophecyUtil.current,
                           planets: dat.currentPlanets,
                           toShow: toShow,
                         ),
-
                         const SizedBox(
                           height: SPACE_AFTER_PROPHECY,
                         ),
-
-                        /// @Sheets
                         if (isToday)
                           PredictionLogic(
                             predictionTextCallback: getPredictionByType,
@@ -177,38 +131,17 @@ class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStat
                               combination: dat.combination,
                             ),
                           ),
-
-                        /// ambiance
                         if (isToday && dat.user != null && dat.user.ambiance != null && dat.user.ambiance.isNotEmpty)
-                          ListView.builder(
-                            padding: EdgeInsets.symmetric(vertical: 16.0),
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount: dat.user.ambiance.length,
-                            itemBuilder: (context, index) {
-                              //
-                              final subject = dat.user.ambiance[index];
-
-                              //
-                              return AmbiacneSubject(
-                                onOptionsTap: () {
-                                  dat.ambianceChangeSubject = subject;
-                                  focusAmbianceChange();
-                                  //
-                                },
-                                subject: subject,
-                                compatibility: getCompatibility(subject),
-                              );
-                            },
+                          _DailyScreenAmbianceList(
+                            getCompatibility: getCompatibility,
+                            focusAmbianceChange: focusAmbianceChange,
+                            ambiance: dat.user.ambiance,
+                            setAmbianceChangeSubject: setAmbianceChangeSubject,
                           ),
-
-                        /// add ambiance
                         if (isToday)
                           AddAmbianceButton(
                             onTap: () => focusAmbianceAdd(),
                           ),
-
                         if (isToday)
                           const SizedBox(
                             height: SPACE_AFTER_AMBIANCE,
@@ -220,6 +153,8 @@ class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStat
               ),
             ),
           ),
+
+          /// @POPUPS
           if (isToday)
             if (dat.ambianceAdd || dat.ambianceChange)
               Positioned.fill(
@@ -251,4 +186,107 @@ class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStat
       ),
     );
   }
+}
+
+// @TODO: винести в окремі файли
+class _DailyScreenCalendar extends StatelessWidget {
+  const _DailyScreenCalendar({
+    @required this.width,
+    @required this.calendarItemBuilder,
+  });
+  final double width;
+  final Widget Function(BuildContext, int) calendarItemBuilder;
+
+  @override
+  Widget build(BuildContext context) => Container(
+      height: CALENDAR_HEIGHT,
+      width: width,
+      child: Container(
+        decoration: BoxDecoration(color: AppColors.calendarBackground.withOpacity(0.8), boxShadow: [
+          BoxShadow(
+            color: AppColors.calendarShadow.withOpacity(0.34),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 2), // changes position of shadow
+          ),
+        ]),
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: NUMBER_OF_DAYS_TO_SHOW,
+          itemBuilder: calendarItemBuilder,
+        ),
+      ));
+}
+
+class _DailyScreenLabelAndBirth extends StatelessWidget {
+  const _DailyScreenLabelAndBirth({
+    @required this.label,
+    @required this.birthRow,
+  });
+  final String label;
+  final Widget birthRow;
+
+  @override
+  Widget build(BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /// {NAME} {ROLE}
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 16.0,
+              left: 16.0,
+            ),
+            child: Text(
+              label,
+              style: AppTextStyle.userName,
+            ),
+          ),
+
+          /// {Astrosign} {Birthdate}
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 16.0,
+              bottom: 8.0,
+            ),
+            child: SizedBox(
+              height: 32,
+              child: birthRow,
+            ),
+          ),
+        ],
+      );
+}
+
+class _DailyScreenAmbianceList extends StatelessWidget {
+  const _DailyScreenAmbianceList({
+    @required this.getCompatibility,
+    @required this.ambiance,
+    @required this.focusAmbianceChange,
+    @required this.setAmbianceChangeSubject,
+  });
+
+  final double Function(UserEntity subject) getCompatibility;
+  final List<UserEntity> ambiance;
+  final Function() focusAmbianceChange;
+  final Function(UserEntity subject) setAmbianceChangeSubject;
+
+  @override
+  Widget build(BuildContext context) => ListView.builder(
+        padding: EdgeInsets.symmetric(vertical: 16.0),
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: ambiance.length,
+        itemBuilder: (context, index) {
+          final subject = ambiance[index];
+          return AmbiacneSubject(
+            onOptionsTap: () {
+              setAmbianceChangeSubject(subject);
+              focusAmbianceChange();
+            },
+            subject: subject,
+            compatibility: getCompatibility(subject),
+          );
+        },
+      );
 }
