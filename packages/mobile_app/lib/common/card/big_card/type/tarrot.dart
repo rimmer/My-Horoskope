@@ -13,6 +13,8 @@ class CardTypeTarrot extends StatelessWidget {
       children: [
         Image(
           image: AssetImage("assets/tarrot/$tarrotName"),
+          height: 150.0,
+          width: 150.0,
         ),
         Padding(
           padding: const EdgeInsets.only(left: 4.0),

@@ -15,11 +15,8 @@ class CardTypeGem extends StatelessWidget {
             ? Image(
                 image: AssetImage("assets/gem/$gemName"),
               )
-            : Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: SvgPicture.asset(
-                  "assets/gem/$gemName",
-                ),
+            : SvgPicture.asset(
+                "assets/gem/$gemName",
               ),
         Padding(
           padding: const EdgeInsets.only(left: 4.0),
