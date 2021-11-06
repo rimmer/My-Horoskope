@@ -32,12 +32,10 @@ class _ProphecyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Text(
-        prophecyText,
-        style: AppTextStyle.cardText,
-        textAlign: TextAlign.start,
-      ),
+    return Text(
+      prophecyText,
+      style: AppTextStyle.cardText,
+      textAlign: TextAlign.start,
     );
   }
 }

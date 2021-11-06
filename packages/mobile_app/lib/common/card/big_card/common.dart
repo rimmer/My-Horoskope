@@ -7,5 +7,5 @@ export 'package:jovial_svg/jovial_svg.dart';
 export 'package:flutter_svg/flutter_svg.dart';
 export 'package:my_horoskope/common/card/card_image_widget.dart';
 
-const height = 159.0;
+const height = 283.7;
 const width = 437.0;
