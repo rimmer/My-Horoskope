@@ -69,9 +69,11 @@ class _CardCarouselItem extends StatelessWidget {
         children: [
           Flexible(
             flex: _flexItem,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: item,
+            child: Center(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: item,
+              ),
             ),
           ),
           Flexible(flex: _flexPanel, child: SizedBox()),
