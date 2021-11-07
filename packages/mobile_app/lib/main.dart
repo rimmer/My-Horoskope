@@ -1,4 +1,4 @@
-import 'index.dart';
+import 'exports_for_main.dart';
 
 void main() async {
   /// Ensures that all objects here are initialized before doing runApp

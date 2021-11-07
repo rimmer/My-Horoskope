@@ -1,4 +1,4 @@
-import 'index.dart';
+import 'exports_for_menu_screen.dart';
 
 const _WRITE_TO_DEV_URL = "https://forms.gle/R67F71wPMYEbEWrs7";
 
@@ -8,8 +8,7 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MutableBool notificationsAreDisabled = MutableBool(false);
-    notificationsAreDisabled.wrapped =
-        AppGlobal.data.appPref.dat.notifications.disabled;
+    notificationsAreDisabled.wrapped = AppGlobal.data.appPref.dat.notifications.disabled;
 
     return Scaffold(
       body: Stack(
@@ -27,10 +26,8 @@ class MenuScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32.0),
                     child: MenuItemLeadingIcon(
-                        asset: AppGlobal
-                            .data.usersRepo.current.model.birth.astroSign,
-                        text:
-                            " ${localeText.my.capitalize()} ${localeText.horoscope}",
+                        asset: AppGlobal.data.usersRepo.current.model.birth.astroSign,
+                        text: " ${localeText.my.capitalize()} ${localeText.horoscope}",
                         onTap: () {
                           Navigator.pushNamed(context, '/daily');
                         }),
@@ -83,13 +80,10 @@ class MenuScreen extends StatelessWidget {
                       value: notificationsAreDisabled,
                       onChanged: (bool disabled) {
                         AppGlobal.firebase.analytics.logEvent(
-                          name: disabled
-                              ? "notifications_disabled"
-                              : "notifications_enabled",
+                          name: disabled ? "notifications_disabled" : "notifications_enabled",
                           parameters: {},
                         );
-                        AppGlobal.data.appPref.notifications =
-                            NotificationsPreferences(disabled: disabled);
+                        AppGlobal.data.appPref.notifications = NotificationsPreferences(disabled: disabled);
                       },
                     ),
                   ),
