@@ -14,7 +14,6 @@ export 'package:text/text.dart';
 export 'package:symbol/symbol.dart';
 
 export 'package:my_horoskope/logic/cards/prediction_logic.dart';
-
 export 'package:my_horoskope/routes.dart';
 export 'package:my_horoskope/widgets/common/gradient_border_button.dart';
 export 'package:my_horoskope/widgets/common/appbar.dart';
@@ -31,5 +30,9 @@ export 'package:my_horoskope/theme/app_text_style.dart';
 export 'package:my_horoskope/widgets/ambiance/ambiance_subject_new.dart';
 export 'package:my_horoskope/widgets/ambiance/ambiance_subject_item.dart';
 export 'package:my_horoskope/widgets/ambiance/ambiance_subject_settings.dart';
+
+export 'package:my_horoskope/widgets/daily_screen/daily_screen_ambiance_list.dart';
+export 'package:my_horoskope/widgets/daily_screen/daily_screen_calendar.dart';
+export 'package:my_horoskope/widgets/daily_screen/daily_screen_label_and_birth.dart';
 
 export 'extensions/constants.dart';

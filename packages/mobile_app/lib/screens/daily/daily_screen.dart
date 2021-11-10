@@ -93,9 +93,10 @@ class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStat
                       onTap: () {
                         Navigator.of(context).pushNamed(AppPath.menu);
                       }),
-                  _DailyScreenCalendar(
+                  DailyScreenCalendar(
                     width: screen.width,
                     calendarItemBuilder: dayToWidget,
+                    numberOfDaysToShow: NUMBER_OF_DAYS_TO_SHOW,
                   ),
                   const SizedBox(
                     height: SPACE_BETWEEN_CALENDAR_PROPHECY,
@@ -111,7 +112,7 @@ class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStat
                       scrollDirection: Axis.vertical,
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        _DailyScreenLabelAndBirth(
+                        DailyScreenLabelAndBirth(
                           label: dat.labelStr,
                           birthRow: dat.birthRow,
                         ),
@@ -132,7 +133,7 @@ class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStat
                             ),
                           ),
                         if (isToday && dat.user != null && dat.user.ambiance != null && dat.user.ambiance.isNotEmpty)
-                          _DailyScreenAmbianceList(
+                          DailyScreenAmbianceList(
                             getCompatibility: getCompatibility,
                             focusAmbianceChange: focusAmbianceChange,
                             ambiance: dat.user.ambiance,
@@ -186,107 +187,4 @@ class _DailyScreenState extends State<DailyScreen> with SingleTickerProviderStat
       ),
     );
   }
-}
-
-// @TODO: винести в окремі файли
-class _DailyScreenCalendar extends StatelessWidget {
-  const _DailyScreenCalendar({
-    @required this.width,
-    @required this.calendarItemBuilder,
-  });
-  final double width;
-  final Widget Function(BuildContext, int) calendarItemBuilder;
-
-  @override
-  Widget build(BuildContext context) => Container(
-      height: CALENDAR_HEIGHT,
-      width: width,
-      child: Container(
-        decoration: BoxDecoration(color: AppColors.calendarBackground.withOpacity(0.8), boxShadow: [
-          BoxShadow(
-            color: AppColors.calendarShadow.withOpacity(0.34),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, 2), // changes position of shadow
-          ),
-        ]),
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: NUMBER_OF_DAYS_TO_SHOW,
-          itemBuilder: calendarItemBuilder,
-        ),
-      ));
-}
-
-class _DailyScreenLabelAndBirth extends StatelessWidget {
-  const _DailyScreenLabelAndBirth({
-    @required this.label,
-    @required this.birthRow,
-  });
-  final String label;
-  final Widget birthRow;
-
-  @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          /// {NAME} {ROLE}
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 16.0,
-              left: 16.0,
-            ),
-            child: Text(
-              label,
-              style: AppTextStyle.userName,
-            ),
-          ),
-
-          /// {Astrosign} {Birthdate}
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-              bottom: 8.0,
-            ),
-            child: SizedBox(
-              height: 32,
-              child: birthRow,
-            ),
-          ),
-        ],
-      );
-}
-
-class _DailyScreenAmbianceList extends StatelessWidget {
-  const _DailyScreenAmbianceList({
-    @required this.getCompatibility,
-    @required this.ambiance,
-    @required this.focusAmbianceChange,
-    @required this.setAmbianceChangeSubject,
-  });
-
-  final double Function(UserEntity subject) getCompatibility;
-  final List<UserEntity> ambiance;
-  final Function() focusAmbianceChange;
-  final Function(UserEntity subject) setAmbianceChangeSubject;
-
-  @override
-  Widget build(BuildContext context) => ListView.builder(
-        padding: EdgeInsets.symmetric(vertical: 16.0),
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: ambiance.length,
-        itemBuilder: (context, index) {
-          final subject = ambiance[index];
-          return AmbiacneSubject(
-            onOptionsTap: () {
-              setAmbianceChangeSubject(subject);
-              focusAmbianceChange();
-            },
-            subject: subject,
-            compatibility: getCompatibility(subject),
-          );
-        },
-      );
 }
