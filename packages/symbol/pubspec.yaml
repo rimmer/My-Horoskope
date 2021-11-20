@@ -1,6 +1,5 @@
 name: symbol
 description: separate module for symbol values
-author: bgoncharuck
 version: 0.0.1+1
 publish_to: none
 

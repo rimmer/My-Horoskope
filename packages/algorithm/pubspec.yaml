@@ -1,6 +1,5 @@
 name: algorithm
 description: separate module for calculations
-author: bgoncharuck
 version: 0.0.1+1
 publish_to: none
 
