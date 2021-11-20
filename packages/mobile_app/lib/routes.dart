@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_horoskope/screens/auth/auth_screen.dart';
-import 'package:my_horoskope/screens/daily/daily_screen.dart';
+// import 'package:my_horoskope/screens/daily/daily_screen.dart';
 import 'package:my_horoskope/screens/menu/menu_screen.dart';
 import 'package:my_horoskope/screens/settings/settings_screen.dart';
 import 'package:proste_route_animation/proste_route_animation.dart';
@@ -22,9 +22,9 @@ class AppPath {
       case '/':
         path = const AuthScreen();
         break;
-      case daily:
-        path = DailyScreen();
-        break;
+      // case daily:
+      //   path = DailyScreen();
+      //   break;
       case menu:
         path = const MenuScreen();
         break;
