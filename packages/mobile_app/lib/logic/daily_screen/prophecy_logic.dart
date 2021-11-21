@@ -11,22 +11,30 @@ class _ProphecyLogic extends ChangeNotifier {
   });
   final UserEntity forUser;
   bool isDebug = !kReleaseMode;
+  Map<UserEntity, double> compatibilityCache = {};
 
   Map<ProphecyType, ProphecyEntity> get currentProphecy {
     if (AppGlobal.prophecyUtil.current == null) {
-      this.calculateProphecy(dt: dtNow);
+      this.calculateProphecy(dt: dtDay);
     }
     return AppGlobal.prophecyUtil.current;
   }
 
-  void calculateProphecy({@required int dt}) =>
-      AppGlobal.prophecyUtil.calculate(dt: dt, isDebug: AppGlobal.debug.isDebug, user: forUser);
+  void calculateProphecy({@required int dt}) {
+    AppGlobal.prophecyUtil.calculate(dt: dt, isDebug: AppGlobal.debug.isDebug, user: forUser);
+    notifyListeners();
+  }
 
-  double getCompatibilityWith({@required UserEntity subject}) => AppGlobal.prophecyUtil.compatibility(
-        dt: dtNow,
+  double getCompatibilityWith({@required UserEntity subject}) {
+    if (compatibilityCache[subject] == null) {
+      compatibilityCache[subject] = AppGlobal.prophecyUtil.compatibility(
+        dt: dtDay,
         user: forUser,
         subject: subject,
       );
+    }
+    return compatibilityCache[subject];
+  }
 }
 
 class ProphecyLogic extends InheritedWidget {
