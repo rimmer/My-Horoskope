@@ -4,6 +4,7 @@ import 'package:base/user/entity/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_horoskope/app_global.dart';
+import 'package:symbol/symbol.dart';
 
 class _ProphecyLogic extends ChangeNotifier {
   _ProphecyLogic({
@@ -35,6 +36,8 @@ class _ProphecyLogic extends ChangeNotifier {
     }
     return compatibilityCache[subject];
   }
+
+  PreparedSymbolCombination getCombinationCallback() => getSymbolCombination(AppGlobal.prophecyUtil.current);
 }
 
 class ProphecyLogic extends InheritedWidget {
