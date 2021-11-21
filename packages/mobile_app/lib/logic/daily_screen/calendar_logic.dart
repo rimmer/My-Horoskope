@@ -53,3 +53,15 @@ class _CalendarLogic extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+class CalendarLogic extends InheritedWidget {
+  CalendarLogic({@required int numberOfDays}) : _bound = _CalendarLogic(numberOfDays: numberOfDays);
+
+  final _CalendarLogic _bound;
+
+  static _CalendarLogic of(BuildContext context) =>
+      (context.dependOnInheritedWidgetOfExactType<CalendarLogic>())._bound;
+
+  @override
+  bool updateShouldNotify(CalendarLogic old) => false;
+}
