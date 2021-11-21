@@ -6,6 +6,6 @@ class DailyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: PopupStackForDailyScreen(),
+        body: const PopupStackForDailyScreen(),
       );
 }

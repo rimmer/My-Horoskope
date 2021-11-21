@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 
-class PopupStackForDailyScreen extends StatefulWidget {
+class PopupStackForDailyScreen extends StatelessWidget {
   const PopupStackForDailyScreen();
 
   @override
-  _PopupStackForDailyScreenState createState() => _PopupStackForDailyScreenState();
+  Widget build(BuildContext context) {
+    return Container();
+  }
 }
 
-class _PopupStackForDailyScreenState extends State<PopupStackForDailyScreen> {
+class AmbiancePopupStack extends StatefulWidget {
+  const AmbiancePopupStack();
+
+  @override
+  _AmbiancePopupStackState createState() => _AmbiancePopupStackState();
+}
+
+class _AmbiancePopupStackState extends State<AmbiancePopupStack> {
   @override
   Widget build(BuildContext context) {
     return Container();

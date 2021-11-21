@@ -23,7 +23,11 @@ class _UserDetailsForDailyScreenLogic extends ChangeNotifier {
 }
 
 class UserDetailsForDailyScreenLogic extends InheritedWidget {
-  UserDetailsForDailyScreenLogic({@required UserEntity user}) : _bound = _UserDetailsForDailyScreenLogic(user: user);
+  UserDetailsForDailyScreenLogic({
+    @required UserEntity user,
+    @required Widget child,
+  })  : _bound = _UserDetailsForDailyScreenLogic(user: user),
+        super(child: child);
 
   final _UserDetailsForDailyScreenLogic _bound;
 

@@ -55,7 +55,11 @@ class _CalendarLogic extends ChangeNotifier {
 }
 
 class CalendarLogic extends InheritedWidget {
-  CalendarLogic({@required int numberOfDays}) : _bound = _CalendarLogic(numberOfDays: numberOfDays);
+  CalendarLogic({
+    @required int numberOfDays,
+    @required Widget child,
+  })  : _bound = _CalendarLogic(numberOfDays: numberOfDays),
+        super(child: child);
 
   final _CalendarLogic _bound;
 

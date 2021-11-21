@@ -41,7 +41,11 @@ class _ProphecyLogic extends ChangeNotifier {
 }
 
 class ProphecyLogic extends InheritedWidget {
-  ProphecyLogic({@required UserEntity forUser}) : _bound = _ProphecyLogic(forUser: forUser);
+  ProphecyLogic({
+    @required UserEntity forUser,
+    @required Widget child,
+  })  : _bound = _ProphecyLogic(forUser: forUser),
+        super(child: child);
 
   final _ProphecyLogic _bound;
 

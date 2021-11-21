@@ -25,7 +25,10 @@ class _AmbiancePopupsLogic extends ChangeNotifier {
 }
 
 class AmbiancePopupsLogic extends InheritedWidget {
-  AmbiancePopupsLogic() : _bound = _AmbiancePopupsLogic();
+  AmbiancePopupsLogic({
+    @required Widget child,
+  })  : _bound = _AmbiancePopupsLogic(),
+        super(child: child);
 
   final _AmbiancePopupsLogic _bound;
 
