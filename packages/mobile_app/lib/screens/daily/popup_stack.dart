@@ -32,7 +32,9 @@ class _AmbiancePopupStackState extends State<AmbiancePopupStack> {
           child: const AppBackground(),
         ),
         const Positioned.fill(
-          child: const DailyPageWrappedWithCalendarLogic(),
+          child: const SafeArea(
+            child: const DailyPageWrappedWithCalendarLogic(),
+          ),
         ),
 
         /// Ambiance popups
