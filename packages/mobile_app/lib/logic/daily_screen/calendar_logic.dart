@@ -9,7 +9,7 @@ const dayToIndex = {
   "DAY AFTER TOMORROW": 2,
 };
 
-class _CalendarLogic extends ChangeNotifier {
+class _CalendarLogic {
   _CalendarLogic({@required this.numberOfDays}) {
     //
     final today = DateTime.fromMillisecondsSinceEpoch(dtDay);
@@ -50,7 +50,6 @@ class _CalendarLogic extends ChangeNotifier {
   set currentDateIndex(int toSet) {
     _currentDateIndex = toSet;
     updateAppBarLabel();
-    notifyListeners();
   }
 }
 

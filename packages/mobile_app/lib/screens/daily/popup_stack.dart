@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_horoskope/logic/daily_screen/ambiance_logic.dart';
-import 'package:my_horoskope/screens/daily/calendar_wrapper.dart';
+import 'package:my_horoskope/screens/daily/fadeout_animation_wrapper.dart';
 import 'package:my_horoskope/widgets/ambiance/ambiance_subject_new.dart';
 import 'package:my_horoskope/widgets/ambiance/ambiance_subject_settings.dart';
 import 'package:my_horoskope/widgets/common/app_background.dart';
@@ -33,7 +33,7 @@ class _AmbiancePopupStackState extends State<AmbiancePopupStack> {
         ),
         const Positioned.fill(
           child: const SafeArea(
-            child: const DailyPageWrappedWithCalendarLogic(),
+            child: const FadeOutAnimationWrapper(),
           ),
         ),
 
