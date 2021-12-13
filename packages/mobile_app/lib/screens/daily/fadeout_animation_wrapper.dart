@@ -129,9 +129,9 @@ class __FadeOutAnimationWrapperState extends State<_FadeOutAnimationWrapper> wit
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
 
-    return CustomScrollView(
+    return ListView(
       scrollDirection: Axis.vertical,
-      slivers: <Widget>[
+      children: <Widget>[
         MyProphetAppBar(
             width: screen.width,
             label: CalendarLogic.of(context).appBarLabel,

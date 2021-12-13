@@ -42,49 +42,49 @@ class _SheetsList extends StatelessWidget {
     final PreparedSymbolCombination combination = isToday ? foreseer.getCombinationCallback() : null;
     final Map<bool, String> currentPlanets = planetFor[currentDaySinceEpoch.astroSign][userDetails.astroSign];
 
-    return SliverList(
-      delegate: SliverChildListDelegate(
-        [
-          DailyScreenLabelAndBirth(
-            label: userDetails.label,
-            birthRow: BirthRow(
-              info: BirthRowInfo(
-                birthDate: userDetails.birthDate,
-                astroSign: userDetails.astroSign,
-              ),
-            ),
-          ),
-          ProphecySheet(
-            prophecies: foreseer.currentProphecy,
-            planets: currentPlanets,
-            toShow: userDetails.propheciesToShow,
-          ),
-          const SizedBox(
-            height: SPACE_AFTER_PROPHECY,
-          ),
-          if (isToday)
-            Prediction(
-              toShow: userDetails.propheciesToShow,
+    return ListView(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        DailyScreenLabelAndBirth(
+          label: userDetails.label,
+          birthRow: BirthRow(
+            info: BirthRowInfo(
               birthDate: userDetails.birthDate,
-              child: CardsWidget(
-                combination: combination,
-              ),
+              astroSign: userDetails.astroSign,
             ),
-          if (isToday && ambianceIsPresent)
-            DailyScreenAmbianceList(
-              getCompatibility: foreseer.getCompatibilityWith,
-              focusAmbianceChange: popups.focusAmbianceChange,
-              ambiance: userDetails.user.ambiance,
-              setAmbianceChangeSubject: popups.setSubjectToChange,
+          ),
+        ),
+        ProphecySheet(
+          prophecies: foreseer.currentProphecy,
+          planets: currentPlanets,
+          toShow: userDetails.propheciesToShow,
+        ),
+        const SizedBox(
+          height: SPACE_AFTER_PROPHECY,
+        ),
+        if (isToday)
+          Prediction(
+            toShow: userDetails.propheciesToShow,
+            birthDate: userDetails.birthDate,
+            child: CardsWidget(
+              combination: combination,
             ),
-          AddAmbianceButton(
-            onTap: AmbiancePopupsLogic.of(context).focusAmbianceAdd,
           ),
-          const SizedBox(
-            height: SPACE_AFTER_AMBIANCE,
+        if (isToday && ambianceIsPresent)
+          DailyScreenAmbianceList(
+            getCompatibility: foreseer.getCompatibilityWith,
+            focusAmbianceChange: popups.focusAmbianceChange,
+            ambiance: userDetails.user.ambiance,
+            setAmbianceChangeSubject: popups.setSubjectToChange,
           ),
-        ],
-      ),
+        AddAmbianceButton(
+          onTap: AmbiancePopupsLogic.of(context).focusAmbianceAdd,
+        ),
+        const SizedBox(
+          height: SPACE_AFTER_AMBIANCE,
+        ),
+      ],
     );
   }
 }
