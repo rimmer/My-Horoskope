@@ -6,8 +6,8 @@ import 'package:flutter/widgets.dart';
 import 'package:my_horoskope/app_global.dart';
 import 'package:symbol/symbol.dart';
 
-class _ProphecyLogic extends ChangeNotifier {
-  _ProphecyLogic({
+class _Foreseer {
+  _Foreseer({
     @required this.forUser,
   });
   final UserEntity forUser;
@@ -23,7 +23,6 @@ class _ProphecyLogic extends ChangeNotifier {
 
   void calculateProphecy({@required int dt}) {
     AppGlobal.prophecyUtil.calculate(dt: dt, isDebug: AppGlobal.debug.isDebug, user: forUser);
-    notifyListeners();
   }
 
   double getCompatibilityWith({@required UserEntity subject}) {
@@ -40,18 +39,17 @@ class _ProphecyLogic extends ChangeNotifier {
   PreparedSymbolCombination getCombinationCallback() => getSymbolCombination(AppGlobal.prophecyUtil.current);
 }
 
-class ProphecyLogic extends InheritedWidget {
-  ProphecyLogic({
+class Foreseer extends InheritedWidget {
+  Foreseer({
     @required UserEntity forUser,
     @required Widget child,
-  })  : _bound = _ProphecyLogic(forUser: forUser),
+  })  : _bound = _Foreseer(forUser: forUser),
         super(child: child);
 
-  final _ProphecyLogic _bound;
+  final _Foreseer _bound;
 
-  static _ProphecyLogic of(BuildContext context) =>
-      (context.dependOnInheritedWidgetOfExactType<ProphecyLogic>())._bound;
+  static _Foreseer of(BuildContext context) => (context.dependOnInheritedWidgetOfExactType<Foreseer>())._bound;
 
   @override
-  bool updateShouldNotify(ProphecyLogic old) => false;
+  bool updateShouldNotify(Foreseer old) => false;
 }
