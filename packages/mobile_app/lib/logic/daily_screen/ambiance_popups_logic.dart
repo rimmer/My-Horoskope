@@ -5,7 +5,12 @@ import 'package:flutter/widgets.dart';
 class _AmbiancePopupsLogic extends ChangeNotifier {
   bool ambianceAdd = false;
   bool ambianceChange = false;
-  UserEntity subjectToChange;
+  UserEntity _subjectToChange;
+
+  UserEntity get subjectToChange => _subjectToChange;
+  void setSubjectToChange(UserEntity newSubject) {
+    _subjectToChange = newSubject;
+  }
 
   void unfocusAmbiancePopup() {
     ambianceAdd = false;

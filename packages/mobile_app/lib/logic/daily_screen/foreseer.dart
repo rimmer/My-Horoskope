@@ -25,7 +25,7 @@ class _Foreseer {
     AppGlobal.prophecyUtil.calculate(dt: dt, isDebug: AppGlobal.debug.isDebug, user: forUser);
   }
 
-  double getCompatibilityWith({@required UserEntity subject}) {
+  double getCompatibilityWith(UserEntity subject) {
     if (compatibilityCache[subject] == null) {
       compatibilityCache[subject] = AppGlobal.prophecyUtil.compatibility(
         dt: dtDay,
