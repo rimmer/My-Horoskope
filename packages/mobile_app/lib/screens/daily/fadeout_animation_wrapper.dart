@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_horoskope/app_global.dart';
 import 'package:my_horoskope/logic/daily_screen/calendar_logic.dart';
+import 'package:my_horoskope/logic/daily_screen/user_details_for_daily_screen.dart';
 import 'package:my_horoskope/routes.dart';
 import 'package:my_horoskope/screens/daily/constants.dart';
 import 'package:my_horoskope/screens/daily/sheets.dart';
@@ -144,15 +146,19 @@ class __FadeOutAnimationWrapperState extends State<_FadeOutAnimationWrapper> wit
         const SizedBox(
           height: SPACE_BETWEEN_CALENDAR_PROPHECY,
         ),
-
-        /// main part of the screen
         AnimatedBuilder(
           animation: animationSheetsFadeOutController,
           builder: (context, child) => FadeTransition(
             opacity: animationSheetsFadeOut,
             child: child,
           ),
-          child: SheetsList(),
+          child: UserDetailsForDailyScreen(
+            user: AppGlobal.data.usersRepo.current,
+            propheciesToShow: AppGlobal.data.appPref.enabledProphecies,
+
+            /// main part of the screen
+            child: SheetsList(),
+          ),
         ),
       ],
     );

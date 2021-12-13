@@ -51,6 +51,8 @@ class _CalendarLogic {
     _currentDateIndex = toSet;
     updateAppBarLabel();
   }
+
+  DateTime get currentDay => day[_currentDateIndex];
 }
 
 class CalendarLogic extends InheritedWidget {
