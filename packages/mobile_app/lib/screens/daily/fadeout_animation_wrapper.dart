@@ -157,7 +157,7 @@ class __FadeOutAnimationWrapperState extends State<_FadeOutAnimationWrapper> wit
             propheciesToShow: AppGlobal.data.appPref.enabledProphecies,
 
             /// main part of the screen
-            child: SheetsList(),
+            child: const SheetsList(),
           ),
         ),
       ],

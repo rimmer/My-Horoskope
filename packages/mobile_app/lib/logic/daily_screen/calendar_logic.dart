@@ -29,6 +29,7 @@ class _CalendarLogic {
   String _labelPartCache;
 
   bool get isToday => day[_currentDateIndex].millisecondsSinceEpoch == dtDay;
+  bool get isNotToday => day[_currentDateIndex].millisecondsSinceEpoch != dtDay;
 
   void updateAppBarLabel() {
     if (dayToIndex["TODAY"] == _currentDateIndex)

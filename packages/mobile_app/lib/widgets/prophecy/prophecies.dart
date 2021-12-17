@@ -11,12 +11,12 @@ import 'prophecy_record.dart';
 
 const PROPHECY_PADDING_HORIZONTAL = 16.0;
 
-class ProphecySheet extends StatelessWidget {
+class Prophecies extends StatelessWidget {
   final Map<ProphecyType, ProphecyEntity> prophecies;
   final Map<bool, String> planets;
   final EnabledProphecies toShow;
 
-  const ProphecySheet({
+  const Prophecies({
     @required this.prophecies,
     @required this.planets,
     @required this.toShow,
