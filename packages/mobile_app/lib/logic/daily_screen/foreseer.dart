@@ -4,7 +4,6 @@ import 'package:base/user/entity/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_horoskope/app_global.dart';
-import 'package:symbol/symbol.dart';
 
 class _Foreseer {
   _Foreseer({
@@ -14,15 +13,8 @@ class _Foreseer {
   bool isDebug = !kReleaseMode;
   Map<UserEntity, double> compatibilityCache = {};
 
-  Map<ProphecyType, ProphecyEntity> get currentProphecy {
-    if (AppGlobal.prophecyUtil.current == null) {
-      this.calculateProphecy(dt: dtDay);
-    }
-    return AppGlobal.prophecyUtil.current;
-  }
-
-  void calculateProphecy({@required int dt}) {
-    AppGlobal.prophecyUtil.calculate(dt: dt, isDebug: AppGlobal.debug.isDebug, user: forUser);
+  Map<ProphecyType, ProphecyEntity> calculateProphecy({@required int dt}) {
+    return AppGlobal.prophecyUtil.calculate(dt: dt, isDebug: AppGlobal.debug.isDebug, user: forUser);
   }
 
   double getCompatibilityWith(UserEntity subject) {
@@ -35,8 +27,6 @@ class _Foreseer {
     }
     return compatibilityCache[subject];
   }
-
-  PreparedSymbolCombination getCombinationCallback() => getSymbolCombination(AppGlobal.prophecyUtil.current);
 }
 
 class Foreseer extends InheritedWidget {

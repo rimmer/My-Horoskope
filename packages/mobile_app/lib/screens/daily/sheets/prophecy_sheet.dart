@@ -16,10 +16,10 @@ class ProphecySheet extends StatelessWidget {
     final currentDaySinceEpoch = CalendarLogic.of(context).currentDay.millisecondsSinceEpoch;
     final Map<bool, String> currentPlanets = planetFor[currentDaySinceEpoch.astroSign][userDetails.astroSign];
 
-    foreseer.calculateProphecy(dt: currentDaySinceEpoch);
+    final prophecy = foreseer.calculateProphecy(dt: currentDaySinceEpoch);
 
     return Prophecies(
-      prophecies: foreseer.currentProphecy,
+      prophecies: prophecy,
       planets: currentPlanets,
       toShow: userDetails.propheciesToShow,
     );

@@ -9,15 +9,17 @@ class _Prediction {
   _Prediction({
     @required this.toShow,
     @required this.birthDate,
+    @required this.prophecy,
   });
   final EnabledProphecies toShow;
   final DateTime birthDate;
+  final Map<ProphecyType, ProphecyEntity> prophecy;
 
   String getPredictionByType({
     @required ProphecyType type,
     @required DateTime birthDate,
   }) {
-    if (AppGlobal.prophecyUtil.current[type].value > _isPositive)
+    if (prophecy[type].value > _isPositive)
       return positivePrediction(
         type: type,
         birthDate: birthDate,
@@ -129,9 +131,11 @@ class Prediction extends InheritedWidget {
     @required Widget child,
     @required EnabledProphecies toShow,
     @required DateTime birthDate,
+    @required Map<ProphecyType, ProphecyEntity> prophecy,
   })  : _bound = _Prediction(
           toShow: toShow,
           birthDate: birthDate,
+          prophecy: prophecy,
         ),
         super(child: child);
 
