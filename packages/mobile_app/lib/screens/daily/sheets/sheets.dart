@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_horoskope/logic/daily_screen/calendar_logic.dart';
 import 'package:my_horoskope/logic/daily_screen/foreseer.dart';
 import 'package:my_horoskope/logic/daily_screen/user_details_for_daily_screen.dart';
-import 'package:my_horoskope/screens/daily/ambiance_sheet.dart';
-import 'package:my_horoskope/screens/daily/cards_sheet.dart';
+import 'package:my_horoskope/screens/daily/sheets/ambiance_sheet.dart';
+import 'package:my_horoskope/screens/daily/sheets/cards_sheet.dart';
 import 'package:my_horoskope/screens/daily/constants.dart';
-import 'package:my_horoskope/screens/daily/prophecy_sheet.dart';
+import 'package:my_horoskope/screens/daily/sheets/prophecy_sheet.dart';
 import 'package:my_horoskope/widgets/daily_screen/daily_screen_label_and_birth.dart';
 
 class SheetsList extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'package:my_horoskope/logic/daily_screen/calendar_logic.dart';
 import 'package:my_horoskope/logic/daily_screen/user_details_for_daily_screen.dart';
 import 'package:my_horoskope/routes.dart';
 import 'package:my_horoskope/screens/daily/constants.dart';
-import 'package:my_horoskope/screens/daily/sheets.dart';
+import 'package:my_horoskope/screens/daily/sheets/sheets.dart';
 import 'package:my_horoskope/widgets/common/appbar.dart';
 import 'package:my_horoskope/widgets/common/calendar_items.dart';
 import 'package:my_horoskope/widgets/daily_screen/daily_screen_calendar.dart';
