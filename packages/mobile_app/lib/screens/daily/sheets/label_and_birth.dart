@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:my_horoskope/logic/daily_screen/user_details_for_daily_screen.dart';
+import 'package:my_horoskope/models/user_details_for_daily_screen.dart';
 import 'package:my_horoskope/theme/app_text_style.dart';
 import 'package:my_horoskope/widgets/common/birth_row.dart';
 

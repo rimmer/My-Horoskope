@@ -1,21 +1,15 @@
 import 'package:base/int_datetime.dart';
-import 'package:base/prophecy/entity/prophecy.dart';
 import 'package:base/user/entity/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_horoskope/app_global.dart';
 
-class _Foreseer {
-  _Foreseer({
+class _AmbianceCompatibility {
+  _AmbianceCompatibility({
     @required this.forUser,
   });
   final UserEntity forUser;
-  bool isDebug = !kReleaseMode;
   Map<UserEntity, double> compatibilityCache = {};
-
-  Map<ProphecyType, ProphecyEntity> calculateProphecy({@required int dt}) {
-    return AppGlobal.prophecyUtil.calculate(dt: dt, isDebug: AppGlobal.debug.isDebug, user: forUser);
-  }
 
   double getCompatibilityWith(UserEntity subject) {
     if (compatibilityCache[subject] == null) {
@@ -29,17 +23,18 @@ class _Foreseer {
   }
 }
 
-class Foreseer extends InheritedWidget {
-  Foreseer({
+class AmbianceCompatibility extends InheritedWidget {
+  AmbianceCompatibility({
     @required UserEntity forUser,
     @required Widget child,
-  })  : _bound = _Foreseer(forUser: forUser),
+  })  : _bound = _AmbianceCompatibility(forUser: forUser),
         super(child: child);
 
-  final _Foreseer _bound;
+  final _AmbianceCompatibility _bound;
 
-  static _Foreseer of(BuildContext context) => (context.dependOnInheritedWidgetOfExactType<Foreseer>())._bound;
+  static _AmbianceCompatibility of(BuildContext context) =>
+      (context.dependOnInheritedWidgetOfExactType<AmbianceCompatibility>())._bound;
 
   @override
-  bool updateShouldNotify(Foreseer old) => false;
+  bool updateShouldNotify(AmbianceCompatibility old) => false;
 }

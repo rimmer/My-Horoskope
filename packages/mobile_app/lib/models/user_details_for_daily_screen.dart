@@ -15,7 +15,7 @@ class BirthRowInfo {
   final DateTime birthDate;
 }
 
-class _UserDetailsForDailyScreen extends ChangeNotifier {
+class _UserDetailsForDailyScreen {
   _UserDetailsForDailyScreen({
     @required this.user,
     @required this.propheciesToShow,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_horoskope/app_global.dart';
 import 'package:my_horoskope/logic/daily_screen/calendar_logic.dart';
+import 'package:my_horoskope/models/calculations_for_daily_screen.dart';
+import 'package:my_horoskope/models/user_details_for_daily_screen.dart';
 import 'package:my_horoskope/routes.dart';
 import 'package:my_horoskope/screens/daily/constants.dart';
 import 'package:my_horoskope/screens/daily/sheets/sheets.dart';
@@ -7,24 +10,25 @@ import 'package:my_horoskope/widgets/common/appbar.dart';
 import 'package:my_horoskope/widgets/common/calendar_items.dart';
 import 'package:my_horoskope/widgets/daily_screen/daily_screen_calendar.dart';
 
-class FadeOutAnimationWrapper extends StatelessWidget {
-  const FadeOutAnimationWrapper();
+class CalendarWrapperForDailyScreen extends StatelessWidget {
+  const CalendarWrapperForDailyScreen();
 
   @override
   Widget build(BuildContext context) => CalendarLogic(
-        child: const _FadeOutAnimationWrapper(),
+        child: const _CalendarWrapperForDailyScreen(),
         numberOfDays: NUMBER_OF_DAYS_TO_SHOW,
       );
 }
 
-class _FadeOutAnimationWrapper extends StatefulWidget {
-  const _FadeOutAnimationWrapper();
+class _CalendarWrapperForDailyScreen extends StatefulWidget {
+  const _CalendarWrapperForDailyScreen();
 
   @override
-  __FadeOutAnimationWrapperState createState() => __FadeOutAnimationWrapperState();
+  __CalendarWrapperForDailyScreenState createState() => __CalendarWrapperForDailyScreenState();
 }
 
-class __FadeOutAnimationWrapperState extends State<_FadeOutAnimationWrapper> with SingleTickerProviderStateMixin {
+class __CalendarWrapperForDailyScreenState extends State<_CalendarWrapperForDailyScreen>
+    with SingleTickerProviderStateMixin {
   bool showCalendarSelection = true;
   AnimationController animationSheetsFadeOutController;
   Animation<double> animationSheetsFadeOut;
@@ -126,12 +130,21 @@ class __FadeOutAnimationWrapperState extends State<_FadeOutAnimationWrapper> wit
   @override
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
+    final calendar = CalendarLogic.of(context);
+
+    final isNotToday = calendar.isNotToday;
+    final currentDaySinceEpoch = calendar.currentDay.millisecondsSinceEpoch;
+    final prophecy = AppGlobal.prophecyUtil.calculate(
+      dt: currentDaySinceEpoch,
+      isDebug: AppGlobal.debug.isDebug,
+      user: UserDetailsForDailyScreen.of(context).user,
+    );
 
     return Column(
       children: [
         MyProphetAppBar(
             width: screen.width,
-            label: CalendarLogic.of(context).appBarLabel,
+            label: calendar.appBarLabel,
             onTap: () {
               Navigator.of(context).pushNamed(AppPath.menu);
             }),
@@ -147,7 +160,12 @@ class __FadeOutAnimationWrapperState extends State<_FadeOutAnimationWrapper> wit
               opacity: animationSheetsFadeOut,
               child: child,
             ),
-            child: DailyScreenSheets(),
+            child: CalculationsForDailySreen(
+              prophecy: prophecy,
+              dt: currentDaySinceEpoch,
+              isNotToday: isNotToday,
+              child: DailyScreenSheets(),
+            ),
           ),
         ),
       ],

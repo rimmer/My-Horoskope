@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_horoskope/logic/daily_screen/user_details_for_daily_screen.dart';
+import 'package:my_horoskope/models/user_details_for_daily_screen.dart';
 import 'package:my_horoskope/theme/app_text_style.dart';
 
 class BirthRow extends StatelessWidget {
