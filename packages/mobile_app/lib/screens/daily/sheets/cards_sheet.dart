@@ -20,13 +20,11 @@ class CardsSheet extends StatelessWidget {
     final prophecy = Foreseer.of(context).calculateProphecy(dt: dtDay);
     final userDetails = UserDetailsForDailyScreen.of(context);
 
-    return SliverToBoxAdapter(
-      child: Prediction(
-        toShow: userDetails.propheciesToShow,
-        birthDate: userDetails.birthDate,
-        prophecy: prophecy,
-        child: const CardsWidget(),
-      ),
+    return Prediction(
+      toShow: userDetails.propheciesToShow,
+      birthDate: userDetails.birthDate,
+      prophecy: prophecy,
+      child: const CardsWidget(),
     );
   }
 }

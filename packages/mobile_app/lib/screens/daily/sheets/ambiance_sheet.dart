@@ -39,10 +39,8 @@ class AmbianceSheet extends StatelessWidget {
       ),
     ];
 
-    return SliverToBoxAdapter(
-      child: Column(
-        children: ambianceSubjects,
-      ),
+    return Column(
+      children: ambianceSubjects,
     );
   }
 }

@@ -155,14 +155,18 @@ class __FadeOutAnimationWrapperState extends State<_FadeOutAnimationWrapper> wit
         const SliverToBoxAdapter(
           child: const LabelAndBirth(),
         ),
-        ProphecySheet(),
-        const SliverToBoxAdapter(
-          child: const SizedBox(
-            height: SPACE_AFTER_PROPHECY,
+        SliverList(
+          delegate: SliverChildListDelegate(
+            [
+              ProphecySheet(),
+              const SizedBox(
+                height: SPACE_AFTER_PROPHECY,
+              ),
+              CardsSheet(),
+              AmbianceSheet(),
+            ],
           ),
         ),
-        CardsSheet(),
-        AmbianceSheet(),
         const SliverToBoxAdapter(
           child: const SizedBox(
             height: SPACE_AFTER_AMBIANCE,
