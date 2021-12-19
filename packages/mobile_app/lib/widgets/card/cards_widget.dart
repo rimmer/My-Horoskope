@@ -11,10 +11,7 @@ class CardsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final PreparedSymbolCombination combination = getSymbolCombination(Prediction.of(context).prophecy);
 
-    return ListView(
-      shrinkWrap: true,
-      scrollDirection: Axis.vertical,
-      physics: NeverScrollableScrollPhysics(),
+    return Column(
       children: [
         BigCard(combination: combination),
         const DeckCards(),

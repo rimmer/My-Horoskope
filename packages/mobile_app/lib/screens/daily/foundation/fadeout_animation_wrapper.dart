@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:my_horoskope/app_global.dart';
 import 'package:my_horoskope/logic/daily_screen/calendar_logic.dart';
-import 'package:my_horoskope/logic/daily_screen/user_details_for_daily_screen.dart';
 import 'package:my_horoskope/routes.dart';
 import 'package:my_horoskope/screens/daily/constants.dart';
-import 'package:my_horoskope/screens/daily/sheets/sheets.dart';
+import 'package:my_horoskope/screens/daily/sheets/ambiance_sheet.dart';
+import 'package:my_horoskope/screens/daily/sheets/cards_sheet.dart';
+import 'package:my_horoskope/screens/daily/sheets/prophecy_sheet.dart';
 import 'package:my_horoskope/widgets/common/appbar.dart';
 import 'package:my_horoskope/widgets/common/calendar_items.dart';
 import 'package:my_horoskope/widgets/daily_screen/daily_screen_calendar.dart';
+import 'package:my_horoskope/screens/daily/sheets/label_and_birth.dart';
 
 class FadeOutAnimationWrapper extends StatelessWidget {
   const FadeOutAnimationWrapper();
@@ -129,35 +130,42 @@ class __FadeOutAnimationWrapperState extends State<_FadeOutAnimationWrapper> wit
   Widget build(BuildContext context) {
     final screen = MediaQuery.of(context).size;
 
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: <Widget>[
-        MyProphetAppBar(
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: MyProphetAppBar(
+              width: screen.width,
+              label: CalendarLogic.of(context).appBarLabel,
+              onTap: () {
+                Navigator.of(context).pushNamed(AppPath.menu);
+              }),
+        ),
+        SliverToBoxAdapter(
+          child: DailyScreenCalendar(
             width: screen.width,
-            label: CalendarLogic.of(context).appBarLabel,
-            onTap: () {
-              Navigator.of(context).pushNamed(AppPath.menu);
-            }),
-        DailyScreenCalendar(
-          width: screen.width,
-          calendarItemBuilder: dayToWidgetBuilder,
-          numberOfDaysToShow: NUMBER_OF_DAYS_TO_SHOW,
-        ),
-        const SizedBox(
-          height: SPACE_BETWEEN_CALENDAR_PROPHECY,
-        ),
-        AnimatedBuilder(
-          animation: animationSheetsFadeOutController,
-          builder: (context, child) => FadeTransition(
-            opacity: animationSheetsFadeOut,
-            child: child,
+            calendarItemBuilder: dayToWidgetBuilder,
+            numberOfDaysToShow: NUMBER_OF_DAYS_TO_SHOW,
           ),
-          child: UserDetailsForDailyScreen(
-            user: AppGlobal.data.usersRepo.current,
-            propheciesToShow: AppGlobal.data.appPref.enabledProphecies,
-
-            /// main part of the screen
-            child: const SheetsList(),
+        ),
+        const SliverToBoxAdapter(
+          child: const SizedBox(
+            height: SPACE_BETWEEN_CALENDAR_PROPHECY,
+          ),
+        ),
+        const SliverToBoxAdapter(
+          child: const LabelAndBirth(),
+        ),
+        ProphecySheet(),
+        const SliverToBoxAdapter(
+          child: const SizedBox(
+            height: SPACE_AFTER_PROPHECY,
+          ),
+        ),
+        CardsSheet(),
+        AmbianceSheet(),
+        const SliverToBoxAdapter(
+          child: const SizedBox(
+            height: SPACE_AFTER_AMBIANCE,
           ),
         ),
       ],

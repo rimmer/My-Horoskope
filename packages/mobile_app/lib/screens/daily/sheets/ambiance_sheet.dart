@@ -4,7 +4,7 @@ import 'package:my_horoskope/logic/daily_screen/calendar_logic.dart';
 import 'package:my_horoskope/logic/daily_screen/foreseer.dart';
 import 'package:my_horoskope/logic/daily_screen/user_details_for_daily_screen.dart';
 import 'package:my_horoskope/widgets/ambiance/ambiance_button.dart';
-import 'package:my_horoskope/widgets/daily_screen/daily_screen_ambiance_list.dart';
+import 'package:my_horoskope/widgets/ambiance/ambiance_subject_item.dart';
 import 'package:nil/nil.dart';
 
 class AmbianceSheet extends StatelessWidget {
@@ -22,21 +22,27 @@ class AmbianceSheet extends StatelessWidget {
     final foreseer = Foreseer.of(context);
     final ambianceIsPresent = userDetails.user.ambiance != null && userDetails.user.ambiance.isNotEmpty;
 
-    return ListView(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      children: [
-        if (ambianceIsPresent)
-          DailyScreenAmbianceList(
-            getCompatibility: foreseer.getCompatibilityWith,
-            focusAmbianceChange: popups.focusAmbianceChange,
-            ambiance: userDetails.user.ambiance,
-            setAmbianceChangeSubject: popups.setSubjectToChange,
+    final ambianceSubjects = [
+      if (ambianceIsPresent)
+        for (final subject in userDetails.user.ambiance)
+          AmbiacneSubject(
+            onOptionsTap: () {
+              popups.setSubjectToChange(subject);
+              popups.focusAmbianceChange();
+            },
+            subject: subject,
+            compatibility: foreseer.getCompatibilityWith(subject),
           ),
-        AddAmbianceButton(
-          onTap: popups.focusAmbianceAdd,
-        ),
-      ],
+      const SizedBox(height: 16.0),
+      AddAmbianceButton(
+        onTap: popups.focusAmbianceAdd,
+      ),
+    ];
+
+    return SliverToBoxAdapter(
+      child: Column(
+        children: ambianceSubjects,
+      ),
     );
   }
 }

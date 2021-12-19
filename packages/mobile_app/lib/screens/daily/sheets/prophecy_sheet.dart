@@ -18,10 +18,12 @@ class ProphecySheet extends StatelessWidget {
 
     final prophecy = foreseer.calculateProphecy(dt: currentDaySinceEpoch);
 
-    return Prophecies(
-      prophecies: prophecy,
-      planets: currentPlanets,
-      toShow: userDetails.propheciesToShow,
+    return SliverToBoxAdapter(
+      child: Prophecies(
+        prophecies: prophecy,
+        planets: currentPlanets,
+        toShow: userDetails.propheciesToShow,
+      ),
     );
   }
 }
