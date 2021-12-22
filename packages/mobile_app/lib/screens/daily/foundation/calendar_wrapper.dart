@@ -5,10 +5,13 @@ import 'package:my_horoskope/models/calculations_for_daily_screen.dart';
 import 'package:my_horoskope/models/user_details_for_daily_screen.dart';
 import 'package:my_horoskope/routes.dart';
 import 'package:my_horoskope/screens/daily/constants.dart';
-import 'package:my_horoskope/screens/daily/sheets/sheets.dart';
 import 'package:my_horoskope/widgets/common/appbar.dart';
 import 'package:my_horoskope/widgets/common/calendar_items.dart';
 import 'package:my_horoskope/widgets/daily_screen/daily_screen_calendar.dart';
+import 'package:my_horoskope/screens/daily/sheets/label_and_birth.dart';
+import 'package:my_horoskope/screens/daily/sheets/ambiance_sheet.dart';
+import 'package:my_horoskope/screens/daily/sheets/cards_sheet.dart';
+import 'package:my_horoskope/screens/daily/sheets/prophecy_sheet.dart';
 
 class CalendarWrapperForDailyScreen extends StatelessWidget {
   const CalendarWrapperForDailyScreen();
@@ -140,31 +143,60 @@ class __CalendarWrapperForDailyScreenState extends State<_CalendarWrapperForDail
       user: UserDetailsForDailyScreen.of(context).user,
     );
 
-    return Column(
-      children: [
-        MyProphetAppBar(
-            width: screen.width,
-            label: calendar.appBarLabel,
-            onTap: () {
-              Navigator.of(context).pushNamed(AppPath.menu);
-            }),
-        DailyScreenCalendar(
-          width: screen.width,
-          calendarItemBuilder: dayToWidgetBuilder,
-          numberOfDaysToShow: NUMBER_OF_DAYS_TO_SHOW,
+    return CustomScrollView(
+      slivers: [
+        /// Appbar with calendar
+        SliverList(
+          delegate: SliverChildListDelegate.fixed(
+            [
+              MyProphetAppBar(
+                  width: screen.width,
+                  label: calendar.appBarLabel,
+                  onTap: () {
+                    Navigator.of(context).pushNamed(AppPath.menu);
+                  }),
+              DailyScreenCalendar(
+                width: screen.width,
+                calendarItemBuilder: dayToWidgetBuilder,
+                numberOfDaysToShow: NUMBER_OF_DAYS_TO_SHOW,
+              ),
+            ],
+          ),
         ),
-        Expanded(
-          child: AnimatedBuilder(
-            animation: animationSheetsFadeOutController,
-            builder: (context, child) => FadeTransition(
-              opacity: animationSheetsFadeOut,
-              child: child,
-            ),
-            child: CalculationsForDailySreen(
-              prophecy: prophecy,
-              dt: currentDaySinceEpoch,
-              isNotToday: isNotToday,
-              child: DailyScreenSheets(),
+
+        /// Constant user information
+        SliverList(
+          delegate: SliverChildListDelegate.fixed(
+            [
+              const SizedBox(
+                height: SPACE_BETWEEN_CALENDAR_PROPHECY,
+              ),
+              const LabelAndBirth(),
+            ],
+          ),
+        ),
+
+        /// Main part of screen
+        SliverFadeTransition(
+          opacity: animationSheetsFadeOutController,
+          sliver: CalculationsForDailySreen(
+            prophecy: prophecy,
+            dt: currentDaySinceEpoch,
+            isNotToday: isNotToday,
+            child: SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  ProphecySheet(),
+                  const SizedBox(
+                    height: SPACE_AFTER_PROPHECY,
+                  ),
+                  CardsSheet(),
+                  AmbianceSheet(),
+                  const SizedBox(
+                    height: SPACE_AFTER_AMBIANCE,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
