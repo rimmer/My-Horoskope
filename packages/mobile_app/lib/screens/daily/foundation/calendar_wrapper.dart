@@ -5,13 +5,11 @@ import 'package:my_horoskope/models/calculations_for_daily_screen.dart';
 import 'package:my_horoskope/models/user_details_for_daily_screen.dart';
 import 'package:my_horoskope/routes.dart';
 import 'package:my_horoskope/screens/daily/constants.dart';
+import 'package:my_horoskope/screens/daily/sheets/sheets.dart';
 import 'package:my_horoskope/widgets/common/appbar.dart';
 import 'package:my_horoskope/widgets/common/calendar_items.dart';
 import 'package:my_horoskope/widgets/daily_screen/daily_screen_calendar.dart';
-import 'package:my_horoskope/screens/daily/sheets/label_and_birth.dart';
-import 'package:my_horoskope/screens/daily/sheets/ambiance_sheet.dart';
-import 'package:my_horoskope/screens/daily/sheets/cards_sheet.dart';
-import 'package:my_horoskope/screens/daily/sheets/prophecy_sheet.dart';
+import 'package:my_horoskope/screens/daily/foundation/label_and_birth.dart';
 
 class CalendarWrapperForDailyScreen extends StatelessWidget {
   const CalendarWrapperForDailyScreen();
@@ -165,7 +163,7 @@ class __CalendarWrapperForDailyScreenState extends State<_CalendarWrapperForDail
         ),
 
         /// Constant user information
-        SliverList(
+        const SliverList(
           delegate: SliverChildListDelegate.fixed(
             [
               const SizedBox(
@@ -184,19 +182,7 @@ class __CalendarWrapperForDailyScreenState extends State<_CalendarWrapperForDail
             dt: currentDaySinceEpoch,
             isNotToday: isNotToday,
             child: SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  ProphecySheet(),
-                  const SizedBox(
-                    height: SPACE_AFTER_PROPHECY,
-                  ),
-                  CardsSheet(),
-                  AmbianceSheet(),
-                  const SizedBox(
-                    height: SPACE_AFTER_AMBIANCE,
-                  ),
-                ],
-              ),
+              delegate: DailyScreenSheets(),
             ),
           ),
         ),
