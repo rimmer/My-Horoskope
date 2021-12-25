@@ -11,8 +11,7 @@ class MyProphetAppBar extends StatelessWidget {
   final String label;
   final Function onTap;
 
-  const MyProphetAppBar(
-      {@required this.width, @required this.label, @required this.onTap});
+  const MyProphetAppBar({@required this.width, @required this.label, @required this.onTap});
 
   @override
   Widget build(BuildContext context) {

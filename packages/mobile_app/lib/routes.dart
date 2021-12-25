@@ -23,7 +23,7 @@ class AppPath {
         path = const AuthScreen();
         break;
       case daily:
-        path = DailyScreen();
+        path = const DailyScreen();
         break;
       case menu:
         path = const MenuScreen();

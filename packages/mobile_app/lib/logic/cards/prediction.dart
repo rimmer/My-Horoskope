@@ -1,22 +1,33 @@
-part of '../daily_screen.dart';
+import 'package:base/preferences/setting/enabled_prophecies/item.dart';
+import 'package:base/prophecy/entity/prophecy.dart';
+import 'package:flutter/widgets.dart';
+import 'package:my_horoskope/app_global.dart';
 
 const _isPositive = 57.0;
 
-extension DailyScreenPredictionMethods on _DailyScreenState {
-  String getPredictionByType({@required ProphecyType type}) {
-    if (AppGlobal.prophecyUtil.current[type].value > _isPositive)
+class _Prediction {
+  _Prediction({
+    @required this.toShow,
+    @required this.birthDate,
+    @required this.prophecy,
+  });
+  final EnabledProphecies toShow;
+  final DateTime birthDate;
+  final Map<ProphecyType, ProphecyEntity> prophecy;
+
+  String getPredictionByType({
+    @required ProphecyType type,
+    @required DateTime birthDate,
+  }) {
+    if (prophecy[type].value > _isPositive)
       return positivePrediction(
         type: type,
-        birthDate: DateTime.fromMillisecondsSinceEpoch(
-          dat.user.model.birth,
-        ),
+        birthDate: birthDate,
       );
     else
       return negativePrediction(
         type: type,
-        birthDate: DateTime.fromMillisecondsSinceEpoch(
-          dat.user.model.birth,
-        ),
+        birthDate: birthDate,
       );
   }
 
@@ -108,4 +119,30 @@ extension DailyScreenPredictionMethods on _DailyScreenState {
 
     return negativePredictionText;
   }
+
+  String prediction({@required ProphecyType type}) => getPredictionByType(
+        type: type,
+        birthDate: birthDate,
+      );
+}
+
+class Prediction extends InheritedWidget {
+  Prediction({
+    @required Widget child,
+    @required EnabledProphecies toShow,
+    @required DateTime birthDate,
+    @required Map<ProphecyType, ProphecyEntity> prophecy,
+  })  : _bound = _Prediction(
+          toShow: toShow,
+          birthDate: birthDate,
+          prophecy: prophecy,
+        ),
+        super(child: child);
+
+  final _Prediction _bound;
+
+  static _Prediction of(BuildContext context) => (context.dependOnInheritedWidgetOfExactType<Prediction>())._bound;
+
+  @override
+  bool updateShouldNotify(Prediction old) => false;
 }

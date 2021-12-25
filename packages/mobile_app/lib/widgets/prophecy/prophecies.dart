@@ -11,12 +11,12 @@ import 'prophecy_record.dart';
 
 const PROPHECY_PADDING_HORIZONTAL = 16.0;
 
-class ProphecySheet extends StatelessWidget {
+class Prophecies extends StatelessWidget {
   final Map<ProphecyType, ProphecyEntity> prophecies;
   final Map<bool, String> planets;
   final EnabledProphecies toShow;
 
-  const ProphecySheet({
+  const Prophecies({
     @required this.prophecies,
     @required this.planets,
     @required this.toShow,
@@ -58,64 +58,57 @@ class ProphecySheet extends StatelessWidget {
       ),
 
       /// main list view
-      child: ListView(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        physics: NeverScrollableScrollPhysics(),
+      child: Column(
         children: <Widget>[
           /// planet impact
-          ListView(
-            shrinkWrap: true,
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: PROPHECY_PADDING_HORIZONTAL),
-            scrollDirection: Axis.vertical,
-            physics: const NeverScrollableScrollPhysics(),
-            children: <Widget>[
-              TitleWithDescription(
-                padding: const EdgeInsets.only(
-                  top: 14.0,
-                  left: 3.0,
+            child: Column(
+              children: <Widget>[
+                TitleWithDescription(
+                  padding: const EdgeInsets.only(
+                    top: 14.0,
+                    left: 3.0,
+                  ),
+                  title: localeText.impactPlanets.capitalize(),
+                  notation: localeText.impactPlanetsHint,
                 ),
-                title: localeText.impactPlanets.capitalize(),
-                notation: localeText.impactPlanetsHint,
-              ),
-              Container(
-                height: 64.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      children: [
-                        Text(" ${localeText.planetImpactName[planets[false]]} "),
-                        SvgPicture.asset("assets/icons/${planets[false]}.svg", color: AppColors.negativeImpact),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(" ${localeText.planetImpactName[planets[true]]} "),
-                        SvgPicture.asset("assets/icons/${planets[true]}.svg", color: AppColors.positiveImpact),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
+                Container(
+                  height: 64.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Text(" ${localeText.planetImpactName[planets[false]]} "),
+                          SvgPicture.asset("assets/icons/${planets[false]}.svg", color: AppColors.negativeImpact),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(" ${localeText.planetImpactName[planets[true]]} "),
+                          SvgPicture.asset("assets/icons/${planets[true]}.svg", color: AppColors.positiveImpact),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
 
           //
           const ProphecySheetDivider(),
 
           /// prophecies listview
-          ListView(
-            shrinkWrap: true,
+          Padding(
             padding: const EdgeInsets.only(
               left: PROPHECY_PADDING_HORIZONTAL,
               right: PROPHECY_PADDING_HORIZONTAL,
               bottom: 12.0,
             ),
-            scrollDirection: Axis.vertical,
-            physics: const NeverScrollableScrollPhysics(),
-            children: propheciesSheet,
+            child: Column(children: propheciesSheet),
           ),
         ],
       ),
