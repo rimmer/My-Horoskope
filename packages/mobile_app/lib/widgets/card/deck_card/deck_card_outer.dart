@@ -20,7 +20,7 @@ class _DeckCardOuterState extends State<DeckCardOuter> {
 
   @override
   Widget build(BuildContext context) {
-    if (CardsLogic.of(context).choise == type) {
+    if (CardsLogic.of(context).choice == type) {
       isCurrent = true;
       return DeckCardInner(
         mode: DeckCardMode.CHOSEN,
@@ -48,7 +48,7 @@ class _DeckCardOuterState extends State<DeckCardOuter> {
     CardsLogic.of(context).addListener(() {
       try {
         if (wasChosen) {
-          if (CardsLogic.of(context).choise != type && !isCurrent || CardsLogic.of(context).choise == type && isCurrent)
+          if (CardsLogic.of(context).choice != type && !isCurrent || CardsLogic.of(context).choice == type && isCurrent)
             return;
         } else if (!wasChosen && !CardsLogic.of(context).cardShown[type]) {
           return;

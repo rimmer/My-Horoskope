@@ -52,7 +52,7 @@ class _CardsAdsResolverState extends State<CardsAdsResolver> {
 
   adsOnConsent() {
     if (AppGlobal.ads.adsConsentNeeded && !AppGlobal.ads.adsConsentGiven)
-      AppGlobal.ads.manager.askUserConcent();
+      AppGlobal.ads.manager.askUserConsent();
     else
       setState(() {});
   }

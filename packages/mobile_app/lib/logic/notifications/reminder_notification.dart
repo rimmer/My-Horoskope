@@ -51,14 +51,14 @@ Future reminderConfig() async {
   /// cancel previous
   for (_Remind reminder in reminders)
     await cancelNotification(
-      reminder.id + Notif.reminderChannel.defaultEventId,
+      reminder.id + NotificationChannel.reminderChannel.defaultEventId,
     );
 
   /// add new
   if (AppGlobal.data.appPref.dat.notifications.disabled == false)
     for (_Remind reminder in reminders)
       await timeoutNotification(
-        channelInfo: Notif.reminderChannel,
+        channelInfo: NotificationChannel.reminderChannel,
         timeout: reminder.duration,
 
         /// @DEBUG dont delete me please

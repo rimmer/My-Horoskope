@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_horoskope/theme/app_colors.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:my_horoskope/theme/app_colors.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({Key key}) : super(key: key);
@@ -22,7 +22,7 @@ class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: const SpinKitPouringHourglass(color: AppColors.primaryLight),
+      child: const SpinKitPouringHourGlass(color: AppColors.primaryLight),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 /// How it works
 ///
-/// Initialy, all cards were not shown, big card is empty and ads was not watched
+/// Initially, all cards were not shown, big card is empty and ads was not watched
 ///
 /// ---
 ///
@@ -53,23 +53,23 @@ class _CardsLogic extends ChangeNotifier {
 
   whenAdsWatched() {
     _adsWatched = true;
-    cardShown[_choise] = true;
+    cardShown[_choice] = true;
     notifyListeners();
   }
 
   /// current choise
   bool get currentBigCardIsEmpty => cardsShownCount() == 0;
 
-  CardType _choise = CardType.NONE;
-  CardType get choise => _choise;
+  CardType _choice = CardType.NONE;
+  CardType get choice => _choice;
 
   /// @SETTER
-  set choise(CardType newChoise) {
+  set choice(CardType newChoice) {
     if (dontShowAds) {
-      cardShown[newChoise] = true;
+      cardShown[newChoice] = true;
     }
 
-    _choise = newChoise;
+    _choice = newChoice;
     notifyListeners();
   }
 }

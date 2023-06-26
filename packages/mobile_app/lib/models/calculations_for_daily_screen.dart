@@ -1,5 +1,4 @@
 import 'package:base/prophecy/entity/prophecy.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 class _CalculationsForDailySreen {

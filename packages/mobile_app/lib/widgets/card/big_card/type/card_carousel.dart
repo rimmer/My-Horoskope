@@ -16,21 +16,21 @@ class CardCarousel extends StatefulWidget {
 class _CardCarouselState extends State<CardCarousel> {
   int _indexInCarousel = 0;
 
-  int get _maxAvaibleIndexInCarousel => widget.children.length - 1;
-  static const int _minAvaibleIndexInCarousel = 0;
+  int get _maxAvailableIndexInCarousel => widget.children.length - 1;
+  static const int _minAvailableIndexInCarousel = 0;
   String _numberToShowInUi(int index) => (index + 1).toString();
 
   void _nextItem() {
-    if (_indexInCarousel == _maxAvaibleIndexInCarousel)
-      _indexInCarousel = _minAvaibleIndexInCarousel;
+    if (_indexInCarousel == _maxAvailableIndexInCarousel)
+      _indexInCarousel = _minAvailableIndexInCarousel;
     else
       ++_indexInCarousel;
     setState(() {});
   }
 
   void _previousItem() {
-    if (_indexInCarousel == _minAvaibleIndexInCarousel)
-      _indexInCarousel = _maxAvaibleIndexInCarousel;
+    if (_indexInCarousel == _minAvailableIndexInCarousel)
+      _indexInCarousel = _maxAvailableIndexInCarousel;
     else
       --_indexInCarousel;
     setState(() {});
@@ -39,7 +39,7 @@ class _CardCarouselState extends State<CardCarousel> {
   @override
   Widget build(BuildContext context) {
     final Widget currentItemToShow = widget.children[_indexInCarousel];
-    String label = _numberToShowInUi(_indexInCarousel) + '/' + _numberToShowInUi(_maxAvaibleIndexInCarousel);
+    String label = _numberToShowInUi(_indexInCarousel) + '/' + _numberToShowInUi(_maxAvailableIndexInCarousel);
 
     return Stack(
       children: [

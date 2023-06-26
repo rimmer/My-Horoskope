@@ -7,11 +7,11 @@ import 'package:my_horoskope/app_global.dart';
 /// @constants
 const _DEFAULT_PAYLOAD = "default_payload";
 
-class Notif {
+class NotificationChannel {
   static final reminderChannel = NotificationChannelInfo(
     "remind", // id
-    localeText
-        .notificationChannelReminderName, // name that displayed in smartphone settings
+    localeText.notificationChannelReminderName,
+    // name that displayed in smartphone settings
     localeText.notificationChannelReminderDescription, // description
     defaultEventId: 2500, // event id
   );
@@ -32,6 +32,7 @@ class NotificationChannelInfo {
   final int defaultEventId;
   final String name;
   final String description;
+
   const NotificationChannelInfo(this.id, this.name, this.description,
       {@required this.defaultEventId});
 }
@@ -40,7 +41,7 @@ Future createNotificationChannel(NotificationChannelInfo channelInfo) async {
   var androidNotificationChannel = AndroidNotificationChannel(
     channelInfo.id,
     channelInfo.name,
-    channelInfo.description,
+    description: channelInfo.description,
   );
   await localNotifications
       .resolvePlatformSpecificImplementation<
@@ -54,8 +55,8 @@ Future cancelNotification(int id) async => await localNotifications.cancel(id);
 Future initLocalNotifications() async {
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('notifications_icon_color');
-  final IOSInitializationSettings initializationSettingsIOS =
-      IOSInitializationSettings();
+  final DarwinInitializationSettings initializationSettingsIOS =
+      DarwinInitializationSettings();
   final InitializationSettings initializationSettings = InitializationSettings(
     android: initializationSettingsAndroid,
     iOS: initializationSettingsIOS,
@@ -71,7 +72,8 @@ Future initLocalNotifications() async {
       await localNotifications.getNotificationAppLaunchDetails();
 
   if (notificationAppLaunchDetails.didNotificationLaunchApp)
-    whenNotificationIsClicked(notificationAppLaunchDetails.payload);
+    whenNotificationIsClicked(
+        notificationAppLaunchDetails.notificationResponse.payload);
 }
 
 whenNotificationIsClicked(String payload) {
@@ -107,11 +109,11 @@ Future timeoutNotification({
       AndroidNotificationDetails(
     channelInfo.id,
     channelInfo.name,
-    channelInfo.description,
+    channelDescription: channelInfo.description,
     playSound: sound,
   );
-  final IOSNotificationDetails iOSPlatformChannelSpecifics =
-      IOSNotificationDetails(presentSound: sound);
+  final DarwinNotificationDetails iOSPlatformChannelSpecifics =
+      DarwinNotificationDetails(presentSound: sound);
 
   final NotificationDetails platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
@@ -125,7 +127,7 @@ Future timeoutNotification({
     tz.TZDateTime.now(tz.local).add(timeout),
     platformChannelSpecifics,
     payload: payload,
-    androidAllowWhileIdle: true,
+    androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
     uiLocalNotificationDateInterpretation:
         UILocalNotificationDateInterpretation.absoluteTime,
   );
@@ -154,11 +156,11 @@ Future suddenNotification({
       AndroidNotificationDetails(
     channelInfo.id,
     channelInfo.name,
-    channelInfo.description,
+    channelDescription: channelInfo.description,
     playSound: sound,
   );
-  final IOSNotificationDetails iOSPlatformChannelSpecifics =
-      IOSNotificationDetails(presentSound: sound);
+  final DarwinNotificationDetails iOSPlatformChannelSpecifics =
+      DarwinNotificationDetails(presentSound: sound);
 
   final NotificationDetails platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
