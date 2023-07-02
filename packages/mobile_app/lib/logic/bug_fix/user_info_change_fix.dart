@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:base/user/entity/user.dart';
 import 'package:my_horoskope/app_global.dart';
 import 'package:my_horoskope/routes.dart';
 

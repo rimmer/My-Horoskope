@@ -15,7 +15,7 @@ class DeckCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 1.0),
       child: GestureDetector(
         onTap: () {
-          CardsLogic.of(context).choise = cardType;
+          CardsLogic.of(context).choice = cardType;
         },
         child: DeckCardOuter(cardType: cardType),
       ),

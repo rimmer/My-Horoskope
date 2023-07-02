@@ -1,6 +1,5 @@
 import 'package:base/int_datetime.dart';
 import 'package:base/preferences/setting/enabled_prophecies/item.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:base/user/entity/user.dart';
 import 'package:my_horoskope/app_global.dart';

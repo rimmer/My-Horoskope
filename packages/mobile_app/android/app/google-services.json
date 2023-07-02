@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "1031466051666-tf2ddm4b2ooln0bpcnbq231cl9cqq3o0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.myprophet",
+            "certificate_hash": "fe4901f1c5d2fd1277fb286190a163fd1042cd4d"
+          }
+        },
+        {
           "client_id": "1031466051666-92cjci4e5gfni43159d19qa2gtcmhhov.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -38,10 +46,18 @@
             {
               "client_id": "1031466051666-92cjci4e5gfni43159d19qa2gtcmhhov.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1031466051666-nmpfvsfdj636qbuqn67hrdft5s572hur.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.myprophet"
+              }
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-6881469170510700~7333477499"
     }
   ],
   "configuration_version": "1"

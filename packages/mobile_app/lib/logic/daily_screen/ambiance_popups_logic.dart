@@ -1,5 +1,4 @@
 import 'package:base/user/entity/user.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 class _AmbiancePopupsLogic extends ChangeNotifier {

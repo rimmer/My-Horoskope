@@ -1,4 +1,9 @@
+import 'dart:ui';
+
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+
 import 'exports_for_main.dart';
+import 'firebase_options.dart';
 
 void main() async {
   /// Ensures that all objects here are initialized before doing runApp
@@ -20,13 +25,30 @@ void main() async {
   await configureLocalTimeZone();
 
   /// firebase
-  final app = await Firebase.initializeApp();
+  final app = await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   app.setAutomaticDataCollectionEnabled(AppGlobal.debug.isNotDebug);
-  AppGlobal.firebase.analytics = FirebaseAnalytics();
-  AppGlobal.firebase.analytics.setAnalyticsCollectionEnabled(AppGlobal.debug.isNotDebug);
+
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
+  AppGlobal.firebase.analytics = FirebaseAnalytics.instance;
+  AppGlobal.firebase.analytics
+      .setAnalyticsCollectionEnabled(AppGlobal.debug.isNotDebug);
+  AppGlobal.firebase.analytics // disable collecting advertising ID
+      .setUserProperty(name: "allow_personalized_ads", value: "false");
+
   if (AppGlobal.debug.isNotDebug) {
     AppGlobal.firebase.messaging = FirebaseMessaging.instance;
-    AppGlobal.firebase.notifications = await AppGlobal.firebase.messaging.requestPermission(
+    AppGlobal.firebase.notifications =
+        await AppGlobal.firebase.messaging.requestPermission(
       alert: true,
       announcement: false,
       badge: true,
@@ -46,10 +68,13 @@ void main() async {
     AppGlobal.ads.adsLoaded = false;
   });
 
-  final notificationFuture = initLocalNotifications().then((_) => createNotificationChannel(Notif.reminderChannel));
+  final notificationFuture = initLocalNotifications().then(
+      (_) => createNotificationChannel(NotificationChannel.reminderChannel));
 
   /// authentication
-  AppGlobal.authBloc = AuthenticationBloc(auth: AuthFlutter(repository: UsersRepositoryFlutter()))..add(AppStarted());
+  AppGlobal.authBloc = AuthenticationBloc(
+      auth: AuthFlutter(repository: UsersRepositoryFlutter()))
+    ..add(AppStarted());
 
   await Future.wait([
     notificationFuture,

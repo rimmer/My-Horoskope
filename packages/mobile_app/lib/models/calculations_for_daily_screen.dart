@@ -1,8 +1,5 @@
 import 'package:base/prophecy/entity/prophecy.dart';
-import 'package:base/user/entity/user.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:my_horoskope/app_global.dart';
 
 class _CalculationsForDailySreen {
   _CalculationsForDailySreen({
@@ -31,7 +28,8 @@ class CalculationsForDailySreen extends InheritedWidget {
   final _CalculationsForDailySreen _bound;
 
   static _CalculationsForDailySreen of(BuildContext context) =>
-      (context.dependOnInheritedWidgetOfExactType<CalculationsForDailySreen>())._bound;
+      (context.dependOnInheritedWidgetOfExactType<CalculationsForDailySreen>())
+          ._bound;
 
   @override
   bool updateShouldNotify(CalculationsForDailySreen old) => true;
