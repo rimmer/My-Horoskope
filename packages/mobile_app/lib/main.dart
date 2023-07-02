@@ -42,6 +42,9 @@ void main() async {
   AppGlobal.firebase.analytics = FirebaseAnalytics.instance;
   AppGlobal.firebase.analytics
       .setAnalyticsCollectionEnabled(AppGlobal.debug.isNotDebug);
+  AppGlobal.firebase.analytics // disable collecting advertising ID
+      .setUserProperty(name: "allow_personalized_ads", value: "false");
+
   if (AppGlobal.debug.isNotDebug) {
     AppGlobal.firebase.messaging = FirebaseMessaging.instance;
     AppGlobal.firebase.notifications =
@@ -65,8 +68,8 @@ void main() async {
     AppGlobal.ads.adsLoaded = false;
   });
 
-  final notificationFuture = initLocalNotifications()
-      .then((_) => createNotificationChannel(NotificationChannel.reminderChannel));
+  final notificationFuture = initLocalNotifications().then(
+      (_) => createNotificationChannel(NotificationChannel.reminderChannel));
 
   /// authentication
   AppGlobal.authBloc = AuthenticationBloc(
