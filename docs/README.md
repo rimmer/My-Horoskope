@@ -4,7 +4,7 @@ The app that entartains users by providing predictions on several aspects of the
 
 ## Contact
 Please reach us by email:
-myhoroskopeapp@gmail.com
+iam@notrimmer.dev
 
 ### Legal address 
 Olena Yanishevska
